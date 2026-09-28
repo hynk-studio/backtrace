@@ -1,0 +1,33 @@
+# Local evidence and third-party material
+.local/
+artifacts/
+data/
+datasets/
+models/
+weights/
+outputs/
+results/
+*.zip
+*.whl
+*.safetensors
+*.gguf
+*.bin
+*.pt
+*.pth
+*.ckpt
+# Credentials and environment
+.env*
+*.pem
+*.key
+kaggle.json
+credentials*.json
+*token*.json
+.cookies*
+.venv/
+venv/
+# Caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.cache/
+.DS_Store

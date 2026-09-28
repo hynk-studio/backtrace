@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-28T19:55:23.162502+00:00",
+  "note": "Hashes identify exact acquired bytes, not permission or compliance. Local .response files are ignored and are not distributed. Browser-rendered text was read via accessibility/DOM, without a saved byte snapshot; its SHA-256 is null. All times UTC; local kickoff date is 2026-09-29 Asia/Seoul.",
+  "http_acquisitions": [
+    {
+      "url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/overview",
+      "accessed_at": "2026-09-28T19:49:04.278828+00:00",
+      "version": null,
+      "evidence_level": "observed execution",
+      "sha256": "2243d5be2f8257510b0ad08d8c3bb637a8e4423746a5115e17fb265f6d89624d",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 5653,
+      "local_file": ".local/sources/0.response",
+      "result": "HTML shell only; no contract body in downloaded bytes"
+    },
+    {
+      "url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/overview/model-selection-budget-and-harness-rules",
+      "accessed_at": "2026-09-28T19:49:04.561701+00:00",
+      "version": null,
+      "evidence_level": "observed execution",
+      "sha256": "26c3dd166f56d7f77eebdb2bb747fd934bad6ffe8cbdb4c734d2f9d62e0935b5",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 5653,
+      "local_file": ".local/sources/1.response",
+      "result": "HTML shell only; no contract body in downloaded bytes"
+    },
+    {
+      "url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+      "accessed_at": "2026-09-28T19:49:04.933580+00:00",
+      "version": null,
+      "evidence_level": "observed execution",
+      "sha256": "02a6b66ae23a8757c5938449ed5bbb8c572ffa39666554fbde3528f0435210a8",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 5703,
+      "local_file": ".local/sources/2.response",
+      "result": "HTML shell only; no contract body in downloaded bytes"
+    },
+    {
+      "url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/rules",
+      "accessed_at": "2026-09-28T19:49:05.301736+00:00",
+      "version": null,
+      "evidence_level": "observed execution",
+      "sha256": "f5561840b3dd950f6724b6d27999c5e11e83416fde1f26787eba1adb38cd1612",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 5653,
+      "local_file": ".local/sources/3.response",
+      "result": "HTML shell only; no contract body in downloaded bytes"
+    },
+    {
+      "url": "https://www.kaggle.com/code/ryanholbrook/getting-started-gemma-4-developer-agent",
+      "accessed_at": "2026-09-28T19:49:05.549328+00:00",
+      "version": null,
+      "evidence_level": "observed execution",
+      "sha256": "6e1e47d67488276682cd84e14e59e65672dfcedb0e07a8a34c5219ee4476a9e2",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 8644,
+      "local_file": ".local/sources/4.response",
+      "result": "HTML shell only; no contract body in downloaded bytes"
+    },
+    {
+      "url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/discussion/743007",
+      "accessed_at": "2026-09-28T19:49:05.969344+00:00",
+      "version": null,
+      "evidence_level": "observed execution",
+      "sha256": "987abae96a1d29ed13f5cae3e6f95925434044b251319be05e086e937da7e961",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 5653,
+      "local_file": ".local/sources/5.response",
+      "result": "HTML shell only; no contract body in downloaded bytes"
+    },
+    {
+      "url": "https://www.kaggle.com/api/v1/kernels/pull/ryanholbrook/getting-started-gemma-4-developer-agent",
+      "accessed_at": "2026-09-28T19:49:06.222472+00:00",
+      "version": null,
+      "evidence_level": "observed execution",
+      "sha256": "17aec18cb4a3d1e049a85e58a760e3fc5e56015ccee8c28712ef5dc35c9db09d",
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 36572,
+      "local_file": ".local/sources/6.response",
+      "result": "Public notebook API response; source decoded and inspected, not executed"
+    }
+  ],
+  "notebook": {
+    "source_url": "https://www.kaggle.com/code/ryanholbrook/getting-started-gemma-4-developer-agent",
+    "acquisition_url": "https://www.kaggle.com/api/v1/kernels/pull/ryanholbrook/getting-started-gemma-4-developer-agent",
+    "accessed_at": "2026-09-28T19:49:06.222472+00:00",
+    "artifact_id": 135692529,
+    "version": 2,
+    "sha256": "0c54c3bac3269e422b1d48ac8087ff26b49fe764231b7983c90ef842382f9a87",
+    "hash_representation": "UTF-8 encoding of JSON blob.source/sourceNullable, no added newline",
+    "evidence_level": "primary text",
+    "execution": "NOT RUN",
+    "redistribution": "Notebook UI displays Apache 2.0. Use acquisition manifest; no third-party files committed. This is not permission to redistribute competition inputs."
+  },
+  "browser_observations": [
+    {
+      "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/overview/model-selection-budget-and-harness-rules",
+      "access_window_utc": {
+        "start": "2026-09-28T19:49:06.222472+00:00",
+        "end": "2026-09-28T19:55:23.162502+00:00"
+      },
+      "version": null,
+      "evidence_level": "primary text",
+      "sha256": null,
+      "result": "Rendered body read; source notes in competition-contract.md"
+    },
+    {
+      "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+      "access_window_utc": {
+        "start": "2026-09-28T19:49:06.222472+00:00",
+        "end": "2026-09-28T19:55:23.162502+00:00"
+      },
+      "version": null,
+      "evidence_level": "primary text",
+      "sha256": null,
+      "result": "Rendered data description read; HARNESS_README.md viewer requires sign-in and agreement to competition rules. No acceptance or download attempted."
+    },
+    {
+      "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/rules",
+      "access_window_utc": {
+        "start": "2026-09-28T19:49:06.222472+00:00",
+        "end": "2026-09-28T19:55:23.162502+00:00"
+      },
+      "version": null,
+      "evidence_level": "primary text",
+      "sha256": null,
+      "result": "Rendered body read; source notes in competition-contract.md"
+    },
+    {
+      "source_url": "https://www.kaggle.com/code/ryanholbrook/getting-started-gemma-4-developer-agent",
+      "access_window_utc": {
+        "start": "2026-09-28T19:49:06.222472+00:00",
+        "end": "2026-09-28T19:55:23.162502+00:00"
+      },
+      "version": 2,
+      "evidence_level": "primary text",
+      "sha256": null,
+      "result": "Rendered body read; source notes in competition-contract.md"
+    },
+    {
+      "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/discussion/743007",
+      "access_window_utc": {
+        "start": "2026-09-28T19:49:06.222472+00:00",
+        "end": "2026-09-28T19:55:23.162502+00:00"
+      },
+      "version": null,
+      "evidence_level": "primary text",
+      "sha256": null,
+      "result": "Rendered body read; source notes in competition-contract.md"
+    }
+  ],
+  "missing_artifacts": [
+    "sample_submission/ (including agent.yaml and referenced files)",
+    "HARNESS_README.md",
+    "swegemma, adk_submission and adk_eval_core wheel bytes/version pins",
+    "checkpoint/tokenizer/template bytes and immutable upstream revision"
+  ],
+  "search_index_evidence": []
+}
