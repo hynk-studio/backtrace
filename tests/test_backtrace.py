@@ -3,6 +3,8 @@ import contextlib
 import io
 import json
 import stat
+import subprocess
+import sys
 import tempfile
 import unittest
 import warnings
@@ -57,8 +59,49 @@ class InspectionTests(unittest.TestCase):
 
     def test_duplicates_and_aliases(self):
         self.reject([('notes.txt', 'x'), ('notes.txt', 'y')])
-        self.reject([('notes.txt', 'x'), ('Notes.txt', 'y')], ['notes.txt', 'Notes.txt'])
+        self.reject([('notes.txt', 'x'), ('Notes.txt', 'y')], ['notes.txt'])
         self.reject([('a.txt', 'x'), ('a.txt/n.txt', 'y')], ['a.txt', 'a.txt/n.txt'])
+        self.reject([('A.txt', 'x'), ('a.txt/n.txt', 'y')], ['A.txt', 'a.txt/n.txt'])
+
+    def test_allowlist_aliases_function(self):
+        for name in ('notes.txt', 'Notes.txt'):
+            with self.subTest(member=name):
+                self.make([(name, 'Synthetic fixture')])
+                before = self.archive.read_bytes()
+                with self.assertRaisesRegex(bt.InspectionError, 'case-alias allowlist path'):
+                    bt.inspect_archive(self.archive, ['notes.txt', 'Notes.txt'])
+                self.assertEqual(self.archive.read_bytes(), before)
+
+    def test_allowlist_aliases_cli(self):
+        for name in ('notes.txt', 'Notes.txt'):
+            with self.subTest(member=name):
+                self.make([(name, 'Synthetic fixture')])
+                before = self.archive.read_bytes()
+                result = subprocess.run(
+                    [sys.executable, str(bt.ROOT / 'tools/backtrace.py'), 'inspect',
+                     str(self.archive), '--allow', 'notes.txt', '--allow', 'Notes.txt'],
+                    capture_output=True, text=True, check=False)
+                self.assertEqual(result.returncode, 2)
+                self.assertEqual(result.stdout, '')
+                self.assertIn('case-alias allowlist path', result.stderr)
+                self.assertEqual(self.archive.read_bytes(), before)
+                self.assertEqual(list(Path(self.temp.name).iterdir()), [self.archive])
+
+    def test_exact_allowlist_function_and_cli(self):
+        for name in ('notes.txt', 'Notes.txt'):
+            with self.subTest(member=name):
+                self.make([(name, 'Synthetic fixture')])
+                before = self.archive.read_bytes()
+                report = bt.inspect_archive(self.archive, [name])
+                result = subprocess.run(
+                    [sys.executable, str(bt.ROOT / 'tools/backtrace.py'), 'inspect',
+                     str(self.archive), '--allow', name],
+                    capture_output=True, text=True, check=False)
+                self.assertEqual(result.returncode, 0)
+                self.assertEqual(result.stderr, '')
+                self.assertEqual(json.loads(result.stdout), report)
+                self.assertEqual(self.archive.read_bytes(), before)
+                self.assertEqual(list(Path(self.temp.name).iterdir()), [self.archive])
 
     def test_secrets_cache_weights_and_labels(self):
         for name in ('.env', 'kaggle.json', 'credentials.json', 'cookies.txt', 'token.json',

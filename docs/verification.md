@@ -21,7 +21,7 @@ than embedded recursively in their own commit.
 
 | Level | Observed result |
 | --- | --- |
-| Local tooling tests | PASS: 15 unittest tests, including adversarial synthetic ZIPs and mocked acquisition pin/overwrite checks. |
+| Local tooling tests | PASS: 18 unittest tests after the bounded allowlist correction, including adversarial synthetic ZIPs and mocked acquisition pin/overwrite checks. |
 | Official requirements/starter acquired and pinned | PARTIAL: rendered primary pages inspected; complete notebook v2 source acquired/pinned and reacquired. Starter directory, harness guide/implementation and model bytes NOT ACQUIRED. |
 | Candidate archive built and locally inspected | NOT RUN. Synthetic unit-test ZIPs are not candidates. |
 | Official validator | NOT RUN: implementation/dependency bytes and starter missing. |
@@ -40,6 +40,37 @@ truncates NUL filenames before serialization. The fixture was corrected by
 mutating actual ZIP filename bytes; the inspector's truncation rejection then
 passed. A subsequent metadata-rejection check raised the total from 14 to 15.
 No official starter/validator test failures are claimed: those checks never ran.
+
+## PR #2 bounded allowlist correction
+
+Read the current instructions, Issue #1 and ChatGPT review before this repair.
+The clean local branch and remote PR head matched reviewed commit
+`c89bf82ef99e6596faa29e47c270e8f3c1f81a46`, tree
+`285ce169d3e88a789556310782b5d32c0c027ef8`; there was no intervening work.
+
+On local Python 3.9.6, new regressions reproduced the defect before the fix:
+with either `notes.txt` or `Notes.txt` alone in a synthetic ZIP, the ambiguous
+allowlist containing both names was accepted by the public function and the CLI
+exited 0. The 18-test run reported four failing subtests. After rejecting distinct
+allowlist names with the same canonical key and comparing exact member names for
+completeness, both function cases raise `InspectionError` and both CLI cases exit
+2. Ordinary exact allowlists still pass through both interfaces. Canonical keys
+remain in use for archive aliases and file/directory collisions. Fixture bytes
+remain unchanged, no files are extracted, and all existing safety tests pass.
+
+Repair commands and observed results:
+
+- `python3 -m unittest discover -s tests -v`: PASS, 18 tests after the fix.
+- `python3 tools/backtrace.py preflight`: exit 0, local READY / official baseline BLOCKED.
+- `python3 tools/backtrace.py baseline`: expected exit 2; no archive. A separate
+  subprocess invocation in an empty temporary directory also left it empty.
+- `git diff --check`: PASS.
+- `git diff main...HEAD --check`: PASS.
+
+These are Codex's Python 3.9.6 checks. The reviewer's independent Python 3.13.5
+checks covered the original 15 tests and the reviewed source blobs, not this fix.
+Notebook acquisition and Kaggle source inspection were not rerun during the
+repair. All NOT RUN stages and missing-artifact limitations above remain intact.
 
 ## Exact inspection, acquisition and verification commands
 

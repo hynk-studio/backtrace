@@ -63,8 +63,12 @@ def inspect_archive(path, allowed):
     allowed = set(allowed)
     if not allowed:
         raise InspectionError('provide an explicit --allow path for every expected file')
+    allowed_keys = set()
     for name in allowed:
-        safe_name(name)
+        key = safe_name(name)
+        if key in allowed_keys:
+            raise InspectionError('case-alias allowlist path')
+        allowed_keys.add(key)
         if name.endswith('/'):
             raise InspectionError('allowlist must contain files, not directories')
     if path.stat().st_size > MAX_ARCHIVE:
@@ -84,6 +88,7 @@ def inspect_archive(path, allowed):
         if sum(i.file_size for i in infos) > MAX_TOTAL:
             raise InspectionError('local expanded size ceiling exceeded')
         seen, files, directories, records = set(), set(), set(), []
+        member_names = set()
         for index, info in enumerate(infos):
             if info.comment or info.extra:
                 raise InspectionError('member metadata requires separate review')
@@ -113,6 +118,7 @@ def inspect_archive(path, allowed):
             if info.file_size > max(info.compress_size, 1) * 200:
                 raise InspectionError('suspicious compression ratio')
             files.add(key)
+            member_names.add(name)
             with archive.open(info) as member:
                 data = member.read(MAX_MEMBER + 1)
             if len(data) != info.file_size or len(data) > MAX_MEMBER:
@@ -126,7 +132,7 @@ def inspect_archive(path, allowed):
             if BAD_CONTENT.search(content):
                 raise InspectionError('possible credential or evaluator-only content')
             records.append({'member_index': index, 'bytes': len(data), 'sha256': digest(data)})
-        if files != {safe_name(a) for a in allowed}:
+        if member_names != allowed:
             raise InspectionError('allowlisted file missing from archive')
         for key in files | directories:
             if any('/'.join(key.split('/')[:i]) in files for i in range(1, len(key.split('/')))):
