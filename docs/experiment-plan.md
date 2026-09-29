@@ -4,13 +4,14 @@ Question: does specialist post-training in logical/abductive inference, Bayesian
 belief revision and decision-relevant inspection improve resolved software tasks
 under a matched total inference budget?
 
-This PR has run CPU tooling tests and source inspection only. **R0, R1, R2 and R3:
+This slice has run CPU tooling tests, artifact pin checks and official CPU
+directory/model/include/schema/generation validation on the original sample. **R0, R1, R2 and R3:
 NOT RUN.** No synthetic teacher, inference, adapter training or Kaggle submission
 has run. A valid hosted run and evidence of improvement are separate outcomes.
 
 | Stage | Intervention | Gate / comparison |
 | --- | --- | --- |
-| R0 | Frozen official/default baseline | Acquire starter/harness; pin all bytes, checkpoint, dependencies and official validation. Explicitly choose unchanged starter vs organizer notebook's modified sampling configuration; preserve both provenance and original reference. |
+| R0 | Frozen official/default baseline | Starter/harness acquired and CPU checks pass. Resolve notebook-v2-with-adapters versus requested no-LoRA conflict (docs/r0.md), then package and pin the chosen variant; preserve originals. No task run yet. |
 | R1 | Strong generic review/inspection prompt | Match R0 runtime and budget; control for the benefit of generic review rather than specialized reasoning. |
 | R2 | Bounded diagnostic prompt guidance | Compare with R1 and R0 under the same limits. No new reasoning engine. |
 | R3 | R2 runtime prompt/harness plus specialist post-trained adapter | Test learning separately from promptability; use an appropriately matched general-reasoning training control for training-specific claims. |
@@ -71,8 +72,9 @@ Probability metrics apply only with a defensible reference distribution.
 
 Report these independently: local tooling tests; official requirements/starter
 acquired and pinned; candidate archive built/inspected; official validation;
-permitted end-to-end task; Kaggle acceptance; hosted scoring. Every later stage is
-NOT RUN in this PR. Do not infer usefulness, training compatibility, transfer or
+permitted end-to-end task; Kaggle acceptance; hosted scoring. Candidate packaging,
+compilation/tool binding and every model/submission/scoring stage remain NOT RUN
+in this slice. Do not infer usefulness, training compatibility, transfer or
 submission acceptance from an earlier stage.
 
 ## Future paid-compute proposal, not authorization

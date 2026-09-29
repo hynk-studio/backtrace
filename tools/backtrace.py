@@ -30,11 +30,10 @@ BAD_CONTENT = re.compile(
     r'["\']?(?:api[_-]?key|access[_-]?token|secret|password|authorization|cookie)["\']?\s*[:=]\s*\S+|'
     r'\b(?:hidden_labels?|ground_truth|reference_answers?|latent_causes?|future_observations?|test_patch)\b',
     re.I)
-BLOCKED = ('Official baseline NOT RUN: acquire the competition sample_submission/ and '
-           'HARNESS_README.md through authorized Kaggle access; pin their bytes and the '
-           'swegemma/adk_submission wheel versions; verify redistribution terms, agent.yaml '
-           'schema and official validation before implementing packaging. See '
-           'docs/competition-contract.md. No archive was created.')
+BLOCKED = ('R0 packaging NOT RUN: the acquired official starter and notebook v2 use '
+           'main_lora and tool_lora, conflicting with the requested no-LoRA variant. '
+           'The owner must resolve this recipe choice before packaging. Artifact pins '
+           'and official CPU checks are available; see docs/r0.md. No archive was created.')
 
 
 class InspectionError(ValueError):
@@ -177,6 +176,8 @@ def main(argv=None):
     acquire = commands.add_parser('acquire-notebook', help='acquire pinned public source without execution')
     acquire.add_argument('destination', type=Path)
     commands.add_parser('baseline', help='fail clearly until the official contract is complete')
+    verify = commands.add_parser('verify-artifacts', help='verify acquired official bytes without executing them')
+    verify.add_argument('directory', type=Path)
     args = parser.parse_args(argv)
     try:
         if args.command == 'baseline':
@@ -190,6 +191,12 @@ def main(argv=None):
                       'official_validator': 'NOT RUN'}
         elif args.command == 'inspect':
             result = inspect_archive(args.archive, args.allow)
+        elif args.command == 'verify-artifacts':
+            try:
+                from .artifacts import verify_artifacts
+            except ImportError:
+                from artifacts import verify_artifacts
+            result = verify_artifacts(args.directory)
         else:
             result = acquire_notebook(args.destination)
         print(json.dumps(result, sort_keys=True, indent=2))

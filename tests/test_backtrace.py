@@ -185,7 +185,7 @@ class InspectionTests(unittest.TestCase):
         self.assertEqual(json.loads(output.getvalue())['official_baseline'], 'BLOCKED')
         with contextlib.redirect_stderr(io.StringIO()) as error:
             self.assertEqual(bt.main(['baseline']), 2)
-        self.assertIn('HARNESS_README.md', error.getvalue())
+        self.assertIn('no-LoRA', error.getvalue())
         self.assertFalse(any(Path(self.temp.name).iterdir()))
 
 

@@ -6,10 +6,12 @@ under a matched inference budget?
 
 Backtrace starts with [Issue #1](https://github.com/hynk-studio/backtrace/issues/1)
 and the [Gemma 4 Developer Agent competition](https://www.kaggle.com/competitions/gemma-4-developer-agent).
-This first slice provides CPU-only source acquisition and conservative artifact
-inspection. **The official baseline is blocked, not reproduced.** The organizer
-notebook v2 is acquired and pinned; the official starter directory and harness
-implementation remain behind Kaggle's sign-in/rules gate.
+The official guide, ten-file starter, and five harness/schema wheels are now
+acquired and pinned locally. Official CPU directory, model, include, schema and
+generation checks pass on the original starter. **R0 packaging remains blocked
+on a recipe conflict:** notebook v2 preserves two LoRA adapters, while the requested
+R0 is no-LoRA. See [the acquired contract and R0 decision](docs/r0.md).
+No model, task, or submission has run.
 
 ## Local checks
 
@@ -23,8 +25,18 @@ python3 tools/backtrace.py baseline
 ```
 
 `preflight` reports local interpreter readiness, not competition readiness.
-`baseline` deliberately exits **2**, with the missing artifacts and next steps.
-There is no packaging, inference, training, or submission implementation yet.
+`baseline` deliberately exits **2** with the unresolved variant choice and creates
+no archive. There is no packaging, inference, training, or submission implementation yet.
+
+Verify the locally acquired artifact pins without importing their code:
+
+```sh
+python3 tools/backtrace.py verify-artifacts .local/official
+```
+
+For the separately installed, pinned Python 3.12 CPU validation environment and
+the official checks, follow [docs/r0.md](docs/r0.md). These checks are distinct
+from the standard-library ZIP inspector below.
 
 Acquire only the pinned public notebook source (network required; never executed):
 
