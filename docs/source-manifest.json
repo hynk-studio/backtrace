@@ -155,13 +155,217 @@
       "evidence_level": "primary text",
       "sha256": null,
       "result": "Rendered body read; source notes in competition-contract.md"
+    },
+    {
+      "source_url": "https://www.kaggle.com/code/ryanholbrook/getting-started-gemma-4-developer-agent/input",
+      "version": 2,
+      "evidence_level": "primary text",
+      "sha256": null,
+      "result": "Input UI names adk-eval-core 0.1.0, adk-submission 0.2.11, swegemma 0.2.7, google-adk 1.36.1, google-genai 2.11.0. Same swegemma wheel bytes downloaded from this Input UI and wheelhouse v25.",
+      "access_window_utc": {
+        "start": "2026-09-29T00:24:16.335989+00:00",
+        "end": "2026-09-29T00:37:26.756770+00:00"
+      }
     }
   ],
   "missing_artifacts": [
-    "sample_submission/ (including agent.yaml and referenced files)",
-    "HARNESS_README.md",
-    "swegemma, adk_submission and adk_eval_core wheel bytes/version pins",
-    "checkpoint/tokenizer/template bytes and immutable upstream revision"
+    "checkpoint/tokenizer/template bytes and immutable upstream revision",
+    "complete hosted environment and scoring entrypoint bytes (outside this CPU packaging slice)"
   ],
-  "search_index_evidence": []
+  "search_index_evidence": [],
+  "official_artifacts": [
+    {
+      "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+      "source_path": "HARNESS_README.md",
+      "accessed_at_utc": "2026-09-29T00:24:16.335989+00:00",
+      "size_bytes": 49356,
+      "sha256": "3d6e57a13234cb4e783ba24eaab486459af76e0923ea4c6607cd41cc8961bbbb",
+      "evidence_level": "primary text",
+      "acquisition": "signed-in Chrome Download button",
+      "local_path": "HARNESS_README.md",
+      "version": null,
+      "redistribution": "Unresolved; local ignored bytes only."
+    },
+    {
+      "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+      "source_path": "sample_submission/agent.yaml",
+      "accessed_at_utc": "2026-09-29T00:25:29.144283+00:00",
+      "size_bytes": 438,
+      "sha256": "c7fbbbbdc44778419be8e9f53a85800eeb17d0cf151e0846c46e107401b72034",
+      "evidence_level": "primary text",
+      "acquisition": "signed-in Chrome Download button",
+      "local_path": "sample_submission/agent.yaml",
+      "version": null,
+      "redistribution": "Unresolved; local ignored bytes only."
+    },
+    {
+      "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+      "source_path": "sample_submission/configs/sampling.yaml",
+      "accessed_at_utc": "2026-09-29T00:25:29.144916+00:00",
+      "size_bytes": 120,
+      "sha256": "3dab0b2506dae34ce92fef7b380d6073729104b23fe2cf66d44ac1d2f213aa6a",
+      "evidence_level": "primary text",
+      "acquisition": "signed-in Chrome Download button",
+      "local_path": "sample_submission/configs/sampling.yaml",
+      "version": null,
+      "redistribution": "Unresolved; local ignored bytes only."
+    },
+    {
+      "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+      "source_path": "sample_submission/prompts/analyzer.md",
+      "accessed_at_utc": "2026-09-29T00:25:29.145282+00:00",
+      "size_bytes": 527,
+      "sha256": "c762b062032cc8463015e589ad8b4f0e17296062e1b0ff1e78712eef9f5e2d43",
+      "evidence_level": "primary text",
+      "acquisition": "signed-in Chrome Download button",
+      "local_path": "sample_submission/prompts/analyzer.md",
+      "version": null,
+      "redistribution": "Unresolved; local ignored bytes only."
+    },
+    {
+      "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+      "source_path": "sample_submission/prompts/system.md",
+      "accessed_at_utc": "2026-09-29T00:25:29.145570+00:00",
+      "size_bytes": 3888,
+      "sha256": "f1cbf7943ee9687382321b1dfd9cd88581d608c1c8b8e6ea61a763bd1a3234af",
+      "evidence_level": "primary text",
+      "acquisition": "signed-in Chrome Download button",
+      "local_path": "sample_submission/prompts/system.md",
+      "version": null,
+      "redistribution": "Unresolved; local ignored bytes only."
+    },
+    {
+      "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+      "source_path": "sample_submission/sub_agents/code_analyzer.yaml",
+      "accessed_at_utc": "2026-09-29T00:25:29.145914+00:00",
+      "size_bytes": 361,
+      "sha256": "7a764798e36cc68aa38900256245e4aed969b5439b992c7da4105b6ebcb7e62b",
+      "evidence_level": "primary text",
+      "acquisition": "signed-in Chrome Download button",
+      "local_path": "sample_submission/sub_agents/code_analyzer.yaml",
+      "version": null,
+      "redistribution": "Unresolved; local ignored bytes only."
+    },
+    {
+      "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+      "source_path": "sample_submission/eval_config.yaml",
+      "accessed_at_utc": "2026-09-29T00:25:29.146168+00:00",
+      "size_bytes": 232,
+      "sha256": "adb486b67535fa59b427b79d44dafc131176f1f1964d184e16046ed520ede02d",
+      "evidence_level": "primary text",
+      "acquisition": "signed-in Chrome Download button",
+      "local_path": "sample_submission/eval_config.yaml",
+      "version": null,
+      "redistribution": "Unresolved; local ignored bytes only."
+    },
+    {
+      "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+      "source_path": "sample_submission/adapters/main_lora/adapter_model.safetensors",
+      "accessed_at_utc": "2026-09-29T00:26:21.111889+00:00",
+      "size_bytes": 217672,
+      "sha256": "dcbedd989af34f5201a39606e0bd4014d351a29162dd96da418782cbbe487ad9",
+      "evidence_level": "primary artifact bytes",
+      "acquisition": "signed-in Chrome Download button",
+      "local_path": "sample_submission/adapters/main_lora/adapter_model.safetensors",
+      "version": null,
+      "redistribution": "Unresolved; local ignored bytes only."
+    },
+    {
+      "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+      "source_path": "sample_submission/adapters/main_lora/adapter_config.json",
+      "accessed_at_utc": "2026-09-29T00:26:59.296477+00:00",
+      "size_bytes": 664,
+      "sha256": "75a46da2db7f3c70442e5c728f64059aff52cf64174cee7aeb3a4ec37f6e78fb",
+      "evidence_level": "primary artifact bytes",
+      "acquisition": "signed-in Chrome Download button",
+      "local_path": "sample_submission/adapters/main_lora/adapter_config.json",
+      "version": null,
+      "redistribution": "Unresolved; local ignored bytes only."
+    },
+    {
+      "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+      "source_path": "sample_submission/adapters/tool_lora/adapter_config.json",
+      "accessed_at_utc": "2026-09-29T00:26:59.297064+00:00",
+      "size_bytes": 664,
+      "sha256": "75a46da2db7f3c70442e5c728f64059aff52cf64174cee7aeb3a4ec37f6e78fb",
+      "evidence_level": "primary artifact bytes",
+      "acquisition": "signed-in Chrome Download button",
+      "local_path": "sample_submission/adapters/tool_lora/adapter_config.json",
+      "version": null,
+      "redistribution": "Unresolved; local ignored bytes only."
+    },
+    {
+      "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+      "source_path": "sample_submission/adapters/tool_lora/adapter_model.safetensors",
+      "accessed_at_utc": "2026-09-29T00:26:59.297443+00:00",
+      "size_bytes": 217672,
+      "sha256": "dcbedd989af34f5201a39606e0bd4014d351a29162dd96da418782cbbe487ad9",
+      "evidence_level": "primary artifact bytes",
+      "acquisition": "signed-in Chrome Download button",
+      "local_path": "sample_submission/adapters/tool_lora/adapter_model.safetensors",
+      "version": null,
+      "redistribution": "Unresolved; local ignored bytes only."
+    },
+    {
+      "source_url": "https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse",
+      "source_path": "adk_eval_core-0.1.0-py3-none-any.whl",
+      "version": "wheelhouse v25; adk_eval_core-0.1.0-py3-none-any.whl",
+      "accessed_at_utc": "2026-09-29T00:28:24.253639+00:00",
+      "size_bytes": 89306,
+      "sha256": "b1608c4471a2739eca6469735e4e118ff33a20823ce9430719238ea843aa9d1a",
+      "evidence_level": "primary artifact bytes",
+      "acquisition": "signed-in Chrome Download button",
+      "local_path": "wheels/adk_eval_core-0.1.0-py3-none-any.whl",
+      "redistribution": "Unresolved; local ignored bytes only."
+    },
+    {
+      "source_url": "https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse",
+      "source_path": "adk_submission-0.2.11-py3-none-any.whl",
+      "version": "wheelhouse v25; adk_submission-0.2.11-py3-none-any.whl",
+      "accessed_at_utc": "2026-09-29T00:28:24.254834+00:00",
+      "size_bytes": 62404,
+      "sha256": "d14f7d31e724f507322c763bc7c1ed56ac603085b3709afed954e50006b494a8",
+      "evidence_level": "primary artifact bytes",
+      "acquisition": "signed-in Chrome Download button",
+      "local_path": "wheels/adk_submission-0.2.11-py3-none-any.whl",
+      "redistribution": "Unresolved; local ignored bytes only."
+    },
+    {
+      "source_url": "https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse",
+      "source_path": "swegemma-0.2.7-py3-none-any.whl",
+      "version": "wheelhouse v25; swegemma-0.2.7-py3-none-any.whl",
+      "accessed_at_utc": "2026-09-29T00:28:24.255662+00:00",
+      "size_bytes": 111548,
+      "sha256": "2b74d402dc95a615f3b36c56fd3f9ba11ddbfb7db8a5a32ec259369a0f559d98",
+      "evidence_level": "primary artifact bytes",
+      "acquisition": "signed-in Chrome Download button",
+      "local_path": "wheels/swegemma-0.2.7-py3-none-any.whl",
+      "redistribution": "Unresolved; local ignored bytes only."
+    },
+    {
+      "source_url": "https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse",
+      "source_path": "google_adk-1.36.1-py3-none-any.whl",
+      "version": "wheelhouse v25; google_adk-1.36.1-py3-none-any.whl",
+      "accessed_at_utc": "2026-09-29T00:28:24.257289+00:00",
+      "size_bytes": 2877731,
+      "sha256": "1a2f6868c509e3151fb0de3575a7d18b45c338be86f420924dad74e7193631a0",
+      "evidence_level": "primary artifact bytes",
+      "acquisition": "signed-in Chrome Download button",
+      "local_path": "wheels/google_adk-1.36.1-py3-none-any.whl",
+      "redistribution": "Unresolved; local ignored bytes only."
+    },
+    {
+      "source_url": "https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse",
+      "source_path": "google_genai-2.11.0-py3-none-any.whl",
+      "version": "wheelhouse v25; google_genai-2.11.0-py3-none-any.whl",
+      "accessed_at_utc": "2026-09-29T00:28:24.263483+00:00",
+      "size_bytes": 984162,
+      "sha256": "5bc8186100e1d34d691fbe0cba392b7e04e98d286ca952323a6672d054accf95",
+      "evidence_level": "primary artifact bytes",
+      "acquisition": "signed-in Chrome Download button",
+      "local_path": "wheels/google_genai-2.11.0-py3-none-any.whl",
+      "redistribution": "Unresolved; local ignored bytes only."
+    }
+  ],
+  "official_artifact_note": "Original sample has ten files, including two small LoRA adapters. Downloaded through existing signed-in Chrome access after owner confirmed entry/rules complete. No terms accepted here. Notebook v2 Input UI lists the same five wheel filenames; an independent notebook-Input swegemma download matched the wheelhouse v25 SHA-256. Original starter retained unchanged under .local/official/."
 }

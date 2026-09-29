@@ -6,10 +6,12 @@ under a matched inference budget?
 
 Backtrace starts with [Issue #1](https://github.com/hynk-studio/backtrace/issues/1)
 and the [Gemma 4 Developer Agent competition](https://www.kaggle.com/competitions/gemma-4-developer-agent).
-This first slice provides CPU-only source acquisition and conservative artifact
-inspection. **The official baseline is blocked, not reproduced.** The organizer
-notebook v2 is acquired and pinned; the official starter directory and harness
-implementation remain behind Kaggle's sign-in/rules gate.
+The official guide, ten-file starter, and five harness/schema wheels are now
+acquired and pinned locally. **R0-clean is packaged reproducibly** as a six-file
+no-LoRA derivative, preserving the ten-file official reference. Official CPU
+directory, model, include, schema and generation checks pass separately on the
+original and actual candidate archive. See [the exact delta and R0 recipe](docs/r0.md).
+No model, task, or submission has run.
 
 ## Local checks
 
@@ -19,12 +21,35 @@ Tested with Python 3.9.6. From the repository root:
 ```sh
 python3 -m unittest discover -s tests -v
 python3 tools/backtrace.py preflight
-python3 tools/backtrace.py baseline
 ```
 
 `preflight` reports local interpreter readiness, not competition readiness.
-`baseline` deliberately exits **2**, with the missing artifacts and next steps.
-There is no packaging, inference, training, or submission implementation yet.
+Packaging additionally requires the acquired pins and the separate official CPU
+environment described below. There is no inference, training or submission implementation.
+
+Verify the locally acquired artifact pins without importing their code:
+
+```sh
+python3 tools/backtrace.py verify-artifacts .local/official
+```
+
+For the separately installed, pinned Python 3.12 CPU validation environment and
+the official checks, follow [docs/r0.md](docs/r0.md). These checks are distinct
+from the standard-library ZIP inspector below.
+
+With those verified inputs and the pinned CPU venv available:
+
+```sh
+mkdir -p .local/r0-clean
+python3 tools/backtrace.py baseline .local/official .local/r0-clean/candidate.zip --official-python .local/cpu-checks/bin/python
+.local/cpu-checks/bin/python tools/official_check.py .local/official --candidate .local/r0-clean/candidate.zip
+```
+
+The build pins the original, removes only the two authorized adapter lines,
+excludes four adapter files, and validates the staged archive before publishing
+it. Existing outputs are never overwritten; failed checks remove staged output.
+`baseline` with no arguments still exits **2**, names the required inputs and
+creates no archive. Generated assets and receipts stay local and Git-ignored.
 
 Acquire only the pinned public notebook source (network required; never executed):
 

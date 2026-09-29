@@ -11,6 +11,11 @@ import zlib
 from datetime import datetime, timezone
 from pathlib import Path
 
+try:
+    from .errors import InspectionError
+except ImportError:
+    from errors import InspectionError
+
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / 'docs' / 'source-manifest.json'
 # Local safety ceilings, NOT Kaggle limits. Binary adapters intentionally unsupported.
@@ -30,15 +35,6 @@ BAD_CONTENT = re.compile(
     r'["\']?(?:api[_-]?key|access[_-]?token|secret|password|authorization|cookie)["\']?\s*[:=]\s*\S+|'
     r'\b(?:hidden_labels?|ground_truth|reference_answers?|latent_causes?|future_observations?|test_patch)\b',
     re.I)
-BLOCKED = ('Official baseline NOT RUN: acquire the competition sample_submission/ and '
-           'HARNESS_README.md through authorized Kaggle access; pin their bytes and the '
-           'swegemma/adk_submission wheel versions; verify redistribution terms, agent.yaml '
-           'schema and official validation before implementing packaging. See '
-           'docs/competition-contract.md. No archive was created.')
-
-
-class InspectionError(ValueError):
-    pass
 
 
 def digest(data):
@@ -176,20 +172,37 @@ def main(argv=None):
     inspect.add_argument('--allow', action='append', required=True, help='exact expected member path; repeat')
     acquire = commands.add_parser('acquire-notebook', help='acquire pinned public source without execution')
     acquire.add_argument('destination', type=Path)
-    commands.add_parser('baseline', help='fail clearly until the official contract is complete')
+    baseline = commands.add_parser('baseline', help='build and CPU-check the pinned R0-clean derivative')
+    baseline.add_argument('artifacts', type=Path, nargs='?')
+    baseline.add_argument('output', type=Path, nargs='?')
+    baseline.add_argument('--official-python', type=Path, help='Python in the pinned CPU-check venv')
+    verify = commands.add_parser('verify-artifacts', help='verify acquired official bytes without executing them')
+    verify.add_argument('directory', type=Path)
     args = parser.parse_args(argv)
     try:
         if args.command == 'baseline':
-            print(BLOCKED, file=sys.stderr)
-            return 2
-        if args.command == 'preflight':
+            if args.artifacts is None or args.output is None or args.official_python is None:
+                raise InspectionError('R0-clean requires pinned artifacts, a new output ZIP and '
+                                      '--official-python; follow docs/r0.md. No archive was created')
+            try:
+                from .r0 import build_candidate
+            except ImportError:
+                from r0 import build_candidate
+            result = build_candidate(args.artifacts, args.output, args.official_python)
+        elif args.command == 'preflight':
             if sys.version_info < (3, 9):
                 raise InspectionError('Python 3.9 or newer required')
             result = {'local_tooling': 'READY', 'python': sys.version.split()[0],
-                      'dependencies': 'standard library only', 'official_baseline': 'BLOCKED',
+                      'dependencies': 'standard library only', 'r0_clean_packaging': 'NOT RUN',
                       'official_validator': 'NOT RUN'}
         elif args.command == 'inspect':
             result = inspect_archive(args.archive, args.allow)
+        elif args.command == 'verify-artifacts':
+            try:
+                from .artifacts import verify_artifacts
+            except ImportError:
+                from artifacts import verify_artifacts
+            result = verify_artifacts(args.directory)
         else:
             result = acquire_notebook(args.destination)
         print(json.dumps(result, sort_keys=True, indent=2))

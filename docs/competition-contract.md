@@ -1,16 +1,21 @@
-# Competition contract: partial primary-source verification
+# Competition contract: acquired sources and checked R0-clean package
 
-Inspected on 2026-09-29 Asia/Seoul (2026-09-28 UTC). This is a dated source review,
-not certification of a runnable submission. [Source records](source-manifest.json)
+Bootstrap inspection: 2026-09-28 UTC. Artifact follow-up: 2026-09-29 UTC.
+The guide, starter and harness packages are now acquired; official CPU checks
+pass separately on the original starter and the generated R0-clean archive.
+See [current contract details and discrepancies](r0.md). This is not certification
+of a runnable submission. [Source records](source-manifest.json)
 contain URLs, access windows, artifact IDs and actual-byte SHA-256 values.
 
 ## Evidence acquired
 
-The six Issue #1 URLs returned HTML shells through HTTP; the web reader extracted
+At the bootstrap inspection, the six Issue #1 URLs returned HTML shells through HTTP; the web reader extracted
 no body (the model/harness URL returned a reader error). Their hashes identify
 those shells, **not** the contract. A normal rendered browser then exposed the
 overview/model section, rules, data description, notebook and organizer welcome.
-No authentication, terms acceptance or access-control bypass occurred. Rendered
+No authentication, terms acceptance or access-control bypass occurred in that initial inspection.
+In the follow-up, existing Google/Chrome sign-in restored authorized Kaggle access
+after the owner confirmed entry/rules complete. No new terms were accepted. Rendered
 text was read, but no byte snapshot was retained; those records have null hashes.
 No search-index snippets are used as verified requirements.
 
@@ -27,7 +32,7 @@ is not the reproducibility pin. Reacquisition checks the source pin and version.
 | --- | --- | --- |
 | Model | Every agent uses `gemma-4-31b-it-qat-w4a16-ct`; LoRA is optional. | [Overview, model section](https://www.kaggle.com/competitions/gemma-4-developer-agent/overview/model-selection-budget-and-harness-rules) |
 | Packaging | ZIP with `agent.yaml` at root. | [Overview, evaluation](https://www.kaggle.com/competitions/gemma-4-developer-agent/overview) |
-| Loading | Restricted ADK configuration; relative `!include`; paths/symlinks cannot escape submission root. | Model section; full restrictions/parser not acquired. |
+| Loading | Restricted ADK configuration; relative `!include`; paths/symlinks cannot escape submission root. | Model section; parser now acquired, differences documented in r0.md. |
 | Adapters | PEFT directories under `adapters/<name>/`, containing `adapter_config.json` and `adapter_model.safetensors`; `LlmAgent` selects `adapter: <name>`. | Model section; target modules and compatibility still unknown. |
 | Tools | Harness tools or `agent_tool` subagents only. Shell, patch submission, budget status, read/edit/write and three graph-query tools are listed. Skills use `SKILL.md` frontmatter; script time debits the shared budget. | Model section; full signatures in primary page. |
 | Score and time | Percentage of issues passing validation after patching; 12 hours across tasks, including sandbox setup, excluding patch validation. Optional per-task limits in `eval_config.yaml`. | Overview, evaluation. |
@@ -40,7 +45,7 @@ hidden grading separates those answers. Do not route these fields to agent input
 It describes offline wheels mounted at `/wheels/`, Python 3.13 sandbox build
 specifications, frozen repository snapshots, graphs and embeddings. It identifies
 `sample_submission/` and `HARNESS_README.md`, plus generated `submission.parquet`
-with `id`/`prediction`. These are descriptions, not acquired file bytes. The data
+with `id`/`prediction`. These descriptions are distinct from the guide/starter bytes now acquired; task and evaluator data were not acquired. The data
 viewer lists 524 files totaling 22.42 GB; no bulk download was attempted.
 
 The [rules](https://www.kaggle.com/competitions/gemma-4-developer-agent/rules) state
@@ -85,8 +90,8 @@ instead of vendoring it or extending that license to its inputs.
 - It calls `validate_single_declared_model`, discovers adapters using
   `ALLOWED_ADAPTER_EXTENSIONS`, passes the manifest to `VllmServer`, then creates
   a registry with the declared/base aliases and `openai/` prefix. Exact discovery,
-  target-module, alias, tokenizer/chat-template and adapter loading behavior
-  requires implementation/config bytes we do not have.
+  alias and discovery behavior is now inspected; tokenizer/template bytes and
+  actual checkpoint/adapter loading remain unverified.
 - Cell `105c5b68` invokes `swegemma.evaluate.Evaluator` on two public tasks,
   with `EvalConfig`, `build_submission_limits()`, context caching/compaction,
   and `sandbox='subprocess'`. It reads `eval_config.yaml`; fallback values are
@@ -95,32 +100,32 @@ instead of vendoring it or extending that license to its inputs.
   Preserve this notebook/deployment distinction; do not equate the two runtimes.
 - Cell `d811048f` creates a ZIP and checks expanded size against
   `MAX_SUBMISSION_SIZE_BYTES` and suffixes against `ALLOWED_SUBMISSION_EXTENSIONS`.
-  Its error string mentions 3 GiB, but the imported constant values and validator
-  implementation are not acquired. These assertions do not prove complete validation.
+  The imported size and extension constants are now verified from swegemma 0.2.7.
+  These assertions do not prove complete validation.
 - Metadata pins notebook image
   `gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461`,
   names NvidiaL4, GPU enabled, internet disabled, and the metric wheelhouse input.
-  Wheel versions are unavailable. The rendered run reports L4 x4. That is published
+  Wheelhouse v25 artifacts now pin swegemma 0.2.7, adk-submission 0.2.11,
+  adk-eval-core 0.1.0, google-adk 1.36.1 and google-genai 2.11.0. The rendered run reports L4 x4. That is published
   organizer output, not execution by Backtrace or proof of hosted scoring.
 
-## Missing contract and actionable access boundary
+## Resolved access, remaining contract boundaries
 
-The data viewer explicitly says sign-in and agreement to competition rules are
-required to view `HARNESS_README.md` (49.36 kB). The same gated dataset contains
-`sample_submission/`. The owner controls agreement; no acceptance was attempted.
+The previous sign-in/rules viewer gate is resolved. All necessary starter files,
+the guide and relevant harness package bytes are now pinned in the manifest.
+[The follow-up record](r0.md) names actual loader behavior, includes, limits,
+dependencies, official CPU checks and discrepancies with the guide/notebook.
 
-| Missing | Needed before using a competition-specific packaging/runtime path |
-| --- | --- |
-| Starter bytes and manifest | Authorized acquisition of `sample_submission/`, all includes and configuration; pin each file; preserve an unchanged local reference. |
-| Harness guide and wheels | Authorized `HARNESS_README.md`, exact `swegemma`, `adk-submission`, `adk-eval-core` package versions/bytes; inspect official parser, validator/CLI and imported limits without assuming generic ADK behavior. |
-| Model/tokenizer | Immutable checkpoint revision, tokenizer/chat template and configuration hashes, model terms; notebook asset version 2 alone does not establish these. No weights downloaded. |
-| LoRA compatibility | Permitted rank/target modules, PEFT format details, base revision, quantization/training route and actual registration/load semantics. Notebook rank 128 is insufficient proof. |
-| Hosted resources | Full dependency pins, CPU/GPU/RAM/storage/process/network restrictions, per-call timeout/turn limits, enforcement and aggregate timing semantics beyond the overview. |
-| Submission mechanism | ZIP requirement is known; exact upload/runner contract and all rejection checks remain untested. No submission command is implemented. |
-| Rights | Per-artifact redistribution/model/data conditions and public-code-sharing obligations require resolution before assets or a competition solution are published. |
+Remaining unknowns are the immutable checkpoint/tokenizer/template bytes and
+upstream revision; model/runtime compatibility and full hosted dependency pins;
+R3 training/adapter compatibility; hosted submission rejection/acceptance behavior;
+and the existing redistribution/public-sharing rights ambiguity. R3 training
+unknowns do not block no-LoRA packaging. No model or submission execution occurred.
 
-`python3 tools/backtrace.py baseline` fails closed with these missing-artifact
-instructions. The generic ZIP inspector uses conservative local limits; it does
-not parse `agent.yaml`, import untrusted code, validate adapters or claim official
-compliance. Acquisition of a public notebook is only partial official-artifact
-acquisition, not a complete official baseline.
+The initial sampling-only/no-LoRA planning conflict was explicitly resolved in
+[PR #3 review](https://github.com/hynk-studio/backtrace/pull/3#pullrequestreview-5346432812)
+and the [Issue #1 correction](https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5881567240).
+R0-clean is an authorized experimental derivative: remove the two adapter
+declarations and omit four adapter files, retaining all other bytes and the
+existing AgentTool. It is not the unchanged official reference. Its exact delta,
+archive hash and candidate-specific CPU results are in [r0.md](r0.md).

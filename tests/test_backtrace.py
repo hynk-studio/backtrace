@@ -182,10 +182,10 @@ class InspectionTests(unittest.TestCase):
     def test_preflight_and_baseline_gate(self):
         with contextlib.redirect_stdout(io.StringIO()) as output:
             self.assertEqual(bt.main(['preflight']), 0)
-        self.assertEqual(json.loads(output.getvalue())['official_baseline'], 'BLOCKED')
+        self.assertEqual(json.loads(output.getvalue())['r0_clean_packaging'], 'NOT RUN')
         with contextlib.redirect_stderr(io.StringIO()) as error:
             self.assertEqual(bt.main(['baseline']), 2)
-        self.assertIn('HARNESS_README.md', error.getvalue())
+        self.assertIn('R0-clean requires pinned artifacts', error.getvalue())
         self.assertFalse(any(Path(self.temp.name).iterdir()))
 
 
