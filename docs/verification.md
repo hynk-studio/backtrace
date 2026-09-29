@@ -1,3 +1,42 @@
+# No-custom-all-reduce continuation — startup failure, session terminated
+
+Fresh Codex execution on 2026-09-29, continuing reviewed head
+`6357b8e9525a786df166036f82f509dd715745a6` in existing Draft PR #5.
+The [complete report](r0-no-custom-ar.md) records exact commands, private driver
+hash/diff, first-error context, timings and the limits of each observation.
+All earlier results below remain historical; neither GPU attempt was retried.
+
+- **PASS: 51 local tests**, Python 3.9.6; five focused source regressions.
+  **PASS: one real pinned-wrapper CPU command test**, with explicitly injected
+  hardware capability. The real argv adds the flag once and preserves everything
+  else. Preflight READY, 16 original pins and actual-candidate official checks PASS.
+- **Frozen archive unchanged:** 6,230 bytes, SHA-256
+  `2e24495826cb971053439a00d9ad8350471fc0efffa41a54b82082feedaa7358`.
+  All selected inputs, model v2 and wheelhouse v25 hashes matched. No rebuild.
+- **One additional private T4 x2 run:** SM75, native BF16 false, requested `auto`,
+  observed FP16 and effective `disable_custom_all_reduce=True`. NCCL 2.27.5
+  initialized; no per-collective tracing claim. Weight loading completed.
+- **Startup FAILED:** graph profiling reached Triton attention, which required
+  98,304 shared-memory bytes against a 65,536 limit. No prior custom-all-reduce
+  error recurred, but graph profiling did not complete. The wrapper only surfaced
+  the failure after its 1200-second health wait and stop handling: **1210.852 s**
+  for `start()`, not an exact <=1200-second call. No configuration fallback.
+- **Cleanup CONFIRMED:** zero worker survivors, temporary workspace removed,
+  independent provider ERROR, CPU control off/None, no active events. Provider
+  runtime **1536.5 s**; request-to-terminal readback **1564.903 s** bounds additional
+  use at **0.86940 aggregate GPU-hours**. Quota **00:10 → 00:36 / 30 hrs**, $0 paid.
+- **NOT RUN:** healthy served identity, alias/request/thinking parameters,
+  returned model request, selected task, agent tools, public-test verification,
+  competition submission/acceptance, hosted scoring and training. **No patch
+  generated**, distinct from an empty patch. The real sandbox dependency check
+  passed as preparation, not an agent tool invocation.
+
+These are new Codex executions, distinct from ChatGPT's review checks. Historical
+compiler/binding tests were NOT RERUN. Raw originals and both consumed guards are
+retained privately; this additional authorization is consumed.
+
+---
+
 # Native-dtype continuation — GPU startup failure, session terminated
 
 Fresh Codex execution on 2026-09-29, continuing the reviewed head

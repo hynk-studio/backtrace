@@ -1,11 +1,11 @@
 # Frozen single public task smoke proposal
 
 **2026-09-29 status:** the original [pre-allocation STOP](r0-smoke-attempt.md)
-is preserved. The owner then approved the named **T4-native-dtype** deviation;
-the [single attempt](r0-native-dtype.md) resolved to FP16 and failed during CUDA
-custom-all-reduce startup. The GPU session is terminated and the attempt consumed.
-The recipe below is the historical reviewed proposal, including its then-open
-prerequisites. New acquisitions and observed outcomes are in the execution report;
+and [first T4-native-dtype failure](r0-native-dtype.md) remain separate history.
+The owner authorized one additional **T4-native-no-custom-ar** attempt. Its
+[execution report](r0-no-custom-ar.md) records the applied flag, a different
+Triton shared-memory failure, and confirmed shutdown. Both GPU authorizations
+are consumed. The recipe below remains the historical reviewed proposal;
 no candidate byte, prompt or task budget changed.
 
 This is a preparation recipe for a separately authorized run, not permission to

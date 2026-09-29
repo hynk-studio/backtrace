@@ -4,7 +4,8 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import Mock
 
-from tools.native_dtype import AFTER, BEFORE, native_dtype_source, serving_sources
+from tools.native_dtype import (AFTER, BEFORE, EXTRA_ARGS_LINE, NO_CUSTOM_AR,
+                                native_dtype_source, no_custom_ar_source, serving_sources)
 
 
 SOURCE = """config = dict(
@@ -17,6 +18,28 @@ SOURCE = """config = dict(
 
 
 class NativeDtypeTests(unittest.TestCase):
+    def test_no_custom_ar_adds_only_supported_extra_args(self):
+        fixture = SOURCE.replace('max_lora_rank=128, startup_timeout=60 * 20,',
+                                 'max_lora_rank=128,\n    startup_timeout=60 * 20,')
+        native = native_dtype_source(fixture)
+        changed = no_custom_ar_source(native)
+        self.assertEqual(changed.replace(EXTRA_ARGS_LINE, '', 1), native)
+        self.assertEqual(changed.count(NO_CUSTOM_AR), 1)
+        for enabled, expected in ((True, 'bfloat16'), (False, 'auto')):
+            scope = {'torch': SimpleNamespace(cuda=SimpleNamespace(
+                is_available=lambda: True, is_bf16_supported=lambda **_: enabled))}
+            exec(changed, scope)
+            self.assertEqual(scope['config']['extra_args'], [NO_CUSTOM_AR])
+            self.assertEqual(scope['config']['dtype'], expected)
+
+    def test_no_custom_ar_rejects_drift_and_repeated_application(self):
+        native = AFTER + '\n    startup_timeout=60 * 20,\n'
+        for source in (native.replace(AFTER, BEFORE), native + native,
+                       native.replace('60 * 20', '60 * 30'),
+                       'extra_args=[]\n' + native, no_custom_ar_source(native)):
+            with self.assertRaisesRegex(ValueError, 'unchanged native-dtype'):
+                no_custom_ar_source(source)
+
     def test_native_non_native_and_no_cuda_branches(self):
         for available, native, expected in ((True, True, 'bfloat16'),
                                              (True, False, 'auto'),

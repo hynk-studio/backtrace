@@ -13,12 +13,14 @@ directory, model, include, schema and generation checks pass separately on the
 original and actual candidate archive. The official compiler also constructs
 both agents and binds their real harness callables/schemas in a bounded CPU probe.
 That CPU probe's model client rejects requests and its sandbox is absent.
-The authorized **T4-native-dtype** continuation subsequently loaded the pinned
-checkpoint with observed FP16 resolution, then **failed during CUDA
-custom-all-reduce startup**, before server health or task execution. The single
-attempt is consumed and its GPU session is terminated. See the
-[execution report](docs/r0-native-dtype.md); the original
-[pre-allocation STOP](docs/r0-smoke-attempt.md) remains history.
+Two separately authorized T4 attempts loaded the pinned checkpoint with observed
+FP16 resolution and failed before healthy serving or task execution. The first
+hit custom-all-reduce; the additional **T4-native-no-custom-ar** run applied the
+approved flag and exposed a Triton attention shared-memory limit (98,304 bytes
+required, 65,536 available). Both attempts are consumed and their GPU sessions
+terminated. See the [latest report](docs/r0-no-custom-ar.md), the
+[first GPU failure](docs/r0-native-dtype.md), and the original
+[pre-allocation STOP](docs/r0-smoke-attempt.md).
 See [R0 and the probe](docs/r0.md) and the [frozen smoke recipe](docs/r0-smoke.md).
 
 ## Local checks

@@ -1,4 +1,4 @@
-"""Prepare the approved one-predicate serving change; never import/run the driver."""
+"""Prepare approved narrow serving changes; never import/run the driver."""
 import hashlib
 import json
 from pathlib import Path
@@ -7,6 +7,8 @@ from pathlib import Path
 BEFORE = 'torch.cuda.is_bf16_supported()'
 AFTER = 'torch.cuda.is_bf16_supported(including_emulation=False)'
 CELL_ID = 'f0b1ab0d'
+NO_CUSTOM_AR = '--disable-custom-all-reduce'
+EXTRA_ARGS_LINE = "    extra_args=['--disable-custom-all-reduce'],\n"
 
 
 def native_dtype_source(source):
@@ -14,6 +16,16 @@ def native_dtype_source(source):
     if source.count(BEFORE) != 1:
         raise ValueError('expected exactly one original BF16 predicate')
     return source.replace(BEFORE, AFTER, 1)
+
+
+def no_custom_ar_source(native_source):
+    """Add only the pinned wrapper's extra_args line to the native-dtype cell."""
+    anchor = '    startup_timeout=60 * 20,\n'
+    if (native_source.count(AFTER) != 1 or BEFORE in native_source
+            or native_source.count(anchor) != 1 or 'extra_args' in native_source
+            or NO_CUSTOM_AR in native_source):
+        raise ValueError('expected unchanged native-dtype serving cell')
+    return native_source.replace(anchor, EXTRA_ARGS_LINE + anchor, 1)
 
 
 def serving_sources(notebook_bytes):
