@@ -1,3 +1,18 @@
+# Startup observer and A100 proposal — fresh CPU checks only
+
+2026-09-29 Codex checks from merged main `e5f3507ae91452ddac0ac14b990e5f4a2a517ed3`:
+**66 local tests, nine actual-wrapper/driver integration tests and one argv test
+PASS**. Preflight, 16 artifact pins, actual-candidate official checks and the
+bounded compiler/binding probe PASS. Disposable CPU failure detection was
+0.731233 s with the API parent alive, followed by 0.069183 s teardown; all fixture
+groups/PIDs disappeared and repeated cleanup passed. Model/GPU/task/provider
+execution remains NOT RUN. Frozen candidate/input identities are unchanged.
+
+See [startup integration, exact commands and boundaries](startup-guard.md),
+[machine-readable evidence](startup-guard-evidence.json) and the
+[conditional A100 rental proposal](r0-a100-proposal.md). Existing historical
+results and consumed-attempt records below are preserved.
+
 # No-custom-all-reduce continuation — startup failure, session terminated
 
 Fresh Codex execution on 2026-09-29, continuing reviewed head
