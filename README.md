@@ -23,6 +23,12 @@ terminated. See the [latest report](docs/r0-no-custom-ar.md), the
 [pre-allocation STOP](docs/r0-smoke-attempt.md).
 See [R0 and the probe](docs/r0.md) and the [frozen smoke recipe](docs/r0-smoke.md).
 
+The [startup observer](docs/startup-guard.md) now fails fast on confirmed engine
+failure while the API parent remains alive, tested through the real wrapper with
+disposable CPU processes. A [conditional A100 80GB TP=1 proposal](docs/r0-a100-proposal.md)
+records cost, image and account prerequisites; no rental or new model run has
+been authorized or executed.
+
 ## Local checks
 
 Python 3.9+; standard library only, no installation or API credential needed.

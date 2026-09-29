@@ -1,0 +1,431 @@
+{
+  "task": "Issue #1 startup fail-fast and conditional A100 proposal",
+  "recorded_at": "2026-09-29T13:27:17.028912+00:00",
+  "authority": "local/free CPU and read-only research only; no allocation",
+  "base": "e5f3507ae91452ddac0ac14b990e5f4a2a517ed3",
+  "artifacts_reverified_or_authored": [
+    {
+      "path": ".local/r0-clean/build-a.zip",
+      "bytes": 6230,
+      "sha256": "2e24495826cb971053439a00d9ad8350471fc0efffa41a54b82082feedaa7358"
+    },
+    {
+      "path": ".local/r0-clean/build-b.zip",
+      "bytes": 6230,
+      "sha256": "2e24495826cb971053439a00d9ad8350471fc0efffa41a54b82082feedaa7358"
+    },
+    {
+      "path": ".local/smoke/agent-inputs/agent-task.json",
+      "bytes": 810,
+      "sha256": "6ed92f4e646c17728aa8b9ca433a032d61b6b06827eec463a02c00f331c25d60"
+    },
+    {
+      "path": ".local/smoke/no-custom-ar/one_task.py",
+      "bytes": 33461,
+      "sha256": "c7eda43a043535eed064b8f347bf271b22eb235c539e44dfe1633c43f47f5189"
+    },
+    {
+      "path": ".local/smoke/no-custom-ar/originals/server-error.log",
+      "bytes": 45227,
+      "sha256": "bbd5792192fd83c69c6e9b15fa4f94df2a0f411e89fc25f59e90f016a535270c"
+    },
+    {
+      "path": ".local/startup-guard/driver-final/one_task.py",
+      "bytes": 34210,
+      "sha256": "8c140418eaf4332e17e75fd5412f5d64d5350d3e3512011998e2b32a8b5a85c5"
+    },
+    {
+      "path": ".local/startup-guard/driver-final/startup_guard.py",
+      "bytes": 11105,
+      "sha256": "bb530f7f6340d1a4d39552f93a0c2f1c27a9ad2e2072e76ff3841869d84f4780"
+    },
+    {
+      "path": ".local/startup-guard/driver-final/driver.diff",
+      "bytes": 1757,
+      "sha256": "8de42027e70122788e0c85e22fe692c7c5e522866687f9cb0658a5dca294fa96"
+    },
+    {
+      "path": ".local/smoke/no-custom-ar/originals/backtrace-one-gpu-request.marker",
+      "bytes": 1171,
+      "sha256": "1f89f0c03f072682c47c29ae6fa5ca6c8370359bf148c31d0e2e5e152f777e09"
+    },
+    {
+      "path": ".local/smoke/no-custom-ar/originals/backtrace-no-custom-ar-gpu-request.marker",
+      "bytes": 999,
+      "sha256": "75c7d7301ad6a606747bd38adaffd9658a5a9ab328803317ff8c0bc4579c53fa"
+    },
+    {
+      "path": ".local/smoke/no-custom-ar/additional-attempt-consumed.marker",
+      "bytes": 320,
+      "sha256": "0440d4a2725b6d15db944f126068d0881f007768f80ba0952f8cdb40ec8b7456"
+    }
+  ],
+  "source_acquisition": [
+    {
+      "file": "runpod-index.txt",
+      "url": "https://docs.runpod.io/llms.txt",
+      "accessed_at": "2026-09-29T13:11:30.598274+00:00",
+      "status": 200,
+      "sha256": "4532071f5aca800d7e4aff4bfb2ca3291a68b14d46b68d95ee4c4d6153c874d1",
+      "bytes": 80761,
+      "evidence": "primary HTTP bytes"
+    },
+    {
+      "file": "runpod-pricing.html",
+      "url": "https://www.runpod.io/pricing",
+      "accessed_at": "2026-09-29T13:11:30.781777+00:00",
+      "status": 403,
+      "sha256": "2938e9f1284180959e33ab1718d0793a72ff6e4cdb8108c34dcd14e69446de5c",
+      "bytes": 17,
+      "evidence": "HTTP access result only; requested content NOT acquired"
+    },
+    {
+      "file": "runpod-a100.html",
+      "url": "https://www.runpod.io/gpu-models/a100-sxm",
+      "accessed_at": "2026-09-29T13:11:30.933072+00:00",
+      "status": 403,
+      "sha256": "2938e9f1284180959e33ab1718d0793a72ff6e4cdb8108c34dcd14e69446de5c",
+      "bytes": 17,
+      "evidence": "HTTP access result only; requested content NOT acquired"
+    },
+    {
+      "file": "runpod-billing.md",
+      "url": "https://docs.runpod.io/accounts-billing/billing.md",
+      "accessed_at": "2026-09-29T13:11:31.344149+00:00",
+      "status": 200,
+      "sha256": "36bac69701c0d8d8c8ab5a98a0d5a5449993bd6a67cd8af4497a85ff663be914",
+      "bytes": 8512,
+      "evidence": "primary HTTP bytes"
+    },
+    {
+      "file": "runpod-pods.md",
+      "url": "https://docs.runpod.io/pods/manage-pods.md",
+      "accessed_at": "2026-09-29T13:11:31.753460+00:00",
+      "status": 200,
+      "sha256": "e89321b5c840e3ddf605af064721eed03d9a7b89c0db077267a48fcf79822b0e",
+      "bytes": 9997,
+      "evidence": "primary HTTP bytes"
+    },
+    {
+      "file": "runpod-storage.md",
+      "url": "https://docs.runpod.io/pods/pricing.md",
+      "accessed_at": "2026-09-29T13:11:32.263909+00:00",
+      "status": 200,
+      "sha256": "3d90f24d7db74c05dc67b6211ac4f94940e1f9247148faa282fd9022d444ef70",
+      "bytes": 5056,
+      "evidence": "primary HTTP bytes"
+    },
+    {
+      "file": "kaggle-image-response.json",
+      "url": "https://gcr.io/v2/kaggle-private-byod/python/manifests/sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+      "accessed_at": "2026-09-29T13:11:32.702935+00:00",
+      "status": 401,
+      "sha256": "f4ba20748f1a24d6bac27eeaddc8c3ea536196a824298198723df81180939bf8",
+      "bytes": 102,
+      "evidence": "HTTP access result only; requested content NOT acquired"
+    },
+    {
+      "file": "pytorch-manifest.json",
+      "url": "https://registry-1.docker.io/v2/pytorch/pytorch/manifests/2.10.0-cuda12.8-cudnn9-runtime",
+      "accessed_at": "2026-09-29T13:11:33.844712+00:00",
+      "status": 200,
+      "sha256": "b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+      "bytes": 1585,
+      "evidence": "primary HTTP bytes",
+      "content_digest": "sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca"
+    },
+    {
+      "file": "pytorch-config.json",
+      "url": "https://registry-1.docker.io/v2/pytorch/pytorch/blobs/sha256:4638f27bc2a17c4487d2dcb57e0dca10c9cf6601ee6bf849162b58f1d8b1ee8e",
+      "accessed_at": "2026-09-29T13:11:34.754863+00:00",
+      "status": 200,
+      "sha256": "4638f27bc2a17c4487d2dcb57e0dca10c9cf6601ee6bf849162b58f1d8b1ee8e",
+      "bytes": 4816,
+      "evidence": "primary HTTP bytes"
+    },
+    {
+      "file": "runpod-datacenter.md",
+      "url": "https://docs.runpod.io/runpodctl/reference/runpodctl-datacenter.md",
+      "accessed_at": "2026-09-29T13:16:04.448283+00:00",
+      "status": 200,
+      "bytes": 3509,
+      "sha256": "2c1aabaf052f58559b867bcc8637851c619483cf0f48cc93f68b3931477411c6",
+      "evidence": "primary HTTP bytes"
+    },
+    {
+      "file": "runpod-create.md",
+      "url": "https://docs.runpod.io/api-reference-v2/pods/create-a-pod.md",
+      "accessed_at": "2026-09-29T13:16:04.931734+00:00",
+      "status": 200,
+      "bytes": 50519,
+      "sha256": "c8f2dd63ba3635886a79f4a6daa97f3f0f3c916e26063d4204ac34f8d54e4d80",
+      "evidence": "primary HTTP bytes"
+    },
+    {
+      "file": "runpod-graphql.html",
+      "url": "https://graphql-spec.runpod.io/",
+      "accessed_at": "2026-09-29T13:16:05.050582+00:00",
+      "status": 200,
+      "bytes": 1096721,
+      "sha256": "183a5a3cce8cae73e5721d3b8892e88bd22fb5c153d76866485a9cc6f691c7a8",
+      "evidence": "primary HTTP bytes"
+    },
+    {
+      "file": "ampere.html",
+      "url": "https://docs.nvidia.com/cuda/ampere-tuning-guide/",
+      "accessed_at": "2026-09-29T13:16:05.428356+00:00",
+      "status": 200,
+      "bytes": 35539,
+      "sha256": "db4010aedf2b7adef6d9742498ab0e0423020f0f503948fc9e5b1ca079e75a8e",
+      "evidence": "primary HTTP bytes"
+    },
+    {
+      "file": "cuda12.8.1.html",
+      "url": "https://docs.nvidia.com/cuda/archive/12.8.1/cuda-toolkit-release-notes/index.html",
+      "accessed_at": "2026-09-29T13:16:05.881248+00:00",
+      "status": 200,
+      "bytes": 187170,
+      "sha256": "6d534a8b5616b12e63cdde178993a1743875067b73416303a598fac53b4ed020",
+      "evidence": "primary HTTP bytes"
+    },
+    {
+      "file": "runpodctl-cmd-pod-create.go",
+      "url": "https://raw.githubusercontent.com/runpod/runpodctl/4351fca9ec454b1bdc8572aaad5d3e5a61ead0fa/cmd/pod/create.go",
+      "version": "4351fca9ec454b1bdc8572aaad5d3e5a61ead0fa",
+      "accessed_at": "2026-09-29T13:19:41.828116+00:00",
+      "status": 200,
+      "bytes": 21681,
+      "sha256": "9bd4c614ed35d3aad98754198fac59411aff6ab8c7c77d42dbba1bf2dcd972db",
+      "evidence": "primary source bytes"
+    },
+    {
+      "file": "runpodctl-cmd-pod-createPod.go",
+      "url": "https://raw.githubusercontent.com/runpod/runpodctl/4351fca9ec454b1bdc8572aaad5d3e5a61ead0fa/cmd/pod/createPod.go",
+      "version": "4351fca9ec454b1bdc8572aaad5d3e5a61ead0fa",
+      "accessed_at": "2026-09-29T13:19:42.153172+00:00",
+      "status": 200,
+      "bytes": 4545,
+      "sha256": "203b1bc1caf9a2357de2a3d290fdf5f9c0322706e59c99151114ed0c5eb3aff5",
+      "evidence": "primary source bytes"
+    },
+    {
+      "file": "runpodctl-api-pod.go",
+      "url": "https://raw.githubusercontent.com/runpod/runpodctl/4351fca9ec454b1bdc8572aaad5d3e5a61ead0fa/api/pod.go",
+      "version": "4351fca9ec454b1bdc8572aaad5d3e5a61ead0fa",
+      "accessed_at": "2026-09-29T13:19:42.461471+00:00",
+      "status": 200,
+      "bytes": 9438,
+      "sha256": "04f03c8a7bf9217922b7177f5b395c8ef694a44feba64016da0e238bd856fa68",
+      "evidence": "primary source bytes"
+    },
+    {
+      "file": "runpodctl-internal-api-client.go",
+      "url": "https://raw.githubusercontent.com/runpod/runpodctl/4351fca9ec454b1bdc8572aaad5d3e5a61ead0fa/internal/api/client.go",
+      "version": "4351fca9ec454b1bdc8572aaad5d3e5a61ead0fa",
+      "accessed_at": "2026-09-29T13:19:42.759635+00:00",
+      "status": 200,
+      "bytes": 11950,
+      "sha256": "60b1a98341a5945562e7d9f6ccb90fc14a443a6beffd67c6ec72cea8f6dd73ef",
+      "evidence": "primary source bytes"
+    },
+    {
+      "url": "https://www.runpod.io/pricing",
+      "access_window_utc": "2026-09-29T13:00:00Z/2026-09-29T13:21:23Z",
+      "evidence": "primary page rendered by web tool",
+      "sha256": null,
+      "reason": "original page bytes not available from rendering"
+    },
+    {
+      "url": "https://www.runpod.io/gpu-models/a100-pcie",
+      "access_window_utc": "2026-09-29T13:00:00Z/2026-09-29T13:21:23Z",
+      "evidence": "primary page rendered by web tool",
+      "sha256": null,
+      "reason": "original page bytes not available from rendering"
+    },
+    {
+      "url": "https://docs.runpod.io/runpodctl/reference/runpodctl-pod",
+      "access_window_utc": "2026-09-29T13:00:00Z/2026-09-29T13:21:23Z",
+      "evidence": "primary page rendered by web tool",
+      "sha256": null,
+      "reason": "original page bytes not available from rendering"
+    },
+    {
+      "path": ".local/startup-guard/runpod-public-query.json",
+      "bytes": 17,
+      "sha256": "2938e9f1284180959e33ab1718d0793a72ff6e4cdb8108c34dcd14e69446de5c",
+      "url": "https://api.runpod.io/graphql",
+      "accessed_at": "2026-09-29T13:10:51.395750+00:00",
+      "status": 403,
+      "evidence": "read-only GPU catalog query access result; no offer acquired"
+    },
+    {
+      "path": ".local/startup-guard/research/runpodctl-tree.json",
+      "bytes": 95081,
+      "sha256": "89ba1b4d7ea45d32fc5fd6c6bc6a771f0c9680d46ceb2275b4e7216c9bb861c4",
+      "url": "https://api.github.com/repos/runpod/runpodctl/git/trees/main?recursive=1",
+      "access_window_utc": "2026-09-29T13:15:00Z/2026-09-29T13:21:23Z",
+      "version": "4351fca9ec454b1bdc8572aaad5d3e5a61ead0fa",
+      "evidence": "primary API response reserialized as local JSON; hash identifies the saved representation"
+    }
+  ],
+  "retained_source_inspection": [
+    {
+      "path": ".local/startup-guard/vllm-source/vllm/config/model.py",
+      "bytes": 88399,
+      "sha256": "d712dc1e9856cfc839832745254957e3c135c8693310abd54670fde97a01de81",
+      "evidence": "primary source extracted from retained pinned vllm 0.19.1 wheel; not executed",
+      "source_manifest": "docs/source-manifest.json",
+      "parent_sha256": "6b29fdc200966eda4d0cc4d10b8c338ec32620bb069ad3629d8a78e3b35fd3fa",
+      "accessed_at": "2026-09-29T13:27:17.028912+00:00"
+    },
+    {
+      "path": ".local/startup-guard/vllm-source/vllm/model_executor/models/config.py",
+      "bytes": 31985,
+      "sha256": "2ed458f36b6b00f06add0b676f51026410523a085ab2f8d91ef7a84e909382ed",
+      "evidence": "primary source extracted from retained pinned vllm 0.19.1 wheel; not executed",
+      "source_manifest": "docs/source-manifest.json",
+      "parent_sha256": "6b29fdc200966eda4d0cc4d10b8c338ec32620bb069ad3629d8a78e3b35fd3fa",
+      "accessed_at": "2026-09-29T13:27:17.028912+00:00"
+    },
+    {
+      "path": ".local/startup-guard/vllm-source/vllm/platforms/cuda.py",
+      "bytes": 24196,
+      "sha256": "b987bdd4d6156843d5a58e4731dd5496708b76e6dcb009f01abb4047d965e50c",
+      "evidence": "primary source extracted from retained pinned vllm 0.19.1 wheel; not executed",
+      "source_manifest": "docs/source-manifest.json",
+      "parent_sha256": "6b29fdc200966eda4d0cc4d10b8c338ec32620bb069ad3629d8a78e3b35fd3fa",
+      "accessed_at": "2026-09-29T13:27:17.028912+00:00"
+    },
+    {
+      "path": ".local/startup-guard/vllm-source/vllm/v1/attention/backends/triton_attn.py",
+      "bytes": 23469,
+      "sha256": "0881156d666e81642879a943dc14fda1186060bc24676280497428a8e3c079a3",
+      "evidence": "primary source extracted from retained pinned vllm 0.19.1 wheel; not executed",
+      "source_manifest": "docs/source-manifest.json",
+      "parent_sha256": "6b29fdc200966eda4d0cc4d10b8c338ec32620bb069ad3629d8a78e3b35fd3fa",
+      "accessed_at": "2026-09-29T13:27:17.028912+00:00"
+    },
+    {
+      "path": ".local/startup-guard/vllm-source/vllm/v1/attention/ops/triton_unified_attention.py",
+      "bytes": 39872,
+      "sha256": "5a8af26832bd0b23604fefa4a0876e12b39101b85431c368649fbb7f779e8921",
+      "evidence": "primary source extracted from retained pinned vllm 0.19.1 wheel; not executed",
+      "source_manifest": "docs/source-manifest.json",
+      "parent_sha256": "6b29fdc200966eda4d0cc4d10b8c338ec32620bb069ad3629d8a78e3b35fd3fa",
+      "accessed_at": "2026-09-29T13:27:17.028912+00:00"
+    },
+    {
+      "path": ".local/startup-guard/vllm-source/vllm/v1/engine/core.py",
+      "bytes": 82809,
+      "sha256": "896730e749cbcabb487ce50c703974594d197fc31a1d3b26fe096197d142d2d5",
+      "evidence": "primary source extracted from retained pinned vllm 0.19.1 wheel; not executed",
+      "source_manifest": "docs/source-manifest.json",
+      "parent_sha256": "6b29fdc200966eda4d0cc4d10b8c338ec32620bb069ad3629d8a78e3b35fd3fa",
+      "accessed_at": "2026-09-29T13:27:17.028912+00:00"
+    },
+    {
+      "path": ".local/startup-guard/vllm-source/vllm/v1/executor/multiproc_executor.py",
+      "bytes": 40933,
+      "sha256": "2011e7d3024f1f230db98b88acc63856ca4d1e74b77f676d8a8a66c4e0dc01ad",
+      "evidence": "primary source extracted from retained pinned vllm 0.19.1 wheel; not executed",
+      "source_manifest": "docs/source-manifest.json",
+      "parent_sha256": "6b29fdc200966eda4d0cc4d10b8c338ec32620bb069ad3629d8a78e3b35fd3fa",
+      "accessed_at": "2026-09-29T13:27:17.028912+00:00"
+    }
+  ],
+  "cpu_results": {
+    "local_unittest_count": 66,
+    "local_python": "3.9.6",
+    "official_startup_and_driver_tests": 9,
+    "official_python": "3.12.14",
+    "official_poll_interval_seconds": 1,
+    "boundary": "real pinned wrapper and disposable CPU processes/HTTP; authored payload/environment; no model/vLLM execution",
+    "measurements": [
+      {
+        "case": "race",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": 0.024499000021023676,
+        "parent_alive_at_detection": true,
+        "teardown_seconds": 0.07181399999535643,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "fatal",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": 0.7312329999986105,
+        "parent_alive_at_detection": true,
+        "teardown_seconds": 0.06918291699548718,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "harmless",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.0283106249989942,
+        "readiness_seconds": 1.01833770799567,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "stubborn",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.034570125004393,
+        "readiness_seconds": 1.0072776250017341,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "timeout",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 0.22523637500125915,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "stale",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.0339700840122532,
+        "readiness_seconds": 1.0198517919925507,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "ready",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.0257788750022883,
+        "readiness_seconds": 1.01965758400911,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "timeout",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.026812832991709,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      }
+    ],
+    "latency_definition": "POSIX monotonic emitter timestamp immediately before flushing full synthetic terminal traceback to detection; conservative upper bound after observable evidence; excludes teardown",
+    "real_wrapper_argv_tests": 1
+  },
+  "not_run": [
+    "Linux rental image build and supplemental dependency qualification",
+    "authenticated RunPod quote/account/expiry",
+    "A100 allocation or any new GPU attempt",
+    "model server or model request",
+    "agent task/tool execution and patch generation",
+    "public-test verification",
+    "competition submission/acceptance",
+    "hosted scoring",
+    "training"
+  ]
+}
