@@ -3,12 +3,20 @@ import argparse
 import json
 import os
 import sys
+import tempfile
 import zipfile
+from contextlib import ExitStack
 from importlib.metadata import distribution
 from pathlib import Path
 
-from artifacts import verify_artifacts
-from backtrace import InspectionError, MANIFEST, digest
+try:
+    from .artifacts import verify_artifacts
+    from .backtrace import InspectionError, MANIFEST, digest
+    from .r0 import expected_candidate, inspect_candidate
+except ImportError:
+    from artifacts import verify_artifacts
+    from backtrace import InspectionError, MANIFEST, digest
+    from r0 import expected_candidate, inspect_candidate
 
 
 def check_installed_wheels(root):
@@ -30,9 +38,42 @@ def check_installed_wheels(root):
                         raise InspectionError('installed official Python source differs from acquired wheel')
 
 
+def check_directory(sample, candidate):
+    from adk_submission import discover_adapters, validate_directory
+    from adk_submission.schema import SandboxedAgentConfig
+    from adk_submission.yaml_loader import load_yaml
+    from swegemma.config import build_submission_limits
+    from swegemma.models.discovery import validate_single_declared_model
+
+    limits, generation = build_submission_limits()
+    directory = validate_directory(sample, limits=limits)
+    model = validate_single_declared_model(sample)
+    if model != 'gemma-4-31b-it-qat-w4a16-ct':
+        raise InspectionError('unexpected competition model')
+    agents = []
+    for rel in ('agent.yaml', 'sub_agents/code_analyzer.yaml'):
+        config = SandboxedAgentConfig.model_validate(load_yaml(sample / rel, sample, limits)).root
+        generation.validate_config(config.generate_content_config.model_dump(exclude_none=True), config.name)
+        if candidate and config.adapter is not None:
+            raise InspectionError('R0-clean must have no effective agent adapter selections')
+        agents.append({'path': rel, 'adapter': config.adapter})
+    adapters = discover_adapters(sample, adapter_extensions=limits.adapter_extensions)
+    if candidate and adapters.adapters:
+        raise InspectionError('R0-clean adapter discovery must be empty')
+    return {'official_cpu_checks': 'PASS',
+            'checks': ['competition directory limits', 'single declared model',
+                       'include loading', 'agent schemas', 'generation constraints',
+                       'adapter discovery'],
+            'directory_files': len(directory.all_files), 'single_model': model,
+            'agent_schemas': agents, 'adapters': sorted(adapters.adapters),
+            'compile_and_tool_binding': 'NOT RUN', 'model_execution': 'NOT RUN',
+            'submission': 'NOT RUN', 'hosted_scoring': 'NOT RUN'}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('artifacts', type=Path)
+    parser.add_argument('--candidate', type=Path, help='validate the actual R0-clean ZIP; default is original')
     args = parser.parse_args()
     try:
         if sys.prefix == sys.base_prefix:
@@ -45,32 +86,25 @@ def main():
         os.environ.clear()
         os.environ.update(environment, OTEL_SDK_DISABLED='true',
                           LITELLM_LOCAL_MODEL_COST_MAP='True', PYTHON_DOTENV_DISABLED='1')
-        from adk_submission import discover_adapters, validate_directory
-        from adk_submission.schema import SandboxedAgentConfig
-        from adk_submission.yaml_loader import load_yaml
-        from swegemma.config import build_submission_limits
-        from swegemma.models.discovery import validate_single_declared_model
-
-        sample = root / 'sample_submission'
-        limits, generation = build_submission_limits()
-        directory = validate_directory(sample, limits=limits)
-        model = validate_single_declared_model(sample)
-        if model != 'gemma-4-31b-it-qat-w4a16-ct':
-            raise InspectionError('unexpected competition model')
-        agents = []
-        for rel in ('agent.yaml', 'sub_agents/code_analyzer.yaml'):
-            config = SandboxedAgentConfig.model_validate(load_yaml(sample / rel, sample, limits)).root
-            generation.validate_config(config.generate_content_config.model_dump(exclude_none=True), config.name)
-            agents.append({'path': rel, 'adapter': config.adapter})
-        adapters = discover_adapters(sample, adapter_extensions=limits.adapter_extensions)
-        print(json.dumps({'official_cpu_checks': 'PASS', 'subject': 'unchanged official starter',
-                          'checks': ['competition directory limits', 'single declared model',
-                                     'include loading', 'agent schemas', 'generation constraints',
-                                     'adapter discovery'],
-                          'directory_files': len(directory.all_files), 'single_model': model,
-                          'agent_schemas': agents, 'adapters': sorted(adapters.adapters),
-                          'compile_and_tool_binding': 'NOT RUN', 'model_execution': 'NOT RUN',
-                          'submission': 'NOT RUN', 'hosted_scoring': 'NOT RUN'}, indent=2))
+        with ExitStack() as cleanup:
+            sample = root / 'sample_submission'
+            identity = {'subject': 'unchanged official starter'}
+            if args.candidate is not None:
+                local, files = inspect_candidate(args.candidate, expected_candidate(root))
+                # macOS TMPDIR may use /var -> /private/var; give the loader a real root.
+                sample = Path(cleanup.enter_context(
+                    tempfile.TemporaryDirectory(prefix='backtrace-cpu-'))).resolve()
+                # Materialize only the six inspected byte strings, never extract untrusted paths.
+                for name, data in files.items():
+                    target = sample / name
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    target.write_bytes(data)
+                identity = {'subject': 'R0-clean candidate archive',
+                            'candidate_sha256': local['sha256'], 'exact_delta': local['exact_delta'],
+                            'membership': local['membership']}
+            report = check_directory(sample, candidate=args.candidate is not None)
+            report.update(identity)
+        print(json.dumps(report, indent=2))
         return 0
     except Exception as error:
         # Never print exception data originating in an artifact or environment.

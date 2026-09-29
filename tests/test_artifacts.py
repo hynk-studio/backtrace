@@ -1,10 +1,12 @@
 """Authored local artifact-pin fixtures, not competition assets."""
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 
 from tools import artifacts
-from tools.backtrace import InspectionError, digest, main
+from tools.backtrace import InspectionError, ROOT, digest
 
 
 class ArtifactTests(unittest.TestCase):
@@ -63,12 +65,17 @@ class ArtifactTests(unittest.TestCase):
                     artifacts.verify_artifacts(self.root, records)
 
     def test_cli_missing_artifacts_fails(self):
-        import contextlib
-        import io
-        with contextlib.redirect_stderr(io.StringIO()) as err:
-            result = main(['verify-artifacts', str(self.root / 'missing')])
-        self.assertEqual(result, 2)
-        self.assertIn('docs/r0.md', err.getvalue())
+        with tempfile.TemporaryDirectory() as cwd:
+            result = subprocess.run(
+                [sys.executable, '-B', str(ROOT / 'tools/backtrace.py'),
+                 'verify-artifacts', str(Path(cwd) / 'private-missing-path')],
+                cwd=cwd, capture_output=True, text=True, check=False)
+            self.assertEqual(result.returncode, 2)
+            self.assertEqual(result.stdout, '')
+            self.assertEqual(result.stderr, 'FAILED: missing artifact directory; '
+                             'follow docs/r0.md acquisition steps\n')
+            self.assertNotIn('private-missing-path', result.stderr)
+            self.assertEqual(list(Path(cwd).iterdir()), [])
 
 
 if __name__ == '__main__':

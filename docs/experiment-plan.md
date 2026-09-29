@@ -5,16 +5,22 @@ belief revision and decision-relevant inspection improve resolved software tasks
 under a matched total inference budget?
 
 This slice has run CPU tooling tests, artifact pin checks and official CPU
-directory/model/include/schema/generation validation on the original sample. **R0, R1, R2 and R3:
+directory/model/include/schema/generation validation separately on the original
+sample and the reproducible R0-clean archive. **R0, R1, R2 and R3 model/task runs:
 NOT RUN.** No synthetic teacher, inference, adapter training or Kaggle submission
 has run. A valid hosted run and evidence of improvement are separate outcomes.
 
 | Stage | Intervention | Gate / comparison |
 | --- | --- | --- |
-| R0 | Frozen official/default baseline | Starter/harness acquired and CPU checks pass. Resolve notebook-v2-with-adapters versus requested no-LoRA conflict (docs/r0.md), then package and pin the chosen variant; preserve originals. No task run yet. |
+| R0 | Frozen R0-clean no-LoRA derivative | Authorized two-line/four-file adapter removal only; immutable ten-file official reference retained. Six-file package reproduced and candidate CPU checks pass (docs/r0.md). No task run yet. |
 | R1 | Strong generic review/inspection prompt | Match R0 runtime and budget; control for the benefit of generic review rather than specialized reasoning. |
 | R2 | Bounded diagnostic prompt guidance | Compare with R1 and R0 under the same limits. No new reasoning engine. |
 | R3 | R2 runtime prompt/harness plus specialist post-trained adapter | Test learning separately from promptability; use an appropriately matched general-reasoning training control for training-specific claims. |
+
+R1/R2 retain R0-clean's scaffold, tools and budgets apart from their declared
+prompt intervention. R3 adds experimental adapters to that matched scaffold;
+do not mix the official example adapters into the comparison. Their presence,
+metadata and discovery do not establish training history or usefulness.
 
 R2 guidance pairs inverse hypothesis formation with forward predictions. Track
 evidence identity/dependence, revise beliefs after observations, detect missing
@@ -72,10 +78,10 @@ Probability metrics apply only with a defensible reference distribution.
 
 Report these independently: local tooling tests; official requirements/starter
 acquired and pinned; candidate archive built/inspected; official validation;
-permitted end-to-end task; Kaggle acceptance; hosted scoring. Candidate packaging,
-compilation/tool binding and every model/submission/scoring stage remain NOT RUN
-in this slice. Do not infer usefulness, training compatibility, transfer or
-submission acceptance from an earlier stage.
+permitted end-to-end task; Kaggle acceptance; hosted scoring. Candidate packaging
+and the documented CPU checks pass. Compilation/tool binding and every model,
+submission and scoring stage remain NOT RUN. Do not infer usefulness, training
+compatibility, transfer or submission acceptance from an earlier stage.
 
 ## Future paid-compute proposal, not authorization
 

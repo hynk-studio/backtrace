@@ -1,4 +1,121 @@
-# Issue #1 post-merge artifact and CPU-check checkpoint
+# PR #3 R0-clean implementation and candidate checks
+
+2026-09-29 UTC. This checkpoint supersedes the prior recipe blocker. Read the
+[ChatGPT review](https://github.com/hynk-studio/backtrace/pull/3#pullrequestreview-5346432812)
+and [Issue #1 correction](https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5881567240)
+before implementation. The variant was explicitly authorized; no new approval,
+artifact acquisition, desktop work, credential, model or paid resource was needed.
+
+## Repository identity
+
+Clean branch `bt-001-r0-artifacts`, origin
+`https://github.com/hynk-studio/backtrace.git`, reviewed/local/remote head
+`5b65d692ddc9e18d953989b1cbe978a75646e2b4`, tree
+`6508c9a68e47e0673a682b5b03c9960bccd45131`. Base/main remains
+`757b56f29ee8bcb6c9379b4d90525b10c0366a74`, tree
+`db667aa37bea445c822748918adc91a5dded3906`. PR #3 was the only open PR,
+Draft with no auto-merge request; Issue #1 was open. Current AGENTS.md, issue,
+review, PR, worktree, branches and remote refs were inspected. This update uses
+the existing PR and preserves its prior work. The PR report records the new commit
+and tree after commit creation; this document cannot contain its own commit hash.
+
+## Current verification levels
+
+| Level | Observed result |
+| --- | --- |
+| Local tooling | PASS: **37 tests**, Python **3.9.6**; preflight exit 0. |
+| Official acquisition/pinning | PASS: existing **16** guide/starter/wheel pins reverified; unchanged ten-file original. No new download. |
+| R0-clean packaging/local inspection | PASS: two independent builds, byte-identical **6,230-byte** ZIPs, exact six-file closure and authorized delta. |
+| Official CPU validation: original | PASS: Python **3.12.14**, ten files, both schemas, model, includes, generation limits and two adapters. |
+| Official CPU validation: actual candidate | PASS: same pinned environment; six archived files, exact delta, directory/model/includes/both schemas/generation checks, both effective adapters absent and discovery empty. |
+| Compiler/tool binding | **NOT RUN**. Existing AgentTool bytes preserved; compilation has not been exercised. |
+| End-to-end model execution | **NOT RUN**. |
+| Kaggle submission acceptance | **NOT RUN**. |
+| Hosted scoring | **NOT RUN**. |
+
+Both ZIPs have SHA-256
+`2e24495826cb971053439a00d9ad8350471fc0efffa41a54b82082feedaa7358`.
+[The R0 recipe](r0.md) lists member hashes and exact two-line/four-file delta.
+All other retained bytes, prompts, sampling, budgets and AgentTool wiring are
+unchanged. The ten-file official reference remains local, intact and distinct
+from the six-file experimental derivative. All competition assets, candidate ZIPs
+and local receipts remain Git-ignored; no redistribution or license assumption changed.
+
+These are **Codex's executions**, not an extension of ChatGPT's independent
+Python 3.13.5 review (24 tests against the earlier source). That review did not
+independently rerun the gated artifact/CPU checks. Synthetic unit tests mock the
+official checker where necessary and do not count as official validation; the
+separate actual-artifact CPU commands below provide that evidence.
+
+## Commands and outcomes
+
+From `/Users/hynk/code/backtrace`:
+
+```sh
+python3 -m unittest discover -s tests -v
+python3 tools/backtrace.py preflight
+python3 tools/backtrace.py verify-artifacts .local/official
+.local/cpu-checks/bin/python tools/official_check.py .local/official
+mkdir -p .local/r0-clean
+python3 tools/backtrace.py baseline .local/official .local/r0-clean/build-a.zip --official-python .local/cpu-checks/bin/python > .local/r0-clean/build-a.receipt.json
+python3 tools/backtrace.py baseline .local/official .local/r0-clean/build-b.zip --official-python .local/cpu-checks/bin/python > .local/r0-clean/build-b.receipt.json
+cmp .local/r0-clean/build-a.zip .local/r0-clean/build-b.zip
+shasum -a 256 .local/r0-clean/build-a.zip .local/r0-clean/build-b.zip
+.local/cpu-checks/bin/python tools/official_check.py .local/official --candidate .local/r0-clean/build-a.zip
+.local/cpu-checks/bin/python -m pip check
+git diff --check
+git diff main...HEAD --check
+```
+
+All final commands exit **0** except the intentionally incomplete CPU environment's
+`pip check`: exit **1**, exactly the same four omitted swegemma dependencies
+(accelerate, safetensors, torchvision, transformers), with no new conflicts.
+No GPU/inference dependency installation was attempted.
+
+The first two packaging attempts and one diagnostic reproduction failed closed
+with official `PathTraversalError`, leaving zero ZIPs. Cause: macOS temporary
+paths used `/var` while the official loader resolved the sandbox to `/private/var`.
+The checker now resolves its temporary root before supplying paths to the official
+loader. No source file, include or official validation rule was changed to fix it.
+Both subsequent builds and the explicit candidate recheck passed.
+
+Real subprocess negative checks ran from an empty temporary cwd with
+`python3 -B /Users/hynk/code/backtrace/tools/backtrace.py` followed by:
+
+- `baseline`: exit 2, actionable required-input message, empty stdout, zero files.
+- `verify-artifacts private-missing`: exit 2, authored acquisition guidance,
+  empty stdout, no echoed private path, zero files.
+- `baseline /Users/hynk/code/backtrace/.local/official failed.zip --official-python <current non-venv sys.executable>`:
+  exit 2 at official CPU checks; no final ZIP or staging directory remains.
+- `baseline /Users/hynk/code/backtrace/.local/official /Users/hynk/code/backtrace/.local/r0-clean/build-a.zip --official-python /Users/hynk/code/backtrace/.local/cpu-checks/bin/python`:
+  exit 2; existing candidate hash unchanged (no overwrite).
+- `baseline /Users/hynk/code/backtrace/.local/official /Users/hynk/code/backtrace/.local/official/sample_submission/candidate.zip --official-python /Users/hynk/code/backtrace/.local/cpu-checks/bin/python`:
+  exit 2; destination overlaps the immutable reference; zero files created.
+
+The CLI diagnostic was also compared using temporary copies of `tools/backtrace.py`
+and `tools/artifacts.py` from `git show 5b65d692ddc9e18d953989b1cbe978a75646e2b4:<path>`.
+Both old and current commands exit 2 with empty stdout. Before: generic
+unsafe/unreadable-artifact fallback. After: `FAILED: missing artifact directory;
+follow docs/r0.md acquisition steps`. A shared authored exception definition fixes
+the script/import identity mismatch without weakening redaction. The committed
+regression executes the real CLI, checks exact stderr and asserts no output writes.
+
+The 13 new focused tests cover exact delta and reference preservation, AgentTool
+bytes and contained parent includes, deterministic metadata/hash, input/config/adapter
+drift, declaration location/multiplicity, existing-output and publication-race
+protection, resolved output aliases, failed-check cleanup, candidate mutation,
+missing/extra/reintroduced-adapter files, invalid CPU receipts, missing CLI inputs
+and actual archived-byte selection/temporary cleanup in the CPU wrapper. Existing
+pinning and ZIP safety regressions continue to pass; the generic inspector's
+safety checks and local limits are unchanged.
+
+Next action: ChatGPT review of the updated Draft PR #3 and its candidate evidence.
+The next research execution milestone remains a separately authorized bounded
+model smoke run; this task did not execute or authorize it.
+
+---
+
+# Historical PR #3 artifact acquisition checkpoint
 
 2026-09-29 UTC. Current results below supersede the historical bootstrap access
 blocker. The prior PR #2 report is retained further below; its Python 3.9.6 checks
@@ -108,8 +225,8 @@ check imports only the inspected CPU validation path in its isolated environment
 There was one failed shell read from a nonmatching speculative validator filename;
 actual package inventories were then used. No alternate generic schema was used.
 
-Recommended next action: resolve the explicit no-LoRA variant choice in docs/r0.md
-so the thin reproducible packager can be completed without silently changing R0.
+At that checkpoint, packaging was deferred pending the variant correction.
+That planning conflict is resolved in the R0-clean checkpoint above.
 
 ---
 

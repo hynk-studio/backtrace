@@ -1,8 +1,8 @@
-# Competition contract: acquired packaging sources; R0 variant unresolved
+# Competition contract: acquired sources and checked R0-clean package
 
 Bootstrap inspection: 2026-09-28 UTC. Artifact follow-up: 2026-09-29 UTC.
 The guide, starter and harness packages are now acquired; official CPU checks
-pass on the original starter. The no-LoRA recipe conflict prevents an R0 package.
+pass separately on the original starter and the generated R0-clean archive.
 See [current contract details and discrepancies](r0.md). This is not certification
 of a runnable submission. [Source records](source-manifest.json)
 contain URLs, access windows, artifact IDs and actual-byte SHA-256 values.
@@ -122,8 +122,10 @@ R3 training/adapter compatibility; hosted submission rejection/acceptance behavi
 and the existing redistribution/public-sharing rights ambiguity. R3 training
 unknowns do not block no-LoRA packaging. No model or submission execution occurred.
 
-The immediate R0 blocker is a concrete recipe conflict: the acquired starter and
-notebook v2 retain two adapters, whereas this task requests no LoRA and otherwise
-permits only the notebook's sampling adjustment. The owner choice is pending;
-`baseline` reports it with exit 2 and creates no archive. No schema, sample or
-claimed baseline was invented to bridge the conflict.
+The initial sampling-only/no-LoRA planning conflict was explicitly resolved in
+[PR #3 review](https://github.com/hynk-studio/backtrace/pull/3#pullrequestreview-5346432812)
+and the [Issue #1 correction](https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5881567240).
+R0-clean is an authorized experimental derivative: remove the two adapter
+declarations and omit four adapter files, retaining all other bytes and the
+existing AgentTool. It is not the unchanged official reference. Its exact delta,
+archive hash and candidate-specific CPU results are in [r0.md](r0.md).
