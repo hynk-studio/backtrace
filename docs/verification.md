@@ -1,4 +1,113 @@
-# Post-merge CPU compiler/binding probe
+# No-custom-all-reduce continuation — startup failure, session terminated
+
+Fresh Codex execution on 2026-09-29, continuing reviewed head
+`6357b8e9525a786df166036f82f509dd715745a6` in existing Draft PR #5.
+The [complete report](r0-no-custom-ar.md) records exact commands, private driver
+hash/diff, first-error context, timings and the limits of each observation.
+All earlier results below remain historical; neither GPU attempt was retried.
+
+- **PASS: 51 local tests**, Python 3.9.6; five focused source regressions.
+  **PASS: one real pinned-wrapper CPU command test**, with explicitly injected
+  hardware capability. The real argv adds the flag once and preserves everything
+  else. Preflight READY, 16 original pins and actual-candidate official checks PASS.
+- **Frozen archive unchanged:** 6,230 bytes, SHA-256
+  `2e24495826cb971053439a00d9ad8350471fc0efffa41a54b82082feedaa7358`.
+  All selected inputs, model v2 and wheelhouse v25 hashes matched. No rebuild.
+- **One additional private T4 x2 run:** SM75, native BF16 false, requested `auto`,
+  observed FP16 and effective `disable_custom_all_reduce=True`. NCCL 2.27.5
+  initialized; no per-collective tracing claim. Weight loading completed.
+- **Startup FAILED:** graph profiling reached Triton attention, which required
+  98,304 shared-memory bytes against a 65,536 limit. No prior custom-all-reduce
+  error recurred, but graph profiling did not complete. The wrapper only surfaced
+  the failure after its 1200-second health wait and stop handling: **1210.852 s**
+  for `start()`, not an exact <=1200-second call. No configuration fallback.
+- **Cleanup CONFIRMED:** zero worker survivors, temporary workspace removed,
+  independent provider ERROR, CPU control off/None, no active events. Provider
+  runtime **1536.5 s**; request-to-terminal readback **1564.903 s** bounds additional
+  use at **0.86940 aggregate GPU-hours**. Quota **00:10 → 00:36 / 30 hrs**, $0 paid.
+- **NOT RUN:** healthy served identity, alias/request/thinking parameters,
+  returned model request, selected task, agent tools, public-test verification,
+  competition submission/acceptance, hosted scoring and training. **No patch
+  generated**, distinct from an empty patch. The real sandbox dependency check
+  passed as preparation, not an agent tool invocation.
+
+These are new Codex executions, distinct from ChatGPT's review checks. Historical
+compiler/binding tests were NOT RERUN. Raw originals and both consumed guards are
+retained privately; this additional authorization is consumed.
+
+---
+
+# Native-dtype continuation — GPU startup failure, session terminated
+
+Fresh Codex execution on 2026-09-29, continuing the reviewed head
+`2de98345c643651f6bdb38b425dd7f60ed2b9440` in Draft PR #5. The
+[full execution report](r0-native-dtype.md) records exact commands, private driver
+diff/hash, inputs, phase timing and boundaries; the manifest records acquired bytes.
+
+- **PASS: 49 local tests** on Python 3.9.6, including three focused native-dtype
+  regressions. CPU preflight, 16 original artifact pins, actual-candidate official
+  CPU/schema checks and whitespace checks pass. No archive was rebuilt; its
+  **6,230 bytes / `2e24495826cb971053439a00d9ad8350471fc0efffa41a54b82082feedaa7358`**
+  remain frozen. Historical compiler/binding checks were not rerun.
+- **PASS: concrete CPU prerequisites**, including selected-only input preparation,
+  exact-image execution, real official sandbox dependency inheritance, credential
+  separation and independent provider timeout (CPU sleep canceled at 72 s).
+  Injected dtype-source tests are distinct from the actual GPU observations.
+- **One actual T4 x2 attempt:** native BF16 false, requested `auto`, actual vLLM
+  **FP16**. Weights loaded; CUDA custom-all-reduce returned `invalid argument`
+  during graph profiling. Server startup **FAILED**, not an observed OOM or
+  successful inference. Provider runtime **649.6 s**; no automatic rerun.
+- **Cleanup CONFIRMED:** zero worker survivors, temporary workspace removed,
+  independent provider `ERROR` terminal state, CPU control draft stopped/off.
+  Quota readback **00:10 / 30 hrs**; paid spend **$0**. The wider observed
+  request-to-terminal interval bounds use at **0.4561 aggregate GPU-hours**.
+- **NOT RUN:** healthy serving identity, model request/alias/thinking parameters,
+  selected task, agent tools, public-test verification, competition submission,
+  hosted scoring and training. **No patch generated**, not an empty-patch result.
+
+These are Codex's executions, not extensions of ChatGPT's independent review
+checks. The pre-allocation STOP below remains historical evidence.
+
+---
+
+# Historical authorized smoke prechecks — GPU/model execution NOT RUN
+
+2026-09-29 UTC, fresh Codex execution after PR #4 merged. Main/base
+`d14a1542b7bb094f0e5bda7eb8482ddecafe8c57`, tree
+`a5c552957e8e25c5f93966feed3fe5ebcd9d3868`; branch **bt-001-r0-smoke**.
+The complete [attempt record](r0-smoke-attempt.md) distinguishes acquired bytes,
+real Kaggle CPU metadata/session checks, a conditional source reproduction with
+injected boundaries, and the unrun GPU stages. No training or submission ran.
+
+- **PASS: 46 local tests**, Python 3.9.6, including five new synthetic task
+  selection tests and a real CLI subprocess check. No reference answer is a test
+  fixture. Preflight READY; 16 original artifact pins reverified.
+- **PASS:** the selector independently reproduced the already-frozen
+  `fastapi_11194` choice and the same 810-byte five-field input. Existing output
+  rejection, duplicate conflicts and answer-field exclusion are tested.
+- **PASS:** actual archived candidate official CPU/schema checks rerun. Its
+  6,230 bytes and SHA-256 remain unchanged. No archive rebuilt. Compiler/binding
+  probe and its six opt-in regressions were **NOT RERUN**; PR #4 evidence remains
+  historical, not a newly completed milestone.
+- **STOP before GPU allocation:** unchanged notebook dtype selection includes
+  BF16 emulation, while the acquired vLLM CUDA guard rejects BF16 on SM75. The
+  source reproduction injects device capability and successful tensor allocation;
+  it is **not** a T4 execution, startup failure, OOM or model-fit measurement.
+- Two finite Kaggle **CPU-only** prerequisite cells completed (20.02 seconds and
+  4.296 seconds). Separate Kaggle **Stop session** actions returned the draft to
+  **off**, accelerator **None**. These establish the observed manual control,
+  not a tested unattended 1,800-second GPU-session expiry.
+- Server/model loading, health, request/alias/thinking behavior, task tools,
+  generated patch, public-test verification, submission and hosted scoring:
+  **NOT RUN**. GPU allocation/use **0**, paid spend **$0**.
+
+Exact commands, source pins, conditional limitations and remaining prerequisites
+are in the attempt record. These results are Codex's executions and do not extend
+ChatGPT's independent Python 3.13.5 review checks.
+
+---
+
+# Historical PR #4 CPU compiler/binding probe
 
 2026-09-29 UTC, executed by Codex. Read the complete
 [post-merge handoff](https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5882380242),

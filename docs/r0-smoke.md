@@ -1,4 +1,12 @@
-# Proposed single public task smoke — NOT RUN
+# Frozen single public task smoke proposal
+
+**2026-09-29 status:** the original [pre-allocation STOP](r0-smoke-attempt.md)
+and [first T4-native-dtype failure](r0-native-dtype.md) remain separate history.
+The owner authorized one additional **T4-native-no-custom-ar** attempt. Its
+[execution report](r0-no-custom-ar.md) records the applied flag, a different
+Triton shared-memory failure, and confirmed shutdown. Both GPU authorizations
+are consumed. The recipe below remains the historical reviewed proposal;
+no candidate byte, prompt or task budget changed.
 
 This is a preparation recipe for a separately authorized run, not permission to
 download the model, allocate a GPU or execute a notebook. Use the existing private

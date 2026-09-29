@@ -169,7 +169,7 @@
     }
   ],
   "missing_artifacts": [
-    "checkpoint/tokenizer/template bytes and immutable upstream revision",
+    "checkpoint weights/tokenizer/template bytes and immutable upstream revision; version-2 config.json acquired during smoke prechecks",
     "complete hosted environment and scoring entrypoint bytes (outside this CPU packaging slice)"
   ],
   "search_index_evidence": [],
@@ -367,5 +367,1425 @@
       "redistribution": "Unresolved; local ignored bytes only."
     }
   ],
-  "official_artifact_note": "Original sample has ten files, including two small LoRA adapters. Downloaded through existing signed-in Chrome access after owner confirmed entry/rules complete. No terms accepted here. Notebook v2 Input UI lists the same five wheel filenames; an independent notebook-Input swegemma download matched the wheelhouse v25 SHA-256. Original starter retained unchanged under .local/official/."
+  "official_artifact_note": "Original sample has ten files, including two small LoRA adapters. Downloaded through existing signed-in Chrome access after owner confirmed entry/rules complete. No terms accepted here. Notebook v2 Input UI lists the same five wheel filenames; an independent notebook-Input swegemma download matched the wheelhouse v25 SHA-256. Original starter retained unchanged under .local/official/.",
+  "smoke_preallocation": {
+    "recorded_at_utc": "2026-09-29T05:37:25.320142+00:00",
+    "run_name": "R0-clean-v2-one-public-task/T4x2",
+    "status": "STOP before GPU allocation: unchanged dtype selection includes BF16 emulation; acquired vLLM requires native capability 8.0 for BF16",
+    "evidence_limit": "Source-based T4 incompatibility inference and conditional source execution with injected SM75/tensor boundaries, not a GPU observation.",
+    "artifacts": [
+      {
+        "source_url": "https://www.kaggle.com/models/google/gemma-4/Other/gemma-4-31b-it-qat-w4a16-ct/2",
+        "source_path": "config.json",
+        "version": "model variation version 2",
+        "local_path": ".local/smoke/preallocation/model-config.json",
+        "size_bytes": 18711,
+        "sha256": "b100d85e571c25b688e82919d819253063a1defb0e6cee3b9b1c1fbad99bd0c2",
+        "accessed_at_utc": "2026-09-29T05:14:12.556675+00:00",
+        "time_basis": "local retention after source acquisition",
+        "verified_at_utc": "2026-09-29T05:37:25.320142+00:00",
+        "evidence_level": "primary artifact bytes",
+        "acquisition": "Chrome file Download opened inline; native Save As, then retained locally",
+        "redistribution": "Not assessed for publication; bytes remain ignored/private."
+      },
+      {
+        "source_url": "https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse",
+        "source_path": "vllm-0.19.1-cp38-abi3-manylinux_2_31_x86_64.whl",
+        "version": "wheelhouse v25; vLLM 0.19.1; embedded commit gb1388b1fb",
+        "local_path": ".local/smoke/preallocation/vllm-0.19.1-cp38-abi3-manylinux_2_31_x86_64.whl",
+        "size_bytes": 433132506,
+        "sha256": "6b29fdc200966eda4d0cc4d10b8c338ec32620bb069ad3629d8a78e3b35fd3fa",
+        "accessed_at_utc": "2026-09-29T05:11:00.814860+00:00",
+        "time_basis": "local retention after source acquisition",
+        "verified_at_utc": "2026-09-29T05:37:25.320142+00:00",
+        "evidence_level": "primary artifact bytes",
+        "acquisition": "signed-in Chrome file Download; completed bytes found despite event timeout",
+        "redistribution": "Not assessed for publication; bytes remain ignored/private."
+      },
+      {
+        "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+        "source_path": "tasks.jsonl",
+        "version": null,
+        "local_path": ".local/smoke/evaluator-only/tasks.jsonl",
+        "size_bytes": 1984455,
+        "sha256": "e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6",
+        "accessed_at_utc": "2026-09-29T05:13:36.602261+00:00",
+        "time_basis": "local retention after source acquisition",
+        "verified_at_utc": "2026-09-29T05:37:25.320142+00:00",
+        "evidence_level": "primary artifact bytes",
+        "acquisition": "signed-in Chrome file Download; kept outside derived agent input",
+        "redistribution": "Not assessed for publication; bytes remain ignored/private."
+      },
+      {
+        "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+        "source_path": "snapshots/fastapi_11194.tgz",
+        "version": null,
+        "local_path": ".local/smoke/agent-inputs/snapshots/fastapi_11194.tgz",
+        "size_bytes": 214241984,
+        "sha256": "21e42341f416904a0e464cac84f227ff8351bb652d522192212737e6dec663d1",
+        "accessed_at_utc": "2026-09-29T05:18:41.205703+00:00",
+        "time_basis": "local retention after source acquisition",
+        "verified_at_utc": "2026-09-29T05:37:25.320142+00:00",
+        "evidence_level": "primary artifact bytes",
+        "acquisition": "signed-in Chrome file Download",
+        "redistribution": "Not assessed for publication; bytes remain ignored/private."
+      },
+      {
+        "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+        "source_path": "graphs/fastapi_a7f2dbe976bf72703376f0cd04487bfc4a849f83.json",
+        "version": null,
+        "local_path": ".local/smoke/agent-inputs/graphs/fastapi_a7f2dbe976bf72703376f0cd04487bfc4a849f83.json",
+        "size_bytes": 3787549,
+        "sha256": "7ec16396393fadd398243098622c524f341778151c0455bdfec3ef7b0ff812df",
+        "accessed_at_utc": "2026-09-29T05:25:05.161797+00:00",
+        "time_basis": "local retention after source acquisition",
+        "verified_at_utc": "2026-09-29T05:37:25.320142+00:00",
+        "evidence_level": "primary artifact bytes",
+        "acquisition": "signed-in Chrome file Download",
+        "redistribution": "Not assessed for publication; bytes remain ignored/private."
+      },
+      {
+        "source_url": "https://raw.githubusercontent.com/pytorch/pytorch/v2.10.0/torch/cuda/__init__.py",
+        "source_path": "torch/cuda/__init__.py",
+        "version": "v2.10.0",
+        "local_path": ".local/smoke/preallocation/pytorch-2.10.0-cuda-init.py",
+        "size_bytes": 65752,
+        "sha256": "0161199fa03888a8744550727d1026a82f140c8dd31b265a26b41115f7dc857d",
+        "accessed_at_utc": "2026-09-29T05:17:18.214797+00:00",
+        "time_basis": "local retention after source acquisition",
+        "verified_at_utc": "2026-09-29T05:37:25.320142+00:00",
+        "evidence_level": "primary artifact bytes",
+        "acquisition": "bounded public HTTPS request; inspected source",
+        "redistribution": "Not assessed for publication; bytes remain ignored/private."
+      },
+      {
+        "source_url": "https://raw.githubusercontent.com/vllm-project/vllm/v0.19.1/vllm/model_executor/layers/quantization/compressed_tensors/schemes/compressed_tensors_wNa16.py",
+        "source_path": "compressed_tensors_wNa16.py",
+        "version": "v0.19.1",
+        "local_path": ".local/smoke/preallocation/upstream-vllm-0.19.1-wNa16.py",
+        "size_bytes": 7875,
+        "sha256": "a549e5c085842c3c527cac8e52721a1752cac9d08d8695bb71d1334e4e183465",
+        "accessed_at_utc": "2026-09-29T05:07:38.812831+00:00",
+        "time_basis": "local retention after source acquisition",
+        "verified_at_utc": "2026-09-29T05:37:25.320142+00:00",
+        "evidence_level": "primary artifact bytes",
+        "acquisition": "bounded public HTTPS request; matches acquired wheel member",
+        "redistribution": "Not assessed for publication; bytes remain ignored/private."
+      }
+    ],
+    "inspected_vllm_members": [
+      {
+        "member": "vllm/_version.py",
+        "size_bytes": 530,
+        "sha256": "b06838233b49c3277baf1250c6480d182fb2604362bc810ad2988d8bdaf06667"
+      },
+      {
+        "member": "vllm/platforms/cuda.py",
+        "size_bytes": 24196,
+        "sha256": "b987bdd4d6156843d5a58e4731dd5496708b76e6dcb009f01abb4047d965e50c"
+      },
+      {
+        "member": "vllm/v1/worker/gpu_worker.py",
+        "size_bytes": 44483,
+        "sha256": "ffbd4567a25e0a82ca5c714b75e86c7353cedb6fc5c2814b22f3c91afb1c88b1"
+      },
+      {
+        "member": "vllm/config/model.py",
+        "size_bytes": 88399,
+        "sha256": "d712dc1e9856cfc839832745254957e3c135c8693310abd54670fde97a01de81"
+      },
+      {
+        "member": "vllm/model_executor/layers/quantization/compressed_tensors/schemes/compressed_tensors_wNa16.py",
+        "size_bytes": 7875,
+        "sha256": "a549e5c085842c3c527cac8e52721a1752cac9d08d8695bb71d1334e4e183465"
+      },
+      {
+        "member": "vllm/model_executor/kernels/linear/mixed_precision/marlin.py",
+        "size_bytes": 7456,
+        "sha256": "2bd1c3a7190012ea29bd70ac13103c19dee8ddbc2e9a4b5ef53cd54d190d5277"
+      },
+      {
+        "member": "vllm-0.19.1.dist-info/METADATA",
+        "size_bytes": 10013,
+        "sha256": "f76ea566acba199ef8dd91bde6bb162795c7f8876c206a865cbb3b94fbcf7bc2"
+      }
+    ],
+    "selection": {
+      "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+      "source_path": "tasks.jsonl",
+      "accessed_at": "2026-09-29T05:13:36.609350+00:00",
+      "metadata_sha256": "e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6",
+      "metadata_bytes": 1984455,
+      "distinct_ids": 129,
+      "selection_rule": "lexicographically smallest distinct public instance_id before answer inspection",
+      "selected_instance_id": "fastapi_11194",
+      "conflicting_duplicates": 0,
+      "agent_task_sha256": "6ed92f4e646c17728aa8b9ca433a032d61b6b06827eec463a02c00f331c25d60"
+    },
+    "primary_text_observations": [
+      {
+        "source_url": "https://developer.nvidia.com/cuda/gpus",
+        "sha256": null,
+        "version": null,
+        "evidence_level": "primary text",
+        "result": "NVIDIA table identifies T4 compute capability 7.5; rendered text read, no source byte snapshot.",
+        "access_window_utc": {
+          "start": "2026-09-29T04:59:51Z",
+          "end": "2026-09-29T05:37:25.320142+00:00"
+        },
+        "time_basis": "bounded inspection window; individual request time was not retained"
+      },
+      {
+        "source_url": "https://docs.pytorch.org/docs/2.10/generated/torch.cuda.is_bf16_supported.html",
+        "sha256": null,
+        "version": "2.10",
+        "evidence_level": "primary text",
+        "result": "Documented signature defaults including_emulation=True; rendered text read, no byte snapshot.",
+        "access_window_utc": {
+          "start": "2026-09-29T04:59:51Z",
+          "end": "2026-09-29T05:37:25.320142+00:00"
+        },
+        "time_basis": "bounded inspection window; individual request time was not retained"
+      },
+      {
+        "source_url": "https://github.com/pytorch/pytorch/issues/118122",
+        "sha256": null,
+        "version": null,
+        "evidence_level": "primary text",
+        "result": "Read issue and maintainer comments through gh; historical Turing BF16 emulation context, not current Kaggle execution.",
+        "access_window_utc": {
+          "start": "2026-09-29T04:59:51Z",
+          "end": "2026-09-29T05:37:25.320142+00:00"
+        },
+        "time_basis": "bounded inspection window; individual request time was not retained"
+      },
+      {
+        "source_url": "https://api.github.com/repos/fastapi/fastapi/git/commits/a7f2dbe976bf72703376f0cd04487bfc4a849f83",
+        "sha256": null,
+        "version": "a7f2dbe976bf72703376f0cd04487bfc4a849f83",
+        "evidence_level": "primary text",
+        "result": "GitHub API reports tree ce1ff0e44176b7bed89e62d497073e20e4e9b6e9, matching privately inspected rewritten snapshot HEAD tree; filtered response read, original bytes not retained.",
+        "access_window_utc": {
+          "start": "2026-09-29T04:59:51Z",
+          "end": "2026-09-29T05:37:25.320142+00:00"
+        },
+        "time_basis": "bounded inspection window; individual request time was not retained"
+      },
+      {
+        "source_url": "https://www.kaggle.com/settings",
+        "access_window_utc": {
+          "start": "2026-09-29T05:11:00Z",
+          "end": "2026-09-29T05:13:00Z"
+        },
+        "sha256": null,
+        "evidence_level": "observed execution",
+        "result": "Signed-in rendered UI showed 00:00 / 30 GPU hours; no GPU allocation performed."
+      },
+      {
+        "source_url": "https://www.kaggle.com/code/hynk1240/notebooka90546f4d2/edit",
+        "access_window_utc": {
+          "start": "2026-09-29T05:06:00Z",
+          "end": "2026-09-29T05:37:25.320142+00:00"
+        },
+        "sha256": null,
+        "evidence_level": "observed execution",
+        "result": "T4 x2 offered; None selected. Two finite CPU prerequisite cells completed; separate Stop session controls returned draft to off. Private draft only; no saved/published version, data upload, model mount or inference."
+      },
+      {
+        "source_url": "https://www.kaggle.com/settings",
+        "accessed_at_utc": "2026-09-29T05:39:11.800541+00:00",
+        "sha256": null,
+        "evidence_level": "observed execution",
+        "result": "Final reloaded settings still show Kaggle GPU 00:00 / 30 hrs. Draft remains off, accelerator None, no inputs; Share dialog Private selected, Public unselected."
+      }
+    ],
+    "not_acquired": [
+      "model weights, tokenizer, chat template and generation_config",
+      "selected embeddings and offline task dependency closure",
+      "actual GPU environment/image and CUDA package bytes"
+    ],
+    "not_run": [
+      "GPU allocation",
+      "server startup",
+      "model request",
+      "public agent task",
+      "public verification",
+      "competition submission",
+      "hosted scoring"
+    ],
+    "GPU_hours": 0,
+    "paid_spend_USD": 0,
+    "cleanup_verified_at_utc": "2026-09-29T05:39:11.800541+00:00"
+  },
+  "native_dtype_continuation": {
+    "run_name": "R0-clean-v2-one-public-task/T4-native-dtype",
+    "review_url": "https://github.com/hynk-studio/backtrace/pull/5#pullrequestreview-5348487668",
+    "checkpoint_url": "https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5884852735",
+    "evidence_note": "Original pre-allocation STOP is preserved under smoke_preallocation. CPU preparation and source substitutions are distinct from the one actual GPU allocation. No CPU success proves model health or inference.",
+    "sources_acquired": [
+      {
+        "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+        "version": "selected base-commit embedding",
+        "accessed_at_utc": "2026-09-29T07:25:19.259362+00:00",
+        "size_bytes": 4158644,
+        "sha256": "46fb70dc9b0e8370136e7da78be77b04ff9f117af6fd67df0b0cc908a00bcef9",
+        "evidence_level": "primary artifact bytes",
+        "retained_at": ".local/smoke/agent-inputs/embeddings/fastapi_a7f2dbe976bf72703376f0cd04487bfc4a849f83.npz",
+        "redistribution": "Not established; retained privately only."
+      },
+      {
+        "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+        "version": "sandbox/setup.py; inspected, not executed",
+        "accessed_at_utc": "2026-09-29T07:04:26.965312+00:00",
+        "size_bytes": 13883,
+        "sha256": "0263995ade90f83c8efa0ab5c7c9b7629696f39bc75274d58fc27ab774568409",
+        "evidence_level": "primary text",
+        "retained_at": ".local/smoke/agent-inputs/sandbox/setup.py",
+        "redistribution": "Not established; retained privately only."
+      },
+      {
+        "source_url": "https://github.com/Kaggle/kaggle-cli/blob/main/docs/kernels_metadata.md",
+        "version": "Git blob 1e90ec06157e52b8f94d20eccf85adb41dd9989e",
+        "accessed_at_utc": "2026-09-29T07:39:17.669584+00:00",
+        "size_bytes": 2908,
+        "sha256": "bcf023d8e6f3f51c7ac9ce131bbbe4d7d8472ee6627875b82d409a233700118b",
+        "evidence_level": "primary text",
+        "retained_at": ".local/smoke/native-dtype/kaggle-kernels-metadata.md",
+        "redistribution": "Not established; retained privately only."
+      }
+    ],
+    "private_selected_input_run": {
+      "source_url": "https://www.kaggle.com/code/hynk1240/backtrace-r0-selected-inputs",
+      "version": 1,
+      "run_id": 353804787,
+      "requested_at_utc": "2026-09-29T07:24:48.267641+00:00",
+      "evidence_level": "observed execution",
+      "provider_runtime_seconds": 36.3,
+      "acquisition_body_seconds": 26.89655566215515,
+      "status": "COMPLETE; CPU only",
+      "full_competition_mount": false,
+      "files": [
+        "snapshots/fastapi_11194.tgz",
+        "graphs/fastapi_a7f2dbe976bf72703376f0cd04487bfc4a849f83.json",
+        "embeddings/fastapi_a7f2dbe976bf72703376f0cd04487bfc4a849f83.npz",
+        "wheels/starlette-0.48.0-py3-none-any.whl",
+        "wheels/pdm_backend-2.4.9-py3-none-any.whl",
+        "r0-clean.zip",
+        "agent-task.json",
+        "inputs-receipt.json"
+      ]
+    },
+    "new_task_wheels": [
+      {
+        "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+        "source_path": "wheels/starlette-0.48.0-py3-none-any.whl",
+        "version": "0.48.0",
+        "size_bytes": 73736,
+        "sha256": "0764ca97b097582558ecb498132ed0c7d942f233f365b86ba37770e026510659",
+        "accessed_at_utc": "2026-09-29T07:25:21.049555+00:00",
+        "evidence_level": "observed execution; SHA-256 of acquired official bytes",
+        "retained_at": "private selected-input notebook version 1"
+      },
+      {
+        "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+        "source_path": "wheels/pdm_backend-2.4.9-py3-none-any.whl",
+        "version": "2.4.9",
+        "size_bytes": 115770,
+        "sha256": "8d1064751dadb0c40b1026b46826a448d85c8228a564985c62fb53d4aba538a1",
+        "accessed_at_utc": "2026-09-29T07:25:23.603947+00:00",
+        "evidence_level": "observed execution; SHA-256 of acquired official bytes",
+        "retained_at": "private selected-input notebook version 1"
+      }
+    ],
+    "provider_expiry_check": {
+      "source_url": "https://www.kaggle.com/code/hynk1240/backtrace-cpu-expiry-check",
+      "version": 1,
+      "run_id": 353798158,
+      "requested_at_utc": "2026-09-29T06:56:39.842099+00:00",
+      "code_sha256": "ae9a8e76c19b936d28fec6c76664143991e00c8f284db723cda127624a97acd7",
+      "requested_timeout_seconds": 60,
+      "sleep_seconds": 180,
+      "provider_cancel_after_seconds": 72.0,
+      "provider_reason": "timeout exceeded",
+      "evidence_level": "observed execution; CPU only",
+      "gpu_expiry_latency": "not inferred from CPU timing"
+    },
+    "organizer_image_check": {
+      "source_url": "https://www.kaggle.com/code/hynk1240/backtrace-r0-image-check",
+      "version": 1,
+      "run_id": 353801546,
+      "requested_at_utc": "2026-09-29T07:11:12.743324+00:00",
+      "code_sha256": "04dc303cc5521765b871148baf239923d273ce674e503c0054e90daaf4aae5b0",
+      "image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+      "status": "COMPLETE; CPU only",
+      "provider_runtime_seconds": 18.1,
+      "evidence_level": "observed execution"
+    },
+    "cpu_driver_qualification": {
+      "source_url": "https://www.kaggle.com/code/hynk1240/backtrace-r0-cpu-prerequisites",
+      "versions": [
+        {
+          "version": 1,
+          "script_sha256": "6af121acd20c4c41cd72b249c715bb2a65e84b726ad3f3321912ee79bf2aae1d",
+          "requested_at_utc": "2026-09-29T07:34:09.546894+00:00",
+          "result": "FAILED; authored task venv ensurepip",
+          "provider_runtime_seconds": 88.2,
+          "cleanup": "no workers; temporary workspace removed"
+        },
+        {
+          "version": 2,
+          "script_sha256": "2be59113ed621b1a50ca99bb7cc23b0e32cc9fd98e81383a16b3cd6286f00fb5",
+          "requested_at_utc": "2026-09-29T07:38:27.699230+00:00",
+          "result": "FAILED; closed stream during harness import after auth check",
+          "provider_runtime_seconds": 105.2,
+          "credential_boundary": "PASS",
+          "cleanup": "no workers; temporary workspace removed"
+        },
+        {
+          "version": 3,
+          "script_sha256": "a47eea1b49b70621e63dc006b99d1904152cc26748ca17cbd07f2f11dd39dde0",
+          "requested_at_utc": "2026-09-29T07:46:26.984797+00:00",
+          "result": "PASS; official sandbox dependency inheritance and credential checks",
+          "provider_runtime_seconds": 138.5,
+          "script_body_seconds": 130.97688698768616,
+          "cleanup": "no workers; temporary workspace removed"
+        }
+      ],
+      "provider_timeout_seconds": 420,
+      "evidence_level": "observed execution; CPU only; no inference or model source"
+    },
+    "private_scripts": [
+      {
+        "path": ".local/smoke/native-dtype/serving-original.py",
+        "size_bytes": 1654,
+        "sha256": "b125ed5ae91d19df1b3c2a3932bed1c5d901f97fcedafcce7f917e71cd59289d"
+      },
+      {
+        "path": ".local/smoke/native-dtype/serving-native.py",
+        "size_bytes": 1679,
+        "sha256": "e09680a61a8bfb7a185a231bc1bd79a9d89284d6db42d6e67f6c050ebaec33ac"
+      },
+      {
+        "path": ".local/smoke/native-dtype/serving.diff",
+        "size_bytes": 473,
+        "sha256": "96c81692617fc858b6189161360f8f088759e571cf33b7e28c151f06487b1ec2"
+      },
+      {
+        "path": ".local/smoke/native-dtype/prepare_inputs.py",
+        "size_bytes": 12547,
+        "sha256": "613cf0d34b85fdf4353213e37ce110eac2aeca0d34a38de932eb7a3b6e0c67a6"
+      },
+      {
+        "path": ".local/smoke/native-dtype/cpu-prerequisites-v1.py",
+        "size_bytes": 23662,
+        "sha256": "6af121acd20c4c41cd72b249c715bb2a65e84b726ad3f3321912ee79bf2aae1d"
+      },
+      {
+        "path": ".local/smoke/native-dtype/cpu-prerequisites-v2.py",
+        "size_bytes": 23702,
+        "sha256": "2be59113ed621b1a50ca99bb7cc23b0e32cc9fd98e81383a16b3cd6286f00fb5"
+      },
+      {
+        "path": ".local/smoke/native-dtype/cpu-prerequisites-v3.py",
+        "size_bytes": 26381,
+        "sha256": "a47eea1b49b70621e63dc006b99d1904152cc26748ca17cbd07f2f11dd39dde0"
+      },
+      {
+        "path": ".local/smoke/native-dtype/gpu-executed.py",
+        "size_bytes": 26410,
+        "sha256": "c8f97c6434635f04677c823da8bec19d8605a70630050cbc7504e9d110aa9595"
+      },
+      {
+        "path": ".local/smoke/native-dtype/gpu-launcher.py",
+        "size_bytes": 30187,
+        "sha256": "30edb27992744b38dd9dc5c29db562be877a257e6ee5e38e07d354583922aa18"
+      },
+      {
+        "path": ".local/smoke/native-dtype/check-auto-dtype.py",
+        "size_bytes": 1826,
+        "sha256": "97a931fb08ed809843384ce996fb666570ecde49294c790a06fd464a827c1c8c"
+      },
+      {
+        "path": ".local/smoke/native-dtype/kaggle-kernels-metadata.md",
+        "size_bytes": 2908,
+        "sha256": "bcf023d8e6f3f51c7ac9ce131bbbe4d7d8472ee6627875b82d409a233700118b"
+      }
+    ],
+    "dtype_source_check": {
+      "source": "acquired vLLM 0.19.1 wheel; vllm/platforms/cuda.py and vllm/config/model.py",
+      "script_sha256": "97a931fb08ed809843384ce996fb666570ecde49294c790a06fd464a827c1c8c",
+      "injections": [
+        "SM75 capability",
+        "dtype objects",
+        "logger"
+      ],
+      "source_result": "auto resolves to float16 for BF16 gemma4 and gemma4_text",
+      "evidence_level": "observed local execution with injected boundaries; not GPU behavior"
+    },
+    "mounted_model_files": {
+      "source": "https://www.kaggle.com/models/google/gemma-4/Other/gemma-4-31b-it-qat-w4a16-ct/2",
+      "evidence_level": "observed execution; SHA-256 of actual mounted bytes",
+      "hashes_completed_at_unix": 1790668529.920125,
+      "files": [
+        {
+          "path": "README.md",
+          "size_bytes": 28499,
+          "sha256": "b68c4f66b6bbe75f72f54a5aed65ed08a7faf6ca056bdf11beefedf8591adad3"
+        },
+        {
+          "path": "chat_template.jinja",
+          "size_bytes": 16934,
+          "sha256": "94899c0f917d93f6fe81c95744d1e8ddab2d21d39228d2e4aec1fb2a25bff413"
+        },
+        {
+          "path": "config.json",
+          "size_bytes": 18711,
+          "sha256": "b100d85e571c25b688e82919d819253063a1defb0e6cee3b9b1c1fbad99bd0c2"
+        },
+        {
+          "path": "generation_config.json",
+          "size_bytes": 208,
+          "sha256": "70110aa886fa7ee25ce47346d102dd29ca5f967500490b4362fc72068e1db70a"
+        },
+        {
+          "path": "model.safetensors",
+          "size_bytes": 23265352448,
+          "sha256": "1b9b1d622a93f02c0d33f98e502f233b5d707443af6ddc464ed0bf5498506c20"
+        },
+        {
+          "path": "processor_config.json",
+          "size_bytes": 1689,
+          "sha256": "32bdf45d2ad4cc29a0822ddd157a182de76644f0419a6228d151495256e9813c"
+        },
+        {
+          "path": "tokenizer.json",
+          "size_bytes": 32169626,
+          "sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "size_bytes": 2741,
+          "sha256": "a284d1243b62be31faa9c13e1c28cece940c4abaa7bd9ad87b94f61b40687200"
+        }
+      ]
+    },
+    "gpu_request": {
+      "absolute_authorized_deadline": 1790670054.6229546,
+      "api_response": "accepted; empty error string; no retry",
+      "metadata": {
+        "code_file": "one_task.py",
+        "competition_sources": [],
+        "dataset_sources": [
+          "metric/gemma-4-developer-agent-wheelhouse/25"
+        ],
+        "docker_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+        "docker_image_pinning_type": "original",
+        "enable_gpu": true,
+        "enable_internet": false,
+        "enable_tpu": false,
+        "id": "hynk1240/backtrace-r0-t4-native-dtype",
+        "is_private": true,
+        "kernel_sources": [
+          "hynk1240/backtrace-r0-selected-inputs/1"
+        ],
+        "kernel_type": "script",
+        "language": "python",
+        "machine_shape": "NvidiaTeslaT4",
+        "model_sources": [
+          "google/gemma-4/Other/gemma-4-31b-it-qat-w4a16-ct/2"
+        ],
+        "title": "Backtrace R0 T4 Native Dtype"
+      },
+      "provider_timeout_seconds": 1680,
+      "request_utc": "2026-09-29T07:50:54.622955+00:00",
+      "requested_at": 1790668254.6229546,
+      "script_bytes": 26410,
+      "script_sha256": "c8f97c6434635f04677c823da8bec19d8605a70630050cbc7504e9d110aa9595",
+      "setup_deadline": 1790668554.6229546,
+      "useful_work_deadline": 1790669874.6229546
+    },
+    "gpu_run_id": 353810920,
+    "gpu_outcome": {
+      "status": "STARTUP FAILED; one authorized attempt consumed; no rerun",
+      "evidence_level": "observed GPU execution and independent account API/UI readback",
+      "version": 1,
+      "provider_state": "ERROR",
+      "provider_runtime_seconds": 649.6,
+      "devices": [
+        "Tesla T4",
+        "Tesla T4"
+      ],
+      "device_memory_mib": [
+        15360,
+        15360
+      ],
+      "driver_version": "580.159.04",
+      "native_bf16": false,
+      "requested_dtype": "auto",
+      "observed_resolved_dtype": "torch.float16",
+      "resolved_dtype_source": "vLLM 0.19.1 EngineCore initialization log; health endpoint not reached",
+      "model_path": "/kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2",
+      "served_identity": "NOT RUN; /v1/models not reached",
+      "weight_loading_seconds_tp0": 90.96,
+      "model_loading_seconds_tp0": 92.432167,
+      "model_loading_gib_tp0": 10.46,
+      "peak_sampled_gpu_memory_mib": [
+        12329,
+        12329
+      ],
+      "failure": "CUDA custom_all_reduce.cuh:455 invalid argument during CUDA graph profiling; worker death; ServerStartupError",
+      "oom": "not observed; full runtime memory fit not established",
+      "request_unix": 1790668254.6229546,
+      "root_begin_unix": 1790668267.8271897,
+      "setup_dependency_ready_unix": 1790668363.504132,
+      "model_pins_setup_complete_unix": 1790668529.920125,
+      "server_start_unix": 1790668556.0662835,
+      "server_error_unix": 1790668906.5904956,
+      "server_stop_returned_unix": 1790668906.5919738,
+      "worker_exit_unix": 1790668910.6689668,
+      "worker_cleanup_unix": 1790668910.6711068,
+      "root_end_unix": 1790668910.8126452,
+      "root_body_seconds": 642.9908072948456,
+      "request_to_cleanup_seconds": 656.1896905899048,
+      "official_start_seconds": 350.524121761322,
+      "independent_terminal_readback_unix": 1790669075.5608964,
+      "request_to_terminal_observation_seconds": 820.9379417896271,
+      "gpu_use_note": "Exact allocation timestamps unavailable. Runtime x2 is approximately 0.361 aggregate GPU-hours; wider request-to-terminal interval bounds use at 0.4561. Not account metering.",
+      "account_quota_before": "00:00 / 30 hrs",
+      "account_quota_after": "00:10 / 30 hrs",
+      "paid_spend_usd": 0,
+      "model_request": "NOT RUN",
+      "task_executions": 0,
+      "agent_tool_calls": 0,
+      "wire_parameters_and_thinking": "NOT RUN",
+      "patch": "NOT GENERATED; distinct from empty patch",
+      "public_test_verification": "NOT RUN",
+      "submission": "NOT RUN",
+      "hosted_scoring": "NOT RUN",
+      "training": "NOT RUN",
+      "cleanup": {
+        "worker_survivors": [],
+        "worker_cleanup_confirmed": true,
+        "scratch_removed": true,
+        "shared_memory_warning": "vLLM reported three shared-memory objects at shutdown; process/provider termination checked separately",
+        "gpu_session": "CONFIRMED terminal ERROR by independent account API and provider UI",
+        "cpu_control_session": "Stopped through UI; off, accelerator None; refreshed Active Events badge empty",
+        "local_keep_awake": "temporary lease stopped; process reaped"
+      }
+    },
+    "mounted_wheelhouse": {
+      "source_url": "https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse/versions/25",
+      "version": 25,
+      "accessed_by_setup_ready_at_utc": "2026-09-29T07:52:43.504132Z",
+      "evidence_level": "observed execution; SHA-256 of mounted bytes; exact receipt reconstructed locally and hash verified",
+      "receipt_sha256": "babd1354e2e5a5fd04c20a3b26811dbd7d9d0c1814990646abbe687e155bcb5c",
+      "files": [
+        {
+          "path": "adk_eval_core-0.1.0-py3-none-any.whl",
+          "bytes": 89306,
+          "sha256": "b1608c4471a2739eca6469735e4e118ff33a20823ce9430719238ea843aa9d1a"
+        },
+        {
+          "path": "adk_submission-0.2.11-py3-none-any.whl",
+          "bytes": 62404,
+          "sha256": "d14f7d31e724f507322c763bc7c1ed56ac603085b3709afed954e50006b494a8"
+        },
+        {
+          "path": "anthropic-1.4.0-py3-none-any.whl",
+          "bytes": 1300390,
+          "sha256": "590e85bff75b713a123b03f586d68f02266b5fdc49f70dd75f721ced93a4716c"
+        },
+        {
+          "path": "apache_tvm_ffi-0.1.13.post3-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+          "bytes": 2955490,
+          "sha256": "edaca70656f87831c3b4989169b1d85fe563ccd6d2e2cadc1f4f5880e1295f7a"
+        },
+        {
+          "path": "astor-0.8.1-py2.py3-none-any.whl",
+          "bytes": 27488,
+          "sha256": "070a54e890cefb5b3739d19f30f5a5ec840ffc9c50ffa7d23cc9fc1a38ebbfc5"
+        },
+        {
+          "path": "bitsandbytes-0.46.1-py3-none-manylinux_2_24_x86_64.whl",
+          "bytes": 72865511,
+          "sha256": "b0ee4a204fb926d4eae02bc2f5468ae3c11c011cfa849a4c771d4c6b201f57ae"
+        },
+        {
+          "path": "cbor2-6.1.4-cp312-cp312-manylinux_2_28_x86_64.whl",
+          "bytes": 461193,
+          "sha256": "310f3dfb296ba48fe9b63c5cf26e691e3548a1eae6901d2f0c18e941d151f220"
+        },
+        {
+          "path": "compressed_tensors-0.15.0.1-py3-none-any.whl",
+          "bytes": 194260,
+          "sha256": "e1b1f322e82e475715e242bad46925a304ea8e5c98b5055a15b8eb22fb6bfea9"
+        },
+        {
+          "path": "depyf-0.20.0-py3-none-any.whl",
+          "bytes": 39381,
+          "sha256": "d31effad4261cebecb58955d832e448ace88f432328f95f82fd99c30fd9308d4"
+        },
+        {
+          "path": "diskcache-5.6.3-py3-none-any.whl",
+          "bytes": 45550,
+          "sha256": "5e31b2d5fbad117cc363ebaf6b689474db18a1f6438bc82358b024abd4c2ca19"
+        },
+        {
+          "path": "flashinfer_cubin-0.6.6-py3-none-any.whl",
+          "bytes": 267661457,
+          "sha256": "36508dfc792eb5ecfb15d2c140a7702812e1fa1ab0fb03929b2ed55e3e8191f3"
+        },
+        {
+          "path": "flashinfer_python-0.6.6-py3-none-any.whl",
+          "bytes": 7817047,
+          "sha256": "078f158636969eec1a0d3dea19c3ca90b426b66df89bbf7b7b8276ce2ec08148"
+        },
+        {
+          "path": "gguf-0.19.0-py3-none-any.whl",
+          "bytes": 118475,
+          "sha256": "70bcd10edfe697fb2dad6e40af2234b9d8ece9a41a99761405121ebda1c3c1cd"
+        },
+        {
+          "path": "google_adk-1.36.1-py3-none-any.whl",
+          "bytes": 2877731,
+          "sha256": "1a2f6868c509e3151fb0de3575a7d18b45c338be86f420924dad74e7193631a0"
+        },
+        {
+          "path": "google_genai-2.11.0-py3-none-any.whl",
+          "bytes": 984162,
+          "sha256": "5bc8186100e1d34d691fbe0cba392b7e04e98d286ca952323a6672d054accf95"
+        },
+        {
+          "path": "ijson-3.5.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+          "bytes": 149848,
+          "sha256": "e4fcebfe1685bb7ba06a8255a5d428ea6b4b895d7acf979cb637d8bbc9db2f47"
+        },
+        {
+          "path": "interegular-0.3.3-py37-none-any.whl",
+          "bytes": 23635,
+          "sha256": "b0c07007d48c89d6d19f7204972d369b2a77222722e126b6aa63aa721dc3b19c"
+        },
+        {
+          "path": "llguidance-1.3.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+          "bytes": 3033133,
+          "sha256": "bc17e9dd602c3879bf91664a64bf72f54c74dbfbeb24ccfab6a5fe435b12f7aa"
+        },
+        {
+          "path": "lm_format_enforcer-0.11.3-py3-none-any.whl",
+          "bytes": 45418,
+          "sha256": "cf586350875def1ae7a8fba84fcbbfc8371424b6c9d05c1fcba70aa233fbf06f"
+        },
+        {
+          "path": "loguru-0.7.3-py3-none-any.whl",
+          "bytes": 61595,
+          "sha256": "31a33c10c8e1e10422bfd431aeb5d351c7cf7fa671e3c4df004162264b28220c"
+        },
+        {
+          "path": "mistral_common-1.11.7-py3-none-any.whl",
+          "bytes": 6553583,
+          "sha256": "a9511b88eacacbe7dacddd9d3498c1739f56847b7fdddbd5a22e7844fd9def95"
+        },
+        {
+          "path": "model_hosting_container_standards-0.1.16-py3-none-any.whl",
+          "bytes": 125666,
+          "sha256": "47f4f65713120bc3a69feb022981a38db9e557aedf88dbd72077f20588caa12b"
+        },
+        {
+          "path": "msgspec-0.21.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+          "bytes": 225025,
+          "sha256": "21995e74b5c598c2e004110ad66ec7f1b8c20bf2bcf3b2de8fd9a3094422d3ff"
+        },
+        {
+          "path": "nvidia_cudnn_frontend-1.18.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+          "bytes": 2159245,
+          "sha256": "6c023539ca6de99234cf5102c3ec0d6af817f5396fc93028a22ba5b834a35b8a"
+        },
+        {
+          "path": "openai_harmony-0.0.8-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+          "bytes": 2953260,
+          "sha256": "c007d277218a50db8839e599ed78e0fffe5130f614c3f6d93ae257f282071a29"
+        },
+        {
+          "path": "opentelemetry_exporter_otlp-1.44.0-py3-none-any.whl",
+          "bytes": 6727,
+          "sha256": "4a498fa8d8fd8be9e8e2d175fe5524a3fe581ccffadd8509db86526a5fb97051"
+        },
+        {
+          "path": "opentelemetry_semantic_conventions_ai-0.5.1-py3-none-any.whl",
+          "bytes": 11250,
+          "sha256": "25aeb22bd261543b4898a73824026d96770e5351209c7d07a0b1314762b1f6e4"
+        },
+        {
+          "path": "outlines_core-0.2.11-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+          "bytes": 2287677,
+          "sha256": "86df9740368866295077346440d911df4972da2b3f1f54b8125e6f329e8a8891"
+        },
+        {
+          "path": "partial_json_parser-0.2.1.1.post7-py3-none-any.whl",
+          "bytes": 10877,
+          "sha256": "145119e5eabcf80cbb13844a6b50a85c68bf99d376f8ed771e2a3c3b03e653ae"
+        },
+        {
+          "path": "prometheus_fastapi_instrumentator-8.1.0-py3-none-any.whl",
+          "bytes": 19649,
+          "sha256": "b9f40b2cff3f7891ca0610b3ae4fc6ec723fd326b04bb659819aaeb821a0fc7d"
+        },
+        {
+          "path": "pybase64-1.5.0-cp312-cp312-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl",
+          "bytes": 94681,
+          "sha256": "1a2b9cf39b4d30f600df8c56cccbc03adfc6e1ae8c04cd6b181105a432d4a515"
+        },
+        {
+          "path": "pycountry-26.2.16-py3-none-any.whl",
+          "bytes": 8044600,
+          "sha256": "115c4baf7cceaa30f59a4694d79483c9167dbce7a9de4d3d571c5f3ea77c305a"
+        },
+        {
+          "path": "pydantic_extra_types-2.11.2-py3-none-any.whl",
+          "bytes": 82851,
+          "sha256": "683b8943252543e49760f89733b1519bc62f31d1a287ebbdc5a7b7959fb4acfd"
+        },
+        {
+          "path": "quack_kernels-0.6.4-py3-none-any.whl",
+          "bytes": 728458,
+          "sha256": "e77c5d1f1299b0b38487fe8737df6c6975daa16bca7f7eb883bd1a74d09e7e78"
+        },
+        {
+          "path": "safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+          "bytes": 506502,
+          "sha256": "f216afd4ba743e744c86cbd08e7185efa8749e4c905f14e4e977d65576466cb0"
+        },
+        {
+          "path": "setproctitle-1.3.7-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+          "bytes": 32932,
+          "sha256": "2906b6c7959cdb75f46159bf0acd8cc9906cf1361c9e1ded0d065fe8f9039629"
+        },
+        {
+          "path": "swegemma-0.2.7-py3-none-any.whl",
+          "bytes": 111548,
+          "sha256": "2b74d402dc95a615f3b36c56fd3f9ba11ddbfb7db8a5a32ec259369a0f559d98"
+        },
+        {
+          "path": "tokenizers-0.22.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+          "bytes": 3274982,
+          "sha256": "369cc9fc8cc10cb24143873a0d95438bb8ee257bb80c71989e3ee290e8d72c67"
+        },
+        {
+          "path": "transformers-5.13.1-py3-none-any.whl",
+          "bytes": 11503977,
+          "sha256": "53f0ea8aa397e29244c2377ba981bcaf0c87adcf44fbdd447ef6306522afcacd"
+        },
+        {
+          "path": "vllm-0.19.1-cp38-abi3-manylinux_2_31_x86_64.whl",
+          "bytes": 433132506,
+          "sha256": "6b29fdc200966eda4d0cc4d10b8c338ec32620bb069ad3629d8a78e3b35fd3fa"
+        },
+        {
+          "path": "xgrammar-0.2.5.post1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+          "bytes": 48149933,
+          "sha256": "8df76e57eabf0576023826bd179dd2dddb56c1663dab74fd64086452487b795b"
+        }
+      ]
+    },
+    "private_output_receipts": {
+      "source_url": "https://www.kaggle.com/code/hynk1240/backtrace-r0-t4-native-dtype/output",
+      "version": 1,
+      "acquired_in_control_session_at_utc": "2026-09-29T08:03:26.125478+00:00",
+      "evidence_level": "observed execution; hashed fetched bytes in private CPU control session",
+      "retention": "Originals in private completed GPU version. Browser download did not complete; raw logs not retained on local workstation.",
+      "files": [
+        {
+          "path": "backtrace-receipts/execution.log",
+          "size_bytes": 30104,
+          "sha256": "2a4987219e24e2680ad78b7a204a14f01aeae942e44c2725c24119bde44646ef"
+        },
+        {
+          "path": "backtrace-receipts/model-files.json",
+          "size_bytes": 1150,
+          "sha256": "6a8ebd3efd6f4c33ba232cc96cfe4d8261e987a76e6d191f8c60cceb2bc01927"
+        },
+        {
+          "path": "backtrace-receipts/server-error.log",
+          "size_bytes": 24200,
+          "sha256": "77b6a17021d08a3da7cf0416980221ef3c6a251dbba2b7b3ac090047693e5b25"
+        },
+        {
+          "path": "backtrace-receipts/wheel-files.json",
+          "size_bytes": 7413,
+          "sha256": "babd1354e2e5a5fd04c20a3b26811dbd7d9d0c1814990646abbe687e155bcb5c"
+        },
+        {
+          "path": "backtrace-r0-t4-native-dtype.log",
+          "size_bytes": 5685,
+          "sha256": "276921b6714a52d2c1d39c1984fcf8aa02b7a1b6bee54ea1fb08648bd505e085"
+        }
+      ]
+    },
+    "provider_image_readback": {
+      "source_urls": [
+        "https://www.kaggle.com/code/hynk1240/backtrace-r0-image-check/log",
+        "https://www.kaggle.com/code/hynk1240/backtrace-r0-t4-native-dtype/log"
+      ],
+      "accessed_at_utc": "2026-09-29T08:23:42.827Z",
+      "evidence_level": "observed provider UI link; no page-byte hash",
+      "image_url": "https://gcr.io/kaggle-gpu-images/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+      "note": "UI label Latest Container Image; linked digest matches organizer-recorded image digest."
+    }
+  },
+  "no_custom_ar_continuation": {
+    "recorded_at": "2026-09-29T09:31:54.438052+00:00",
+    "review": "https://github.com/hynk-studio/backtrace/pull/5#pullrequestreview-5349920811",
+    "checkpoint": "https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5886786192",
+    "run_name": "R0-clean-v2-one-public-task/T4-native-no-custom-ar",
+    "run_url": "https://www.kaggle.com/code/hynk1240/backtrace-r0-t4-no-custom-ar",
+    "run_id": 353835216,
+    "version": 1,
+    "source_inspection": [
+      {
+        "source": "https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse/versions/25",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "vllm-0.19.1 wheel member vllm/config/parallel.py",
+        "local_file": ".local/smoke/no-custom-ar/source/vllm/config/parallel.py",
+        "bytes": 34635,
+        "sha256": "308996eda88b1cd0904dc6918d3d2140dfa4620c8a80e73705cf209d443c4478",
+        "evidence_level": "primary source bytes; inspected locally"
+      },
+      {
+        "source": "https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse/versions/25",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "vllm-0.19.1 wheel member vllm/distributed/device_communicators/cuda_communicator.py",
+        "local_file": ".local/smoke/no-custom-ar/source/vllm/distributed/device_communicators/cuda_communicator.py",
+        "bytes": 18055,
+        "sha256": "68134311c5bd96957ce35d7ea5d87abc2ff39ba0ccd037103ae376d52ad59158",
+        "evidence_level": "primary source bytes; inspected locally"
+      },
+      {
+        "source": "https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse/versions/25",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "vllm-0.19.1 wheel member vllm/distributed/device_communicators/custom_all_reduce.py",
+        "local_file": ".local/smoke/no-custom-ar/source/vllm/distributed/device_communicators/custom_all_reduce.py",
+        "bytes": 12857,
+        "sha256": "ab020c3831623459971855a3afdc32cd767a765e960126f26b5c04a801265cfd",
+        "evidence_level": "primary source bytes; inspected locally"
+      },
+      {
+        "source": "https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse/versions/25",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "vllm-0.19.1 wheel member vllm/distributed/parallel_state.py",
+        "local_file": ".local/smoke/no-custom-ar/source/vllm/distributed/parallel_state.py",
+        "bytes": 76897,
+        "sha256": "3b4d07fd2c605fd1326f3c603175b405236cb1199005710e3d3b213c869a41f1",
+        "evidence_level": "primary source bytes; inspected locally"
+      },
+      {
+        "source": "https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse/versions/25",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "vllm-0.19.1 wheel member vllm/engine/arg_utils.py",
+        "local_file": ".local/smoke/no-custom-ar/source/vllm/engine/arg_utils.py",
+        "bytes": 98258,
+        "sha256": "b576b4e3156e7669857e2ed6cbd9a4ac50062472501bc39a80d3642991b5f362",
+        "evidence_level": "primary source bytes; inspected locally"
+      },
+      {
+        "source": "https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse/versions/25",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "vllm-0.19.1 wheel member vllm/entrypoints/serve/instrumentator/metrics.py",
+        "local_file": ".local/smoke/no-custom-ar/source/vllm/entrypoints/serve/instrumentator/metrics.py",
+        "bytes": 1534,
+        "sha256": "da8f1f54dbc248d3770e7bcf87f095707ff563e02ad6e3fb2439b1355e176eef",
+        "evidence_level": "primary bytes acquired; not relied on for contract claims"
+      },
+      {
+        "source": "https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse/versions/25",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "vllm-0.19.1 wheel member vllm/entrypoints/serve/instrumentator/server_info.py",
+        "local_file": ".local/smoke/no-custom-ar/source/vllm/entrypoints/serve/instrumentator/server_info.py",
+        "bytes": 1670,
+        "sha256": "3ab518aceb14961e009b71b6567d5e3e0b773c2f0b8f350a96dee54721296ae0",
+        "evidence_level": "primary source bytes; inspected locally"
+      },
+      {
+        "source": "https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse/versions/25",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "adk-submission 0.2.11 / adk_submission/server.py",
+        "local_file": ".local/official/inspected/adk_submission-0.2.11-py3-none-any/adk_submission/server.py",
+        "bytes": 32332,
+        "sha256": "8fb9acf723d86d7fe58635060a8ccbf3c7c4572f47d268e9ce41cb57c1689ed6",
+        "evidence_level": "primary source bytes; inspected locally"
+      }
+    ],
+    "private_authored_files": [
+      {
+        "source": "private authored derivative of pinned notebook 135692529 v2",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "one_task.py",
+        "local_file": ".local/smoke/no-custom-ar/one_task.py",
+        "bytes": 33461,
+        "sha256": "c7eda43a043535eed064b8f347bf271b22eb235c539e44dfe1633c43f47f5189",
+        "evidence_level": "authored integration; actual retained bytes"
+      },
+      {
+        "source": "private authored derivative of pinned notebook 135692529 v2",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "serving-no-custom-ar.py",
+        "local_file": ".local/smoke/no-custom-ar/serving-no-custom-ar.py",
+        "bytes": 1727,
+        "sha256": "aa88e606ccde951abc54e517ab5b1180e15df0d4a914b239c1332dad40054cd6",
+        "evidence_level": "authored integration; actual retained bytes"
+      },
+      {
+        "source": "private authored derivative of pinned notebook 135692529 v2",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "serving.diff",
+        "local_file": ".local/smoke/no-custom-ar/serving.diff",
+        "bytes": 294,
+        "sha256": "f501fa685b822ce2c997f1ab2527014e80add1b0d3b07efb693990c0cbc3f388",
+        "evidence_level": "authored integration; actual retained bytes"
+      },
+      {
+        "source": "private authored derivative of pinned notebook 135692529 v2",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "driver.diff",
+        "local_file": ".local/smoke/no-custom-ar/driver.diff",
+        "bytes": 18325,
+        "sha256": "7bd960ba30ebda67c4835813788763332d6ae1daa4492a5c474315251958bbef",
+        "evidence_level": "authored integration; actual retained bytes"
+      },
+      {
+        "source": "private authored derivative of pinned notebook 135692529 v2",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "gpu-executed.py",
+        "local_file": ".local/smoke/no-custom-ar/gpu-executed.py",
+        "bytes": 33540,
+        "sha256": "a96330d96b4485ce02b826a60396f23293465b40ae0e9971e00ce26a43177b7d",
+        "evidence_level": "authored integration; actual retained bytes"
+      },
+      {
+        "source": "private authored derivative of pinned notebook 135692529 v2",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "gpu-launcher.py",
+        "local_file": ".local/smoke/no-custom-ar/gpu-launcher.py",
+        "bytes": 39607,
+        "sha256": "7520facbd8ecbe1def02d417a0b83a882b5f243c7f83f42446a6ca50638ea369",
+        "evidence_level": "authored integration; actual retained bytes"
+      },
+      {
+        "source": "private authored derivative of pinned notebook 135692529 v2",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "gpu-metadata.json",
+        "local_file": ".local/smoke/no-custom-ar/gpu-metadata.json",
+        "bytes": 741,
+        "sha256": "fa51f71616d008250a672c7e29af36a0e0afbc59ab0908803acb9e8b27c64beb",
+        "evidence_level": "authored integration; actual retained bytes"
+      },
+      {
+        "source": "private authored derivative of pinned notebook 135692529 v2",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "gpu-request-receipt.json",
+        "local_file": ".local/smoke/no-custom-ar/gpu-request-receipt.json",
+        "bytes": 1174,
+        "sha256": "cc7dce8d21a6069646bed5f1f1bde1afa85ca767550949c5e861a83c0278e45b",
+        "evidence_level": "authored integration; actual retained bytes"
+      },
+      {
+        "source": "private authored derivative of pinned notebook 135692529 v2",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "official-command-check.json",
+        "local_file": ".local/smoke/no-custom-ar/official-command-check.json",
+        "bytes": 662,
+        "sha256": "d3c83dec712dd52da076c646eeffa394fe416609b3288319021981a6127ae172",
+        "evidence_level": "authored integration; actual retained bytes"
+      },
+      {
+        "source": "private authored derivative of pinned notebook 135692529 v2",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "input-recheck.txt",
+        "local_file": ".local/smoke/no-custom-ar/input-recheck.txt",
+        "bytes": 1873,
+        "sha256": "ec6a574cb225600999b957e3d8b50bb713b875ede4e645a69c12fdb033bde9f8",
+        "evidence_level": "authored integration; actual retained bytes"
+      },
+      {
+        "source": "private authored derivative of pinned notebook 135692529 v2",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "additional-attempt-consumed.marker",
+        "local_file": ".local/smoke/no-custom-ar/additional-attempt-consumed.marker",
+        "bytes": 320,
+        "sha256": "0440d4a2725b6d15db944f126068d0881f007768f80ba0952f8cdb40ec8b7456",
+        "evidence_level": "authored integration; actual retained bytes"
+      }
+    ],
+    "prior_originals_new_workstation_acquisition": [
+      {
+        "source": "https://www.kaggle.com/code/hynk1240/backtrace-r0-t4-native-dtype/output",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "run 353810920 v1 / backtrace-r0-t4-native-dtype.log",
+        "local_file": ".local/smoke/no-custom-ar/prior-originals/backtrace-r0-t4-native-dtype.log",
+        "bytes": 5685,
+        "sha256": "276921b6714a52d2c1d39c1984fcf8aa02b7a1b6bee54ea1fb08648bd505e085",
+        "evidence_level": "observed execution; downloaded original bytes match previous receipt"
+      },
+      {
+        "source": "https://www.kaggle.com/code/hynk1240/backtrace-r0-t4-native-dtype/output",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "run 353810920 v1 / execution.log",
+        "local_file": ".local/smoke/no-custom-ar/prior-originals/execution.log",
+        "bytes": 30104,
+        "sha256": "2a4987219e24e2680ad78b7a204a14f01aeae942e44c2725c24119bde44646ef",
+        "evidence_level": "observed execution; downloaded original bytes match previous receipt"
+      },
+      {
+        "source": "https://www.kaggle.com/code/hynk1240/backtrace-r0-t4-native-dtype/output",
+        "accessed_at": "2026-09-29T09:31:54.438052+00:00",
+        "version": "run 353810920 v1 / server-error.log",
+        "local_file": ".local/smoke/no-custom-ar/prior-originals/server-error.log",
+        "bytes": 24200,
+        "sha256": "77b6a17021d08a3da7cf0416980221ef3c6a251dbba2b7b3ac090047693e5b25",
+        "evidence_level": "observed execution; downloaded original bytes match previous receipt"
+      }
+    ],
+    "request": {
+      "absolute_authorized_deadline": 1790675940.9616823,
+      "metadata": {
+        "code_file": "one_task.py",
+        "competition_sources": [],
+        "dataset_sources": [
+          "metric/gemma-4-developer-agent-wheelhouse/25"
+        ],
+        "docker_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+        "docker_image_pinning_type": "original",
+        "enable_gpu": true,
+        "enable_internet": false,
+        "enable_tpu": false,
+        "id": "hynk1240/backtrace-r0-t4-no-custom-ar",
+        "is_private": true,
+        "kernel_sources": [
+          "hynk1240/backtrace-r0-selected-inputs/1"
+        ],
+        "kernel_type": "script",
+        "language": "python",
+        "machine_shape": "NvidiaTeslaT4",
+        "model_sources": [
+          "google/gemma-4/Other/gemma-4-31b-it-qat-w4a16-ct/2"
+        ],
+        "title": "Backtrace R0 T4 No Custom AR"
+      },
+      "request_utc": "2026-09-29T09:29:00.961682+00:00",
+      "requested_at": 1790674140.9616823,
+      "setup_deadline": 1790674440.9616823,
+      "source_bytes": 33540,
+      "source_sha256": "a96330d96b4485ce02b826a60396f23293465b40ae0e9971e00ce26a43177b7d",
+      "timeout_seconds": 1680,
+      "useful_work_deadline": 1790675760.9616823
+    },
+    "exact_serving_change": "VllmConfig extra_args=['--disable-custom-all-reduce']; native-only BF16 predicate retained",
+    "command_check": {
+      "result": "PASS",
+      "actual_wrapper": "adk-submission 0.2.11 VllmServer.build_cmd",
+      "flag_count": 1,
+      "all_other_config_and_argv_unchanged": true,
+      "capability_boundary": "injected T4; no GPU/process/network request"
+    },
+    "input_recheck": {
+      "at": 1790674048.7236824,
+      "bytes": 1778,
+      "sha256": "b6517713cc1eaf5bf3d341f5979f72b5eb7482de87b588ceb2c090139c8c67e8",
+      "receipt": [
+        {
+          "acquired_at_unix": 1790666712.4824774,
+          "bytes": 214241984,
+          "path": "snapshots/fastapi_11194.tgz",
+          "sha256": "21e42341f416904a0e464cac84f227ff8351bb652d522192212737e6dec663d1",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data"
+        },
+        {
+          "acquired_at_unix": 1790666715.6554813,
+          "bytes": 3787549,
+          "path": "graphs/fastapi_a7f2dbe976bf72703376f0cd04487bfc4a849f83.json",
+          "sha256": "7ec16396393fadd398243098622c524f341778151c0455bdfec3ef7b0ff812df",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data"
+        },
+        {
+          "acquired_at_unix": 1790666719.2593615,
+          "bytes": 4158644,
+          "path": "embeddings/fastapi_a7f2dbe976bf72703376f0cd04487bfc4a849f83.npz",
+          "sha256": "46fb70dc9b0e8370136e7da78be77b04ff9f117af6fd67df0b0cc908a00bcef9",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data"
+        },
+        {
+          "acquired_at_unix": 1790666721.0495546,
+          "bytes": 73736,
+          "path": "wheels/starlette-0.48.0-py3-none-any.whl",
+          "sha256": "0764ca97b097582558ecb498132ed0c7d942f233f365b86ba37770e026510659",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data"
+        },
+        {
+          "acquired_at_unix": 1790666723.603947,
+          "bytes": 115770,
+          "path": "wheels/pdm_backend-2.4.9-py3-none-any.whl",
+          "sha256": "8d1064751dadb0c40b1026b46826a448d85c8228a564985c62fb53d4aba538a1",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data"
+        },
+        {
+          "bytes": 6230,
+          "path": "r0-clean.zip",
+          "sha256": "2e24495826cb971053439a00d9ad8350471fc0efffa41a54b82082feedaa7358"
+        },
+        {
+          "bytes": 810,
+          "path": "agent-task.json",
+          "sha256": "6ed92f4e646c17728aa8b9ca433a032d61b6b06827eec463a02c00f331c25d60"
+        }
+      ]
+    },
+    "consumed_guard_note": "Prior request receipt unchanged. Prior on-session marker absent after old nonpersistent CPU control stopped; restored labeled guard from that retained receipt. New exclusive local and control markers are separate. No automatic third attempt.",
+    "observed_result": {
+      "status": "STARTUP FAILED; additional attempt consumed; no third run",
+      "provider_terminal_status": {
+        "observed_at": 1790675705.8647163,
+        "kernel": "hynk1240/backtrace-r0-t4-no-custom-ar",
+        "status": "ERROR",
+        "failureMessage": null
+      },
+      "provider_runtime_seconds": 1536.5,
+      "request_to_cleanup_seconds": 1533.2910766601562,
+      "request_to_terminal_observation_seconds": 1564.9030339717865,
+      "provider_interval_aggregate_gpu_hours": 0.8536111111111111,
+      "conservative_observed_interval_aggregate_gpu_hours": 0.8693905744287703,
+      "setup_from_request_seconds": 283.47926926612854,
+      "server_start_from_request_seconds": 311.15391874313354,
+      "server_start_call_seconds_including_stop": 1210.8520295619965,
+      "startup_cap_note": "Configured 1200-second readiness wait; actual start() call 1210.852 seconds includes stop/kill handling. Earlier worker error did not surface until readiness timeout. Do not claim exact 1200-second call compliance.",
+      "first_worker_error_utc": "2026-09-29T09:40:01Z",
+      "first_worker_error": "triton.runtime.errors.OutOfResources: shared memory required 98304, hardware limit 65536",
+      "first_error_path": "profile_cudagraph_memory -> _warmup_and_capture -> _dummy_run -> TRITON_ATTN -> kernel_unified_attention_2d",
+      "previous_custom_all_reduce_error_recurred": false,
+      "graph_profiling_complete": false,
+      "requested_dtype": "auto",
+      "observed_engine_dtype": "torch.float16",
+      "effective_disable_custom_all_reduce": true,
+      "effective_setting_evidence": "actual server argv, parsed non-default arguments and V1 engine initialization log; no healthy server_info response",
+      "communication_observation": "both ranks backend=nccl; pynccl reports NCCL 2.27.5; SymmMem unsupported SM75; per-collective dispatch not traced",
+      "serving_command": {
+        "argv": [
+          "/usr/bin/python3",
+          "-m",
+          "vllm.entrypoints.openai.api_server",
+          "--model",
+          "/kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "8000",
+          "--max-model-len",
+          "32768",
+          "--dtype",
+          "auto",
+          "--gpu-memory-utilization",
+          "0.9",
+          "--tensor-parallel-size",
+          "2",
+          "--enable-auto-tool-choice",
+          "--tool-call-parser",
+          "gemma4",
+          "--reasoning-parser",
+          "gemma4",
+          "--disable-custom-all-reduce"
+        ],
+        "capabilities": [
+          [
+            7,
+            5
+          ],
+          [
+            7,
+            5
+          ]
+        ],
+        "communication_environment": {
+          "NCCL_DEBUG": null,
+          "NCCL_IB_DISABLE": null,
+          "NCCL_P2P_DISABLE": null,
+          "NCCL_SHM_DISABLE": null,
+          "PYTORCH_ALLOC_CONF": null,
+          "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True",
+          "VLLM_ALLREDUCE_USE_FLASHINFER": null,
+          "VLLM_ALLREDUCE_USE_SYMM_MEM": null,
+          "VLLM_USE_NCCL_SYMM_MEM": null
+        },
+        "event": "serving_command",
+        "unix_seconds": 1790674452.1154852
+      },
+      "server_start": {
+        "config": {
+          "default_chat_template_kwargs": null,
+          "dtype": "auto",
+          "enable_auto_tool_choice": true,
+          "enable_lora": true,
+          "extra_args": [
+            "--disable-custom-all-reduce"
+          ],
+          "gpu_memory_utilization": 0.9,
+          "health_check_interval": 1.0,
+          "host": "127.0.0.1",
+          "kv_cache_dtype": null,
+          "limit_mm_per_prompt": null,
+          "max_lora_rank": 128,
+          "max_loras": 8,
+          "max_model_len": 32768,
+          "model": "/kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2",
+          "nvidia_lib_dir": "/usr/local/nvidia/lib64",
+          "port": 8000,
+          "reasoning_parser": "gemma4",
+          "speculative_config": null,
+          "startup_timeout": 1200,
+          "tensor_parallel_size": 2,
+          "tool_call_parser": "gemma4"
+        },
+        "event": "server_start",
+        "gpu_names": [
+          "Tesla T4",
+          "Tesla T4"
+        ],
+        "native_bf16": false,
+        "requested_dtype": "auto",
+        "unix_seconds": 1790674452.115601
+      },
+      "model_and_wheel_bytes_match_prior": true,
+      "model_weight_load_seconds": 85.29,
+      "model_load_seconds": 86.878269,
+      "model_load_gib": 10.46,
+      "peak_sampled_gpu_mib": [
+        12291,
+        12291
+      ],
+      "task_executions": 0,
+      "patch": "NOT GENERATED; no file/hash, not an empty patch",
+      "not_run": [
+        "server health",
+        "served-model endpoint identity",
+        "alias/request/thinking parameters and enforcement",
+        "returned model request",
+        "selected task and agent tools",
+        "public-test verification",
+        "competition submission and acceptance",
+        "hosted scoring",
+        "training"
+      ],
+      "cleanup": {
+        "worker_survivors": [],
+        "worker_cleanup_confirmed": true,
+        "scratch_removed": true,
+        "cpu_control": "stopped; off/None; Session stopped alert",
+        "active_events": "empty badge after refresh",
+        "keep_awake": "lease.OD05Sb stopped; caffeinate process reaped exit 143"
+      },
+      "quota_before": "00:10 / 30 hrs",
+      "quota_after": "00:36 / 30 hrs; stable after shutdown",
+      "paid_spend_usd": 0
+    },
+    "operational_originals": [
+      {
+        "name": "execution.log",
+        "bytes": 54158,
+        "sha256": "e614cbaf0669e1a965503a714768b599d94f1f5e3e70b8dc3ada2f20d8124ab7",
+        "local_file": ".local/smoke/no-custom-ar/originals/execution.log",
+        "source": "https://www.kaggle.com/code/hynk1240/backtrace-r0-t4-no-custom-ar/output",
+        "version": "run 353835216 v1",
+        "accessed_at": "2026-09-29T09:55:07.323676+00:00",
+        "evidence_level": "observed execution; actual original bytes retained privately"
+      },
+      {
+        "name": "model-files.json",
+        "bytes": 1150,
+        "sha256": "6a8ebd3efd6f4c33ba232cc96cfe4d8261e987a76e6d191f8c60cceb2bc01927",
+        "local_file": ".local/smoke/no-custom-ar/originals/model-files.json",
+        "source": "https://www.kaggle.com/code/hynk1240/backtrace-r0-t4-no-custom-ar/output",
+        "version": "run 353835216 v1",
+        "accessed_at": "2026-09-29T09:55:07.323676+00:00",
+        "evidence_level": "observed execution; actual original bytes retained privately"
+      },
+      {
+        "name": "server-error.log",
+        "bytes": 45227,
+        "sha256": "bbd5792192fd83c69c6e9b15fa4f94df2a0f411e89fc25f59e90f016a535270c",
+        "local_file": ".local/smoke/no-custom-ar/originals/server-error.log",
+        "source": "https://www.kaggle.com/code/hynk1240/backtrace-r0-t4-no-custom-ar/output",
+        "version": "run 353835216 v1",
+        "accessed_at": "2026-09-29T09:55:07.323676+00:00",
+        "evidence_level": "observed execution; actual original bytes retained privately"
+      },
+      {
+        "name": "setup.log",
+        "bytes": 128,
+        "sha256": "408a663c602a3cc1fab7bfb565c673a254d4a2aab6723b068e1be96518732577",
+        "local_file": ".local/smoke/no-custom-ar/originals/setup.log",
+        "source": "https://www.kaggle.com/code/hynk1240/backtrace-r0-t4-no-custom-ar/output",
+        "version": "run 353835216 v1",
+        "accessed_at": "2026-09-29T09:55:07.323676+00:00",
+        "evidence_level": "observed execution; actual original bytes retained privately"
+      },
+      {
+        "name": "wheel-files.json",
+        "bytes": 7413,
+        "sha256": "babd1354e2e5a5fd04c20a3b26811dbd7d9d0c1814990646abbe687e155bcb5c",
+        "local_file": ".local/smoke/no-custom-ar/originals/wheel-files.json",
+        "source": "https://www.kaggle.com/code/hynk1240/backtrace-r0-t4-no-custom-ar/output",
+        "version": "run 353835216 v1",
+        "accessed_at": "2026-09-29T09:55:07.323676+00:00",
+        "evidence_level": "observed execution; actual original bytes retained privately"
+      },
+      {
+        "name": "backtrace-r0-t4-no-custom-ar.log",
+        "bytes": 5714,
+        "sha256": "143ad18cabf77538a8599828fc3533850c603753e055e9c0311f5ab84c5ec653",
+        "local_file": ".local/smoke/no-custom-ar/originals/backtrace-r0-t4-no-custom-ar.log",
+        "source": "https://www.kaggle.com/code/hynk1240/backtrace-r0-t4-no-custom-ar/output",
+        "version": "run 353835216 v1",
+        "accessed_at": "2026-09-29T09:55:07.323676+00:00",
+        "evidence_level": "observed execution; actual original bytes retained privately"
+      },
+      {
+        "name": "backtrace-one-gpu-request.marker",
+        "bytes": 1171,
+        "sha256": "1f89f0c03f072682c47c29ae6fa5ca6c8370359bf148c31d0e2e5e152f777e09",
+        "local_file": ".local/smoke/no-custom-ar/originals/backtrace-one-gpu-request.marker",
+        "source": "https://www.kaggle.com/code/hynk1240/notebooka90546f4d2/edit",
+        "version": "control-session guard",
+        "accessed_at": "2026-09-29T09:55:07.323676+00:00",
+        "evidence_level": "observed execution; actual original bytes retained privately"
+      },
+      {
+        "name": "backtrace-no-custom-ar-gpu-request.marker",
+        "bytes": 999,
+        "sha256": "75c7d7301ad6a606747bd38adaffd9658a5a9ab328803317ff8c0bc4579c53fa",
+        "local_file": ".local/smoke/no-custom-ar/originals/backtrace-no-custom-ar-gpu-request.marker",
+        "source": "https://www.kaggle.com/code/hynk1240/notebooka90546f4d2/edit",
+        "version": "control-session guard",
+        "accessed_at": "2026-09-29T09:55:07.323676+00:00",
+        "evidence_level": "observed execution; actual original bytes retained privately"
+      }
+    ],
+    "terminal_ui_observation": {
+      "source": "https://www.kaggle.com/code/hynk1240/backtrace-r0-t4-no-custom-ar/log",
+      "accessed_at": "2026-09-29T09:59:22.099572+00:00",
+      "version": "run 353835216 v1",
+      "evidence_level": "observed execution; retained screenshot bytes",
+      "local_file": ".local/smoke/no-custom-ar/completed-run.png",
+      "bytes": 79526,
+      "sha256": "d899c6b7cfe8b0f40800ab064d6dcb1e0894d55283c38115460fda297484db20",
+      "image_link": "https://gcr.io/kaggle-gpu-images/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461"
+    },
+    "local_verification": {
+      "python": "3.9.6",
+      "unit_tests": 51,
+      "focused_native_source_tests": 5,
+      "official_wrapper_tests": 1,
+      "official_python": "3.12.14",
+      "official_artifact_pins": 16,
+      "actual_candidate_official_cpu": "PASS",
+      "preflight": "READY",
+      "compiler_binding_historical_tests": "NOT RERUN"
+    }
+  }
 }

@@ -12,9 +12,16 @@ no-LoRA derivative, preserving the ten-file official reference. Official CPU
 directory, model, include, schema and generation checks pass separately on the
 original and actual candidate archive. The official compiler also constructs
 both agents and binds their real harness callables/schemas in a bounded CPU probe.
-Its model client rejects requests and its sandbox is absent; no tool, model,
-task or submission has run. See [R0 and the probe](docs/r0.md) and the
-[proposed single-task smoke recipe](docs/r0-smoke.md).
+That CPU probe's model client rejects requests and its sandbox is absent.
+Two separately authorized T4 attempts loaded the pinned checkpoint with observed
+FP16 resolution and failed before healthy serving or task execution. The first
+hit custom-all-reduce; the additional **T4-native-no-custom-ar** run applied the
+approved flag and exposed a Triton attention shared-memory limit (98,304 bytes
+required, 65,536 available). Both attempts are consumed and their GPU sessions
+terminated. See the [latest report](docs/r0-no-custom-ar.md), the
+[first GPU failure](docs/r0-native-dtype.md), and the original
+[pre-allocation STOP](docs/r0-smoke-attempt.md).
+See [R0 and the probe](docs/r0.md) and the [frozen smoke recipe](docs/r0-smoke.md).
 
 ## Local checks
 
@@ -28,7 +35,8 @@ python3 tools/backtrace.py preflight
 
 `preflight` reports local interpreter readiness, not competition readiness.
 Packaging additionally requires the acquired pins and the separate official CPU
-environment described below. There is no inference, training or submission implementation.
+environment described below. The bounded private smoke driver is recorded by
+hash in the execution report; it is not a general inference or submission tool.
 
 Verify the locally acquired artifact pins without importing their code:
 
@@ -69,6 +77,17 @@ This refuses overwrites and notebook version/hash drift. Preserve its JSON recei
 The public API points to the current notebook, so a later revision will require
 review and repinning, not silent acceptance. This is not a full historical mirror.
 
+Select the smoke task in a private preparation process, before inspecting answers:
+
+```sh
+python3 tools/select_smoke_task.py .local/smoke/evaluator-only/tasks.jsonl .local/smoke/agent-task.json
+```
+
+This emits only five agent fields to a new mode-0600 file and prints an identity
+receipt. It rejects conflicting duplicate IDs and existing outputs. Keep the
+original metadata (including reference fields) outside agent-readable storage;
+this selector does not establish an OS sandbox or a complete input bundle.
+
 Inspect a separately acquired ZIP without extraction, with an explicit list of
 expected files, for example:
 
@@ -96,7 +115,9 @@ See [competition contract](docs/competition-contract.md),
 and [verification report](docs/verification.md).
 
 Non-goals: a central model, Augnes integration, full teacher, training pipeline,
-RL campaign, multi-agent hierarchy, or formal prover. No GPU rental, paid API,
-large model download, terms acceptance, training job, or Kaggle submission is
-part of this slice. The human controls those decisions and merges. No repository
-license has been selected. Third-party code, weights and data are not included.
+RL campaign, multi-agent hierarchy, or formal prover. The owner authorized one
+private free-quota T4 x2 attempt with the exact model mounted in Kaggle. No GPU
+rental, paid API, terms acceptance, training or competition submission occurred.
+Further GPU execution requires separate authorization. The human controls merges.
+No repository license has been selected. Third-party code, weights and data are
+not included.
