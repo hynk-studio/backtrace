@@ -1,4 +1,41 @@
-# Post-merge CPU compiler/binding probe
+# Authorized smoke prechecks — GPU/model execution NOT RUN
+
+2026-09-29 UTC, fresh Codex execution after PR #4 merged. Main/base
+`d14a1542b7bb094f0e5bda7eb8482ddecafe8c57`, tree
+`a5c552957e8e25c5f93966feed3fe5ebcd9d3868`; branch **bt-001-r0-smoke**.
+The complete [attempt record](r0-smoke-attempt.md) distinguishes acquired bytes,
+real Kaggle CPU metadata/session checks, a conditional source reproduction with
+injected boundaries, and the unrun GPU stages. No training or submission ran.
+
+- **PASS: 46 local tests**, Python 3.9.6, including five new synthetic task
+  selection tests and a real CLI subprocess check. No reference answer is a test
+  fixture. Preflight READY; 16 original artifact pins reverified.
+- **PASS:** the selector independently reproduced the already-frozen
+  `fastapi_11194` choice and the same 810-byte five-field input. Existing output
+  rejection, duplicate conflicts and answer-field exclusion are tested.
+- **PASS:** actual archived candidate official CPU/schema checks rerun. Its
+  6,230 bytes and SHA-256 remain unchanged. No archive rebuilt. Compiler/binding
+  probe and its six opt-in regressions were **NOT RERUN**; PR #4 evidence remains
+  historical, not a newly completed milestone.
+- **STOP before GPU allocation:** unchanged notebook dtype selection includes
+  BF16 emulation, while the acquired vLLM CUDA guard rejects BF16 on SM75. The
+  source reproduction injects device capability and successful tensor allocation;
+  it is **not** a T4 execution, startup failure, OOM or model-fit measurement.
+- Two finite Kaggle **CPU-only** prerequisite cells completed (20.02 seconds and
+  4.296 seconds). Separate Kaggle **Stop session** actions returned the draft to
+  **off**, accelerator **None**. These establish the observed manual control,
+  not a tested unattended 1,800-second GPU-session expiry.
+- Server/model loading, health, request/alias/thinking behavior, task tools,
+  generated patch, public-test verification, submission and hosted scoring:
+  **NOT RUN**. GPU allocation/use **0**, paid spend **$0**.
+
+Exact commands, source pins, conditional limitations and remaining prerequisites
+are in the attempt record. These results are Codex's executions and do not extend
+ChatGPT's independent Python 3.13.5 review checks.
+
+---
+
+# Historical PR #4 CPU compiler/binding probe
 
 2026-09-29 UTC, executed by Codex. Read the complete
 [post-merge handoff](https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5882380242),

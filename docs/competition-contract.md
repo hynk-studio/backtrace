@@ -10,6 +10,13 @@ See [current contract details and discrepancies](r0.md). This is not certificati
 of a runnable submission. [Source records](source-manifest.json)
 contain URLs, access windows, artifact IDs and actual-byte SHA-256 values.
 
+The authorized smoke prechecks subsequently acquired the v2 model configuration,
+vLLM 0.19.1 wheel and selected public-task metadata/snapshot/graph. They identified
+an unchanged-recipe T4 dtype conflict before GPU allocation; see the
+[smoke record](r0-smoke-attempt.md). Model weights, tokenizer/template and the
+actual GPU environment remain unverified. These facts do not expand any
+redistribution permission or establish runtime readiness.
+
 ## Evidence acquired
 
 At the bootstrap inspection, the six Issue #1 URLs returned HTML shells through HTTP; the web reader extracted
@@ -48,7 +55,8 @@ hidden grading separates those answers. Do not route these fields to agent input
 It describes offline wheels mounted at `/wheels/`, Python 3.13 sandbox build
 specifications, frozen repository snapshots, graphs and embeddings. It identifies
 `sample_submission/` and `HARNESS_README.md`, plus generated `submission.parquet`
-with `id`/`prediction`. These descriptions are distinct from the guide/starter bytes now acquired; task and evaluator data were not acquired. The data
+with `id`/`prediction`. Task/evaluator data were not acquired in the original
+contract slice; the later smoke acquisition is recorded separately above. The data
 viewer lists 524 files totaling 22.42 GB; no bulk download was attempted.
 
 The [rules](https://www.kaggle.com/competitions/gemma-4-developer-agent/rules) state

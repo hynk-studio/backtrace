@@ -169,7 +169,7 @@
     }
   ],
   "missing_artifacts": [
-    "checkpoint/tokenizer/template bytes and immutable upstream revision",
+    "checkpoint weights/tokenizer/template bytes and immutable upstream revision; version-2 config.json acquired during smoke prechecks",
     "complete hosted environment and scoring entrypoint bytes (outside this CPU packaging slice)"
   ],
   "search_index_evidence": [],
@@ -367,5 +367,254 @@
       "redistribution": "Unresolved; local ignored bytes only."
     }
   ],
-  "official_artifact_note": "Original sample has ten files, including two small LoRA adapters. Downloaded through existing signed-in Chrome access after owner confirmed entry/rules complete. No terms accepted here. Notebook v2 Input UI lists the same five wheel filenames; an independent notebook-Input swegemma download matched the wheelhouse v25 SHA-256. Original starter retained unchanged under .local/official/."
+  "official_artifact_note": "Original sample has ten files, including two small LoRA adapters. Downloaded through existing signed-in Chrome access after owner confirmed entry/rules complete. No terms accepted here. Notebook v2 Input UI lists the same five wheel filenames; an independent notebook-Input swegemma download matched the wheelhouse v25 SHA-256. Original starter retained unchanged under .local/official/.",
+  "smoke_preallocation": {
+    "recorded_at_utc": "2026-09-29T05:37:25.320142+00:00",
+    "run_name": "R0-clean-v2-one-public-task/T4x2",
+    "status": "STOP before GPU allocation: unchanged dtype selection includes BF16 emulation; acquired vLLM requires native capability 8.0 for BF16",
+    "evidence_limit": "Source-based T4 incompatibility inference and conditional source execution with injected SM75/tensor boundaries, not a GPU observation.",
+    "artifacts": [
+      {
+        "source_url": "https://www.kaggle.com/models/google/gemma-4/Other/gemma-4-31b-it-qat-w4a16-ct/2",
+        "source_path": "config.json",
+        "version": "model variation version 2",
+        "local_path": ".local/smoke/preallocation/model-config.json",
+        "size_bytes": 18711,
+        "sha256": "b100d85e571c25b688e82919d819253063a1defb0e6cee3b9b1c1fbad99bd0c2",
+        "accessed_at_utc": "2026-09-29T05:14:12.556675+00:00",
+        "time_basis": "local retention after source acquisition",
+        "verified_at_utc": "2026-09-29T05:37:25.320142+00:00",
+        "evidence_level": "primary artifact bytes",
+        "acquisition": "Chrome file Download opened inline; native Save As, then retained locally",
+        "redistribution": "Not assessed for publication; bytes remain ignored/private."
+      },
+      {
+        "source_url": "https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse",
+        "source_path": "vllm-0.19.1-cp38-abi3-manylinux_2_31_x86_64.whl",
+        "version": "wheelhouse v25; vLLM 0.19.1; embedded commit gb1388b1fb",
+        "local_path": ".local/smoke/preallocation/vllm-0.19.1-cp38-abi3-manylinux_2_31_x86_64.whl",
+        "size_bytes": 433132506,
+        "sha256": "6b29fdc200966eda4d0cc4d10b8c338ec32620bb069ad3629d8a78e3b35fd3fa",
+        "accessed_at_utc": "2026-09-29T05:11:00.814860+00:00",
+        "time_basis": "local retention after source acquisition",
+        "verified_at_utc": "2026-09-29T05:37:25.320142+00:00",
+        "evidence_level": "primary artifact bytes",
+        "acquisition": "signed-in Chrome file Download; completed bytes found despite event timeout",
+        "redistribution": "Not assessed for publication; bytes remain ignored/private."
+      },
+      {
+        "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+        "source_path": "tasks.jsonl",
+        "version": null,
+        "local_path": ".local/smoke/evaluator-only/tasks.jsonl",
+        "size_bytes": 1984455,
+        "sha256": "e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6",
+        "accessed_at_utc": "2026-09-29T05:13:36.602261+00:00",
+        "time_basis": "local retention after source acquisition",
+        "verified_at_utc": "2026-09-29T05:37:25.320142+00:00",
+        "evidence_level": "primary artifact bytes",
+        "acquisition": "signed-in Chrome file Download; kept outside derived agent input",
+        "redistribution": "Not assessed for publication; bytes remain ignored/private."
+      },
+      {
+        "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+        "source_path": "snapshots/fastapi_11194.tgz",
+        "version": null,
+        "local_path": ".local/smoke/agent-inputs/snapshots/fastapi_11194.tgz",
+        "size_bytes": 214241984,
+        "sha256": "21e42341f416904a0e464cac84f227ff8351bb652d522192212737e6dec663d1",
+        "accessed_at_utc": "2026-09-29T05:18:41.205703+00:00",
+        "time_basis": "local retention after source acquisition",
+        "verified_at_utc": "2026-09-29T05:37:25.320142+00:00",
+        "evidence_level": "primary artifact bytes",
+        "acquisition": "signed-in Chrome file Download",
+        "redistribution": "Not assessed for publication; bytes remain ignored/private."
+      },
+      {
+        "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+        "source_path": "graphs/fastapi_a7f2dbe976bf72703376f0cd04487bfc4a849f83.json",
+        "version": null,
+        "local_path": ".local/smoke/agent-inputs/graphs/fastapi_a7f2dbe976bf72703376f0cd04487bfc4a849f83.json",
+        "size_bytes": 3787549,
+        "sha256": "7ec16396393fadd398243098622c524f341778151c0455bdfec3ef7b0ff812df",
+        "accessed_at_utc": "2026-09-29T05:25:05.161797+00:00",
+        "time_basis": "local retention after source acquisition",
+        "verified_at_utc": "2026-09-29T05:37:25.320142+00:00",
+        "evidence_level": "primary artifact bytes",
+        "acquisition": "signed-in Chrome file Download",
+        "redistribution": "Not assessed for publication; bytes remain ignored/private."
+      },
+      {
+        "source_url": "https://raw.githubusercontent.com/pytorch/pytorch/v2.10.0/torch/cuda/__init__.py",
+        "source_path": "torch/cuda/__init__.py",
+        "version": "v2.10.0",
+        "local_path": ".local/smoke/preallocation/pytorch-2.10.0-cuda-init.py",
+        "size_bytes": 65752,
+        "sha256": "0161199fa03888a8744550727d1026a82f140c8dd31b265a26b41115f7dc857d",
+        "accessed_at_utc": "2026-09-29T05:17:18.214797+00:00",
+        "time_basis": "local retention after source acquisition",
+        "verified_at_utc": "2026-09-29T05:37:25.320142+00:00",
+        "evidence_level": "primary artifact bytes",
+        "acquisition": "bounded public HTTPS request; inspected source",
+        "redistribution": "Not assessed for publication; bytes remain ignored/private."
+      },
+      {
+        "source_url": "https://raw.githubusercontent.com/vllm-project/vllm/v0.19.1/vllm/model_executor/layers/quantization/compressed_tensors/schemes/compressed_tensors_wNa16.py",
+        "source_path": "compressed_tensors_wNa16.py",
+        "version": "v0.19.1",
+        "local_path": ".local/smoke/preallocation/upstream-vllm-0.19.1-wNa16.py",
+        "size_bytes": 7875,
+        "sha256": "a549e5c085842c3c527cac8e52721a1752cac9d08d8695bb71d1334e4e183465",
+        "accessed_at_utc": "2026-09-29T05:07:38.812831+00:00",
+        "time_basis": "local retention after source acquisition",
+        "verified_at_utc": "2026-09-29T05:37:25.320142+00:00",
+        "evidence_level": "primary artifact bytes",
+        "acquisition": "bounded public HTTPS request; matches acquired wheel member",
+        "redistribution": "Not assessed for publication; bytes remain ignored/private."
+      }
+    ],
+    "inspected_vllm_members": [
+      {
+        "member": "vllm/_version.py",
+        "size_bytes": 530,
+        "sha256": "b06838233b49c3277baf1250c6480d182fb2604362bc810ad2988d8bdaf06667"
+      },
+      {
+        "member": "vllm/platforms/cuda.py",
+        "size_bytes": 24196,
+        "sha256": "b987bdd4d6156843d5a58e4731dd5496708b76e6dcb009f01abb4047d965e50c"
+      },
+      {
+        "member": "vllm/v1/worker/gpu_worker.py",
+        "size_bytes": 44483,
+        "sha256": "ffbd4567a25e0a82ca5c714b75e86c7353cedb6fc5c2814b22f3c91afb1c88b1"
+      },
+      {
+        "member": "vllm/config/model.py",
+        "size_bytes": 88399,
+        "sha256": "d712dc1e9856cfc839832745254957e3c135c8693310abd54670fde97a01de81"
+      },
+      {
+        "member": "vllm/model_executor/layers/quantization/compressed_tensors/schemes/compressed_tensors_wNa16.py",
+        "size_bytes": 7875,
+        "sha256": "a549e5c085842c3c527cac8e52721a1752cac9d08d8695bb71d1334e4e183465"
+      },
+      {
+        "member": "vllm/model_executor/kernels/linear/mixed_precision/marlin.py",
+        "size_bytes": 7456,
+        "sha256": "2bd1c3a7190012ea29bd70ac13103c19dee8ddbc2e9a4b5ef53cd54d190d5277"
+      },
+      {
+        "member": "vllm-0.19.1.dist-info/METADATA",
+        "size_bytes": 10013,
+        "sha256": "f76ea566acba199ef8dd91bde6bb162795c7f8876c206a865cbb3b94fbcf7bc2"
+      }
+    ],
+    "selection": {
+      "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+      "source_path": "tasks.jsonl",
+      "accessed_at": "2026-09-29T05:13:36.609350+00:00",
+      "metadata_sha256": "e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6",
+      "metadata_bytes": 1984455,
+      "distinct_ids": 129,
+      "selection_rule": "lexicographically smallest distinct public instance_id before answer inspection",
+      "selected_instance_id": "fastapi_11194",
+      "conflicting_duplicates": 0,
+      "agent_task_sha256": "6ed92f4e646c17728aa8b9ca433a032d61b6b06827eec463a02c00f331c25d60"
+    },
+    "primary_text_observations": [
+      {
+        "source_url": "https://developer.nvidia.com/cuda/gpus",
+        "sha256": null,
+        "version": null,
+        "evidence_level": "primary text",
+        "result": "NVIDIA table identifies T4 compute capability 7.5; rendered text read, no source byte snapshot.",
+        "access_window_utc": {
+          "start": "2026-09-29T04:59:51Z",
+          "end": "2026-09-29T05:37:25.320142+00:00"
+        },
+        "time_basis": "bounded inspection window; individual request time was not retained"
+      },
+      {
+        "source_url": "https://docs.pytorch.org/docs/2.10/generated/torch.cuda.is_bf16_supported.html",
+        "sha256": null,
+        "version": "2.10",
+        "evidence_level": "primary text",
+        "result": "Documented signature defaults including_emulation=True; rendered text read, no byte snapshot.",
+        "access_window_utc": {
+          "start": "2026-09-29T04:59:51Z",
+          "end": "2026-09-29T05:37:25.320142+00:00"
+        },
+        "time_basis": "bounded inspection window; individual request time was not retained"
+      },
+      {
+        "source_url": "https://github.com/pytorch/pytorch/issues/118122",
+        "sha256": null,
+        "version": null,
+        "evidence_level": "primary text",
+        "result": "Read issue and maintainer comments through gh; historical Turing BF16 emulation context, not current Kaggle execution.",
+        "access_window_utc": {
+          "start": "2026-09-29T04:59:51Z",
+          "end": "2026-09-29T05:37:25.320142+00:00"
+        },
+        "time_basis": "bounded inspection window; individual request time was not retained"
+      },
+      {
+        "source_url": "https://api.github.com/repos/fastapi/fastapi/git/commits/a7f2dbe976bf72703376f0cd04487bfc4a849f83",
+        "sha256": null,
+        "version": "a7f2dbe976bf72703376f0cd04487bfc4a849f83",
+        "evidence_level": "primary text",
+        "result": "GitHub API reports tree ce1ff0e44176b7bed89e62d497073e20e4e9b6e9, matching privately inspected rewritten snapshot HEAD tree; filtered response read, original bytes not retained.",
+        "access_window_utc": {
+          "start": "2026-09-29T04:59:51Z",
+          "end": "2026-09-29T05:37:25.320142+00:00"
+        },
+        "time_basis": "bounded inspection window; individual request time was not retained"
+      },
+      {
+        "source_url": "https://www.kaggle.com/settings",
+        "access_window_utc": {
+          "start": "2026-09-29T05:11:00Z",
+          "end": "2026-09-29T05:13:00Z"
+        },
+        "sha256": null,
+        "evidence_level": "observed execution",
+        "result": "Signed-in rendered UI showed 00:00 / 30 GPU hours; no GPU allocation performed."
+      },
+      {
+        "source_url": "https://www.kaggle.com/code/hynk1240/notebooka90546f4d2/edit",
+        "access_window_utc": {
+          "start": "2026-09-29T05:06:00Z",
+          "end": "2026-09-29T05:37:25.320142+00:00"
+        },
+        "sha256": null,
+        "evidence_level": "observed execution",
+        "result": "T4 x2 offered; None selected. Two finite CPU prerequisite cells completed; separate Stop session controls returned draft to off. Private draft only; no saved/published version, data upload, model mount or inference."
+      },
+      {
+        "source_url": "https://www.kaggle.com/settings",
+        "accessed_at_utc": "2026-09-29T05:39:11.800541+00:00",
+        "sha256": null,
+        "evidence_level": "observed execution",
+        "result": "Final reloaded settings still show Kaggle GPU 00:00 / 30 hrs. Draft remains off, accelerator None, no inputs; Share dialog Private selected, Public unselected."
+      }
+    ],
+    "not_acquired": [
+      "model weights, tokenizer, chat template and generation_config",
+      "selected embeddings and offline task dependency closure",
+      "actual GPU environment/image and CUDA package bytes"
+    ],
+    "not_run": [
+      "GPU allocation",
+      "server startup",
+      "model request",
+      "public agent task",
+      "public verification",
+      "competition submission",
+      "hosted scoring"
+    ],
+    "GPU_hours": 0,
+    "paid_spend_USD": 0,
+    "cleanup_verified_at_utc": "2026-09-29T05:39:11.800541+00:00"
+  }
 }

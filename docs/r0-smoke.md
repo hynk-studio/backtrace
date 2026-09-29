@@ -1,5 +1,11 @@
 # Proposed single public task smoke — NOT RUN
 
+**2026-09-29 execution authorization received:** the owner authorized this free
+T4×2 envelope. Affordable checks found a dtype conflict, so model execution
+stopped before allocation. [The attempt record](r0-smoke-attempt.md) pins the
+selected task and new evidence. The recipe below remains the reviewed proposal;
+no dtype, serving flag, candidate byte or budget was silently changed.
+
 This is a preparation recipe for a separately authorized run, not permission to
 download the model, allocate a GPU or execute a notebook. Use the existing private
 Kaggle path first. The owner has already entered; no repeat enrollment or manual

@@ -13,8 +13,10 @@ directory, model, include, schema and generation checks pass separately on the
 original and actual candidate archive. The official compiler also constructs
 both agents and binds their real harness callables/schemas in a bounded CPU probe.
 Its model client rejects requests and its sandbox is absent; no tool, model,
-task or submission has run. See [R0 and the probe](docs/r0.md) and the
-[proposed single-task smoke recipe](docs/r0-smoke.md).
+task or submission has run. The authorized T4 smoke stopped **before GPU
+allocation** on a serving-dtype conflict; its selected public task, new artifact
+pins and actual CPU session checks are in [the smoke record](docs/r0-smoke-attempt.md).
+See [R0 and the probe](docs/r0.md) and the [frozen smoke recipe](docs/r0-smoke.md).
 
 ## Local checks
 
@@ -68,6 +70,17 @@ python3 tools/backtrace.py acquire-notebook .local/starter.ipynb
 This refuses overwrites and notebook version/hash drift. Preserve its JSON receipt.
 The public API points to the current notebook, so a later revision will require
 review and repinning, not silent acceptance. This is not a full historical mirror.
+
+Select the smoke task in a private preparation process, before inspecting answers:
+
+```sh
+python3 tools/select_smoke_task.py .local/smoke/evaluator-only/tasks.jsonl .local/smoke/agent-task.json
+```
+
+This emits only five agent fields to a new mode-0600 file and prints an identity
+receipt. It rejects conflicting duplicate IDs and existing outputs. Keep the
+original metadata (including reference fields) outside agent-readable storage;
+this selector does not establish an OS sandbox or a complete input bundle.
 
 Inspect a separately acquired ZIP without extraction, with an explicit list of
 expected files, for example:
