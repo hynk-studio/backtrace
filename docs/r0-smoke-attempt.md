@@ -1,5 +1,10 @@
 # R0-clean-v2-one-public-task/T4x2 — pre-allocation STOP
 
+**Historical checkpoint:** the owner subsequently approved the native-BF16
+predicate deviation. The [continued single attempt](r0-native-dtype.md) records
+the actual GPU startup failure and confirmed termination. The original STOP and
+its source-only limitations below remain unchanged as history.
+
 2026-09-29 UTC. The owner explicitly authorized one private free-quota attempt.
 Read the complete [merge checkpoint](https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5883903274),
 [PR #4 review](https://github.com/hynk-studio/backtrace/pull/4#pullrequestreview-5347769851),

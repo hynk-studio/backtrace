@@ -13,9 +13,12 @@ contain URLs, access windows, artifact IDs and actual-byte SHA-256 values.
 The authorized smoke prechecks subsequently acquired the v2 model configuration,
 vLLM 0.19.1 wheel and selected public-task metadata/snapshot/graph. They identified
 an unchanged-recipe T4 dtype conflict before GPU allocation; see the
-[smoke record](r0-smoke-attempt.md). Model weights, tokenizer/template and the
-actual GPU environment remain unverified. These facts do not expand any
-redistribution permission or establish runtime readiness.
+[historical smoke record](r0-smoke-attempt.md). The approved
+[T4-native-dtype continuation](r0-native-dtype.md) then hashed the mounted v2
+checkpoint/tokenizer/template and wheelhouse v25, observed FP16 resolution and
+weight loading, and failed during CUDA custom-all-reduce startup before health
+or task execution. The session is terminated. These facts do not expand any
+redistribution permission or establish end-to-end readiness.
 
 ## Evidence acquired
 
@@ -127,15 +130,18 @@ the guide and relevant harness package bytes are now pinned in the manifest.
 [The follow-up record](r0.md) names actual loader behavior, includes, limits,
 dependencies, official CPU checks and discrepancies with the guide/notebook.
 
-Remaining unknowns are the immutable checkpoint/tokenizer/template bytes and
-upstream revision; model/runtime compatibility and full hosted dependency pins;
+Mounted v2 checkpoint/tokenizer/template bytes and all 41 wheelhouse artifacts
+are now hashed; the exact image and installed harness/serving versions were
+observed. Remaining unknowns include an upstream revision beyond the Kaggle asset
+version; healthy runtime compatibility and effective request/thinking behavior;
 R3 training/adapter compatibility; hosted submission rejection/acceptance behavior;
 and the existing redistribution/public-sharing rights ambiguity. R3 training
-unknowns do not block no-LoRA packaging or CPU construction. No model or
-submission execution occurred. The inspected Evaluator can hydrate missing
+unknowns do not block no-LoRA packaging or CPU construction. No agent model
+request or competition submission occurred. The inspected Evaluator can hydrate missing
 answers from a sibling secret bundle; the [proposed public-task smoke](r0-smoke.md)
 uses separate official agent/verification functions and separated inputs instead.
-This is a named driver deviation, not evidence that the unrun sandbox is secure.
+This is a named driver deviation. The executed credential and sandbox-dependency
+checks are bounded observations, not proof of a complete security sandbox.
 
 The initial sampling-only/no-LoRA planning conflict was explicitly resolved in
 [PR #3 review](https://github.com/hynk-studio/backtrace/pull/3#pullrequestreview-5346432812)

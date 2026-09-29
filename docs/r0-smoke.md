@@ -1,10 +1,12 @@
-# Proposed single public task smoke — NOT RUN
+# Frozen single public task smoke proposal
 
-**2026-09-29 execution authorization received:** the owner authorized this free
-T4×2 envelope. Affordable checks found a dtype conflict, so model execution
-stopped before allocation. [The attempt record](r0-smoke-attempt.md) pins the
-selected task and new evidence. The recipe below remains the reviewed proposal;
-no dtype, serving flag, candidate byte or budget was silently changed.
+**2026-09-29 status:** the original [pre-allocation STOP](r0-smoke-attempt.md)
+is preserved. The owner then approved the named **T4-native-dtype** deviation;
+the [single attempt](r0-native-dtype.md) resolved to FP16 and failed during CUDA
+custom-all-reduce startup. The GPU session is terminated and the attempt consumed.
+The recipe below is the historical reviewed proposal, including its then-open
+prerequisites. New acquisitions and observed outcomes are in the execution report;
+no candidate byte, prompt or task budget changed.
 
 This is a preparation recipe for a separately authorized run, not permission to
 download the model, allocate a GPU or execute a notebook. Use the existing private

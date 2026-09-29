@@ -12,10 +12,13 @@ no-LoRA derivative, preserving the ten-file official reference. Official CPU
 directory, model, include, schema and generation checks pass separately on the
 original and actual candidate archive. The official compiler also constructs
 both agents and binds their real harness callables/schemas in a bounded CPU probe.
-Its model client rejects requests and its sandbox is absent; no tool, model,
-task or submission has run. The authorized T4 smoke stopped **before GPU
-allocation** on a serving-dtype conflict; its selected public task, new artifact
-pins and actual CPU session checks are in [the smoke record](docs/r0-smoke-attempt.md).
+That CPU probe's model client rejects requests and its sandbox is absent.
+The authorized **T4-native-dtype** continuation subsequently loaded the pinned
+checkpoint with observed FP16 resolution, then **failed during CUDA
+custom-all-reduce startup**, before server health or task execution. The single
+attempt is consumed and its GPU session is terminated. See the
+[execution report](docs/r0-native-dtype.md); the original
+[pre-allocation STOP](docs/r0-smoke-attempt.md) remains history.
 See [R0 and the probe](docs/r0.md) and the [frozen smoke recipe](docs/r0-smoke.md).
 
 ## Local checks
@@ -30,7 +33,8 @@ python3 tools/backtrace.py preflight
 
 `preflight` reports local interpreter readiness, not competition readiness.
 Packaging additionally requires the acquired pins and the separate official CPU
-environment described below. There is no inference, training or submission implementation.
+environment described below. The bounded private smoke driver is recorded by
+hash in the execution report; it is not a general inference or submission tool.
 
 Verify the locally acquired artifact pins without importing their code:
 
@@ -109,7 +113,9 @@ See [competition contract](docs/competition-contract.md),
 and [verification report](docs/verification.md).
 
 Non-goals: a central model, Augnes integration, full teacher, training pipeline,
-RL campaign, multi-agent hierarchy, or formal prover. No GPU rental, paid API,
-large model download, terms acceptance, training job, or Kaggle submission is
-part of this slice. The human controls those decisions and merges. No repository
-license has been selected. Third-party code, weights and data are not included.
+RL campaign, multi-agent hierarchy, or formal prover. The owner authorized one
+private free-quota T4 x2 attempt with the exact model mounted in Kaggle. No GPU
+rental, paid API, terms acceptance, training or competition submission occurred.
+Further GPU execution requires separate authorization. The human controls merges.
+No repository license has been selected. Third-party code, weights and data are
+not included.

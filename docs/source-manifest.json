@@ -616,5 +616,620 @@
     "GPU_hours": 0,
     "paid_spend_USD": 0,
     "cleanup_verified_at_utc": "2026-09-29T05:39:11.800541+00:00"
+  },
+  "native_dtype_continuation": {
+    "run_name": "R0-clean-v2-one-public-task/T4-native-dtype",
+    "review_url": "https://github.com/hynk-studio/backtrace/pull/5#pullrequestreview-5348487668",
+    "checkpoint_url": "https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5884852735",
+    "evidence_note": "Original pre-allocation STOP is preserved under smoke_preallocation. CPU preparation and source substitutions are distinct from the one actual GPU allocation. No CPU success proves model health or inference.",
+    "sources_acquired": [
+      {
+        "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+        "version": "selected base-commit embedding",
+        "accessed_at_utc": "2026-09-29T07:25:19.259362+00:00",
+        "size_bytes": 4158644,
+        "sha256": "46fb70dc9b0e8370136e7da78be77b04ff9f117af6fd67df0b0cc908a00bcef9",
+        "evidence_level": "primary artifact bytes",
+        "retained_at": ".local/smoke/agent-inputs/embeddings/fastapi_a7f2dbe976bf72703376f0cd04487bfc4a849f83.npz",
+        "redistribution": "Not established; retained privately only."
+      },
+      {
+        "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+        "version": "sandbox/setup.py; inspected, not executed",
+        "accessed_at_utc": "2026-09-29T07:04:26.965312+00:00",
+        "size_bytes": 13883,
+        "sha256": "0263995ade90f83c8efa0ab5c7c9b7629696f39bc75274d58fc27ab774568409",
+        "evidence_level": "primary text",
+        "retained_at": ".local/smoke/agent-inputs/sandbox/setup.py",
+        "redistribution": "Not established; retained privately only."
+      },
+      {
+        "source_url": "https://github.com/Kaggle/kaggle-cli/blob/main/docs/kernels_metadata.md",
+        "version": "Git blob 1e90ec06157e52b8f94d20eccf85adb41dd9989e",
+        "accessed_at_utc": "2026-09-29T07:39:17.669584+00:00",
+        "size_bytes": 2908,
+        "sha256": "bcf023d8e6f3f51c7ac9ce131bbbe4d7d8472ee6627875b82d409a233700118b",
+        "evidence_level": "primary text",
+        "retained_at": ".local/smoke/native-dtype/kaggle-kernels-metadata.md",
+        "redistribution": "Not established; retained privately only."
+      }
+    ],
+    "private_selected_input_run": {
+      "source_url": "https://www.kaggle.com/code/hynk1240/backtrace-r0-selected-inputs",
+      "version": 1,
+      "run_id": 353804787,
+      "requested_at_utc": "2026-09-29T07:24:48.267641+00:00",
+      "evidence_level": "observed execution",
+      "provider_runtime_seconds": 36.3,
+      "acquisition_body_seconds": 26.89655566215515,
+      "status": "COMPLETE; CPU only",
+      "full_competition_mount": false,
+      "files": [
+        "snapshots/fastapi_11194.tgz",
+        "graphs/fastapi_a7f2dbe976bf72703376f0cd04487bfc4a849f83.json",
+        "embeddings/fastapi_a7f2dbe976bf72703376f0cd04487bfc4a849f83.npz",
+        "wheels/starlette-0.48.0-py3-none-any.whl",
+        "wheels/pdm_backend-2.4.9-py3-none-any.whl",
+        "r0-clean.zip",
+        "agent-task.json",
+        "inputs-receipt.json"
+      ]
+    },
+    "new_task_wheels": [
+      {
+        "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+        "source_path": "wheels/starlette-0.48.0-py3-none-any.whl",
+        "version": "0.48.0",
+        "size_bytes": 73736,
+        "sha256": "0764ca97b097582558ecb498132ed0c7d942f233f365b86ba37770e026510659",
+        "accessed_at_utc": "2026-09-29T07:25:21.049555+00:00",
+        "evidence_level": "observed execution; SHA-256 of acquired official bytes",
+        "retained_at": "private selected-input notebook version 1"
+      },
+      {
+        "source_url": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+        "source_path": "wheels/pdm_backend-2.4.9-py3-none-any.whl",
+        "version": "2.4.9",
+        "size_bytes": 115770,
+        "sha256": "8d1064751dadb0c40b1026b46826a448d85c8228a564985c62fb53d4aba538a1",
+        "accessed_at_utc": "2026-09-29T07:25:23.603947+00:00",
+        "evidence_level": "observed execution; SHA-256 of acquired official bytes",
+        "retained_at": "private selected-input notebook version 1"
+      }
+    ],
+    "provider_expiry_check": {
+      "source_url": "https://www.kaggle.com/code/hynk1240/backtrace-cpu-expiry-check",
+      "version": 1,
+      "run_id": 353798158,
+      "requested_at_utc": "2026-09-29T06:56:39.842099+00:00",
+      "code_sha256": "ae9a8e76c19b936d28fec6c76664143991e00c8f284db723cda127624a97acd7",
+      "requested_timeout_seconds": 60,
+      "sleep_seconds": 180,
+      "provider_cancel_after_seconds": 72.0,
+      "provider_reason": "timeout exceeded",
+      "evidence_level": "observed execution; CPU only",
+      "gpu_expiry_latency": "not inferred from CPU timing"
+    },
+    "organizer_image_check": {
+      "source_url": "https://www.kaggle.com/code/hynk1240/backtrace-r0-image-check",
+      "version": 1,
+      "run_id": 353801546,
+      "requested_at_utc": "2026-09-29T07:11:12.743324+00:00",
+      "code_sha256": "04dc303cc5521765b871148baf239923d273ce674e503c0054e90daaf4aae5b0",
+      "image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+      "status": "COMPLETE; CPU only",
+      "provider_runtime_seconds": 18.1,
+      "evidence_level": "observed execution"
+    },
+    "cpu_driver_qualification": {
+      "source_url": "https://www.kaggle.com/code/hynk1240/backtrace-r0-cpu-prerequisites",
+      "versions": [
+        {
+          "version": 1,
+          "script_sha256": "6af121acd20c4c41cd72b249c715bb2a65e84b726ad3f3321912ee79bf2aae1d",
+          "requested_at_utc": "2026-09-29T07:34:09.546894+00:00",
+          "result": "FAILED; authored task venv ensurepip",
+          "provider_runtime_seconds": 88.2,
+          "cleanup": "no workers; temporary workspace removed"
+        },
+        {
+          "version": 2,
+          "script_sha256": "2be59113ed621b1a50ca99bb7cc23b0e32cc9fd98e81383a16b3cd6286f00fb5",
+          "requested_at_utc": "2026-09-29T07:38:27.699230+00:00",
+          "result": "FAILED; closed stream during harness import after auth check",
+          "provider_runtime_seconds": 105.2,
+          "credential_boundary": "PASS",
+          "cleanup": "no workers; temporary workspace removed"
+        },
+        {
+          "version": 3,
+          "script_sha256": "a47eea1b49b70621e63dc006b99d1904152cc26748ca17cbd07f2f11dd39dde0",
+          "requested_at_utc": "2026-09-29T07:46:26.984797+00:00",
+          "result": "PASS; official sandbox dependency inheritance and credential checks",
+          "provider_runtime_seconds": 138.5,
+          "script_body_seconds": 130.97688698768616,
+          "cleanup": "no workers; temporary workspace removed"
+        }
+      ],
+      "provider_timeout_seconds": 420,
+      "evidence_level": "observed execution; CPU only; no inference or model source"
+    },
+    "private_scripts": [
+      {
+        "path": ".local/smoke/native-dtype/serving-original.py",
+        "size_bytes": 1654,
+        "sha256": "b125ed5ae91d19df1b3c2a3932bed1c5d901f97fcedafcce7f917e71cd59289d"
+      },
+      {
+        "path": ".local/smoke/native-dtype/serving-native.py",
+        "size_bytes": 1679,
+        "sha256": "e09680a61a8bfb7a185a231bc1bd79a9d89284d6db42d6e67f6c050ebaec33ac"
+      },
+      {
+        "path": ".local/smoke/native-dtype/serving.diff",
+        "size_bytes": 473,
+        "sha256": "96c81692617fc858b6189161360f8f088759e571cf33b7e28c151f06487b1ec2"
+      },
+      {
+        "path": ".local/smoke/native-dtype/prepare_inputs.py",
+        "size_bytes": 12547,
+        "sha256": "613cf0d34b85fdf4353213e37ce110eac2aeca0d34a38de932eb7a3b6e0c67a6"
+      },
+      {
+        "path": ".local/smoke/native-dtype/cpu-prerequisites-v1.py",
+        "size_bytes": 23662,
+        "sha256": "6af121acd20c4c41cd72b249c715bb2a65e84b726ad3f3321912ee79bf2aae1d"
+      },
+      {
+        "path": ".local/smoke/native-dtype/cpu-prerequisites-v2.py",
+        "size_bytes": 23702,
+        "sha256": "2be59113ed621b1a50ca99bb7cc23b0e32cc9fd98e81383a16b3cd6286f00fb5"
+      },
+      {
+        "path": ".local/smoke/native-dtype/cpu-prerequisites-v3.py",
+        "size_bytes": 26381,
+        "sha256": "a47eea1b49b70621e63dc006b99d1904152cc26748ca17cbd07f2f11dd39dde0"
+      },
+      {
+        "path": ".local/smoke/native-dtype/gpu-executed.py",
+        "size_bytes": 26410,
+        "sha256": "c8f97c6434635f04677c823da8bec19d8605a70630050cbc7504e9d110aa9595"
+      },
+      {
+        "path": ".local/smoke/native-dtype/gpu-launcher.py",
+        "size_bytes": 30187,
+        "sha256": "30edb27992744b38dd9dc5c29db562be877a257e6ee5e38e07d354583922aa18"
+      },
+      {
+        "path": ".local/smoke/native-dtype/check-auto-dtype.py",
+        "size_bytes": 1826,
+        "sha256": "97a931fb08ed809843384ce996fb666570ecde49294c790a06fd464a827c1c8c"
+      },
+      {
+        "path": ".local/smoke/native-dtype/kaggle-kernels-metadata.md",
+        "size_bytes": 2908,
+        "sha256": "bcf023d8e6f3f51c7ac9ce131bbbe4d7d8472ee6627875b82d409a233700118b"
+      }
+    ],
+    "dtype_source_check": {
+      "source": "acquired vLLM 0.19.1 wheel; vllm/platforms/cuda.py and vllm/config/model.py",
+      "script_sha256": "97a931fb08ed809843384ce996fb666570ecde49294c790a06fd464a827c1c8c",
+      "injections": [
+        "SM75 capability",
+        "dtype objects",
+        "logger"
+      ],
+      "source_result": "auto resolves to float16 for BF16 gemma4 and gemma4_text",
+      "evidence_level": "observed local execution with injected boundaries; not GPU behavior"
+    },
+    "mounted_model_files": {
+      "source": "https://www.kaggle.com/models/google/gemma-4/Other/gemma-4-31b-it-qat-w4a16-ct/2",
+      "evidence_level": "observed execution; SHA-256 of actual mounted bytes",
+      "hashes_completed_at_unix": 1790668529.920125,
+      "files": [
+        {
+          "path": "README.md",
+          "size_bytes": 28499,
+          "sha256": "b68c4f66b6bbe75f72f54a5aed65ed08a7faf6ca056bdf11beefedf8591adad3"
+        },
+        {
+          "path": "chat_template.jinja",
+          "size_bytes": 16934,
+          "sha256": "94899c0f917d93f6fe81c95744d1e8ddab2d21d39228d2e4aec1fb2a25bff413"
+        },
+        {
+          "path": "config.json",
+          "size_bytes": 18711,
+          "sha256": "b100d85e571c25b688e82919d819253063a1defb0e6cee3b9b1c1fbad99bd0c2"
+        },
+        {
+          "path": "generation_config.json",
+          "size_bytes": 208,
+          "sha256": "70110aa886fa7ee25ce47346d102dd29ca5f967500490b4362fc72068e1db70a"
+        },
+        {
+          "path": "model.safetensors",
+          "size_bytes": 23265352448,
+          "sha256": "1b9b1d622a93f02c0d33f98e502f233b5d707443af6ddc464ed0bf5498506c20"
+        },
+        {
+          "path": "processor_config.json",
+          "size_bytes": 1689,
+          "sha256": "32bdf45d2ad4cc29a0822ddd157a182de76644f0419a6228d151495256e9813c"
+        },
+        {
+          "path": "tokenizer.json",
+          "size_bytes": 32169626,
+          "sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "size_bytes": 2741,
+          "sha256": "a284d1243b62be31faa9c13e1c28cece940c4abaa7bd9ad87b94f61b40687200"
+        }
+      ]
+    },
+    "gpu_request": {
+      "absolute_authorized_deadline": 1790670054.6229546,
+      "api_response": "accepted; empty error string; no retry",
+      "metadata": {
+        "code_file": "one_task.py",
+        "competition_sources": [],
+        "dataset_sources": [
+          "metric/gemma-4-developer-agent-wheelhouse/25"
+        ],
+        "docker_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+        "docker_image_pinning_type": "original",
+        "enable_gpu": true,
+        "enable_internet": false,
+        "enable_tpu": false,
+        "id": "hynk1240/backtrace-r0-t4-native-dtype",
+        "is_private": true,
+        "kernel_sources": [
+          "hynk1240/backtrace-r0-selected-inputs/1"
+        ],
+        "kernel_type": "script",
+        "language": "python",
+        "machine_shape": "NvidiaTeslaT4",
+        "model_sources": [
+          "google/gemma-4/Other/gemma-4-31b-it-qat-w4a16-ct/2"
+        ],
+        "title": "Backtrace R0 T4 Native Dtype"
+      },
+      "provider_timeout_seconds": 1680,
+      "request_utc": "2026-09-29T07:50:54.622955+00:00",
+      "requested_at": 1790668254.6229546,
+      "script_bytes": 26410,
+      "script_sha256": "c8f97c6434635f04677c823da8bec19d8605a70630050cbc7504e9d110aa9595",
+      "setup_deadline": 1790668554.6229546,
+      "useful_work_deadline": 1790669874.6229546
+    },
+    "gpu_run_id": 353810920,
+    "gpu_outcome": {
+      "status": "STARTUP FAILED; one authorized attempt consumed; no rerun",
+      "evidence_level": "observed GPU execution and independent account API/UI readback",
+      "version": 1,
+      "provider_state": "ERROR",
+      "provider_runtime_seconds": 649.6,
+      "devices": [
+        "Tesla T4",
+        "Tesla T4"
+      ],
+      "device_memory_mib": [
+        15360,
+        15360
+      ],
+      "driver_version": "580.159.04",
+      "native_bf16": false,
+      "requested_dtype": "auto",
+      "observed_resolved_dtype": "torch.float16",
+      "resolved_dtype_source": "vLLM 0.19.1 EngineCore initialization log; health endpoint not reached",
+      "model_path": "/kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2",
+      "served_identity": "NOT RUN; /v1/models not reached",
+      "weight_loading_seconds_tp0": 90.96,
+      "model_loading_seconds_tp0": 92.432167,
+      "model_loading_gib_tp0": 10.46,
+      "peak_sampled_gpu_memory_mib": [
+        12329,
+        12329
+      ],
+      "failure": "CUDA custom_all_reduce.cuh:455 invalid argument during CUDA graph profiling; worker death; ServerStartupError",
+      "oom": "not observed; full runtime memory fit not established",
+      "request_unix": 1790668254.6229546,
+      "root_begin_unix": 1790668267.8271897,
+      "setup_dependency_ready_unix": 1790668363.504132,
+      "model_pins_setup_complete_unix": 1790668529.920125,
+      "server_start_unix": 1790668556.0662835,
+      "server_error_unix": 1790668906.5904956,
+      "server_stop_returned_unix": 1790668906.5919738,
+      "worker_exit_unix": 1790668910.6689668,
+      "worker_cleanup_unix": 1790668910.6711068,
+      "root_end_unix": 1790668910.8126452,
+      "root_body_seconds": 642.9908072948456,
+      "request_to_cleanup_seconds": 656.1896905899048,
+      "official_start_seconds": 350.524121761322,
+      "independent_terminal_readback_unix": 1790669075.5608964,
+      "request_to_terminal_observation_seconds": 820.9379417896271,
+      "gpu_use_note": "Exact allocation timestamps unavailable. Runtime x2 is approximately 0.361 aggregate GPU-hours; wider request-to-terminal interval bounds use at 0.4561. Not account metering.",
+      "account_quota_before": "00:00 / 30 hrs",
+      "account_quota_after": "00:10 / 30 hrs",
+      "paid_spend_usd": 0,
+      "model_request": "NOT RUN",
+      "task_executions": 0,
+      "agent_tool_calls": 0,
+      "wire_parameters_and_thinking": "NOT RUN",
+      "patch": "NOT GENERATED; distinct from empty patch",
+      "public_test_verification": "NOT RUN",
+      "submission": "NOT RUN",
+      "hosted_scoring": "NOT RUN",
+      "training": "NOT RUN",
+      "cleanup": {
+        "worker_survivors": [],
+        "worker_cleanup_confirmed": true,
+        "scratch_removed": true,
+        "shared_memory_warning": "vLLM reported three shared-memory objects at shutdown; process/provider termination checked separately",
+        "gpu_session": "CONFIRMED terminal ERROR by independent account API and provider UI",
+        "cpu_control_session": "Stopped through UI; off, accelerator None; refreshed Active Events badge empty",
+        "local_keep_awake": "temporary lease stopped; process reaped"
+      }
+    },
+    "mounted_wheelhouse": {
+      "source_url": "https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse/versions/25",
+      "version": 25,
+      "accessed_by_setup_ready_at_utc": "2026-09-29T07:52:43.504132Z",
+      "evidence_level": "observed execution; SHA-256 of mounted bytes; exact receipt reconstructed locally and hash verified",
+      "receipt_sha256": "babd1354e2e5a5fd04c20a3b26811dbd7d9d0c1814990646abbe687e155bcb5c",
+      "files": [
+        {
+          "path": "adk_eval_core-0.1.0-py3-none-any.whl",
+          "bytes": 89306,
+          "sha256": "b1608c4471a2739eca6469735e4e118ff33a20823ce9430719238ea843aa9d1a"
+        },
+        {
+          "path": "adk_submission-0.2.11-py3-none-any.whl",
+          "bytes": 62404,
+          "sha256": "d14f7d31e724f507322c763bc7c1ed56ac603085b3709afed954e50006b494a8"
+        },
+        {
+          "path": "anthropic-1.4.0-py3-none-any.whl",
+          "bytes": 1300390,
+          "sha256": "590e85bff75b713a123b03f586d68f02266b5fdc49f70dd75f721ced93a4716c"
+        },
+        {
+          "path": "apache_tvm_ffi-0.1.13.post3-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+          "bytes": 2955490,
+          "sha256": "edaca70656f87831c3b4989169b1d85fe563ccd6d2e2cadc1f4f5880e1295f7a"
+        },
+        {
+          "path": "astor-0.8.1-py2.py3-none-any.whl",
+          "bytes": 27488,
+          "sha256": "070a54e890cefb5b3739d19f30f5a5ec840ffc9c50ffa7d23cc9fc1a38ebbfc5"
+        },
+        {
+          "path": "bitsandbytes-0.46.1-py3-none-manylinux_2_24_x86_64.whl",
+          "bytes": 72865511,
+          "sha256": "b0ee4a204fb926d4eae02bc2f5468ae3c11c011cfa849a4c771d4c6b201f57ae"
+        },
+        {
+          "path": "cbor2-6.1.4-cp312-cp312-manylinux_2_28_x86_64.whl",
+          "bytes": 461193,
+          "sha256": "310f3dfb296ba48fe9b63c5cf26e691e3548a1eae6901d2f0c18e941d151f220"
+        },
+        {
+          "path": "compressed_tensors-0.15.0.1-py3-none-any.whl",
+          "bytes": 194260,
+          "sha256": "e1b1f322e82e475715e242bad46925a304ea8e5c98b5055a15b8eb22fb6bfea9"
+        },
+        {
+          "path": "depyf-0.20.0-py3-none-any.whl",
+          "bytes": 39381,
+          "sha256": "d31effad4261cebecb58955d832e448ace88f432328f95f82fd99c30fd9308d4"
+        },
+        {
+          "path": "diskcache-5.6.3-py3-none-any.whl",
+          "bytes": 45550,
+          "sha256": "5e31b2d5fbad117cc363ebaf6b689474db18a1f6438bc82358b024abd4c2ca19"
+        },
+        {
+          "path": "flashinfer_cubin-0.6.6-py3-none-any.whl",
+          "bytes": 267661457,
+          "sha256": "36508dfc792eb5ecfb15d2c140a7702812e1fa1ab0fb03929b2ed55e3e8191f3"
+        },
+        {
+          "path": "flashinfer_python-0.6.6-py3-none-any.whl",
+          "bytes": 7817047,
+          "sha256": "078f158636969eec1a0d3dea19c3ca90b426b66df89bbf7b7b8276ce2ec08148"
+        },
+        {
+          "path": "gguf-0.19.0-py3-none-any.whl",
+          "bytes": 118475,
+          "sha256": "70bcd10edfe697fb2dad6e40af2234b9d8ece9a41a99761405121ebda1c3c1cd"
+        },
+        {
+          "path": "google_adk-1.36.1-py3-none-any.whl",
+          "bytes": 2877731,
+          "sha256": "1a2f6868c509e3151fb0de3575a7d18b45c338be86f420924dad74e7193631a0"
+        },
+        {
+          "path": "google_genai-2.11.0-py3-none-any.whl",
+          "bytes": 984162,
+          "sha256": "5bc8186100e1d34d691fbe0cba392b7e04e98d286ca952323a6672d054accf95"
+        },
+        {
+          "path": "ijson-3.5.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+          "bytes": 149848,
+          "sha256": "e4fcebfe1685bb7ba06a8255a5d428ea6b4b895d7acf979cb637d8bbc9db2f47"
+        },
+        {
+          "path": "interegular-0.3.3-py37-none-any.whl",
+          "bytes": 23635,
+          "sha256": "b0c07007d48c89d6d19f7204972d369b2a77222722e126b6aa63aa721dc3b19c"
+        },
+        {
+          "path": "llguidance-1.3.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+          "bytes": 3033133,
+          "sha256": "bc17e9dd602c3879bf91664a64bf72f54c74dbfbeb24ccfab6a5fe435b12f7aa"
+        },
+        {
+          "path": "lm_format_enforcer-0.11.3-py3-none-any.whl",
+          "bytes": 45418,
+          "sha256": "cf586350875def1ae7a8fba84fcbbfc8371424b6c9d05c1fcba70aa233fbf06f"
+        },
+        {
+          "path": "loguru-0.7.3-py3-none-any.whl",
+          "bytes": 61595,
+          "sha256": "31a33c10c8e1e10422bfd431aeb5d351c7cf7fa671e3c4df004162264b28220c"
+        },
+        {
+          "path": "mistral_common-1.11.7-py3-none-any.whl",
+          "bytes": 6553583,
+          "sha256": "a9511b88eacacbe7dacddd9d3498c1739f56847b7fdddbd5a22e7844fd9def95"
+        },
+        {
+          "path": "model_hosting_container_standards-0.1.16-py3-none-any.whl",
+          "bytes": 125666,
+          "sha256": "47f4f65713120bc3a69feb022981a38db9e557aedf88dbd72077f20588caa12b"
+        },
+        {
+          "path": "msgspec-0.21.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+          "bytes": 225025,
+          "sha256": "21995e74b5c598c2e004110ad66ec7f1b8c20bf2bcf3b2de8fd9a3094422d3ff"
+        },
+        {
+          "path": "nvidia_cudnn_frontend-1.18.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+          "bytes": 2159245,
+          "sha256": "6c023539ca6de99234cf5102c3ec0d6af817f5396fc93028a22ba5b834a35b8a"
+        },
+        {
+          "path": "openai_harmony-0.0.8-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+          "bytes": 2953260,
+          "sha256": "c007d277218a50db8839e599ed78e0fffe5130f614c3f6d93ae257f282071a29"
+        },
+        {
+          "path": "opentelemetry_exporter_otlp-1.44.0-py3-none-any.whl",
+          "bytes": 6727,
+          "sha256": "4a498fa8d8fd8be9e8e2d175fe5524a3fe581ccffadd8509db86526a5fb97051"
+        },
+        {
+          "path": "opentelemetry_semantic_conventions_ai-0.5.1-py3-none-any.whl",
+          "bytes": 11250,
+          "sha256": "25aeb22bd261543b4898a73824026d96770e5351209c7d07a0b1314762b1f6e4"
+        },
+        {
+          "path": "outlines_core-0.2.11-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+          "bytes": 2287677,
+          "sha256": "86df9740368866295077346440d911df4972da2b3f1f54b8125e6f329e8a8891"
+        },
+        {
+          "path": "partial_json_parser-0.2.1.1.post7-py3-none-any.whl",
+          "bytes": 10877,
+          "sha256": "145119e5eabcf80cbb13844a6b50a85c68bf99d376f8ed771e2a3c3b03e653ae"
+        },
+        {
+          "path": "prometheus_fastapi_instrumentator-8.1.0-py3-none-any.whl",
+          "bytes": 19649,
+          "sha256": "b9f40b2cff3f7891ca0610b3ae4fc6ec723fd326b04bb659819aaeb821a0fc7d"
+        },
+        {
+          "path": "pybase64-1.5.0-cp312-cp312-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl",
+          "bytes": 94681,
+          "sha256": "1a2b9cf39b4d30f600df8c56cccbc03adfc6e1ae8c04cd6b181105a432d4a515"
+        },
+        {
+          "path": "pycountry-26.2.16-py3-none-any.whl",
+          "bytes": 8044600,
+          "sha256": "115c4baf7cceaa30f59a4694d79483c9167dbce7a9de4d3d571c5f3ea77c305a"
+        },
+        {
+          "path": "pydantic_extra_types-2.11.2-py3-none-any.whl",
+          "bytes": 82851,
+          "sha256": "683b8943252543e49760f89733b1519bc62f31d1a287ebbdc5a7b7959fb4acfd"
+        },
+        {
+          "path": "quack_kernels-0.6.4-py3-none-any.whl",
+          "bytes": 728458,
+          "sha256": "e77c5d1f1299b0b38487fe8737df6c6975daa16bca7f7eb883bd1a74d09e7e78"
+        },
+        {
+          "path": "safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+          "bytes": 506502,
+          "sha256": "f216afd4ba743e744c86cbd08e7185efa8749e4c905f14e4e977d65576466cb0"
+        },
+        {
+          "path": "setproctitle-1.3.7-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+          "bytes": 32932,
+          "sha256": "2906b6c7959cdb75f46159bf0acd8cc9906cf1361c9e1ded0d065fe8f9039629"
+        },
+        {
+          "path": "swegemma-0.2.7-py3-none-any.whl",
+          "bytes": 111548,
+          "sha256": "2b74d402dc95a615f3b36c56fd3f9ba11ddbfb7db8a5a32ec259369a0f559d98"
+        },
+        {
+          "path": "tokenizers-0.22.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+          "bytes": 3274982,
+          "sha256": "369cc9fc8cc10cb24143873a0d95438bb8ee257bb80c71989e3ee290e8d72c67"
+        },
+        {
+          "path": "transformers-5.13.1-py3-none-any.whl",
+          "bytes": 11503977,
+          "sha256": "53f0ea8aa397e29244c2377ba981bcaf0c87adcf44fbdd447ef6306522afcacd"
+        },
+        {
+          "path": "vllm-0.19.1-cp38-abi3-manylinux_2_31_x86_64.whl",
+          "bytes": 433132506,
+          "sha256": "6b29fdc200966eda4d0cc4d10b8c338ec32620bb069ad3629d8a78e3b35fd3fa"
+        },
+        {
+          "path": "xgrammar-0.2.5.post1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+          "bytes": 48149933,
+          "sha256": "8df76e57eabf0576023826bd179dd2dddb56c1663dab74fd64086452487b795b"
+        }
+      ]
+    },
+    "private_output_receipts": {
+      "source_url": "https://www.kaggle.com/code/hynk1240/backtrace-r0-t4-native-dtype/output",
+      "version": 1,
+      "acquired_in_control_session_at_utc": "2026-09-29T08:03:26.125478+00:00",
+      "evidence_level": "observed execution; hashed fetched bytes in private CPU control session",
+      "retention": "Originals in private completed GPU version. Browser download did not complete; raw logs not retained on local workstation.",
+      "files": [
+        {
+          "path": "backtrace-receipts/execution.log",
+          "size_bytes": 30104,
+          "sha256": "2a4987219e24e2680ad78b7a204a14f01aeae942e44c2725c24119bde44646ef"
+        },
+        {
+          "path": "backtrace-receipts/model-files.json",
+          "size_bytes": 1150,
+          "sha256": "6a8ebd3efd6f4c33ba232cc96cfe4d8261e987a76e6d191f8c60cceb2bc01927"
+        },
+        {
+          "path": "backtrace-receipts/server-error.log",
+          "size_bytes": 24200,
+          "sha256": "77b6a17021d08a3da7cf0416980221ef3c6a251dbba2b7b3ac090047693e5b25"
+        },
+        {
+          "path": "backtrace-receipts/wheel-files.json",
+          "size_bytes": 7413,
+          "sha256": "babd1354e2e5a5fd04c20a3b26811dbd7d9d0c1814990646abbe687e155bcb5c"
+        },
+        {
+          "path": "backtrace-r0-t4-native-dtype.log",
+          "size_bytes": 5685,
+          "sha256": "276921b6714a52d2c1d39c1984fcf8aa02b7a1b6bee54ea1fb08648bd505e085"
+        }
+      ]
+    },
+    "provider_image_readback": {
+      "source_urls": [
+        "https://www.kaggle.com/code/hynk1240/backtrace-r0-image-check/log",
+        "https://www.kaggle.com/code/hynk1240/backtrace-r0-t4-native-dtype/log"
+      ],
+      "accessed_at_utc": "2026-09-29T08:23:42.827Z",
+      "evidence_level": "observed provider UI link; no page-byte hash",
+      "image_url": "https://gcr.io/kaggle-gpu-images/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+      "note": "UI label Latest Container Image; linked digest matches organizer-recorded image digest."
+    }
   }
 }

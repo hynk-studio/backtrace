@@ -1,4 +1,37 @@
-# Authorized smoke prechecks — GPU/model execution NOT RUN
+# Native-dtype continuation — GPU startup failure, session terminated
+
+Fresh Codex execution on 2026-09-29, continuing the reviewed head
+`2de98345c643651f6bdb38b425dd7f60ed2b9440` in Draft PR #5. The
+[full execution report](r0-native-dtype.md) records exact commands, private driver
+diff/hash, inputs, phase timing and boundaries; the manifest records acquired bytes.
+
+- **PASS: 49 local tests** on Python 3.9.6, including three focused native-dtype
+  regressions. CPU preflight, 16 original artifact pins, actual-candidate official
+  CPU/schema checks and whitespace checks pass. No archive was rebuilt; its
+  **6,230 bytes / `2e24495826cb971053439a00d9ad8350471fc0efffa41a54b82082feedaa7358`**
+  remain frozen. Historical compiler/binding checks were not rerun.
+- **PASS: concrete CPU prerequisites**, including selected-only input preparation,
+  exact-image execution, real official sandbox dependency inheritance, credential
+  separation and independent provider timeout (CPU sleep canceled at 72 s).
+  Injected dtype-source tests are distinct from the actual GPU observations.
+- **One actual T4 x2 attempt:** native BF16 false, requested `auto`, actual vLLM
+  **FP16**. Weights loaded; CUDA custom-all-reduce returned `invalid argument`
+  during graph profiling. Server startup **FAILED**, not an observed OOM or
+  successful inference. Provider runtime **649.6 s**; no automatic rerun.
+- **Cleanup CONFIRMED:** zero worker survivors, temporary workspace removed,
+  independent provider `ERROR` terminal state, CPU control draft stopped/off.
+  Quota readback **00:10 / 30 hrs**; paid spend **$0**. The wider observed
+  request-to-terminal interval bounds use at **0.4561 aggregate GPU-hours**.
+- **NOT RUN:** healthy serving identity, model request/alias/thinking parameters,
+  selected task, agent tools, public-test verification, competition submission,
+  hosted scoring and training. **No patch generated**, not an empty-patch result.
+
+These are Codex's executions, not extensions of ChatGPT's independent review
+checks. The pre-allocation STOP below remains historical evidence.
+
+---
+
+# Historical authorized smoke prechecks — GPU/model execution NOT RUN
 
 2026-09-29 UTC, fresh Codex execution after PR #4 merged. Main/base
 `d14a1542b7bb094f0e5bda7eb8482ddecafe8c57`, tree
