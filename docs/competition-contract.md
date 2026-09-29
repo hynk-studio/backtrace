@@ -3,6 +3,9 @@
 Bootstrap inspection: 2026-09-28 UTC. Artifact follow-up: 2026-09-29 UTC.
 The guide, starter and harness packages are now acquired; official CPU checks
 pass separately on the original starter and the generated R0-clean archive.
+The subsequent actual-candidate CPU probe constructs the real compiler/registry,
+two agents and their callable/schema bindings with explicit request/sandbox
+boundaries; see [the executed scope](r0.md#executed-cpu-construction-and-tool-binding).
 See [current contract details and discrepancies](r0.md). This is not certification
 of a runnable submission. [Source records](source-manifest.json)
 contain URLs, access windows, artifact IDs and actual-byte SHA-256 values.
@@ -120,7 +123,11 @@ Remaining unknowns are the immutable checkpoint/tokenizer/template bytes and
 upstream revision; model/runtime compatibility and full hosted dependency pins;
 R3 training/adapter compatibility; hosted submission rejection/acceptance behavior;
 and the existing redistribution/public-sharing rights ambiguity. R3 training
-unknowns do not block no-LoRA packaging. No model or submission execution occurred.
+unknowns do not block no-LoRA packaging or CPU construction. No model or
+submission execution occurred. The inspected Evaluator can hydrate missing
+answers from a sibling secret bundle; the [proposed public-task smoke](r0-smoke.md)
+uses separate official agent/verification functions and separated inputs instead.
+This is a named driver deviation, not evidence that the unrun sandbox is secure.
 
 The initial sampling-only/no-LoRA planning conflict was explicitly resolved in
 [PR #3 review](https://github.com/hynk-studio/backtrace/pull/3#pullrequestreview-5346432812)

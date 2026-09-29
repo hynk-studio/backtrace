@@ -10,8 +10,11 @@ The official guide, ten-file starter, and five harness/schema wheels are now
 acquired and pinned locally. **R0-clean is packaged reproducibly** as a six-file
 no-LoRA derivative, preserving the ten-file official reference. Official CPU
 directory, model, include, schema and generation checks pass separately on the
-original and actual candidate archive. See [the exact delta and R0 recipe](docs/r0.md).
-No model, task, or submission has run.
+original and actual candidate archive. The official compiler also constructs
+both agents and binds their real harness callables/schemas in a bounded CPU probe.
+Its model client rejects requests and its sandbox is absent; no tool, model,
+task or submission has run. See [R0 and the probe](docs/r0.md) and the
+[proposed single-task smoke recipe](docs/r0-smoke.md).
 
 ## Local checks
 
@@ -43,6 +46,7 @@ With those verified inputs and the pinned CPU venv available:
 mkdir -p .local/r0-clean
 python3 tools/backtrace.py baseline .local/official .local/r0-clean/candidate.zip --official-python .local/cpu-checks/bin/python
 .local/cpu-checks/bin/python tools/official_check.py .local/official --candidate .local/r0-clean/candidate.zip
+python3 tools/compile_probe.py .local/official .local/r0-clean/candidate.zip --official-python .local/cpu-checks/bin/python
 ```
 
 The build pins the original, removes only the two authorized adapter lines,
@@ -50,6 +54,10 @@ excludes four adapter files, and validates the staged archive before publishing
 it. Existing outputs are never overwritten; failed checks remove staged output.
 `baseline` with no arguments still exits **2**, names the required inputs and
 creates no archive. Generated assets and receipts stay local and Git-ignored.
+The compiler probe requires the frozen 6,230-byte candidate identity; it runs in
+a credential-cleared child with a 45-second cap and temporary workspace cleanup.
+It does not start a server or exercise a sandbox. Its explicit boundary
+substitutions and separate opt-in integration tests are in [verification](docs/verification.md).
 
 Acquire only the pinned public notebook source (network required; never executed):
 

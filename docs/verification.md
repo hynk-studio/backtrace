@@ -1,4 +1,119 @@
-# PR #3 R0-clean implementation and candidate checks
+# Post-merge CPU compiler/binding probe
+
+2026-09-29 UTC, executed by Codex. Read the complete
+[post-merge handoff](https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5882380242),
+current AGENTS.md, Issue #1 and PR inventory. Origin remains
+`https://github.com/hynk-studio/backtrace.git`. PR #3 is merged; no PR was open at
+start. Fast-forwarded clean local main to
+`cddafaa6916560208b8782e9c2adf42e331d6d5c`, tree
+`a7b6d3cf392eb8c6738a791638e1649f17d03b94`, then created **bt-001-cpu-binding**.
+The merged branch, source pins, CPU dependency lock, original starter and frozen
+candidate are unchanged. No new dependency, model or task data was downloaded.
+The new Draft PR report records the final head/tree without a self-referential
+commit hash in this file. Issue #1 stays open; no merge or auto-merge is authorized.
+
+## Current verification levels
+
+| Stage | Result in this slice |
+| --- | --- |
+| Local tooling | **PASS: 41 tests**, Python 3.9.6; preflight READY. |
+| Official artifacts | **PASS: 16 pins**, ten original starter files; no new acquisition. |
+| Candidate packaging/local inspection | Existing frozen archive re-inspected, **6,230 bytes**, hash unchanged; build-a/build-b still identical. **No rebuild** in this slice. Prior reproducible builds remain PR #3 evidence. |
+| Official candidate CPU/schema checks | **PASS**, rerun on actual archived candidate, Python 3.12.14/macOS arm64, same pinned environment. |
+| Actual compiler/construction | **PASS**: real official compiler, builders, model/tool resolvers, registry and two LlmAgents. Request client and absent sandbox boundaries below. |
+| Callable/schema binding | **PASS**: nine real registered callables; 13 FunctionTool declarations and one existing AgentTool declaration. No tool body executed. |
+| Focused official integration regressions | **PASS: 6**, real compiler with authored synthetic fixtures; unknown model/tool rejection and denied generation/network/process checks. |
+| Tool/sandbox execution; model/server execution | **NOT RUN**. No tool bodies, server start, checkpoint/tokenizer load or provider completion. |
+| Public task verification; Kaggle execution/submission acceptance; hosted scoring; training | **NOT RUN**. |
+
+Candidate SHA-256 remains
+`2e24495826cb971053439a00d9ad8350471fc0efffa41a54b82082feedaa7358`.
+Both agents preserve the exact prompt hashes in [r0.md](r0.md), sampling and
+no-adapter selection; root AgentTool retains `skip_summarization=True`. The
+runtime budget maps to **60 command seconds / 10 tools / 1 minute / 50 turns**.
+The actual model registry targets the explicit version-2 absolute path with the
+notebook's `openai/` prefix; no helper/fallback path is used. The compiler's
+enable_thinking bridge is observed, not proof of wire-level thinking-budget enforcement.
+
+The official ModelRegistry, LiteLlm, AgentTool, FunctionTool and
+AdkSandboxCodeExecutor are real objects. The **injected** NoRequestClient raises
+on completion; it provides no fabricated response. Context uses authored task
+strings, no real task record and **sandbox=None**. VllmServer is constructed but
+never started. Installed official Python source is checked against the acquired
+wheels before imports. Python socket/process audit guards operate in a sanitized
+child, not an OS sandbox. IPv6 capability detection is disabled in that child to
+avoid urllib3's import-time bind. Final actual-candidate probe: **zero forbidden
+attempts**, no server process, temporary root/log cleaned, archive hash unchanged.
+
+Initial construction attempts failed closed because urllib3's IPv6 import probe
+tried to bind a socket; urllib3 caught the denied operation, and the probe's
+attempt counter still rejected the run. An authored diagnostic was added and
+that import capability test was disabled. No official wheel was patched and no
+network exception was allowed. Subsequent construction passed. The negative
+generation fixture enters real LiteLlm request preparation and stops at the
+injected client; this is not a model/provider request or an inference result.
+
+## Exact verification commands and outcomes
+
+From `/Users/hynk/code/backtrace`:
+
+```sh
+python3 -m unittest discover -s tests -v
+python3 tools/backtrace.py preflight
+python3 tools/backtrace.py verify-artifacts .local/official
+.local/cpu-checks/bin/python tools/official_check.py .local/official --candidate .local/r0-clean/build-a.zip
+python3 tools/compile_probe.py .local/official .local/r0-clean/build-a.zip --official-python .local/cpu-checks/bin/python > .local/compile-probe.json
+env -i PATH=/usr/bin:/bin LANG=en_US.UTF-8 .local/cpu-checks/bin/python -I -B tests/official_binding.py
+shasum -a 256 .local/r0-clean/build-a.zip .local/r0-clean/build-b.zip .local/starter.ipynb
+stat -f '%z %N' .local/r0-clean/build-a.zip .local/r0-clean/build-b.zip
+cmp .local/r0-clean/build-a.zip .local/r0-clean/build-b.zip
+.local/cpu-checks/bin/python -m pip check
+git diff --check
+git diff main...HEAD --check
+```
+
+Final checks exit **0**, except `pip check` remains **1**, exactly the four known
+unused swegemma requirements: accelerate, safetensors, torchvision, transformers.
+No new conflict or attempt to install a GPU/inference stack. Preflight and the
+old official schema check correctly report stages outside their own command
+scope as NOT RUN; they do not read/cache the new construction result.
+
+Also reverified all **137** installed CPU dependency versions and retained wheel
+hashes (exit 0), without importing those dependencies:
+
+```sh
+.local/cpu-checks/bin/python - <<'PY'
+import hashlib, json
+from importlib.metadata import version
+from pathlib import Path
+pins = json.loads(Path('docs/cpu-environment.json').read_text())['artifacts']
+for item in pins:
+    assert version(item['artifact']) == item['version'], item['artifact']
+    data = Path(item['local_path']).read_bytes()
+    assert len(data) == item['size_bytes']
+    assert hashlib.sha256(data).hexdigest() == item['sha256']
+print('137 CPU dependency versions and retained wheel hashes: PASS')
+PY
+```
+
+The four new standard-library tests check denied/redacted operations, sanitized
+child arguments, cleanup on mocked child failure/timeout and a real CLI missing
+environment diagnostic. Mocked process tests do not establish official behavior;
+the separate actual-candidate probe does. The six opt-in integration regressions
+use installed official classes and authored fixture YAML; none execute a tool.
+All packaging, no-overwrite, exact-delta, cleanup and generic ZIP safety tests
+still pass. No claim here extends ChatGPT's earlier independent Python 3.13.5
+checks; these are fresh Codex executions on the versions listed above.
+
+[The prepared smoke recipe](r0-smoke.md) records actual account resource evidence,
+the v2 checkpoint, deterministic public-task selection rule (ID unresolved),
+minimal inputs, explicit driver/hardware deviations and finite caps. It is
+**NOT RUN**. The CPU result does not establish Kaggle allocation, model fit,
+tool execution, task success, hosted acceptance or any performance benefit.
+
+---
+
+# Historical PR #3 R0-clean implementation and candidate checks
 
 2026-09-29 UTC. This checkpoint supersedes the prior recipe blocker. Read the
 [ChatGPT review](https://github.com/hynk-studio/backtrace/pull/3#pullrequestreview-5346432812)
