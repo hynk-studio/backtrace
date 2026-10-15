@@ -1,5 +1,11 @@
 # A100 follow-up: CPU implementation, allocation not attempted
 
+This is the original Cloud report. The later
+[Kaggle CPU follow-up](kaggle-cpu-followup.md) records successful authenticated
+access, exact driver/notebook restoration, official lifecycle execution, and
+three dependency conflicts. Its tested replacement proposal is separate from
+the unchanged frozen runtime. The historical observations below are preserved.
+
 Recorded 2026-10-15 UTC (2026-10-16 Asia/Seoul), from main
 `23616971a4ec57d32fcce769e0a2abf44faa9cfe`, tree
 `0c6c3ca4b17d1ac954e3e805363c773fe513f4f7`, on
