@@ -25,9 +25,12 @@ def fatal(pid):
 
 
 def run():
-    mode, port, directory, role = sys.argv[1:]
+    mode, port, directory, role = sys.argv[1:5]
+    boot_delay = float(sys.argv[5]) if len(sys.argv) > 5 else 0
     directory = Path(directory)
     (directory / (role + '.json')).write_text(json.dumps({'pid': os.getpid()}))
+    if role == 'parent':
+        time.sleep(boot_delay)
     if role == 'leaf':
         signal.signal(signal.SIGTERM, signal.SIG_IGN)
         time.sleep(30)

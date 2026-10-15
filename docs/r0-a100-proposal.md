@@ -1,4 +1,11 @@
-# R0-clean-v2-one-public-task/A10080-TP1 — proposal, NOT authorized execution
+# R0-clean-v2-one-public-task/A10080-TP1 — proposal and subsequent approval
+
+**Status update (2026-10-15 UTC):** the owner subsequently authorized this exact
+conditional attempt in [Issue #1](https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5895260495).
+The proposal below preserves its original evidence and authorization status at
+writing; another GPU approval or intermediate merge is not required inside the
+approved limits. See the [CPU follow-up](a100-cpu-qualification.md) for current
+execution results and blockers. No A100 allocation has been requested.
 
 Recommend **one RunPod Secure Cloud on-demand `NVIDIA A100 80GB PCIe`,
 EU-RO-1**, full GPU, TP=1. No reservation, spot instance, MIG slice, second

@@ -3,6 +3,7 @@
 official_startup_guard.py reuses these cases with the REAL pinned lifecycle.
 """
 import json
+import ctypes
 import os
 from pathlib import Path
 import socket
@@ -70,7 +71,31 @@ class LifecycleCases:
     error_type = FixtureError
     boundary = 'authored lifecycle and CPU payload; NOT official vLLM'
 
-    def exercise(self, mode, total=4, startup=4):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # Container PID 1 need not reap orphaned grandchildren. This test-owned
+        # subreaper is separate from fixture boot timing and production policy.
+        cls._previous_subreaper = None
+        if sys.platform == 'linux':
+            cls._libc = ctypes.CDLL(None, use_errno=True)
+            previous = ctypes.c_int()
+            if cls._libc.prctl(37, ctypes.byref(previous), 0, 0, 0) != 0:
+                raise OSError(ctypes.get_errno(), 'PR_GET_CHILD_SUBREAPER')
+            if cls._libc.prctl(36, 1, 0, 0, 0) != 0:
+                raise OSError(ctypes.get_errno(), 'PR_SET_CHILD_SUBREAPER')
+            cls._previous_subreaper = previous.value
+
+    @classmethod
+    def tearDownClass(cls):
+        try:
+            if cls._previous_subreaper is not None:
+                if cls._libc.prctl(36, cls._previous_subreaper, 0, 0, 0) != 0:
+                    raise OSError(ctypes.get_errno(), 'restore child subreaper')
+        finally:
+            super().tearDownClass()
+
+    def exercise(self, mode, total=12, startup=12, boot_delay=0):
         # Reserve a loopback port, then relinquish it immediately before launch.
         with socket.socket() as sock:
             sock.bind(('127.0.0.1', 0))
@@ -83,7 +108,7 @@ class LifecycleCases:
             class Payload(self.lifecycle):
                 def build_cmd(self):
                     return [sys.executable, '-I', '-B', str(Path(__file__).with_name('startup_fixture.py')),
-                            mode, str(port), str(directory), 'parent']
+                            mode, str(port), str(directory), 'parent', str(boot_delay)]
 
                 def build_env(self):
                     # No inherited credentials, external network configuration or telemetry.
@@ -144,11 +169,16 @@ class LifecycleCases:
                 self.assertGreaterEqual(before['teardown_seconds'], 0.9)
 
     def configuration(self, port, directory):
-        return SimpleNamespace(port=port, directory=directory, startup_timeout=4,
+        return SimpleNamespace(port=port, directory=directory, startup_timeout=12,
                                health_check_interval=0.05)
 
     def test_fatal_worker_parent_alive(self):
         self.exercise('fatal')
+
+    def test_slow_fixture_boot_preserves_post_evidence_bound(self):
+        # Deliberately exceed the old four-second fixture allowance. Detection
+        # still has the same <5s assertion measured from emitted evidence.
+        self.exercise('fatal', boot_delay=4.2)
 
     def test_fatal_during_health_wins(self):
         self.exercise('race')

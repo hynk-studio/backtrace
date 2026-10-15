@@ -26,8 +26,12 @@ See [R0 and the probe](docs/r0.md) and the [frozen smoke recipe](docs/r0-smoke.m
 The [startup observer](docs/startup-guard.md) now fails fast on confirmed engine
 failure while the API parent remains alive, tested through the real wrapper with
 disposable CPU processes. A [conditional A100 80GB TP=1 proposal](docs/r0-a100-proposal.md)
-records cost, image and account prerequisites; no rental or new model run has
-been authorized or executed.
+records cost, image and account prerequisites. The owner subsequently authorized
+one conditional A10080-TP1 attempt (50 minutes/$2 all-in); it has **not run**.
+The [Linux CPU follow-up](docs/a100-cpu-qualification.md) fixes fixture boot timing,
+adds A100-only serving checks and an offline dependency qualification command,
+and records the current Cloud access/storage blockers. A full Linux closure and
+the restored private task driver are still unqualified.
 
 ## Local checks
 
@@ -124,6 +128,8 @@ Non-goals: a central model, Augnes integration, full teacher, training pipeline,
 RL campaign, multi-agent hierarchy, or formal prover. The owner authorized one
 private free-quota T4 x2 attempt with the exact model mounted in Kaggle. No GPU
 rental, paid API, terms acceptance, training or competition submission occurred.
-Further GPU execution requires separate authorization. The human controls merges.
+Only the bounded A100 attempt authorized in
+[Issue #1](https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5895260495)
+is active, conditional on its prerequisites. The human controls merges.
 No repository license has been selected. Third-party code, weights and data are
 not included.
