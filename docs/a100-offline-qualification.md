@@ -3,8 +3,11 @@
 The exact original README and complete Linux wheel closure are restored. Actual
 offline installs and official CPU checks now pass on Kaggle and in the pinned
 PyTorch image's user-space. This advances preparation for the existing conditional
-A100 attempt; it does not complete the private image, full A100 driver or provider
-gates. PR #7 remains Draft; no intermediate merge or repeat GPU approval is needed.
+A100 attempt; it does not complete the full A100 driver or provider gates.
+The owner explicitly permits a CPU-qualified private offline bootstrap on this
+pinned public base, so a private image/registry is optional, not a prerequisite.
+See the subsequent [free-resource assessment](free-resource-assessment.md).
+PR #7 remains Draft; no intermediate merge or repeat GPU approval is needed.
 
 ## Restored inputs and portable wheels
 
@@ -100,10 +103,12 @@ The Kaggle CPU session was then stopped; the UI reads `off (run a cell to start)
 
 ## Remaining prerequisites
 
-Complete the deployable private image and full A100 task/controller integration,
+Use the qualified offline bootstrap and complete A100 task/controller integration,
 including provider-relative deadlines, one-attempt ownership and independent
-deletion/readback. RunPod sign-in is required to check the exact authenticated
-offer, stock, existing balance, tax and provider-native stop/delete acceptance.
+deletion/readback. The owner has since clarified that no RunPod account exists;
+this is not a missing existing login. Account creation/terms and any funding are
+owner decisions before an authenticated offer, stock, balance, tax and
+provider-native stop/delete acceptance can be checked.
 Then qualify actual hardware and isolation before the authorized single start.
 The existing EU-RO-1/full A100 80GB PCIe/TP1, $2 all-in and 3,000-second conditions
 remain unchanged; no fallback, deposit or additional attempt is authorized.

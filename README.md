@@ -39,7 +39,11 @@ the offline installer. The original v25 acquisition manifest remains intact.
 The [offline CPU follow-up](docs/a100-offline-qualification.md) restores the exact
 original README and prepares the 245-package runtime closure plus a pinned pip
 bootstrap wheel. It records actual offline installs, official CPU checks and
-the remaining private-image, A100 driver and provider prerequisites separately.
+the remaining A100 driver and provider prerequisites separately. The approved
+delivery can use a private offline bootstrap on the pinned public base; a private
+image or registry is optional. The [free-resource assessment](docs/free-resource-assessment.md)
+records the account's actual T4-only GPU menu, the prepared private A100 driver,
+and why the next frozen GPU experiment needs access to a suitable larger GPU.
 
 ## Local checks
 

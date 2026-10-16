@@ -12,7 +12,12 @@ incorporates that amendment. No A100 allocation has been requested.
 The subsequent [offline CPU qualification](a100-offline-qualification.md)
 records restored inputs, the completed wheel bundle and actual base user-space
 checks. Historical acquisition statements below are not current blockers;
-the final private image, full A100 driver and provider gates remain separate.
+the A100 task/controller and provider gates remain separate. The active Issue #1
+authorization explicitly allows a CPU-qualified private offline bootstrap on
+the pinned public base. A private image/registry is not required. The owner has
+clarified that no RunPod account exists; do not request an existing login or
+interpret the consumption authorization as permission to create/fund an account.
+See the [current free-resource assessment](free-resource-assessment.md).
 
 Recommend **one RunPod Secure Cloud on-demand `NVIDIA A100 80GB PCIe`,
 EU-RO-1**, full GPU, TP=1. No reservation, spot instance, MIG slice, second
@@ -121,13 +126,15 @@ The private CPU build recipe is:
    renting a GPU. No latest-version resolution during a GPU allocation.
 3. The portable Linux wheel closure and supplemental lock now exist; see the
    [execution boundary](a100-offline-qualification.md) for base user-space checks.
-   **The final deployable private image is not yet built/qualified.** Kaggle's
+   **The final deployable private image is not yet built/qualified.** It is optional
+   under the later owner authorization: the qualified private offline bootstrap
+   on the same pinned public base is an acceptable delivery path. Kaggle's
    CPU host permits chroot but denies mount/network namespaces; it is not a
    Docker isolation qualification. The macOS CPU lock is not a substitute.
-   A suitable existing free Linux CPU builder remains a prerequisite;
-   no paid builder/storage is authorized or costed here. Do not publish a derived
-   image containing competition packages. If a private image cannot be delivered
-   without extra charges, stop and revise the proposal before allocating.
+   A separate image builder/registry is unnecessary for the offline bootstrap
+   path. No paid builder/storage is authorized or costed here. Do not publish a
+   derived image containing competition packages. Keep the bootstrap, wheels and
+   input transfer private and count installation/transfer inside setup time.
 
 Model v2's eight pinned files total **23,297,590,856 bytes**; the public-task bundle
 is about 222MB, and base-image compressed layers total **4,432,776,135 bytes**.
