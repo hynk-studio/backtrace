@@ -4,8 +4,10 @@
 conditional attempt in [Issue #1](https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5895260495).
 The proposal below preserves its original evidence and authorization status at
 writing; another GPU approval or intermediate merge is not required inside the
-approved limits. See the [CPU follow-up](a100-cpu-qualification.md) for current
-execution results and blockers. No A100 allocation has been requested.
+approved limits. See the [Kaggle CPU follow-up](kaggle-cpu-followup.md) for execution
+results and blockers. On 2026-10-16 the owner also approved exactly three
+[dependency substitutions](a100-runtime-amendment.md); the build recipe below
+incorporates that amendment. No A100 allocation has been requested.
 
 Recommend **one RunPod Secure Cloud on-demand `NVIDIA A100 80GB PCIe`,
 EU-RO-1**, full GPU, TP=1. No reservation, spot instance, MIG slice, second
@@ -87,18 +89,23 @@ executed**. This is an explicit image/OS delta, not Kaggle-image parity.
 
 The private CPU build recipe is:
 
-1. Start from that digest. Materialize the existing wheelhouse v25's 41 exact
-   wheel hashes (880,829,403 bytes), existing task dependency wheels and a
+1. Start from that digest. Materialize 38 unchanged wheelhouse v25 wheels and the
+   three exact replacements in `docs/a100-runtime-amendment.json` (41 selected
+   runtime wheels, 833,990,706 bytes), existing task dependency wheels and a
    supplemental **Linux CPython 3.12 dependency lock with hashes**. Keep
    `swegemma==0.2.7`, `adk-submission==0.2.11`, `adk-eval-core==0.1.0`,
    `google-adk==1.36.1`, `google-genai==2.11.0`, `vllm==0.19.1`,
    `torch==2.10.0+cu128`, `compressed-tensors==0.15.0.1`,
-   `transformers==5.13.1` and every supplied wheel fixed. Use the existing
+   `transformers==5.13.1` fixed. The approved replacements are
+   `opentelemetry-exporter-otlp==1.41.1`,
+   `prometheus-fastapi-instrumentator==7.1.0` and `xgrammar==0.2.8`.
+   Preserve the original v25 manifest as acquisition history. Use the existing
    separate task venv/Starlette 0.48.0 dependency strategy.
 2. Install the complete Linux lock offline with
    `python3 -m pip install --no-index --require-hashes --find-links=/private/wheels -r /private/linux-runtime.lock`;
-   apply the pinned notebook's 41-wheel `--no-deps --force-reinstall` step and
-   unchanged serving environment. Provision system `git`, `setpriv`, `ps`, SSH
+   apply the selected 41-wheel `runtime-pins.lock` with `--no-deps --force-reinstall`
+   through `tools/linux_runtime.py`, retaining the serving environment variables.
+   Do not reinstall the three superseded v25 wheels. Provision system `git`, `setpriv`, `ps`, SSH
    transport and build prerequisites in that private CPU build; pin its resulting
    image digest and package inventory. Run `pip check`, import checks, the actual
    candidate CPU checks and disposable-process isolation/cleanup checks before
@@ -117,7 +124,7 @@ Budget roughly 29GB cold transfer plus image expansion, caches and scratch withi
 100GB. These sizes, not measured transfer speed, motivate the 20-minute setup
 cap. Privately pre-stage only on existing permitted storage. After later approval,
 fetch versioned Kaggle bytes in the owner-controlled acquisition process, check
-the retained eight-file/41-wheel/input manifests, then transfer over authenticated
+the retained model/input manifests and selected runtime wheel identities, then transfer over authenticated
 SSH to root-owned paths. Do not mount the full competition dataset. No Kaggle or
 RunPod credential enters the image's agent environment or shell-visible files.
 

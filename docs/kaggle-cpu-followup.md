@@ -1,5 +1,10 @@
 # Kaggle CPU follow-up: restored source and a tested dependency proposal
 
+**Subsequent decision (2026-10-16 UTC):** the owner approved the three listed
+substitutions. They are now adopted by the [runtime amendment](a100-runtime-amendment.md).
+The proposal-only wording and test results below describe the preceding run;
+approval does not convert its online CPU checks into offline or GPU qualification.
+
 Observed 2026-10-15 UTC, using source head
 `3c05bdae71c7d72c37717972915e48d67a3ed5e6` of Draft PR #7.
 Main remained `23616971a4ec57d32fcce769e0a2abf44faa9cfe`; #7 was the only open PR.

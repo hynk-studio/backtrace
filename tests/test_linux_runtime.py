@@ -1,5 +1,7 @@
 """Offline lock boundaries; synthetic bytes are not official wheel validation."""
 import hashlib
+import copy
+import json
 from pathlib import Path
 import subprocess
 import tempfile
@@ -20,23 +22,75 @@ class LinuxRuntimeTests(unittest.TestCase):
         self.assertIn('offline qualification blocked network access', result.stderr)
 
     def test_real_manifest_inventory_and_frozen_torch(self):
-        records = runtime.supplied_records()
+        original = runtime.supplied_records()
+        records = runtime.runtime_records()
+        before = {r['path'].split('-')[0]: r for r in original}
+        after = {r['path'].split('-')[0]: r for r in records}
+        changed = {runtime.normalized(name) for name in before if before[name] != after[name]}
+        self.assertEqual(changed, set(runtime.APPROVED_REPLACEMENTS))
+        self.assertEqual(runtime.supplied_records(), original)
         supplemental = 'torch==2.10.0+cu128 --hash=sha256:' + 'a' * 64 + '\n'
         complete, supplied = runtime.combined_lock(supplemental, records)
         self.assertEqual(len(supplied.splitlines()), 41)
         self.assertEqual(len(complete.splitlines()), 42)
         self.assertIn('vllm==0.19.1', complete)
+        for name, version in runtime.APPROVED_REPLACEMENTS.items():
+            self.assertIn(f'{name}=={version} --hash=sha256:', supplied)
         with self.assertRaisesRegex(ValueError, 'torch'):
             runtime.combined_lock('', records)
 
     def test_no_repin_urls_unpinned_or_duplicate_dependencies(self):
-        records = runtime.supplied_records()
+        records = runtime.runtime_records()
         for text in ('vllm==0.19.2 --hash=sha256:' + 'a' * 64,
                      'torch==2.10.0', '--index-url=https://example.test',
                      'torch @ https://example.test/wheel.whl',
                      ('torch==2.10.0+cu128 --hash=sha256:' + 'a' * 64 + '\n') * 2):
             with self.subTest(text=text), self.assertRaises(ValueError):
                 runtime.combined_lock(text, records)
+
+    def test_superseded_versions_cannot_reenter_the_runtime_lock(self):
+        records = runtime.runtime_records()
+        for original in runtime.supplied_records():
+            name, version = original['path'].split('-')[:2]
+            if runtime.normalized(name) in runtime.APPROVED_REPLACEMENTS:
+                row = f"{name}=={version} --hash=sha256:{original['sha256']}"
+                with self.subTest(name=name), self.assertRaisesRegex(ValueError, 'cannot be repinned'):
+                    runtime.combined_lock(row, records)
+
+    def test_stale_or_unapproved_amendments_fail_closed(self):
+        profile = json.loads(runtime.RUNTIME_PROFILE.read_text())
+        mutations = []
+        stale = copy.deepcopy(profile)
+        stale['source_manifest_sha256'] = '0' * 64
+        mutations.append(stale)
+        unapproved = copy.deepcopy(profile)
+        unapproved['status'] = 'proposal'
+        mutations.append(unapproved)
+        wrong_original = copy.deepcopy(profile)
+        wrong_original['replacements'][0]['original']['sha256'] = '0' * 64
+        mutations.append(wrong_original)
+        missing = copy.deepcopy(profile)
+        missing['replacements'].pop()
+        mutations.append(missing)
+        extra = copy.deepcopy(profile)
+        extra['replacements'].append({'package': 'vllm'})
+        mutations.append(extra)
+        duplicate = copy.deepcopy(profile)
+        duplicate['replacements'].append(copy.deepcopy(duplicate['replacements'][0]))
+        mutations.append(duplicate)
+        wrong_version = copy.deepcopy(profile)
+        wrong_version['replacements'][2]['replacement']['path'] = 'xgrammar-0.2.9-py3-none-any.whl'
+        mutations.append(wrong_version)
+        unsafe_path = copy.deepcopy(profile)
+        unsafe_path['replacements'][0]['replacement']['path'] = '../' + unsafe_path['replacements'][0]['replacement']['path']
+        mutations.append(unsafe_path)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'amendment.json'
+            for index, altered in enumerate(mutations):
+                path.write_text(json.dumps(altered))
+                with self.subTest(index=index), patch.object(runtime, 'RUNTIME_PROFILE', path):
+                    with self.assertRaises(ValueError):
+                        runtime.runtime_records()
 
     def test_changed_or_missing_bytes_fail_before_install(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -86,8 +140,50 @@ class LinuxRuntimeTests(unittest.TestCase):
                           sha256=hashlib.sha256(wheel.read_bytes()).hexdigest())
             lock = root / 'supplemental.lock'
             lock.write_text('')
-            with patch.object(runtime, 'supplied_records', return_value=[record]), \
+            with patch.object(runtime, 'runtime_records', return_value=[record]), \
                     patch.object(runtime, 'REQUIRED', {'backtrace-fixture': '1.0'}):
                 with self.assertRaises(subprocess.CalledProcessError):
                     runtime.qualify(root, lock, root / 'output')
             self.assertFalse((root / 'output').exists())
+
+    @unittest.skipUnless(runtime.platform.system() == 'Linux' and
+                         runtime.platform.machine() == 'x86_64' and
+                         runtime.sys.version_info[:2] == (3, 12),
+                         'real offline pip probe requires Linux CPython 3.12')
+    def test_real_offline_replacement_survives_force_reinstall(self):
+        # Both versions are physically present. Exercise actual venv, offline
+        # hash installation, force-reinstall and pip check with authored wheels.
+        # Only the large official import probe is replaced by fixture identity.
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for version in ('1.0', '2.0'):
+                wheel = root / f'backtrace_fixture-{version}-py3-none-any.whl'
+                with zipfile.ZipFile(wheel, 'w') as archive:
+                    prefix = f'backtrace_fixture-{version}.dist-info/'
+                    archive.writestr(prefix + 'METADATA',
+                                     'Metadata-Version: 2.1\nName: backtrace-fixture\n'
+                                     f'Version: {version}\n')
+                    archive.writestr(prefix + 'WHEEL',
+                                     'Wheel-Version: 1.0\nRoot-Is-Purelib: true\nTag: py3-none-any\n')
+                    archive.writestr(prefix + 'RECORD', '')
+            record = dict(path=wheel.name, bytes=wheel.stat().st_size,
+                          sha256=hashlib.sha256(wheel.read_bytes()).hexdigest())
+            lock = root / 'supplemental.lock'
+            lock.write_text('')
+            real_child = runtime.offline_child
+
+            def child(python, *arguments):
+                if arguments[0].startswith('import torch,'):
+                    return real_child(python, 'from importlib.metadata import version; '
+                                      'assert version("backtrace-fixture") == "2.0"')
+                return real_child(python, *arguments)
+
+            with patch.object(runtime, 'runtime_records', return_value=[record]), \
+                    patch.object(runtime, 'REQUIRED', {'backtrace-fixture': '2.0'}), \
+                    patch.object(runtime, 'offline_child', side_effect=child):
+                result = runtime.qualify(root, lock, root / 'output')
+            self.assertEqual(result['offline_closure'], 'PASS')
+            inventory = json.loads((root / 'output/inventory.json').read_text())
+            self.assertEqual(next(p['version'] for p in inventory if p['name'] == 'backtrace-fixture'), '2.0')
+            self.assertEqual(result['runtime_profile_sha256'],
+                             hashlib.sha256(runtime.RUNTIME_PROFILE.read_bytes()).hexdigest())

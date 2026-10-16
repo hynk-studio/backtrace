@@ -33,8 +33,10 @@ adds A100-only serving checks and an offline dependency qualification command,
 and records the original Cloud access/storage blockers. The subsequent
 [Kaggle CPU follow-up](docs/kaggle-cpu-followup.md) restored the private driver and
 exact notebook v2, tested the official lifecycle, and found three incompatible
-dependency pins. A separately tested three-package replacement proposal is
-available; the frozen runtime and original README are still unqualified.
+dependency pins. On 2026-10-16 the owner approved the
+[three-package runtime amendment](docs/a100-runtime-amendment.md), now used by
+the offline installer. The original v25 acquisition manifest remains intact.
+The complete offline runtime, pinned base and original README remain unqualified.
 
 ## Local checks
 

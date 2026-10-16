@@ -1,6 +1,7 @@
 """Offline Linux CPython 3.12 closure check; no resolver/network during GPU use.
 
-Requires the already acquired v25 wheels AND a complete supplemental hash lock.
+Uses 38 unchanged v25 wheels plus three owner-approved replacements, AND a
+complete supplemental hash lock. The historical v25 manifest stays unchanged.
 Never substitutes the historical macOS CPU lock for a Linux runtime closure.
 """
 import argparse
@@ -18,6 +19,10 @@ import tempfile
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from tools.backtrace import MANIFEST
 
+RUNTIME_PROFILE = MANIFEST.with_name('a100-runtime-amendment.json')
+APPROVED_REPLACEMENTS = {'opentelemetry-exporter-otlp': '1.41.1',
+                         'prometheus-fastapi-instrumentator': '7.1.0',
+                         'xgrammar': '0.2.8'}
 REQUIRED = {'swegemma': '0.2.7', 'adk-submission': '0.2.11',
             'adk-eval-core': '0.1.0', 'google-adk': '1.36.1',
             'google-genai': '2.11.0', 'vllm': '0.19.1',
@@ -50,10 +55,45 @@ def normalized(name):
 
 
 def supplied_records():
+    """Original v25 acquisition evidence; never rewrite it as the runtime recipe."""
     records = json.loads(MANIFEST.read_text())['native_dtype_continuation']['mounted_wheelhouse']['files']
     if len(records) != 41 or sum(r['bytes'] for r in records) != 880829403:
         raise ValueError('unexpected v25 manifest identity')
     return records
+
+
+def runtime_records():
+    """Apply only the three approved substitutions to the pinned source inventory."""
+    profile = json.loads(RUNTIME_PROFILE.read_text())
+    try:
+        if profile['schema_version'] != 1 or profile['status'] != 'approved':
+            raise ValueError('runtime amendment is not approved')
+        if profile['source_manifest_sha256'] != hashlib.sha256(MANIFEST.read_bytes()).hexdigest():
+            raise ValueError('runtime amendment source manifest mismatch')
+        records = supplied_records()
+        originals = {normalized(r['path'].split('-')[0]): r for r in records}
+        replacements = {}
+        for amendment in profile['replacements']:
+            name = amendment['package']
+            if name not in APPROVED_REPLACEMENTS or name in replacements:
+                raise ValueError('unexpected or duplicate runtime substitution')
+            if amendment['original'] != originals[name]:
+                raise ValueError('runtime substitution original identity mismatch')
+            record = amendment['replacement']
+            filename = record['path']
+            parts = filename.split('-')
+            if (Path(filename).name != filename or not filename.endswith('.whl')
+                    or len(parts) < 5 or normalized(parts[0]) != name
+                    or parts[1] != APPROVED_REPLACEMENTS[name]
+                    or type(record['bytes']) is not int or record['bytes'] <= 0
+                    or not re.fullmatch(r'[a-f0-9]{64}', record['sha256'])):
+                raise ValueError('invalid approved replacement wheel identity')
+            replacements[name] = record
+        if replacements.keys() != APPROVED_REPLACEMENTS.keys():
+            raise ValueError('runtime amendment must contain exactly three substitutions')
+    except (KeyError, TypeError, AttributeError) as error:
+        raise ValueError('invalid runtime amendment schema') from error
+    return [replacements.get(normalized(r['path'].split('-')[0]), r) for r in records]
 
 
 def verify_supplied(wheels, records):
@@ -99,7 +139,7 @@ def combined_lock(supplemental, records):
         key = normalized(name)
         pin = (release, record['sha256'])
         if key in supplied or (key in pins and pins[key] != pin):
-            raise ValueError('supplied v25 wheel cannot be repinned')
+            raise ValueError('selected runtime wheel cannot be repinned')
         supplied[key] = pin
         pins[key] = pin
     for name, release in REQUIRED.items():
@@ -122,14 +162,16 @@ def qualify(wheels, supplemental, output):
             or platform.system() != 'Linux' or platform.machine() != 'x86_64'):
         raise ValueError('Linux x86_64 CPython 3.12 required')
     wheels = wheels.resolve(strict=True)
-    records = supplied_records()
+    records = runtime_records()
     verify_supplied(wheels, records)
     complete, supplied = combined_lock(supplemental.read_text(), records)
     output = output.absolute()
     output.mkdir(mode=0o700)  # Never overwrite a prior environment/receipt.
     try:
         (output / 'linux-runtime.lock').write_text(complete)
-        (output / 'supplied-v25.lock').write_text(supplied)
+        (output / 'runtime-pins.lock').write_text(supplied)
+        profile_bytes = RUNTIME_PROFILE.read_bytes()
+        (output / 'runtime-profile.json').write_bytes(profile_bytes)
         with tempfile.TemporaryDirectory(prefix='backtrace-offline-') as home:
             env = dict(PATH='/usr/bin:/bin', HOME=home, LANG='C.UTF-8',
                        PIP_CONFIG_FILE=os.devnull, PIP_NO_INDEX='1',
@@ -145,7 +187,7 @@ def qualify(wheels, supplemental, output):
                 offline_child(python, 'pip', 'install', '--disable-pip-version-check',
                  '--no-index', '--require-hashes', '--no-deps', '--force-reinstall',
                  '--only-binary=:all:', '--find-links=' + str(wheels),
-                 '-r', str(output / 'supplied-v25.lock')),
+                 '-r', str(output / 'runtime-pins.lock')),
                 offline_child(python, 'pip', 'check'),
                 offline_child(python,
                  'import torch, vllm, compressed_tensors, transformers, swegemma; '
@@ -157,7 +199,8 @@ def qualify(wheels, supplemental, output):
                 offline_child(python, 'pip', 'list', '--format=json',
                               '--disable-pip-version-check'), env=env, timeout=30)
         (output / 'inventory.json').write_bytes(inventory)
-        return {'offline_closure': 'PASS', 'supplied_wheels': len(records),
+        return {'offline_closure': 'PASS', 'runtime_wheels': len(records),
+                'runtime_profile_sha256': hashlib.sha256(profile_bytes).hexdigest(),
                 'lock_sha256': hashlib.sha256(complete.encode()).hexdigest(),
                 'inventory_sha256': hashlib.sha256(inventory).hexdigest(),
                 'model_execution': 'NOT RUN', 'official_candidate_checks': 'NOT RUN'}

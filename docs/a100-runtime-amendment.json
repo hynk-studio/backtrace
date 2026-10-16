@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "a100-linux-three-package-amendment-v1",
+  "status": "approved",
+  "approval": {
+    "date_utc": "2026-10-16",
+    "source": "Owner instruction in this ChatGPT conversation approving the three substitutions presented after PR #7 commit 9e2dae7.",
+    "scope": "Only these three runtime wheel substitutions; existing model, task, source artifacts, serving settings, budget and single-attempt conditions remain in force."
+  },
+  "source_manifest_sha256": "873e9dc7cf372948c154fb6b9d1e24170f1eb74fea4426d32fc17702581a030a",
+  "source_wheelhouse_version": 25,
+  "replacements": [
+    {
+      "package": "opentelemetry-exporter-otlp",
+      "original": {
+        "path": "opentelemetry_exporter_otlp-1.44.0-py3-none-any.whl",
+        "bytes": 6727,
+        "sha256": "4a498fa8d8fd8be9e8e2d175fe5524a3fe581ccffadd8509db86526a5fb97051"
+      },
+      "replacement": {
+        "path": "opentelemetry_exporter_otlp-1.41.1-py3-none-any.whl",
+        "bytes": 7025,
+        "sha256": "db276c5a80c02b063994e80950d00ca1bfddcf6520f608335b7dc2db0c0eb9c6"
+      }
+    },
+    {
+      "package": "prometheus-fastapi-instrumentator",
+      "original": {
+        "path": "prometheus_fastapi_instrumentator-8.1.0-py3-none-any.whl",
+        "bytes": 19649,
+        "sha256": "b9f40b2cff3f7891ca0610b3ae4fc6ec723fd326b04bb659819aaeb821a0fc7d"
+      },
+      "replacement": {
+        "path": "prometheus_fastapi_instrumentator-7.1.0-py3-none-any.whl",
+        "bytes": 19296,
+        "sha256": "978130f3c0bb7b8ebcc90d35516a6fe13e02d2eb358c8f83887cdef7020c31e9"
+      }
+    },
+    {
+      "package": "xgrammar",
+      "original": {
+        "path": "xgrammar-0.2.5.post1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+        "bytes": 48149933,
+        "sha256": "8df76e57eabf0576023826bd179dd2dddb56c1663dab74fd64086452487b795b"
+      },
+      "replacement": {
+        "path": "xgrammar-0.2.8-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+        "bytes": 1311291,
+        "sha256": "4045b096735bb2523e0d874039a55994c1b390620d547c4a0d4f43b9a106177b"
+      }
+    }
+  ],
+  "prior_cpu_evidence": "kaggle-cpu-followup-evidence.json",
+  "qualification": {
+    "prior_online_cpu_proposal": "245-package hash installation, uv pip check and imports passed on Kaggle; see prior evidence.",
+    "complete_portable_wheel_bundle": "NOT ACQUIRED",
+    "complete_offline_install": "NOT RUN",
+    "pinned_base_image": "NOT QUALIFIED",
+    "gpu_execution": "NOT RUN"
+  }
+}
