@@ -20,6 +20,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from tools.backtrace import MANIFEST
 
 RUNTIME_PROFILE = MANIFEST.with_name('a100-runtime-amendment.json')
+# Installation tooling, separate from the 245-package application closure.
+# This wheel is also CPython 3.12.14's bundled pip; the pinned base lacks ensurepip.
+BOOTSTRAP = {'path': 'pip-25.0.1-py3-none-any.whl', 'bytes': 1841526,
+             'sha256': 'c46efd13b6aa8279f33f2864459c8ce587ea6a1a59ee20de055868d8f7688f7f'}
 APPROVED_REPLACEMENTS = {'opentelemetry-exporter-otlp': '1.41.1',
                          'prometheus-fastapi-instrumentator': '7.1.0',
                          'xgrammar': '0.2.8'}
@@ -40,6 +44,9 @@ def audit(event, args):
 sys.addaudithook(audit)
 mode = sys.argv.pop(1)
 if mode == 'pip':
+    runpy.run_module('pip', run_name='__main__')
+elif mode == 'bootstrap-pip':
+    sys.path.insert(0, sys.argv.pop(1))
     runpy.run_module('pip', run_name='__main__')
 else:
     exec(mode, {'__name__': '__main__'})
@@ -130,6 +137,8 @@ def combined_lock(supplemental, records):
             raise ValueError('supplemental lock needs exact version and one wheel SHA256 per row')
         name, release, digest = match.groups()
         key = normalized(name)
+        if key == 'pip':
+            raise ValueError('pip is pinned separately as bootstrap tooling')
         if key in pins:
             raise ValueError('duplicate supplemental dependency')
         pins[key] = (release, digest)
@@ -164,12 +173,15 @@ def qualify(wheels, supplemental, output):
     wheels = wheels.resolve(strict=True)
     records = runtime_records()
     verify_supplied(wheels, records)
+    verify_supplied(wheels, [BOOTSTRAP])
     complete, supplied = combined_lock(supplemental.read_text(), records)
     output = output.absolute()
     output.mkdir(mode=0o700)  # Never overwrite a prior environment/receipt.
     try:
         (output / 'linux-runtime.lock').write_text(complete)
         (output / 'runtime-pins.lock').write_text(supplied)
+        bootstrap_lock = output / 'bootstrap.lock'
+        bootstrap_lock.write_text('pip==25.0.1 --hash=sha256:' + BOOTSTRAP['sha256'] + '\n')
         profile_bytes = RUNTIME_PROFILE.read_bytes()
         (output / 'runtime-profile.json').write_bytes(profile_bytes)
         with tempfile.TemporaryDirectory(prefix='backtrace-offline-') as home:
@@ -180,7 +192,11 @@ def qualify(wheels, supplemental, output):
                        LITELLM_LOCAL_MODEL_COST_MAP='True', LITELLM_TELEMETRY='False')
             python = output / 'venv/bin/python'
             commands = [
-                [sys.executable, '-I', '-m', 'venv', str(output / 'venv')],
+                [sys.executable, '-I', '-m', 'venv', '--without-pip', str(output / 'venv')],
+                offline_child(python, 'bootstrap-pip', str(wheels / BOOTSTRAP['path']),
+                 'install', '--disable-pip-version-check', '--no-index', '--require-hashes',
+                 '--no-deps', '--only-binary=:all:', '--find-links=' + str(wheels),
+                 '-r', str(bootstrap_lock)),
                 offline_child(python, 'pip', 'install', '--disable-pip-version-check',
                  '--no-index', '--require-hashes', '--only-binary=:all:',
                  '--find-links=' + str(wheels), '-r', str(output / 'linux-runtime.lock')),
@@ -200,6 +216,7 @@ def qualify(wheels, supplemental, output):
                               '--disable-pip-version-check'), env=env, timeout=30)
         (output / 'inventory.json').write_bytes(inventory)
         return {'offline_closure': 'PASS', 'runtime_wheels': len(records),
+                'bootstrap_wheel': dict(BOOTSTRAP),
                 'runtime_profile_sha256': hashlib.sha256(profile_bytes).hexdigest(),
                 'lock_sha256': hashlib.sha256(complete.encode()).hexdigest(),
                 'inventory_sha256': hashlib.sha256(inventory).hexdigest(),

@@ -7,17 +7,20 @@ import ctypes
 import os
 from pathlib import Path
 import socket
+import select
+import signal
 import subprocess
 import sys
 import tempfile
 import time
 from types import SimpleNamespace
 import unittest
+from unittest.mock import patch
 import urllib.error
 import urllib.request
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from tools.startup_guard import FatalTrace, group_members, guarded_server
+from tools.startup_guard import FatalTrace, group_members, guarded_server, stop_group
 from startup_fixture import fatal, worker_trace
 
 
@@ -207,6 +210,53 @@ class LifecycleCases:
 @unittest.skipUnless(os.name == 'posix', 'POSIX launch/session guard')
 class StartupGuardTests(LifecycleCases, unittest.TestCase):
     pass
+
+
+@unittest.skipUnless(sys.platform == 'linux', 'Linux process metadata and cleanup')
+class GroupCleanupTests(unittest.TestCase):
+    def test_foreign_procfs_namespace_cannot_prove_group_absence(self):
+        with patch('tools.startup_guard.os.getpid', return_value=-1):
+            with self.assertRaisesRegex(OSError, 'PID namespace'):
+                group_members(123)
+
+    def test_linux_group_observation_does_not_launch_ps(self):
+        with patch('tools.startup_guard.subprocess.check_output', side_effect=AssertionError('ps launched')):
+            self.assertIn(os.getpid(), group_members(os.getpgrp()))
+
+    def test_observation_failure_still_kills_and_reaps_owned_process(self):
+        for persistent in (False, True):
+            with self.subTest(persistent=persistent):
+                process = subprocess.Popen(
+                    [sys.executable, '-I', '-c',
+                     'import signal,time,ctypes; ctypes.CDLL(None).prctl(15, b"odd ) \\xff name", 0, 0, 0); '
+                     'signal.signal(signal.SIGTERM, signal.SIG_IGN); '
+                     'print("ready", flush=True); time.sleep(60)'],
+                    start_new_session=True, stdout=subprocess.PIPE, text=True)
+                try:
+                    self.assertTrue(select.select([process.stdout], [], [], 5)[0])
+                    self.assertEqual(process.stdout.readline().strip(), 'ready')
+                    self.assertIn(process.pid, group_members(process.pid))
+                    calls = []
+
+                    def observe(pgid):
+                        calls.append(pgid)
+                        if persistent or len(calls) == 1:
+                            raise PermissionError('authored metadata failure')
+                        return group_members(pgid)
+
+                    with patch('tools.startup_guard.group_members', side_effect=observe):
+                        if persistent:
+                            with self.assertRaises(PermissionError):
+                                stop_group(process, process.pid, grace=0.1)
+                        else:
+                            stop_group(process, process.pid, grace=0.1)
+                    self.assertEqual(process.returncode, -signal.SIGKILL)
+                    self.assertEqual(group_members(process.pid), [])
+                finally:
+                    if process.poll() is None:
+                        process.kill()
+                    process.wait(timeout=2)
+                    process.stdout.close()
 
 
 class TraceTests(unittest.TestCase):

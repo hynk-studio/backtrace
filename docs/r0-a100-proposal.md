@@ -9,6 +9,11 @@ results and blockers. On 2026-10-16 the owner also approved exactly three
 [dependency substitutions](a100-runtime-amendment.md); the build recipe below
 incorporates that amendment. No A100 allocation has been requested.
 
+The subsequent [offline CPU qualification](a100-offline-qualification.md)
+records restored inputs, the completed wheel bundle and actual base user-space
+checks. Historical acquisition statements below are not current blockers;
+the final private image, full A100 driver and provider gates remain separate.
+
 Recommend **one RunPod Secure Cloud on-demand `NVIDIA A100 80GB PCIe`,
 EU-RO-1**, full GPU, TP=1. No reservation, spot instance, MIG slice, second
 attempt or automatic substitute. This is a new environment, not a controlled
@@ -82,7 +87,8 @@ evidence of permission to pull that image on RunPod. Do not depend on it.
 
 Proposed image name: **backtrace-r0-linux-cu128**. Accessible public base:
 `pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca`.
-Anonymous manifest/config retrieval succeeded; config identifies Linux amd64,
+At the original proposal stage, anonymous manifest/config retrieval succeeded;
+config identifies Linux amd64,
 Ubuntu 24.04, Python 3.12 paths, Torch 2.10.0 and CUDA build argument 12.8.1.
 Only 6.4KB of manifest/config bytes were acquired, **no layers pulled or image
 executed**. This is an explicit image/OS delta, not Kaggle-image parity.
@@ -101,8 +107,11 @@ The private CPU build recipe is:
    `prometheus-fastapi-instrumentator==7.1.0` and `xgrammar==0.2.8`.
    Preserve the original v25 manifest as acquisition history. Use the existing
    separate task venv/Starlette 0.48.0 dependency strategy.
-2. Install the complete Linux lock offline with
-   `python3 -m pip install --no-index --require-hashes --find-links=/private/wheels -r /private/linux-runtime.lock`;
+2. Include the separately hash-pinned pip 25.0.1 bootstrap wheel: this base lacks
+   `ensurepip`. Run `tools/linux_runtime.py` with the complete wheel directory
+   and `docs/linux-supplemental.lock`. It creates a fresh `--without-pip` venv,
+   bootstraps pip from the verified wheel and installs the complete Linux lock
+   with `--no-index --require-hashes`;
    apply the selected 41-wheel `runtime-pins.lock` with `--no-deps --force-reinstall`
    through `tools/linux_runtime.py`, retaining the serving environment variables.
    Do not reinstall the three superseded v25 wheels. Provision system `git`, `setpriv`, `ps`, SSH
@@ -110,10 +119,12 @@ The private CPU build recipe is:
    image digest and package inventory. Run `pip check`, import checks, the actual
    candidate CPU checks and disposable-process isolation/cleanup checks before
    renting a GPU. No latest-version resolution during a GPU allocation.
-3. **Not yet build-ready:** the base lacks the Kaggle preinstalled dependency
-   closure; the supplemental Linux lock and final private image have not been
-   built/validated. Docker is unavailable locally. The macOS CPU lock is not a
-   substitute. A qualified existing free Linux CPU builder is a prerequisite;
+3. The portable Linux wheel closure and supplemental lock now exist; see the
+   [execution boundary](a100-offline-qualification.md) for base user-space checks.
+   **The final deployable private image is not yet built/qualified.** Kaggle's
+   CPU host permits chroot but denies mount/network namespaces; it is not a
+   Docker isolation qualification. The macOS CPU lock is not a substitute.
+   A suitable existing free Linux CPU builder remains a prerequisite;
    no paid builder/storage is authorized or costed here. Do not publish a derived
    image containing competition packages. If a private image cannot be delivered
    without extra charges, stop and revise the proposal before allocating.

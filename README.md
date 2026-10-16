@@ -36,7 +36,10 @@ exact notebook v2, tested the official lifecycle, and found three incompatible
 dependency pins. On 2026-10-16 the owner approved the
 [three-package runtime amendment](docs/a100-runtime-amendment.md), now used by
 the offline installer. The original v25 acquisition manifest remains intact.
-The complete offline runtime, pinned base and original README remain unqualified.
+The [offline CPU follow-up](docs/a100-offline-qualification.md) restores the exact
+original README and prepares the 245-package runtime closure plus a pinned pip
+bootstrap wheel. It records actual offline installs, official CPU checks and
+the remaining private-image, A100 driver and provider prerequisites separately.
 
 ## Local checks
 

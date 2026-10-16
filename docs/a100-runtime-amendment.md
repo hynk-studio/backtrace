@@ -1,5 +1,10 @@
 # Approved three-package runtime amendment
 
+Subsequent execution: [offline CPU qualification](a100-offline-qualification.md)
+restores the exact README, materializes the complete wheel bundle, and records
+new checks and the ensurepip/cleanup fixes. The evidence below describes the
+earlier amendment commit and is retained as history.
+
 On 2026-10-16 UTC the owner approved the exact three substitutions proposed after
 PR #7 head `9e2dae734854a563336f41b1410789a292c70f8d`. This adopts that change in
 the execution recipe; it does not authorize additional package changes or alter
@@ -44,11 +49,11 @@ inventory; the success receipt includes the profile and lock SHA256 values.
 Network denial, hash requirements, frozen core versions, import/dependency
 checks, refusal to overwrite outputs, and rollback on failure remain in place.
 
-With the selected wheels, complete transitive wheel bundle and strict Linux
-supplemental lock privately available, the existing invocation is unchanged:
+With all 245 runtime wheels and the separate pinned pip 25.0.1 bootstrap wheel
+privately available, use the selected Linux supplemental lock:
 
 ```sh
-python3 tools/linux_runtime.py .local/linux-wheels .local/linux-supplemental.lock .local/linux-runtime
+python3 tools/linux_runtime.py .local/linux-wheels docs/linux-supplemental.lock .local/linux-runtime
 ```
 
 Use this on the pinned PyTorch base before allocation. It performs no online
@@ -96,8 +101,8 @@ The saved viewer contains `pr7-amendment/summary.json`, `tests.log` and
 `preflight.json`, plus the tested source files. The editor then confirmed
 `off (run a cell to start)`. Quick Save's displayed runtime is not another test run.
 
-This amendment does not supply the missing original `HARNESS_README.md` or relax
-the candidate/compiler/argv artifact gates. A complete portable offline bundle,
-offline qualification on the pinned base, actual A100 driver qualification and
-provider prerequisites remain outstanding. No GPU/model/task/submission was
-started while adopting these pins.
+At the time of this amendment, the original `HARNESS_README.md`, portable offline
+bundle, base qualification, actual A100 driver and provider prerequisites were
+still outstanding. The candidate/compiler/argv artifact gates were not relaxed.
+The subsequent report linked above supersedes those status statements.
+No GPU/model/task/submission was started while adopting these pins.

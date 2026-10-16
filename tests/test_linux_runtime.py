@@ -4,6 +4,7 @@ import copy
 import json
 from pathlib import Path
 import subprocess
+import shutil
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -13,6 +14,18 @@ from tools import linux_runtime as runtime
 
 
 class LinuxRuntimeTests(unittest.TestCase):
+    def copy_bootstrap(self, directory):
+        # Reuse CPython's exact bundled wheel without downloading test inputs.
+        try:
+            import ensurepip
+        except ImportError:
+            self.skipTest('pinned bootstrap fixture is unavailable')
+        source = Path(ensurepip.__file__).parent / '_bundled' / runtime.BOOTSTRAP['path']
+        if not source.is_file():
+            self.skipTest('tests require the pinned pip 25.0.1 wheel')
+        shutil.copyfile(source, directory / source.name)
+        runtime.verify_supplied(directory, [runtime.BOOTSTRAP])
+
     def test_offline_child_blocks_direct_network_requests(self):
         result = subprocess.run(runtime.offline_child(
             runtime.sys.executable,
@@ -42,6 +55,7 @@ class LinuxRuntimeTests(unittest.TestCase):
     def test_no_repin_urls_unpinned_or_duplicate_dependencies(self):
         records = runtime.runtime_records()
         for text in ('vllm==0.19.2 --hash=sha256:' + 'a' * 64,
+                     'pip==25.0.1 --hash=sha256:' + runtime.BOOTSTRAP['sha256'],
                      'torch==2.10.0', '--index-url=https://example.test',
                      'torch @ https://example.test/wheel.whl',
                      ('torch==2.10.0+cu128 --hash=sha256:' + 'a' * 64 + '\n') * 2):
@@ -118,6 +132,24 @@ class LinuxRuntimeTests(unittest.TestCase):
                 install.assert_not_called()
             self.assertFalse((root / 'output').exists())
 
+    def test_missing_or_tampered_bootstrap_fails_before_environment_creation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            wheel = root / runtime.BOOTSTRAP['path']
+            for tampered in (False, True):
+                if tampered:
+                    wheel.write_bytes(b'x' * runtime.BOOTSTRAP['bytes'])
+                with self.subTest(tampered=tampered), \
+                        patch.object(runtime.platform, 'system', return_value='Linux'), \
+                        patch.object(runtime.platform, 'machine', return_value='x86_64'), \
+                        patch.object(runtime.sys, 'version_info', (3, 12)), \
+                        patch.object(runtime, 'runtime_records', return_value=[]), \
+                        patch.object(runtime.subprocess, 'run') as install:
+                    with self.assertRaisesRegex(ValueError, 'missing pinned wheel|hash mismatch'):
+                        runtime.qualify(root, root / 'absent.lock', root / 'output')
+                    install.assert_not_called()
+                self.assertFalse((root / 'output').exists())
+
     @unittest.skipUnless(runtime.platform.system() == 'Linux' and
                          runtime.platform.machine() == 'x86_64' and
                          runtime.sys.version_info[:2] == (3, 12),
@@ -127,6 +159,7 @@ class LinuxRuntimeTests(unittest.TestCase):
         # intentionally absent dependency must fail despite any host packages.
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
+            self.copy_bootstrap(root)
             wheel = root / 'backtrace_fixture-1.0-py3-none-any.whl'
             with zipfile.ZipFile(wheel, 'w') as archive:
                 prefix = 'backtrace_fixture-1.0.dist-info/'
@@ -156,6 +189,7 @@ class LinuxRuntimeTests(unittest.TestCase):
         # Only the large official import probe is replaced by fixture identity.
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
+            self.copy_bootstrap(root)
             for version in ('1.0', '2.0'):
                 wheel = root / f'backtrace_fixture-{version}-py3-none-any.whl'
                 with zipfile.ZipFile(wheel, 'w') as archive:
@@ -183,7 +217,9 @@ class LinuxRuntimeTests(unittest.TestCase):
                     patch.object(runtime, 'offline_child', side_effect=child):
                 result = runtime.qualify(root, lock, root / 'output')
             self.assertEqual(result['offline_closure'], 'PASS')
+            self.assertEqual(result['bootstrap_wheel'], runtime.BOOTSTRAP)
             inventory = json.loads((root / 'output/inventory.json').read_text())
+            self.assertEqual(next(p['version'] for p in inventory if p['name'] == 'pip'), '25.0.1')
             self.assertEqual(next(p['version'] for p in inventory if p['name'] == 'backtrace-fixture'), '2.0')
             self.assertEqual(result['runtime_profile_sha256'],
                              hashlib.sha256(runtime.RUNTIME_PROFILE.read_bytes()).hexdigest())

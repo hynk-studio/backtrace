@@ -76,6 +76,28 @@ class FatalTrace:
 
 def group_members(pgid):
     """Only PID/group/status metadata; no command lines or other users' secrets."""
+    if sys.platform == 'linux':
+        # Some execution sandboxes expose a parent namespace's procfs. Never
+        # mistake that unrelated process list for proof our group is absent.
+        if int(Path('/proc/self/stat').read_text().split(' ', 1)[0]) != os.getpid():
+            raise OSError('procfs PID namespace does not match this process')
+        # Avoid an external ps process on the bounded cleanup path. comm can
+        # contain spaces and ')' characters, so split after its last closing ')'.
+        members = []
+        with os.scandir('/proc') as entries:
+            for entry in entries:
+                if not entry.name.isdecimal():
+                    continue
+                try:
+                    fields = (Path(entry.path) / 'stat').read_text(errors='replace').rpartition(') ')[2].split()
+                    group = int(fields[2])  # state, ppid, pgrp
+                except (FileNotFoundError, ProcessLookupError):
+                    continue  # Process exited during this snapshot.
+                except (ValueError, IndexError) as error:
+                    raise OSError('invalid procfs process metadata') from error
+                if group == pgid:
+                    members.append(int(entry.name))
+        return members
     rows = subprocess.check_output(
         ['/bin/ps', '-axo', 'pid=,pgid=,stat='], text=True, timeout=2)
     return [int(pid) for pid, group, _ in (row.split() for row in rows.splitlines())
@@ -100,8 +122,13 @@ def stop_group(process, pgid, grace=1.0):
     until = time.monotonic() + grace
     while time.monotonic() < until:
         process.poll()  # Reap the Popen child as soon as it exits.
-        if not (group_members(pgid) if pgid else process.poll() is None):
-            return
+        try:
+            if not (group_members(pgid) if pgid else process.poll() is None):
+                return
+        except (OSError, subprocess.SubprocessError):
+            # Failed observation must not prevent KILL/reap. The final group
+            # check below still fails closed if absence cannot be verified.
+            break
         time.sleep(0.02)
     try:
         if pgid:
