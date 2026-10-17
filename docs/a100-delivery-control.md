@@ -2,8 +2,11 @@
 
 This is free CPU preparation for the existing conditional A100 attempt. It does
 not allocate a Pod, fund an account or enable the private driver's GPU entry.
-The owner has no RunPod account. Actual provider expiry, SSH, deletion and billing
-remain NOT RUN; CPU fixtures are not provider qualification.
+The owner subsequently created and signed into RunPod. The
+[prepayment audit](a100-prepayment-audit.md) supersedes the earlier account
+blocker and records stronger negative evidence for native expiry. Actual
+provider expiry, SSH, deletion and billing remain NOT RUN; CPU fixtures are not
+provider qualification.
 
 ## Fixed private streams
 
@@ -84,6 +87,14 @@ host. No API key belongs on the agent Pod.
   promise a financial cap through arbitrary provider/network outages.
 
 ## Provider-native expiry is still a hard blocker
+
+**Later 2026-10-17 finding:** upstream runpodctl PR #330 removed both timer flags
+because accepted deadlines were not enforced; restoration PR #331 closed
+unmerged. Our live read-only request rejects both intended Pod readback fields.
+The current REST v2 specification supplies no equivalent schedule. See the
+[audit and exact evidence](a100-prepayment-audit.md); creating an API key alone
+does not resolve this blocker. The conditional adapter below remains disabled
+for real allocation. REST v1 is also scheduled for retirement on 2026-11-15.
 
 Primary text checked on 2026-10-17 UTC:
 

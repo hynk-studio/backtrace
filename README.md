@@ -1,7 +1,10 @@
 # Backtrace
 
-Current free preparation: [private delivery and external cleanup controls](docs/a100-delivery-control.md).
-Actual provider expiry readback remains a pre-allocation blocker; GPU entry stays disabled.
+Current decision: **payment and allocation on hold**; see the
+[prepayment audit](docs/a100-prepayment-audit.md). RunPod's removed timer flags,
+live readback rejection and REST v2 schema do not establish the approved native
+expiry control. [CPU delivery preparation](docs/a100-delivery-control.md) remains
+valid; GPU entry stays disabled.
 
 Does post-training logical/abductive inference, Bayesian belief revision, and
 selection of useful inspections improve Gemma's software-engineering performance

@@ -1,5 +1,10 @@
 # Free preparation and rental assessment — 2026-10-16 UTC
 
+**Subsequent checkpoint (2026-10-17):** the owner has now created and signed into
+RunPod. See the [prepayment audit](a100-prepayment-audit.md) for the current
+account/resource boundary, updated price and native-timer failure evidence.
+The account and quote statements below describe this earlier assessment.
+
 The current frozen GPU experiment needs a suitable GPU beyond the resources
 available in this Kaggle account. One bounded A100 80GB PCIe inference/task smoke
 is justified once the remaining delivery and provider controls are ready. It is

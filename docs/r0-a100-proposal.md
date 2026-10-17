@@ -15,8 +15,10 @@ checks. Historical acquisition statements below are not current blockers;
 the A100 task/controller and provider gates remain separate. The active Issue #1
 authorization explicitly allows a CPU-qualified private offline bootstrap on
 the pinned public base. A private image/registry is not required. The owner has
-clarified that no RunPod account exists; do not request an existing login or
-interpret the consumption authorization as permission to create/fund an account.
+subsequently created and signed into RunPod. The
+[prepayment audit](a100-prepayment-audit.md) replaces the historical account,
+price and provider-control assumptions below. Funding remains a separate owner
+decision; the approved native expiry control is not established.
 See the [current free-resource assessment](free-resource-assessment.md).
 
 Recommend **one RunPod Secure Cloud on-demand `NVIDIA A100 80GB PCIe`,
