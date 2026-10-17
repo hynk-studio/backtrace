@@ -35,11 +35,17 @@ alone is not identity verification. API/Kaggle credentials never enter a stream.
 The standalone receiver checks the separately supplied manifest hash, storage
 space, exact ordered file list, size and SHA256; rejects links, traversal,
 truncation and extra files; then reopens and rehashes the written files before
-an atomic rename. Failed transfers leave no committed destination. The sender
+an atomic rename. Rejected payloads leave no committed destination. A lost final
+acknowledgement is uncertain staging, never permission to start work. The sender
 compares the receiver's receipt with its own manifest. A received directory is
 private staging, **not an activated agent input mount**. Its delivery manifest
 must remain owner-side when the future launcher constructs the exact logical
 input paths and verifies UID/read-only isolation.
+
+The real wheel rehearsal exposed three basenames of 105/112/115 characters
+that cannot fit USTAR's unsplittable 100-byte name field. GNU long-name records
+now preserve these exact names; manifest/path/type/hash enforcement is unchanged.
+A regression test uses the actual longest filename with disposable fixture bytes.
 
 `a100_task.prepare` now copies an explicit workload-tool closure. It excludes
 owner delivery/controller modules instead of sweeping future tools into the
@@ -101,10 +107,58 @@ the existing approval is not silently weakened to external timers only.
 
 ## Validation status
 
-CPU fault-injection and private stream results are being recorded for this
-revision. They cover real separate sender/receiver processes and a fresh
-watchdog process speaking to a loopback HTTP provider fixture. They do not
-qualify live RunPod creation, native expiry, internet SSH or final billing.
+The final tooling revision is `ed3d346b9fcdcd680f28a325b47686b66316c552`.
+[Evidence JSON](a100-delivery-control-evidence.json) separates Cloud, Kaggle
+and actual-provider status. All 35 executed tool/test source hashes match this
+revision; later report-only commits do not change those tested bytes.
+
+| Check | Observed result |
+| --- | --- |
+| Kaggle CPU / CPython 3.12.14 full suite | **132 PASS, 0 skipped**, 27.942s |
+| Kaggle CPU preflight | READY |
+| New fault/inventory cases | 42 cases: 14 stream, 24 controller, 4 frozen inventory; included in the full suite |
+| Exact selected task stream, separate processes | Eight files / 222,386,501 bytes; rehash PASS, 6.187s |
+| Exact runtime wheel stream, separate processes | 246 files / 5,373,559,590 bytes; rehash PASS, 144.856s |
+| Real OpenSSH loopback, selected task bytes | PASS, 5.886s; wrong host key refused; owned server group 0; temporary keys removed |
+| Real private driver stream on Cloud | 16 files / 269,695 bytes; rehash PASS, 0.523s; GPU entry still refused |
+| Cloud full suite / preflight | 132 run, 12 existing foreign-procfs errors; preflight READY |
+
+The controller tests include a fresh independent process that reads the durable
+journal and drives the real HTTP adapter against a loopback provider fixture,
+with no launcher heartbeat. They verify deletion/readback of the exact owned
+fixture Pod while preserving an unrelated fixture Pod. This is **not** observed
+RunPod deletion. Authenticated provider creation/expiry/delete/billing, internet
+SSH, actual Pod isolation, model transfer/load and agent execution are NOT RUN.
+Previous official-wrapper, full offline installation and pinned-base user-space
+qualification results remain historical; they were not repeated or counted here.
+
+The first notebook control script had a newline-escaping syntax error before
+launching any subprocess. That source/error is preserved. The initial 131-test
+suite passed, but the subsequent full-wheel stream rejected USTAR long names
+and did not commit its destination. That failure, the three filename diagnoses,
+and corrected-run evidence are retained. No source/runtime/input pin was changed
+to make a failed check pass.
+
+Fresh wheel acquisition took 134.868s with all 246 exact bytes verified. The
+38 unchanged Kaggle wheels were selected by explicit mounted path; the three
+approved replacements and remaining supplemental hashes were unchanged. This
+run qualifies delivery of the closure, not a new offline installation. Model
+manifest construction was checked but its 23GB payload was not downloaded or
+transferred. Local throughput is not an internet/provider transfer guarantee.
+
+The 86,483-byte Kaggle log/metadata archive was downloaded and its SHA256 and all
+member hashes verified. The combined private continuation evidence was durably
+saved: 47 members, 258,044 bytes, SHA256
+`e9c6d105b674d297fb56c75d48acd4714e5efc68c088e7e4c7d53ff5cc090947`.
+It retains the private prepared driver, initial failures, corrected scripts,
+logs and receipts; excludes wheels, model weights, task payloads and credentials.
+No durable wheel backup is claimed. The prior full wheel ZIP was not restored;
+this turn used a fresh exact acquisition and removed both wheel source/copy after
+verification. The saved acquisition recipe supports a later free rebuild.
+
+All owned job groups were empty, ephemeral SSH keys were removed, temporary
+Python/cache paths were removed, and Kaggle's **off (run a cell to start)** state
+was observed. The saved Kaggle version remains 3; no version-save retry occurred.
 
 Remaining deployment work is concrete: authenticate provider-native expiry
 readback without allocating; establish a durable owner watchdog host and SSH
