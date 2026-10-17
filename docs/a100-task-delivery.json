@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "phase": "task",
+  "files": [
+    {
+      "path": "agent-task.json",
+      "bytes": 810,
+      "sha256": "6ed92f4e646c17728aa8b9ca433a032d61b6b06827eec463a02c00f331c25d60"
+    },
+    {
+      "path": "embeddings/fastapi_a7f2dbe976bf72703376f0cd04487bfc4a849f83.npz",
+      "bytes": 4158644,
+      "sha256": "46fb70dc9b0e8370136e7da78be77b04ff9f117af6fd67df0b0cc908a00bcef9"
+    },
+    {
+      "path": "graphs/fastapi_a7f2dbe976bf72703376f0cd04487bfc4a849f83.json",
+      "bytes": 3787549,
+      "sha256": "7ec16396393fadd398243098622c524f341778151c0455bdfec3ef7b0ff812df"
+    },
+    {
+      "path": "r0-clean.zip",
+      "bytes": 6230,
+      "sha256": "2e24495826cb971053439a00d9ad8350471fc0efffa41a54b82082feedaa7358"
+    },
+    {
+      "path": "snapshots/fastapi_11194.tgz",
+      "bytes": 214241984,
+      "sha256": "21e42341f416904a0e464cac84f227ff8351bb652d522192212737e6dec663d1"
+    },
+    {
+      "path": "wheels/pdm_backend-2.4.9-py3-none-any.whl",
+      "bytes": 115770,
+      "sha256": "8d1064751dadb0c40b1026b46826a448d85c8228a564985c62fb53d4aba538a1"
+    },
+    {
+      "path": "wheels/starlette-0.48.0-py3-none-any.whl",
+      "bytes": 73736,
+      "sha256": "0764ca97b097582558ecb498132ed0c7d942f233f365b86ba37770e026510659"
+    },
+    {
+      "path": "inputs-receipt.json",
+      "bytes": 1778,
+      "sha256": "b6517713cc1eaf5bf3d341f5979f72b5eb7482de87b588ceb2c090139c8c67e8"
+    }
+  ]
+}

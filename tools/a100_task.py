@@ -21,6 +21,11 @@ from tools.guard_driver import DRIVER_SHA256, transform as guard_transform
 
 ROOT = Path(__file__).resolve().parents[1]
 WHEEL_MANIFEST_SHA256 = '3c5decd1c9aa3a71543242d1ac0e1c3e98ddf07fa26f7e4bf2cc6c7b66dfad6a'
+# Explicit workload-side dependency closure. Owner delivery/controller tools
+# must never be swept into the private worker tree as new files are added.
+POD_TOOLS = ('a100_task.py', 'a100_driver.py', 'guard_driver.py', 'compile_probe.py',
+             'backtrace.py', 'artifacts.py', 'r0.py', 'native_dtype.py',
+             'official_check.py', 'startup_guard.py', 'errors.py', 'linux_runtime.py')
 
 
 def canonical(name):
@@ -162,7 +167,9 @@ def prepare(source, output):
     try:
         (output / 'one_task.py').write_text(result)
         shutil.copyfile(ROOT / 'tools/startup_guard.py', output / 'startup_guard.py')
-        shutil.copytree(ROOT / 'tools', output / 'tools', ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
+        (output / 'tools').mkdir()
+        for name in POD_TOOLS:
+            shutil.copyfile(ROOT / 'tools' / name, output / 'tools' / name)
         (output / 'docs').mkdir()
         for name in ('source-manifest.json', 'linux-wheel-manifest.json'):
             shutil.copyfile(ROOT / 'docs' / name, output / 'docs' / name)
