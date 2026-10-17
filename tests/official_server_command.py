@@ -18,11 +18,13 @@ from tools.native_dtype import NO_CUSTOM_AR, no_custom_ar_source, serving_source
 from tools.official_check import check_installed_wheels
 from tools.r0 import expected_candidate, inspect_candidate
 from tools.startup_guard import guarded_server
+from tools.a100_driver import build_config, make_server
 
 
 class OfficialServerCommandTests(unittest.TestCase):
     def test_actual_wrapper_command_adds_exactly_one_flag(self):
         from adk_submission import VllmConfig, VllmServer, discover_adapters
+        from adk_submission.errors import ServerStartupError
         _, native = serving_sources((ROOT / '.local/starter.ipynb').read_bytes())
         report, files = inspect_candidate(ROOT / '.local/r0-clean/build-a.zip',
                                           expected_candidate(ROOT / '.local/official'))
@@ -47,16 +49,34 @@ class OfficialServerCommandTests(unittest.TestCase):
                 scope = dict(VllmConfig=VllmConfig, MODEL_PATH=Path(MODEL_PATH), tp_size=tp,
                              torch=SimpleNamespace(cuda=SimpleNamespace(
                                  is_available=lambda: True,
-                                 is_bf16_supported=lambda **_: bf16)))
+                                 is_bf16_supported=lambda **_: bf16,
+                                 device_count=lambda: tp,
+                                 get_device_capability=lambda _: (8, 0))))
                 config = eval(compile(ast.Expression(assignments[0].value),
                                       '<pinned-serving-config>', 'eval'), scope)
+                if tp == 1:
+                    # Exercise the new A100 driver with the actual pinned
+                    # notebook/config class, not a second handwritten recipe.
+                    actual = build_config((ROOT / '.local/starter.ipynb').read_bytes(),
+                                          VllmConfig, scope['torch'])
+                    self.assertEqual(asdict(actual), asdict(config))
+                    config = actual
                 configurations.append(asdict(config))
                 server = VllmServer(config, adapter_manifest=adapters)
                 try:
                     commands.append(server.build_cmd())
                     self.assertIsNone(server.process)
-                    guarded = guarded_server(VllmServer, total_deadline=time.monotonic() + 1200)(
-                        config, adapter_manifest=adapters)
+                    if tp == 1:
+                        guarded, _ = make_server(
+                            (ROOT / '.local/starter.ipynb').read_bytes(), scope['torch'],
+                            'NVIDIA A100-PCIE-80GB, GPU-injected, 81920, 570.124.06, Disabled\n',
+                            toolkit_version='12.8.1',
+                            allocation_requested_monotonic=time.monotonic(),
+                            adapter_manifest=adapters, server_type=VllmServer,
+                            config_type=VllmConfig, error_type=ServerStartupError)
+                    else:
+                        guarded = guarded_server(VllmServer, total_deadline=time.monotonic() + 1200)(
+                            config, adapter_manifest=adapters)
                     try:
                         shim_command = guarded.build_cmd()
                         self.assertEqual(shim_command[5:], commands[-1])

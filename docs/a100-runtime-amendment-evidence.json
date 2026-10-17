@@ -1,0 +1,116 @@
+{
+  "owner_approval_date_utc": "2026-10-16",
+  "source_parent": "9e2dae734854a563336f41b1410789a292c70f8d",
+  "kaggle_verification": {
+    "recorded_at_utc": "2026-10-16T04:17:04.497730+00:00",
+    "unit_tests": {
+      "passed": 83,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 20.829
+    },
+    "cpu_lifecycle": {
+      "cases": 9,
+      "max_fatal_detection_seconds": 0.046981372999994164,
+      "owned_processes_remaining": 0,
+      "boundary": "authored lifecycle and CPU payload; not actual official wrapper or GPU"
+    },
+    "source_parent": "9e2dae734854a563336f41b1410789a292c70f8d",
+    "environment": "Kaggle Linux x86_64 CPU, Accelerator None",
+    "python": "Python 3.12.14",
+    "tests_exit_code": 0,
+    "test_wall_seconds": 21.662,
+    "preflight_exit_code": 0,
+    "preflight": {
+      "dependencies": "standard library only",
+      "local_tooling": "READY",
+      "official_validator": "NOT RUN",
+      "python": "3.12.14",
+      "r0_clean_packaging": "NOT RUN"
+    },
+    "file_sha256": {
+      "docs/a100-runtime-amendment.json": "24baa8489b5cdfef9f135b195db78ec856df8cffd61ae4696da11e71ef52fdc6",
+      "docs/source-manifest.json": "873e9dc7cf372948c154fb6b9d1e24170f1eb74fea4426d32fc17702581a030a",
+      "tests/official_binding.py": "34b0ac886301fe2833b95fad5c2cce076720e6926f115d72d3b2cf09aa3096fc",
+      "tests/official_server_command.py": "c71be871eacdef4141a1567aaa90350bcd8713df561b36641d8be7851ce27a32",
+      "tests/official_startup_guard.py": "567352bfc0c3fb551b932e20402efce2f466fbefb5bda6d2b63c4e03c7dd60f4",
+      "tests/startup_fixture.py": "06f3f344f4b552e9eefce969c08da4f7269f312eb93fd47c80606db70fdb4a43",
+      "tests/test_a100_driver.py": "27e98b1f3cc08ea332bcfbfbc149bf0b7960d96fefd9a816358f1047fa52adc7",
+      "tests/test_artifacts.py": "cc73f6154095a59a843ac2e504ae68638824d1e734f3d1c48e8286813cfd824f",
+      "tests/test_backtrace.py": "f257dc266acdf86b59e5368e5a1b3162692f5106825787d139da875fe3e33a3f",
+      "tests/test_compile_probe.py": "15fb08fc63f09baa5bf1aac937c48cdebaec5b8972099ff796703a4b0e45b726",
+      "tests/test_guard_driver.py": "38fc2d162ba0d1fc72638d88f1d9aeb33c0e1a8583a6f50feae73bca4026c9cc",
+      "tests/test_linux_runtime.py": "1e75f281c0010c0224ced0ff542e72eb36874a8f2e47d5ed8b9cbebb4612d9b8",
+      "tests/test_native_dtype.py": "f7c71bbba4e131bc2752036d08d980eb052b70ecc42139eb5c0708b166c1f473",
+      "tests/test_r0.py": "07db71f53d86d0926ae2723f04da8bdeb3c11023d9ff14a90e789d6a766baded",
+      "tests/test_select_smoke_task.py": "31ad9efc490d37953617b67bb7dbb888e25860478b3221cbeffb36c851d988b1",
+      "tests/test_startup_guard.py": "2fcfd094c52d08409687701ece3d5b740f97965ef1e0203bbd4bbb4f0ebf9b7e",
+      "tools/a100_driver.py": "ea06e2cf6d87091a7f5f3ad0fc0cba12af43b4a0276f65c23b6a4414235d344c",
+      "tools/artifacts.py": "69e2bcd31bfb6b00dc0bb730eeae1e03681830f8e97594cbaf27cde36db58b8c",
+      "tools/backtrace.py": "10fa8d46788703bdf1eb9052edcb9d0159cb782a015a5fa6f74196b1bc23c58f",
+      "tools/compile_probe.py": "a5248fb9ed8fb59dc3d9bd84081d5d02b71012cd360211dc1e3002a60c2d5f59",
+      "tools/errors.py": "eb5a7c91f7d540aa417065d528e49b5926a9c6dbef772a303ff80ad3902ec470",
+      "tools/guard_driver.py": "52da5a42a2ae89973cfee7437ced9602f331143154ec538bfc2a2b854e8c38ca",
+      "tools/linux_runtime.py": "3d2934b494dfcba966cde29baa47d478f96e4e05724da08984283be848910576",
+      "tools/native_dtype.py": "d6d03561491155f470dba1ea1b36790821363416e29f9493581ac43fc039cc60",
+      "tools/official_check.py": "c6ad5915d671a68377f383d90abcd30ec1e05a39b2bed541ebe18c5ebb39ef7b",
+      "tools/r0.py": "cf84b6378edc1ffbcee0ec99e6d39b44216ed0c6737e1ed50771b4216f318411",
+      "tools/select_smoke_task.py": "f0057ed055fe95aeec54a36b08e96f21fc907e656f41e3e7d62f8f71618a03f2",
+      "tools/startup_guard.py": "bb530f7f6340d1a4d39552f93a0c2f1c27a9ad2e2072e76ff3841869d84f4780"
+    },
+    "tests_log_sha256": "7bf69db8d5daaced3814b014944620e684f497503bfb7893ea4a4172c0f250bd",
+    "source_manifest_unchanged": true,
+    "scope": "Repository unit/integration tests, including authored offline pip fixtures; not full official runtime qualification.",
+    "gpu_allocations": 0,
+    "model_starts": 0,
+    "task_executions": 0,
+    "temporary_test_python_and_cache": "removed"
+  },
+  "cloud_verification": {
+    "python": "3.12.14",
+    "focused_runtime_tests": {
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 8.248
+    },
+    "full_suite": {
+      "tests": 83,
+      "passed": 74,
+      "failures": 1,
+      "errors": "8 lifecycle errors from ps; 1 residual-PID assertion failure",
+      "seconds": 16.447,
+      "status": "FAIL in Cloud environment",
+      "ps_standalone_exit_code": 1,
+      "ps_stderr": "fatal library error, lookup self",
+      "tests_log_sha256": "47bd3c0fd197d48529f2c171e7522316cf608ba7f5959a1593ed1510bf430513"
+    },
+    "earlier_incomplete_invocation": "exit 1 without unittest summary; not counted as a completed suite",
+    "preflight": "local_tooling READY",
+    "matching_live_task_fixture_processes_after_run": 0
+  },
+  "full_official_offline_runtime": "NOT RUN",
+  "original_readme": "STILL MISSING",
+  "gpu_allocations": 0,
+  "model_starts": 0,
+  "task_executions": 0,
+  "saved_result": {
+    "provider": "Kaggle",
+    "visibility": "Private",
+    "version": 3,
+    "script_version_id": 358884071,
+    "name": "Approved pins; 83 CPU tests passed",
+    "url": "https://www.kaggle.com/code/hynk1240/backtrace-pr7-cpu-qualification/output?scriptVersionId=358884071",
+    "method": "Quick Save with output; not another test run",
+    "verified_output_files": [
+      "pr7-amendment/summary.json",
+      "pr7-amendment/tests.log",
+      "pr7-amendment/preflight.json"
+    ]
+  },
+  "kaggle_cpu_session": {
+    "state": "stopped",
+    "observed_editor_state": "off (run a cell to start)"
+  }
+}

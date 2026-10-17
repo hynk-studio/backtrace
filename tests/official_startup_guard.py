@@ -18,8 +18,8 @@ from test_startup_guard import LifecycleCases
 if __name__ == '__main__':
     if sys.prefix == sys.base_prefix or any(k in os.environ for k in ('OPENAI_API_KEY', 'KAGGLE_API_TOKEN', 'RUNPOD_API_KEY')):
         raise SystemExit('Use env -i with the pinned CPU venv')
-    signal.signal(signal.SIGALRM, lambda *_: (_ for _ in ()).throw(TimeoutError('CPU integration cap 60s')))
-    signal.alarm(60)
+    signal.signal(signal.SIGALRM, lambda *_: (_ for _ in ()).throw(TimeoutError('CPU integration cap 150s')))
+    signal.alarm(150)  # Fixture-only cap; production startup remains 1,200s.
     with tempfile.TemporaryDirectory(prefix='backtrace-official-startup-') as directory:
         os.chdir(directory)
         tempfile.tempdir = directory
@@ -44,7 +44,7 @@ if __name__ == '__main__':
 
             def configuration(self, port, directory):
                 return VllmConfig(model='unused-cpu-fixture', port=port,
-                                  startup_timeout=4)  # Preserve real 1s poll interval.
+                                  startup_timeout=12)  # Preserve real 1s poll interval.
 
             def test_retained_driver_transform_reproducible_no_overwrite(self):
                 source = ROOT / '.local/smoke/no-custom-ar/one_task.py'

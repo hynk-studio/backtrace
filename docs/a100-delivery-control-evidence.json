@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-10-17T03:24:15.232054+00:00",
+  "scope": "free CPU private delivery and external cleanup preparation; no actual provider execution",
+  "tested_source_commit": "ed3d346b9fcdcd680f28a325b47686b66316c552",
+  "tested_source_tree": "c7e40314b04a2028641e19a8ceabb28b443883cd",
+  "kaggle": {
+    "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+    "suite": {
+      "run": 132,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 27.942
+    },
+    "checks": [
+      {
+        "check": "unit-tests",
+        "exit_code": 0,
+        "seconds": 28.278
+      },
+      {
+        "check": "preflight",
+        "exit_code": 0,
+        "seconds": 0.115
+      }
+    ],
+    "new_tests": {
+      "stream": 14,
+      "controller": 24,
+      "frozen_inventories": 4
+    },
+    "fresh_wheel_download_seconds": 134.868,
+    "delivery": [
+      {
+        "schema_version": 1,
+        "phase": "task",
+        "manifest_sha256": "7e757d6a8b6d61fc917a623509a3ed5ee13b1ed69a91d3956550d776709d2ee8",
+        "files": 8,
+        "bytes": 222386501,
+        "verified": true,
+        "kind": "task",
+        "seconds": 6.187,
+        "transport": "separate processes / local pipe; not internet SSH"
+      },
+      {
+        "schema_version": 1,
+        "phase": "bootstrap",
+        "manifest_sha256": "678a11ce1dbf772d3bf08b0032eaae9597b3940829ed7e85415602d9a821c694",
+        "files": 246,
+        "bytes": 5373559590,
+        "verified": true,
+        "kind": "wheels",
+        "seconds": 144.856,
+        "transport": "separate processes / local pipe; not internet SSH"
+      }
+    ],
+    "openssh_loopback": {
+      "transport": "OpenSSH loopback only; no provider/network path",
+      "status": "PASS",
+      "wrong_host_key": "REFUSED",
+      "receipt": {
+        "schema_version": 1,
+        "phase": "task",
+        "manifest_sha256": "7e757d6a8b6d61fc917a623509a3ed5ee13b1ed69a91d3956550d776709d2ee8",
+        "files": 8,
+        "bytes": 222386501,
+        "verified": true
+      },
+      "seconds": 5.886,
+      "owned_server_group_remaining": 0,
+      "temporary_keys_removed": true
+    },
+    "cleanup": {
+      "owned_groups_remaining": {
+        "122": [],
+        "359": [],
+        "381": [],
+        "382": []
+      },
+      "temporary_paths_removed": [
+        "/tmp/backtrace-step1-python",
+        "/tmp/backtrace-step1-cache",
+        "/tmp/backtrace-step1-bin",
+        "/tmp/backtrace-step1-home"
+      ],
+      "temporary_ssh_keys_remaining": 0,
+      "gpu_devices": 0,
+      "free_working_bytes": 20935204864,
+      "version_save": "NOT ATTEMPTED; saved version remains 3"
+    },
+    "session_final": "off (run a cell to start)",
+    "saved_version": 3,
+    "version_save_attempted": false
+  },
+  "cloud": {
+    "suite": {
+      "run": 132,
+      "errors": 12,
+      "seconds": 27.645,
+      "reason": "existing foreign procfs PID namespace; guard unchanged"
+    },
+    "checks": [
+      {
+        "check": "cloud-tests-final",
+        "exit_code": 1,
+        "seconds": 28.108
+      },
+      {
+        "check": "cloud-preflight-final",
+        "exit_code": 0,
+        "seconds": 0.176
+      }
+    ],
+    "driver_delivery": {
+      "source_commit": "ed3d346b9fcdcd680f28a325b47686b66316c552",
+      "receipt": {
+        "schema_version": 1,
+        "phase": "bootstrap",
+        "manifest_sha256": "1e11563cc858c3a8aec05060be334db0e9e8baf0ed422539e4891d1e78b956c6",
+        "files": 16,
+        "bytes": 269695,
+        "verified": true
+      },
+      "seconds": 0.523,
+      "non_cpu_launch": "BLOCKED"
+    }
+  },
+  "initial_failures": [
+    {
+      "stage": "notebook control-script compile",
+      "kind": "newline escaping SyntaxError",
+      "subprocesses_started": 0
+    },
+    {
+      "stage": "real wheel stream",
+      "kind": "USTAR basenames over 100 bytes",
+      "names_lengths": [
+        105,
+        112,
+        115
+      ],
+      "received_destination_committed": false,
+      "fix": "GNU long-name records; same frozen bytes/hashes; regression test and actual repeated stream"
+    }
+  ],
+  "source_hashes": {
+    "tools/a100_delivery.py": "5538847e4821c17c81093c8f081f2eb0462dd4af7c970785b0f29ad5b9ad75da",
+    "tools/a100_driver.py": "ea06e2cf6d87091a7f5f3ad0fc0cba12af43b4a0276f65c23b6a4414235d344c",
+    "tools/a100_task.py": "5709202aa14012aa5a6c3453715ae08eeba11d221173c9169848b7ebcce3fd4d",
+    "tools/artifacts.py": "69e2bcd31bfb6b00dc0bb730eeae1e03681830f8e97594cbaf27cde36db58b8c",
+    "tools/backtrace.py": "10fa8d46788703bdf1eb9052edcb9d0159cb782a015a5fa6f74196b1bc23c58f",
+    "tools/compile_probe.py": "a5248fb9ed8fb59dc3d9bd84081d5d02b71012cd360211dc1e3002a60c2d5f59",
+    "tools/errors.py": "eb5a7c91f7d540aa417065d528e49b5926a9c6dbef772a303ff80ad3902ec470",
+    "tools/guard_driver.py": "52da5a42a2ae89973cfee7437ced9602f331143154ec538bfc2a2b854e8c38ca",
+    "tools/linux_runtime.py": "feffd81c92cd91679c174d9824c91628e2d2a41426a437e6783438570eaf7574",
+    "tools/native_dtype.py": "d6d03561491155f470dba1ea1b36790821363416e29f9493581ac43fc039cc60",
+    "tools/official_check.py": "c6ad5915d671a68377f383d90abcd30ec1e05a39b2bed541ebe18c5ebb39ef7b",
+    "tools/private_delivery.py": "dba1238f011ae595af7d6f4a83c354ed688c08138bc116dca85cdb149251f0d4",
+    "tools/r0.py": "cf84b6378edc1ffbcee0ec99e6d39b44216ed0c6737e1ed50771b4216f318411",
+    "tools/runpod_control.py": "b996ee36b2759c9bb535534f081721a3e39edd9cb95911a2d89ba301d24a0885",
+    "tools/select_smoke_task.py": "f0057ed055fe95aeec54a36b08e96f21fc907e656f41e3e7d62f8f71618a03f2",
+    "tools/startup_guard.py": "d0474a0015d3f72139b16782421f4dc1be5c55b8574e7f235666710cc3870c69",
+    "tests/official_a100_task.py": "c658d50cae3931c6ab7b0bffd2b9b937e614e45e00de6181ed23309e9495c168",
+    "tests/official_binding.py": "34b0ac886301fe2833b95fad5c2cce076720e6926f115d72d3b2cf09aa3096fc",
+    "tests/official_server_command.py": "c71be871eacdef4141a1567aaa90350bcd8713df561b36641d8be7851ce27a32",
+    "tests/official_startup_guard.py": "567352bfc0c3fb551b932e20402efce2f466fbefb5bda6d2b63c4e03c7dd60f4",
+    "tests/startup_fixture.py": "06f3f344f4b552e9eefce969c08da4f7269f312eb93fd47c80606db70fdb4a43",
+    "tests/test_a100_delivery.py": "fe3e25511e2744d68f194581073315656964335ddce1a5ab54fc58cab3ff8c13",
+    "tests/test_a100_driver.py": "27e98b1f3cc08ea332bcfbfbc149bf0b7960d96fefd9a816358f1047fa52adc7",
+    "tests/test_a100_task.py": "9653a008b60cbd8d7821ff43b310b8fefede41a08372ace2297cdeeb47fdc097",
+    "tests/test_artifacts.py": "cc73f6154095a59a843ac2e504ae68638824d1e734f3d1c48e8286813cfd824f",
+    "tests/test_backtrace.py": "f257dc266acdf86b59e5368e5a1b3162692f5106825787d139da875fe3e33a3f",
+    "tests/test_compile_probe.py": "15fb08fc63f09baa5bf1aac937c48cdebaec5b8972099ff796703a4b0e45b726",
+    "tests/test_guard_driver.py": "38fc2d162ba0d1fc72638d88f1d9aeb33c0e1a8583a6f50feae73bca4026c9cc",
+    "tests/test_linux_runtime.py": "6568337389b519436beb1211bddc23f1ccd5748f369c3cab1989d61656fa565d",
+    "tests/test_native_dtype.py": "f7c71bbba4e131bc2752036d08d980eb052b70ecc42139eb5c0708b166c1f473",
+    "tests/test_private_delivery.py": "053aa126480af72119ecf1bd5f55a4d8c3cdb7801f557f45ac202054758d81e8",
+    "tests/test_r0.py": "07db71f53d86d0926ae2723f04da8bdeb3c11023d9ff14a90e789d6a766baded",
+    "tests/test_runpod_control.py": "6967fbff7609f561c0eeec0ea93f20ab6dea1bd813bc09539ce7569b09ace786",
+    "tests/test_select_smoke_task.py": "31ad9efc490d37953617b67bb7dbb888e25860478b3221cbeffb36c851d988b1",
+    "tests/test_startup_guard.py": "44a5c86fa15321f51a94e9696bd478d4d6095d54b1de466351774475f04106fd"
+  },
+  "frozen_source_manifest_sha256": "873e9dc7cf372948c154fb6b9d1e24170f1eb74fea4426d32fc17702581a030a",
+  "private_evidence": {
+    "durably_saved": true,
+    "filename": "backtrace-pr7-step1-evidence.zip",
+    "bytes": 258044,
+    "sha256": "e9c6d105b674d297fb56c75d48acd4714e5efc68c088e7e4c7d53ff5cc090947",
+    "members": 47,
+    "kaggle_raw_archive_sha256": "9a5744331860926804e855891f2c273b58127d67e9b00cce8d5d338ff8fa2b78",
+    "kaggle_raw_member_hashes_verified": true,
+    "all_35_executed_source_hashes_match": true,
+    "excludes": [
+      "model weights",
+      "wheel bytes",
+      "selected task payload bytes",
+      "credentials",
+      "SSH fixture keys"
+    ]
+  },
+  "provider_contract": {
+    "evidence_level": "primary published text, not authenticated execution",
+    "accessed_on_utc": "2026-10-17",
+    "graphql_spec": "https://graphql-spec.runpod.io/",
+    "spec_version": "1.1.0",
+    "input_fields": [
+      "stopAfter: DateTime",
+      "terminateAfter: DateTime"
+    ],
+    "pod_readback_fields": "not documented in published Pod type",
+    "runpodctl_revision": "e12397351fa126394ad04910ec6551351d164f01",
+    "status": "BLOCKED; read-only authenticated introspection required before any create; independent persistence readback still required"
+  },
+  "not_run": [
+    "RunPod account creation/funding",
+    "authenticated offer/stock/tax/credit",
+    "actual provider allocation",
+    "provider-native expiry readback",
+    "internet/provider SSH",
+    "actual Pod UID/read-only input activation",
+    "model v2 download and transfer",
+    "model load/serving",
+    "agent task/patch/public evaluation",
+    "provider stop/delete/billing",
+    "submission/scoring"
+  ],
+  "gpu_allocation": 0,
+  "paid_spend_usd": 0,
+  "real_attempt_consumed": false,
+  "merge": false
+}

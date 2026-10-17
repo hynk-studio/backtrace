@@ -1,5 +1,6 @@
 # Local evidence and third-party material
 .local/
+work/
 artifacts/
 data/
 datasets/

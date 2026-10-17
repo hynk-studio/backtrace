@@ -1,5 +1,11 @@
 # Backtrace
 
+Current decision: **payment and allocation on hold**; see the
+[prepayment audit](docs/a100-prepayment-audit.md). RunPod's removed timer flags,
+live readback rejection and REST v2 schema do not establish the approved native
+expiry control. [CPU delivery preparation](docs/a100-delivery-control.md) remains
+valid; GPU entry stays disabled.
+
 Does post-training logical/abductive inference, Bayesian belief revision, and
 selection of useful inspections improve Gemma's software-engineering performance
 under a matched inference budget?
@@ -26,8 +32,24 @@ See [R0 and the probe](docs/r0.md) and the [frozen smoke recipe](docs/r0-smoke.m
 The [startup observer](docs/startup-guard.md) now fails fast on confirmed engine
 failure while the API parent remains alive, tested through the real wrapper with
 disposable CPU processes. A [conditional A100 80GB TP=1 proposal](docs/r0-a100-proposal.md)
-records cost, image and account prerequisites; no rental or new model run has
-been authorized or executed.
+records cost, image and account prerequisites. The owner subsequently authorized
+one conditional A10080-TP1 attempt (50 minutes/$2 all-in); it has **not run**.
+The [Linux CPU follow-up](docs/a100-cpu-qualification.md) fixes fixture boot timing,
+adds A100-only serving checks and an offline dependency qualification command,
+and records the original Cloud access/storage blockers. The subsequent
+[Kaggle CPU follow-up](docs/kaggle-cpu-followup.md) restored the private driver and
+exact notebook v2, tested the official lifecycle, and found three incompatible
+dependency pins. On 2026-10-16 the owner approved the
+[three-package runtime amendment](docs/a100-runtime-amendment.md), now used by
+the offline installer. The original v25 acquisition manifest remains intact.
+The [offline CPU follow-up](docs/a100-offline-qualification.md) restores the exact
+original README and prepares the 245-package runtime closure plus a pinned pip
+bootstrap wheel. It records actual offline installs, official CPU checks and
+the remaining A100 driver and provider prerequisites separately. The approved
+delivery can use a private offline bootstrap on the pinned public base; a private
+image or registry is optional. The [free-resource assessment](docs/free-resource-assessment.md)
+records the account's actual T4-only GPU menu, the prepared private A100 driver,
+and why the next frozen GPU experiment needs access to a suitable larger GPU.
 
 ## Local checks
 
@@ -124,6 +146,8 @@ Non-goals: a central model, Augnes integration, full teacher, training pipeline,
 RL campaign, multi-agent hierarchy, or formal prover. The owner authorized one
 private free-quota T4 x2 attempt with the exact model mounted in Kaggle. No GPU
 rental, paid API, terms acceptance, training or competition submission occurred.
-Further GPU execution requires separate authorization. The human controls merges.
+Only the bounded A100 attempt authorized in
+[Issue #1](https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5895260495)
+is active, conditional on its prerequisites. The human controls merges.
 No repository license has been selected. Third-party code, weights and data are
 not included.

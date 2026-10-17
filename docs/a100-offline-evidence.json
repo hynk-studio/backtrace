@@ -1,0 +1,803 @@
+{
+  "schema_version": 1,
+  "summary": {
+    "recorded_at_utc": "2026-10-16T05:17:43.077219+00:00",
+    "source_head_before_changes": "258ccf491475dafeb16a7728c7fae93ac5dc0daf",
+    "source_manifest_sha256": "873e9dc7cf372948c154fb6b9d1e24170f1eb74fea4426d32fc17702581a030a",
+    "amendment_sha256": "24baa8489b5cdfef9f135b195db78ec856df8cffd61ae4696da11e71ef52fdc6",
+    "readme_bytes": 49356,
+    "readme_sha256": "3d6e57a13234cb4e783ba24eaab486459af76e0923ea4c6607cd41cc8961bbbb",
+    "bundle_wheels": 246,
+    "bundle_bytes": 5373559590,
+    "runtime_packages": 245,
+    "bootstrap_pip": "25.0.1",
+    "unit_test_summary": "Ran 87 tests in 21.442s\n\nOK",
+    "official_startup_summary": "Ran 10 tests in 18.365s\n\nOK",
+    "authored_lifecycle_cases": [
+      {
+        "case": "race",
+        "boundary": "authored lifecycle and CPU payload; NOT official vLLM",
+        "detection_seconds": 0.053790407000178675,
+        "parent_alive_at_detection": true,
+        "teardown_seconds": 0.02277674400011165,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "fatal",
+        "boundary": "authored lifecycle and CPU payload; NOT official vLLM",
+        "detection_seconds": 0.035423243999957776,
+        "parent_alive_at_detection": true,
+        "teardown_seconds": 0.022581768999771157,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "harmless",
+        "boundary": "authored lifecycle and CPU payload; NOT official vLLM",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 0.022795341000346525,
+        "readiness_seconds": 0.15493453699991733,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "stubborn",
+        "boundary": "authored lifecycle and CPU payload; NOT official vLLM",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.0165784910000184,
+        "readiness_seconds": 0.15524215499999627,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "timeout",
+        "boundary": "authored lifecycle and CPU payload; NOT official vLLM",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.032411914000022,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "fatal",
+        "boundary": "authored lifecycle and CPU payload; NOT official vLLM",
+        "detection_seconds": 0.050515572000222164,
+        "parent_alive_at_detection": true,
+        "teardown_seconds": 0.02357082399976207,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "stale",
+        "boundary": "authored lifecycle and CPU payload; NOT official vLLM",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 0.02365570799975103,
+        "readiness_seconds": 0.1550216430000546,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "ready",
+        "boundary": "authored lifecycle and CPU payload; NOT official vLLM",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 0.09449733399969773,
+        "readiness_seconds": 0.2701316920001773,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "timeout",
+        "boundary": "authored lifecycle and CPU payload; NOT official vLLM",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 0.045366615999682836,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      }
+    ],
+    "official_lifecycle_cases": [
+      {
+        "case": "race",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": 0.024881763999928808,
+        "parent_alive_at_detection": true,
+        "teardown_seconds": 0.023219380999762507,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "fatal",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": 0.6215667839996968,
+        "parent_alive_at_detection": true,
+        "teardown_seconds": 0.023094597999715916,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "harmless",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.0337383470000532,
+        "readiness_seconds": 1.007096805999936,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "stubborn",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.0088285739998355,
+        "readiness_seconds": 1.005247626000255,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "timeout",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.036880999999994,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "fatal",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": 0.42783244800011744,
+        "parent_alive_at_detection": true,
+        "teardown_seconds": 0.022869983999953547,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "stale",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.0413096839997706,
+        "readiness_seconds": 1.0066898129998663,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "ready",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.0280411549997552,
+        "readiness_seconds": 1.005316761999893,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "timeout",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 7.437000022036955e-06,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      }
+    ],
+    "task_cpu": {
+      "checks": [
+        {
+          "step": "task-venv",
+          "exit_code": 0,
+          "seconds": 0.115
+        },
+        {
+          "step": "task-overlay",
+          "exit_code": 0,
+          "seconds": 0.967
+        },
+        {
+          "step": "task-isolation",
+          "exit_code": 0,
+          "seconds": 11.851
+        },
+        {
+          "step": "runtime-check-after-task-overlay",
+          "exit_code": 0,
+          "seconds": 1.218
+        }
+      ],
+      "retained_function_bodies_unchanged": true,
+      "driver_only_change": "scratch path relocation",
+      "original_driver_sha256": "c7eda43a043535eed064b8f347bf271b22eb235c539e44dfe1633c43f47f5189",
+      "cpu_driver_sha256": "5270fbd96fe22d0bb7b9058d3a860c6fd7b2e3dc1ec094b3bae8189c72482cf4",
+      "runtime_parent_permissions": "0755 credential-free runtime; control directory remains 0700",
+      "task_overlay": "isolated venv; parent runtime path; fixed Starlette 0.48.0 and pdm-backend 2.4.9",
+      "owned_descendants_remaining": 0,
+      "scratch_removed": true,
+      "server_or_model_or_task_execution": "NOT RUN",
+      "full_a100_driver": "NOT QUALIFIED"
+    },
+    "base_cpu": {
+      "base_source_manifest_sha256": "b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+      "source_config_sha256": "4638f27bc2a17c4487d2dcb57e0dca10c9cf6601ee6bf849162b58f1d8b1ee8e",
+      "oci_config_sha256": "9b817fda09d40543cbe190bb68d20a62ad274357584b5754ab1ba994159564e1",
+      "config_json_semantically_identical": true,
+      "layers": 6,
+      "config_and_layers_match": true,
+      "execution": "chroot of exact image user-space with standard /dev character nodes; Kaggle host kernel; no mount/network namespace available",
+      "offline_install_exit_code": 0,
+      "offline_install_seconds": 447.686,
+      "hardware": "CPU only; no GPU attached",
+      "container_isolation": "NOT QUALIFIED",
+      "driver_or_provider": "NOT QUALIFIED"
+    },
+    "base_official_checks": [
+      {
+        "step": "base-official-candidate",
+        "exit_code": 0,
+        "seconds": 10.202,
+        "log_sha256": "f3cfac1388b084792a5607d85e8c3b396131e64fe91ebfbed532adb119d5285b"
+      },
+      {
+        "step": "base-official-compiler",
+        "exit_code": 0,
+        "seconds": 8.692,
+        "log_sha256": "0815fbb0f75b0bedcaecb9cb311640830c7e4b7a6d6206186cac9dcf0a7cf8e3"
+      },
+      {
+        "step": "base-official-binding",
+        "exit_code": 0,
+        "seconds": 8.442,
+        "log_sha256": "394ce3fd266545210c7639003cf19d44b5bc9248d27aa89e7e06759cea22d3d3"
+      },
+      {
+        "step": "base-official-argv",
+        "exit_code": 0,
+        "seconds": 4.479,
+        "log_sha256": "67bbe57fd50a699063f6a17b1c8ab820d09518d0bebbec494b9f5fb5f0a5ddcb"
+      }
+    ],
+    "gpu_allocation": 0,
+    "server_start": 0,
+    "task_execution": 0,
+    "model_download": 0,
+    "submission": 0,
+    "provider_stop_delete": "NOT RUN; no resource created",
+    "full_a100_driver": "NOT QUALIFIED",
+    "private_deployable_image": "NOT BUILT",
+    "provider_login": "REQUIRED",
+    "cleanup": {
+      "removed": [
+        "/tmp/backtrace-base",
+        "/tmp/backtrace-offline-runtime",
+        "/tmp/backtrace-offline-managed",
+        "/tmp/backtrace-offline-cache",
+        "/tmp/backtrace-offline-bin",
+        "/tmp/backtrace-offline-home"
+      ],
+      "all_absent": true,
+      "live_owned_fixtures": [],
+      "free_bytes_before": 1106561024000,
+      "free_bytes_after": 1148659068928
+    }
+  },
+  "readme_restoration": {
+    "retrieval_date_utc": "2026-10-16",
+    "local_restore_time_utc": "2026-10-16T04:32:24.472535+00:00",
+    "source_url": "https://github.com/Acivar-Digital/gemma4/blob/main/HARNESS_README.md",
+    "corroborating_mirror": "https://github.com/8kta/kaggle-gemma4/blob/main/docs/HARNESS_README.md",
+    "git_blob_sha": "1b068740db714b8766e8f9c880fd8f03a53de161",
+    "bytes": 49356,
+    "sha256": "3d6e57a13234cb4e783ba24eaab486459af76e0923ea4c6607cd41cc8961bbbb",
+    "identity": "matches unchanged original source manifest exactly",
+    "authority": "archival byte recovery only; mirror is not a new competition contract",
+    "redistribution": "bytes retained privately; not committed"
+  },
+  "bundle": {
+    "wheel_count": 245,
+    "total_wheel_bytes": 5371718064,
+    "runtime_selected_wheels": 41,
+    "supplemental_wheels": 204,
+    "matches_prior_245_versions": true,
+    "wheel_hash_manifest_seconds": 28.727,
+    "full_lock_sha256": "0472483ff319a2ae7e5a34292a80a37f2d890f969ddfc8903bea640ed3c09c26",
+    "supplemental_lock_sha256": "199d700f4997306952bec65ff4318b142d399d7243098bfa4d0ef98dd773a7bb",
+    "offline_install": "PASS on Kaggle CPython 3.12.14 and pinned-base CPython 3.12.3",
+    "base_image": "exact image user-space chroot PASS; container isolation NOT QUALIFIED",
+    "bundle_wheel_count": 246,
+    "bundle_total_bytes": 5373559590,
+    "bootstrap": {
+      "name": "pip",
+      "version": "25.0.1",
+      "path": "pip-25.0.1-py3-none-any.whl",
+      "bytes": 1841526,
+      "sha256": "c46efd13b6aa8279f33f2864459c8ce587ea6a1a59ee20de055868d8f7688f7f",
+      "role": "bootstrap tooling"
+    }
+  },
+  "initial_checks": [
+    {
+      "step": "kaggle-offline-install",
+      "exit_code": 0,
+      "seconds": 397.91,
+      "log_sha256": "3ec479037fdd3d03af6dc2760fe73d02bb89217931d3deaeb63d0badbdd3141c"
+    },
+    {
+      "step": "official-candidate",
+      "exit_code": 0,
+      "seconds": 7.491,
+      "log_sha256": "f3cfac1388b084792a5607d85e8c3b396131e64fe91ebfbed532adb119d5285b"
+    },
+    {
+      "step": "official-compiler",
+      "exit_code": 0,
+      "seconds": 7.892,
+      "log_sha256": "6355a8095ea5e0e2b20e5cc42224b3c4542f8c0cd31eddb8c0e065444b8bf0bb"
+    },
+    {
+      "step": "official-binding",
+      "exit_code": 0,
+      "seconds": 7.892,
+      "log_sha256": "ee808956facf7254c9111101fb93044f1ed9520900393a9828b7c551bc345768"
+    },
+    {
+      "step": "official-argv",
+      "exit_code": 0,
+      "seconds": 4.129,
+      "log_sha256": "f9a6586078c1794820e9f9e01ca4c980df2ed9c2b8af9947e16eb18be0d4babc"
+    },
+    {
+      "step": "official-startup",
+      "exit_code": 1,
+      "seconds": 44.467,
+      "log_sha256": "5b1b3daf9348947f28f450c8b2acad45ce916f8acc5215fb6196265bcc6f8d81"
+    },
+    {
+      "step": "unit-tests",
+      "exit_code": 0,
+      "seconds": 22.331,
+      "log_sha256": "27727cb1378cf9073f6868702afb120a626006b8c7a10ed8af87725f5250a0cc"
+    },
+    {
+      "step": "preflight",
+      "exit_code": 0,
+      "seconds": 0.115,
+      "log_sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+    }
+  ],
+  "followup_checks": [
+    {
+      "step": "official-startup-fixed",
+      "exit_code": 0,
+      "seconds": 23.939,
+      "log_sha256": "9044633311564dd9113acae43e0b8cb8b97528793b90f010ff8a69c0bd1392a1"
+    },
+    {
+      "step": "unit-tests-fixed",
+      "exit_code": 0,
+      "seconds": 22.08,
+      "log_sha256": "7b051502765770315f4cef1763f5ace0083d8014c7fc165f5004e39bc7ecd49f"
+    },
+    {
+      "step": "preflight-fixed",
+      "exit_code": 0,
+      "seconds": 0.115,
+      "log_sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+    },
+    {
+      "step": "task-cpu-controller",
+      "exit_code": 0,
+      "seconds": 14.41,
+      "log_sha256": "443d658eb646b06f5982a7da7ecad2fcb56174118c5cb33845f382aa53aba700"
+    },
+    {
+      "step": "base-bootstrap-controller",
+      "exit_code": 0,
+      "seconds": 447.849,
+      "log_sha256": "7e3e4da355e088ca077cadad6e6d00fbe52e2b0668a83716ea40a0f5f9e1ccc7"
+    }
+  ],
+  "final_checks": [
+    {
+      "step": "official-startup-final",
+      "exit_code": 0,
+      "seconds": 23.039,
+      "log_sha256": "632f6b9377097678ce5f59de89139402cd16f3a82805546dd90817271d854aa2"
+    },
+    {
+      "step": "unit-tests-final",
+      "exit_code": 0,
+      "seconds": 23.393,
+      "log_sha256": "0a9c068041909cbf42386b1e08ddb25c30a15f01d774954378a4e7a3ad718cfd"
+    },
+    {
+      "step": "preflight-final",
+      "exit_code": 0,
+      "seconds": 0.625,
+      "log_sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+    }
+  ],
+  "offline_install_receipts": {
+    "kaggle-offline-install": {
+      "offline_closure": "PASS",
+      "runtime_wheels": 41,
+      "runtime_profile_sha256": "24baa8489b5cdfef9f135b195db78ec856df8cffd61ae4696da11e71ef52fdc6",
+      "lock_sha256": "0472483ff319a2ae7e5a34292a80a37f2d890f969ddfc8903bea640ed3c09c26",
+      "inventory_sha256": "7823c323fa2effcfe5172bc63c39f1162323fee8312ade2534c66888f33c894b",
+      "model_execution": "NOT RUN",
+      "official_candidate_checks": "NOT RUN"
+    },
+    "base-offline-install-bootstrap": {
+      "offline_closure": "PASS",
+      "runtime_wheels": 41,
+      "bootstrap_wheel": {
+        "path": "pip-25.0.1-py3-none-any.whl",
+        "bytes": 1841526,
+        "sha256": "c46efd13b6aa8279f33f2864459c8ce587ea6a1a59ee20de055868d8f7688f7f"
+      },
+      "runtime_profile_sha256": "24baa8489b5cdfef9f135b195db78ec856df8cffd61ae4696da11e71ef52fdc6",
+      "lock_sha256": "0472483ff319a2ae7e5a34292a80a37f2d890f969ddfc8903bea640ed3c09c26",
+      "inventory_sha256": "7823c323fa2effcfe5172bc63c39f1162323fee8312ade2534c66888f33c894b",
+      "model_execution": "NOT RUN",
+      "official_candidate_checks": "NOT RUN"
+    }
+  },
+  "updated_source_sha256": {
+    "tools/linux_runtime.py": "feffd81c92cd91679c174d9824c91628e2d2a41426a437e6783438570eaf7574",
+    "tools/startup_guard.py": "d0474a0015d3f72139b16782421f4dc1be5c55b8574e7f235666710cc3870c69",
+    "tests/test_linux_runtime.py": "6568337389b519436beb1211bddc23f1ccd5748f369c3cab1989d61656fa565d",
+    "tests/test_startup_guard.py": "44a5c86fa15321f51a94e9696bd478d4d6095d54b1de466351774475f04106fd",
+    ".local/base_bootstrap_qualify.py": "9f290b9b1fe6b598d5ecaeb6a84015b25f87230a1c495c046ae9096f7f7f4538",
+    ".local/task_cpu.py": "104f55c53ab88db7aae5b623e368c3d43799dfaca994ccde11ddf7d2e5224ca5"
+  },
+  "private_log_manifest": {
+    "unit-tests-final.log": {
+      "bytes": 15148,
+      "sha256": "0a9c068041909cbf42386b1e08ddb25c30a15f01d774954378a4e7a3ad718cfd"
+    },
+    "base-bootstrap-controller.log": {
+      "bytes": 845,
+      "sha256": "7e3e4da355e088ca077cadad6e6d00fbe52e2b0668a83716ea40a0f5f9e1ccc7"
+    },
+    "base-qualification-controller-v3.log": {
+      "bytes": 844,
+      "sha256": "11c32dd0c54183083563ded651ea54401d1091d012b2d039de79cdc74862bbd1"
+    },
+    "official-startup-fixed.log": {
+      "bytes": 3936,
+      "sha256": "9044633311564dd9113acae43e0b8cb8b97528793b90f010ff8a69c0bd1392a1"
+    },
+    "base-python.log": {
+      "bytes": 112,
+      "sha256": "d93db6dd242b5d67be31f6254069e2bae5450ed4070b8956868f53304198be6b"
+    },
+    "qualified-inventory.json": {
+      "bytes": 11803,
+      "sha256": "7823c323fa2effcfe5172bc63c39f1162323fee8312ade2534c66888f33c894b"
+    },
+    "base-qualified-inventory.json": {
+      "bytes": 11803,
+      "sha256": "7823c323fa2effcfe5172bc63c39f1162323fee8312ade2534c66888f33c894b"
+    },
+    "bundle.json": {
+      "bytes": 875,
+      "sha256": "055e946e8b20f915a756fc09896cc601dc054452757c56fdbf9a9df70be42049"
+    },
+    "qualified-runtime-pins.lock": {
+      "bytes": 4150,
+      "sha256": "258a27b1ae3b1007422af8a949fa9a8a777dbfacf9b49aa8212288dd834e0fb5"
+    },
+    "bundle-wheel-manifest.json": {
+      "bytes": 56997,
+      "sha256": "3c5decd1c9aa3a71543242d1ac0e1c3e98ddf07fa26f7e4bf2cc6c7b66dfad6a"
+    },
+    "linux-supplemental.lock": {
+      "bytes": 20599,
+      "sha256": "199d700f4997306952bec65ff4318b142d399d7243098bfa4d0ef98dd773a7bb"
+    },
+    "preflight-fixed.log": {
+      "bytes": 167,
+      "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+    },
+    "base-qualified-runtime-pins.lock": {
+      "bytes": 4150,
+      "sha256": "258a27b1ae3b1007422af8a949fa9a8a777dbfacf9b49aa8212288dd834e0fb5"
+    },
+    "bootstrap-wheel.json": {
+      "bytes": 215,
+      "sha256": "f4a1b866772713b5cdd293b5c3d46e6295962acf62a38b926a9390902d835a65"
+    },
+    "base-offline-install.log": {
+      "bytes": 451,
+      "sha256": "4189e78f1fd5357e7296fe3a583c349fd691128df91e03b48a159bd59ed56a04"
+    },
+    "base-source-manifest.json": {
+      "bytes": 1585,
+      "sha256": "b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca"
+    },
+    "kaggle-offline-install.log": {
+      "bytes": 66676,
+      "sha256": "3ec479037fdd3d03af6dc2760fe73d02bb89217931d3deaeb63d0badbdd3141c"
+    },
+    "base-official-steps.json": {
+      "bytes": 696,
+      "sha256": "19b9fcb25773b194b5eb6e56a24bc1ef6013b6c49227d9a15ee447d8725ff53b"
+    },
+    "base-qualification.json": {
+      "bytes": 726,
+      "sha256": "ff62c2003a7cb8858e0410c71adcb8cded5df91d08aa2877ef71b10f99ca0648"
+    },
+    "apt-update.log": {
+      "bytes": 1883,
+      "sha256": "fe39fb17c1b56f5964fe5f421f5af100da6b929ea1340b86fa1e2e6add3e79e6"
+    },
+    "runtime-check-after-task-overlay.log": {
+      "bytes": 318,
+      "sha256": "b0210187ae1c5394e31dba4ab18fe1e8b9b27aa3e2335b141e43365be40d0329"
+    },
+    "wheel-manifest.json": {
+      "bytes": 56765,
+      "sha256": "1553385e68542b672d3a0ae7ecb3b4c8f24ba669524fc17b5a92aa5a60f72867"
+    },
+    "base-official-compiler.log": {
+      "bytes": 3710,
+      "sha256": "0815fbb0f75b0bedcaecb9cb311640830c7e4b7a6d6206186cac9dcf0a7cf8e3"
+    },
+    "official-argv.log": {
+      "bytes": 1357,
+      "sha256": "f9a6586078c1794820e9f9e01ca4c980df2ed9c2b8af9947e16eb18be0d4babc"
+    },
+    "base-offline-install-bootstrap.log": {
+      "bytes": 57565,
+      "sha256": "2a23186fd2a7d5be40d8cd9abdc9646101cc4a9f77445d1457ac2d1e49468e41"
+    },
+    "official-startup.log": {
+      "bytes": 9016,
+      "sha256": "5b1b3daf9348947f28f450c8b2acad45ce916f8acc5215fb6196265bcc6f8d81"
+    },
+    "linux-runtime.lock": {
+      "bytes": 24749,
+      "sha256": "0472483ff319a2ae7e5a34292a80a37f2d890f969ddfc8903bea640ed3c09c26"
+    },
+    "final-check-controller.log": {
+      "bytes": 442,
+      "sha256": "97f63724f8d372ca09d1b0174a9f95af2e1ea285f7045136484948f457451ac7"
+    },
+    "unit-tests.log": {
+      "bytes": 14055,
+      "sha256": "27727cb1378cf9073f6868702afb120a626006b8c7a10ed8af87725f5250a0cc"
+    },
+    "base-original-config.json": {
+      "bytes": 4816,
+      "sha256": "4638f27bc2a17c4487d2dcb57e0dca10c9cf6601ee6bf849162b58f1d8b1ee8e"
+    },
+    "base-config.json": {
+      "bytes": 4816,
+      "sha256": "9b817fda09d40543cbe190bb68d20a62ad274357584b5754ab1ba994159564e1"
+    },
+    "qualified-linux-runtime.lock": {
+      "bytes": 24749,
+      "sha256": "0472483ff319a2ae7e5a34292a80a37f2d890f969ddfc8903bea640ed3c09c26"
+    },
+    "preflight.log": {
+      "bytes": 167,
+      "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+    },
+    "task-cpu-controller.log": {
+      "bytes": 1159,
+      "sha256": "443d658eb646b06f5982a7da7ecad2fcb56174118c5cb33845f382aa53aba700"
+    },
+    "base-copy.log": {
+      "bytes": 667,
+      "sha256": "5355353ca59cdb38a90f8b5c4db8c03208f7460cc83cadfb5a41f8322f806976"
+    },
+    "summary.json": {
+      "bytes": 9979,
+      "sha256": "a71ac5da8c56bc3d94ebedb2a173ee94344063f3a659312d0899f65f94b26708"
+    },
+    "preflight-final.log": {
+      "bytes": 167,
+      "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+    },
+    "base-official-argv.log": {
+      "bytes": 1329,
+      "sha256": "67bbe57fd50a699063f6a17b1c8ab820d09518d0bebbec494b9f5fb5f0a5ddcb"
+    },
+    "task-overlay.log": {
+      "bytes": 649,
+      "sha256": "dbaca6a9b0d9f40d74d933d3103e64ff4d7d37487a7b3dae7d6bf431cc8110b1"
+    },
+    "base-bootstrap-qualification.json": {
+      "bytes": 727,
+      "sha256": "a0bca57428fd4851deea452c3f853fc1685d269aebb892b0e0320bc985c40daf"
+    },
+    "official-candidate.log": {
+      "bytes": 792,
+      "sha256": "f3cfac1388b084792a5607d85e8c3b396131e64fe91ebfbed532adb119d5285b"
+    },
+    "updated-source.json": {
+      "bytes": 595,
+      "sha256": "4f2aa7745a8b8b5495d06eee5bc1cd56bcf8607e1fe2901c38493afeb76bf0ae"
+    },
+    "download.log": {
+      "bytes": 83888,
+      "sha256": "a2469f2618acd7febf712d007bcf37cd3d533d23006c385aa5aa3bc04f82fe83"
+    },
+    "base-official-binding.log": {
+      "bytes": 890,
+      "sha256": "394ce3fd266545210c7639003cf19d44b5bc9248d27aa89e7e06759cea22d3d3"
+    },
+    "unit-tests-fixed.log": {
+      "bytes": 15146,
+      "sha256": "7b051502765770315f4cef1763f5ace0083d8014c7fc165f5004e39bc7ecd49f"
+    },
+    "followup-controller-syntax-error.log": {
+      "bytes": 276,
+      "sha256": "538a1c3bd5a7e0eae5b4a2563ea89b4ea1a6d6eb86bedfc5dbbd8ee3e5544e8e"
+    },
+    "base-controller.log": {
+      "bytes": 283,
+      "sha256": "bd7548076d4f5facbbd16d4973191851bbe2920fadb7c525c555c2df131ab8de"
+    },
+    "download-controller.log": {
+      "bytes": 366,
+      "sha256": "7b29425b90e925f34025d765125e58c7d6515872977379292c413f693361548b"
+    },
+    "official-binding.log": {
+      "bytes": 890,
+      "sha256": "ee808956facf7254c9111101fb93044f1ed9520900393a9828b7c551bc345768"
+    },
+    "qualified-runtime-profile.json": {
+      "bytes": 2496,
+      "sha256": "24baa8489b5cdfef9f135b195db78ec856df8cffd61ae4696da11e71ef52fdc6"
+    },
+    "followup-controller.log": {
+      "bytes": 745,
+      "sha256": "598ff77f363be48f05dff1d2335fa938ac44a96a4fcf28e2fccef14ba27da3ce"
+    },
+    "official-startup-final.log": {
+      "bytes": 3939,
+      "sha256": "632f6b9377097678ce5f59de89139402cd16f3a82805546dd90817271d854aa2"
+    },
+    "qualification-controller.log": {
+      "bytes": 2793,
+      "sha256": "0f51b82d77a4a158155facd7b09af1e7db91100bf9b880cc8c49a86c6c6f3ab6"
+    },
+    "base-check-controller.log": {
+      "bytes": 601,
+      "sha256": "5f7477aaa1bafbb19fdfe847dcbe6a9e92fa49239c48c784e6985af477bc38e5"
+    },
+    "qualification-steps.json": {
+      "bytes": 1343,
+      "sha256": "2c025e7b4fd81e9abb27d411b1674cbe11eee34877d1505af20704a181a6febd"
+    },
+    "official-compiler.log": {
+      "bytes": 3711,
+      "sha256": "6355a8095ea5e0e2b20e5cc42224b3c4542f8c0cd31eddb8c0e065444b8bf0bb"
+    },
+    "bundle-finalize.log": {
+      "bytes": 371,
+      "sha256": "d0a8c86045fc0486a884a74e275b95b0da4e2483dbbef7052339822191cf9512"
+    },
+    "base-qualified-bootstrap.lock": {
+      "bytes": 91,
+      "sha256": "97431255127271b4a5c56d678330f15f176903b7adff6ecbf2c2ab30d04d1db2"
+    },
+    "task-isolation.log": {
+      "bytes": 403,
+      "sha256": "2f96eae724a293710eb863c791c8fbab73f4842d506059142b79f6432bc9ccbf"
+    },
+    "bootstrap.json": {
+      "bytes": 5299,
+      "sha256": "35cd2ae26dcc297cac817433fbe5f8aaebaefcaa528546bfc96f103c8540c99f"
+    },
+    "base-official-candidate.log": {
+      "bytes": 792,
+      "sha256": "f3cfac1388b084792a5607d85e8c3b396131e64fe91ebfbed532adb119d5285b"
+    },
+    "followup-steps.json": {
+      "bytes": 863,
+      "sha256": "066b604bffdef34793fe89879a09a3441972eb04949c9a81efb53531b28b6f1b"
+    },
+    "final-check-steps.json": {
+      "bytes": 514,
+      "sha256": "6c0f92d114a7bc18d0b23b9751664eb50b7afb62539089a069b86e45544324b6"
+    },
+    "image-tools.log": {
+      "bytes": 7681,
+      "sha256": "8c17210281dc0d22c856816fc17483f99bfea995a48adc8d3f4b822017e773dc"
+    },
+    "base-unpack.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "base-qualified-runtime-profile.json": {
+      "bytes": 2496,
+      "sha256": "24baa8489b5cdfef9f135b195db78ec856df8cffd61ae4696da11e71ef52fdc6"
+    },
+    "base-qualified-linux-runtime.lock": {
+      "bytes": 24749,
+      "sha256": "0472483ff319a2ae7e5a34292a80a37f2d890f969ddfc8903bea640ed3c09c26"
+    },
+    "task-venv.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "base-qualification-controller.log": {
+      "bytes": 241,
+      "sha256": "fe2b9115ee77093c257be8300773ad7652139b41602b4172352310e982979aba"
+    },
+    "task-cpu.json": {
+      "bytes": 1027,
+      "sha256": "6457d6c98538eab65041862f0126ecd1894120522b0568ea80860ba263ca6a45"
+    },
+    "base-qualification-controller-v2.log": {
+      "bytes": 307,
+      "sha256": "476c8caa285504bb4f8cd99e79fbb1117dd660ca9db0a1197ddd3e05ffa69a2d"
+    },
+    "cleanup.json": {
+      "bytes": 355,
+      "sha256": "4270c386f0a05be1af5ac50d5a279e054ce160882fc6b684acc89a84554410fa"
+    }
+  },
+  "cloud_final": {
+    "unit_tests": "87 run; errors=12; failed closed on foreign procfs PID namespace",
+    "seconds": 16.305,
+    "log_sha256": "91fe6dd34f4a03e18f6c71f85c8a42cb17e8dbbc30146dd3fdf87678506b5ad1",
+    "preflight": {
+      "dependencies": "standard library only",
+      "local_tooling": "READY",
+      "official_validator": "NOT RUN",
+      "python": "3.12.14",
+      "r0_clean_packaging": "NOT RUN"
+    },
+    "preflight_sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+  },
+  "preserved_failures": [
+    "Initial official wrapper lifecycle: 8 passes, 2 errors; /bin/ps timed out during cleanup; one surviving live owned fixture was killed before revalidation.",
+    "Initial base offline qualification: Python 3.12.3 has no ensurepip; output rolled back.",
+    "Preparation helper errors (metadata parsing, OCI config serialization, Python path, controller syntax) retained privately; not qualification passes."
+  ],
+  "kaggle_saved_output": {
+    "status": "NOT SAVED; no new version confirmed",
+    "last_confirmed_version": 3,
+    "editor_error": "The kernel source must be less than 1 megabytes in size.",
+    "gui_save": "No version advance; Jupyter PUT returned 500",
+    "cli_save": "One CPU-only archive push returned HTTP 400",
+    "sdk_retry": "Blocked by automatic approval review because of duplicate version/upload risk; not executed",
+    "further_save_requests": 0
+  },
+  "cleanup": {
+    "removed": [
+      "/tmp/backtrace-base",
+      "/tmp/backtrace-offline-runtime",
+      "/tmp/backtrace-offline-managed",
+      "/tmp/backtrace-offline-cache",
+      "/tmp/backtrace-offline-bin",
+      "/tmp/backtrace-offline-home"
+    ],
+    "all_absent": true,
+    "live_owned_fixtures": [],
+    "free_bytes_before": 1106561024000,
+    "free_bytes_after": 1148659068928
+  },
+  "private_backup": {
+    "full_archive": {
+      "name": "backtrace-pr7-offline-bundle.zip",
+      "bytes": 5380090470,
+      "sha256": "ad3e1a342f7527beade9ed75f25ec65692002f28d10efe3520af1a7961983ed3",
+      "members": 434,
+      "download": "PASS; exact byte count and SHA256 verified",
+      "durable_storage": "FAILED; local backup only"
+    },
+    "evidence_archive": {
+      "name": "backtrace-pr7-offline-evidence.zip",
+      "bytes": 871396,
+      "sha256": "0c7f0a1947e612d6d1207d5b52a2b45797a36fd8cf733ab2d01761f95cee9a72",
+      "contents": "sources, restored inputs, locks and logs; excludes all wheel bytes",
+      "durable_storage": "SAVED privately"
+    },
+    "redistribution": "No private archive or third-party asset committed to GitHub"
+  },
+  "kaggle_cpu_session": {
+    "status": "STOPPED",
+    "observed_ui": "off (run a cell to start)",
+    "accelerator": "None"
+  }
+}

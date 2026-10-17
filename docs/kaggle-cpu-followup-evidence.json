@@ -1,0 +1,178 @@
+{
+  "recorded_at_utc": "2026-10-15T18:29:29.077791+00:00",
+  "source_head": "3c05bdae71c7d72c37717972915e48d67a3ed5e6",
+  "source_manifest_sha256": "873e9dc7cf372948c154fb6b9d1e24170f1eb74fea4426d32fc17702581a030a",
+  "environment": {
+    "provider": "Kaggle",
+    "accelerator": "None",
+    "system": "Linux x86_64",
+    "python": "3.12.3",
+    "pinned_runpod_image_qualified": false
+  },
+  "restored_notebook": {
+    "version": 2,
+    "api_version_label": "v2",
+    "bytes": 14112,
+    "sha256": "0c54c3bac3269e422b1d48ac8087ff26b49fe764231b7983c90ef842382f9a87",
+    "original_pin_match": true
+  },
+  "previous_evidence_zip": {
+    "bytes": 4391742,
+    "sha256": "5a2e6c284310a72f1f061589ecb0ba096da59a4a611294f049f0021933876b42",
+    "restored_verified": true
+  },
+  "fixed_wheelhouse": {
+    "version": 25,
+    "files": 41,
+    "all_hashes_verified": true
+  },
+  "frozen_conflicts": [
+    {
+      "fixed": "google-adk==1.36.1 + opentelemetry-exporter-otlp==1.44.0",
+      "conflict": "SDK <=1.41.1 versus >=1.44.0,<1.45.dev0"
+    },
+    {
+      "fixed": "xgrammar==0.2.5.post1 + transformers==5.13.1",
+      "conflict": "xgrammar requires transformers>=4.38.0,<5"
+    },
+    {
+      "fixed": "prometheus-fastapi-instrumentator==8.1.0 + google-adk==1.36.1",
+      "conflict": "Starlette >=1,<2 versus >=0.49.1,<1"
+    }
+  ],
+  "split_environments": {
+    "harness": {
+      "packages": 170,
+      "hashed_install": "PASS",
+      "uv_pip_check": "PASS",
+      "imports": "PASS",
+      "torch": "2.10.0+cu128",
+      "transformers": "5.13.1"
+    },
+    "serving": "UNSATISFIABLE: xgrammar/transformers conflict persists",
+    "wrapper_python_override": "No configuration field; VllmServer.build_cmd uses sys.executable"
+  },
+  "runtime_proposal": {
+    "status": "CPU DIAGNOSTIC ONLY; frozen pins unchanged; not authorized for GPU use",
+    "substitutions": [
+      {
+        "name": "opentelemetry-exporter-otlp",
+        "old": "1.44.0",
+        "new": "1.41.1"
+      },
+      {
+        "name": "prometheus-fastapi-instrumentator",
+        "old": "8.1.0",
+        "new": "7.1.0"
+      },
+      {
+        "name": "xgrammar",
+        "old": "0.2.5.post1",
+        "new": "0.2.8"
+      }
+    ],
+    "remaining_v25_wheels": 38,
+    "packages": 245,
+    "hashed_online_install": "PASS",
+    "uv_pip_check": "PASS",
+    "imports": "PASS",
+    "five_official_package_source_integrity": "PASS",
+    "wheel_identities": [
+      {
+        "path": "opentelemetry_exporter_otlp-1.41.1-py3-none-any.whl",
+        "bytes": 7025,
+        "sha256": "db276c5a80c02b063994e80950d00ca1bfddcf6520f608335b7dc2db0c0eb9c6"
+      },
+      {
+        "path": "prometheus_fastapi_instrumentator-7.1.0-py3-none-any.whl",
+        "bytes": 19296,
+        "sha256": "978130f3c0bb7b8ebcc90d35516a6fe13e02d2eb358c8f83887cdef7020c31e9"
+      },
+      {
+        "path": "xgrammar-0.2.8-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+        "bytes": 1311291,
+        "sha256": "4045b096735bb2523e0d874039a55994c1b390620d547c4a0d4f43b9a106177b"
+      }
+    ],
+    "complete_offline_install": "NOT RUN",
+    "complete_portable_wheel_bundle": "NOT ACQUIRED",
+    "pinned_base_image": "NOT QUALIFIED",
+    "GPU_backends": "NOT RUN"
+  },
+  "actual_official_wrapper_lifecycle": {
+    "passed": 10,
+    "failed": 0,
+    "skipped": 0,
+    "test_seconds": 19.687,
+    "max_fatal_detection_s": 0.6067383579999159,
+    "owned_processes_remaining": 0,
+    "environment": "separate 170-package harness",
+    "payload": "injected CPU processes; real official wrapper; no vLLM/model execution"
+  },
+  "official_candidate": {
+    "exit_code": 2,
+    "status": "BLOCKED: missing pinned README"
+  },
+  "official_compiler": {
+    "exit_code": 2,
+    "status": "BLOCKED: missing pinned README"
+  },
+  "official_argv": {
+    "exit_code": 1,
+    "status": "BLOCKED: expected_candidate also verifies README"
+  },
+  "missing_readme": {
+    "bytes": 49356,
+    "sha256": "3d6e57a13234cb4e783ba24eaab486459af76e0923ea4c6607cd41cc8961bbbb",
+    "historical_notebook_input_ui_bytes": 55940,
+    "sdk_has_version_parameter": false,
+    "prior_private_outputs_contain_original": false,
+    "replaced": false
+  },
+  "gpu_allocations": 0,
+  "model_starts": 0,
+  "task_executions": 0,
+  "charges_started": 0,
+  "submission": "NOT RUN",
+  "receipt_hashes": {
+    "harness-resolved.lock": "1817873e9e231cc3bff09817ee907a99d231626d5696e93e972a60502f4d6f09",
+    "three-delta-proposal.lock": "15d8aef087fa69d41f42eecb2b7a921fea511a6c9b856ee896518068d06a90c3",
+    "harness-pip-check.log": "c389cdbbc3031c155193747c3c905a81e6388446a7f492da6e3cc92be04648fb",
+    "proposal-pip-check.log": "535d0f2f4dc144400cc3222a2bbdea39c5001dcb4abe2cf4c94e3eb59b61c78c",
+    "proposal-imports.log": "4611b7a032502459418475a0686362b8b841be47fd6acb9abde5a74aa723e0bf",
+    "proposal-inventory.log": "4a872add409ef59db0e8421e2ef28a151ced4da378b0ca5ca23628ff66d1d92e",
+    "proposal-official-source-integrity.log": "0b9c9c8882ecf6c1c4b9840c25e86796625f1ef0f032d473dfbe978f20afaeae",
+    "official-startup.log": "1d0ae4c2d14d98f2e28ff4341ae8f283eac96776a245fc882f00488191ed9efe",
+    "restore-starter-v2.log": "b9e4b97aaaac348f4850527debf1f4046438a8dc082fa6a68515b02db76a5283"
+  },
+  "private_archive": {
+    "name": "backtrace-pr7-followup-evidence.zip",
+    "bytes": 6349512,
+    "sha256": "f128286f0f2efea8b507060cdf34aba3581e2d4cfca6becaafec780c3f167406"
+  },
+  "sources": {
+    "notebook_version_semantics": "https://github.com/Kaggle/kaggle-cli/issues/1200",
+    "official_notebook": "https://www.kaggle.com/code/ryanholbrook/getting-started-gemma-4-developer-agent?scriptVersionId=353282641",
+    "wheelhouse": "https://www.kaggle.com/datasets/metric/gemma-4-developer-agent-wheelhouse/versions/25",
+    "competition_data": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data"
+  },
+  "evidence_boundary": "Observed Kaggle CPU execution. Proposal packages were tested in a disposable environment; frozen source manifest, production tools and experiment inputs remain unchanged.",
+  "saved_result": {
+    "provider": "Kaggle",
+    "visibility": "Private",
+    "version": 2,
+    "script_version_id": 358772534,
+    "version_name": "v2 restored; 245-package proposal validated",
+    "url": "https://www.kaggle.com/code/hynk1240/backtrace-pr7-cpu-qualification/output?scriptVersionId=358772534",
+    "method": "Quick Save with output; not a full rerun",
+    "output_verified": [
+      "pr7-followup/followup-summary.json",
+      "backtrace-pr7-followup-evidence.zip"
+    ]
+  },
+  "cleanup": {
+    "temporary_environments_and_cache": "removed",
+    "kaggle_cpu_session": "stopped",
+    "observed_editor_state": "off (run a cell to start)"
+  }
+}

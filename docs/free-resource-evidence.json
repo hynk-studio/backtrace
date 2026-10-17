@@ -1,0 +1,532 @@
+{
+  "recorded_at_utc": "2026-10-16T07:03:31.156369+00:00",
+  "kaggle_observed_options": [
+    "None",
+    "GPU T4 x2",
+    "TPU v5e-8"
+  ],
+  "gpu_selected": false,
+  "prior_failure": {
+    "required_shared_bytes": 98304,
+    "t4_limit_shared_bytes": 65536,
+    "global_vram_oom": false
+  },
+  "owner_runpod_account_exists": false,
+  "large_backup": {
+    "archive_bytes": 5380090470,
+    "archive_sha256": "ad3e1a342f7527beade9ed75f25ec65692002f28d10efe3520af1a7961983ed3",
+    "split_parts": 12,
+    "split_bytes": 469762048,
+    "prepared_upload_batch": "FAILED: read operation timed out",
+    "readback": "no created parts found by targeted search and newest-first listing",
+    "durable_success": false,
+    "derived_part_copies_removed": true
+  },
+  "cloud_suite": {
+    "run": 90,
+    "errors": 12,
+    "seconds": 16.477,
+    "cause": "foreign procfs PID namespace"
+  },
+  "cloud_preflight": {
+    "dependencies": "standard library only",
+    "local_tooling": "READY",
+    "official_validator": "NOT RUN",
+    "python": "3.12.14",
+    "r0_clean_packaging": "NOT RUN"
+  },
+  "static_driver_checks": {
+    "prepared_driver_sha256": "58880d27069574d10f60e90d3c80cbae89d080a4ed813206a973b49e6982ead2",
+    "reproducible": true,
+    "overwrite_rejected": true,
+    "non_cpu_entry_blocked": true,
+    "entry_message": "Provider controller is not qualified; only CPU prerequisites may execute"
+  },
+  "unrun": [
+    "GPU allocation",
+    "model download/load",
+    "model request",
+    "task generation",
+    "provider expiry/deletion",
+    "billing",
+    "submission"
+  ],
+  "charge_started": false,
+  "cpu_session": "OFF verified in Kaggle editor",
+  "cleanup": {
+    "removed_task_directories": [
+      "/tmp/backtrace-free-runtime",
+      "/tmp/backtrace-free-python",
+      "/tmp/backtrace-free-cache",
+      "/tmp/backtrace-free-bin",
+      "/tmp/backtrace-free-home",
+      "/kaggle/working/pr7-free-prep-resumed/wheels"
+    ],
+    "live_dropped_uid_processes": [],
+    "driver_scratch_absent": true,
+    "free_bytes_before": 15556177920,
+    "free_bytes_after": 20930293760,
+    "gpu_allocations": 0,
+    "model_execution": "NOT RUN",
+    "task_execution": "NOT RUN"
+  },
+  "compact_notebook": {
+    "notebook_bytes": 867760,
+    "notebook_sha256": "ba2ec8f5ab4b4fc942e1a79b659b1acadb4327f3dbd9ebffefe756afbb0550b5",
+    "payload_sha256": "02f2fac25a341dfe38eb4e9886bcdd95b824acdad5d76460814216d32da7ecd9",
+    "source_files": 55,
+    "payload_roundtrip_equal": true,
+    "source_compiles": true,
+    "kaggle_saved_version": "NOT CREATED",
+    "execution": "parts executed interactively; packaged notebook not run as a saved version"
+  },
+  "source_head_before": "3e00f2c1e93b1c3c2a541aceb05968ed5217d7a0",
+  "base_main": "23616971a4ec57d32fcce769e0a2abf44faa9cfe",
+  "source_hashes": {
+    "tools/a100_task.py": "897d00d2544113de583cecc0aac128e7a2f926af36c474c4f172badc768fe201",
+    "tests/test_a100_task.py": "9653a008b60cbd8d7821ff43b310b8fefede41a08372ace2297cdeeb47fdc097",
+    "tests/official_a100_task.py": "c658d50cae3931c6ab7b0bffd2b9b937e614e45e00de6181ed23309e9495c168"
+  },
+  "kaggle_checks": [
+    {
+      "check": "python",
+      "exit_code": 0,
+      "seconds": 0.115
+    },
+    {
+      "check": "unit-tests",
+      "exit_code": 0,
+      "seconds": 20.229
+    },
+    {
+      "check": "preflight",
+      "exit_code": 0,
+      "seconds": 0.115
+    },
+    {
+      "check": "download",
+      "exit_code": 0,
+      "seconds": 92.228
+    },
+    {
+      "check": "offline-runtime",
+      "exit_code": 0,
+      "seconds": 336.203
+    },
+    {
+      "check": "prepare-a100",
+      "exit_code": 0,
+      "seconds": 0.165
+    },
+    {
+      "check": "a100-cpu-driver",
+      "exit_code": 0,
+      "seconds": 14.611
+    },
+    {
+      "check": "runtime-after-task",
+      "exit_code": 0,
+      "seconds": 1.018
+    },
+    {
+      "check": "official-startup",
+      "exit_code": 0,
+      "seconds": 23.244
+    },
+    {
+      "check": "actual-a100-wrapper",
+      "exit_code": 1,
+      "seconds": 10.148
+    }
+  ],
+  "corrected_checks": {
+    "checks": [
+      {
+        "check": "actual-a100-wrapper-corrected",
+        "exit_code": 0,
+        "seconds": 12.456
+      },
+      {
+        "check": "artifact-verify",
+        "exit_code": 0,
+        "seconds": 0.165
+      }
+    ],
+    "corrected_test_sha256": "c658d50cae3931c6ab7b0bffd2b9b937e614e45e00de6181ed23309e9495c168",
+    "earlier_failure_preserved": true
+  },
+  "kaggle_unit": {
+    "passed": 90,
+    "skipped": 0,
+    "suite_seconds": 20.035,
+    "observations": [
+      {
+        "case": "race",
+        "boundary": "authored lifecycle and CPU payload; NOT official vLLM",
+        "detection_seconds": 0.053717002999974284,
+        "parent_alive_at_detection": true,
+        "teardown_seconds": 0.021535324000069522,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "fatal",
+        "boundary": "authored lifecycle and CPU payload; NOT official vLLM",
+        "detection_seconds": 0.04499555799998234,
+        "parent_alive_at_detection": true,
+        "teardown_seconds": 0.021488220000037472,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "harmless",
+        "boundary": "authored lifecycle and CPU payload; NOT official vLLM",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 0.021657000999994125,
+        "readiness_seconds": 0.15390883399993527,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "stubborn",
+        "boundary": "authored lifecycle and CPU payload; NOT official vLLM",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.0083045060000586,
+        "readiness_seconds": 0.10331946399992376,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "timeout",
+        "boundary": "authored lifecycle and CPU payload; NOT official vLLM",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.0488583820000486,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "fatal",
+        "boundary": "authored lifecycle and CPU payload; NOT official vLLM",
+        "detection_seconds": 0.049986470000021654,
+        "parent_alive_at_detection": true,
+        "teardown_seconds": 0.021458580000057736,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "stale",
+        "boundary": "authored lifecycle and CPU payload; NOT official vLLM",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 0.02160323500004324,
+        "readiness_seconds": 0.15392311100004008,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "ready",
+        "boundary": "authored lifecycle and CPU payload; NOT official vLLM",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 0.02195793999999296,
+        "readiness_seconds": 0.15401869900006204,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "timeout",
+        "boundary": "authored lifecycle and CPU payload; NOT official vLLM",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.0473969199999829,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      }
+    ]
+  },
+  "official_lifecycle": {
+    "passed": 10,
+    "skipped": 0,
+    "suite_seconds": 19.441,
+    "observations": [
+      {
+        "case": "race",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": 0.028581302000020514,
+        "parent_alive_at_detection": true,
+        "teardown_seconds": 0.02157596500001091,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "fatal",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": 0.6647056730000713,
+        "parent_alive_at_detection": true,
+        "teardown_seconds": 0.021941351000123177,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "harmless",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.050245987999915,
+        "readiness_seconds": 1.0057699280000634,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "stubborn",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.0105645329999788,
+        "readiness_seconds": 1.0044209830000455,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "timeout",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.0502995800000008,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "fatal",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": 0.4648320149999563,
+        "parent_alive_at_detection": true,
+        "teardown_seconds": 0.021755615000074613,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "stale",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.0278463129998272,
+        "readiness_seconds": 1.0062137550000898,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "ready",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.05059571400011,
+        "readiness_seconds": 1.0049189540000043,
+        "owned_processes_remaining": 0
+      },
+      {
+        "case": "timeout",
+        "boundary": "REAL adk-submission 0.2.11 lifecycle/HTTP; INJECTED CPU payload/env; no vLLM/model",
+        "detection_seconds": null,
+        "parent_alive_at_detection": null,
+        "teardown_seconds": 1.0285877970000001,
+        "readiness_seconds": null,
+        "owned_processes_remaining": 0
+      }
+    ]
+  },
+  "actual_driver_cpu_events": [
+    {
+      "allocation_requested_at": 1792134596.1514604,
+      "cpu_prerequisites_only": true,
+      "event": "run_begin",
+      "provider_expiry_seconds": 3000,
+      "request_to_process_seconds": 0.0,
+      "run_name": "R0-clean-v2-one-public-task/A10080-TP1",
+      "unix_seconds": 1792134596.155826,
+      "useful_deadline": 1792137296.1514604
+    },
+    {
+      "event": "offline_runtime",
+      "package_count": 246,
+      "unix_seconds": 1792134599.4978256
+    },
+    {
+      "account_api_available": false,
+      "event": "isolation",
+      "no_new_privs": true,
+      "parent_canary_readable": false,
+      "parent_environment_readable": false,
+      "uid": 65534,
+      "unix_seconds": 1792134600.5782049
+    },
+    {
+      "event": "sandbox_dependency_inheritance",
+      "unix_seconds": 1792134609.406291,
+      "versions": {
+        "google-adk": "1.36.1",
+        "pdm-backend": "2.4.9",
+        "starlette": "0.48.0",
+        "swegemma": "0.2.7"
+      }
+    },
+    {
+      "event": "setup_ready",
+      "readonly_bytes": 1103543751,
+      "scratch_free_bytes": 15556227072,
+      "seconds": 14.44681429862976,
+      "task_starlette": "0.48.0",
+      "unix_seconds": 1792134610.5982792,
+      "versions": {
+        "adk-eval-core": "0.1.0",
+        "adk-submission": "0.2.11",
+        "google-adk": "1.36.1",
+        "google-genai": "2.11.0",
+        "swegemma": "0.2.7",
+        "torch": "2.10.0+cu128",
+        "vllm": "0.19.1"
+      }
+    },
+    {
+      "event": "cpu_prerequisites_passed",
+      "model_start": "NOT RUN",
+      "unix_seconds": 1792134610.5983696
+    },
+    {
+      "event": "worker_cleanup",
+      "survivors": [],
+      "unix_seconds": 1792134610.60028
+    },
+    {
+      "event": "run_end",
+      "gpu_session_termination": "requires separate provider readback",
+      "receipt_bytes": 34,
+      "scratch_removed": true,
+      "seconds": 14.455857038497925,
+      "unix_seconds": 1792134610.607356,
+      "verification": "NOT RUN",
+      "worker_cleanup_confirmed": true
+    }
+  ],
+  "actual_wrapper_construction": {
+    "actual_private_driver_sha256": "58880d27069574d10f60e90d3c80cbae89d080a4ed813206a973b49e6982ead2",
+    "candidate_sha256": "2e24495826cb971053439a00d9ad8350471fc0efffa41a54b82082feedaa7358",
+    "actual_wrapper": "adk-submission 0.2.11",
+    "requested_dtype": "bfloat16",
+    "tp": 1,
+    "argv": [
+      "/tmp/backtrace-free-runtime/venv/bin/python",
+      "-I",
+      "-B",
+      "/tmp/backtrace-a100-construct-yraftgre/driver/startup_guard.py",
+      "--exec",
+      "/tmp/backtrace-free-runtime/venv/bin/python",
+      "-m",
+      "vllm.entrypoints.openai.api_server",
+      "--model",
+      "/kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "8000",
+      "--max-model-len",
+      "32768",
+      "--dtype",
+      "bfloat16",
+      "--gpu-memory-utilization",
+      "0.9",
+      "--enable-auto-tool-choice",
+      "--tool-call-parser",
+      "gemma4",
+      "--reasoning-parser",
+      "gemma4",
+      "--disable-custom-all-reduce"
+    ],
+    "guard_constructed": true,
+    "hardware": "INJECTED",
+    "server_start": "NOT RUN",
+    "task_execution": "NOT RUN",
+    "denied_execution_attempts": []
+  },
+  "artifact_verification": {
+    "artifact_pins": "PASS",
+    "artifacts": 16,
+    "model_execution": "NOT RUN",
+    "starter_files": 10
+  },
+  "offline_runtime": {
+    "offline_closure": "PASS",
+    "runtime_wheels": 41,
+    "bootstrap_wheel": {
+      "path": "pip-25.0.1-py3-none-any.whl",
+      "bytes": 1841526,
+      "sha256": "c46efd13b6aa8279f33f2864459c8ce587ea6a1a59ee20de055868d8f7688f7f"
+    },
+    "runtime_profile_sha256": "24baa8489b5cdfef9f135b195db78ec856df8cffd61ae4696da11e71ef52fdc6",
+    "lock_sha256": "0472483ff319a2ae7e5a34292a80a37f2d890f969ddfc8903bea640ed3c09c26",
+    "inventory_sha256": "7823c323fa2effcfe5172bc63c39f1162323fee8312ade2534c66888f33c894b",
+    "model_execution": "NOT RUN",
+    "official_candidate_checks": "NOT RUN"
+  },
+  "failures_preserved": [
+    {
+      "stage": "initial acquisition",
+      "result": "hash mismatch; same safetensors filename/version from PyPI differs from frozen Kaggle bytes; no pin amendment",
+      "resolution": "explicit local paths for the 38 unchanged wheels; original log retained"
+    },
+    {
+      "stage": "Cloud full suite",
+      "result": "12 foreign-procfs errors retained",
+      "resolution": "same changed tooling tested on Kaggle CPU"
+    },
+    {
+      "stage": "first actual-A100-wrapper construction test",
+      "result": "asserted startup_observation before any start; exit 1 retained",
+      "resolution": "assert real guard command/subclass and absence of startup observation; no model start; corrected test exit 0"
+    },
+    {
+      "stage": "scratch final-check controller",
+      "result": "string escaping SyntaxError before any check executed; log retained",
+      "resolution": "transferred syntax-compiled file bytes; corrected controller exit 0"
+    }
+  ],
+  "private_evidence_archive": {
+    "bytes": 968501,
+    "sha256": "4b8d7ee27457ba219c84adf9037331a4b7f4b9eacee9e2143fb542fde05eed05",
+    "members": 91,
+    "contains_wheel_bytes": false,
+    "durable_save": "SUCCEEDED"
+  },
+  "decision": {
+    "current_frozen_experiment_requires_suitable_gpu_beyond_current_free_account": true,
+    "recommended_gpu": "existing conditional A100 80GB PCIe / TP1 proposal",
+    "allocate_now": false,
+    "private_image_required": false,
+    "acceptable_delivery": "qualified private offline bootstrap on pinned public base",
+    "remaining": [
+      "durable private wheel/input delivery and readback",
+      "independent provider controller integration",
+      "owner account/terms/funding decision",
+      "authenticated exact offer/stock/tax/native expiry verification"
+    ],
+    "existing_consumption_ceiling_usd": 2,
+    "existing_request_to_delete_seconds": 3000,
+    "documented_starting_deposit_usd": 10,
+    "deposit_authorized": false
+  },
+  "primary_sources": [
+    {
+      "url": "https://github.com/Kaggle/kaggle-cli/blob/main/docs/kernels.md",
+      "blob": "48a88cd69c17e9d3964e83bd78ae9254b94e9b40",
+      "access_date_utc": "2026-10-16",
+      "level": "primary documentation; enumerated accelerator IDs do not establish account eligibility"
+    },
+    {
+      "url": "https://docs.nvidia.com/cuda/ampere-tuning-guide/",
+      "access_date_utc": "2026-10-16",
+      "level": "primary specification; 163 KiB per-block capacity is not measured model fit"
+    },
+    {
+      "url": "https://docs.runpod.io/accounts-billing/billing",
+      "access_date_utc": "2026-10-16",
+      "level": "primary public pricing/billing text; actual checkout unverified"
+    }
+  ],
+  "proof_screenshot_sha256": "130584b9c52afb639f448c56b77dac19a9f1148063d5798188dad4c422ccb5aa"
+}
