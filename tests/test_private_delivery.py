@@ -50,6 +50,19 @@ class PrivateDeliveryTests(unittest.TestCase):
             delivery.receive(self.dest, '0' * 64, io.BytesIO(self.archive()))
         self.assertFalse(self.dest.exists())
 
+    def test_frozen_wheel_long_basename_survives_real_stream(self):
+        name = ('websockets-15.0.1-cp312-cp312-manylinux_2_5_x86_64.'
+                'manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl')
+        (self.source / name).write_bytes(self.content)
+        self.manifest['files'][0]['path'] = name
+        data = json.dumps(self.manifest).encode()
+        self.manifest_path.write_bytes(data)
+        command = [sys.executable, '-I', delivery.__file__, 'receive', str(self.dest),
+                   hashlib.sha256(data).hexdigest()]
+        receipt = delivery.push(self.source, self.manifest_path, command, 10)
+        self.assertEqual(receipt, delivery.verify(self.dest, data, exact=True))
+        self.assertEqual((self.dest / name).read_bytes(), self.content)
+
     def test_mutated_bytes_never_commit(self):
         raw = self.archive().replace(self.content, b'X' * len(self.content))
         with self.assertRaises(ValueError):

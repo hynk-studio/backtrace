@@ -102,7 +102,10 @@ def verify(root, manifest_data, exact=False):
 def emit(root, manifest_data, output):
     verify(root, manifest_data)
     manifest = parse_manifest(manifest_data)
-    with tarfile.open(fileobj=output, mode='w|', format=tarfile.USTAR_FORMAT) as archive:
+    # Three frozen wheel basenames exceed USTAR's 100-byte name field and
+    # cannot be split into its directory prefix. GNU long-name records retain
+    # the exact filename; the receiver still enforces the pinned regular entry.
+    with tarfile.open(fileobj=output, mode='w|', format=tarfile.GNU_FORMAT) as archive:
         def add(name, size, stream):
             info = tarfile.TarInfo(name)
             info.size, info.mode = size, 0o600
