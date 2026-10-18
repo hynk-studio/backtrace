@@ -254,3 +254,59 @@ left disabled, then complete read-only provider checks. Do not fund or allocate
 while the exact authorized offer is unavailable. The existing one-allocation,
 one-server, maximum-one-task, 3,000-second and USD 8 cumulative early-stop
 policy remains unchanged. PR #7 stays Draft and Issue #1 stays open.
+
+## Approved credential linkage and authenticated read-only check — 2026-10-19 KST
+
+The owner explicitly approved the pending RunPod management Read/Write key
+creation and storage in this existing private Kaggle notebook's Secrets.
+The created key uses Restricted settings: management GraphQL Read/Write,
+inference `api.runpod.ai` None. This remains broad account management access;
+it is not a Pod-only grant. The notebook links only
+`BACKTRACE_RUNPOD_API_KEY`; the existing unrelated secret remains unselected.
+No provider key was placed in notebook source, Git, a working file or the Pod.
+
+An initial unused key value appeared in a browser-tool error diagnostic.
+That key was immediately **disabled**, with Disabled / Never used readback,
+before any linkage or API use. It was not stored in Kaggle Secrets. A replacement
+with the same approved permissions was created, stored without printing its
+value and used for the checks below. There is one enabled replacement key and
+one disabled unused key; disabling is not claimed to be permanent deletion.
+
+The free CPU recovery cell passed again before credential use: 39 qualified
+source hashes and the fixed private-driver hash match, owner files have their
+protected permissions, the 280 listed inputs remain present and size-checked,
+and the fixed attempt journal is absent. This does not add a new full hash
+verification of the large inputs or rerun the earlier 150-test suite.
+
+At **2026-10-18T16:07:03Z** (2026-10-19 01:07 KST), the private notebook retrieved
+the key through Kaggle Secrets and performed only read operations:
+
+- The qualified REST v2 client completed the paginated Pod-list contract:
+  **0 Pods / 0 earlier Backtrace Pods**. No create/action/delete request was sent.
+- The authenticated catalog GET returned HTTP **200**, 383 bytes for exactly
+  `NVIDIA A100 80GB PCIe`, Secure, one GPU, Romania and minimum CUDA 12.8.
+  Availability was **NONE**, with no `EU-RO-1` datacenter entry. The Secure list
+  compute price was USD **1.79/hour**. This is neither a stock reservation nor
+  the complete disk/tax/resource-qualified execution offer.
+- The authenticated latest billing bucket GET returned HTTP **200**, 466 bytes:
+  0 records and totalAmount 0 across the returned resource categories.
+- A read-only GraphQL account-schema introspection returned HTTP **400**.
+  No account balance/tax fields were obtained through GraphQL; this is retained
+  as an unsuccessful probe, not an API-verified balance or tax result.
+- The account billing UI separately showed **USD 0.00 balance,
+  USD 0.000/hour current spend, Auto-Pay Disabled and no payment methods**.
+  Checkout tax and the final all-in offer remain **NOT VERIFIED**.
+
+The sanitized read-only result is retained under the existing private evidence
+directory and in the notebook's draft output. Only the secret label is in
+source; the credential stayed in local function memory during the read calls.
+The free CPU session was stopped with **Session stopped / off** readback,
+the draft was saved, and saved version remains **3**. No new saved version,
+training, model start, task, submission, merge or issue closure occurred.
+
+**Funding 0 / GPU allocation 0 / provider attempt unconsumed.** Do not fund or
+allocate against unavailable stock. Next: recheck the same authorized
+Secure / EU-RO-1 / A100 80GB PCIe offer when work resumes; only if its stock,
+resources, final cost and all other existing gates pass should the owner
+complete the one USD 10 top-up. No alternative GPU/region, automatic retry,
+additional funding or recurring stock-monitoring task is authorized here.
