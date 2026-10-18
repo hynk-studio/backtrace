@@ -1,10 +1,10 @@
 # Backtrace
 
-Current decision: **payment and allocation on hold**; see the
-[prepayment audit](docs/a100-prepayment-audit.md). RunPod's removed timer flags,
-live readback rejection and REST v2 schema do not establish the approved native
-expiry control. [CPU delivery preparation](docs/a100-delivery-control.md) remains
-valid; GPU entry stays disabled.
+Current work: [prepaid A100 execution preparation](docs/a100-prepayment-ready.md).
+The owner chose one $10 wallet, $8 cumulative early stop and external cleanup;
+the first experiment remains one allocation and 50 minutes. Native timers are
+not required or claimed under this [amended policy](docs/a100-prepaid-policy.json).
+Funding, account linkage and actual GPU execution are separate live steps.
 
 Does post-training logical/abductive inference, Bayesian belief revision, and
 selection of useful inspections improve Gemma's software-engineering performance
@@ -33,7 +33,8 @@ The [startup observer](docs/startup-guard.md) now fails fast on confirmed engine
 failure while the API parent remains alive, tested through the real wrapper with
 disposable CPU processes. A [conditional A100 80GB TP=1 proposal](docs/r0-a100-proposal.md)
 records cost, image and account prerequisites. The owner subsequently authorized
-one conditional A10080-TP1 attempt (50 minutes/$2 all-in); it has **not run**.
+one conditional A10080-TP1 attempt (50 minutes; original $2 control policy,
+subsequently amended as above); it has **not run**.
 The [Linux CPU follow-up](docs/a100-cpu-qualification.md) fixes fixture boot timing,
 adds A100-only serving checks and an offline dependency qualification command,
 and records the original Cloud access/storage blockers. The subsequent

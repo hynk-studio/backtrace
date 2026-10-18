@@ -1,5 +1,9 @@
 # A100 prepayment audit — 2026-10-17 UTC
 
+**2026-10-18 amendment:** [Current prepaid preparation](a100-prepayment-ready.md)
+and its [policy](a100-prepaid-policy.json) supersede the native-timer/$2 control
+requirements below. Original observations remain historical evidence.
+
 **Decision: hold payment and allocation.** Sign-in is resolved, but the approved
 provider-native stop/delete control is not established. Existing CPU results
 remain useful; this is not a ready-to-run GPU system. No new allocation attempt,

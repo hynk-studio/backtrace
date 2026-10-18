@@ -1,5 +1,9 @@
 # Free preparation and rental assessment — 2026-10-16 UTC
 
+**2026-10-18 amendment:** [Current prepaid preparation](a100-prepayment-ready.md)
+and its [policy](a100-prepaid-policy.json) supersede the native-timer/$2 control
+requirements below. Original observations remain historical evidence.
+
 **Subsequent checkpoint (2026-10-17):** the owner has now created and signed into
 RunPod. See the [prepayment audit](a100-prepayment-audit.md) for the current
 account/resource boundary, updated price and native-timer failure evidence.

@@ -1,5 +1,9 @@
 # Private delivery and external cleanup preparation
 
+**2026-10-18 amendment:** [Current prepaid preparation](a100-prepayment-ready.md)
+and its [policy](a100-prepaid-policy.json) supersede the native-timer/$2 control
+requirements below. Original observations remain historical evidence.
+
 This is free CPU preparation for the existing conditional A100 attempt. It does
 not allocate a Pod, fund an account or enable the private driver's GPU entry.
 The owner subsequently created and signed into RunPod. The

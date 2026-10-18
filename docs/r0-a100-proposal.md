@@ -1,5 +1,9 @@
 # R0-clean-v2-one-public-task/A10080-TP1 — proposal and subsequent approval
 
+**2026-10-18 amendment:** [Current prepaid preparation](a100-prepayment-ready.md)
+and its [policy](a100-prepaid-policy.json) supersede the native-timer/$2 control
+requirements below. Original observations remain historical evidence.
+
 **Status update (2026-10-15 UTC):** the owner subsequently authorized this exact
 conditional attempt in [Issue #1](https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5895260495).
 The proposal below preserves its original evidence and authorization status at
