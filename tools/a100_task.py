@@ -1,9 +1,4 @@
-"""Prepare the private A100 task driver and qualify its CPU prerequisites.
-
-The retained organizer/task source is never committed here. Provider integration
-is still unqualified: the generated entry point permits only CPU prerequisites
-and their isolated dependency check, not model or agent execution.
-"""
+"""Prepare the frozen private A100 driver; paid execution needs an owner permit."""
 import argparse
 import ast
 import difflib
@@ -26,6 +21,39 @@ WHEEL_MANIFEST_SHA256 = '3c5decd1c9aa3a71543242d1ac0e1c3e98ddf07fa26f7e4bf2cc6c7
 POD_TOOLS = ('a100_task.py', 'a100_driver.py', 'guard_driver.py', 'compile_probe.py',
              'backtrace.py', 'artifacts.py', 'r0.py', 'native_dtype.py',
              'official_check.py', 'startup_guard.py', 'errors.py', 'linux_runtime.py')
+POD_DOCS = ('source-manifest.json', 'linux-wheel-manifest.json',
+            'a100-runtime-amendment.json', 'linux-supplemental.lock')
+
+
+def consume_permit(path, driver, now=None):
+    """Root-only, expiring, single-use entry; no credentials or model fallback."""
+    import time
+    path, driver = Path(path), Path(driver)
+    if (os.getuid() != 0 or path.is_symlink() or not path.is_file()
+            or path.stat().st_uid != 0 or path.stat().st_mode & 0o077
+            or path.parent.resolve() != path.parent or path.parent.stat().st_mode & 0o077):
+        raise ValueError('private root-owned launch permit required')
+    value = json.loads(path.read_text())
+    now = time.time() if now is None else now
+    requested = value['requested_at']
+    if (set(value) != {'policy', 'run', 'attempt', 'pod_id', 'requested_at', 'driver_sha256'}
+            or value['policy'] != 'prepaid10-external-v2'
+            or value['run'] != 'R0-clean-v2-one-public-task/A10080-TP1'
+            or not re.fullmatch(r'[0-9a-f]{32}', value['attempt'])
+            or not re.fullmatch(r'[A-Za-z0-9_-]{1,128}', value['pod_id'])
+            or type(requested) not in (int, float) or not 0 <= now - requested < 1200
+            or float(os.environ['BACKTRACE_ALLOCATION_REQUESTED_AT']) != requested
+            or hashlib.sha256(driver.read_bytes()).hexdigest() != value['driver_sha256']):
+        raise ValueError('expired or mismatched launch permit')
+    fd = os.open(path.with_suffix('.consumed'), os.O_CREAT | os.O_EXCL | os.O_WRONLY | os.O_NOFOLLOW, 0o600)
+    with os.fdopen(fd, 'w') as stream:
+        stream.write(value['attempt'] + '\n'); stream.flush(); os.fsync(stream.fileno())
+    parent = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
+    try:
+        os.fsync(parent)
+    finally:
+        os.close(parent)
+    return value
 
 
 def canonical(name):
@@ -142,8 +170,13 @@ def transform(data):
         "  inherit_runtime(VENV)\n  subprocess.run([str(VENV/'bin/python'),'-m','pip','install'")
     source = _replace(source, "if __name__=='__main__':\n",
         "if __name__=='__main__':\n"
-        " if sys.argv[1:]!=['--cpu-prerequisites'] and not (len(sys.argv)==4 and sys.argv[1]=='isolation'):\n"
-        "  raise SystemExit('Provider controller is not qualified; only CPU prerequisites may execute')\n")
+        " if sys.argv[1:]==['--authorized-run']:\n"
+        "  from tools.a100_task import consume_permit\n"
+        "  consume_permit('/root/backtrace/launch-permit.json',Path(__file__))\n"
+        " elif len(sys.argv)==2 and sys.argv[1] in ('server','agent'):\n"
+        "  assert os.getuid()==65534 and Path(__file__).resolve()==CODE/'one_task.py'\n"
+        " elif sys.argv[1:]!=['--cpu-prerequisites'] and not (len(sys.argv)==4 and sys.argv[1]=='isolation'):\n"
+        "  raise SystemExit('Owner launch permit required; CPU prerequisites remain available')\n")
     old, new = ast.parse(original), ast.parse(source)
     # These contain the actual prompts, budget, agent, input/model identities and
     # isolation checks. Preserve ASTs exactly, not merely a count of substitutions.
@@ -171,14 +204,14 @@ def prepare(source, output):
         for name in POD_TOOLS:
             shutil.copyfile(ROOT / 'tools' / name, output / 'tools' / name)
         (output / 'docs').mkdir()
-        for name in ('source-manifest.json', 'linux-wheel-manifest.json'):
+        for name in POD_DOCS:
             shutil.copyfile(ROOT / 'docs' / name, output / 'docs' / name)
         (output / 'driver.diff').write_text(''.join(difflib.unified_diff(
             data.decode().splitlines(True), result.splitlines(True),
             fromfile='retained-t4/one_task.py', tofile='prepared-a100/one_task.py')))
         receipt = {'retained_driver_sha256': DRIVER_SHA256,
                    'prepared_driver_sha256': hashlib.sha256(result.encode()).hexdigest(),
-                   'frozen_components_ast_equal': True, 'provider_launch': 'BLOCKED',
+                   'frozen_components_ast_equal': True, 'provider_launch': 'REQUIRES_SINGLE_USE_OWNER_PERMIT',
                    'files': {str(p.relative_to(output)): hashlib.sha256(p.read_bytes()).hexdigest()
                              for p in sorted(output.rglob('*')) if p.is_file()}}
         (output / 'prepare-receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')

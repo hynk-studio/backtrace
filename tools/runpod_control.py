@@ -1,8 +1,8 @@
-"""Owner-side one-attempt journal, native-expiry gate and independent watchdog.
+"""Owner-side one-attempt REST v2 controller for a USD 10 prepaid wallet.
 
-No CLI command allocates a Pod. The library create path is exercised with a fake
-provider only until authenticated expiry readback and delivery are qualified.
-Credentials belong to this external controller, never to the agent Pod.
+The USD 8 stop threshold and external watchdog replace unavailable native
+timers. No financial hard cap is promised. Credentials never enter the Pod.
+This module's CLI only inspects/reconciles an already recorded attempt.
 """
 import argparse
 from datetime import datetime, timezone
@@ -23,7 +23,9 @@ BASE = ('pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:'
         'b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca')
 GPU = 'NVIDIA A100 80GB PCIe'
 TOTAL, USEFUL, STOP = 3000, 2700, 2880
-CAP = Decimal('2.00')
+WALLET = Decimal('10.00')
+CAP = Decimal('8.00')
+POLICY = 'prepaid10-external-v2'
 ID = re.compile(r'[A-Za-z0-9_-]{1,128}')
 
 
@@ -68,24 +70,32 @@ def validate_offer(offer, now):
     fixed = money(offer['other_total'])
     hourly = (compute + storage) * (1 + tax)
     maximum = hourly * Decimal(TOTAL) / 3600 + fixed
-    if maximum > CAP or money(offer['credit_balance']) < hourly + fixed:
+    balance = money(offer['credit_balance'])
+    if balance > WALLET:
+        raise ValueError('this plan requires a single wallet of at most USD 10')
+    spent_before = WALLET - balance
+    if maximum + spent_before > CAP or balance < hourly + fixed:
         raise ValueError('insufficient existing credit or all-in cap exceeded')
     return {'hourly_all_in': str(hourly), 'other_total': str(fixed),
             'maximum_all_in': str(maximum), 'compute_per_hour': str(compute),
-            'storage_per_hour': str(storage), 'tax_rate': str(tax)}
+            'storage_per_hour': str(storage), 'tax_rate': str(tax),
+            'spent_before': str(spent_before), 'initial_balance': str(balance)}
 
 
-def make_request(attempt, requested_at):
+def make_request(attempt, requested_at, bootstrap=None):
     if not re.fullmatch(r'[0-9a-f]{32}', attempt):
         raise ValueError('unique UUID hex attempt required')
-    return {'cloudType': 'SECURE', 'gpuTypeId': GPU, 'gpuCount': 1,
-            'dataCenterId': 'EU-RO-1', 'imageName': BASE,
-            'containerDiskInGb': 100, 'volumeInGb': 0,
-            'minMemoryInGb': 117, 'minVcpuCount': 8,
-            'startSsh': True, 'startJupyter': False, 'ports': '22/tcp',
-            'name': 'backtrace-a100-' + attempt,
-            'stopAfter': utc(requested_at + STOP),
-            'terminateAfter': utc(requested_at + TOTAL)}
+    request = {'cloud': 'SECURE', 'gpu': {'id': GPU, 'count': 1,
+               'minRamPerGpu': 117, 'minVcpuCountPerGpu': 8, 'minCudaVersion': '12.8'},
+               'dataCenterIds': ['EU-RO-1'], 'image': BASE, 'disk': 100,
+               'mounts': {}, 'startSsh': False, 'startJupyter': False,
+               'ports': ['22/tcp'], 'globalNetworking': False,
+               'name': 'backtrace-a100-' + attempt}
+    if bootstrap is not None:
+        from tools.ssh_bootstrap import validate_initializer
+        validate_initializer(bootstrap)
+        request.update(bootstrap)
+    return request
 
 
 class ProviderError(RuntimeError):
@@ -99,13 +109,11 @@ class RunpodAPI:
         self._key = key
         self._open = opener or urllib.request.build_opener(NoRedirect()).open
 
-    def request(self, method, path, body=None, graphql=False, missing=False):
-        if graphql:
-            url = 'https://api.runpod.io/graphql'
-        else:
-            if not re.fullmatch(r'/pods(?:/[A-Za-z0-9_-]{1,128}(?:/stop)?)?', path):
-                raise ValueError('unsupported provider path')
-            url = 'https://rest.runpod.io/v1' + path
+    def request(self, method, path, body=None, missing=False):
+        if not re.fullmatch(r'/pods(?:\?limit=1000(?:&cursor=[A-Za-z0-9%_.~-]+)?'
+                            r'|/[A-Za-z0-9_-]{1,128}(?:/action)?)?', path):
+            raise ValueError('unsupported provider path')
+        url = 'https://api.runpod.io/v2' + path
         headers = {'Authorization': 'Bearer ' + self._key, 'Content-Type': 'application/json'}
         request = urllib.request.Request(url, data=None if body is None else json.dumps(body).encode(),
                                          headers=headers, method=method)
@@ -128,43 +136,9 @@ class RunpodAPI:
         except (ValueError, UnicodeError):
             raise ProviderError('invalid provider JSON') from None
 
-    def graphql(self, query, variables=None):
-        response = self.request('POST', '', {'query': query, 'variables': variables or {}}, graphql=True)
-        if not isinstance(response, dict) or response.get('errors') or not isinstance(response.get('data'), dict):
-            raise ProviderError('GraphQL response failed or incomplete')
-        return response['data']
-
-    def check_native_contract(self):
-        """Input-schema presence alone cannot qualify persistent expiry readback.
-
-        The published spec lists input fields but not the Pod readback fields.
-        This therefore fails closed unless authenticated introspection proves
-        both queryable fields exist. Never add guessed fields to a paid request.
-        """
-        result = self.graphql('query { input: __type(name:"PodFindAndDeployOnDemandInput") '
-                              '{ inputFields { name type { kind name ofType { kind name } } } } '
-                              'pod: __type(name:"Pod") { fields { name } } }')
-        try:
-            inputs = {r['name']: r['type'] for r in result['input']['inputFields']}
-            fields = {r['name'] for r in result['pod']['fields']}
-            for name in ('stopAfter', 'terminateAfter'):
-                kind = inputs[name]
-                if kind['kind'] == 'NON_NULL':
-                    kind = kind['ofType']
-                if kind['name'] != 'DateTime' or name not in fields:
-                    raise ValueError('expiry not queryable')
-        except (KeyError, TypeError, ValueError):
-            raise ProviderError('native expiry readback contract is not established') from None
-
     def create(self, payload):
-        return self.graphql('mutation($input:PodFindAndDeployOnDemandInput) '
-                            '{ podFindAndDeployOnDemand(input:$input) { id name } }',
-                            {'input': payload})['podFindAndDeployOnDemand']
-
-    def native_expiry(self, pod_id):
-        self.valid_id(pod_id)
-        return self.graphql('query($input:PodFilter) { pod(input:$input) '
-                            '{ id stopAfter terminateAfter } }', {'input': {'podId': pod_id}})['pod']
+        # Never retry this non-idempotent request, including on 429 or 5xx.
+        return self.request('POST', '/pods', payload)
 
     @staticmethod
     def valid_id(pod_id):
@@ -179,18 +153,42 @@ class RunpodAPI:
         return result
 
     def list(self):
-        result = self.request('GET', '/pods')
-        if not isinstance(result, list) or any(not isinstance(p, dict) or not p.get('id') for p in result):
-            raise ProviderError('invalid Pod list')
-        return result
+        from urllib.parse import quote
+        pods, cursors, ids = [], set(), set()
+        path = '/pods?limit=1000'
+        for _ in range(100):
+            result = self.request('GET', path)
+            if not isinstance(result, dict) or not isinstance(result.get('pods'), list):
+                raise ProviderError('invalid v2 Pod list')
+            for pod in result['pods']:
+                if not isinstance(pod, dict) or not isinstance(pod.get('id'), str) or pod['id'] in ids:
+                    raise ProviderError('incomplete or duplicate Pod list')
+                self.valid_id(pod['id']); ids.add(pod['id']); pods.append(pod)
+            page = result.get('pagination')
+            if not isinstance(page, dict) or type(page.get('hasNextPage')) is not bool:
+                raise ProviderError('missing v2 pagination evidence')
+            if not page['hasNextPage']:
+                return pods
+            cursor = page.get('nextCursor')
+            if not isinstance(cursor, str) or not cursor or len(cursor) > 4096 or cursor in cursors:
+                raise ProviderError('invalid or repeated pagination cursor')
+            cursors.add(cursor)
+            path = '/pods?limit=1000&cursor=' + quote(cursor, safe='')
+        raise ProviderError('Pod list pagination limit exceeded')
 
     def stop(self, pod_id):
         self.valid_id(pod_id)
-        return self.request('POST', '/pods/' + pod_id + '/stop')
+        return self.request('POST', '/pods/' + pod_id + '/action', {'action': 'stop'})
 
     def delete(self, pod_id):
         self.valid_id(pod_id)
         return self.request('DELETE', '/pods/' + pod_id)
+
+    def erase_bootstrap_env(self, pod_id):
+        self.valid_id(pod_id)
+        self.request('PATCH', '/pods/' + pod_id, {'env': {}})
+        if self.get(pod_id).get('env') != {}:
+            raise ProviderError('bootstrap environment removal not confirmed')
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -227,8 +225,8 @@ class Journal:
                 or self.path.stat().st_uid != os.getuid() or self.path.stat().st_mode & 0o077):
             raise ValueError('private regular attempt journal required')
         value = json.loads(self.path.read_text())
-        if (value['schema_version'] != 1 or value['run'] != RUN
-                or value['request'] != make_request(value['attempt'], value['requested_at'])):
+        if (value['schema_version'] != 2 or value['run'] != RUN or value['policy'] != POLICY
+                or value['request'] != make_request(value['attempt'], value['requested_at'], value.get('bootstrap'))):
             raise ValueError('journal scope changed')
         if value.get('pod_id') is not None:
             RunpodAPI.valid_id(value['pod_id'])
@@ -256,7 +254,7 @@ class Journal:
             os.close(fd)
 
 
-def begin(api, journal, offer, wall=time.time):
+def begin(api, journal, offer, wall=time.time, bootstrap=None):
     """Single non-idempotent request, with durable marker written before sending.
 
     This is a library integration seam, not a ready-to-rent CLI. External launch
@@ -265,12 +263,11 @@ def begin(api, journal, offer, wall=time.time):
     if journal.path.exists() or journal.path.is_symlink():
         raise ValueError('attempt already consumed; never recreate after restart')
     costs = validate_offer(offer, wall())
-    api.check_native_contract()  # Read-only; a known missing contract must stop before spending.
     t0 = int(wall())
     validate_offer(offer, t0)
     attempt = uuid.uuid4().hex
-    value = {'schema_version': 1, 'run': RUN, 'attempt': attempt, 'requested_at': t0,
-             'request': make_request(attempt, t0), 'costs': costs,
+    value = {'schema_version': 2, 'run': RUN, 'policy': POLICY, 'attempt': attempt, 'requested_at': t0,
+             'bootstrap': bootstrap, 'request': make_request(attempt, t0, bootstrap), 'costs': costs,
              'phase': 'requested', 'pod_id': None, 'ownership_confirmed': False,
              'native_expiry_verified': False, 'absence_reads': 0, 'events': []}
     journal.write(value, first=True)
@@ -278,20 +275,16 @@ def begin(api, journal, offer, wall=time.time):
         result = api.create(value['request'])
         bind(value, result)
         journal.write(value)
-        expiry = api.native_expiry(value['pod_id'])  # Independent post-create query.
-        if (expiry is None or expiry.get('id') != value['pod_id']
-                or any(timestamp(expiry[name]) != timestamp(value['request'][name])
-                       for name in ('stopAfter', 'terminateAfter'))):
-            raise ValueError('native expiry acknowledgement/readback mismatch')
-        value['native_expiry_verified'] = True
+        # The owner replaced unavailable native timers with external cleanup
+        # plus a prepaid wallet. Do not send or claim unsupported expiry fields.
         value['phase'] = 'allocated'
         journal.write(value)
     except Exception as error:
         value['phase'] = 'cleanup_required'
-        value['events'].append({'event': 'create_or_expiry_failed', 'type': type(error).__name__})
+        value['events'].append({'event': 'create_failed', 'type': type(error).__name__})
         journal.write(value)
         cleanup_once(api, journal, value)
-        raise RuntimeError('attempt consumed; allocation/expiry failed; inspect private journal') from None
+        raise RuntimeError('attempt consumed; allocation failed; inspect private journal') from None
     return value
 
 
@@ -303,6 +296,30 @@ def bind(value, pod):
         raise ValueError('another Pod cannot replace this attempt')
     value['pod_id'] = pod['id']
     value['ownership_confirmed'] = True
+
+
+def resource_matches(pod, value):
+    """Validate v2 nested state without treating a provisioning Pod as healthy."""
+    if not isinstance(pod, dict):
+        return False
+    gpu = pod.get('gpu', {})
+    pending = pod.get('status') in ('PROVISIONING', 'STARTING')
+    if (pod.get('name') != value['request']['name'] or pod.get('image') != BASE
+            or pod.get('cloud') != 'SECURE' or pod.get('disk') != 100
+            or pod.get('mounts') != {} or pod.get('ports') != ['22/tcp']
+            or gpu.get('id') != GPU or type(gpu.get('count')) is not int or gpu['count'] != 1
+            or pod.get('status') not in ('PROVISIONING', 'STARTING', 'RUNNING')
+            or pod.get('locked') is not False or pod.get('cluster')
+            or pod.get('dataCenterId') not in (('EU-RO-1', None) if pending else ('EU-RO-1',))):
+        return False
+    for name, minimum in (('vcpuCount', 8), ('memory', 117)):
+        number = gpu.get(name)
+        if pending and number is None:
+            continue
+        if type(number) not in (int, float) or not number >= minimum:
+            return False
+    quoted = money(value['costs']['compute_per_hour']) + money(value['costs']['storage_per_hour'])
+    return money(str(pod['cost'])) <= quoted
 
 
 def cleanup_once(api, journal, value):
@@ -369,6 +386,7 @@ def watchdog(api, journal, wall=time.time, monotonic=time.monotonic, sleep=time.
     value = journal.read()
     initial_wall, initial_mono = wall(), monotonic()
     last_wall = initial_wall
+    next_provider_read = initial_wall
     while True:
         now = wall()
         elapsed = max(now - value['requested_at'],
@@ -379,12 +397,12 @@ def watchdog(api, journal, wall=time.time, monotonic=time.monotonic, sleep=time.
         last_wall = now
         if value['phase'] == 'deleted':
             return value
-        if value['phase'] != 'allocated' or not value['native_expiry_verified']:
+        if value['phase'] != 'allocated' or value['policy'] != POLICY:
             reason = 'incomplete_launch'
         if elapsed >= USEFUL:
             reason = 'useful_deadline'
         projected = (money(value['costs']['hourly_all_in']) * Decimal(str(max(0, elapsed) + 300))
-                     / 3600 + money(value['costs']['other_total']))
+                     / 3600 + money(value['costs']['other_total']) + money(value['costs']['spent_before']))
         if projected > CAP:
             reason = 'projected_budget'
         if reason is None:
@@ -396,16 +414,16 @@ def watchdog(api, journal, wall=time.time, monotonic=time.monotonic, sleep=time.
                 if (status['attempt'] != value['attempt'] or status['state'] != 'running'
                         or not 0 <= now - timestamp(status['at']) <= 30):
                     reason = 'job_finished_failed_or_stale'
+                if status.get('phase') == 'setup' and elapsed >= 1200:
+                    reason = 'setup_deadline'
             except (OSError, KeyError, TypeError, ValueError):
                 reason = 'missing_or_invalid_job_status'
-        if reason is None:
+        if reason is None and now >= next_provider_read:
             try:
                 pod = api.get(value['pod_id'])
-                if (pod is None or pod.get('name') != value['request']['name']
-                        or pod.get('imageName') != BASE or pod.get('gpuCount') != 1
-                        or pod.get('volumeInGb') != 0 or pod.get('networkVolumeId')
-                        or money(str(pod['costPerHr'])) > money(value['costs']['compute_per_hour'])):
+                if not resource_matches(pod, value):
                     reason = 'provider_resource_changed'
+                next_provider_read = now + 10
             except Exception:
                 reason = 'provider_observation_failed'
         if reason:

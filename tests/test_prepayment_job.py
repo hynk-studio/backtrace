@@ -1,0 +1,141 @@
+import hashlib
+import io
+import json
+import os
+from pathlib import Path
+import stat
+import tempfile
+import time
+import unittest
+from unittest.mock import patch
+
+from tools import pod_bootstrap as pod
+from tools import runpod_job as job
+from tools import ssh_bootstrap as ssh
+from tools.a100_task import consume_permit
+from tools.private_delivery import emit, receive
+
+
+class ActivationTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        self.stage = self.root / 'staging'; self.stage.mkdir(mode=0o700)
+        self.input = self.root / 'input'
+        self.work = self.root / 'working'
+        self.manifests = {}
+        for kind in ('driver', 'wheels', 'task', 'model'):
+            source = self.root / ('source-' + kind); source.mkdir(mode=0o700)
+            content = (kind + '-fixture').encode(); (source / 'payload').write_bytes(content)
+            data = json.dumps({'schema_version': 1, 'phase': 'task', 'files': [
+                {'path': 'payload', 'bytes': len(content), 'sha256': hashlib.sha256(content).hexdigest()}]}).encode()
+            stream = io.BytesIO(); emit(source, data, stream); stream.seek(0)
+            sha = hashlib.sha256(data).hexdigest()
+            receive(self.stage / kind, sha, stream)
+            self.manifests[kind] = sha
+
+    def activate(self):
+        with patch.multiple(pod, STAGING=self.stage, INPUT=self.input, WORKING=self.work):
+            return pod.activate(self.manifests, time.time(), runtime=False)
+
+    def test_corruption_aborts_before_any_logical_input_exists(self):
+        (self.stage / 'model/payload').write_bytes(b'changed')
+        with self.assertRaises(ValueError):
+            self.activate()
+        self.assertFalse(self.input.exists())
+
+    def test_generation_inputs_activate_once_without_transport_metadata(self):
+        result = self.activate()
+        self.assertEqual(result['activation'], 'PASS')
+        for destination in (self.input / 'r0-inputs', self.input / pod.MODEL):
+            self.assertEqual({p.name for p in destination.iterdir()}, {'payload'})
+            self.assertFalse(destination.stat().st_mode & 0o222)
+            self.assertFalse((destination / 'payload').stat().st_mode & 0o222)
+        with self.assertRaises((ValueError, FileNotFoundError)):
+            self.activate()
+
+    def test_unknown_input_and_symlink_are_not_activated(self):
+        (self.stage / 'task/answer').write_text('evaluation-only fixture')
+        with self.assertRaises(ValueError):
+            self.activate()
+        (self.stage / 'task/answer').unlink()
+        (self.stage / 'task/payload').unlink()
+        (self.stage / 'task/payload').symlink_to(self.root / 'source-task/payload')
+        with self.assertRaises(ValueError):
+            self.activate()
+
+
+class PermitTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        self.driver = self.root / 'driver.py'; self.driver.write_text('fixture, never executed')
+        self.path = self.root / 'launch-permit.json'
+        self.value = {'policy': 'prepaid10-external-v2',
+                      'run': 'R0-clean-v2-one-public-task/A10080-TP1',
+                      'attempt': 'a' * 32, 'pod_id': 'owned123', 'requested_at': 1000,
+                      'driver_sha256': hashlib.sha256(self.driver.read_bytes()).hexdigest()}
+        self.write()
+        self.addCleanup(patch.stopall)
+        patch.dict(os.environ, {'BACKTRACE_ALLOCATION_REQUESTED_AT': '1000'}).start()
+
+    def write(self):
+        self.path.write_text(json.dumps(self.value)); self.path.chmod(0o600)
+
+    def test_permit_is_consumed_before_a_second_start_can_enter(self):
+        consume_permit(self.path, self.driver, now=1001)
+        with self.assertRaises(FileExistsError):
+            consume_permit(self.path, self.driver, now=1002)
+
+    def test_deadline_drift_and_changed_driver_consume_no_permit(self):
+        for now in (999, 2200, float('nan')):
+            with self.subTest(now=now), self.assertRaises(ValueError):
+                consume_permit(self.path, self.driver, now=now)
+        self.driver.write_text('changed')
+        with self.assertRaises(ValueError):
+            consume_permit(self.path, self.driver, now=1001)
+        self.assertFalse(self.path.with_suffix('.consumed').exists())
+
+    def test_world_readable_or_linked_permit_is_rejected(self):
+        self.path.chmod(0o644)
+        with self.assertRaises(ValueError):
+            consume_permit(self.path, self.driver, now=1001)
+        self.path.unlink(); self.path.symlink_to(self.driver)
+        with self.assertRaises(ValueError):
+            consume_permit(self.path, self.driver, now=1001)
+
+
+class OwnerBoundaryTests(unittest.TestCase):
+    def test_bootstrap_program_compiles_and_modified_initializer_is_refused(self):
+        compile(ssh.START, '<literal-initializer>', 'exec')
+        with self.assertRaises(ValueError):
+            ssh.validate_initializer({'entrypoint': ['/bin/sh'], 'cmd': ['curl unsafe'], 'env': {}})
+
+    def test_preparation_cannot_invoke_a_provider_api(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            config = {'driver': str(root), 'wheels': str(root), 'task': str(root), 'model': str(root),
+                      'ssh_directory': str(root), 'controller_host': 'kaggle-free-cpu'}
+            with patch.object(job, 'check_owner_host'), patch.object(job.control, 'RunpodAPI') as api:
+                with self.assertRaises((ValueError, FileNotFoundError)):
+                    job.prepare(config, root / 'plan')
+                api.assert_not_called()
+
+    def test_invalid_run_host_blocks_before_loading_credentials_or_creating(self):
+        with patch.object(job, 'check_owner_host', side_effect=ValueError('unqualified host')):
+            with patch.object(job.control, 'RunpodAPI') as api, self.assertRaises(ValueError):
+                job.run('/missing', '/missing', '/missing', '/missing')
+            api.assert_not_called()
+
+    def test_atomic_heartbeat_is_private_and_attempt_bound(self):
+        with tempfile.TemporaryDirectory() as directory:
+            job.heartbeat(directory, 'a' * 32, 'running', 'setup')
+            p = Path(directory) / 'job-status.json'
+            self.assertEqual(stat.S_IMODE(p.stat().st_mode), 0o600)
+            self.assertEqual(json.loads(p.read_text())['attempt'], 'a' * 32)
+            self.assertEqual(set(Path(directory).iterdir()), {p})
+
+
+if __name__ == '__main__':
+    unittest.main()

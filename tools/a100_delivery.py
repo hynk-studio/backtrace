@@ -8,12 +8,12 @@ import hashlib
 import json
 from pathlib import Path
 
-from tools.a100_task import ROOT, POD_TOOLS, WHEEL_MANIFEST_SHA256
+from tools.a100_task import ROOT, POD_TOOLS, POD_DOCS, WHEEL_MANIFEST_SHA256
 from tools.private_delivery import digest, parse_manifest, regular_file, verify
 
 SOURCE_SHA256 = '873e9dc7cf372948c154fb6b9d1e24170f1eb74fea4426d32fc17702581a030a'
 TASK_SHA256 = '3cf1409f7dd48366b194523bfa7ee42bd0dd5289be68f3c26cdf140fc98faab3'
-DRIVER_SHA256 = '58880d27069574d10f60e90d3c80cbae89d080a4ed813206a973b49e6982ead2'
+DRIVER_SHA256 = '8609f4cd74d22a13e99a58865818a80ba482eddc37676b74c6297b424a2501a1'
 
 
 def pinned_document(name, expected):
@@ -43,8 +43,7 @@ def manifest(kind, prepared=None):
             raise ValueError('prepared driver changed')
         references = {'startup_guard.py': ROOT / 'tools/startup_guard.py'}
         references.update({'tools/' + n: ROOT / 'tools' / n for n in POD_TOOLS})
-        references.update({'docs/' + n: ROOT / 'docs' / n for n in
-                           ('source-manifest.json', 'linux-wheel-manifest.json')})
+        references.update({'docs/' + n: ROOT / 'docs' / n for n in POD_DOCS})
         rows = [{'path': 'one_task.py', 'bytes': driver.stat().st_size, 'sha256': DRIVER_SHA256}]
         for name, reference in sorted(references.items()):
             # Hash from this reviewed source snapshot, not an arbitrary source

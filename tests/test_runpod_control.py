@@ -47,8 +47,11 @@ class FakeProvider:
     def create(self, payload):
         self.calls.append(('create', None))
         self.request = payload
-        pod = {'id': 'owned123', 'name': payload['name'], 'imageName': control.BASE,
-               'gpuCount': 1, 'volumeInGb': 0, 'networkVolumeId': None, 'costPerHr': 1.79}
+        pod = {'id': 'owned123', 'name': payload['name'], 'image': control.BASE,
+               'gpu': {'id': control.GPU, 'count': 1, 'memory': 117, 'vcpuCount': 8},
+               'mounts': {}, 'cost': 1.804, 'cloud': 'SECURE', 'disk': 100,
+               'ports': ['22/tcp'], 'dataCenterId': 'EU-RO-1', 'locked': False,
+               'status': 'RUNNING', 'env': {}}
         self.pods[pod['id']] = pod
         if self.drop_ack:
             raise control.ProviderError('lost create response')
@@ -94,17 +97,19 @@ class ControlTests(unittest.TestCase):
     def begin(self):
         return control.begin(self.api, self.journal, offer(), wall=lambda: T0)
 
-    def test_request_freezes_utc_and_authorized_scope(self):
+    def test_request_freezes_v2_scope_without_nonfunctional_timers(self):
         request = control.make_request('a' * 32, T0)
-        self.assertEqual(control.timestamp(request['stopAfter']), T0 + 2880)
-        self.assertEqual(control.timestamp(request['terminateAfter']), T0 + 3000)
-        self.assertEqual(request['ports'], '22/tcp')
+        self.assertNotIn('stopAfter', request)
+        self.assertNotIn('terminateAfter', request)
+        self.assertEqual(request['dataCenterIds'], ['EU-RO-1'])
+        self.assertEqual(request['gpu']['count'], 1)
+        self.assertEqual(request['ports'], ['22/tcp'])
         self.assertFalse(request['startJupyter'])
         self.assertNotIn('env', request)
 
     def test_offer_counts_storage_tax_and_refuses_bad_scope(self):
         self.assertLess(control.money(control.validate_offer(offer(), T0)['maximum_all_in']), control.CAP)
-        for key, value in [('compute_per_hour', '2.50'), ('credit_balance', '0'),
+        for key, value in [('compute_per_hour', '12.50'), ('credit_balance', '0'), ('credit_balance', '10.01'),
                            ('tax_rate', 'NaN'), ('region', 'US-CA-1'), ('gpu_count', 2),
                            ('volume_gb', 10), ('auto_pay', True), ('authenticated', False),
                            ('ram_gb', 116), ('stock_available', False), ('gpu_count', True)]:
@@ -116,12 +121,20 @@ class ControlTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 control.validate_offer(offer(), now)
 
-    def test_missing_native_readback_blocks_before_consumption(self):
+    def test_revised_plan_does_not_call_native_expiry(self):
         self.api.contract = False
-        with self.assertRaises(control.ProviderError):
-            self.begin()
-        self.assertFalse(self.journal.path.exists())
-        self.assertFalse(self.api.calls)
+        self.api.native_expiry = lambda _: self.fail('unavailable native timers must not be called')
+        value = self.begin()
+        self.assertEqual(value['policy'], 'prepaid10-external-v2')
+        self.assertFalse(value['native_expiry_verified'])
+
+    def test_spent_wallet_counts_toward_total_eight_dollar_threshold(self):
+        data = offer(); data['credit_balance'] = '3.50'
+        with self.assertRaises(ValueError):
+            control.validate_offer(data, T0)
+        data['credit_balance'] = '5.00'
+        costs = control.validate_offer(data, T0)
+        self.assertEqual(costs['spent_before'], '5.00')
 
     def test_marker_is_durable_before_create_and_no_retry(self):
         original = self.api.create
@@ -164,12 +177,12 @@ class ControlTests(unittest.TestCase):
         self.assertIsNone(value['pod_id'])
         self.assertEqual(self.api.calls, [('create', None)])
 
-    def test_expiry_mismatch_deletes_before_any_work(self):
-        self.api.bad_expiry = True
-        with self.assertRaises(RuntimeError):
-            self.begin()
-        value = self.journal.read()
-        self.assertFalse(value['native_expiry_verified'])
+    def test_unapproved_persistent_mount_triggers_cleanup(self):
+        value = self.begin(); self.heartbeat(value, T0 + 1)
+        self.api.pods['owned123']['mounts'] = {'persistent': {'size': 20, 'path': '/workspace'}}
+        value = control.watchdog(self.api, self.journal, wall=lambda: T0 + 1,
+                                 monotonic=lambda: 10, sleep=lambda _: None)
+        self.assertEqual(value['phase'], 'deleted')
         self.assertNotIn('owned123', self.api.pods)
 
     def test_stop_failure_still_deletes_and_requires_two_readbacks(self):
@@ -243,7 +256,7 @@ class ControlTests(unittest.TestCase):
 
     def test_provider_price_change_triggers_cleanup(self):
         value = self.begin(); self.heartbeat(value, T0 + 1)
-        self.api.pods['owned123']['costPerHr'] = 5
+        self.api.pods['owned123']['cost'] = 5
         result = control.watchdog(self.api, self.journal, wall=lambda: T0 + 1,
                                   monotonic=lambda: 10, sleep=lambda _: None)
         self.assertEqual(result['phase'], 'deleted')
@@ -264,26 +277,36 @@ class APIContractTests(unittest.TestCase):
         result.status = status
         return result
 
-    def test_real_client_serializes_native_datetimes_in_single_create(self):
+    def test_real_client_serializes_one_v2_create_without_retry(self):
         requests = []
         def opener(request, timeout):
             requests.append(request)
             self.assertEqual(timeout, 10)
-            return self.response({'data': {'podFindAndDeployOnDemand': {'id': 'one', 'name': 'test'}}})
+            return self.response({'id': 'one', 'name': 'test'})
         api = control.RunpodAPI('fake-fixture-secret', opener=opener)
         payload = control.make_request('a' * 32, T0)
         api.create(payload)
         self.assertEqual(len(requests), 1)
-        self.assertEqual(json.loads(requests[0].data)['variables']['input'], payload)
+        self.assertEqual(json.loads(requests[0].data), payload)
+        self.assertEqual(requests[0].full_url, 'https://api.runpod.io/v2/pods')
         self.assertNotIn('fake-fixture-secret', requests[0].full_url)
 
-    def test_input_fields_without_pod_readback_fail(self):
-        value = {'data': {'input': {'inputFields': [
-            {'name': n, 'type': {'kind': 'SCALAR', 'name': 'DateTime'}}
-            for n in ('stopAfter', 'terminateAfter')]}, 'pod': {'fields': [{'name': 'id'}]}}}
-        api = control.RunpodAPI('fixture', opener=lambda *a, **kw: self.response(value))
-        with self.assertRaises(control.ProviderError):
-            api.check_native_contract()
+    def test_v2_list_follows_every_page_and_encodes_opaque_cursor(self):
+        paths = []
+        def opener(request, timeout):
+            paths.append(request.full_url)
+            first = len(paths) == 1
+            return self.response({'pods': [{'id': 'one' if first else 'two'}],
+                'pagination': {'hasNextPage': first, 'nextCursor': 'opaque+/=' if first else None}})
+        api = control.RunpodAPI('fixture', opener=opener)
+        self.assertEqual([p['id'] for p in api.list()], ['one', 'two'])
+        self.assertTrue(paths[1].endswith('cursor=opaque%2B%2F%3D'))
+
+    def test_v2_repeated_cursor_or_missing_pagination_is_inconclusive(self):
+        for value in ({'pods': []}, {'pods': [], 'pagination': {'hasNextPage': True, 'nextCursor': 'same'}}):
+            api = control.RunpodAPI('fixture', opener=lambda *a, **kw: self.response(value))
+            with self.assertRaises(control.ProviderError):
+                api.list()
 
     def test_provider_errors_redact_tokens_and_bodies(self):
         def opener(*args, **kwargs):
@@ -293,10 +316,21 @@ class APIContractTests(unittest.TestCase):
             api.list()
         self.assertNotIn('fake-secret', str(context.exception))
 
-    def test_graphql_partial_data_is_not_success(self):
+    def test_flat_v1_response_is_not_v2_success(self):
         api = control.RunpodAPI('fixture', opener=lambda *a, **kw: self.response({'data': {}, 'errors': [{'message': 'secret'}]}))
         with self.assertRaises(control.ProviderError):
-            api.graphql('query { pod { id } }')
+            api.list()
+
+    def test_v2_stop_action_and_delete_keep_the_exact_id(self):
+        calls = []
+        def opener(request, timeout):
+            calls.append((request.method, request.full_url, request.data))
+            return self.response({})
+        api = control.RunpodAPI('fixture', opener=opener)
+        api.stop('owned123'); api.delete('owned123')
+        self.assertEqual(calls[0][:2], ('POST', 'https://api.runpod.io/v2/pods/owned123/action'))
+        self.assertEqual(json.loads(calls[0][2]), {'action': 'stop'})
+        self.assertEqual(calls[1][:2], ('DELETE', 'https://api.runpod.io/v2/pods/owned123'))
 
     def test_404_allowed_only_on_exact_get(self):
         def missing(*args, **kwargs):
@@ -324,8 +358,8 @@ class APIContractTests(unittest.TestCase):
                     self.send_response(status); self.end_headers(); self.wfile.write(raw)
 
                 def do_GET(self):
-                    if self.path == '/v1/pods':
-                        self.send(api.list())
+                    if self.path.startswith('/v2/pods?'):
+                        self.send({'pods': api.list(), 'pagination': {'hasNextPage': False, 'nextCursor': None}})
                     else:
                         pod = api.get(self.path.split('/')[-1])
                         self.send(pod, 200 if pod else 404)
@@ -342,7 +376,7 @@ class APIContractTests(unittest.TestCase):
                 code = '''import sys, urllib.request
 from tools.runpod_control import Journal, RunpodAPI, watchdog
 def local(request, timeout):
-    target = 'http://127.0.0.1:' + sys.argv[2] + request.full_url.split('rest.runpod.io')[1]
+    target = 'http://127.0.0.1:' + sys.argv[2] + request.full_url.split('api.runpod.io')[1]
     return urllib.request.urlopen(urllib.request.Request(target, data=request.data, method=request.method), timeout=timeout)
 with Journal(sys.argv[1]) as journal:
     result = watchdog(RunpodAPI('local-fixture-only', opener=local), journal)
