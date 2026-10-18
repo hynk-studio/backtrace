@@ -162,8 +162,12 @@ def activate(manifests, requested_at, *, runtime=True):
         readonly(target)
     readonly(STAGING / 'driver')
     WORKING.mkdir(mode=0o700, parents=True, exist_ok=True)
-    environment = STAGING / 'runtime'
     if runtime:
+        # Build at the final public path: venv console-script shebangs are
+        # absolute, so relocating an installed environment is not supported.
+        environment = Path('/opt/backtrace-runtime')
+        if environment.exists() or environment.is_symlink():
+            raise ValueError('runtime path already exists')
         ensure_venv_seed(STAGING / 'wheels')
         code = STAGING / 'driver/tools/linux_runtime.py'
         remaining = 1200 - (time.time() - requested_at)
@@ -172,13 +176,7 @@ def activate(manifests, requested_at, *, runtime=True):
                        check=True, timeout=max(0.001, remaining),
                        env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8', 'HOME': '/root',
                             'PYTHON_DOTENV_DISABLED': '1', 'HF_HUB_OFFLINE': '1'})
-        # The venv is used by UID 65534. Move it to a traversable fixed path;
-        # venv interpreters do not need their generated pip launcher shebangs.
-        public = Path('/opt/backtrace-runtime')
-        if public.exists() or public.is_symlink():
-            raise ValueError('runtime path already exists')
-        environment.rename(public)
-        readonly(public)
+        readonly(environment)
     if time.time() - requested_at >= 1200:
         raise ValueError('setup deadline exhausted after activation')
     return {'activation': 'PASS', 'input_access': 'root-owned / agent read-only permissions',
