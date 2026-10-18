@@ -228,6 +228,15 @@ class ControlTests(unittest.TestCase):
         self.assertEqual(result['phase'], 'deleted')
         self.assertTrue(any(e.get('reason') == 'useful_deadline' for e in result['events']))
 
+    def test_setup_deadline_includes_transfer_and_installation(self):
+        value = self.begin(); self.heartbeat(value, T0 + 1200)
+        p = self.root / 'job-status.json'; data = json.loads(p.read_text())
+        data['phase'] = 'setup'; p.write_text(json.dumps(data))
+        result = control.watchdog(self.api, self.journal, wall=lambda: T0 + 1200,
+                                  monotonic=lambda: 10, sleep=lambda _: None)
+        self.assertEqual(result['phase'], 'deleted')
+        self.assertTrue(any(e.get('reason') == 'setup_deadline' for e in result['events']))
+
     def heartbeat(self, value, at):
         p = self.root / 'job-status.json'
         p.write_text(json.dumps({'attempt': value['attempt'], 'state': 'running', 'at': control.utc(at)}))

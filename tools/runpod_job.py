@@ -188,7 +188,6 @@ def worker(plan_directory, key_file, state_directory):
                             (b'host key verification failed', b'remote host identification', b'permission denied'))):
                         raise
                     time.sleep(2)
-            api.erase_bootstrap_env(value['pod_id'])
             for kind in ('driver', 'wheels', 'task', 'model'):
                 manifest = plan_directory / (kind + '-manifest.json')
                 command = ssh_command(endpoint['host'], endpoint['port'],

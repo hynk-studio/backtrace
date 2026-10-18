@@ -184,13 +184,6 @@ class RunpodAPI:
         self.valid_id(pod_id)
         return self.request('DELETE', '/pods/' + pod_id)
 
-    def erase_bootstrap_env(self, pod_id):
-        self.valid_id(pod_id)
-        self.request('PATCH', '/pods/' + pod_id, {'env': {}})
-        if self.get(pod_id).get('env') != {}:
-            raise ProviderError('bootstrap environment removal not confirmed')
-
-
 class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, *args, **kwargs):
         raise ProviderError('provider redirects are refused')
