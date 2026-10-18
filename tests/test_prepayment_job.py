@@ -2,8 +2,11 @@ import hashlib
 import io
 import json
 import os
+import shutil
 from pathlib import Path
 import stat
+import subprocess
+import sys
 import tempfile
 import time
 import unittest
@@ -14,6 +17,47 @@ from tools import runpod_job as job
 from tools import ssh_bootstrap as ssh
 from tools.a100_task import consume_permit
 from tools.private_delivery import emit, receive
+
+
+class VenvSeedTests(unittest.TestCase):
+    def test_real_venv_is_seeded_offline_from_the_frozen_wheel(self):
+        import ensurepip
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            wheels = root / 'wheels'; wheels.mkdir()
+            shutil.copyfile(Path(ensurepip.__file__).parent / '_bundled' / pod.PIP_WHEEL,
+                            wheels / pod.PIP_WHEEL)
+            stdlib = root / 'stdlib'; stdlib.mkdir()
+            seed = root / 'seed'
+            receipt = pod.ensure_venv_seed(wheels, stdlib=stdlib, seed_root=seed)
+            self.assertEqual(pod.ensure_venv_seed(wheels, stdlib=stdlib, seed_root=seed), receipt)
+            venv = root / 'venv'
+            subprocess.run([sys.executable, '-I', '-m', 'venv', '--without-pip', str(venv)],
+                           check=True, capture_output=True, timeout=30)
+            python = venv / 'bin/python'
+            subprocess.run([str(python), '-I', str(stdlib / 'ensurepip.py'),
+                            '--upgrade', '--default-pip'], check=True, capture_output=True, timeout=60)
+            output = subprocess.check_output([str(python), '-I', '-c',
+                                             'import pip;print(pip.__version__)'], text=True, timeout=10)
+            self.assertEqual(output.strip(), '25.0.1')
+            (seed / 'bootstrap.lock').chmod(0o600)
+            (seed / 'bootstrap.lock').write_text('changed')
+            refused = subprocess.run([str(python), '-I', str(stdlib / 'ensurepip.py')],
+                                     capture_output=True, timeout=10)
+            self.assertNotEqual(refused.returncode, 0)
+            for p in root.rglob('*'):
+                if p.is_dir() and not p.is_symlink(): p.chmod(0o700)
+
+    def test_changed_wheel_and_existing_ensurepip_are_not_overwritten(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / pod.PIP_WHEEL).write_bytes(b'wrong wheel')
+            with self.assertRaises(ValueError):
+                pod.ensure_venv_seed(root, stdlib=root, seed_root=root / 'seed')
+            (root / 'ensurepip').mkdir()
+            with self.assertRaises(ValueError):
+                pod.ensure_venv_seed(root, stdlib=root, seed_root=root / 'seed')
+            self.assertFalse((root / 'ensurepip.py').exists())
 
 
 class ActivationTests(unittest.TestCase):
