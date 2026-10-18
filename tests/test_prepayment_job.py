@@ -116,10 +116,21 @@ class OwnerBoundaryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             config = {'driver': str(root), 'wheels': str(root), 'task': str(root), 'model': str(root),
-                      'ssh_directory': str(root), 'controller_host': 'kaggle-free-cpu'}
+                      'ssh_directory': str(root), 'controller_host': 'kaggle-free-cpu',
+                      'state_directory': '/kaggle/working/backtrace-a100-owner-state', 'files_persist': True}
             with patch.object(job, 'check_owner_host'), patch.object(job.control, 'RunpodAPI') as api:
                 with self.assertRaises((ValueError, FileNotFoundError)):
                     job.prepare(config, root / 'plan')
+                api.assert_not_called()
+
+    def test_changed_attempt_directory_blocks_before_provider_access(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            job.private_json(root / 'plan.json', {'policy': job.control.POLICY,
+                'configuration': {'files_persist': True, 'state_directory': str(root / 'original')}})
+            with patch.object(job, 'check_owner_host'), patch.object(job.control, 'RunpodAPI') as api:
+                with self.assertRaisesRegex(ValueError, 'state directory changed'):
+                    job.run(root, root / 'offer', root / 'key', root / 'replacement')
                 api.assert_not_called()
 
     def test_invalid_run_host_blocks_before_loading_credentials_or_creating(self):

@@ -155,6 +155,13 @@ class ControlTests(unittest.TestCase):
             with control.Journal(self.root):
                 pass
 
+    def test_existing_project_pod_blocks_create_even_without_local_journal(self):
+        self.api.pods['older'] = {'id': 'older', 'name': 'backtrace-a100-' + 'b' * 32}
+        with self.assertRaisesRegex(ValueError, 'earlier Backtrace Pod'):
+            self.begin()
+        self.assertFalse(self.journal.path.exists())
+        self.assertFalse(self.api.calls)
+
     def test_lost_create_response_reconciles_without_second_create(self):
         self.api.drop_ack = True
         with self.assertRaises(RuntimeError):

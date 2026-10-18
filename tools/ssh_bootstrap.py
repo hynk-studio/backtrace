@@ -17,8 +17,9 @@ TRANSPORT = {
     'source_url': 'https://codeload.github.com/mkj/dropbear/tar.gz/refs/tags/DROPBEAR_2026.94',
     'source_bytes': 2923600,
     'source_sha256': '827d3f6e510e7554ee18d5c6a00dfee1a6a555559495e65e2e8f8d41c79eed84',
-    'binary_sha256': 'aacad0b42337921f2f1be2c952df6d20d50c73ee419b3d6e04760cc753275d8c',
-    'keygen_sha256': '50200a9c67332a948176022618e51e3aff68d339d63712d1e0a5d101fa74f8c5',
+    'build_host': 'Kaggle CPU; GCC 13.3.0-6ubuntu2~24.04.1; GLIBC 2.39-0ubuntu8.9',
+    'binary_sha256': '18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a',
+    'keygen_sha256': '5d33b842b70f674859459713ce3f28e62e32bdaca04950d6a599e1b8d84f3690',
 }
 
 # Literal, reviewed program. The larger compressed binary is split into small

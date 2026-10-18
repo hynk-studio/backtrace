@@ -49,9 +49,14 @@ def read_private(path):
 
 def prepare(config, output):
     """Hash all four source streams in place; no 29GB duplicate staging."""
-    required = {'driver', 'wheels', 'task', 'model', 'ssh_directory', 'controller_host'}
+    required = {'driver', 'wheels', 'task', 'model', 'ssh_directory', 'controller_host',
+                'state_directory', 'files_persist'}
     if set(config) != required or config['controller_host'] not in ('kaggle-free-cpu', 'existing-linux-host'):
         raise ValueError('explicit external owner host and exact input paths required')
+    if (config['files_persist'] is not True or not Path(config['state_directory']).is_absolute()
+            or (config['controller_host'] == 'kaggle-free-cpu'
+                and config['state_directory'] != '/kaggle/working/backtrace-a100-owner-state')):
+        raise ValueError('persistent fixed attempt directory required; Kaggle needs Files only')
     check_owner_host()
     output = Path(output).absolute()
     output.mkdir(mode=0o700)
@@ -236,6 +241,9 @@ def run(plan_directory, offer_file, key_file, state_directory):
     plan = json.loads(read_private(plan_directory / 'plan.json'))
     if plan['policy'] != control.POLICY:
         raise ValueError('outdated control plan')
+    if (plan['configuration']['files_persist'] is not True
+            or state_directory.absolute() != Path(plan['configuration']['state_directory']).absolute()):
+        raise ValueError('attempt state directory changed; never create a replacement journal')
     # Rehash every source before the attempt marker/create. No resolver here.
     for kind in ('driver', 'wheels', 'task', 'model'):
         data = (plan_directory / (kind + '-manifest.json')).read_bytes()

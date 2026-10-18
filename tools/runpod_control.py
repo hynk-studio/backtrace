@@ -256,6 +256,8 @@ def begin(api, journal, offer, wall=time.time, bootstrap=None):
     if journal.path.exists() or journal.path.is_symlink():
         raise ValueError('attempt already consumed; never recreate after restart')
     costs = validate_offer(offer, wall())
+    if any(p.get('name', '').startswith('backtrace-a100-') for p in api.list()):
+        raise ValueError('an earlier Backtrace Pod needs reconciliation; no second create')
     t0 = int(wall())
     validate_offer(offer, t0)
     attempt = uuid.uuid4().hex
@@ -373,7 +375,7 @@ def cleanup_once(api, journal, value):
 def watchdog(api, journal, wall=time.time, monotonic=time.monotonic, sleep=time.sleep):
     """Separate owner process; survives worker failure and can resume journal.
 
-    An owner-only job-status.json heartbeat is written by the future launcher.
+    An owner-only job-status.json heartbeat is written by the separate worker.
     Missing/stale status triggers immediate cleanup; no workload is started here.
     """
     value = journal.read()
