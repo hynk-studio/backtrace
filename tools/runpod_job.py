@@ -23,7 +23,7 @@ import time
 from tools import a100_delivery as frozen
 from tools import runpod_control as control
 from tools import ssh_bootstrap
-from tools.private_delivery import digest, parse_manifest, push, receive, ssh_command, verify
+from tools.private_delivery import digest, parse_manifest, push, receive, remote_python, ssh_command, verify
 
 
 def private_json(path, value):
@@ -134,13 +134,13 @@ print(json.dumps({'schema_version':1,'phase':'task','files':rows},sort_keys=True
                             env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
     data = result.stdout
     parse_manifest(data)
-    source = (Path(__file__).with_name('private_delivery.py')).read_bytes()
+    source = (Path(__file__).with_name('private_delivery.py')).read_text()
     sender = ("import types,sys\nm=types.ModuleType('private_delivery')\n"
-              + "exec(bytes.fromhex(" + repr(source.hex()) + "),m.__dict__)\n"
-              + "m.emit(" + repr(root) + ",bytes.fromhex(" + repr(data.hex()) + "),sys.stdout.buffer)\n")
+              + "exec(" + repr(source) + ",m.__dict__)\n"
+              + "m.emit(" + repr(root) + ",sys.stdin.buffer.read(m.MAX_MANIFEST_BYTES+1),sys.stdout.buffer)\n")
     with tempfile.TemporaryFile() as stream:
-        subprocess.run(prefix + [shlex.join(['python3', '-I', '-c', sender])],
-                       stdin=subprocess.DEVNULL, stdout=stream, stderr=log, check=True,
+        subprocess.run(prefix + [shlex.join(remote_python(sender))],
+                       input=data, stdout=stream, stderr=log, check=True,
                        timeout=min(120, remaining(value, control.USEFUL)),
                        env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
         stream.seek(0)
@@ -201,11 +201,11 @@ def worker(plan_directory, key_file, state_directory):
                 push(Path(config[kind]), manifest, command, min(1200, remaining(value)))
             manifests = {kind: digest(plan_directory / (kind + '-manifest.json'))
                          for kind in ('driver', 'wheels', 'task', 'model')}
-            source = Path(__file__).with_name('pod_bootstrap.py').read_bytes()
-            program = ("exec(bytes.fromhex(" + repr(source.hex()) + "))\n"
+            source = Path(__file__).with_name('pod_bootstrap.py').read_text()
+            program = (source + "\n"
                        + "print(json.dumps(activate(" + repr(manifests) + ","
                        + repr(value['requested_at']) + ")))\n")
-            remote(prefix, ['python3', '-I', '-c', program], value, log)
+            remote(prefix, remote_python(program), value, log)
             permit = {k: value[k] for k in ('policy', 'run', 'attempt', 'pod_id', 'requested_at')}
             permit['driver_sha256'] = frozen.DRIVER_SHA256
             program = ("import os,json,time;from pathlib import Path\n"

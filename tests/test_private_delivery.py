@@ -164,6 +164,12 @@ class PrivateDeliveryTests(unittest.TestCase):
         self.assertIn('StrictHostKeyChecking=yes', command)
         self.assertIn('ForwardAgent=no', command)
         self.assertEqual(command[1:3], ['-F', '/dev/null'])
+        self.assertLess(len(command[-1].encode()), 9000)
+        probe = delivery.remote_python('print("COMPRESSED_BOOTSTRAP_OK")\n' + '# padding\n' * 5000)
+        self.assertEqual(subprocess.check_output([sys.executable] + probe[1:], text=True).strip(),
+                         'COMPRESSED_BOOTSTRAP_OK')
+        with self.assertRaises(ValueError):
+            delivery.remote_python(os.urandom(20000).hex())
         for host in ('-oProxyCommand=evil', 'example;bad', 'root@example'):
             with self.assertRaises(ValueError):
                 delivery.ssh_command(host, 22, key, hosts, '/root/private/attempt', self.sha)

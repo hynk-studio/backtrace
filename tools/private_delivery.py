@@ -5,6 +5,7 @@ Use a pre-reviewed exact file manifest, not a directory crawl of private inputs.
 An SSH host key must be authenticated independently before using ``push``.
 """
 import argparse
+import base64
 import hashlib
 import io
 import json
@@ -19,6 +20,7 @@ import sys
 import tarfile
 import tempfile
 import time
+import zlib
 
 MAX_BYTES = 40 * 1024**3
 MAX_MANIFEST_BYTES = 1024**2
@@ -183,6 +185,16 @@ def receive(destination, expected_sha256, source):
         lock.unlink()
 
 
+def remote_python(source):
+    """Keep stdlib bootstrap commands below Dropbear's 9,000-byte limit."""
+    encoded = base64.b64encode(zlib.compress(source.encode(), 9)).decode('ascii')
+    program = 'import base64,zlib;exec(zlib.decompress(base64.b64decode(' + repr(encoded) + ')))'
+    argv = ['python3', '-I', '-c', program]
+    if len(shlex.join(argv).encode()) >= 9000:
+        raise ValueError('remote Python command exceeds SSH command limit')
+    return argv
+
+
 def ssh_command(host, port, key, known_hosts, remote_destination, manifest_sha256):
     if (not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9.-]*', host)
             or not 1 <= port <= 65535 or not remote_destination.startswith('/root/')):
@@ -190,9 +202,11 @@ def ssh_command(host, port, key, known_hosts, remote_destination, manifest_sha25
     for path in (key, known_hosts):
         if not Path(path).is_file() or Path(path).is_symlink():
             raise ValueError('pre-existing key and authenticated known_hosts required')
-    source = Path(__file__).read_bytes().hex()
-    remote = shlex.join(['python3', '-I', '-c', 'exec(bytes.fromhex(' + repr(source) + '))',
-                         'receive', remote_destination, manifest_sha256])
+    source = Path(__file__).read_text()
+    argv = remote_python(source) + ['receive', remote_destination, manifest_sha256]
+    remote = shlex.join(argv)
+    if len(remote.encode()) >= 9000:
+        raise ValueError('receiver command exceeds SSH command limit')
     return ['ssh', '-F', '/dev/null', '-T', '-p', str(port),
             '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=yes',
             '-o', 'UserKnownHostsFile=' + str(Path(known_hosts).absolute()),
