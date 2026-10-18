@@ -209,3 +209,48 @@ to carry out the already scoped experiment after its prerequisites pass.
   [ensurepip](https://docs.python.org/3.12/library/ensurepip.html): standard
   nested venv creation seeds pip by default; the pinned bootstrap supplies this
   missing base capability without network package resolution.
+
+
+## Resumption checkpoint — 2026-10-18T15:03:05.087Z
+
+The replacement session recovered the existing private Kaggle draft and its
+Files-only working data. It did not rerun the acquisition/bootstrap cells or
+consume a provider attempt.
+
+- The current source is selected by the private `qualified-code-root.txt`
+  marker under `qualified-source`, not the older `source` preparation tree.
+  All 39 tool/test SHA-256 values and the frozen private driver hash match
+  the published qualification evidence. The four manifest hashes match;
+  all 280 listed files / 28,893,831,958 bytes are present and size-checked.
+  This is not a new full-content hash of the large model/wheel files; the
+  existing paid entry must rehash all four streams before any create.
+- The restored owner-plan/SSH directories were 0755 and their private files
+  0644, while the enclosing preparation directory remained 0700. The private
+  draft now includes a CPU-only recovery cell that refuses symlinks/foreign
+  ownership, restores 0700 directories and 0600 exact owner files, selects the
+  qualified source, verifies the hashes and confirms no attempt journal.
+  It passed with `RECOVERY_READY`. Run it after session recovery, before
+  credential use. No keys were regenerated and no security guard was relaxed.
+- In this replacement Cloud executor,
+  `python3 -m unittest discover -s tests -p test_runpod_control.py -v`
+  passed 29 tests and the corresponding `test_prepayment_job.py` invocation
+  passed 13 tests. CPU preflight is READY. These 42 focused checks do not
+  replace or count as a new run of the prior Kaggle 150-test qualification.
+- Fresh account UI showed USD 0.00 balance, USD 0.000/hour spend and Auto-Pay
+  disabled. With EU-RO-1 selected, the A100 PCIe 80GB card displayed
+  **Out of capacity**. No alternative GPU/region was selected. This volatile
+  UI observation is not a qualified authenticated API offer or a reservation.
+- Automatic browser approval review rejected the Create API Key button action
+  as creation of powerful new account access. It was not bypassed. New key
+  creation and protected linkage to this private notebook's Secrets await
+  explicit owner confirmation; authenticated provider API checks and tax/
+  final cost verification remain NOT RUN. Funding and GPU creation remain
+  NOT RUN. The free CPU session was stopped and the draft is saved;
+  saved notebook version remains 3.
+
+Next action: obtain confirmation specifically for RunPod management Read/Write
+key creation and private Kaggle Secrets storage, with inference permissions
+left disabled, then complete read-only provider checks. Do not fund or allocate
+while the exact authorized offer is unavailable. The existing one-allocation,
+one-server, maximum-one-task, 3,000-second and USD 8 cumulative early-stop
+policy remains unchanged. PR #7 stays Draft and Issue #1 stays open.
