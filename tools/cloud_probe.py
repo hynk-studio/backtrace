@@ -4,6 +4,8 @@ No Pod mutation, notebook execution, terms acceptance or raw artifact publicatio
 Only explicit result fields reach stdout; SDK diagnostics and exception text do not.
 """
 import contextlib
+import ast
+import base64
 import hashlib
 import io
 import json
@@ -13,6 +15,7 @@ from pathlib import Path
 import time
 from urllib.parse import urlsplit
 import zipfile
+import zlib
 
 from tools.a100_delivery import manifest
 from tools.runpod_control import RunpodAPI
@@ -47,7 +50,14 @@ def verify_small_response(response, row):
             raise InputCheckError('unexpected HTTP encoding')
         if not 0 < wire <= row['bytes'] + 65536 or row['bytes'] > 1024**2:
             raise InputCheckError('probe size limit')
-        data = response.raw.read(wire + 1)
+        # The SDK pre-reads application/json bodies. iter_content handles both
+        # buffered and streaming responses; raw.read would see an empty body.
+        data = bytearray()
+        for chunk in response.iter_content(chunk_size=min(wire + 1, 32768)):
+            data.extend(chunk)
+            if len(data) > wire:
+                break
+        data = bytes(data)
         if len(data) != wire:
             raise InputCheckError('incomplete or oversized response')
         encoding = 'raw'
@@ -65,6 +75,68 @@ def verify_small_response(response, row):
                 'wire_bytes': wire, 'storage_host': url.hostname}
 
 
+def retained_literal(source):
+    """Find only the exact retained driver bytes; never run notebook cells."""
+    from tools.a100_task import DRIVER_SHA256
+    if len(source) > 8 * 1024**2:
+        raise ValueError('notebook source size limit')
+    notebook = json.loads(source)
+    if not isinstance(notebook.get('cells'), list) or len(notebook['cells']) > 200:
+        raise ValueError('notebook cell count limit')
+    for cell in notebook['cells']:
+        if cell.get('cell_type') != 'code':
+            continue
+        try:
+            tree = ast.parse(''.join(cell['source']))
+        except SyntaxError:
+            continue
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Constant) and isinstance(node.value, str):
+                data = node.value.encode()
+                if len(data) == 33461 and hashlib.sha256(data).hexdigest() == DRIVER_SHA256:
+                    return data
+                if (len(data) == 837896 and hashlib.sha256(data).hexdigest()
+                        == 'ebd011f3e9acc7890b94b7fb1ed8acc03a19f62435de866eb70cda52152e09e8'):
+                    decoder = zlib.decompressobj()
+                    raw = decoder.decompress(base64.b64decode(data, validate=True), 2 * 1024**2)
+                    if (not decoder.eof or decoder.unused_data or decoder.unconsumed_tail
+                            or hashlib.sha256(raw).hexdigest()
+                            != 'f35ec577d4657cb0ce45dbca58fea9a7361418b097db64e3568a26afb7c9ee7d'):
+                        raise ValueError('retained packed archive mismatch')
+                    data = base64.b64decode(json.loads(raw)['.local/smoke/no-custom-ar/one_task.py'],
+                                            validate=True)
+                    if len(data) == 33461 and hashlib.sha256(data).hexdigest() == DRIVER_SHA256:
+                        return data
+    raise InputCheckError('retained literal unavailable')
+
+
+def notebook_output_url(client, slug, version, path):
+    from kagglesdk.kernels.types.kernels_api_service import ApiListKernelSessionOutputRequest
+    seen, matches = set(), []
+    token = ''
+    for _ in range(10):
+        request = ApiListKernelSessionOutputRequest()
+        request.user_name = 'hynk1240'
+        request.kernel_slug = slug
+        request.version_label = version
+        request.page_size = 100
+        request.page_token = token
+        result = client.kernels.kernels_api_client.list_kernel_session_output(request)
+        matches.extend(item.url for item in result.files
+                       if item.file_name == path or item.file_name.endswith('/' + path))
+        token = result.next_page_token
+        if not token:
+            if len(matches) != 1:
+                raise InputCheckError('expected output missing or ambiguous')
+            from tools.direct_delivery import validate_url
+            validate_url(matches[0])
+            return matches[0]
+        if token in seen:
+            break
+        seen.add(token)
+    raise InputCheckError('output listing limit')
+
+
 def runpod_read():
     pods = RunpodAPI(secret('RUNPOD_API_KEY')).list()
     return {'authenticated': True, 'pod_count': len(pods),
@@ -75,7 +147,7 @@ def runpod_read():
 def kaggle_checks():
     from kagglesdk.kaggle_client import KaggleClient
     from kagglesdk.kaggle_env import KaggleEnv
-    from kagglesdk.kernels.types.kernels_api_service import ApiDownloadKernelOutputRequest, ApiGetKernelRequest
+    from kagglesdk.kernels.types.kernels_api_service import ApiGetKernelRequest
     from kagglesdk.models.types.model_api_service import ApiDownloadModelInstanceVersionRequest, ModelFramework
 
     with KaggleClient(env=KaggleEnv.PROD, api_token=secret('KAGGLE_API_TOKEN'), verbose=False) as client:
@@ -94,13 +166,13 @@ def kaggle_checks():
             yield 'kaggle_model_v2', failure(error)
 
         row = next(r for r in json.loads(manifest('task'))['files'] if r['path'] == 'agent-task.json')
-        request = ApiDownloadKernelOutputRequest()
-        request.owner_slug = 'hynk1240'
-        request.kernel_slug = 'backtrace-r0-selected-inputs'
-        request.version_number = 1
-        request.file_path = row['path']
         try:
-            task = verify_small_response(client.kernels.kernels_api_client.download_kernel_output(request), row)
+            import requests
+            url = notebook_output_url(client, 'backtrace-r0-selected-inputs', 'v1', row['path'])
+            # Signed object URL only: no service credential is sent here.
+            response = requests.get(url, stream=True, timeout=30, allow_redirects=False,
+                                    headers={'Accept-Encoding': 'identity'})
+            task = verify_small_response(response, row)
             yield 'kaggle_private_task_v1', task
         except Exception as error:
             yield 'kaggle_private_task_v1', failure(error)
@@ -113,9 +185,11 @@ def kaggle_checks():
         try:
             kernel = client.kernels.kernels_api_client.get_kernel(request)
             source = kernel.blob.source.encode()
+            driver = retained_literal(source)
             yield 'kaggle_retained_notebook_v3', {
                 'source_bytes': len(source), 'source_sha256': hashlib.sha256(source).hexdigest(),
-                'is_private': kernel.metadata.is_private, 'execution': 'NOT RUN'}
+                'is_private': kernel.metadata.is_private, 'execution': 'NOT RUN',
+                'retained_driver_bytes': len(driver), 'retained_driver_sha256': hashlib.sha256(driver).hexdigest()}
         except Exception as error:
             yield 'kaggle_retained_notebook_v3', failure(error)
 
@@ -126,7 +200,8 @@ def failure(error):
     result = {'status': 'FAIL', 'error_type': type(error).__name__,
               'http_status': status if type(status) is int else None}
     reasons = {'unqualified storage host', 'unexpected HTTP encoding', 'probe size limit',
-               'incomplete or oversized response', 'unexpected archive members', 'frozen input mismatch'}
+               'incomplete or oversized response', 'unexpected archive members', 'frozen input mismatch',
+               'retained literal unavailable', 'expected output missing or ambiguous', 'output listing limit'}
     if isinstance(error, InputCheckError) and str(error) in reasons:
         result['reason'] = str(error)
     return result

@@ -24,6 +24,10 @@ class Response:
     def raise_for_status(self):
         pass
 
+    def iter_content(self, chunk_size):
+        while data := self.raw.read(chunk_size):
+            yield data
+
 
 class ProbeTests(unittest.TestCase):
     def setUp(self):
@@ -72,3 +76,15 @@ class ProbeTests(unittest.TestCase):
         with patch.dict(os.environ, {'RUNPOD_API_KEY': value + '\n' + value}):
             with self.assertRaises(cloud_probe.CredentialFormatError):
                 cloud_probe.secret('RUNPOD_API_KEY')
+
+    def test_declared_body_length_remains_a_hard_limit(self):
+        response = Response(self.data + b'extra')
+        response.headers['Content-Length'] = str(len(self.data))
+        with self.assertRaises(cloud_probe.InputCheckError):
+            cloud_probe.verify_small_response(response, self.row)
+
+    def test_notebook_is_never_executed_and_changed_literal_is_rejected(self):
+        source = json.dumps({'cells': [{'cell_type': 'code', 'source': [
+            "raise RuntimeError('must never run')\nTEXT = " + repr('x' * 33461)]}]})
+        with self.assertRaises(cloud_probe.InputCheckError):
+            cloud_probe.retained_literal(source.encode())
