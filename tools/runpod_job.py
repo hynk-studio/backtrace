@@ -240,7 +240,7 @@ def worker(plan_directory, key_file, state_directory):
             heartbeat(state_directory, value['attempt'], state, phase[0])
 
 
-def run(plan_directory, offer_file, key_file, state_directory):
+def run(plan_directory, offer_file, key_file, state_directory, *, prior_authorization=None):
     """Paid entry, never used by prepayment preparation or CPU tests on RunPod."""
     check_owner_host()
     plan_directory, state_directory = Path(plan_directory), Path(state_directory)
@@ -265,6 +265,8 @@ def run(plan_directory, offer_file, key_file, state_directory):
     state_directory.mkdir(mode=0o700, exist_ok=True)
     process = None
     with control.Journal(state_directory) as journal:
+        if prior_authorization is not None:
+            control.archive_unallocated_attempt(api, journal, prior_authorization)
         try:
             value = control.begin(api, journal, offer, bootstrap=bootstrap)
             heartbeat(state_directory, value['attempt'], 'running')

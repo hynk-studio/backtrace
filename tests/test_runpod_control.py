@@ -1,4 +1,5 @@
 import copy
+import hashlib
 import io
 import json
 import os
@@ -50,7 +51,7 @@ class FakeProvider:
         pod = {'id': 'owned123', 'name': payload['name'], 'image': control.BASE,
                'gpu': {'id': control.GPU, 'count': 1, 'memory': 117, 'vcpuCount': 8},
                'mounts': {}, 'cost': 1.804, 'cloud': 'SECURE', 'disk': 100,
-               'ports': ['22/tcp'], 'dataCenterId': 'EU-RO-1', 'locked': False,
+               'ports': ['22/tcp'], 'dataCenterId': payload['dataCenterIds'][0], 'locked': False,
                'status': 'RUNNING', 'env': {}}
         self.pods[pod['id']] = pod
         if self.drop_ack:
@@ -127,6 +128,78 @@ class ControlTests(unittest.TestCase):
         value = self.begin()
         self.assertEqual(value['policy'], 'prepaid10-external-v2')
         self.assertFalse(value['native_expiry_verified'])
+
+    def test_equivalent_region_is_bound_in_request_journal_and_readback(self):
+        data = offer(); data.update(region='US-MO-1', region_policy=control.REGION_POLICY)
+        value = control.begin(self.api, self.journal, data, wall=lambda: T0)
+        self.assertEqual(value['request']['dataCenterIds'], ['US-MO-1'])
+        self.assertEqual(self.journal.read()['region'], 'US-MO-1')
+        self.assertTrue(control.resource_matches(self.api.get('owned123'), value))
+        self.api.pods['owned123']['dataCenterId'] = 'EU-RO-1'
+        self.assertFalse(control.resource_matches(self.api.get('owned123'), value))
+        with self.assertRaises(ValueError):
+            control.begin(self.api, self.journal, data, wall=lambda: T0)
+        self.assertEqual(sum(a == 'create' for a, _ in self.api.calls), 1)
+
+    def test_region_amendment_does_not_allow_broad_or_malformed_location(self):
+        for region in (None, '', ['US-MO-1'], 'any', 'US-MO-1,EU-RO-1', '../US-MO-1'):
+            data = offer(); data.update(region=region, region_policy=control.REGION_POLICY)
+            with self.subTest(region=region), self.assertRaises(ValueError):
+                control.validate_offer(data, T0)
+
+    def failed_prior(self):
+        self.api.create = lambda _: (_ for _ in ()).throw(control.ProviderError('failed'))
+        with self.assertRaises(RuntimeError):
+            self.begin()
+        raw = self.journal.path.read_bytes()
+        return raw, {'id': 'owner-followup', 'at_utc': control.utc(T0 + 3600),
+                     'previous_sha256': hashlib.sha256(raw).hexdigest()}
+
+    def test_explicit_followup_archives_exact_bytes_under_same_lock_only_once(self):
+        raw, authorization = self.failed_prior()
+        old = json.loads(raw)
+        control.archive_unallocated_attempt(self.api, self.journal, authorization, wall=lambda: T0 + 3601)
+        archive = self.root / 'history' / old['attempt']
+        self.assertEqual((archive / 'a100-attempt.json').read_bytes(), raw)
+        self.assertEqual(len(json.loads((archive / 'transition.json').read_text())['live_absence']), 2)
+        self.assertFalse(self.journal.path.exists())
+        self.assertEqual(json.loads(raw)['phase'], 'cleanup_unresolved')
+        with self.assertRaises(ValueError):
+            control.archive_unallocated_attempt(self.api, self.journal, authorization, wall=lambda: T0 + 3602)
+
+    def test_followup_refuses_changed_digest_or_not_new_authorization(self):
+        raw, authorization = self.failed_prior()
+        for changes in ({'previous_sha256': '0' * 64}, {'at_utc': control.utc(T0)},
+                        {'at_utc': control.utc(T0 + 5000)}):
+            with self.subTest(changes=changes), self.assertRaises(ValueError):
+                control.archive_unallocated_attempt(self.api, self.journal,
+                                                   dict(authorization, **changes), wall=lambda: T0 + 3601)
+        self.assertEqual(self.journal.path.read_bytes(), raw)
+        self.assertFalse((self.root / 'history').exists())
+
+    def test_followup_refuses_existing_pod_or_incomplete_provider_observation(self):
+        raw, authorization = self.failed_prior()
+        self.api.pods['prior'] = {'id': 'prior', 'name': json.loads(raw)['request']['name']}
+        with self.assertRaises(ValueError):
+            control.archive_unallocated_attempt(self.api, self.journal, authorization, wall=lambda: T0 + 3601)
+        self.api.pods.pop('prior'); self.api.fail_read = True
+        with self.assertRaises(control.ProviderError):
+            control.archive_unallocated_attempt(self.api, self.journal, authorization, wall=lambda: T0 + 3601)
+        self.assertEqual(self.journal.path.read_bytes(), raw)
+
+    def test_followup_cannot_archive_confirmed_allocation_or_symlink_history(self):
+        raw, authorization = self.failed_prior()
+        value = json.loads(raw); value['pod_id'] = 'owned123'
+        self.journal.write(value)
+        authorization['previous_sha256'] = hashlib.sha256(self.journal.path.read_bytes()).hexdigest()
+        with self.assertRaises(ValueError):
+            control.archive_unallocated_attempt(self.api, self.journal, authorization, wall=lambda: T0 + 3601)
+        self.journal.path.write_bytes(raw)
+        authorization['previous_sha256'] = hashlib.sha256(raw).hexdigest()
+        (self.root / 'history').symlink_to(self.root)
+        with self.assertRaises(ValueError):
+            control.archive_unallocated_attempt(self.api, self.journal, authorization, wall=lambda: T0 + 3601)
+        self.assertEqual(self.journal.path.read_bytes(), raw)
 
     def test_spent_wallet_counts_toward_total_eight_dollar_threshold(self):
         data = offer(); data['credit_balance'] = '3.50'

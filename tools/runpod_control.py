@@ -8,6 +8,7 @@ import argparse
 from datetime import datetime, timezone
 from decimal import Decimal, InvalidOperation
 import fcntl
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -26,6 +27,7 @@ TOTAL, USEFUL, STOP = 3000, 2700, 2880
 WALLET = Decimal('10.00')
 CAP = Decimal('8.00')
 POLICY = 'prepaid10-external-v2'
+REGION_POLICY = 'owner-equivalent-region-20261019'
 ID = re.compile(r'[A-Za-z0-9_-]{1,128}')
 MAX_CREATE_BYTES = 102400  # REST v2 rejects larger bodies before processing.
 
@@ -53,8 +55,17 @@ def money(value):
     return result
 
 
+def validate_region(region):
+    if not isinstance(region, str) or not re.fullmatch(r'[A-Z]{2,3}-[A-Z0-9]{1,8}-[0-9]{1,3}', region):
+        raise ValueError('one exact data center ID required')
+    return region
+
+
 def validate_offer(offer, now):
-    exact = {'gpu': GPU, 'gpu_count': 1, 'cloud': 'SECURE', 'region': 'EU-RO-1',
+    region = validate_region(offer.get('region'))
+    if region != 'EU-RO-1' and offer.get('region_policy') != REGION_POLICY:
+        raise ValueError('owner equivalent-region instruction required')
+    exact = {'gpu': GPU, 'gpu_count': 1, 'cloud': 'SECURE',
              'container_disk_gb': 100, 'volume_gb': 0, 'network_volume': None,
              'interruptible': False, 'stock_available': True, 'auto_pay': False,
              'authenticated': True, 'image': BASE}
@@ -83,12 +94,12 @@ def validate_offer(offer, now):
             'spent_before': str(spent_before), 'initial_balance': str(balance)}
 
 
-def make_request(attempt, requested_at, bootstrap=None):
+def make_request(attempt, requested_at, bootstrap=None, *, region='EU-RO-1'):
     if not re.fullmatch(r'[0-9a-f]{32}', attempt):
         raise ValueError('unique UUID hex attempt required')
     request = {'cloud': 'SECURE', 'gpu': {'id': GPU, 'count': 1,
                'minRamPerGpu': 117, 'minVcpuCountPerGpu': 8, 'minCudaVersion': '12.8'},
-               'dataCenterIds': ['EU-RO-1'], 'image': BASE, 'disk': 100,
+               'dataCenterIds': [validate_region(region)], 'image': BASE, 'disk': 100,
                'mounts': {}, 'startSsh': False, 'startJupyter': False,
                'ports': ['22/tcp'], 'globalNetworking': False,
                'name': 'backtrace-a100-' + attempt}
@@ -233,7 +244,8 @@ class Journal:
             raise ValueError('private regular attempt journal required')
         value = json.loads(self.path.read_text())
         if (value['schema_version'] != 2 or value['run'] != RUN or value['policy'] != POLICY
-                or value['request'] != make_request(value['attempt'], value['requested_at'], value.get('bootstrap'))):
+                or value['request'] != make_request(value['attempt'], value['requested_at'], value.get('bootstrap'),
+                                                     region=value.get('region', 'EU-RO-1'))):
             raise ValueError('journal scope changed')
         if value.get('pod_id') is not None:
             RunpodAPI.valid_id(value['pod_id'])
@@ -261,6 +273,79 @@ class Journal:
             os.close(fd)
 
 
+def archive_unallocated_attempt(api, journal, authorization, wall=time.time):
+    """Explicit owner follow-up only; never called by recovery or the CLI.
+
+    Preserve the exact old journal under the SAME locked state directory. Two
+    complete live lists must contain no Backtrace resource. This does not label
+    an uncertain historical create as deleted or automatically retry it.
+    """
+    if journal.lock is None or journal.lock.closed:
+        raise ValueError('exclusive journal lock required')
+    if (set(authorization) != {'id', 'at_utc', 'previous_sha256'}
+            or not re.fullmatch(r'[a-z0-9-]{1,80}', authorization['id'])
+            or not re.fullmatch(r'[0-9a-f]{64}', authorization['previous_sha256'])):
+        raise ValueError('explicit new owner authorization and previous digest required')
+    p = journal.path
+    if (p.is_symlink() or not p.is_file() or p.stat().st_uid != os.getuid()
+            or p.stat().st_mode & 0o077):
+        raise ValueError('private original journal required')
+    raw = p.read_bytes()
+    if hashlib.sha256(raw).hexdigest() != authorization['previous_sha256']:
+        raise ValueError('previous attempt digest changed; no transition')
+    old = json.loads(raw)
+    now = wall()
+    if (old['schema_version'] != 2 or old['run'] != RUN or old['policy'] != POLICY
+            or old['phase'] != 'cleanup_unresolved' or old['pod_id'] is not None
+            or old['ownership_confirmed'] is not False
+            or not re.fullmatch(r'[0-9a-f]{32}', old['attempt'])
+            or old['request']['name'] != 'backtrace-a100-' + old['attempt']
+            or not old['requested_at'] < timestamp(authorization['at_utc']) <= now
+            or now - old['requested_at'] < 3600
+            or not any(e.get('event') == 'create_failed' for e in old['events'])):
+        raise ValueError('only an aged unallocated failed create may be archived')
+    state_files = set(x.name for x in journal.directory.iterdir())
+    if not state_files <= {'controller.lock', 'a100-attempt.json', 'job-status.json', 'history'}:
+        raise ValueError('unexpected prior state requires inspection')
+    status = journal.directory / 'job-status.json'
+    if status.exists() or status.is_symlink():
+        if status.is_symlink() or not status.is_file() or status.stat().st_uid != os.getuid():
+            raise ValueError('invalid previous heartbeat')
+    history = journal.directory / 'history'
+    if history.exists() or history.is_symlink():
+        if (history.is_symlink() or not history.is_dir() or history.stat().st_uid != os.getuid()
+                or history.stat().st_mode & 0o077):
+            raise ValueError('private history directory required')
+    reads = []
+    for _ in range(2):
+        pods = api.list()
+        if any(x.get('name', '').startswith('backtrace-a100-') for x in pods):
+            raise ValueError('existing Backtrace resource requires reconciliation')
+        reads.append({'at_utc': utc(wall()), 'complete_list_count': len(pods), 'backtrace_count': 0})
+    history.mkdir(mode=0o700, exist_ok=True)
+    archive = history / old['attempt']
+    archive.mkdir(mode=0o700)  # Refuse a repeated/partially completed transition.
+    receipt = {'authorization': authorization, 'previous_phase': old['phase'],
+               'previous_pod_id': None, 'live_absence': reads,
+               'history': 'original bytes preserved; historical ambiguity not relabeled'}
+    with (archive / 'transition.json').open('x') as stream:
+        os.fchmod(stream.fileno(), 0o600)
+        json.dump(receipt, stream, sort_keys=True)
+        stream.flush(); os.fsync(stream.fileno())
+    if status.exists():
+        os.rename(status, archive / 'job-status.json')
+    os.rename(p, archive / p.name)
+    for directory in (archive, history, journal.directory):
+        fd = os.open(directory, os.O_RDONLY | os.O_DIRECTORY)
+        try:
+            os.fsync(fd)
+        finally:
+            os.close(fd)
+    if (archive / p.name).read_bytes() != raw:
+        raise RuntimeError('archived journal verification failed')
+    return receipt
+
+
 def begin(api, journal, offer, wall=time.time, bootstrap=None):
     """Single non-idempotent request, with durable marker written before sending.
 
@@ -271,14 +356,14 @@ def begin(api, journal, offer, wall=time.time, bootstrap=None):
         raise ValueError('attempt already consumed; never recreate after restart')
     costs = validate_offer(offer, wall())
     attempt = uuid.uuid4().hex
-    request = make_request(attempt, int(wall()), bootstrap)
+    request = make_request(attempt, int(wall()), bootstrap, region=offer['region'])
     encode_create_request(request)
     if any(p.get('name', '').startswith('backtrace-a100-') for p in api.list()):
         raise ValueError('an earlier Backtrace Pod needs reconciliation; no second create')
     t0 = int(wall())
     validate_offer(offer, t0)
     value = {'schema_version': 2, 'run': RUN, 'policy': POLICY, 'attempt': attempt, 'requested_at': t0,
-             'bootstrap': bootstrap, 'request': request, 'costs': costs,
+             'bootstrap': bootstrap, 'request': request, 'costs': costs, 'region': offer['region'],
              'phase': 'requested', 'pod_id': None, 'ownership_confirmed': False,
              'native_expiry_verified': False, 'absence_reads': 0, 'events': []}
     journal.write(value, first=True)
@@ -324,7 +409,8 @@ def resource_matches(pod, value):
             or gpu.get('id') != GPU or type(gpu.get('count')) is not int or gpu['count'] != 1
             or pod.get('status') not in ('PROVISIONING', 'STARTING', 'RUNNING')
             or pod.get('locked') is not False or pod.get('cluster')
-            or pod.get('dataCenterId') not in (('EU-RO-1', None) if pending else ('EU-RO-1',))):
+            or pod.get('dataCenterId') not in ((value.get('region', 'EU-RO-1'), None) if pending
+                                               else (value.get('region', 'EU-RO-1'),))):
         return False
     for name, minimum in (('vcpuCount', 8), ('memory', 117)):
         number = gpu.get(name)
