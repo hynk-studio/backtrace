@@ -18,7 +18,7 @@ from tools.runpod_job import private_json
 
 
 def qualify(root, emit):
-    root = Path(root).absolute(); root.mkdir(mode=0o700)
+    root = Path(root).absolute(); root.mkdir(mode=0o700, parents=True)
     if shutil.disk_usage(root).free < 23 * 1024**3:
         raise ValueError('free CPU disk space below 23 GiB')
     report = {'gpu_allocations': 0, 'server_starts': 0, 'task_executions': 0, 'stages': {}}
