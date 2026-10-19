@@ -127,7 +127,7 @@ class Links(HTMLParser):
 def pypi_source(row):
     import requests
     cuda_versions = {'torch': '2.10.0+cu128', 'torchaudio': '2.10.0+cu128',
-                     'torchvision': '0.25.0+cu128'}
+                     'torchvision': '0.25.0+cu128', 'triton': '3.6.0'}
     if row['name'] in cuda_versions:
         if row['version'] != cuda_versions[row['name']]:
             raise ValueError('unexpected PyTorch CUDA wheel version')

@@ -25,7 +25,7 @@ from tools.private_delivery import push, ssh_command
 def qualify(binary, keygen):
     check_owner_host()
     observed = {'binary_sha256': ssh.sha(binary), 'keygen_sha256': ssh.sha(keygen)}
-    with tempfile.TemporaryDirectory(prefix='backtrace-transport-cpu-') as td, \
+    with tempfile.TemporaryDirectory(prefix='backtrace-transport-cpu-', dir='/root') as td, \
             patch.dict(ssh.TRANSPORT, observed):
         root = Path(td); owner = root / 'owner'; target = root / 'pod'
         init = ssh.prepare(binary, keygen, owner)
@@ -76,7 +76,8 @@ def qualify(binary, keygen):
                     {'path': 'fixture.bin', 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}]}).encode()
                 command = ssh_command('127.0.0.1', port, owner / 'owner-key', known,
                                       str(target / 'input'), hashlib.sha256(manifest).hexdigest())
-                push(source_dir, manifest, command, 20)
+                manifest_path = root / 'manifest.json'; manifest_path.write_bytes(manifest)
+                push(source_dir, manifest_path, command, 20)
                 if (target / 'input/fixture.bin').read_bytes() != data:
                     raise RuntimeError('actual SSH byte transfer mismatch')
                 return dict(observed, mutual_tls='PASS', strict_ssh='PASS', wrong_host='REJECTED',
