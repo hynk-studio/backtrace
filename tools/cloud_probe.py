@@ -12,6 +12,7 @@ import json
 import logging
 import os
 from pathlib import Path
+import re
 import time
 from urllib.parse import urlsplit
 import zipfile
@@ -27,6 +28,13 @@ class CredentialFormatError(ValueError):
 
 class InputCheckError(ValueError):
     """Only locally fixed labels may be included in the public result."""
+
+
+class OutputHostError(ValueError):
+    def __init__(self, url):
+        super().__init__('output URL needs owner-side resolution')
+        host = urlsplit(url).hostname or ''
+        self.host = host if re.fullmatch(r'[a-z0-9.-]{1,253}', host) else 'REDACTED'
 
 
 def secret(name):
@@ -129,7 +137,10 @@ def notebook_output_url(client, slug, version, path):
             if len(matches) != 1:
                 raise InputCheckError('expected output missing or ambiguous')
             from tools.direct_delivery import validate_url
-            validate_url(matches[0])
+            try:
+                validate_url(matches[0])
+            except ValueError:
+                raise OutputHostError(matches[0]) from None
             return matches[0]
         if token in seen:
             break
@@ -204,6 +215,8 @@ def failure(error):
                'retained literal unavailable', 'expected output missing or ambiguous', 'output listing limit'}
     if isinstance(error, InputCheckError) and str(error) in reasons:
         result['reason'] = str(error)
+    if isinstance(error, OutputHostError):
+        result['output_host'] = error.host
     return result
 
 
