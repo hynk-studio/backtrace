@@ -142,6 +142,27 @@ def readonly(root):
     os.chown(root, 0, 0); root.chmod(0o555)
 
 
+def input_parent(target):
+    """Keep logical input ancestors traversable after a private SSH umask.
+
+    Only the root-owned logical input tree is affected; staging, keys and
+    working outputs retain their private permissions.
+    """
+    target = Path(target)
+    if not target.is_absolute() or not target.is_relative_to(INPUT) or target == INPUT:
+        raise ValueError('expected logical input destination')
+    current = INPUT.parent
+    parts = target.parent.relative_to(current).parts
+    for part in (None, *parts):
+        if part is not None:
+            current /= part
+        current.mkdir(mode=0o755, exist_ok=True)
+        if (current.resolve() != current or not current.is_dir()
+                or current.stat().st_uid != 0):
+            raise ValueError('logical input parent must be a real root-owned directory')
+        current.chmod(0o755)
+
+
 def activate(manifests, requested_at, *, runtime=True, policy='prepaid10-external-v2'):
     """Verify all bytes first, then activate exact logical generation inputs."""
     if os.getuid() != 0 or set(manifests) != {'driver', 'wheels', 'task', 'model'}:
@@ -158,9 +179,7 @@ def activate(manifests, requested_at, *, runtime=True, policy='prepaid10-externa
         raise ValueError('logical inputs already exist; no reuse')
     for kind, target in destinations.items():
         source = STAGING / kind
-        target.parent.mkdir(mode=0o755, parents=True, exist_ok=True)
-        if target.parent.resolve() != target.parent:
-            raise ValueError('logical input parent is a link')
+        input_parent(target)
         (source / 'delivery-manifest.json').unlink()
         source.rename(target)
         readonly(target)

@@ -88,6 +88,29 @@ def qualify(root, emit):
         report['stages']['driver'] = {key: prepared[key] for key in (
             'prepared_driver_sha256', 'policy', 'setup_seconds', 'useful_seconds', 'total_seconds',
             'server_and_agent_ast_equal_to_legacy')}
+        stage = 'cpu_task_layout'
+        # The retained wrapper discovers inputs at the same fixed logical path
+        # as the Pod. A plain Actions VM has no Kaggle mounts. Install the actual
+        # verified task bytes there, with the same read-only permissions, before
+        # testing construction. Never patch away the driver's discovery check.
+        task_sha = hashlib.sha256(frozen.manifest('task')).hexdigest()
+        layout = ('import sys,shutil\nfrom pathlib import Path\n'
+                  + 'sys.path.insert(0,' + repr(str(frozen.ROOT)) + ')\n'
+                  + 'from tools.pod_bootstrap import checked_tree,readonly,input_parent\n'
+                  + 'source=Path(' + repr(str(root / 'task')) + ')\n'
+                  + 'checked_tree(source,' + repr(task_sha) + ')\n'
+                  + "target=Path('/kaggle/input/r0-inputs')\n"
+                  + 'assert not target.exists() and not target.is_symlink()\n'
+                  + 'input_parent(target)\n'
+                  + 'shutil.copytree(source,target)\n'
+                  + "(target/'delivery-manifest.json').unlink()\n"
+                  + 'readonly(target)\n')
+        with (root / 'cpu-task-layout.log').open('xb') as log:
+            subprocess.run(['sudo', sys.executable, '-I', '-c', layout], env=env,
+                           stdout=log, stderr=log, check=True, timeout=60)
+        report['stages'][stage] = {'status': 'PASS', 'verified_files': len(task_sources),
+                                  'discovery_path': '/kaggle/input/r0-inputs', 'permissions': 'READ ONLY'}
+        emit({'stage': stage, **report['stages'][stage]})
         stage = 'official_cloud_driver'
         with (root / 'official-cloud-driver.log').open('xb') as log:
             subprocess.run([str(root / 'runtime/venv/bin/python'), '-I',
@@ -112,7 +135,7 @@ def qualify(root, emit):
                 'invalid encoded input', 'unexpected HTTP content encoding', 'download deadline reached'}:
             report['failure']['reason'] = str(error)
     private = {}
-    for name in ('retained-source.ipynb', 'offline-runtime.log', 'official-cloud-driver.log',
+    for name in ('retained-source.ipynb', 'offline-runtime.log', 'official-cloud-driver.log', 'cpu-task-layout.log',
                  'transport-loopback.log', 'transport/build.log'):
         path = root / name
         if path.is_file():

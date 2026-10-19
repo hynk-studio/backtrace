@@ -99,6 +99,20 @@ class ActivationTests(unittest.TestCase):
         with self.assertRaises((ValueError, FileNotFoundError)):
             self.activate()
 
+    def test_private_ssh_umask_does_not_hide_logical_inputs_from_workload_uid(self):
+        previous = os.umask(0o077)
+        try:
+            self.activate()
+        finally:
+            os.umask(previous)
+        for destination in (self.input / 'r0-inputs', self.input / pod.MODEL):
+            for parent in (destination, *destination.parents):
+                if not parent.is_relative_to(self.input.parent):
+                    break
+                self.assertEqual(parent.stat().st_mode & 0o005, 0o005)
+                self.assertFalse(parent.stat().st_mode & 0o022)
+        self.assertEqual(self.stage.stat().st_mode & 0o077, 0)
+
     def test_cloud_activation_requires_explicit_policy_and_keeps_absolute_deadline(self):
         with (patch.multiple(pod, STAGING=self.stage, INPUT=self.input, WORKING=self.work),
               patch.object(pod.time, 'time', return_value=2300)):

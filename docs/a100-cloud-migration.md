@@ -24,17 +24,17 @@ USD 8 cumulative stop. The prior CA-MTL-3 attempt remains consumed and deleted.
   Authenticated read-only checks passed against RunPod and the frozen Kaggle
   model v2, private selected-task v1 and retained private notebook v3.
   Run: https://github.com/hynk-studio/backtrace/actions/runs/39276929758
-- Latest completed full CPU suite: **226/226**, 25.878 seconds, preflight READY.
-  Run: https://github.com/hynk-studio/backtrace/actions/runs/39279167953
-  Source: `16ffbe315b0e81c024e3be9afd3164f518421c5e`.
+- Latest completed full CPU suite: **230/230**, 26.804 seconds, preflight READY.
+  Run: https://github.com/hynk-studio/backtrace/actions/runs/39282188175
+  Source: `0bd6fbbc998a8742a22f366833b2e61055d73724`.
 - Exact-byte downloads of 246 wheels (5,373,559,590 bytes) and eight selected
   task inputs (222,386,501 bytes) passed on Actions. The eight model inputs have
   resolved scoped URLs and headers; the 23.3GB model body has not been downloaded
   or executed in this migration.
   Run: https://github.com/hynk-studio/backtrace/actions/runs/39275511563
-- At 2026-10-19T15:19:35Z the account API reported balance USD 9.8508333333,
+- At 2026-10-19T15:49:08Z the account API reported balance USD 9.8508333333,
   zero current spend and Auto-Pay disabled. Complete Pod listing contained no
-  resources. Regional availability showed no qualified A100 region; this is
+  resources. All four regional exact hardware quotes returned no available machine; this is
   a point-in-time observation, not a reservation or forecast.
 - No new GPU allocation, model server start or public task execution.
 - Actual transport rebuild matched both prior hashes. Mutual TLS, strict SSH,
@@ -48,7 +48,14 @@ USD 8 cumulative stop. The prior CA-MTL-3 attempt remains consumed and deleted.
   three interrupted transfers, with 97,865,169 bytes received. The next change
   bounds large saved-output HTTP requests to 16MiB, validates every Content-Range
   and retains the original full-file hash. Overall deadlines remain unchanged;
-  no-progress retries remain bounded. Full wrapper qualification is still pending.
+  no-progress retries remain bounded. The bounded-range run then verified all eight
+  task bodies (222,386,501 bytes) at 2026-10-19T16:13:50Z.
+  Run: https://github.com/hynk-studio/backtrace/actions/runs/39282188153
+- The next CPU construction check found no logical selected-input mount on the
+  plain Actions VM. Free preparation now copies the already verified task bytes
+  to the same read-only `/kaggle/input/r0-inputs` path used by Pod activation.
+  The retained discovery check and scientific driver remain unchanged; actual
+  wrapper construction is being requalified, with no model start.
 
 ## Implemented components
 
