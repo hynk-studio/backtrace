@@ -45,7 +45,7 @@ class ResolverTests(unittest.TestCase):
     def test_unpinned_notebook_payload_is_never_executed(self):
         source = json.dumps({'cells': [{'cell_type': 'code', 'source': [
             "raise AssertionError('must not execute')\nPAYLOAD='changed'"]}]}).encode()
-        with self.assertRaises(ValueError): resolver.packed_inputs(source)
+        with self.assertRaises(ValueError): resolver.retained_literal(source)
 
 
 if __name__ == '__main__': unittest.main()

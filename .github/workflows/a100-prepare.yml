@@ -10,6 +10,7 @@ on:
       - 'tools/cloud_seal.py'
       - 'docs/cloud-controller-requirements.txt'
       - 'tests/official_a100_task.py'
+      - 'tests/official_cloud_transport.py'
       - '.github/workflows/a100-prepare.yml'
 permissions:
   contents: read

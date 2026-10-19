@@ -27,8 +27,10 @@ def qualify(root, emit):
         with resolver.kaggle_client() as client:
             source = resolver.get_source(client)
             (root / 'retained-source.ipynb').write_bytes(source)
-            resolver.packed_inputs(source)  # Refuse missing source before large downloads.
+            resolver.retained_literal(source)  # Never execute saved notebook cells.
             emit({'stage': stage, 'status': 'PASS', 'source_sha256': resolver.NOTEBOOK_SHA256})
+            stage = 'resolve_official'
+            official_sources = resolver.resolve_official(client)
             stage = 'resolve_wheels'
             wheel_sources = resolver.resolve_wheels(client,
                 progress=lambda name, count: emit({'stage': name, 'count': count}))
@@ -36,7 +38,7 @@ def qualify(root, emit):
             task_sources = resolver.resolve_task(client)
             model_sources = resolver.resolve_model(client)
         private_json(root / 'private-sources.json', {'wheels': wheel_sources, 'task': task_sources,
-                                                     'model': model_sources})
+                                                     'model': model_sources, 'official': official_sources})
         report['stages']['sources'] = {'wheels': len(wheel_sources), 'task': len(task_sources),
                                        'model': len(model_sources), 'urls_published': False}
         emit({'stage': 'sources', 'status': 'PASS', **report['stages']['sources']})
@@ -48,8 +50,11 @@ def qualify(root, emit):
         data = frozen.manifest('task')
         report['stages'][stage] = pull(root / 'task', data, task_sources, hashlib.sha256(data).hexdigest(), 600)
         emit({'stage': stage, 'status': 'PASS', 'verified_files': len(task_sources)})
+        stage = 'download_official'
+        data = resolver.official_manifest()
+        report['stages'][stage] = pull(root / 'official', data, official_sources, hashlib.sha256(data).hexdigest(), 300)
         stage = 'restore_cpu_inputs'
-        report['stages'][stage] = resolver.restore_cpu_inputs(source, frozen.ROOT, root / 'wheels')
+        report['stages'][stage] = resolver.restore_cpu_inputs(source, frozen.ROOT, root / 'wheels', root / 'task', root / 'official')
         prepared = cloud_task.prepare(frozen.ROOT / '.local/smoke/no-custom-ar/one_task.py', root / 'driver')
         manifest = cloud_task.manifest(root / 'driver')
         (root / 'driver-manifest.json').write_bytes(manifest)
@@ -58,6 +63,16 @@ def qualify(root, emit):
             'server_and_agent_ast_equal_to_legacy')}
         stage = 'transport_build'
         report['stages'][stage] = cloud_transport.build(root / 'transport')
+        emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
+        stage = 'transport_loopback'
+        binaries = root / 'transport/dropbear-DROPBEAR_2026.94'
+        with (root / 'transport-loopback.log').open('xb') as log:
+            result = subprocess.run(['sudo', sys.executable, '-I',
+                str(frozen.ROOT / 'tests/official_cloud_transport.py'), str(binaries / 'dropbear'),
+                str(binaries / 'dropbearkey')], stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
+                stderr=log, check=True, timeout=120,
+                env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
+        report['stages'][stage] = json.loads(result.stdout)
         emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
         env = {'PATH': '/usr/bin:/bin', 'HOME': str(root), 'LANG': 'C.UTF-8',
                'PYTHON_DOTENV_DISABLED': '1', 'HF_HUB_OFFLINE': '1', 'TRANSFORMERS_OFFLINE': '1',
@@ -85,7 +100,8 @@ def qualify(root, emit):
         if isinstance(error, subprocess.CalledProcessError):
             report['failure']['exit_code'] = error.returncode
     private = {}
-    for name in ('retained-source.ipynb', 'offline-runtime.log', 'official-cloud-driver.log'):
+    for name in ('retained-source.ipynb', 'offline-runtime.log', 'official-cloud-driver.log',
+                 'transport-loopback.log', 'transport/build.log'):
         path = root / name
         if path.is_file():
             private[name] = path
