@@ -14,8 +14,12 @@ USD 8 cumulative stop. The prior CA-MTL-3 attempt remains consumed and deleted.
 - Ubuntu 24.04, qualified Python 3.12.14, actual root Linux PID namespace check.
 - **169/169 existing tests passed in 25.247 seconds**, preflight READY.
 - Secret-free CPU log artifact retained for seven days; no private inputs uploaded.
-- New component tests: 25/25 passed locally. These use synthetic HTTP/provider
-  fixtures; they do not establish live storage throughput or paid cancellation.
+- New component tests: 25/25 passed locally, then **194/194 total tests passed in
+  23.669 seconds on Actions**, including the new components. Preflight READY.
+  Run: https://github.com/hynk-studio/backtrace/actions/runs/39247485067
+  Source: `1c7bfacb4dc2cc5a7f936bae4e2388315282084d`.
+  These use synthetic HTTP/provider fixtures; they do not establish live storage
+  throughput or paid cancellation. See `a100-cloud-cpu-evidence.json`.
 - No new allocation, key creation, secret transfer, inference or task execution.
 
 ## Implemented components
@@ -47,13 +51,16 @@ The cleanup workflow is scoped to the exact
 `bt-001-a100-watch-20261019` branch; it is not triggered by routine PR pushes.
 Its independent concurrency group never cancels a running watcher. The
 `claim_before_create` integration seam also checks that this separate workflow
-is currently running at the same source SHA before allowing a claim. These
-branches have not been activated. No paid-start workflow is published yet.
+is currently running at the same source SHA before allowing a claim. The state
+branch is prepared; no claim has been made. The watcher/start trigger branches
+have not been activated. No paid-start workflow is published yet.
 
 ## Remaining launch prerequisites
 
-1. Sign in to GitHub in the cloud browser to configure the controller's RunPod
-   and Kaggle credentials through repository secrets, without values in chat.
+1. Configure the controller's RunPod and Kaggle credentials through repository
+   secrets, without values in chat. Cloud-browser GitHub login succeeded;
+   the observed repository currently has no Actions secrets. Registering new
+   credential access requires the browser's action-time confirmation.
    The connector can edit source and read runs but does not expose secrets APIs.
 2. Resolve the already authorized private input assets at their pinned versions;
    preserve prepared private driver and transport binaries outside public Git.

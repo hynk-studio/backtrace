@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "authorization": "owner-cloud-20261019-203126",
+  "tested_source_sha": "1c7bfacb4dc2cc5a7f936bae4e2388315282084d",
+  "workflow_run_id": 39247485067,
+  "workflow_run_url": "https://github.com/hynk-studio/backtrace/actions/runs/39247485067",
+  "job_id": 118042856344,
+  "conclusion": "success",
+  "python": "3.12.14",
+  "runner": "ubuntu-24.04",
+  "root_linux_pid_namespace": "PASS",
+  "full_cpu_tests": {"passed": 194, "failed": 0, "seconds": 23.669},
+  "preflight": "READY",
+  "official_validator": "NOT RUN",
+  "artifact": {
+    "id": 12184535228,
+    "name": "a100-cpu-1c7bfacb4dc2cc5a7f936bae4e2388315282084d-1",
+    "bytes": 6306,
+    "digest": "sha256:1a4916e4f5860100bc1268d0eed47dc4390869e75bd5b66c0afe476e966ce7a5",
+    "expires_at_utc": "2026-10-26T11:50:34Z",
+    "contains": "Secret-free CPU test log and preflight only"
+  },
+  "new_component_tests": 25,
+  "evidence_scope": "Real Linux CPU execution; synthetic HTTP/RunPod/GitHub fixtures for fault cases",
+  "live_direct_download_throughput": "NOT RUN",
+  "live_paid_cancellation": "NOT RUN",
+  "new_allocations": 0,
+  "server_starts": 0,
+  "public_tasks_executed": 0,
+  "additional_funding": "NONE"
+}
