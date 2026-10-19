@@ -33,6 +33,10 @@ CHUNK = 1024 * 1024
 
 class DownloadError(RuntimeError):
     """Messages deliberately omit signed URLs and provider response bodies."""
+    def __init__(self, message, *, cause_type=None, http_status=None, attempts=None, received_bytes=None):
+        super().__init__(message)
+        self.cause_type, self.http_status = cause_type, http_status
+        self.attempts, self.received_bytes = attempts, received_bytes
 
 
 def validate_url(url):
@@ -91,7 +95,7 @@ def download_wire(path, source, deadline, *, opener=None, clock=time.monotonic):
             headers['Range'] = 'bytes=' + str(offset) + '-'
         request = urllib.request.Request(validate_url(source['url']), headers=headers)
         try:
-            with open_url(request, timeout=min(15, time_left(deadline, clock))) as response:
+            with open_url(request, timeout=min(30, time_left(deadline, clock))) as response:
                 expected_status = 206 if offset else 200
                 if response.status != expected_status:
                     raise DownloadError('storage response status or Range support changed')
@@ -117,10 +121,14 @@ def download_wire(path, source, deadline, *, opener=None, clock=time.monotonic):
         except urllib.error.HTTPError as error:
             # An expired URL is re-resolved only by the owner, never by the Pod.
             if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
-                raise DownloadError('storage HTTP failure') from None
-        except (OSError, TimeoutError):
+                raise DownloadError('storage HTTP failure', http_status=error.code, attempts=attempt + 1,
+                                    received_bytes=path.stat().st_size if path.exists() else 0) from None
+        except (OSError, TimeoutError) as error:
             if attempt == 2:
-                raise DownloadError('bounded storage retries exhausted') from None
+                raise DownloadError('bounded storage retries exhausted', cause_type=type(error).__name__,
+                                    attempts=attempt + 1,
+                                    received_bytes=path.stat().st_size if path.exists() else 0) from None
+        time.sleep(min(attempt + 1, time_left(deadline, clock)))
     raise DownloadError('download incomplete')
 
 
@@ -155,9 +163,10 @@ def download_one(row, source, staging, deadline, *, opener=None, clock=time.mono
         time_left(deadline, clock)
         if target.stat().st_size != row['bytes'] or digest(target) != row['sha256']:
             raise DownloadError('downloaded input identity mismatch')
-    except (zipfile.BadZipFile, RuntimeError) as error:
-        if isinstance(error, DownloadError):
-            raise
+    except DownloadError as error:
+        error.input_path = row['path']
+        raise
+    except (zipfile.BadZipFile, RuntimeError):
         raise DownloadError('invalid encoded input') from None
     finally:
         wire.unlink(missing_ok=True)

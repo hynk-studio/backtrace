@@ -44,8 +44,11 @@ def inspect_offer(*, read=query, now=time.time):
                 control.validate_region(center['id'])
                 entry = {'id': center['id'], 'available': row['available'], 'stock': row['stockStatus']}
                 report['regions'].append(entry)
-                if row['available'] is True and str(row['stockStatus']).lower() in ('low', 'medium', 'high'):
-                    candidates.append(center['id'])
+                # Also inspect exact hardware quotes for unavailable regions.
+                # This validates the complete read path before a paid claim and
+                # preserves discrepancies instead of treating a broad stock
+                # summary as proof of an allocatable machine.
+                candidates.append(center['id'])
     if len(candidates) > 32 or len(candidates) != len(set(candidates)):
         raise ValueError('ambiguous regional inventory')
     # The previous region has no cost/performance preference; a current matching
@@ -63,7 +66,10 @@ def inspect_offer(*, read=query, now=time.time):
         if len(result) != 1 or result[0]['id'] != control.GPU or result[0]['memoryInGb'] != 80:
             raise ValueError('GPU quote identity mismatch')
         gpu = result[0]; price = gpu['lowestPrice']
+        regional = next(r for r in report['regions'] if r['id'] == region)
+        regional['exact_quote'] = price
         if (gpu['secureCloud'] is not True or not price
+                or regional['available'] is not True
                 or str(price['stockStatus']).lower() not in ('low', 'medium', 'high')
                 or price['supportPublicIp'] is not True or 1 not in (price['availableGpuCounts'] or [])):
             continue

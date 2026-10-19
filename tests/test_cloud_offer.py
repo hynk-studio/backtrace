@@ -42,6 +42,7 @@ class OfferTests(unittest.TestCase):
     def test_unavailable_region_or_only_multiple_gpu_capacity_is_not_qualified(self):
         self.account['dataCenters'][0]['gpuAvailability'][0]['available'] = False
         self.assertEqual(inspect_offer(read=self.read, now=lambda: T0)['status'], 'NO_QUALIFIED_REGION')
+        self.assertEqual(len(self.calls), 2)
         self.setUp(); self.price['gpuTypes'][0]['lowestPrice']['availableGpuCounts'] = [4, 8]
         self.assertEqual(inspect_offer(read=self.read, now=lambda: T0)['status'], 'NO_QUALIFIED_REGION')
 

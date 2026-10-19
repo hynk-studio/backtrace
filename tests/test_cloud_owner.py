@@ -99,6 +99,13 @@ class CloudOwnerTests(unittest.TestCase):
         self.assertLess(self.clock - T0, 90)
         self.assert_no_owned_resource()
 
+    def test_finished_heartbeat_can_precede_the_child_process_exit(self):
+        private_json(self.root / 'job-status.json', {'attempt': 'a' * 32, 'state': 'finished',
+                                                   'phase': 'retrieval', 'at': control.utc(T0)})
+        self.assertEqual(owner.local_phase(self.root, {'attempt': 'a' * 32}, T0 + 1, first_at=T0), 'retrieval')
+        with self.assertRaises(state.StateError):
+            owner.local_phase(self.root, {'attempt': 'a' * 32}, T0 + 16, first_at=T0)
+
     def test_scoped_source_maps_travel_in_stdin_not_ssh_command(self):
         argv, data = worker.direct_envelope({'requested_at': 1, 'streams': {'fixture': 'SIGNED-URL-CANARY'}})
         self.assertLess(len(' '.join(argv)), 9000)

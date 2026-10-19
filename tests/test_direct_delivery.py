@@ -31,7 +31,7 @@ class DirectDeliveryTests(unittest.TestCase):
 
     def open(self, request, timeout):
         self.calls.append(request)
-        self.assertLessEqual(timeout, 15)
+        self.assertLessEqual(timeout, 30)
         return Response(self.payload)
 
     def pull(self, **kwargs):
@@ -142,6 +142,10 @@ class DirectDeliveryTests(unittest.TestCase):
             self.pull(opener=failed)
         self.assertEqual(len(calls), 3)
         self.assertNotIn('SECRET', str(caught.exception))
+        self.assertEqual(caught.exception.cause_type, 'OSError')
+        self.assertEqual(caught.exception.attempts, 3)
+        self.assertEqual(caught.exception.received_bytes, 0)
+        self.assertEqual(caught.exception.input_path, self.row['path'])
 
     def test_changed_manifest_is_rejected_before_opening(self):
         with self.assertRaises(ValueError):

@@ -36,7 +36,7 @@ def qualify(root, emit):
         with (root / 'transport-loopback.log').open('xb') as log:
             result = subprocess.run(['sudo', sys.executable, '-I',
                 str(frozen.ROOT / 'tests/official_cloud_transport.py'), str(binaries / 'dropbear'),
-                str(binaries / 'dropbearkey')], stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
+                str(binaries / 'dropbearkey'), 'actions-20261019'], stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
                 stderr=log, check=True, timeout=120,
                 env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
         report['stages'][stage] = json.loads(result.stdout)
@@ -58,25 +58,13 @@ def qualify(root, emit):
         report['stages']['sources'] = {'wheels': len(wheel_sources), 'task': len(task_sources),
                                        'model': len(model_sources), 'urls_published': False}
         emit({'stage': 'sources', 'status': 'PASS', **report['stages']['sources']})
+        stage = 'restore_official'
+        report['stages'][stage] = cloud_reference.receive(transfer, identity, prefix, root / 'official')
+        emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
         stage = 'download_wheels'
         data = frozen.manifest('wheels')
         report['stages'][stage] = pull(root / 'wheels', data, wheel_sources, hashlib.sha256(data).hexdigest(), 1800)
         emit({'stage': stage, 'status': 'PASS', 'verified_files': len(wheel_sources)})
-        stage = 'download_task'
-        data = frozen.manifest('task')
-        report['stages'][stage] = pull(root / 'task', data, task_sources, hashlib.sha256(data).hexdigest(), 600)
-        emit({'stage': stage, 'status': 'PASS', 'verified_files': len(task_sources)})
-        stage = 'restore_official'
-        report['stages'][stage] = cloud_reference.receive(transfer, identity, prefix, root / 'official')
-        emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
-        stage = 'restore_cpu_inputs'
-        report['stages'][stage] = resolver.restore_cpu_inputs(source, frozen.ROOT, root / 'wheels', root / 'task', root / 'official')
-        prepared = cloud_task.prepare(frozen.ROOT / '.local/smoke/no-custom-ar/one_task.py', root / 'driver')
-        manifest = cloud_task.manifest(root / 'driver')
-        (root / 'driver-manifest.json').write_bytes(manifest)
-        report['stages']['driver'] = {key: prepared[key] for key in (
-            'prepared_driver_sha256', 'policy', 'setup_seconds', 'useful_seconds', 'total_seconds',
-            'server_and_agent_ast_equal_to_legacy')}
         env = {'PATH': '/usr/bin:/bin', 'HOME': str(root), 'LANG': 'C.UTF-8',
                'PYTHON_DOTENV_DISABLED': '1', 'HF_HUB_OFFLINE': '1', 'TRANSFORMERS_OFFLINE': '1',
                'OTEL_SDK_DISABLED': 'true', 'LITELLM_LOCAL_MODEL_COST_MAP': 'True'}
@@ -88,6 +76,18 @@ def qualify(root, emit):
         report['stages'][stage] = {'status': 'PASS', 'application_distributions': 245,
                                     'installation_network': 'AUDIT BLOCKED', 'host': 'Actions Ubuntu 24.04 CPU'}
         emit({'stage': stage, **report['stages'][stage]})
+        stage = 'download_task'
+        data = frozen.manifest('task')
+        report['stages'][stage] = pull(root / 'task', data, task_sources, hashlib.sha256(data).hexdigest(), 600)
+        emit({'stage': stage, 'status': 'PASS', 'verified_files': len(task_sources)})
+        stage = 'restore_cpu_inputs'
+        report['stages'][stage] = resolver.restore_cpu_inputs(source, frozen.ROOT, root / 'wheels', root / 'task', root / 'official')
+        prepared = cloud_task.prepare(frozen.ROOT / '.local/smoke/no-custom-ar/one_task.py', root / 'driver')
+        manifest = cloud_task.manifest(root / 'driver')
+        (root / 'driver-manifest.json').write_bytes(manifest)
+        report['stages']['driver'] = {key: prepared[key] for key in (
+            'prepared_driver_sha256', 'policy', 'setup_seconds', 'useful_seconds', 'total_seconds',
+            'server_and_agent_ast_equal_to_legacy')}
         stage = 'official_cloud_driver'
         with (root / 'official-cloud-driver.log').open('xb') as log:
             subprocess.run([str(root / 'runtime/venv/bin/python'), '-I',
@@ -102,6 +102,9 @@ def qualify(root, emit):
             report['failure'].update(input_path=error.input_path, cause_type=error.error_type)
         if isinstance(error, subprocess.CalledProcessError):
             report['failure']['exit_code'] = error.returncode
+        if isinstance(error, DownloadError):
+            report['failure'].update({key: getattr(error, key) for key in
+                ('input_path', 'cause_type', 'attempts', 'received_bytes') if getattr(error, key, None) is not None})
         if isinstance(error, DownloadError) and str(error) in {
                 'archive must contain only the expected regular file', 'downloaded input identity mismatch',
                 'storage HTTP failure', 'storage Content-Length differs from resolved size',

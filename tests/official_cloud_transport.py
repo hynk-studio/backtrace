@@ -4,6 +4,7 @@ Only this CPU test temporarily binds the observed executable hashes. Paid code
 must use separately reviewed fixed hashes. Listener paths/ports are disposable.
 """
 import json
+import contextlib
 import os
 from pathlib import Path
 import shlex
@@ -22,15 +23,19 @@ from tools.runpod_job import check_owner_host, private_json
 from tools.private_delivery import push, ssh_command
 
 
-def qualify(binary, keygen):
+def qualify(binary, keygen, profile=None):
     check_owner_host()
     observed = {'binary_sha256': ssh.sha(binary), 'keygen_sha256': ssh.sha(keygen)}
-    with tempfile.TemporaryDirectory(prefix='backtrace-transport-cpu-', dir='/root') as td, \
-            patch.dict(ssh.TRANSPORT, observed):
+    if profile is not None:
+        parameters = ssh.transport_parameters(profile)
+        if any(parameters[key] != value for key, value in observed.items()):
+            raise ValueError('rebuilt binaries differ from fixed Actions transport profile')
+    binding = patch.dict(ssh.TRANSPORT, observed) if profile is None else contextlib.nullcontext()
+    with tempfile.TemporaryDirectory(prefix='backtrace-transport-cpu-', dir='/root') as td, binding:
         root = Path(td); owner = root / 'owner'; target = root / 'pod'
-        init = ssh.prepare(binary, keygen, owner)
+        init = ssh.prepare(binary, keygen, owner, profile=profile)
         private_json(owner / 'initializer.json', init)
-        ssh.validate_material(owner)
+        ssh.validate_material(owner, profile=profile)
         with socket.socket() as sock:
             sock.bind(('127.0.0.1', 0)); port = sock.getsockname()[1]
         source = ssh.START.replace("'/root/backtrace'", repr(str(target)))
@@ -42,7 +47,7 @@ def qualify(binary, keygen):
                      'RUNPOD_API_KEY': 'fixture-canary-no-credential', **init['env']},
                 stdin=subprocess.DEVNULL, stdout=log, stderr=log, start_new_session=True)
             try:
-                ssh.deliver(owner, '127.0.0.1', port, 20)
+                ssh.deliver(owner, '127.0.0.1', port, 20, profile=profile)
                 known = ssh.known_hosts(owner, '127.0.0.1', port)
                 command = ssh_command('127.0.0.1', port, owner / 'owner-key', known,
                                       str(target / 'input'), '0' * 64)[:-1]
@@ -80,7 +85,7 @@ def qualify(binary, keygen):
                 push(source_dir, manifest_path, command, 20)
                 if (target / 'input/fixture.bin').read_bytes() != data:
                     raise RuntimeError('actual SSH byte transfer mismatch')
-                return dict(observed, mutual_tls='PASS', strict_ssh='PASS', wrong_host='REJECTED',
+                return dict(observed, profile=profile, mutual_tls='PASS', strict_ssh='PASS', wrong_host='REJECTED',
                             clean_child_environment='PASS', private_transfer_bytes=len(data),
                             network='LOOPBACK ONLY', paid_operations=0)
             finally:
@@ -91,6 +96,7 @@ def qualify(binary, keygen):
 
 if __name__ == '__main__':
     os.umask(0o077)
-    if len(sys.argv) != 3:
+    if len(sys.argv) not in (3, 4):
         raise ValueError('exact rebuilt binary and keygen required')
-    print(json.dumps(qualify(Path(sys.argv[1]), Path(sys.argv[2])), sort_keys=True))
+    print(json.dumps(qualify(Path(sys.argv[1]), Path(sys.argv[2]),
+                             sys.argv[3] if len(sys.argv) == 4 else None), sort_keys=True))

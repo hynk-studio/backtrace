@@ -90,6 +90,18 @@ class BootstrapTests(unittest.TestCase):
         self.assertFalse(any(k.startswith('BT_') for k in env))
         self.assertNotIn('client.key', {p.name for p in target.iterdir()})
 
+    def test_cloud_profile_is_explicit_and_cannot_replace_legacy_pins(self):
+        changed = json.loads(json.dumps(self.init))
+        changed['env']['BT_SSH_SHA'] = 'a' * 64
+        with patch.dict(ssh.ACTIONS_TRANSPORT, {'binary_sha256': 'a' * 64}):
+            ssh.validate_initializer(changed, profile='actions-20261019')
+            with self.assertRaises(ValueError): ssh.validate_initializer(changed)
+            with self.assertRaises(ValueError): ssh.validate_initializer(self.init, profile='actions-20261019')
+            with self.assertRaises(ValueError): control.make_request('a' * 32, 0, changed)
+            request = control.make_request('a' * 32, 0, changed, transport_profile='actions-20261019')
+            self.assertEqual(request['env']['BT_SSH_SHA'], 'a' * 64)
+        with self.assertRaises(ValueError): ssh.transport_parameters('arbitrary')
+
     def test_wrong_server_identity_is_rejected_before_upload(self):
         other = self.root / 'other'
         init = ssh.prepare(self.binary, self.keygen, other)

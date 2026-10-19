@@ -221,7 +221,8 @@ def claim_before_create(store, api, offer, bootstrap, run_id, source_sha, *, wal
     now = int(wall()); costs = cloud_costs(offer, now)
     value = project_claim({'attempt': attempt, 'requested_at': now, 'region': offer['region'],
                            'costs': costs}, run_id, source_sha, watcher)
-    request = control.make_request(attempt, now, bootstrap, region=offer['region'])
+    request = control.make_request(attempt, now, bootstrap, region=offer['region'],
+                                   transport_profile='actions-20261019')
     control.encode_create_request(request)
     store.write('claim', value)  # create-only + readback before any provider POST
     require_watcher(store, source_sha, int(wall()))

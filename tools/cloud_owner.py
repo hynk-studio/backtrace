@@ -52,8 +52,9 @@ def local_phase(directory, claim, now, *, first_at):
     if not path.exists() and now - first_at < 15:
         return 'setup'
     value = json.loads(read_private(path))
-    if (value['attempt'] != claim['attempt'] or value['state'] != 'running'
+    if (value['attempt'] != claim['attempt'] or value['state'] not in ('running', 'finished')
             or value['phase'] not in ('setup', 'workload', 'retrieval')
+            or (value['state'] == 'finished' and value['phase'] != 'retrieval')
             or not 0 <= now - control.timestamp(value['at']) <= 15):
         raise state.StateError('worker heartbeat is stale or finished')
     return value['phase']

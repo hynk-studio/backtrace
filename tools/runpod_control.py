@@ -94,7 +94,7 @@ def validate_offer(offer, now):
             'spent_before': str(spent_before), 'initial_balance': str(balance)}
 
 
-def make_request(attempt, requested_at, bootstrap=None, *, region='EU-RO-1'):
+def make_request(attempt, requested_at, bootstrap=None, *, region='EU-RO-1', transport_profile=None):
     if not re.fullmatch(r'[0-9a-f]{32}', attempt):
         raise ValueError('unique UUID hex attempt required')
     request = {'cloud': 'SECURE', 'gpu': {'id': GPU, 'count': 1,
@@ -105,7 +105,7 @@ def make_request(attempt, requested_at, bootstrap=None, *, region='EU-RO-1'):
                'name': 'backtrace-a100-' + attempt}
     if bootstrap is not None:
         from tools.ssh_bootstrap import validate_initializer
-        validate_initializer(bootstrap)
+        validate_initializer(bootstrap, profile=transport_profile)
         request.update(bootstrap)
     return request
 

@@ -24,6 +24,19 @@ TRANSPORT = {
     'keygen_sha256': '5d33b842b70f674859459713ce3f28e62e32bdaca04950d6a599e1b8d84f3690',
 }
 
+# This separate policy binding must match the actual free Actions rebuild and
+# loopback qualification. Legacy defaults keep their original executable pins.
+ACTIONS_TRANSPORT = dict(TRANSPORT, build_host='Actions Ubuntu 24.04; qualification required')
+
+
+def transport_parameters(profile=None):
+    if profile is None:
+        return TRANSPORT
+    if profile != 'actions-20261019':
+        raise ValueError('unknown transport profile')
+    return ACTIONS_TRANSPORT
+
+
 # Only this small receiver and ephemeral server identity enter the create body.
 # The pinned executable travels later over TLS 1.3 with mutual authentication.
 # The same TCP port is handed to the existing, pinned SSH transport after SHA256
@@ -95,9 +108,10 @@ def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def prepare(binary, keygen, directory):
+def prepare(binary, keygen, directory, *, profile=None):
     """Prepare only local keys and reviewed request bytes; no external access."""
-    if sha(binary) != TRANSPORT['binary_sha256'] or sha(keygen) != TRANSPORT['keygen_sha256']:
+    parameters = transport_parameters(profile)
+    if sha(binary) != parameters['binary_sha256'] or sha(keygen) != parameters['keygen_sha256']:
         raise ValueError('unqualified transport executable')
     root = Path(directory).absolute()
     root.mkdir(mode=0o700)
@@ -123,18 +137,19 @@ def prepare(binary, keygen, directory):
     (root / 'transport').write_bytes(Path(binary).read_bytes())
     for path in root.iterdir():
         path.chmod(0o600)
-    env = {'BT_SSH_SHA': TRANSPORT['binary_sha256'],
+    env = {'BT_SSH_SHA': parameters['binary_sha256'],
            'BT_SSH_BYTES': str((root / 'transport').stat().st_size),
            'BT_SSH_HOST_KEY': base64.b64encode((root / 'host-key').read_bytes()).decode(),
            'BT_SSH_PUBLIC_KEY': (root / 'owner-key.pub').read_text().strip()}
     env.update({key: base64.b64encode((root / name).read_bytes()).decode() for key, name in
                 (('BT_TLS_KEY', 'server.key'), ('BT_TLS_CERT', 'server.crt'), ('BT_TLS_CLIENT', 'client.crt'))})
     result = {'entrypoint': ['/usr/bin/python3.12', '-I', '-c'], 'cmd': [START], 'env': env}
-    validate_initializer(result)
+    validate_initializer(result, profile=profile)
     return result
 
 
-def validate_initializer(value):
+def validate_initializer(value, *, profile=None):
+    parameters = transport_parameters(profile)
     if (set(value) != {'entrypoint', 'cmd', 'env'}
             or value['entrypoint'] != ['/usr/bin/python3.12', '-I', '-c'] or value['cmd'] != [START]):
         raise ValueError('unreviewed container initialization')
@@ -143,7 +158,7 @@ def validate_initializer(value):
              'BT_TLS_KEY', 'BT_TLS_CERT', 'BT_TLS_CLIENT'}
     if (set(env) != fixed
             or any(not isinstance(v, str) or len(v) > 4096 or '\x00' in v for v in env.values())
-            or env['BT_SSH_SHA'] != TRANSPORT['binary_sha256']
+            or env['BT_SSH_SHA'] != parameters['binary_sha256']
             or not re.fullmatch(r'[1-9][0-9]{0,6}', env['BT_SSH_BYTES'])
             or not 0 < int(env['BT_SSH_BYTES']) <= 2 * 1024 * 1024
             or not re.fullmatch(r'ssh-ed25519 [A-Za-z0-9+/=]+(?: [^\r\n]*)?', env['BT_SSH_PUBLIC_KEY'])
@@ -162,15 +177,16 @@ def private_bytes(path):
     return path.read_bytes()
 
 
-def validate_material(directory):
+def validate_material(directory, *, profile=None):
     """Prepaid gate: executable, identity pairing, expiry and permissions."""
+    parameters = transport_parameters(profile)
     root = Path(directory)
     if root.is_symlink() or root.stat().st_uid != os.getuid() or root.stat().st_mode & 0o077:
         raise ValueError('private transport directory required')
     value = json.loads(private_bytes(root / 'initializer.json'))
-    validate_initializer(value)
+    validate_initializer(value, profile=profile)
     data = private_bytes(root / 'transport')
-    if (hashlib.sha256(data).hexdigest() != TRANSPORT['binary_sha256']
+    if (hashlib.sha256(data).hexdigest() != parameters['binary_sha256']
             or len(data) != int(value['env']['BT_SSH_BYTES'])):
         raise ValueError('SSH executable changed')
     for name, key in (('server.key', 'BT_TLS_KEY'), ('server.crt', 'BT_TLS_CERT'),
@@ -187,7 +203,7 @@ def validate_material(directory):
     server = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     server.load_cert_chain(root / 'server.crt', root / 'server.key')
     return {'method': 'mutual-tls13-then-pinned-ssh', 'binary_bytes': len(data),
-            'binary_sha256': TRANSPORT['binary_sha256'], 'minimum_validity_seconds': 3600}
+            'binary_sha256': parameters['binary_sha256'], 'minimum_validity_seconds': 3600}
 
 
 def context(directory):
@@ -199,14 +215,15 @@ def context(directory):
     return ctx
 
 
-def deliver(directory, host, port, timeout):
+def deliver(directory, host, port, timeout, *, profile=None):
     """One authenticated executable transfer; retry only TCP-not-ready."""
+    parameters = transport_parameters(profile)
     validate_endpoint(host, port)
     if not 0 < timeout <= 1200:
         raise ValueError('bounded bootstrap timeout required')
     root = Path(directory)
     data = private_bytes(root / 'transport')
-    if hashlib.sha256(data).hexdigest() != TRANSPORT['binary_sha256']:
+    if hashlib.sha256(data).hexdigest() != parameters['binary_sha256']:
         raise ValueError('SSH executable changed')
     ctx = context(root)
     deadline = time.monotonic() + timeout
@@ -231,9 +248,9 @@ def deliver(directory, host, port, timeout):
                 if not part:
                     raise EOFError('missing bootstrap acknowledgement')
                 receipt.extend(part)
-            if receipt != (TRANSPORT['binary_sha256'] + '\n').encode():
+            if receipt != (parameters['binary_sha256'] + '\n').encode():
                 raise ValueError('incorrect bootstrap acknowledgement')
-    return {'bytes': len(data), 'sha256': TRANSPORT['binary_sha256']}
+    return {'bytes': len(data), 'sha256': parameters['binary_sha256']}
 
 
 def validate_endpoint(host, port):

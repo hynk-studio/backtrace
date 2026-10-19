@@ -20,7 +20,23 @@ USD 8 cumulative stop. The prior CA-MTL-3 attempt remains consumed and deleted.
   Source: `1c7bfacb4dc2cc5a7f936bae4e2388315282084d`.
   These use synthetic HTTP/provider fixtures; they do not establish live storage
   throughput or paid cancellation. See `a100-cloud-cpu-evidence.json`.
-- No new allocation, key creation, secret transfer, inference or task execution.
+- The owner registered `RUNPOD_API_KEY` and `KAGGLE_API_TOKEN` as Actions Secrets.
+  Authenticated read-only checks passed against RunPod and the frozen Kaggle
+  model v2, private selected-task v1 and retained private notebook v3.
+  Run: https://github.com/hynk-studio/backtrace/actions/runs/39276929758
+- Latest completed full CPU suite: **226/226**, 25.878 seconds, preflight READY.
+  Run: https://github.com/hynk-studio/backtrace/actions/runs/39279167953
+  Source: `16ffbe315b0e81c024e3be9afd3164f518421c5e`.
+- Exact-byte downloads of 246 wheels (5,373,559,590 bytes) and eight selected
+  task inputs (222,386,501 bytes) passed on Actions. The eight model inputs have
+  resolved scoped URLs and headers; the 23.3GB model body has not been downloaded
+  or executed in this migration.
+  Run: https://github.com/hynk-studio/backtrace/actions/runs/39275511563
+- At 2026-10-19T15:19:35Z the account API reported balance USD 9.8508333333,
+  zero current spend and Auto-Pay disabled. Complete Pod listing contained no
+  resources. Regional availability showed no qualified A100 region; this is
+  a point-in-time observation, not a reservation or forecast.
+- No new GPU allocation, model server start or public task execution.
 
 ## Implemented components
 
@@ -57,23 +73,33 @@ have not been activated. No paid-start workflow is published yet.
 
 ## Remaining launch prerequisites
 
-1. Configure the controller's RunPod and Kaggle credentials through repository
-   secrets, without values in chat. Cloud-browser GitHub login succeeded;
-   the observed repository currently has no Actions secrets. Registering new
-   credential access requires the browser's action-time confirmation.
-   The connector can edit source and read runs but does not expose secrets APIs.
-2. Resolve the already authorized private input assets at their pinned versions;
-   preserve prepared private driver and transport binaries outside public Git.
-   Validate actual download URLs, wire encodings, sizes and access before spending.
-3. Bind the new timing policy into the retained private driver, permit, activation
-   and owner-worker lifecycle. Preserve the scientific AST and inference budget;
-   qualify that exact resulting driver hash on CPU. The old paid entry remains
-   disabled and its original timing policy is deliberately unchanged.
-4. Connect periodic durable heartbeat and private result retention, then qualify
-   the complete start/worker/watch flow. Raw task output must not become a public
-   Actions artifact. Verify the fresh account quote and existing wallet balance.
-5. Start the independent watcher first, observe readiness, then one controller
-   run. Preserve cleanup evidence and confirm actual billing after completion.
+1. Finish real free-runner transport build/loopback, offline exact runtime
+   installation and actual wrapper construction with the cloud-policy driver.
+   The frozen driver hash is
+   `9542d7c47eb394247fb30a61a90303ba381b3f0eadbf6a6ef8fb8939bae7f342`.
+   Its server/agent AST and scientific input/budget are preserved; deadline and
+   permit policy changes are explicit. Model execution is NOT RUN.
+2. Bind actual transport hashes, retain the successful run and file fingerprints,
+   and qualify the complete owner preflight at the same source as its full CPU
+   suite. The original consumed notebook launch remains disabled.
+3. Refresh a matching region/hardware quote, wallet and Auto-Pay through the
+   account API. Run the independent watcher and one owner workflow only after
+   every free gate is satisfied. Never reset a claim or retry a paid create.
+4. Retain only encrypted private results, obtain two independent owned-resource
+   absence checks, and refresh actual account spending after completion.
+
+The free preparation receiver generates an ephemeral age identity on its runner.
+Only its public recipient and encrypted original reference archive appear in the
+separate `a100-transfer/` namespace. Every original reference file must match
+`source-manifest.json`; newer competition downloads are not substituted. The
+receiver has no RunPod secret or allocation path. Immutable input reads have at
+most three retries for transient transport/server errors; hashes and identity
+errors never retry or change a pin.
+
+Private evidence uses standard age encryption to the owner's separately retained
+recipient. A real uploaded artifact was downloaded, decrypted and matched to the
+pinned original notebook. Neither account keys, SSH private keys nor scoped URL
+maps are included in the public report or encrypted evidence allowlist.
 
 Until those prerequisites pass, the new code is migration preparation and
 **not authorization to invoke an unqualified paid entry**. An Actions/GitHub or
