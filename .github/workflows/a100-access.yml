@@ -41,4 +41,5 @@ jobs:
         if: always()
         env:
           RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
         run: python -m tools.cloud_inventory

@@ -5,7 +5,7 @@
   "workflow_run_id": 39287452398,
   "workflow_run_url": "https://github.com/hynk-studio/backtrace/actions/runs/39287452398",
   "job_id": 118178508232,
-  "conclusion": "PENDING PROVIDER STATUS; actual test output PASS",
+  "conclusion": "success; confirmed by live owner gate at 2026-10-19T16:46:01Z",
   "python": "3.12.14",
   "runner": "ubuntu-24.04",
   "root_linux_pid_namespace": "PASS",
@@ -45,11 +45,26 @@
   "owner_preflight": {
     "run_id": 39287452412,
     "source_sha": "6cd9fbf181e271b96cfb5b68dcc9167bbbfa2020",
-    "status": "IN PROGRESS; no paid create permitted until exact-source workflow conclusion succeeds"
+    "status": "BLOCKED by Kaggle source ResolutionError after qualification passed",
+    "qualification_passed_at_utc": "2026-10-19T16:46:01Z",
+    "failed_at_utc": "2026-10-19T16:50:24Z",
+    "input_path": "r0-clean.zip",
+    "cause_type": "ReadTimeout",
+    "allocation_requests": 0
   },
   "provider_status_incident": {
     "url": "https://www.githubstatus.com/incidents/8tzbpcnl75jp",
     "observed_at_utc": "2026-10-19T16:46:00Z",
     "scope": "Actions workflow status updates, Pages and Webhooks; required workflow conclusion is not bypassed"
+  },
+  "latest_account": {
+    "observed_at_utc": "2026-10-19T16:50:59Z",
+    "balance_usd": "9.8508333333",
+    "current_spend_per_hour": "0",
+    "auto_pay": false,
+    "pods": 0,
+    "qualified_offer": null,
+    "broad_catalog": "CA-MTL-3 LOW",
+    "exact_quote_status": "NO_QUALIFIED_REGION; catalog and exact resource qualification differ"
   }
 }

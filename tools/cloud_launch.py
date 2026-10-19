@@ -11,6 +11,7 @@ import json
 import logging
 import os
 from pathlib import Path
+import re
 import sys
 
 from tools import a100_delivery as frozen, cloud_resolver as resolver, cloud_task, cloud_transport
@@ -27,8 +28,19 @@ SAFE_REASONS = frozenset({
     'rebuilt transport differs from the actual qualified binaries',
     'earlier owned resource requires reconciliation',
     'authorization is already consumed; never recreate',
-    'first exact authorized workflow context required',
+    'exact workflow context required; paid reruns are forbidden',
 })
+
+
+def validate_context(mode, environ):
+    branch = ('bt-001-a100-start-20261019' if mode == 'paid'
+              else 'bt-001-a100-cpu-qualification')
+    attempt = environ.get('GITHUB_RUN_ATTEMPT', '')
+    if (mode not in ('preflight', 'paid') or environ.get('GITHUB_REPOSITORY') != state.REPOSITORY
+            or environ.get('GITHUB_REF_NAME') != branch
+            or not re.fullmatch(r'[1-9][0-9]{0,5}', attempt)
+            or (mode == 'paid' and attempt != '1')):
+        raise state.StateError('exact workflow context required; paid reruns are forbidden')
 
 
 def preparation(root, store, source_sha, emit):
@@ -93,12 +105,7 @@ def main():
     with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
         try:
             source_sha, run_id = os.environ['GITHUB_SHA'], os.environ['GITHUB_RUN_ID']
-            branch = ('bt-001-a100-start-20261019' if args.mode == 'paid'
-                      else 'bt-001-a100-cpu-qualification')
-            if (os.environ.get('GITHUB_REPOSITORY') != state.REPOSITORY
-                    or os.environ.get('GITHUB_REF_NAME') != branch
-                    or os.environ.get('GITHUB_RUN_ATTEMPT') != '1'):
-                raise state.StateError('first exact authorized workflow context required')
+            validate_context(args.mode, os.environ)
             store = state.GitHubState(os.environ['GITHUB_TOKEN'])
             result, initializer, api = preparation(root, store, source_sha, emit)
             report['preparation'] = result
