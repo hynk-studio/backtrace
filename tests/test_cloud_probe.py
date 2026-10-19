@@ -64,3 +64,11 @@ class ProbeTests(unittest.TestCase):
         self.assertNotIn('secret-value-url', out.getvalue())
         self.assertNotIn('other-secret', out.getvalue())
         self.assertEqual(json.loads(out.getvalue())['gpu_allocations'], 0)
+
+    def test_clipboard_boundary_whitespace_only_is_normalized(self):
+        value = 'fixture-token-with-no-real-access'
+        with patch.dict(os.environ, {'RUNPOD_API_KEY': ' \n' + value + '\r\n'}):
+            self.assertEqual(cloud_probe.secret('RUNPOD_API_KEY'), value)
+        with patch.dict(os.environ, {'RUNPOD_API_KEY': value + '\n' + value}):
+            with self.assertRaises(cloud_probe.CredentialFormatError):
+                cloud_probe.secret('RUNPOD_API_KEY')

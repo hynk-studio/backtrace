@@ -18,10 +18,15 @@ from tools.a100_delivery import manifest
 from tools.runpod_control import RunpodAPI
 
 
+class CredentialFormatError(ValueError):
+    """A missing or malformed value, before any network request."""
+
+
 def secret(name):
-    value = os.environ.get(name, '')
+    # GitHub's multiline editor can retain the final clipboard newline.
+    value = os.environ.get(name, '').strip()
     if len(value) < 16 or any(c.isspace() for c in value):
-        raise ValueError('missing or malformed credential')
+        raise CredentialFormatError('missing or malformed credential')
     return value
 
 
