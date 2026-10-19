@@ -138,7 +138,7 @@ def download_one(row, source, staging, deadline, *, opener=None, clock=time.mono
             with zipfile.ZipFile(wire) as archive:
                 entries = archive.infolist()
                 if (len(entries) != 1 or entries[0].is_dir()
-                        or entries[0].filename != Path(row['path']).name
+                        or entries[0].filename not in (row['path'], Path(row['path']).name)
                         or entries[0].file_size != row['bytes']
                         or (entries[0].external_attr >> 16) & 0o170000 == 0o120000):
                     raise DownloadError('archive must contain only the expected regular file')

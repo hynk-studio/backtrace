@@ -13,7 +13,7 @@ import time
 
 from tools import a100_delivery as frozen, cloud_resolver as resolver, cloud_task, cloud_transport, cloud_seal
 from tools.cloud_probe import failure
-from tools.direct_delivery import pull
+from tools.direct_delivery import pull, DownloadError
 from tools.runpod_job import private_json
 
 
@@ -99,6 +99,12 @@ def qualify(root, emit):
             report['failure'].update(input_path=error.input_path, cause_type=error.error_type)
         if isinstance(error, subprocess.CalledProcessError):
             report['failure']['exit_code'] = error.returncode
+        if isinstance(error, DownloadError) and str(error) in {
+                'archive must contain only the expected regular file', 'downloaded input identity mismatch',
+                'storage HTTP failure', 'storage Content-Length differs from resolved size',
+                'resolve the final storage URL on the owner host', 'bounded storage retries exhausted',
+                'invalid encoded input', 'unexpected HTTP content encoding', 'download deadline reached'}:
+            report['failure']['reason'] = str(error)
     private = {}
     for name in ('retained-source.ipynb', 'offline-runtime.log', 'official-cloud-driver.log',
                  'transport-loopback.log', 'transport/build.log'):

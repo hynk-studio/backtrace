@@ -119,6 +119,15 @@ class DirectDeliveryTests(unittest.TestCase):
             self.pull(opener=lambda *a, **k: Response(wire))
         self.assertFalse((self.root / 'escape').exists())
 
+    def test_archive_exact_nested_name_keeps_frozen_target_and_digest(self):
+        stream = io.BytesIO()
+        with zipfile.ZipFile(stream, 'w', zipfile.ZIP_DEFLATED) as archive:
+            archive.writestr(self.row['path'], self.payload)
+        wire = stream.getvalue()
+        self.source.update(encoding='single-file-zip', wire_bytes=len(wire))
+        self.assertTrue(self.pull(opener=lambda *a, **k: Response(wire))['verified'])
+        self.assertEqual((self.root / 'model' / self.row['path']).read_bytes(), self.payload)
+
     def test_expired_deadline_makes_no_http_request(self):
         with self.assertRaisesRegex(direct.DownloadError, 'deadline'):
             direct.download_wire(self.root / 'wire', self.source, 1, opener=self.open, clock=lambda: 2)
