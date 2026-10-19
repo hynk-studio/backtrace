@@ -142,11 +142,15 @@ def readonly(root):
     os.chown(root, 0, 0); root.chmod(0o555)
 
 
-def activate(manifests, requested_at, *, runtime=True):
+def activate(manifests, requested_at, *, runtime=True, policy='prepaid10-external-v2'):
     """Verify all bytes first, then activate exact logical generation inputs."""
     if os.getuid() != 0 or set(manifests) != {'driver', 'wheels', 'task', 'model'}:
         raise ValueError('root and complete frozen streams required')
-    if not 0 <= time.time() - requested_at < 1200:
+    limits = {'prepaid10-external-v2': 1200, 'prepaid10-actions-v1': 5400}
+    if policy not in limits:
+        raise ValueError('unknown activation policy')
+    setup_seconds = limits[policy]
+    if not 0 <= time.time() - requested_at < setup_seconds:
         raise ValueError('setup deadline exhausted')
     checked = {kind: checked_tree(STAGING / kind, sha) for kind, sha in manifests.items()}
     destinations = {'task': INPUT / 'r0-inputs', 'model': INPUT / MODEL}
@@ -170,14 +174,14 @@ def activate(manifests, requested_at, *, runtime=True):
             raise ValueError('runtime path already exists')
         ensure_venv_seed(STAGING / 'wheels')
         code = STAGING / 'driver/tools/linux_runtime.py'
-        remaining = 1200 - (time.time() - requested_at)
+        remaining = setup_seconds - (time.time() - requested_at)
         subprocess.run(['/usr/bin/python3.12', '-I', str(code), str(STAGING / 'wheels'),
                         str(STAGING / 'driver/docs/linux-supplemental.lock'), str(environment)],
                        check=True, timeout=max(0.001, remaining),
                        env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8', 'HOME': '/root',
                             'PYTHON_DOTENV_DISABLED': '1', 'HF_HUB_OFFLINE': '1'})
         readonly(environment)
-    if time.time() - requested_at >= 1200:
+    if time.time() - requested_at >= setup_seconds:
         raise ValueError('setup deadline exhausted after activation')
     return {'activation': 'PASS', 'input_access': 'root-owned / agent read-only permissions',
             'manifests': dict(manifests), 'runtime': 'PASS' if runtime else 'NOT RUN'}

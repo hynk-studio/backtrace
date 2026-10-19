@@ -6,6 +6,7 @@ import logging
 import re
 import time
 from urllib.parse import quote
+from pathlib import PurePosixPath
 
 from tools.a100_delivery import manifest
 from tools.cloud_probe import failure, secret
@@ -37,6 +38,13 @@ def provider_inventory():
     result['data_centers'] = [{'id': row['id'], 'availability': row['availability']}
                               for row in gpu.get('dataCenters', [])]
     yield 'catalog', result
+    centers = response_json(requests.get('https://api.runpod.io/v2/catalog/datacenters',
+        headers=headers, timeout=30, stream=True, allow_redirects=False,
+        params={'include': 'GPU_AVAILABILITY'}))
+    yield 'regional_catalog', {'gpu': GPU, 'data_centers': [
+        {'id': center['id'], 'availability': row['availability']}
+        for center in centers['dataCenters'] for row in center.get('gpuAvailability', [])
+        if row['id'] == GPU]}
 
     def query(source, variables=None):
         value = response_json(requests.post('https://api.runpod.io/graphql', headers=headers,
@@ -49,13 +57,8 @@ def provider_inventory():
     # These read fields come from runpodctl's official GetUser implementation.
     account = query('query { myself { __typename clientBalance currentSpendPerHr } }')['myself']
     yield 'wallet', {k: str(account[k]) for k in ('clientBalance', 'currentSpendPerHr')}
-    typename = account['__typename']
-    if not re.fullmatch(r'[_A-Za-z][_0-9A-Za-z]*', typename):
-        raise ValueError('invalid schema type name')
-    schema = query('query($name:String!){__type(name:$name){fields{name type{kind name ofType{kind name}}}}}',
-                   {'name': typename})['__type']
-    fields = [row for row in schema['fields'] if re.search(r'auto.*pay|tax', row['name'], re.I)]
-    yield 'billing_schema', {'type': typename, 'fields': fields, 'settings_changed': False}
+    # Schema discovery returned HTTP 400. Do not retry it or infer auto-pay.
+    yield 'billing_settings', {'auto_pay': 'NOT VERIFIED BY API', 'settings_changed': False}
 
 
 def saved_inventory():
@@ -66,7 +69,7 @@ def saved_inventory():
     expected = {'prepay-20261018/wheels/' + row['path']: 'wheels' for row in wheels}
     expected.update({'prepay-20261018/transport/dropbear-DROPBEAR_2026.94/' + name: 'transport'
                      for name in ('dropbear', 'dropbearkey')})
-    found, seen, token, listed = {}, set(), '', 0
+    found, seen, token, listed, archives = {}, set(), '', 0, []
     with KaggleClient(env=KaggleEnv.PROD, api_token=secret('KAGGLE_API_TOKEN'), verbose=False) as client:
         for page in range(100):
             request = ApiListKernelSessionOutputRequest()
@@ -78,6 +81,9 @@ def saved_inventory():
             response = client.kernels.kernels_api_client.list_kernel_session_output(request)
             for row in response.files:
                 listed += 1
+                name = PurePosixPath(row.file_name).name
+                if name.endswith(('.zip', '.tar.gz', '.tgz')) and re.fullmatch(r'[A-Za-z0-9_.-]{1,128}', name):
+                    archives.append(name)
                 if row.file_name in expected:
                     if row.file_name in found:
                         raise ValueError('duplicate expected saved output')
@@ -96,6 +102,7 @@ def saved_inventory():
             'saved_wheels': sum(expected[n] == 'wheels' for n in found),
             'expected_transport_binaries': 2,
             'saved_transport_binaries': sum(expected[n] == 'transport' for n in found),
+            'available_archive_names': sorted(set(archives)),
             'downloaded_bytes': 0, 'saved_output_urls': 'NOT PUBLISHED'}
 
 

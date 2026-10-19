@@ -99,6 +99,22 @@ class ActivationTests(unittest.TestCase):
         with self.assertRaises((ValueError, FileNotFoundError)):
             self.activate()
 
+    def test_cloud_activation_requires_explicit_policy_and_keeps_absolute_deadline(self):
+        with (patch.multiple(pod, STAGING=self.stage, INPUT=self.input, WORKING=self.work),
+              patch.object(pod.time, 'time', return_value=2300)):
+            with self.assertRaises(ValueError):
+                pod.activate(self.manifests, 1000, runtime=False)
+            self.assertFalse(self.input.exists())
+            result = pod.activate(self.manifests, 1000, runtime=False, policy='prepaid10-actions-v1')
+            self.assertEqual(result['activation'], 'PASS')
+
+    def test_expired_cloud_setup_never_activates(self):
+        with (patch.multiple(pod, STAGING=self.stage, INPUT=self.input, WORKING=self.work),
+              patch.object(pod.time, 'time', return_value=6400)):
+            with self.assertRaises(ValueError):
+                pod.activate(self.manifests, 1000, runtime=False, policy='prepaid10-actions-v1')
+            self.assertFalse(self.input.exists())
+
     def test_unknown_input_and_symlink_are_not_activated(self):
         (self.stage / 'task/answer').write_text('evaluation-only fixture')
         with self.assertRaises(ValueError):
@@ -131,6 +147,26 @@ class PermitTests(unittest.TestCase):
         consume_permit(self.path, self.driver, now=1001)
         with self.assertRaises(FileExistsError):
             consume_permit(self.path, self.driver, now=1002)
+
+    def test_cloud_policy_cannot_extend_a_legacy_permit(self):
+        with self.assertRaises(ValueError):
+            consume_permit(self.path, self.driver, now=2300, policy='prepaid10-actions-v1', setup_seconds=5400)
+        self.value['policy'] = 'prepaid10-actions-v1'; self.write()
+        with self.assertRaises(ValueError):
+            consume_permit(self.path, self.driver, now=1001)
+        with self.assertRaises(ValueError):
+            consume_permit(self.path, self.driver, now=2300, setup_seconds=5400)
+        self.assertFalse(self.path.with_suffix('.consumed').exists())
+        consume_permit(self.path, self.driver, now=2300, policy='prepaid10-actions-v1', setup_seconds=5400)
+        with self.assertRaises(FileExistsError):
+            consume_permit(self.path, self.driver, now=2301, policy='prepaid10-actions-v1', setup_seconds=5400)
+
+    def test_cloud_permit_expires_from_allocation(self):
+        self.value['policy'] = 'prepaid10-actions-v1'; self.write()
+        for now in (999, 6400, float('nan')):
+            with self.subTest(now=now), self.assertRaises(ValueError):
+                consume_permit(self.path, self.driver, now=now, policy='prepaid10-actions-v1', setup_seconds=5400)
+        self.assertFalse(self.path.with_suffix('.consumed').exists())
 
     def test_deadline_drift_and_changed_driver_consume_no_permit(self):
         for now in (999, 2200, float('nan')):

@@ -198,9 +198,15 @@ def kaggle_checks():
             kernel = client.kernels.kernels_api_client.get_kernel(request)
             source = kernel.blob.source.encode()
             driver = retained_literal(source)
+            from tools.cloud_task import transform, CLOUD_DRIVER_SHA256
+            prepared = transform(driver).encode()
+            if hashlib.sha256(prepared).hexdigest() != CLOUD_DRIVER_SHA256:
+                raise ValueError('cloud driver qualification hash mismatch')
             yield 'kaggle_retained_notebook_v3', {
                 'source_bytes': len(source), 'source_sha256': hashlib.sha256(source).hexdigest(),
                 'is_private': kernel.metadata.is_private, 'execution': 'NOT RUN',
+                'cloud_driver_bytes': len(prepared), 'cloud_driver_sha256': CLOUD_DRIVER_SHA256,
+                'cloud_server_agent_ast_preserved': True,
                 'retained_driver_bytes': len(driver), 'retained_driver_sha256': hashlib.sha256(driver).hexdigest()}
         except Exception as error:
             yield 'kaggle_retained_notebook_v3', failure(error)
