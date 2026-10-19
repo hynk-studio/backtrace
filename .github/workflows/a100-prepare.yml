@@ -7,6 +7,8 @@ on:
       - 'tools/cloud_prepare.py'
       - 'tools/cloud_resolver.py'
       - 'tools/cloud_reference.py'
+      - 'tools/direct_delivery.py'
+      - 'tools/ssh_bootstrap.py'
       - 'tools/cloud_transport.py'
       - 'tools/cloud_seal.py'
       - 'docs/cloud-controller-requirements.txt'

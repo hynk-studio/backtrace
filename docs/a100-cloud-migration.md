@@ -37,6 +37,18 @@ USD 8 cumulative stop. The prior CA-MTL-3 attempt remains consumed and deleted.
   resources. Regional availability showed no qualified A100 region; this is
   a point-in-time observation, not a reservation or forecast.
 - No new GPU allocation, model server start or public task execution.
+- Actual transport rebuild matched both prior hashes. Mutual TLS, strict SSH,
+  wrong-host rejection, clean child environment and a 147,456-byte private
+  transfer passed on the real free runner. The fixed Actions profile also passed.
+- All 11 original references (491,594 bytes) passed frozen hash verification
+  after ephemeral age transfer. The exact offline runtime installed and imported
+  successfully: 245 application distributions with installation network blocked.
+  Run: https://github.com/hynk-studio/backtrace/actions/runs/39280774887
+- That run stopped during the 214,241,984-byte selected snapshot download after
+  three interrupted transfers, with 97,865,169 bytes received. The next change
+  bounds large saved-output HTTP requests to 16MiB, validates every Content-Range
+  and retains the original full-file hash. Overall deadlines remain unchanged;
+  no-progress retries remain bounded. Full wrapper qualification is still pending.
 
 ## Implemented components
 

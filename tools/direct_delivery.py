@@ -29,6 +29,11 @@ from tools.private_delivery import MANIFEST_NAME, digest, parse_manifest, verify
 HOSTS = frozenset({'storage.googleapis.com', 'www.kaggleusercontent.com',
                    'files.pythonhosted.org', 'download-r2.pytorch.org'})
 CHUNK = 1024 * 1024
+SAVED_OUTPUT_SEGMENT = 16 * 1024 * 1024
+
+
+class TruncatedBody(OSError):
+    pass
 
 
 class DownloadError(RuntimeError):
@@ -81,54 +86,72 @@ def time_left(deadline, clock):
 
 
 def download_wire(path, source, deadline, *, opener=None, clock=time.monotonic):
-    """At most three GETs, with strict Range validation after an interrupted body."""
+    """Bound saved-output requests to 16MiB; three failures per segment at most.
+
+    Other hosts retain at most three full/remainder GETs. Every Range response
+    must match the requested boundaries and original total, within one deadline.
+    """
     open_url = opener or urllib.request.build_opener(NoRedirect()).open
     size = source['wire_bytes']
-    for attempt in range(3):
+    segmented = (urllib.parse.urlsplit(source['url']).hostname == 'www.kaggleusercontent.com'
+                 and size > SAVED_OUTPUT_SEGMENT)
+    maximum_requests = 3 * math.ceil(size / SAVED_OUTPUT_SEGMENT) if segmented else 3
+    if maximum_requests > 64:
+        raise DownloadError('saved-output request bound exceeded')
+    failures = 0
+    for attempt in range(maximum_requests):
         offset = path.stat().st_size if path.exists() else 0
         if offset == size:
             if not path.exists():
                 path.touch(mode=0o600)
             return
         headers = {'Accept-Encoding': 'identity', 'User-Agent': 'Backtrace-input-delivery/1'}
-        if offset:
+        end = min((offset // SAVED_OUTPUT_SEGMENT + 1) * SAVED_OUTPUT_SEGMENT, size) - 1 if segmented else size - 1
+        if segmented:
+            headers['Range'] = f'bytes={offset}-{end}'
+        elif offset:
             headers['Range'] = 'bytes=' + str(offset) + '-'
         request = urllib.request.Request(validate_url(source['url']), headers=headers)
         try:
             with open_url(request, timeout=min(30, time_left(deadline, clock))) as response:
-                expected_status = 206 if offset else 200
+                expected_status = 206 if offset or segmented else 200
                 if response.status != expected_status:
                     raise DownloadError('storage response status or Range support changed')
                 if response.headers.get('Content-Encoding', 'identity') != 'identity':
                     raise DownloadError('unexpected HTTP content encoding')
-                if response.headers.get('Content-Length') != str(size - offset):
+                if response.headers.get('Content-Length') != str(end + 1 - offset):
                     raise DownloadError('storage Content-Length differs from resolved size')
-                if offset and response.headers.get('Content-Range') != f'bytes {offset}-{size - 1}/{size}':
+                if (offset or segmented) and response.headers.get('Content-Range') != f'bytes {offset}-{end}/{size}':
                     raise DownloadError('storage Content-Range differs from requested offset')
                 with path.open('ab') as stream:
                     os.fchmod(stream.fileno(), 0o600)
-                    while offset < size:
+                    while offset <= end:
                         time_left(deadline, clock)
-                        data = response.read(min(CHUNK, size - offset))
+                        data = response.read(min(CHUNK, end + 1 - offset))
                         if not data:
-                            raise OSError('truncated body')
+                            raise TruncatedBody('truncated body')
                         stream.write(data); offset += len(data)
                     time_left(deadline, clock)
                     if response.read(1):
                         raise DownloadError('storage body exceeds resolved size')
                     stream.flush(); os.fsync(stream.fileno())
-                return
+                if offset == size:
+                    return
+                failures = 0
+                continue
         except urllib.error.HTTPError as error:
             # An expired URL is re-resolved only by the owner, never by the Pod.
-            if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
+            failures += 1
+            if error.code not in (429, 500, 502, 503, 504) or failures >= 3 or attempt == maximum_requests - 1:
                 raise DownloadError('storage HTTP failure', http_status=error.code, attempts=attempt + 1,
                                     received_bytes=path.stat().st_size if path.exists() else 0) from None
         except (OSError, TimeoutError) as error:
-            if attempt == 2:
+            failures += 1
+            if failures >= 3 or attempt == maximum_requests - 1:
                 raise DownloadError('bounded storage retries exhausted', cause_type=type(error).__name__,
                                     attempts=attempt + 1,
                                     received_bytes=path.stat().st_size if path.exists() else 0) from None
-        time.sleep(min(attempt + 1, time_left(deadline, clock)))
+        time.sleep(min(failures, time_left(deadline, clock)))
     raise DownloadError('download incomplete')
 
 

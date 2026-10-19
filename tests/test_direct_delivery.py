@@ -5,6 +5,7 @@ from pathlib import Path
 import tempfile
 import unittest
 import zipfile
+from unittest.mock import patch
 
 from tools import direct_delivery as direct
 
@@ -66,6 +67,31 @@ class DirectDeliveryTests(unittest.TestCase):
                             **{'Content-Range': f'bytes 100-{len(self.payload)-1}/{len(self.payload)}'})
         self.assertTrue(self.pull(opener=opener)['verified'])
         self.assertEqual(len(requests), 2)
+
+    def test_saved_large_output_uses_exact_bounded_ranges_and_resumes_a_short_segment(self):
+        self.source['url'] = 'https://www.kaggleusercontent.com/kf/frozen?signature=SECRET'
+        calls = []
+        def opener(request, **kwargs):
+            header = request.get_header('Range')
+            start, end = map(int, header.removeprefix('bytes=').split('-'))
+            self.assertLessEqual(end - start + 1, 4096)
+            calls.append((start, end))
+            body = self.payload[start:end + 1]
+            if len(calls) == 1: body = body[:100]
+            return Response(body, status=206, **{'Content-Length': str(end - start + 1),
+                'Content-Range': f'bytes {start}-{end}/{len(self.payload)}'})
+        with patch.object(direct, 'SAVED_OUTPUT_SEGMENT', 4096), patch.object(direct.time, 'sleep'):
+            self.assertTrue(self.pull(opener=opener)['verified'])
+        self.assertEqual(calls[0], (0, 4095))
+        self.assertEqual(calls[1], (100, 4095))
+        self.assertGreater(len(calls), 3)
+        self.assertEqual((self.root / 'model/nested/model.bin').read_bytes(), self.payload)
+
+    def test_saved_output_ignoring_first_range_is_not_activated(self):
+        self.source['url'] = 'https://www.kaggleusercontent.com/kf/frozen?signature=SECRET'
+        with patch.object(direct, 'SAVED_OUTPUT_SEGMENT', 4096):
+            with self.assertRaises(direct.DownloadError): self.pull()
+        self.assertFalse((self.root / 'model').exists())
 
     def test_range_ignored_or_wrong_content_range_is_refused(self):
         for mode in ('ignored', 'wrong'):
