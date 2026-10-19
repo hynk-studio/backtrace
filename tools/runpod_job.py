@@ -58,6 +58,11 @@ def prepare(config, output):
                 and config['state_directory'] != '/kaggle/working/backtrace-a100-owner-state')):
         raise ValueError('persistent fixed attempt directory required; Kaggle needs Files only')
     check_owner_host()
+    root = Path(config['ssh_directory'])
+    init = json.loads(read_private(root / 'initializer.json'))
+    ssh_bootstrap.validate_initializer(init)
+    control.encode_create_request(control.make_request('0' * 32, 0, init))
+    read_private(root / 'owner-key')
     output = Path(output).absolute()
     output.mkdir(mode=0o700)
     manifests = {}
@@ -67,10 +72,6 @@ def prepare(config, output):
         target = output / (kind + '-manifest.json')
         target.write_bytes(data); target.chmod(0o600)
         manifests[kind] = receipt
-    root = Path(config['ssh_directory'])
-    init = json.loads(read_private(root / 'initializer.json'))
-    ssh_bootstrap.validate_initializer(init)
-    read_private(root / 'owner-key')
     result = {'policy': control.POLICY, 'configuration': config, 'streams': manifests,
               'wallet_usd': str(control.WALLET), 'stop_total_usd': str(control.CAP),
               'first_attempt_seconds': control.TOTAL, 'native_timer': 'NOT USED',
@@ -244,6 +245,8 @@ def run(plan_directory, offer_file, key_file, state_directory):
     if (plan['configuration']['files_persist'] is not True
             or state_directory.absolute() != Path(plan['configuration']['state_directory']).absolute()):
         raise ValueError('attempt state directory changed; never create a replacement journal')
+    bootstrap = json.loads(read_private(Path(plan['configuration']['ssh_directory']) / 'initializer.json'))
+    control.encode_create_request(control.make_request('0' * 32, 0, bootstrap))
     # Rehash every source before the attempt marker/create. No resolver here.
     for kind in ('driver', 'wheels', 'task', 'model'):
         data = (plan_directory / (kind + '-manifest.json')).read_bytes()
@@ -253,7 +256,6 @@ def run(plan_directory, offer_file, key_file, state_directory):
     offer = json.loads(read_private(offer_file))
     control.validate_offer(offer, time.time())
     api = control.RunpodAPI(read_private(key_file).strip())
-    bootstrap = json.loads(read_private(Path(plan['configuration']['ssh_directory']) / 'initializer.json'))
     state_directory.mkdir(mode=0o700, exist_ok=True)
     process = None
     with control.Journal(state_directory) as journal:

@@ -150,6 +150,28 @@ class ControlTests(unittest.TestCase):
         self.assertEqual(sum(a == 'create' for a, _ in self.api.calls), 1)
         self.assertEqual(value['phase'], 'allocated')
 
+    def test_oversized_initializer_blocks_before_network_and_attempt_marker(self):
+        payload = control.make_request('a' * 32, T0)
+        payload['env'] = {'transport': 'x' * 863192}
+        with patch.object(control, 'make_request', return_value=payload), \
+                patch.object(self.api, 'list') as listing:
+            with self.assertRaisesRegex(ValueError, 'exceeds 102400 bytes'):
+                self.begin()
+        listing.assert_not_called()
+        self.assertFalse(self.journal.path.exists())
+        self.assertFalse(self.api.calls)
+
+    def test_create_error_keeps_status_without_response_body(self):
+        self.api.create = lambda payload: (_ for _ in ()).throw(
+            control.ProviderError('provider HTTP 413', http_status=413))
+        with self.assertRaises(RuntimeError):
+            self.begin()
+        value = self.journal.read()
+        self.assertEqual(value['events'][0],
+                         {'event': 'create_failed', 'type': 'ProviderError', 'http_status': 413})
+        self.assertEqual(value['phase'], 'cleanup_unresolved')
+        self.assertIsNone(value['pod_id'])
+
     def test_second_controller_cannot_claim_journal(self):
         with self.assertRaises(BlockingIOError):
             with control.Journal(self.root):
@@ -307,6 +329,21 @@ class APIContractTests(unittest.TestCase):
         self.assertEqual(requests[0].full_url, 'https://api.runpod.io/v2/pods')
         self.assertNotIn('fake-fixture-secret', requests[0].full_url)
 
+    def test_exact_wire_limit_and_escaped_unicode_are_checked_before_http(self):
+        empty = {'env': {'transport': ''}}
+        room = control.MAX_CREATE_BYTES - len(json.dumps(empty).encode())
+        requests = []
+        def opener(request, timeout):
+            requests.append(request)
+            return self.response({'id': 'one'})
+        api = control.RunpodAPI('fixture', opener=opener)
+        api.create({'env': {'transport': 'x' * room}})
+        self.assertEqual(len(requests[0].data), control.MAX_CREATE_BYTES)
+        for text in ('x' * (room + 1), '\uac00' * (room // 6 + 1)):
+            with self.assertRaisesRegex(ValueError, 'exceeds 102400 bytes'):
+                api.create({'env': {'transport': text}})
+        self.assertEqual(len(requests), 1)
+
     def test_v2_list_follows_every_page_and_encodes_opaque_cursor(self):
         paths = []
         def opener(request, timeout):
@@ -331,6 +368,7 @@ class APIContractTests(unittest.TestCase):
         with self.assertRaises(control.ProviderError) as context:
             api.list()
         self.assertNotIn('fake-secret', str(context.exception))
+        self.assertEqual(context.exception.http_status, 403)
 
     def test_flat_v1_response_is_not_v2_success(self):
         api = control.RunpodAPI('fixture', opener=lambda *a, **kw: self.response({'data': {}, 'errors': [{'message': 'secret'}]}))

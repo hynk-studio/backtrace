@@ -1,4 +1,8 @@
-# Prepaid A100 execution preparation — 2026-10-18
+# Prepaid A100 execution preparation — current status 2026-10-19
+
+> **DEPLOYMENT BLOCKED AFTER THE FIRST CREATE REQUEST.** The owner funded USD 10. The one create request failed; no Pod was observed and the displayed balance remained USD 10. The 863,192-byte inline SSH payload exceeds RunPod's 102,400-byte limit. New guards now block it before API access, but transport redesign is still required. Do not use the historical readiness statements below as permission to retry. See [first-create report](a100-first-create-attempt.md) and [evidence](a100-first-create-evidence.json).
+
+The rest of this document records the earlier preparation and observations.
 
 This is the current amendment to the [2026-10-17 audit](a100-prepayment-audit.md).
 The audit's observations remain valid history. The owner chose a single USD 10
@@ -310,3 +314,4 @@ Secure / EU-RO-1 / A100 80GB PCIe offer when work resumes; only if its stock,
 resources, final cost and all other existing gates pass should the owner
 complete the one USD 10 top-up. No alternative GPU/region, automatic retry,
 additional funding or recurring stock-monitoring task is authorized here.
+

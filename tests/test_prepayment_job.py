@@ -151,6 +151,27 @@ class PermitTests(unittest.TestCase):
 
 
 class OwnerBoundaryTests(unittest.TestCase):
+    def test_oversized_transport_cannot_prepare_or_run_or_load_credentials(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            config = {'driver': str(root), 'wheels': str(root), 'task': str(root), 'model': str(root),
+                      'ssh_directory': str(root), 'controller_host': 'existing-linux-host',
+                      'state_directory': str(root / 'state'), 'files_persist': True}
+            job.private_json(root / 'initializer.json', {'env': {'transport': 'x' * 863192}})
+            job.private_json(root / 'plan.json', {'policy': job.control.POLICY, 'configuration': config})
+            with patch.object(job, 'check_owner_host'), \
+                    patch.object(ssh, 'validate_initializer'), \
+                    patch.object(job, 'verify') as verify, \
+                    patch.object(job.control, 'RunpodAPI') as api:
+                with self.assertRaisesRegex(ValueError, 'exceeds 102400 bytes'):
+                    job.prepare(config, root / 'new-plan')
+                with self.assertRaisesRegex(ValueError, 'exceeds 102400 bytes'):
+                    job.run(root, root / 'missing-offer', root / 'missing-api-key', root / 'state')
+                verify.assert_not_called()
+                api.assert_not_called()
+            self.assertFalse((root / 'new-plan').exists())
+            self.assertFalse((root / 'state').exists())
+
     def test_bootstrap_program_compiles_and_modified_initializer_is_refused(self):
         compile(ssh.START, '<literal-initializer>', 'exec')
         with self.assertRaises(ValueError):

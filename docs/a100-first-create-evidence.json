@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-19",
+  "timezone": "Asia/Seoul",
+  "status": "CREATE_REQUEST_FAILED__DEPLOYMENT_NOT_READY",
+  "owner_funding": {
+    "credits_usd": "10.00",
+    "receipt_paid_usd": "10.00",
+    "auto_pay": false
+  },
+  "authorization": {
+    "policy": "prepaid10-external-v2",
+    "create_attempts_allowed": 1,
+    "create_requests_sent": 1,
+    "retries_sent": 0,
+    "attempt_consumed": true
+  },
+  "attempt": {
+    "requested_at_utc": "2026-10-19T07:18:29Z",
+    "requested_at_kst": "2026-10-19T16:18:29+09:00",
+    "source_commit": "9b08f11a3e59a875bab93d0f6109ebc814c22177",
+    "source_files_verified": 39,
+    "input_files_verified": 280,
+    "input_bytes_verified": 28893831958,
+    "pod_id_received": false,
+    "confirmed_allocations": 0,
+    "server_starts": 0,
+    "tasks": 0,
+    "actual_http_status": null,
+    "error_type": "ProviderError",
+    "original_journal_phase": "cleanup_unresolved"
+  },
+  "defect": {
+    "serialized_create_bytes": 863192,
+    "documented_limit_bytes": 102400,
+    "oversize_behavior": "HTTP 413 before authentication or processing, according to official OpenAPI",
+    "causal_evidence": "The actual request violates the documented size limit. The original error journal omitted HTTP status, so an observed HTTP 413 is not claimed.",
+    "payload_component": "Inline compressed static SSH executable in environment variables",
+    "preflight_missed": true
+  },
+  "provider_contract": {
+    "url": "https://api.runpod.io/v2/openapi.json",
+    "http_status": 200,
+    "bytes": 274963,
+    "sha256": "fe8a74b177282ec89a9ba1c75d3ce1d4bd1a2a9b9609fbdb4bd131d5b4a24506",
+    "refetched_on": "2026-10-19"
+  },
+  "reconciliation": {
+    "complete_pod_lists": [
+      {
+        "at_utc": "2026-10-19T07:19:56.732742+00:00",
+        "count": 0
+      },
+      {
+        "at_utc": "2026-10-19T07:21:14.914394+00:00",
+        "count": 0
+      }
+    ],
+    "closure_at_utc": "2026-10-19T07:22:54.381387+00:00",
+    "controller_stopped": true,
+    "temporary_api_key_file_removed": true,
+    "attempt_journal_preserved": true,
+    "resource_deleted_claimed": false,
+    "balance_ui_usd": "10.00",
+    "spend_rate_ui_usd_per_hour": "0.000",
+    "billing_api_records": 0,
+    "billing_api_total": "0",
+    "billing_limit": "UI states one-hour reporting delay; this is observed account state, not a finalized invoice",
+    "final_checked_at_utc": "2026-10-19T07:32:20.831902+00:00",
+    "final_pod_count": 0,
+    "final_billing_records": 0,
+    "final_billing_total": "0",
+    "attempt_journal_sha256": "c12636234c1b57c60fdc320ba7f28b736398f9a81486ab302339ce9e21bf06fd"
+  },
+  "remediation": {
+    "status": "SIZE_GUARD_FIXED__TRANSPORT_REDESIGN_STILL_REQUIRED",
+    "changes": [
+      "Check exact serialized create body in preparation, paid entry, before journal creation, and immediately before HTTP",
+      "Oversized payloads consume no attempt and perform no API access",
+      "Retain numeric HTTP error status without response bodies, credentials, or URLs"
+    ],
+    "transport_unchanged": true,
+    "paid_retest": false
+  },
+  "validation": {
+    "kaggle_pinned": {
+      "python": "3.12.14",
+      "tests": 154,
+      "passed": 154,
+      "errors": 0,
+      "skipped": 0,
+      "unittest_seconds": 31.25,
+      "wall_seconds": 32.594,
+      "preflight": "READY"
+    },
+    "actual_initializer": {
+      "bytes": 863192,
+      "result": "BLOCKED BEFORE API"
+    },
+    "cloud_focused": {
+      "tests": 46,
+      "passed": 46,
+      "seconds": 4.963
+    },
+    "cloud_full": {
+      "tests": 154,
+      "passed": 142,
+      "errors": 12,
+      "seconds": 18.629,
+      "reason": "Existing foreign-procfs PID namespace failures"
+    },
+    "initial_notebook_kernel": {
+      "python": "3.13.15",
+      "tests": 154,
+      "passed": 150,
+      "errors": 1,
+      "skipped": 3,
+      "reason": "ensurepip absent; rerun with retained qualified Python 3.12.14"
+    },
+    "source_sha256": {
+      "tools/runpod_control.py": "2416c0ec68dbef5c82861334644f81c8718e73e3d4f2865780a25a1a9aca1835",
+      "tools/runpod_job.py": "8a062b52ad2db57268c7d501550eb9452afe6b12b4295fef6336d3e1e46b9be0",
+      "tests/test_runpod_control.py": "1111fcd9eeadbf1b639797abaf4cca7d36fbfd1662c1788cfedb754b799774e2",
+      "tests/test_prepayment_job.py": "3b5d3624c03cbdad1a54778a80d87448731e2398f43996e93d79a70ae183ac63"
+    }
+  },
+  "remaining": [
+    "Replace the oversized inline SSH bootstrap with a qualified transport that fits the complete 102400-byte create limit",
+    "Requalify the actual complete request, private preparation and independent controller before another proposal",
+    "Review this consumed attempt before any further paid request; preserve the original journal"
+  ],
+  "not_run": [
+    "GPU hardware/driver qualification",
+    "Model serving and inference request",
+    "R0 task/patch/public tests",
+    "Training",
+    "Competition submission",
+    "Merge",
+    "Issue closure"
+  ]
+}

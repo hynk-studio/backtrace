@@ -27,6 +27,7 @@ WALLET = Decimal('10.00')
 CAP = Decimal('8.00')
 POLICY = 'prepaid10-external-v2'
 ID = re.compile(r'[A-Za-z0-9_-]{1,128}')
+MAX_CREATE_BYTES = 102400  # REST v2 rejects larger bodies before processing.
 
 
 def utc(timestamp):
@@ -98,8 +99,19 @@ def make_request(attempt, requested_at, bootstrap=None):
     return request
 
 
+def encode_create_request(payload):
+    """Check the exact wire bytes, before consuming an attempt or opening HTTP."""
+    data = json.dumps(payload).encode()
+    if len(data) > MAX_CREATE_BYTES:
+        raise ValueError('RunPod create request exceeds 102400 bytes; transport redesign required')
+    return data
+
+
 class ProviderError(RuntimeError):
     """Deliberately excludes response bodies, URLs with secrets and tokens."""
+    def __init__(self, message, *, http_status=None):
+        super().__init__(message)
+        self.http_status = http_status
 
 
 class RunpodAPI:
@@ -115,7 +127,9 @@ class RunpodAPI:
             raise ValueError('unsupported provider path')
         url = 'https://api.runpod.io/v2' + path
         headers = {'Authorization': 'Bearer ' + self._key, 'Content-Type': 'application/json'}
-        request = urllib.request.Request(url, data=None if body is None else json.dumps(body).encode(),
+        data = (encode_create_request(body) if method == 'POST' and path == '/pods'
+                else None if body is None else json.dumps(body).encode())
+        request = urllib.request.Request(url, data=data,
                                          headers=headers, method=method)
         try:
             with self._open(request, timeout=10) as response:
@@ -124,7 +138,7 @@ class RunpodAPI:
         except urllib.error.HTTPError as error:
             if missing and error.code == 404:
                 return None
-            raise ProviderError('provider HTTP ' + str(error.code)) from None
+            raise ProviderError('provider HTTP ' + str(error.code), http_status=error.code) from None
         except (OSError, TimeoutError):
             raise ProviderError('provider transport failure') from None
         if not 200 <= status < 300 or len(raw) > 1024**2:
@@ -256,13 +270,15 @@ def begin(api, journal, offer, wall=time.time, bootstrap=None):
     if journal.path.exists() or journal.path.is_symlink():
         raise ValueError('attempt already consumed; never recreate after restart')
     costs = validate_offer(offer, wall())
+    attempt = uuid.uuid4().hex
+    request = make_request(attempt, int(wall()), bootstrap)
+    encode_create_request(request)
     if any(p.get('name', '').startswith('backtrace-a100-') for p in api.list()):
         raise ValueError('an earlier Backtrace Pod needs reconciliation; no second create')
     t0 = int(wall())
     validate_offer(offer, t0)
-    attempt = uuid.uuid4().hex
     value = {'schema_version': 2, 'run': RUN, 'policy': POLICY, 'attempt': attempt, 'requested_at': t0,
-             'bootstrap': bootstrap, 'request': make_request(attempt, t0, bootstrap), 'costs': costs,
+             'bootstrap': bootstrap, 'request': request, 'costs': costs,
              'phase': 'requested', 'pod_id': None, 'ownership_confirmed': False,
              'native_expiry_verified': False, 'absence_reads': 0, 'events': []}
     journal.write(value, first=True)
@@ -276,7 +292,10 @@ def begin(api, journal, offer, wall=time.time, bootstrap=None):
         journal.write(value)
     except Exception as error:
         value['phase'] = 'cleanup_required'
-        value['events'].append({'event': 'create_failed', 'type': type(error).__name__})
+        event = {'event': 'create_failed', 'type': type(error).__name__}
+        if isinstance(error, ProviderError) and type(error.http_status) is int:
+            event['http_status'] = error.http_status
+        value['events'].append(event)
         journal.write(value)
         cleanup_once(api, journal, value)
         raise RuntimeError('attempt consumed; allocation failed; inspect private journal') from None
