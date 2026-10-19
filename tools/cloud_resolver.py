@@ -126,10 +126,12 @@ class Links(HTMLParser):
 
 def pypi_source(row):
     import requests
-    if row['name'] == 'torch':
-        if row['version'] != '2.10.0+cu128':
-            raise ValueError('unexpected torch version')
-        index = 'https://download.pytorch.org/whl/cu128/torch/'
+    cuda_versions = {'torch': '2.10.0+cu128', 'torchaudio': '2.10.0+cu128',
+                     'torchvision': '0.25.0+cu128'}
+    if row['name'] in cuda_versions:
+        if row['version'] != cuda_versions[row['name']]:
+            raise ValueError('unexpected PyTorch CUDA wheel version')
+        index = 'https://download.pytorch.org/whl/cu128/' + row['name'] + '/'
         with requests.get(index, stream=True, timeout=30, allow_redirects=False) as response:
             response.raise_for_status()
             body = bytearray()
