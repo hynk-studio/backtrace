@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "prepaid10-actions-v1",
   "authorization": "owner-cloud-20261019-203126",
-  "status": "INPUTS AND WRAPPER CPU-QUALIFIED; OWNER PREFLIGHT PENDING",
+  "status": "FREE QUALIFICATION AND OWNER PREFLIGHT PASS; WAITING FOR QUALIFIED GPU OFFER",
   "authority": "Owner accepted the proposed cloud browser + GitHub Actions + RunPod plan with '좋아 시작하자.' on 2026-10-19 at 20:31:26 KST. This is a new, separate one-attempt scope, not restoration of the consumed CA-MTL-3 attempt.",
   "controller": "GitHub-hosted free Linux CPU runner; no user Mac/Windows required",
   "wallet_credits_usd": "10.00",

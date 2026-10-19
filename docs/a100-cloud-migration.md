@@ -6,6 +6,23 @@ allocation through confirmed deletion up to two hours, one further allocation,
 server start and public task at most, within the existing USD 10 wallet and
 USD 8 cumulative stop. The prior CA-MTL-3 attempt remains consumed and deleted.
 
+## Current readiness
+
+Free input/runtime/wrapper qualification and the real owner preflight passed.
+The qualified launch source is `b2b2ad290aae0967559e0cf14002672d32c05584`.
+Full CPU suite: **235/235**, 27.223 seconds, preflight READY and successful
+workflow conclusion. Real owner run:
+https://github.com/hynk-studio/backtrace/actions/runs/39289474231
+Its 5,578-byte create body is below the 102,400-byte provider limit; no create
+was sent. Pinned transport, fresh identities, all scoped source maps and the
+unused durable claim passed their actual preflight checks.
+
+At 2026-10-19T16:57:39Z the account had USD 9.8508333333 credit, zero spend rate
+and Auto-Pay disabled. There was no qualified regional A100 offer. A separate
+complete list at 16:54:21Z contained zero Pods. No watcher/start branch has been
+activated. A new live matching offer is required before the already-authorized
+single paid attempt; no funding or approval reset is required.
+
 ## Observed execution
 
 - The public Draft PR remains #7 on `bt-001-a100-cpu-qualification`; main is untouched.
@@ -24,11 +41,9 @@ USD 8 cumulative stop. The prior CA-MTL-3 attempt remains consumed and deleted.
   Authenticated read-only checks passed against RunPod and the frozen Kaggle
   model v2, private selected-task v1 and retained private notebook v3.
   Run: https://github.com/hynk-studio/backtrace/actions/runs/39276929758
-- Latest actual CPU test output: **233/233**, 29.473 seconds, preflight READY.
-  Run: https://github.com/hynk-studio/backtrace/actions/runs/39287452398
-  Source: `6cd9fbf181e271b96cfb5b68dcc9167bbbfa2020`.
-  The log finished at 16:41:41Z, but the API still reported in-progress afterward;
-  live owner polling finally observed successful workflow completion at 16:46:01Z.
+- Latest completed CPU suite: **235/235**, 27.223 seconds, preflight READY.
+  Run: https://github.com/hynk-studio/backtrace/actions/runs/39289473985
+  Source: `b2b2ad290aae0967559e0cf14002672d32c05584`.
 - Exact-byte downloads of 246 wheels (5,373,559,590 bytes) and eight selected
   task inputs (222,386,501 bytes) passed on Actions. The eight model inputs have
   resolved scoped URLs and headers; the 23.3GB model body has not been downloaded
@@ -102,13 +117,13 @@ requires the successful recorded qualification, unchanged fingerprints and a
 full CPU pass at its exact source. It also rechecks the live watcher before
 consuming the create-only claim.
 
-## Observed provider status delay
+## Resolved checks after observed service delays
 
 At 2026-10-19T16:46Z, GitHub's official status API described delayed Actions
 workflow status updates, Pages deployments and webhooks:
 https://www.githubstatus.com/incidents/8tzbpcnl75jp
-The current test log and uploaded artifact show 233 passing tests, while its
-workflow API still reports in-progress. The required terminal-success gate
+The earlier 233-test log and uploaded artifact had passed while its
+workflow API still reported in-progress. The required terminal-success gate
 remains active. Owner preflight run 39287452412 observed successful qualification
 at 16:46:01Z and rebuilt/validated transport, then failed at 16:50:24Z while
 resolving the pinned r0-clean.zip source after bounded read-timeout retries.
@@ -127,17 +142,23 @@ disabled. The broad catalog showed CA-MTL-3 LOW, but exact qualified quotes
 returned no allocatable offer. This discrepancy is preserved rather than
 treating broad availability as an allocation guarantee.
 
+The follow-up owner preflight passed at 16:57:40Z after observing both successful
+qualification workflows. It resolved all 246/8/8 wheel/task/model sources and
+finished all free checks. The earlier timeout and provider status delay were
+not ignored or replaced by synthetic success.
+
 ## Remaining launch prerequisites
 
-1. Complete the new owner workflow's actual free preflight and full CPU suite.
-   Input downloads, original-reference verification, transport build/loopback,
-   offline runtime and actual cloud-policy wrapper construction have passed.
-   The frozen driver remains
-   `9542d7c47eb394247fb30a61a90303ba381b3f0eadbf6a6ef8fb8939bae7f342`.
-2. Refresh a matching region/hardware quote, wallet and Auto-Pay through the
+The frozen driver remains
+`9542d7c47eb394247fb30a61a90303ba381b3f0eadbf6a6ef8fb8939bae7f342`.
+Input downloads, original-reference verification, transport build/loopback,
+offline runtime, actual wrapper construction and owner preflight have passed.
+Model execution and the public task have not started.
+
+1. Refresh a matching region/hardware quote, wallet and Auto-Pay through the
    account API. Run the independent watcher and one owner workflow only after
    every free gate is satisfied. Never reset a claim or retry a paid create.
-3. Retain encrypted private results, obtain two independent owned-resource
+2. Retain encrypted private results, obtain two independent owned-resource
    absence checks, and refresh actual account spending after completion.
 
 The free preparation receiver generates an ephemeral age identity on its runner.
@@ -153,8 +174,9 @@ recipient. A real uploaded artifact was downloaded, decrypted and matched to the
 pinned original notebook. Neither account keys, SSH private keys nor scoped URL
 maps are included in the public report or encrypted evidence allowlist.
 
-Until those prerequisites pass, the new code is migration preparation and
-**not authorization to invoke an unqualified paid entry**. An Actions/GitHub or
+Free preparation is qualified at the recorded source. The paid entry still
+requires a fresh qualified offer, the live independent watcher and the unused
+create-only claim; a successful preflight does not reserve stock. An Actions/GitHub or
 provider outage can still delay cleanup; no provider hard timer is claimed.
 
 References #1. No merge, Issue #1 closure, training or submission.

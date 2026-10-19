@@ -1,31 +1,31 @@
 {
   "schema_version": 1,
   "authorization": "owner-cloud-20261019-203126",
-  "tested_source_sha": "6cd9fbf181e271b96cfb5b68dcc9167bbbfa2020",
-  "workflow_run_id": 39287452398,
-  "workflow_run_url": "https://github.com/hynk-studio/backtrace/actions/runs/39287452398",
-  "job_id": 118178508232,
-  "conclusion": "success; confirmed by live owner gate at 2026-10-19T16:46:01Z",
+  "tested_source_sha": "b2b2ad290aae0967559e0cf14002672d32c05584",
+  "workflow_run_id": 39289473985,
+  "workflow_run_url": "https://github.com/hynk-studio/backtrace/actions/runs/39289473985",
+  "job_id": 118186052088,
+  "conclusion": "success",
   "python": "3.12.14",
   "runner": "ubuntu-24.04",
   "root_linux_pid_namespace": "PASS",
   "full_cpu_tests": {
-    "passed": 233,
+    "passed": 235,
     "failed": 0,
-    "seconds": 29.473
+    "seconds": 27.223
   },
   "preflight": "READY",
   "official_validator": "NOT RUN",
   "artifact": {
-    "id": 12203333608,
-    "name": "a100-cpu-6cd9fbf181e271b96cfb5b68dcc9167bbbfa2020-1",
-    "bytes": 7348,
-    "digest": "sha256:82c362d95b3bee6c1a92e13ad9d24b228f3000656574937f9aa00f274a1955ce",
-    "expires_at_utc": "2026-10-26T16:41:40Z",
+    "id": 12204733480,
+    "name": "a100-cpu-b2b2ad290aae0967559e0cf14002672d32c05584-1",
+    "bytes": 7428,
+    "digest": "sha256:37c0085f004875d7602288854e79bc169c88f610c7bb237283ad3e25a786d003",
+    "expires_at_utc": "2026-10-26T16:54:46Z",
     "contains": "Secret-free CPU test log and preflight only"
   },
   "evidence_scope": "Real Linux CPU execution; synthetic HTTP/RunPod/GitHub fixtures for fault cases",
-  "live_direct_download_throughput": "246 wheel bodies and all eight selected task bodies verified on Actions run 39282188153; large saved outputs use bounded 16MiB ranges",
+  "live_direct_download_throughput": "246 wheel bodies and all eight selected task bodies verified on Actions run 39284346940; large saved outputs use bounded 16MiB ranges",
   "live_paid_cancellation": "NOT RUN",
   "new_allocations": 0,
   "server_starts": 0,
@@ -43,28 +43,40 @@
     "limits_unchanged": true
   },
   "owner_preflight": {
-    "run_id": 39287452412,
-    "source_sha": "6cd9fbf181e271b96cfb5b68dcc9167bbbfa2020",
-    "status": "BLOCKED by Kaggle source ResolutionError after qualification passed",
-    "qualification_passed_at_utc": "2026-10-19T16:46:01Z",
-    "failed_at_utc": "2026-10-19T16:50:24Z",
-    "input_path": "r0-clean.zip",
-    "cause_type": "ReadTimeout",
-    "allocation_requests": 0
+    "run_id": 39289474231,
+    "run_url": "https://github.com/hynk-studio/backtrace/actions/runs/39289474231",
+    "source_sha": "b2b2ad290aae0967559e0cf14002672d32c05584",
+    "status": "PREPARATION_PASS",
+    "workflow_conclusion": "success",
+    "completed_at_utc": "2026-10-19T16:57:40Z",
+    "report_sha256": "71316afd9c73d93f2b14d712f245f561221a02f313d396a594ec7da0bdbc0946",
+    "create_body_bytes": 5578,
+    "create_body_limit_bytes": 102400,
+    "allocation_requests": 0,
+    "driver_sha256": "9542d7c47eb394247fb30a61a90303ba381b3f0eadbf6a6ef8fb8939bae7f342",
+    "streams": {
+      "wheels": 246,
+      "task": 8,
+      "model": 8
+    },
+    "current_claim": "ABSENT",
+    "transport": "qualified actual rebuild and fresh private identities"
   },
   "provider_status_incident": {
     "url": "https://www.githubstatus.com/incidents/8tzbpcnl75jp",
     "observed_at_utc": "2026-10-19T16:46:00Z",
-    "scope": "Actions workflow status updates, Pages and Webhooks; required workflow conclusion is not bypassed"
+    "scope": "Actions workflow status updates, Pages and Webhooks; required workflow conclusion is not bypassed",
+    "required_gate_passed_at_utc": "2026-10-19T16:54:52Z"
   },
   "latest_account": {
-    "observed_at_utc": "2026-10-19T16:50:59Z",
+    "observed_at_utc": "2026-10-19T16:57:39Z",
     "balance_usd": "9.8508333333",
     "current_spend_per_hour": "0",
     "auto_pay": false,
     "pods": 0,
+    "pod_list_observed_at_utc": "2026-10-19T16:54:21Z",
     "qualified_offer": null,
-    "broad_catalog": "CA-MTL-3 LOW",
-    "exact_quote_status": "NO_QUALIFIED_REGION; catalog and exact resource qualification differ"
-  }
+    "exact_quote_status": "NO_QUALIFIED_REGION"
+  },
+  "remaining": "Fresh allocatable matching offer, live independent watcher and one authorized paid entry; GPU model/server/public task remain NOT RUN"
 }
