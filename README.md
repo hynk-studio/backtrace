@@ -1,12 +1,14 @@
 # Backtrace
 
-Current work: [small-request transport qualification](docs/a100-small-bootstrap.md).
+Current work: [live execution check](docs/a100-execution-check-20261019.md).
 The owner chose one $10 wallet, $8 cumulative early stop and external cleanup;
 the first experiment remains one allocation and 50 minutes. Native timers are
 not required or claimed under this [amended policy](docs/a100-prepaid-policy.json).
 The owner funded USD 10. The first create request failed before a Pod was
 observed; the replacement transport is now qualified on free CPU.
-The consumed attempt remains recorded; this preparation sends no paid request.
+The owner directed execution after the transport fix, but the 17:45 KST live
+check found EU-RO-1 out of stock. No second create was sent. The same GPU was
+available in US-MO-1; a region-only amendment is proposed, not applied.
 
 Does post-training logical/abductive inference, Bayesian belief revision, and
 selection of useful inspections improve Gemma's software-engineering performance
