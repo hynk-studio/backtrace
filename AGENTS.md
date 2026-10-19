@@ -35,6 +35,12 @@ cost and substantive conditions remain unchanged. Do not seek repeated approval
 for those routine choices. Preserve consumed attempts and never automatically
 repeat a paid attempt. The 2026-10-19 CA-MTL-3 allocation is consumed and
 confirmed deleted; an older restored notebook checkpoint is not unused approval.
+The owner accepted a separate Actions migration at 20:31:26 KST on 2026-10-19:
+one further attempt after qualification, setup at most 5,400 seconds and total
+at most 7,200 seconds within the same wallet/cumulative budget. Follow
+`docs/a100-cloud-policy.json` and `docs/a100-cloud-migration.md`; implementation
+preparation is not a qualified paid launch. The original notebook paid cells
+remain disabled and the prior attempt must never be reset.
 Read `docs/a100-owner-region-execution.md` before any future paid work. Long training, additional funding, rule acceptance and
 competition submission remain outside this scope.
 Never expose secrets or commit credentials, model

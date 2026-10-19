@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "id": "prepaid10-actions-v1",
+  "authorization": "owner-cloud-20261019-203126",
+  "status": "IMPLEMENTATION; NOT LAUNCH-QUALIFIED",
+  "authority": "Owner accepted the proposed cloud browser + GitHub Actions + RunPod plan with '좋아 시작하자.' on 2026-10-19 at 20:31:26 KST. This is a new, separate one-attempt scope, not restoration of the consumed CA-MTL-3 attempt.",
+  "controller": "GitHub-hosted free Linux CPU runner; no user Mac/Windows required",
+  "wallet_credits_usd": "10.00",
+  "cumulative_stop_usd": "8.00",
+  "additional_funding": false,
+  "automatic_top_up": false,
+  "maximum_new_allocations": 1,
+  "maximum_server_starts": 1,
+  "maximum_tasks": 1,
+  "setup_seconds": 5400,
+  "useful_seconds": 6900,
+  "request_to_confirmed_deletion_seconds": 7200,
+  "automatic_paid_retry": false,
+  "previous_allocated_attempt": "280db614d5b14e9abcc75dbcf4ce688c; Pod 1h29jip02mmaf4; consumed and independently confirmed deleted",
+  "unchanged": "A100 PCIe 80GB x1 Secure, frozen model v2, TP1 native BF16, exact runtime/task/candidate/prompts/inference budget, no persistent or network volume",
+  "credentials": "GitHub and RunPod account credentials remain on controller runners. The Pod may receive only scoped short-lived input download URLs before dropping to the workload UID. New credential access needs the browser's action-time confirmation.",
+  "claims_not_made": [
+    "An Actions runner is not durable storage; the fixed create-only claim is external",
+    "An independent workflow is not a provider-enforced timer or a guaranteed dollar cap",
+    "Synthetic cancellation tests are not a live paid cancellation trial",
+    "The unchanged old launch driver still enforces the old deadline; it must be explicitly qualified for the cloud policy before paid execution"
+  ],
+  "exclusions": ["training", "competition submission", "terms acceptance", "merge", "Issue #1 closure", "public private-asset publication"]
+}

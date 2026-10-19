@@ -6,7 +6,7 @@ on:
     paths:
       - 'tools/**'
       - 'tests/**'
-      - '.github/workflows/a100-cpu.yml'
+      - '.github/workflows/**'
 permissions:
   contents: read
 
