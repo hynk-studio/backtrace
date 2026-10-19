@@ -1,10 +1,12 @@
 # Backtrace
 
-Current work: [prepaid A100 execution preparation](docs/a100-prepayment-ready.md).
+Current work: [small-request transport qualification](docs/a100-small-bootstrap.md).
 The owner chose one $10 wallet, $8 cumulative early stop and external cleanup;
 the first experiment remains one allocation and 50 minutes. Native timers are
 not required or claimed under this [amended policy](docs/a100-prepaid-policy.json).
-Funding, account linkage and actual GPU execution are separate live steps.
+The owner funded USD 10. The first create request failed before a Pod was
+observed; the replacement transport is now qualified on free CPU.
+The consumed attempt remains recorded; this preparation sends no paid request.
 
 Does post-training logical/abductive inference, Bayesian belief revision, and
 selection of useful inspections improve Gemma's software-engineering performance
@@ -34,7 +36,9 @@ failure while the API parent remains alive, tested through the real wrapper with
 disposable CPU processes. A [conditional A100 80GB TP=1 proposal](docs/r0-a100-proposal.md)
 records cost, image and account prerequisites. The owner subsequently authorized
 one conditional A10080-TP1 attempt (50 minutes; original $2 control policy,
-subsequently amended as above); it has **not run**.
+subsequently amended as above). Its first create request failed; A100 inference
+has **not run**. The [consumed attempt](docs/a100-first-create-attempt.md) remains
+recorded while the current follow-up prepares the corrected transport.
 The [Linux CPU follow-up](docs/a100-cpu-qualification.md) fixes fixture boot timing,
 adds A100-only serving checks and an offline dependency qualification command,
 and records the original Cloud access/storage blockers. The subsequent
@@ -54,8 +58,10 @@ and why the next frozen GPU experiment needs access to a suitable larger GPU.
 
 ## Local checks
 
-Python 3.9+; standard library only, no installation or API credential needed.
-Tested with Python 3.9.6. From the repository root:
+The basic inspector/preflight uses Python 3.9+ and the standard library.
+The complete Linux control/transport qualification uses CPython 3.12, a real
+root PID namespace, OpenSSL 3 and OpenSSH client tools; no provider key is needed.
+From the repository root:
 
 ```sh
 python3 -m unittest discover -s tests -v
@@ -147,8 +153,9 @@ Non-goals: a central model, Augnes integration, full teacher, training pipeline,
 RL campaign, multi-agent hierarchy, or formal prover. The owner authorized one
 private free-quota T4 x2 attempt with the exact model mounted in Kaggle. No GPU
 rental, paid API, terms acceptance, training or competition submission occurred.
-Only the bounded A100 attempt authorized in
-[Issue #1](https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5895260495)
-is active, conditional on its prerequisites. The human controls merges.
+The bounded A100 scope originated in
+[Issue #1](https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5895260495).
+The current follow-up is CPU-only; the consumed create is not automatically
+retried. The human controls merges.
 No repository license has been selected. Third-party code, weights and data are
 not included.

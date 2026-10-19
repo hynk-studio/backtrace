@@ -1,6 +1,6 @@
 # Prepaid A100 execution preparation — current status 2026-10-19
 
-> **DEPLOYMENT BLOCKED AFTER THE FIRST CREATE REQUEST.** The owner funded USD 10. The one create request failed; no Pod was observed and the displayed balance remained USD 10. The 863,192-byte inline SSH payload exceeds RunPod's 102,400-byte limit. New guards now block it before API access, but transport redesign is still required. Do not use the historical readiness statements below as permission to retry. See [first-create report](a100-first-create-attempt.md) and [evidence](a100-first-create-evidence.json).
+> **CURRENT FOLLOW-UP: [small-request transport qualification](a100-small-bootstrap.md).** The first funded create request failed because its inline transport exceeded the documented size limit. The follow-up replaces that delivery path and records current CPU preparation. The consumed journal is preserved; these historical readiness statements do not authorize a retry. See the [first-create report](a100-first-create-attempt.md) and [evidence](a100-first-create-evidence.json) for the original failure.
 
 The rest of this document records the earlier preparation and observations.
 

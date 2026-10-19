@@ -61,7 +61,8 @@ def prepare(config, output):
     root = Path(config['ssh_directory'])
     init = json.loads(read_private(root / 'initializer.json'))
     ssh_bootstrap.validate_initializer(init)
-    control.encode_create_request(control.make_request('0' * 32, 0, init))
+    request_bytes = len(control.encode_create_request(control.make_request('0' * 32, 0, init)))
+    transport = ssh_bootstrap.validate_material(root)
     read_private(root / 'owner-key')
     output = Path(output).absolute()
     output.mkdir(mode=0o700)
@@ -75,7 +76,8 @@ def prepare(config, output):
     result = {'policy': control.POLICY, 'configuration': config, 'streams': manifests,
               'wallet_usd': str(control.WALLET), 'stop_total_usd': str(control.CAP),
               'first_attempt_seconds': control.TOTAL, 'native_timer': 'NOT USED',
-              'provider_authentication': 'NOT CHECKED', 'allocation': 'NOT RUN'}
+              'provider_authentication': 'NOT CHECKED', 'allocation': 'NOT RUN',
+              'transport': dict(transport, create_request_bytes=request_bytes)}
     private_json(output / 'plan.json', result)
     return result
 
@@ -176,6 +178,9 @@ def worker(plan_directory, key_file, state_directory):
                 time.sleep(2)
             if endpoint.get('username') != 'root':
                 raise ValueError('exact root direct SSH endpoint required')
+            receipt = ssh_bootstrap.deliver(config['ssh_directory'], endpoint['host'], endpoint['port'],
+                                            timeout=min(120, remaining(value)))
+            private_json(state_directory / 'bootstrap-transfer.json', receipt)
             known = ssh_bootstrap.known_hosts(config['ssh_directory'], endpoint['host'], endpoint['port'])
             prefix = connection(config, endpoint, known)
             # TCP publishing can precede sshd readiness. Retry only a read-only
@@ -247,6 +252,7 @@ def run(plan_directory, offer_file, key_file, state_directory):
         raise ValueError('attempt state directory changed; never create a replacement journal')
     bootstrap = json.loads(read_private(Path(plan['configuration']['ssh_directory']) / 'initializer.json'))
     control.encode_create_request(control.make_request('0' * 32, 0, bootstrap))
+    ssh_bootstrap.validate_material(plan['configuration']['ssh_directory'])
     # Rehash every source before the attempt marker/create. No resolver here.
     for kind in ('driver', 'wheels', 'task', 'model'):
         data = (plan_directory / (kind + '-manifest.json')).read_bytes()
