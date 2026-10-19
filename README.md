@@ -1,14 +1,15 @@
 # Backtrace
 
-Current work: [live execution check](docs/a100-execution-check-20261019.md).
-The owner chose one $10 wallet, $8 cumulative early stop and external cleanup;
-the first experiment remains one allocation and 50 minutes. Native timers are
-not required or claimed under this [amended policy](docs/a100-prepaid-policy.json).
-The owner funded USD 10. The first create request failed before a Pod was
-observed; the replacement transport is now qualified on free CPU.
-The owner directed execution after the transport fix, but the 17:45 KST live
-check found EU-RO-1 out of stock. No second create was sent. The same GPU was
-available in US-MO-1; a region-only amendment is proposed, not applied.
+Current work: [owner-directed A100 execution](docs/a100-owner-region-execution.md).
+The existing USD 10 wallet, USD 8 cumulative early stop and 50-minute total
+window remain in force under the [amended policy](docs/a100-prepaid-policy.json).
+The owner delegated equivalent region choices. One A100 PCIe 80GB / Secure Pod
+was allocated in CA-MTL-3 on 2026-10-19; the small TLS-to-SSH bootstrap succeeded.
+Bulk input transfer sustained about 7.4 MB/s and could not fit the existing
+20-minute setup window, so the worker was stopped early. Pod deletion was
+confirmed after 411.032 seconds; inference and the public task did not run.
+Estimated quote-time cost is USD 0.206; final billing is pending. The prior
+failed create remains preserved, and no automatic paid retry is configured.
 
 Does post-training logical/abductive inference, Bayesian belief revision, and
 selection of useful inspections improve Gemma's software-engineering performance
@@ -38,9 +39,10 @@ failure while the API parent remains alive, tested through the real wrapper with
 disposable CPU processes. A [conditional A100 80GB TP=1 proposal](docs/r0-a100-proposal.md)
 records cost, image and account prerequisites. The owner subsequently authorized
 one conditional A10080-TP1 attempt (50 minutes; original $2 control policy,
-subsequently amended as above). Its first create request failed; A100 inference
-has **not run**. The [consumed attempt](docs/a100-first-create-attempt.md) remains
-recorded while the current follow-up prepares the corrected transport.
+subsequently amended as above). The original create failed; the owner-directed
+follow-up allocated the A100 but stopped during input transfer. A100 inference
+has **not run**. Both the [original failed create](docs/a100-first-create-attempt.md)
+and the [allocated follow-up](docs/a100-owner-region-execution.md) remain recorded.
 The [Linux CPU follow-up](docs/a100-cpu-qualification.md) fixes fixture boot timing,
 adds A100-only serving checks and an offline dependency qualification command,
 and records the original Cloud access/storage blockers. The subsequent

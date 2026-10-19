@@ -187,6 +187,20 @@ class ControlTests(unittest.TestCase):
             control.archive_unallocated_attempt(self.api, self.journal, authorization, wall=lambda: T0 + 3601)
         self.assertEqual(self.journal.path.read_bytes(), raw)
 
+    def test_restored_old_checkpoint_with_consumed_allocation_receipt_cannot_retry(self):
+        raw, authorization = self.failed_prior()
+        guard = self.root / 'allocated-attempt-consumed.json'
+        guard.write_text(json.dumps({'confirmed_allocations': 1, 'phase': 'deleted',
+                                     'source': 'observed output after checkpoint rollback'}))
+        guard.chmod(0o600)
+        with self.assertRaises(ValueError):
+            control.archive_unallocated_attempt(self.api, self.journal, authorization,
+                                               wall=lambda: T0 + 3601)
+        self.assertEqual(self.journal.path.read_bytes(), raw)
+        self.assertTrue(guard.is_file())
+        self.assertFalse((self.root / 'history').exists())
+        self.assertFalse(self.api.calls)
+
     def test_followup_cannot_archive_confirmed_allocation_or_symlink_history(self):
         raw, authorization = self.failed_prior()
         value = json.loads(raw); value['pod_id'] = 'owned123'

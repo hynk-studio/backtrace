@@ -26,9 +26,18 @@ changes. Separately report local tests, official contract/starter acquisition,
 candidate packaging/inspection, official validation, permitted end-to-end tasks,
 Kaggle acceptance and hosted scoring. Mark unrun stages NOT RUN.
 
-Use local/free CPU only for this task. No paid APIs, GPU rental, long training,
-large model downloads, rule acceptance or submission. Prepare a capped proposal
-before any later paid probe. Never expose secrets or commit credentials, model
+The original kickoff scope was local/free CPU only. The later owner-approved
+A100 experiment uses the existing USD 10 wallet, USD 8 cumulative early stop,
+one allocation/server/task at most and a 3,000-second total window; follow
+`docs/a100-prepaid-policy.json` and the latest execution record. On 2026-10-19
+the owner delegated equivalent region and operational choices when purpose,
+cost and substantive conditions remain unchanged. Do not seek repeated approval
+for those routine choices. Preserve consumed attempts and never automatically
+repeat a paid attempt. The 2026-10-19 CA-MTL-3 allocation is consumed and
+confirmed deleted; an older restored notebook checkpoint is not unused approval.
+Read `docs/a100-owner-region-execution.md` before any future paid work. Long training, additional funding, rule acceptance and
+competition submission remain outside this scope.
+Never expose secrets or commit credentials, model
 weights, downloaded data, generated outputs or third-party artifacts without
 verified redistribution permission. Do not implicitly choose a license. Kaggle
 public-sharing obligations require human review before competition participation.
