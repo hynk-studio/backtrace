@@ -26,7 +26,8 @@ jobs:
         with:
           python-version: '3.12.14'
       - name: Install separately pinned owner-side SDK
-        run: python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
       - name: Read-only provider and exact small-input checks
         env:
           RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
