@@ -5,6 +5,7 @@ on:
     branches: [bt-001-a100-cpu-qualification]
     paths:
       - 'tools/cloud_probe.py'
+      - 'tools/cloud_inventory.py'
       - 'docs/cloud-controller-requirements.txt'
       - '.github/workflows/a100-access.yml'
 permissions:
@@ -32,4 +33,6 @@ jobs:
         env:
           RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
           KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
-        run: python -m tools.cloud_probe
+        run: |
+          python -m tools.cloud_probe
+          python -m tools.cloud_inventory

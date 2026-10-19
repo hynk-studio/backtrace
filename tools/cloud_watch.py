@@ -90,7 +90,7 @@ def main():
         if os.environ.get('GITHUB_REPOSITORY') != state.REPOSITORY:
             raise state.StateError('exact repository required')
         result = watch(state.GitHubState(os.environ['GH_STATE_TOKEN']),
-                       control.RunpodAPI(os.environ['RUNPOD_API_KEY']), args.run_id, args.source_sha)
+                       control.RunpodAPI(os.environ['RUNPOD_API_KEY'].strip()), args.run_id, args.source_sha)
         print(json.dumps(result, sort_keys=True))
         if result.get('phase') not in ('deleted', 'no_claim', 'no_resource_observed'):
             raise SystemExit(1)
