@@ -22,6 +22,10 @@ class CredentialFormatError(ValueError):
     """A missing or malformed value, before any network request."""
 
 
+class InputCheckError(ValueError):
+    """Only locally fixed labels may be included in the public result."""
+
+
 def secret(name):
     # GitHub's multiline editor can retain the final clipboard newline.
     value = os.environ.get(name, '').strip()
@@ -37,15 +41,15 @@ def verify_small_response(response, row):
         url = urlsplit(response.url)
         if (url.scheme != 'https' or url.hostname != 'storage.googleapis.com'
                 or url.username or url.password or url.fragment or url.port not in (None, 443)):
-            raise ValueError('unqualified storage host')
+            raise InputCheckError('unqualified storage host')
         wire = int(response.headers['Content-Length'])
         if response.headers.get('Content-Encoding', 'identity') != 'identity':
-            raise ValueError('unexpected HTTP encoding')
+            raise InputCheckError('unexpected HTTP encoding')
         if not 0 < wire <= row['bytes'] + 65536 or row['bytes'] > 1024**2:
-            raise ValueError('probe size limit')
+            raise InputCheckError('probe size limit')
         data = response.raw.read(wire + 1)
         if len(data) != wire:
-            raise ValueError('incomplete or oversized response')
+            raise InputCheckError('incomplete or oversized response')
         encoding = 'raw'
         if data.startswith(b'PK\x03\x04'):
             encoding = 'zip'
@@ -53,10 +57,10 @@ def verify_small_response(response, row):
                 members = archive.infolist()
                 if (len(members) != 1 or members[0].filename != Path(row['path']).name
                         or members[0].file_size != row['bytes'] or members[0].flag_bits & 1):
-                    raise ValueError('unexpected archive members')
+                    raise InputCheckError('unexpected archive members')
                 data = archive.read(members[0])
         if len(data) != row['bytes'] or hashlib.sha256(data).hexdigest() != row['sha256']:
-            raise ValueError('frozen input mismatch')
+            raise InputCheckError('frozen input mismatch')
         return {'bytes': len(data), 'sha256': row['sha256'], 'encoding': encoding,
                 'wire_bytes': wire, 'storage_host': url.hostname}
 
@@ -83,8 +87,11 @@ def kaggle_checks():
         request.instance_slug = 'gemma-4-31b-it-qat-w4a16-ct'
         request.version_number = 2
         request.path = row['path']
-        model = verify_small_response(client.models.model_api_client.download_model_instance_version(request), row)
-        yield 'kaggle_model_v2', model
+        try:
+            model = verify_small_response(client.models.model_api_client.download_model_instance_version(request), row)
+            yield 'kaggle_model_v2', model
+        except Exception as error:
+            yield 'kaggle_model_v2', failure(error)
 
         row = next(r for r in json.loads(manifest('task'))['files'] if r['path'] == 'agent-task.json')
         request = ApiDownloadKernelOutputRequest()
@@ -92,25 +99,37 @@ def kaggle_checks():
         request.kernel_slug = 'backtrace-r0-selected-inputs'
         request.version_number = 1
         request.file_path = row['path']
-        task = verify_small_response(client.kernels.kernels_api_client.download_kernel_output(request), row)
-        yield 'kaggle_private_task_v1', task
+        try:
+            task = verify_small_response(client.kernels.kernels_api_client.download_kernel_output(request), row)
+            yield 'kaggle_private_task_v1', task
+        except Exception as error:
+            yield 'kaggle_private_task_v1', failure(error)
 
         request = ApiGetKernelRequest()
         request.user_name = 'hynk1240'
         request.kernel_slug = 'backtrace-pr7-cpu-qualification'
-        request.version_label = '3'
-        kernel = client.kernels.kernels_api_client.get_kernel(request)
-        source = kernel.blob.source.encode()
-        yield 'kaggle_retained_notebook_v3', {
-            'source_bytes': len(source), 'source_sha256': hashlib.sha256(source).hexdigest(),
-            'is_private': kernel.metadata.is_private, 'execution': 'NOT RUN'}
+        # The official CLI formats numeric labels as v<N>; bare 3 returns 404.
+        request.version_label = 'v3'
+        try:
+            kernel = client.kernels.kernels_api_client.get_kernel(request)
+            source = kernel.blob.source.encode()
+            yield 'kaggle_retained_notebook_v3', {
+                'source_bytes': len(source), 'source_sha256': hashlib.sha256(source).hexdigest(),
+                'is_private': kernel.metadata.is_private, 'execution': 'NOT RUN'}
+        except Exception as error:
+            yield 'kaggle_retained_notebook_v3', failure(error)
 
 
 def failure(error):
     response = getattr(error, 'response', None)
     status = getattr(response, 'status_code', getattr(error, 'http_status', None))
-    return {'status': 'FAIL', 'error_type': type(error).__name__,
-            'http_status': status if type(status) is int else None}
+    result = {'status': 'FAIL', 'error_type': type(error).__name__,
+              'http_status': status if type(status) is int else None}
+    reasons = {'unqualified storage host', 'unexpected HTTP encoding', 'probe size limit',
+               'incomplete or oversized response', 'unexpected archive members', 'frozen input mismatch'}
+    if isinstance(error, InputCheckError) and str(error) in reasons:
+        result['reason'] = str(error)
+    return result
 
 
 def main():
