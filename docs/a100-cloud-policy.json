@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "prepaid10-actions-v1",
   "authorization": "owner-cloud-20261019-203126",
-  "status": "IMPLEMENTATION; NOT LAUNCH-QUALIFIED",
+  "status": "INPUTS AND WRAPPER CPU-QUALIFIED; OWNER PREFLIGHT PENDING",
   "authority": "Owner accepted the proposed cloud browser + GitHub Actions + RunPod plan with '좋아 시작하자.' on 2026-10-19 at 20:31:26 KST. This is a new, separate one-attempt scope, not restoration of the consumed CA-MTL-3 attempt.",
   "controller": "GitHub-hosted free Linux CPU runner; no user Mac/Windows required",
   "wallet_credits_usd": "10.00",
@@ -23,7 +23,14 @@
     "An Actions runner is not durable storage; the fixed create-only claim is external",
     "An independent workflow is not a provider-enforced timer or a guaranteed dollar cap",
     "Synthetic cancellation tests are not a live paid cancellation trial",
-    "The unchanged old launch driver still enforces the old deadline; it must be explicitly qualified for the cloud policy before paid execution"
+    "The historical notebook launch remains disabled. The separate cloud-policy driver is byte-pinned and CPU-qualified; actual model startup, public task execution and live paid cancellation remain NOT RUN."
   ],
-  "exclusions": ["training", "competition submission", "terms acceptance", "merge", "Issue #1 closure", "public private-asset publication"]
+  "exclusions": [
+    "training",
+    "competition submission",
+    "terms acceptance",
+    "merge",
+    "Issue #1 closure",
+    "public private-asset publication"
+  ]
 }

@@ -10,7 +10,8 @@ permissions:
 
 concurrency:
   group: a100-cpu-${{ github.ref }}
-  cancel-in-progress: true
+  # Preserve a completed test run while provider status updates are delayed.
+  cancel-in-progress: false
 
 jobs:
   cpu:

@@ -24,9 +24,11 @@ USD 8 cumulative stop. The prior CA-MTL-3 attempt remains consumed and deleted.
   Authenticated read-only checks passed against RunPod and the frozen Kaggle
   model v2, private selected-task v1 and retained private notebook v3.
   Run: https://github.com/hynk-studio/backtrace/actions/runs/39276929758
-- Latest completed full CPU suite: **231/231**, 30.055 seconds, preflight READY.
-  Run: https://github.com/hynk-studio/backtrace/actions/runs/39284347004
-  Source: `fb74d7ffcaec1f25b04ff655063b55c910894212`.
+- Latest actual CPU test output: **233/233**, 29.473 seconds, preflight READY.
+  Run: https://github.com/hynk-studio/backtrace/actions/runs/39287452398
+  Source: `6cd9fbf181e271b96cfb5b68dcc9167bbbfa2020`.
+  The log finished at 16:41:41Z, but the API still reported in-progress afterward;
+  this is not recorded as a successful workflow conclusion.
 - Exact-byte downloads of 246 wheels (5,373,559,590 bytes) and eight selected
   task inputs (222,386,501 bytes) passed on Actions. The eight model inputs have
   resolved scoped URLs and headers; the 23.3GB model body has not been downloaded
@@ -99,6 +101,23 @@ qualification branch; paid mode exists only on the dedicated start branch and
 requires the successful recorded qualification, unchanged fingerprints and a
 full CPU pass at its exact source. It also rechecks the live watcher before
 consuming the create-only claim.
+
+## Observed provider status delay
+
+At 2026-10-19T16:46Z, GitHub's official status API described delayed Actions
+workflow status updates, Pages deployments and webhooks:
+https://www.githubstatus.com/incidents/8tzbpcnl75jp
+The current test log and uploaded artifact show 233 passing tests, while its
+workflow API still reports in-progress. The required terminal-success gate
+remains active. Owner preflight run 39287452412 is still pending; no paid claim,
+watcher/start activation or provider allocation has occurred.
+
+At 16:48:30Z, the separate read-only check again authenticated to RunPod and
+listed zero Pods. Model v2 and private notebook v3 checks passed; the small
+selected-task probe hit a read timeout. The full selected-task body verification
+above remains a distinct successful observation. Regional stock querying is now
+an independent workflow step so an unrelated input-probe timeout cannot hide
+current account or inventory results. No automatic paid retry is enabled.
 
 ## Remaining launch prerequisites
 

@@ -1,27 +1,27 @@
 {
   "schema_version": 1,
   "authorization": "owner-cloud-20261019-203126",
-  "tested_source_sha": "fb74d7ffcaec1f25b04ff655063b55c910894212",
-  "workflow_run_id": 39284347004,
-  "workflow_run_url": "https://github.com/hynk-studio/backtrace/actions/runs/39284347004",
-  "job_id": 118165940522,
-  "conclusion": "success",
+  "tested_source_sha": "6cd9fbf181e271b96cfb5b68dcc9167bbbfa2020",
+  "workflow_run_id": 39287452398,
+  "workflow_run_url": "https://github.com/hynk-studio/backtrace/actions/runs/39287452398",
+  "job_id": 118178508232,
+  "conclusion": "PENDING PROVIDER STATUS; actual test output PASS",
   "python": "3.12.14",
   "runner": "ubuntu-24.04",
   "root_linux_pid_namespace": "PASS",
   "full_cpu_tests": {
-    "passed": 231,
+    "passed": 233,
     "failed": 0,
-    "seconds": 30.055
+    "seconds": 29.473
   },
   "preflight": "READY",
   "official_validator": "NOT RUN",
   "artifact": {
-    "id": 12201408502,
-    "name": "a100-cpu-fb74d7ffcaec1f25b04ff655063b55c910894212-1",
-    "bytes": 7275,
-    "digest": "sha256:866a33f560bae4d3ecdeb32e5f21a78193c14de485f10424092a33920386f52d",
-    "expires_at_utc": "2026-10-26T16:18:41Z",
+    "id": 12203333608,
+    "name": "a100-cpu-6cd9fbf181e271b96cfb5b68dcc9167bbbfa2020-1",
+    "bytes": 7348,
+    "digest": "sha256:82c362d95b3bee6c1a92e13ad9d24b228f3000656574937f9aa00f274a1955ce",
+    "expires_at_utc": "2026-10-26T16:41:40Z",
     "contains": "Secret-free CPU test log and preflight only"
   },
   "evidence_scope": "Real Linux CPU execution; synthetic HTTP/RunPod/GitHub fixtures for fault cases",
@@ -41,5 +41,15 @@
     "report_sha256": "520f97e423919cb3d927b55b222410d0948b7d48b1ea4f914af8b2a7295128fc",
     "task_download_seconds": 588.285,
     "limits_unchanged": true
+  },
+  "owner_preflight": {
+    "run_id": 39287452412,
+    "source_sha": "6cd9fbf181e271b96cfb5b68dcc9167bbbfa2020",
+    "status": "IN PROGRESS; no paid create permitted until exact-source workflow conclusion succeeds"
+  },
+  "provider_status_incident": {
+    "url": "https://www.githubstatus.com/incidents/8tzbpcnl75jp",
+    "observed_at_utc": "2026-10-19T16:46:00Z",
+    "scope": "Actions workflow status updates, Pages and Webhooks; required workflow conclusion is not bypassed"
   }
 }
