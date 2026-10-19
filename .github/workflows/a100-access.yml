@@ -6,6 +6,7 @@ on:
     paths:
       - 'tools/cloud_probe.py'
       - 'tools/cloud_inventory.py'
+      - 'tools/cloud_offer.py'
       - 'tools/cloud_task.py'
       - 'docs/cloud-controller-requirements.txt'
       - '.github/workflows/a100-access.yml'

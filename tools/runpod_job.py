@@ -113,8 +113,10 @@ def remote(prefix, argv, value, log, limit=1200):
                           env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
 
 
-def retrieve(prefix, value, directory, log):
+def retrieve(prefix, value, directory, log, *, useful_seconds=control.USEFUL):
     """Only bounded experiment receipts; never root control files or keys."""
+    if useful_seconds not in (control.USEFUL, 6900):
+        raise ValueError('unknown retrieval deadline')
     root = '/kaggle/working/backtrace-a100-receipts'
     program = r'''import hashlib,json,os
 from pathlib import Path
@@ -133,7 +135,7 @@ print(json.dumps({'schema_version':1,'phase':'task','files':rows},sort_keys=True
 '''
     result = subprocess.run(prefix + [shlex.join(['python3', '-I', '-c', program])],
                             stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=log,
-                            check=True, timeout=min(30, remaining(value, control.USEFUL)),
+                            check=True, timeout=min(30, remaining(value, useful_seconds)),
                             env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
     data = result.stdout
     parse_manifest(data)
@@ -144,7 +146,7 @@ print(json.dumps({'schema_version':1,'phase':'task','files':rows},sort_keys=True
     with tempfile.TemporaryFile() as stream:
         subprocess.run(prefix + [shlex.join(remote_python(sender))],
                        input=data, stdout=stream, stderr=log, check=True,
-                       timeout=min(120, remaining(value, control.USEFUL)),
+                       timeout=min(120, remaining(value, useful_seconds)),
                        env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
         stream.seek(0)
         return receive(Path(directory) / 'receipts', hashlib.sha256(data).hexdigest(), stream)

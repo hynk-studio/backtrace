@@ -57,8 +57,11 @@ def provider_inventory():
     # These read fields come from runpodctl's official GetUser implementation.
     account = query('query { myself { __typename clientBalance currentSpendPerHr } }')['myself']
     yield 'wallet', {k: str(account[k]) for k in ('clientBalance', 'currentSpendPerHr')}
-    # Schema discovery returned HTTP 400. Do not retry it or infer auto-pay.
-    yield 'billing_settings', {'auto_pay': 'NOT VERIFIED BY API', 'settings_changed': False}
+    # The public schema reference documents isAutoPayEnabled, regional stock,
+    # hardware minimums and GpuLowestPriceInput. No introspection is needed.
+    from tools.cloud_offer import inspect_offer
+    fresh = inspect_offer()
+    yield 'fresh_offer', {'qualification': fresh.pop('status'), **fresh}
 
 
 def saved_inventory():
