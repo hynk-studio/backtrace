@@ -26,7 +26,8 @@ from tools.private_delivery import MANIFEST_NAME, digest, parse_manifest, verify
 
 # Exact hosts observed in authenticated Kaggle model and saved-output APIs.
 # Neither host receives account headers; every body retains frozen size/hash checks.
-HOSTS = frozenset({'storage.googleapis.com', 'www.kaggleusercontent.com'})
+HOSTS = frozenset({'storage.googleapis.com', 'www.kaggleusercontent.com',
+                   'files.pythonhosted.org', 'download-r2.pytorch.org'})
 CHUNK = 1024 * 1024
 
 

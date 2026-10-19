@@ -24,6 +24,12 @@ from tools.r0 import expected_candidate, inspect_candidate
 
 
 def main():
+    cloud = sys.argv[1:] == ['--cloud-policy']
+    if sys.argv[1:] and not cloud:
+        raise ValueError('unsupported qualification mode')
+    prepare_driver = prepare
+    if cloud:
+        from tools.cloud_task import prepare as prepare_driver
     if sys.prefix == sys.base_prefix or any(k in os.environ for k in ('KAGGLE_API_TOKEN', 'RUNPOD_API_KEY', 'OPENAI_API_KEY')):
         raise RuntimeError('clean qualified private venv required')
     check_installed_wheels(ROOT / '.local/official')
@@ -34,7 +40,7 @@ def main():
     import torch
     with tempfile.TemporaryDirectory(prefix='backtrace-a100-construct-') as directory:
         root = Path(directory)
-        receipt = prepare(ROOT / '.local/smoke/no-custom-ar/one_task.py', root / 'driver')
+        receipt = prepare_driver(ROOT / '.local/smoke/no-custom-ar/one_task.py', root / 'driver')
         spec = importlib.util.spec_from_file_location('prepared_private_driver', root / 'driver/one_task.py')
         driver = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(driver)  # Definitions only; __main__ is not executed.
@@ -73,6 +79,7 @@ def main():
         # The observer is created only at start(); absence is required here.
         assert not hasattr(server, 'startup_observation')
         print(json.dumps({'actual_private_driver_sha256': receipt['prepared_driver_sha256'],
+                          'policy': 'prepaid10-actions-v1' if cloud else 'prepaid10-external-v2',
                           'candidate_sha256': report['sha256'], 'actual_wrapper': 'adk-submission 0.2.11',
                           'requested_dtype': server.config.dtype, 'tp': 1,
                           'argv': argv, 'guard_constructed': True,
