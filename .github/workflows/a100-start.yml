@@ -32,7 +32,8 @@ jobs:
         with:
           python-version: '3.12.14'
       - name: Install separately pinned owner SDK
-        run: python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
       - name: Prepare freely or execute the dedicated single-attempt entry
         env:
           GITHUB_TOKEN: ${{ github.token }}
