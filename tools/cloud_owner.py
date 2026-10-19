@@ -1,7 +1,7 @@
 """Single-create Actions lifecycle, outside the Pod and its credential-free worker.
 
 Requires qualified local inputs, a fresh explicit offer and the independent
-watcher's live lease. There is deliberately no automatic paid retry or CLI yet.
+watcher's live lease. The dedicated cloud_launch entry never retries a paid create.
 """
 import contextlib
 import hashlib

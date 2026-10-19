@@ -3,10 +3,8 @@ name: A100 cloud CPU qualification
 on:
   push:
     branches: [bt-001-a100-cpu-qualification]
-    paths:
-      - 'tools/**'
-      - 'tests/**'
-      - '.github/workflows/**'
+# The owner entry requires a successful suite at its exact source commit,
+# including commits that only update qualification/evidence documents.
 permissions:
   contents: read
 

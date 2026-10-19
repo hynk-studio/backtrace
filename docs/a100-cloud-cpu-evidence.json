@@ -1,27 +1,27 @@
 {
   "schema_version": 1,
   "authorization": "owner-cloud-20261019-203126",
-  "tested_source_sha": "0bd6fbbc998a8742a22f366833b2e61055d73724",
-  "workflow_run_id": 39282188175,
-  "workflow_run_url": "https://github.com/hynk-studio/backtrace/actions/runs/39282188175",
-  "job_id": 118158505425,
+  "tested_source_sha": "fb74d7ffcaec1f25b04ff655063b55c910894212",
+  "workflow_run_id": 39284347004,
+  "workflow_run_url": "https://github.com/hynk-studio/backtrace/actions/runs/39284347004",
+  "job_id": 118165940522,
   "conclusion": "success",
   "python": "3.12.14",
   "runner": "ubuntu-24.04",
   "root_linux_pid_namespace": "PASS",
   "full_cpu_tests": {
-    "passed": 230,
+    "passed": 231,
     "failed": 0,
-    "seconds": 26.804
+    "seconds": 30.055
   },
   "preflight": "READY",
   "official_validator": "NOT RUN",
   "artifact": {
-    "id": 12201331266,
-    "name": "a100-cpu-0bd6fbbc998a8742a22f366833b2e61055d73724-1",
-    "bytes": 7266,
-    "digest": "sha256:0104ea202faa7721692d02ff06eebb88510b2f2f7ade764f54b9eb41fa4a63e2",
-    "expires_at_utc": "2026-10-26T16:01:30Z",
+    "id": 12201408502,
+    "name": "a100-cpu-fb74d7ffcaec1f25b04ff655063b55c910894212-1",
+    "bytes": 7275,
+    "digest": "sha256:866a33f560bae4d3ecdeb32e5f21a78193c14de485f10424092a33920386f52d",
+    "expires_at_utc": "2026-10-26T16:18:41Z",
     "contains": "Secret-free CPU test log and preflight only"
   },
   "evidence_scope": "Real Linux CPU execution; synthetic HTTP/RunPod/GitHub fixtures for fault cases",
@@ -33,5 +33,13 @@
   "additional_funding": "NONE",
   "actual_offline_runtime": "245 application distributions installed and imported, installation network audit blocked; Actions Ubuntu 24.04 CPU",
   "actual_transport": "Pinned Actions rebuild, mutual TLS, strict SSH, wrong-host rejection and 147456-byte private transfer PASS",
-  "official_wrapper_cloud_driver": "CPU mount-layout preparation corrected; actual wrapper construction pending; server and task execution NOT RUN"
+  "official_wrapper_cloud_driver": "PASS: actual adk-submission 0.2.11 constructor, TP1/native BF16 configuration, injected A100 SM80, no server/task/network/process execution",
+  "free_input_qualification": {
+    "run_id": 39284346940,
+    "source_sha": "fb74d7ffcaec1f25b04ff655063b55c910894212",
+    "status": "PASS",
+    "report_sha256": "520f97e423919cb3d927b55b222410d0948b7d48b1ea4f914af8b2a7295128fc",
+    "task_download_seconds": 588.285,
+    "limits_unchanged": true
+  }
 }

@@ -24,9 +24,9 @@ USD 8 cumulative stop. The prior CA-MTL-3 attempt remains consumed and deleted.
   Authenticated read-only checks passed against RunPod and the frozen Kaggle
   model v2, private selected-task v1 and retained private notebook v3.
   Run: https://github.com/hynk-studio/backtrace/actions/runs/39276929758
-- Latest completed full CPU suite: **230/230**, 26.804 seconds, preflight READY.
-  Run: https://github.com/hynk-studio/backtrace/actions/runs/39282188175
-  Source: `0bd6fbbc998a8742a22f366833b2e61055d73724`.
+- Latest completed full CPU suite: **231/231**, 30.055 seconds, preflight READY.
+  Run: https://github.com/hynk-studio/backtrace/actions/runs/39284347004
+  Source: `fb74d7ffcaec1f25b04ff655063b55c910894212`.
 - Exact-byte downloads of 246 wheels (5,373,559,590 bytes) and eight selected
   task inputs (222,386,501 bytes) passed on Actions. The eight model inputs have
   resolved scoped URLs and headers; the 23.3GB model body has not been downloaded
@@ -55,7 +55,13 @@ USD 8 cumulative stop. The prior CA-MTL-3 attempt remains consumed and deleted.
   plain Actions VM. Free preparation now copies the already verified task bytes
   to the same read-only `/kaggle/input/r0-inputs` path used by Pod activation.
   The retained discovery check and scientific driver remain unchanged; actual
-  wrapper construction is being requalified, with no model start.
+  wrapper construction passed on the real free runner, with no model start.
+  All stages passed in run https://github.com/hynk-studio/backtrace/actions/runs/39284346940
+  at source `fb74d7ffcaec1f25b04ff655063b55c910894212`. The actual selected-task
+  download took 588.285 seconds inside its unchanged 600-second free-test limit.
+  The wrapper was adk-submission 0.2.11 with TP1/native BF16 and injected A100 SM80;
+  no model/server/task execution occurred. The report SHA256 and 38 source/input
+  fingerprints are retained in `a100-actions-qualification.json`.
 
 ## Implemented components
 
@@ -88,23 +94,23 @@ Its independent concurrency group never cancels a running watcher. The
 `claim_before_create` integration seam also checks that this separate workflow
 is currently running at the same source SHA before allowing a claim. The state
 branch is prepared; no claim has been made. The watcher/start trigger branches
-have not been activated. No paid-start workflow is published yet.
+have not been activated. The owner workflow runs free preflight on the
+qualification branch; paid mode exists only on the dedicated start branch and
+requires the successful recorded qualification, unchanged fingerprints and a
+full CPU pass at its exact source. It also rechecks the live watcher before
+consuming the create-only claim.
 
 ## Remaining launch prerequisites
 
-1. Finish real free-runner transport build/loopback, offline exact runtime
-   installation and actual wrapper construction with the cloud-policy driver.
-   The frozen driver hash is
+1. Complete the new owner workflow's actual free preflight and full CPU suite.
+   Input downloads, original-reference verification, transport build/loopback,
+   offline runtime and actual cloud-policy wrapper construction have passed.
+   The frozen driver remains
    `9542d7c47eb394247fb30a61a90303ba381b3f0eadbf6a6ef8fb8939bae7f342`.
-   Its server/agent AST and scientific input/budget are preserved; deadline and
-   permit policy changes are explicit. Model execution is NOT RUN.
-2. Bind actual transport hashes, retain the successful run and file fingerprints,
-   and qualify the complete owner preflight at the same source as its full CPU
-   suite. The original consumed notebook launch remains disabled.
-3. Refresh a matching region/hardware quote, wallet and Auto-Pay through the
+2. Refresh a matching region/hardware quote, wallet and Auto-Pay through the
    account API. Run the independent watcher and one owner workflow only after
    every free gate is satisfied. Never reset a claim or retry a paid create.
-4. Retain only encrypted private results, obtain two independent owned-resource
+3. Retain encrypted private results, obtain two independent owned-resource
    absence checks, and refresh actual account spending after completion.
 
 The free preparation receiver generates an ephemeral age identity on its runner.
