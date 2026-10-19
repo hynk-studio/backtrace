@@ -19,8 +19,21 @@ from tools import ssh_bootstrap as ssh, runpod_control as control
 from tools.cloud_probe import secret, failure
 from tools.runpod_job import check_owner_host, private_json
 
+SAFE_REASONS = frozenset({
+    'real root Linux PID namespace required for the owner run host',
+    'real CPU qualification does not bind the current input/transport code',
+    'actual free qualification run is not successful at the recorded source',
+    'exact source required', 'ambiguous current CPU run', 'current full CPU suite failed',
+    'rebuilt transport differs from the actual qualified binaries',
+    'earlier owned resource requires reconciliation',
+    'authorization is already consumed; never recreate',
+    'first exact authorized workflow context required',
+})
+
 
 def preparation(root, store, source_sha, emit):
+    emit({'stage': 'owner_host', 'uid': os.getuid(), 'platform': sys.platform,
+          'local_pid_namespace': int(Path('/proc/self/stat').read_bytes().split(b' ', 1)[0]) == os.getpid()})
     check_owner_host()
     root.mkdir(mode=0o700, parents=True)
     receipt = json.loads((frozen.ROOT / 'docs/a100-actions-qualification.json').read_text())
@@ -102,6 +115,8 @@ def main():
                     root, run_id, source_sha, emit=emit))
         except Exception as error:
             report['failure'] = failure(error)
+            if str(error) in SAFE_REASONS:
+                report['failure']['reason'] = str(error)
             if isinstance(error, resolver.ResolutionError):
                 report['failure'].update(input_path=error.input_path, cause_type=error.error_type)
         finally:
