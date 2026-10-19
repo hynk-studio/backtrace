@@ -11,7 +11,7 @@ import subprocess
 import sys
 import time
 
-from tools import a100_delivery as frozen, cloud_resolver as resolver, cloud_task, cloud_transport
+from tools import a100_delivery as frozen, cloud_resolver as resolver, cloud_task, cloud_transport, cloud_seal
 from tools.cloud_probe import failure
 from tools.direct_delivery import pull
 from tools.runpod_job import private_json
@@ -26,6 +26,7 @@ def qualify(root, emit):
     try:
         with resolver.kaggle_client() as client:
             source = resolver.get_source(client)
+            (root / 'retained-source.ipynb').write_bytes(source)
             resolver.packed_inputs(source)  # Refuse missing source before large downloads.
             emit({'stage': stage, 'status': 'PASS', 'source_sha256': resolver.NOTEBOOK_SHA256})
             stage = 'resolve_wheels'
@@ -83,6 +84,14 @@ def qualify(root, emit):
             report['failure'].update(input_path=error.input_path, cause_type=error.error_type)
         if isinstance(error, subprocess.CalledProcessError):
             report['failure']['exit_code'] = error.returncode
+    private = {}
+    for name in ('retained-source.ipynb', 'offline-runtime.log', 'official-cloud-driver.log'):
+        path = root / name
+        if path.is_file():
+            private[name] = path
+    if private:
+        report['private_evidence'] = cloud_seal.seal(private,
+            frozen.ROOT / 'evidence/cloud-private.age', limit=16 * 1024**2)
     return report
 
 

@@ -7,6 +7,8 @@ on:
       - 'tools/cloud_prepare.py'
       - 'tools/cloud_resolver.py'
       - 'tools/cloud_transport.py'
+      - 'tools/cloud_seal.py'
+      - 'docs/cloud-controller-requirements.txt'
       - 'tests/official_a100_task.py'
       - '.github/workflows/a100-prepare.yml'
 permissions:
@@ -45,3 +47,12 @@ jobs:
           path: evidence/cloud-prepare.json
           retention-days: 7
           if-no-files-found: error
+      - name: Preserve encrypted private evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: a100-private-${{ github.sha }}-${{ github.run_attempt }}
+          path: evidence/cloud-private.age
+          retention-days: 7
+          if-no-files-found: ignore
+          compression-level: 0
