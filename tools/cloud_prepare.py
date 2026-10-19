@@ -15,6 +15,7 @@ from tools import a100_delivery as frozen, cloud_resolver as resolver, cloud_tas
 from tools.cloud_probe import failure
 from tools.direct_delivery import pull, DownloadError
 from tools.runpod_job import private_json
+from tools import cloud_reference, cloud_state
 
 
 def qualify(root, emit):
@@ -24,13 +25,14 @@ def qualify(root, emit):
     report = {'gpu_allocations': 0, 'server_starts': 0, 'task_executions': 0, 'stages': {}}
     stage = 'private_source'
     try:
+        transfer = cloud_state.GitHubState(os.environ['GITHUB_TOKEN'])
+        identity, prefix = cloud_reference.open_receiver(transfer, os.environ['GITHUB_RUN_ID'], os.environ['GITHUB_SHA'])
+        emit({'stage': 'reference_receiver', 'status': 'READY', 'path': prefix})
         with resolver.kaggle_client() as client:
             source = resolver.get_source(client)
             (root / 'retained-source.ipynb').write_bytes(source)
             resolver.retained_literal(source)  # Never execute saved notebook cells.
             emit({'stage': stage, 'status': 'PASS', 'source_sha256': resolver.NOTEBOOK_SHA256})
-            stage = 'resolve_official'
-            official_sources = resolver.resolve_official(client)
             stage = 'resolve_wheels'
             wheel_sources = resolver.resolve_wheels(client,
                 progress=lambda name, count: emit({'stage': name, 'count': count}))
@@ -38,7 +40,7 @@ def qualify(root, emit):
             task_sources = resolver.resolve_task(client)
             model_sources = resolver.resolve_model(client)
         private_json(root / 'private-sources.json', {'wheels': wheel_sources, 'task': task_sources,
-                                                     'model': model_sources, 'official': official_sources})
+                                                     'model': model_sources})
         report['stages']['sources'] = {'wheels': len(wheel_sources), 'task': len(task_sources),
                                        'model': len(model_sources), 'urls_published': False}
         emit({'stage': 'sources', 'status': 'PASS', **report['stages']['sources']})
@@ -50,9 +52,9 @@ def qualify(root, emit):
         data = frozen.manifest('task')
         report['stages'][stage] = pull(root / 'task', data, task_sources, hashlib.sha256(data).hexdigest(), 600)
         emit({'stage': stage, 'status': 'PASS', 'verified_files': len(task_sources)})
-        stage = 'download_official'
-        data = resolver.official_manifest()
-        report['stages'][stage] = pull(root / 'official', data, official_sources, hashlib.sha256(data).hexdigest(), 300)
+        stage = 'restore_official'
+        report['stages'][stage] = cloud_reference.receive(transfer, identity, prefix, root / 'official')
+        emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
         stage = 'restore_cpu_inputs'
         report['stages'][stage] = resolver.restore_cpu_inputs(source, frozen.ROOT, root / 'wheels', root / 'task', root / 'official')
         prepared = cloud_task.prepare(frozen.ROOT / '.local/smoke/no-custom-ar/one_task.py', root / 'driver')
