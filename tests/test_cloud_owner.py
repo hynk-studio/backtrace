@@ -117,5 +117,14 @@ class CloudOwnerTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertFalse(result.stdout)
 
+    def test_full_activation_source_fits_actual_ssh_command_limit(self):
+        source = (worker.frozen.ROOT / 'tools/pod_bootstrap.py').read_text()
+        self.assertGreater(len(source), 9000)
+        argv, data = worker.code_envelope(source + '\nprint("qualified-source-loaded")')
+        import shlex
+        self.assertLess(len(shlex.join(argv)), 9000)
+        result = subprocess.run(argv, input=data, capture_output=True, check=True, timeout=5)
+        self.assertEqual(result.stdout, b'qualified-source-loaded\n')
+
 
 if __name__ == '__main__': unittest.main()

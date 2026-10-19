@@ -28,6 +28,20 @@ def qualify(root, emit):
         transfer = cloud_state.GitHubState(os.environ['GITHUB_TOKEN'])
         identity, prefix = cloud_reference.open_receiver(transfer, os.environ['GITHUB_RUN_ID'], os.environ['GITHUB_SHA'])
         emit({'stage': 'reference_receiver', 'status': 'READY', 'path': prefix})
+        stage = 'transport_build'
+        report['stages'][stage] = cloud_transport.build(root / 'transport')
+        emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
+        stage = 'transport_loopback'
+        binaries = root / 'transport/dropbear-DROPBEAR_2026.94'
+        with (root / 'transport-loopback.log').open('xb') as log:
+            result = subprocess.run(['sudo', sys.executable, '-I',
+                str(frozen.ROOT / 'tests/official_cloud_transport.py'), str(binaries / 'dropbear'),
+                str(binaries / 'dropbearkey')], stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
+                stderr=log, check=True, timeout=120,
+                env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
+        report['stages'][stage] = json.loads(result.stdout)
+        emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
+        stage = 'private_source'
         with resolver.kaggle_client() as client:
             source = resolver.get_source(client)
             (root / 'retained-source.ipynb').write_bytes(source)
@@ -63,19 +77,6 @@ def qualify(root, emit):
         report['stages']['driver'] = {key: prepared[key] for key in (
             'prepared_driver_sha256', 'policy', 'setup_seconds', 'useful_seconds', 'total_seconds',
             'server_and_agent_ast_equal_to_legacy')}
-        stage = 'transport_build'
-        report['stages'][stage] = cloud_transport.build(root / 'transport')
-        emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
-        stage = 'transport_loopback'
-        binaries = root / 'transport/dropbear-DROPBEAR_2026.94'
-        with (root / 'transport-loopback.log').open('xb') as log:
-            result = subprocess.run(['sudo', sys.executable, '-I',
-                str(frozen.ROOT / 'tests/official_cloud_transport.py'), str(binaries / 'dropbear'),
-                str(binaries / 'dropbearkey')], stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
-                stderr=log, check=True, timeout=120,
-                env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
-        report['stages'][stage] = json.loads(result.stdout)
-        emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
         env = {'PATH': '/usr/bin:/bin', 'HOME': str(root), 'LANG': 'C.UTF-8',
                'PYTHON_DOTENV_DISABLED': '1', 'HF_HUB_OFFLINE': '1', 'TRANSFORMERS_OFFLINE': '1',
                'OTEL_SDK_DISABLED': 'true', 'LITELLM_LOCAL_MODEL_COST_MAP': 'True'}

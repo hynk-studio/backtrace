@@ -47,5 +47,21 @@ class ResolverTests(unittest.TestCase):
             "raise AssertionError('must not execute')\nPAYLOAD='changed'"]}]}).encode()
         with self.assertRaises(ValueError): resolver.retained_literal(source)
 
+    def test_only_transient_reads_retry_with_a_fixed_limit(self):
+        from unittest.mock import Mock
+        fake = SimpleNamespace(exceptions=SimpleNamespace(RequestException=OSError,
+                               Timeout=TimeoutError, ConnectionError=ConnectionError))
+        with patch.dict(sys.modules, {'requests': fake}):
+            read = Mock(side_effect=[TimeoutError(), 'ok'])
+            sleeps = []
+            self.assertEqual(resolver.retry_read(read, sleep=sleeps.append), 'ok')
+            self.assertEqual(sleeps, [1])
+            read = Mock(side_effect=TimeoutError())
+            with self.assertRaises(TimeoutError): resolver.retry_read(read, sleep=lambda _: None)
+            self.assertEqual(read.call_count, 3)
+            read = Mock(side_effect=ValueError('changed frozen identity'))
+            with self.assertRaises(ValueError): resolver.retry_read(read, sleep=lambda _: None)
+            self.assertEqual(read.call_count, 1)
+
 
 if __name__ == '__main__': unittest.main()

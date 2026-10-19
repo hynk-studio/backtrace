@@ -8,6 +8,7 @@ import functools
 import hashlib
 from html.parser import HTMLParser
 import json
+import time
 from pathlib import Path
 from urllib.parse import quote, unquote, urljoin, urlsplit, urlunsplit
 
@@ -18,6 +19,20 @@ from tools.direct_delivery import validate_url, sources_for
 from tools.linux_runtime import supplied_records
 
 NOTEBOOK_SHA256 = '1541b75bcff02705539b85d29ee810df0ee25ae01cbb9fd01ec36a10f11b8dc6'
+
+
+def retry_read(operation, *, sleep=time.sleep):
+    """At most three immutable reads; never used for account/resource writes."""
+    import requests
+    for attempt in range(3):
+        try:
+            return operation()
+        except requests.exceptions.RequestException as error:
+            transient = isinstance(error, (requests.exceptions.Timeout, requests.exceptions.ConnectionError))
+            status = getattr(getattr(error, 'response', None), 'status_code', None)
+            if attempt == 2 or not (transient or status in (429, 500, 502, 503, 504)):
+                raise
+            sleep(attempt + 1)
 
 
 class ResolutionError(ValueError):
@@ -46,7 +61,7 @@ def get_source(client):
     request.user_name = 'hynk1240'
     request.kernel_slug = 'backtrace-pr7-cpu-qualification'
     request.version_label = 'v3'
-    response = client.kernels.kernels_api_client.get_kernel(request)
+    response = retry_read(lambda: client.kernels.kernels_api_client.get_kernel(request))
     source = response.blob.source.encode()
     if response.metadata.is_private is not True or hashlib.sha256(source).hexdigest() != NOTEBOOK_SHA256:
         raise ValueError('saved private notebook identity changed')
@@ -171,10 +186,12 @@ def resolve_wheels(client, *, progress=lambda *_: None):
                 request.dataset_slug = 'gemma-4-developer-agent-wheelhouse'
                 request.dataset_version_number = 25
                 request.file_name = originals[row['sha256']]['path']
-                response = client.datasets.dataset_api_client.download_dataset(request)
-                result[row['path']] = source_from_response(response, row)
+                def download():
+                    response = client.datasets.dataset_api_client.download_dataset(request)
+                    return source_from_response(response, row)
+                result[row['path']] = retry_read(download)
             else:
-                result[row['path']] = pypi_source(row)
+                result[row['path']] = retry_read(lambda: pypi_source(row))
         except Exception as error:
             raise ResolutionError(row, error) from None
         if (index + 1) % 25 == 0:
@@ -186,8 +203,13 @@ def resolve_wheels(client, *, progress=lambda *_: None):
 def resolve_task(client):
     result = {}
     for row in json.loads(frozen.manifest('task'))['files']:
-        url = notebook_output_url(client, 'backtrace-r0-selected-inputs', 'v1', row['path'])
-        result[row['path']] = public_source(url, row)
+        def download():
+            url = notebook_output_url(client, 'backtrace-r0-selected-inputs', 'v1', row['path'])
+            return public_source(url, row)
+        try:
+            result[row['path']] = retry_read(download)
+        except Exception as error:
+            raise ResolutionError(row, error) from None
     return result
 
 
@@ -200,8 +222,13 @@ def resolve_model(client):
         request.framework = ModelFramework.MODEL_FRAMEWORK_OTHER
         request.instance_slug = 'gemma-4-31b-it-qat-w4a16-ct'
         request.version_number = 2; request.path = row['path']
-        response = client.models.model_api_client.download_model_instance_version(request)
-        result[row['path']] = source_from_response(response, row)
+        def download():
+            response = client.models.model_api_client.download_model_instance_version(request)
+            return source_from_response(response, row)
+        try:
+            result[row['path']] = retry_read(download)
+        except Exception as error:
+            raise ResolutionError(row, error) from None
     return result
 
 

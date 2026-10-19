@@ -45,9 +45,12 @@ for kind in ('wheels','task','model'):
 
 
 def direct_envelope(value):
+    return code_envelope(direct_program(), json.dumps(value))
+
+
+def code_envelope(source, input_text=''):
     # Dropbear limits a command to 9,000 bytes. Carry both reviewed code and
     # scoped URLs over authenticated stdin, with a small hash-checking command.
-    source = direct_program()
     sha = hashlib.sha256(source.encode()).hexdigest()
     receiver = ("import io,sys,json,hashlib\n"
                 "raw=sys.stdin.buffer.read(8*1024**2+1);assert len(raw)<=8*1024**2\n"
@@ -55,7 +58,7 @@ def direct_envelope(value):
                 "assert hashlib.sha256(v['source'].encode()).hexdigest()==" + repr(sha) + "\n"
                 "sys.stdin=io.TextIOWrapper(io.BytesIO(v['input'].encode()))\n"
                 "exec(v['source'])\n")
-    data = json.dumps({'source': source, 'input': json.dumps(value)}).encode()
+    data = json.dumps({'source': source, 'input': input_text}).encode()
     if len(data) > 8 * 1024**2:
         raise ValueError('private direct envelope size limit')
     return remote_python(receiver), data
@@ -121,7 +124,8 @@ def run(directory):
             source = (frozen.ROOT / 'tools/pod_bootstrap.py').read_text()
             program = source + "\nprint(json.dumps(activate(" + repr(hashes) + ',' + repr(claim['requested_at'])
             program += ",policy='prepaid10-actions-v1')))\n"
-            remote(remote_python(program))
+            argv, data = code_envelope(program)
+            remote(argv, input=data)
             permit = {key: value[key] for key in ('policy', 'run', 'attempt', 'pod_id', 'requested_at')}
             permit['driver_sha256'] = cloud_task.CLOUD_DRIVER_SHA256
             program = ("import os,json,time;from pathlib import Path\n"
