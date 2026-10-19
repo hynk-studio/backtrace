@@ -19,6 +19,7 @@ import zipfile
 import zlib
 
 from tools.a100_delivery import manifest
+from tools.direct_delivery import HOSTS
 from tools.runpod_control import RunpodAPI
 
 
@@ -50,7 +51,7 @@ def verify_small_response(response, row):
     with response:
         response.raise_for_status()
         url = urlsplit(response.url)
-        if (url.scheme != 'https' or url.hostname != 'storage.googleapis.com'
+        if (url.scheme != 'https' or url.hostname not in HOSTS
                 or url.username or url.password or url.fragment or url.port not in (None, 443)):
             raise InputCheckError('unqualified storage host')
         wire = int(response.headers['Content-Length'])

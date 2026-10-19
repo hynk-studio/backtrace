@@ -84,7 +84,9 @@ class DirectDeliveryTests(unittest.TestCase):
         self.assertFalse((self.root / 'model').exists())
 
     def test_only_exact_https_storage_host_is_accepted(self):
+        direct.validate_url('https://www.kaggleusercontent.com/kf/fixture/file?signature=fixture')
         for url in ('http://storage.googleapis.com/x', 'https://storage.googleapis.com.evil/x',
+                    'https://www.kaggleusercontent.com.evil/x', 'https://evil.kaggleusercontent.com/x',
                     'https://user:secret@storage.googleapis.com/x', 'https://127.0.0.1/x',
                     'https://storage.googleapis.com:444/x', 'https://storage.googleapis.com/x#secret'):
             with self.subTest(url=url), self.assertRaises(ValueError):
