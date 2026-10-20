@@ -36,7 +36,9 @@ permissions:
   contents: write
 concurrency:
   group: a100-free-input-qualification
-  cancel-in-progress: false
+  # This workflow has no paid path. Each handoff has a unique run/source namespace.
+  # Superseded CPU preparation cannot qualify the newer files or allocate a Pod.
+  cancel-in-progress: true
 
 jobs:
   prepare:

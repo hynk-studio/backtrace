@@ -1,5 +1,6 @@
 """Actual pinned container on free CPU, offline, with no model or service keys."""
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
@@ -10,6 +11,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from tools import a100_delivery as frozen, cloud_task, pod_bootstrap, pod_preflight
+from tools.private_delivery import emit, receive
 from tests.official_cloud_prerequisites import qualify as prerequisites
 
 
@@ -23,17 +25,17 @@ def qualify():
     report['stages']['base'] = pod_preflight.base(8 * 1024**3)
     source = Path('/inputs/driver')
     manifest = cloud_task.manifest(source)
-    shutil.copytree(source, stage / 'driver')
-    # The source closure uses an external manifest during SSH delivery.
-    (stage / 'driver/delivery-manifest.json').write_bytes(manifest)
+    # Match the real transfer: only manifest-listed files, not preparation logs.
+    transport = io.BytesIO(); emit(source, manifest, transport); transport.seek(0)
+    receive(stage / 'driver', hashlib.sha256(manifest).hexdigest(), transport)
     hashes = {'driver': hashlib.sha256(manifest).hexdigest(),
               'wheels': hashlib.sha256(frozen.manifest('wheels')).hexdigest()}
     requested = time.time()
     report['stages']['runtime_installation'] = pod_bootstrap.prepare_runtime(hashes, requested)
     report['stages']['runtime'] = pod_preflight.runtime(require_gpu=False)
     pod_bootstrap.require_prepared_runtime(hashes, requested)
-    # Remove the transport-only manifest before the driver's exact closure check.
-    (stage / 'driver/delivery-manifest.json').unlink()
+    # Installation/imports must not add bytecode to the pinned driver tree.
+    pod_bootstrap.checked_tree(stage / 'driver', hashes['driver'])
     task = Path('/inputs/task')
     pod_bootstrap.checked_tree(task, hashlib.sha256(frozen.manifest('task')).hexdigest())
     target = Path('/kaggle/input/r0-inputs')

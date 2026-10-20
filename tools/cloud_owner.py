@@ -160,10 +160,13 @@ def execute(store, api, offer, bootstrap, configuration, directory, run_id, sour
             if http:
                 result['failure']['http_status'] = int(http.group(1))
         # Preserve source locations, never exception text, command lines or locals.
-        private_json(directory / 'controller-diagnostic.json', {
-            'failure': dict(result['failure']), 'observed_at': wall(),
-            'frames': [{'file': Path(frame.filename).name, 'function': frame.name,
-                        'line': frame.lineno} for frame in traceback.extract_tb(error.__traceback__)]})
+        try:
+            private_json(directory / 'controller-diagnostic.json', {
+                'failure': dict(result['failure']), 'observed_at': wall(),
+                'frames': [{'file': Path(frame.filename).name, 'function': frame.name,
+                            'line': frame.lineno} for frame in traceback.extract_tb(error.__traceback__)]})
+        except OSError:
+            result['diagnostic_write'] = 'FAILED'
     finally:
         try:
             stop(process)

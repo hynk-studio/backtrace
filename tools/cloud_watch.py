@@ -2,7 +2,9 @@
 import argparse
 import json
 import os
+from pathlib import Path
 import time
+import traceback
 
 from tools import cloud_state as state
 from tools import runpod_control as control
@@ -134,7 +136,9 @@ def main():
         if result.get('phase') not in ('deleted', 'no_claim', 'no_resource_observed'):
             raise SystemExit(1)
     except Exception as error:
-        print(json.dumps({'watcher': 'FAILED', 'error_type': type(error).__name__}))
+        print(json.dumps({'watcher': 'FAILED', 'error_type': type(error).__name__,
+            'frames': [{'file': Path(frame.filename).name, 'function': frame.name,
+                        'line': frame.lineno} for frame in traceback.extract_tb(error.__traceback__)]}))
         raise SystemExit(1) from None
 
 

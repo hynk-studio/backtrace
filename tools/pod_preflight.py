@@ -61,7 +61,7 @@ result={'status':'PASS','distributions':len(inventory),'cuda_runtime':cuda_runti
     if require_gpu:
         program += 'import torch\nresult["hardware"]=check_gpu(torch.cuda)\n'
     program += 'print(json.dumps(result,sort_keys=True))\n'
-    result = subprocess.run(['/opt/backtrace-runtime/venv/bin/python', '-I', '-c', program],
+    result = subprocess.run(['/opt/backtrace-runtime/venv/bin/python', '-I', '-B', '-c', program],
         env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8', 'HOME': '/root',
              'HF_HUB_OFFLINE': '1', 'TRANSFORMERS_OFFLINE': '1',
              'PYTHON_DOTENV_DISABLED': '1', 'OTEL_SDK_DISABLED': 'true'},

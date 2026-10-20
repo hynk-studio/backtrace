@@ -172,7 +172,7 @@ def install_runtime(requested_at, setup_seconds):
     remaining = setup_seconds - (time.time() - requested_at)
     if remaining <= 0:
         raise ValueError('setup deadline exhausted before runtime installation')
-    subprocess.run(['/usr/bin/python3.12', '-I', str(code), str(STAGING / 'wheels'),
+    subprocess.run(['/usr/bin/python3.12', '-I', '-B', str(code), str(STAGING / 'wheels'),
                     str(STAGING / 'driver/docs/linux-supplemental.lock'), str(environment)],
                    check=True, timeout=remaining,
                    env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8', 'HOME': '/root',
