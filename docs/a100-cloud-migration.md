@@ -13,8 +13,23 @@ authorization. One US-KS-2 Pod received all 28.89GB inputs and completed its
 offline runtime installation, then failed before inference because the
 workload inherited the private SSH umask. Owner and independent watcher
 confirmed deletion; a fresh full list found zero Pods and zero hourly spend.
-The workload-entry fix is free CPU work only; the claim is not reset and no
-new allocation is authorized. See [the current execution record](a100-execution-20261020.md).
+That claim remains consumed and is never reset. See
+[the execution record](a100-execution-20261020.md).
+
+At 15:54:45 KST the owner explicitly authorized one further attempt if a
+matching resource is available. The unchanged driver has now passed its full
+real CPU prerequisites path, including actual UID isolation and sandbox
+dependency inheritance, on the free Linux runner. The 40-file qualification
+receipt and all 246 tests passed; the final qualified execution source is
+`13a67094d7eb88db901f4bb4855f3246e61cc6d7`. No GPU inference is inferred from
+these CPU checks.
+
+Stock existed at 16:06 KST, but disappeared before the final owner gate at
+16:09 KST. The independent 16:10:36 KST recheck found no matching offer in
+any region, zero Pods, USD 9.4479243481 balance and zero hourly spend. The new
+authorization `owner-cloud-20261020-155445` is unused: no claim, paid owner
+entry or allocation. Its cleanup-only watcher cannot allocate or monitor
+stock. See [the current readiness record](a100-retry-20261020-1554.md).
 
 ## Earlier readiness record (historical)
 
@@ -49,7 +64,7 @@ complete list at 16:54:21Z contained zero Pods. No watcher/start branch has been
 activated. A new live matching offer is required before the already-authorized
 single paid attempt; no funding or approval reset is required.
 
-## Observed execution
+## Earlier migration observations (historical)
 
 - The public Draft PR remains #7 on `bt-001-a100-cpu-qualification`; main is untouched.
 - First Actions run: https://github.com/hynk-studio/backtrace/actions/runs/39246227301
@@ -131,13 +146,14 @@ reported separately from confirmed deletion. GitHub write failure cannot suppres
 provider cleanup after the claim has been read. The watcher contains no create
 operation and does not start the workload.
 
-The cleanup workflow is scoped to the exact
-`bt-001-a100-watch-20261019` branch; it is not triggered by routine PR pushes.
+The cleanup workflow is now scoped to the exact
+`bt-001-a100-watch-20261020b` branch; it is not triggered by routine PR pushes.
 Its independent concurrency group never cancels a running watcher. The
 `claim_before_create` integration seam also checks that this separate workflow
 is currently running at the same source SHA before allowing a claim. The state
-branch is prepared; no claim has been made. The watcher/start trigger branches
-have not been activated. The owner workflow runs free preflight on the
+branch preserves all previous consumed claims. The new watcher branch has been
+activated, while its dedicated paid start branch is absent and its claim unused.
+The owner workflow runs free preflight on the
 qualification branch; paid mode exists only on the dedicated start branch and
 requires the successful recorded qualification, unchanged fingerprints and a
 full CPU pass at its exact source. It also rechecks the live watcher before
