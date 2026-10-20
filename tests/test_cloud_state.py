@@ -19,8 +19,8 @@ class MemoryStore:
         self.docs = {}
         self.runs = {str(n): {'id': n, 'status': 'in_progress', 'conclusion': None,
                               'head_sha': SOURCE, 'head_branch': branch, 'run_attempt': 1}
-                     for n, branch in ((1, 'bt-001-a100-start-20261020c'),
-                                       (2, 'bt-001-a100-watch-20261020c'))}
+                     for n, branch in ((1, 'bt-001-a100-start-20261021a'),
+                                       (2, 'bt-001-a100-watch-20261021a'))}
         self.fail_write = None
 
     def read(self, name):
@@ -83,9 +83,10 @@ class CloudStateTests(unittest.TestCase):
 
     def test_previous_consumed_claim_is_not_valid_for_new_owner_authorization(self):
         claim, _ = self.claim()
-        self.assertEqual(claim['authorization'], 'owner-cloud-20261020-211134')
-        self.assertEqual(state.DIRECTORY, 'a100-state/owner-cloud-20261020-211134')
-        for prior in ('owner-cloud-20261019-203126', 'owner-cloud-20261020-155445'):
+        self.assertEqual(claim['authorization'], 'owner-cloud-20261021-003938')
+        self.assertEqual(state.DIRECTORY, 'a100-state/owner-cloud-20261021-003938')
+        for prior in ('owner-cloud-20261019-203126', 'owner-cloud-20261020-155445',
+                      'owner-cloud-20261020-211134'):
             with self.subTest(authorization=prior):
                 claim['authorization'] = prior
                 with self.assertRaises(ValueError):
@@ -99,13 +100,14 @@ class CloudStateTests(unittest.TestCase):
             state.cloud_costs(fresh, T0)
 
     def test_missing_stale_cancelled_or_other_source_watcher_blocks_claim(self):
-        for failure in ('missing', 'stale', 'cancelled', 'source'):
+        for failure in ('missing', 'stale', 'cancelled', 'source', 'previous_branch'):
             with self.subTest(failure=failure):
                 self.setUp()
                 if failure == 'missing': self.store.docs.pop('watcher')
                 if failure == 'stale': self.store.docs['watcher'][0]['at'] = T0 - 61
                 if failure == 'cancelled': self.store.runs['2']['status'] = 'completed'
                 if failure == 'source': self.store.runs['2']['head_sha'] = 'b' * 40
+                if failure == 'previous_branch': self.store.runs['2']['head_branch'] = 'bt-001-a100-watch-20261020c'
                 with self.assertRaises(state.StateError): self.claim()
                 self.assertIsNone(self.store.read('claim'))
 

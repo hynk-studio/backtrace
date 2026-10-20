@@ -75,6 +75,15 @@ UID prerequisites and five concurrent controller scenarios passed on CPU; the
 renewed receipt binds 52 files. Future setup checks the runtime and hardware
 before model transfer. This preparation grants no paid retry and does not
 establish an actual GPU/model/task result. All paid claims remain consumed.
+At 2026-10-21 00:39:38 KST, after re-enabling Monitoring and receiving the
+explanation that its consumed record and old qualification must be replaced,
+the owner instructed '수정해 줘'. Correct the conditional one-attempt resumption
+using `owner-cloud-20261021-003938`, its separate create-only state namespace
+and `20261021a` start/watch branches. Read `docs/a100-retry-20261021-0039.md`.
+Existing wallet/cumulative limits and all scientific inputs remain unchanged.
+Preserve all earlier consumed records and actual paid/watch branches. Do not
+activate a paid entry before renewed qualification, exact-source CPU success
+and a fresh matching independent watcher. No automatic second paid allocation.
 Read `docs/a100-owner-region-execution.md` before any future paid work. Long training, additional funding, rule acceptance and
 competition submission remain outside this scope.
 Never expose secrets or commit credentials, model

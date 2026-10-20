@@ -15,15 +15,16 @@ class LaunchContextTests(unittest.TestCase):
         for attempt in ('1', '2'):
             validate_context('preflight', self.context('bt-001-a100-cpu-qualification', attempt))
         with self.assertRaises(StateError):
-            validate_context('preflight', self.context('bt-001-a100-start-20261020c', '1'))
+            validate_context('preflight', self.context('bt-001-a100-start-20261021a', '1'))
 
     def test_paid_mode_still_requires_first_run_on_the_exact_start_branch(self):
-        validate_context('paid', self.context('bt-001-a100-start-20261020c', '1'))
-        for branch, attempt in (('bt-001-a100-start-20261020c', '2'),
+        validate_context('paid', self.context('bt-001-a100-start-20261021a', '1'))
+        for branch, attempt in (('bt-001-a100-start-20261021a', '2'),
                                 ('bt-001-a100-cpu-qualification', '1'),
-                                ('bt-001-a100-start-20261020c', '0'),
+                                ('bt-001-a100-start-20261021a', '0'),
                                 ('bt-001-a100-start-20261019', '1'),
-                                ('bt-001-a100-start-20261020b', '1')):
+                                ('bt-001-a100-start-20261020b', '1'),
+                                ('bt-001-a100-start-20261020c', '1')):
             with self.assertRaises(StateError):
                 validate_context('paid', self.context(branch, attempt))
 

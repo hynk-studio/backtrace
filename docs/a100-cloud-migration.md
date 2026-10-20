@@ -8,6 +8,14 @@ USD 8 cumulative stop. The prior CA-MTL-3 attempt remains consumed and deleted.
 
 ## Current result
 
+The owner re-enabled Monitoring and requested correction of its stale
+configuration at 2026-10-21 00:39:38 KST. The new conditional resumption has a
+separate authorization and execution namespace; all prior allocated attempts
+remain consumed. See [the current queue correction](a100-retry-20261021-0039.md).
+New operational-identity qualification is pending; no new GPU has been allocated.
+
+## Prior readiness and paid outcomes
+
 All four paid allocations are consumed and independently confirmed deleted.
 The latest stopped during installation with an unqualified StateError; its
 exact cause is still unknown. See [the latest execution record](a100-execution-20261020-2111.md).

@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "id": "prepaid10-actions-v1",
-  "authorization": "owner-cloud-20261020-211134",
-  "status": "CONSUMED AND INDEPENDENTLY DELETED; CONTROLLER STATE ERROR DURING INSTALL; MODEL AND TASK NOT RUN",
-  "authority": "At 2026-10-20 21:11:34 KST, after the report that stock exists, the owner instructed: '\uadf8.. \uc788\uc73c\uba74 \uc880 \ud574\ub77c'. Resume one A100 experiment using the already corrected runtime within the same existing wallet, cumulative USD 8 stop and unchanged allocation-inclusive limits. This is a new instruction; no old claim is reset or reused.",
+  "authorization": "owner-cloud-20261021-003938",
+  "status": "CONDITIONAL ONE-ATTEMPT RESUMPTION REQUESTED; UNCLAIMED; FREE QUALIFICATION PENDING",
+  "authority": "At 2026-10-21 00:36:16 KST the owner reported re-enabling Monitoring. After being told that the existing automation still referenced a consumed attempt and needed the latest qualified preparation plus a new execution record, the owner instructed at 00:39:38 KST: '수정해 줘'. Apply that correction to the conditional one-attempt R0 resumption under the existing wallet, cumulative USD 8 stop and unchanged allocation-inclusive limits. Preserve every consumed claim and old paid/watch branch; this does not authorize repeated paid retries.",
   "controller": "GitHub-hosted free Linux CPU runner; no user Mac/Windows required",
   "wallet_credits_usd": "10.00",
   "cumulative_stop_usd": "8.00",
@@ -23,7 +23,7 @@
     "An Actions runner is not durable storage; the fixed create-only claim is external",
     "An independent workflow is not a provider-enforced timer or a guaranteed dollar cap",
     "Synthetic cancellation tests are not a live paid cancellation trial",
-    "Four allocated attempts are consumed and independently deleted. The latest one verified all 28,893,536,947 input bytes but stopped during offline installation with StateError. Its exact reason was not retained and is unconfirmed. A separately reproduced concurrent-observation race is corrected and static reasons/final heartbeat retention are added. These free controller corrections do not establish successful GPU serving or grant another allocation. The one-shot conditional resumption task is disabled after allocation."
+    "Four earlier allocated attempts are consumed and independently deleted. The latest prior live StateError remains unexplained. Free readiness run 39437301557 passed the exact pinned image, actual CPU prerequisites and all five concurrent controller scenarios, but did not initialize a GPU or execute the model/task. The owner's 2026-10-21 correction request establishes a separate one-shot conditional resumption; its changed operational identity must pass renewed free qualification and exact-source CPU checks before any create."
   ],
   "exclusions": [
     "training",
