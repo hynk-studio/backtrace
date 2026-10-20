@@ -6,7 +6,17 @@ allocation through confirmed deletion up to two hours, one further allocation,
 server start and public task at most, within the existing USD 10 wallet and
 USD 8 cumulative stop. The prior CA-MTL-3 attempt remains consumed and deleted.
 
-## Current readiness
+## Current result
+
+The 2026-10-20 15:17:48 KST start instruction consumed the single Actions
+authorization. One US-KS-2 Pod received all 28.89GB inputs and completed its
+offline runtime installation, then failed before inference because the
+workload inherited the private SSH umask. Owner and independent watcher
+confirmed deletion; a fresh full list found zero Pods and zero hourly spend.
+The workload-entry fix is free CPU work only; the claim is not reset and no
+new allocation is authorized. See [the current execution record](a100-execution-20261020.md).
+
+## Earlier readiness record (historical)
 
 Update 2026-10-20: a fresh exact offer and all free gates passed at source
 `8fc553912ed1a7262793ccfce21ef50702516e97`. The dedicated owner run

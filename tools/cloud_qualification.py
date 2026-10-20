@@ -11,7 +11,7 @@ PATHS = tuple(sorted(set(
     + ['docs/' + name for name in a100_task.POD_DOCS]
     + ['tools/' + name + '.py' for name in (
         'a100_delivery', 'cloud_prepare', 'cloud_resolver', 'cloud_reference', 'cloud_transport',
-        'cloud_task', 'cloud_probe', 'cloud_inventory', 'cloud_seal', 'cloud_state', 'runpod_control', 'runpod_job',
+        'cloud_task', 'cloud_worker', 'cloud_probe', 'cloud_inventory', 'cloud_seal', 'cloud_state', 'runpod_control', 'runpod_job',
         'ssh_bootstrap', 'direct_delivery', 'private_delivery', 'pod_bootstrap')]
     + ['tests/official_a100_task.py', 'tests/official_cloud_transport.py',
        'docs/a100-task-delivery.json', 'docs/a100-result-recipient.txt',

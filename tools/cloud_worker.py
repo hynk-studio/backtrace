@@ -20,6 +20,22 @@ from tools.runpod_job import check_owner_host, heartbeat, private_json, read_pri
 
 PROFILE = 'actions-20261019'
 CLEAN = {'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'}
+WORKLOAD_PYTHON = '/opt/backtrace-runtime/venv/bin/python'
+WORKLOAD_DRIVER = '/root/backtrace/driver/one_task.py'
+
+
+def workload_command(requested_at):
+    """Set the driver's file-creation mask without changing private SSH setup.
+
+    The retained driver explicitly protects control/output directories with
+    0700 and the canary with 0600, but its shared code copies and task venv
+    require the usual 022 mask. Exec preserves the PID, environment, permit,
+    frozen driver bytes and allocation-inclusive deadlines.
+    """
+    entry = 'import os,sys;os.umask(0o022);os.execv(sys.argv[1],sys.argv[1:])'
+    return ['env', 'BACKTRACE_ALLOCATION_REQUESTED_AT=' + str(requested_at),
+            WORKLOAD_PYTHON, '-I', '-c', entry,
+            WORKLOAD_PYTHON, '-I', WORKLOAD_DRIVER, '--authorized-run']
 
 
 def direct_program():
@@ -135,9 +151,7 @@ def run(directory):
             remote(['python3', '-I', '-c', program])
             phase[0] = 'workload'
             try:
-                remote(['env', 'BACKTRACE_ALLOCATION_REQUESTED_AT=' + str(claim['requested_at']),
-                        '/opt/backtrace-runtime/venv/bin/python', '-I',
-                        '/root/backtrace/driver/one_task.py', '--authorized-run'], limit=state.USEFUL - 180)
+                remote(workload_command(claim['requested_at']), limit=state.USEFUL - 180)
                 outcome = 'finished'
             finally:
                 phase[0] = 'retrieval'
