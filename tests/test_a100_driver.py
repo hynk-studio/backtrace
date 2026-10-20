@@ -52,6 +52,21 @@ class A100DriverTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 driver.startup_deadline(allocated, now=now)
 
+    def test_runtime_component_keeps_update_one_floor_and_all_hardware_gates(self):
+        observed = driver.qualify_hardware(SMI, cuda(), runtime_version='12.8.90')
+        self.assertEqual(observed['runtime'], '12.8.90')
+        self.assertNotIn('toolkit', observed)
+        for value in ('12.8', '12.8.57', 'unknown'):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                driver.qualify_hardware(SMI, cuda(), runtime_version=value)
+        for text in (SMI.replace('Disabled', 'Enabled'), SMI.replace('570.124.06', '570.124.05')):
+            with self.subTest(text=text), self.assertRaises(ValueError):
+                driver.qualify_hardware(text, cuda(), runtime_version='12.8.90')
+        with self.assertRaises(ValueError):
+            driver.qualify_hardware(SMI, cuda())
+        with self.assertRaises(ValueError):
+            driver.qualify_hardware(SMI, cuda(), toolkit_version='12.8.1', runtime_version='12.8.90')
+
     def test_rejects_unpinned_source_before_config_execution(self):
         constructor = Mock()
         with self.assertRaisesRegex(ValueError, 'notebook hash mismatch'):

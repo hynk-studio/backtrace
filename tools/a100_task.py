@@ -1,6 +1,7 @@
 """Prepare the frozen private A100 driver; paid execution needs an owner permit."""
 import argparse
 import ast
+import ctypes
 import difflib
 import hashlib
 import importlib.metadata
@@ -98,14 +99,46 @@ def inherit_runtime(task_venv, runtime_prefix=None):
         stream.write(str(sites) + '\n')
 
 
+def cuda_runtime_info():
+    """Observe the pinned runtime component without requiring a developer image.
+
+    NVIDIA's CUDA 12.8 Update 1 table pins cudart 12.8.90. Its version API
+    reports only major/minor (12080), so it cannot establish the patch floor
+    alone. Pair it with the installed, hash-qualified wheel's component version.
+    cudaRuntimeGetVersion does not initialize CUDA on CUDA >=12.
+    """
+    from tools.a100_driver import version
+    distribution = importlib.metadata.distribution('nvidia-cuda-runtime-cu12')
+    observed = version(distribution.version)
+    if observed < (12, 8, 90):
+        raise ValueError('CUDA runtime >=12.8.90 required')
+    library = Path(distribution.locate_file('nvidia/cuda_runtime/lib/libcudart.so.12')).resolve()
+    library.relative_to(Path(distribution.locate_file('')).resolve())
+    if not library.is_file():
+        raise ValueError('qualified CUDA runtime library missing')
+    runtime = ctypes.CDLL(str(library))
+    get_version = runtime.cudaRuntimeGetVersion
+    get_version.argtypes = [ctypes.POINTER(ctypes.c_int)]
+    get_version.restype = ctypes.c_int
+    encoded = ctypes.c_int()
+    status = get_version(ctypes.byref(encoded))
+    if status != 0 or encoded.value != observed[0] * 1000 + observed[1] * 10:
+        raise ValueError('CUDA runtime API and component version disagree')
+    return {'version': distribution.version, 'api_version': encoded.value,
+            'library_sha256': hashlib.sha256(library.read_bytes()).hexdigest(),
+            'version_source': 'qualified wheel metadata and loaded libcudart cudaRuntimeGetVersion'}
+
+
 def check_gpu(cuda):
-    """Observe the exact assigned GPU; CPU tests may inject only the CUDA API."""
+    """Observe the assigned GPU and the qualified runtime actually being loaded."""
     from tools.a100_driver import qualify_hardware
     smi = subprocess.check_output([
         'nvidia-smi', '--query-gpu=name,uuid,memory.total,driver_version,mig.mode.current',
         '--format=csv,noheader,nounits'], text=True, timeout=10)
-    toolkit = json.loads(Path('/usr/local/cuda/version.json').read_text())['cuda']['version']
-    return qualify_hardware(smi, cuda, toolkit_version=toolkit)
+    runtime = cuda_runtime_info()
+    hardware = qualify_hardware(smi, cuda, runtime_version=runtime['version'])
+    hardware['runtime_evidence'] = runtime
+    return hardware
 
 
 def require_local_procfs():

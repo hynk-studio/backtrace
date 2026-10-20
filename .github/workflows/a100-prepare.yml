@@ -4,6 +4,8 @@ on:
   push:
     branches: [bt-001-a100-cpu-qualification]
     paths:
+      - 'tools/a100_task.py'
+      - 'tools/a100_driver.py'
       - 'tools/cloud_prepare.py'
       - 'tools/cloud_resolver.py'
       - 'tools/cloud_reference.py'

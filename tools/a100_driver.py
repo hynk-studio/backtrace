@@ -27,13 +27,14 @@ def version(value):
     return tuple(map(int, value.split('.')))
 
 
-def qualify_hardware(smi_csv, cuda, *, toolkit_version):
+def qualify_hardware(smi_csv, cuda, *, toolkit_version=None, runtime_version=None):
     """Read-only checks, no initialization/start. CSV columns are fixed below.
 
     nvidia-smi --query-gpu=name,uuid,memory.total,driver_version,mig.mode.current
       --format=csv,noheader,nounits
-    The caller must capture this on the assigned host and supply the actual
-    toolkit patch version, not infer it from torch.version.cuda ('12.8').
+    Supply exactly one observed version: a full developer toolkit version, or
+    the cudart component version verified against its loaded API. NVIDIA maps
+    CUDA 12.8 Update 1 to cudart 12.8.90; a major/minor string is insufficient.
     """
     rows = list(csv.reader(io.StringIO(smi_csv), skipinitialspace=True))
     if len(rows) != 1 or len(rows[0]) != 5:
@@ -45,16 +46,23 @@ def qualify_hardware(smi_csv, cuda, *, toolkit_version):
         raise ValueError('full GPU with MIG explicitly disabled required')
     if not memory.isdecimal() or int(memory) < 80000:
         raise ValueError('full 80GB GPU memory required')
-    if version(driver) < (570, 124, 6) or version(toolkit_version) < (12, 8, 1):
-        raise ValueError('driver >=570.124.06 and CUDA >=12.8.1 required')
+    if (toolkit_version is None) == (runtime_version is None):
+        raise ValueError('exactly one observed toolkit or CUDA runtime version required')
+    qualified_cuda = (version(toolkit_version) >= (12, 8, 1) if toolkit_version is not None
+                      else version(runtime_version) >= (12, 8, 90))
+    if version(driver) < (570, 124, 6) or not qualified_cuda:
+        raise ValueError('driver >=570.124.06 and CUDA 12.8 Update 1 or newer required')
     if not cuda.is_available() or cuda.device_count() != 1:
         raise ValueError('exactly one visible CUDA device required')
     if tuple(cuda.get_device_capability(0)) != (8, 0):
         raise ValueError('SM80 required')
     if not cuda.is_bf16_supported(including_emulation=False):
         raise ValueError('native BF16 required; no dtype fallback')
-    return dict(name=name, uuid=uuid, memory_mib=int(memory), driver=driver,
-                toolkit=toolkit_version, sm=[8, 0], native_bf16=True, tp=1)
+    result = dict(name=name, uuid=uuid, memory_mib=int(memory), driver=driver,
+                  sm=[8, 0], native_bf16=True, tp=1)
+    result['toolkit' if toolkit_version is not None else 'runtime'] = (
+        toolkit_version if toolkit_version is not None else runtime_version)
+    return result
 
 
 def build_config(notebook_bytes, config_type, torch):

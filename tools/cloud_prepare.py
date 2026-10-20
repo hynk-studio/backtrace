@@ -84,6 +84,18 @@ def qualify(root, emit):
         report['stages'][stage] = {'status': 'PASS', 'application_distributions': 245,
                                     'installation_network': 'AUDIT BLOCKED', 'host': 'Actions Ubuntu 24.04 CPU'}
         emit({'stage': stage, **report['stages'][stage]})
+        stage = 'cuda_runtime'
+        # Exercise the actual version reader against the frozen installed
+        # libcudart on CPU, with no developer toolkit manifest or GPU needed.
+        program = ('import sys,json;sys.path.insert(0,' + repr(str(frozen.ROOT))
+                   + ');from tools.a100_task import cuda_runtime_info;'
+                   + 'print(json.dumps(cuda_runtime_info()))')
+        with (root / 'cuda-runtime.log').open('xb') as log:
+            result = subprocess.run([str(runtime / 'venv/bin/python'), '-I', '-c', program],
+                env=env, stdout=subprocess.PIPE, stderr=log, check=True, timeout=30)
+        report['stages'][stage] = {'status': 'PASS', **json.loads(result.stdout),
+                                  'gpu_initialization': 'NOT RUN', 'model_execution': 'NOT RUN'}
+        emit({'stage': stage, **report['stages'][stage]})
         stage = 'download_task'
         data = frozen.manifest('task')
         report['stages'][stage] = pull(root / 'task', data, task_sources, hashlib.sha256(data).hexdigest(), 600)
@@ -151,7 +163,7 @@ def qualify(root, emit):
             report['failure']['reason'] = str(error)
     private = {}
     for name in ('retained-source.ipynb', 'offline-runtime.log', 'official-cloud-driver.log', 'cpu-task-layout.log',
-                 'actual-cpu-prerequisites.log', 'transport-loopback.log', 'transport/build.log'):
+                 'actual-cpu-prerequisites.log', 'cuda-runtime.log', 'transport-loopback.log', 'transport/build.log'):
         path = root / name
         if path.is_file():
             private[name] = path

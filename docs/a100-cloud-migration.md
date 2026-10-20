@@ -8,28 +8,18 @@ USD 8 cumulative stop. The prior CA-MTL-3 attempt remains consumed and deleted.
 
 ## Current result
 
-The 2026-10-20 15:17:48 KST start instruction consumed the single Actions
-authorization. One US-KS-2 Pod received all 28.89GB inputs and completed its
-offline runtime installation, then failed before inference because the
-workload inherited the private SSH umask. Owner and independent watcher
-confirmed deletion; a fresh full list found zero Pods and zero hourly spend.
-That claim remains consumed and is never reset. See
-[the execution record](a100-execution-20261020.md).
+The later 19:57 KST browser queue request found actual matching CA-MTL-3 stock.
+The already-approved single further attempt ran at source
+`91788995fa6e7fd185a4a4e001a13558ce37581b`. All input delivery, offline runtime,
+actual isolation and model file hashes passed. The server child then failed
+before model startup because the pinned runtime image has no developer toolkit
+version manifest. Owner and independent watcher confirmed Pod deletion; a fresh
+complete list found zero Pods, USD 9.1617621462 balance and zero hourly spend.
+The authorization is consumed. See [the latest execution record](a100-execution-20261020-1957.md).
 
-At 15:54:45 KST the owner explicitly authorized one further attempt if a
-matching resource is available. The unchanged driver has now passed its full
-real CPU prerequisites path, including actual UID isolation and sandbox
-dependency inheritance, on the free Linux runner. The 40-file qualification
-receipt and all 246 tests passed; the final qualified execution source is
-`13a67094d7eb88db901f4bb4855f3246e61cc6d7`. No GPU inference is inferred from
-these CPU checks.
-
-Stock existed at 16:06 KST, but disappeared before the final owner gate at
-16:09 KST. The independent 16:10:36 KST recheck found no matching offer in
-any region, zero Pods, USD 9.4479243481 balance and zero hourly spend. The new
-authorization `owner-cloud-20261020-155445` is unused: no claim, paid owner
-entry or allocation. Its cleanup-only watcher cannot allocate or monitor
-stock. See [the current readiness record](a100-retry-20261020-1554.md).
+The runtime version correction and renewed free qualification are CPU work
+only. No new paid allocation is authorized. The scientific driver, model,
+prompts, candidate, TP1 BF16 and experimental budget remain frozen.
 
 ## Earlier readiness record (historical)
 

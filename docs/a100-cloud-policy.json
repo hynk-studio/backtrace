@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "prepaid10-actions-v1",
   "authorization": "owner-cloud-20261020-155445",
-  "status": "FULL REAL FREE CPU PREPARATION PASS; NO QUALIFIED REGIONAL STOCK AT 2026-10-20T07:10:36Z; NEW AUTHORIZATION UNUSED; NO NEW POD OR SPENDING",
+  "status": "CONSUMED AND DELETED; MODEL START NOT RUN; FREE CUDA RUNTIME CORRECTION NEEDS NEW QUALIFICATION",
   "authority": "At 2026-10-20 15:54:45 KST the owner instructed: '그러면 지금 가용 가능 자원 있는지 확인하고 있으면 다시 실험 시행하자'. This authorizes one further attempt after the known permission fix and complete free CPU preparation, within the existing wallet and unchanged cumulative USD 8 stop. All previous claims remain consumed and immutable.",
   "controller": "GitHub-hosted free Linux CPU runner; no user Mac/Windows required",
   "wallet_credits_usd": "10.00",
@@ -16,14 +16,14 @@
   "useful_seconds": 6900,
   "request_to_confirmed_deletion_seconds": 7200,
   "automatic_paid_retry": false,
-  "previous_allocated_attempt": "280db614d5b14e9abcc75dbcf4ce688c / Pod 1h29jip02mmaf4; d314b1bf207147c3a92259b80caba0fe / Pod oaqns8gv9avo2p; both consumed and independently confirmed deleted",
+  "previous_allocated_attempt": "280db614d5b14e9abcc75dbcf4ce688c / Pod 1h29jip02mmaf4; d314b1bf207147c3a92259b80caba0fe / Pod oaqns8gv9avo2p; both consumed and independently confirmed deleted; 0de2835ad98d4f258476d4ee81f43d84 / Pod p70xyu9hqatdxf; consumed and independently confirmed deleted",
   "unchanged": "A100 PCIe 80GB x1 Secure, frozen model v2, TP1 native BF16, exact runtime/task/candidate/prompts/inference budget, no persistent or network volume",
   "credentials": "GitHub and RunPod account credentials remain on controller runners. The Pod may receive only scoped short-lived input download URLs before dropping to the workload UID. New credential access needs the browser's action-time confirmation.",
   "claims_not_made": [
     "An Actions runner is not durable storage; the fixed create-only claim is external",
     "An independent workflow is not a provider-enforced timer or a guaranteed dollar cap",
     "Synthetic cancellation tests are not a live paid cancellation trial",
-    "Previous paid attempts remain consumed and deleted. The unchanged driver completed its full CPU prerequisites, actual isolation and sandbox dependency inheritance on the real free Linux runner. Model startup, public task execution and live paid cancellation remain NOT RUN for the new authorization."
+    "All three allocated attempts are consumed and independently confirmed deleted. Actual isolation, sandbox dependencies and model file verification passed on the latest Pod. GPU qualification failed on a missing developer toolkit version manifest before model startup. No R0 task outcome exists. The free runtime correction requires updated qualification; a future paid attempt requires separate authorization."
   ],
   "exclusions": [
     "training",
