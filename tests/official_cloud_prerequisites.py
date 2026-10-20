@@ -20,17 +20,22 @@ from tools.pod_bootstrap import readonly
 from tools.runpod_job import check_owner_host
 
 
-def qualify(source):
+def qualify(source, *, staged=False, host='Actions Ubuntu 24.04 CPU'):
     check_owner_host()
     if any(k in os.environ for k in ('KAGGLE_API_TOKEN', 'RUNPOD_API_KEY', 'GITHUB_TOKEN', 'GH_STATE_TOKEN')):
         raise ValueError('CPU driver check must not inherit account credentials')
     cloud_task.manifest(source)  # Exact prepared closure; never alter the driver.
     stage = Path('/root/backtrace')
-    if stage.exists() or stage.is_symlink():
-        raise ValueError('fresh root staging required')
-    stage.mkdir(mode=0o700)
-    shutil.copytree(source, stage / 'driver')
-    readonly(stage / 'driver')
+    if staged:
+        if (stage.is_symlink() or cloud_task.manifest(stage / 'driver') != cloud_task.manifest(source)
+                or (stage / 'launch-permit.json').exists()):
+            raise ValueError('exact preinstalled CPU driver without launch permit required')
+    else:
+        if stage.exists() or stage.is_symlink():
+            raise ValueError('fresh root staging required')
+        stage.mkdir(mode=0o700)
+        shutil.copytree(source, stage / 'driver')
+        readonly(stage / 'driver')
     working = Path('/kaggle/working')
     working.mkdir(mode=0o700, parents=True, exist_ok=True)
     command = cloud_worker.workload_command(time.time(), cpu_prerequisites=True)
@@ -58,7 +63,7 @@ def qualify(source):
             'inherited_umask': '077', 'workload_umask': '022', 'workload_uid': 65534,
             'actual_sandbox_dependency_check': 'PASS', 'worker_cleanup': 'PASS',
             'private_log_sha256': hashlib.sha256(result.stdout).hexdigest(),
-            'host': 'Actions Ubuntu 24.04 CPU', 'gpu_allocations': 0,
+            'host': host, 'gpu_allocations': 0,
             'server_starts': 0, 'task_executions': 0, 'model_execution': 'NOT RUN'}
 
 

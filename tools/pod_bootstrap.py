@@ -163,7 +163,53 @@ def input_parent(target):
         current.chmod(0o755)
 
 
-def activate(manifests, requested_at, *, runtime=True, policy='prepaid10-external-v2'):
+def install_runtime(requested_at, setup_seconds):
+    environment = Path('/opt/backtrace-runtime')
+    if environment.exists() or environment.is_symlink():
+        raise ValueError('runtime path already exists')
+    ensure_venv_seed(STAGING / 'wheels')
+    code = STAGING / 'driver/tools/linux_runtime.py'
+    remaining = setup_seconds - (time.time() - requested_at)
+    if remaining <= 0:
+        raise ValueError('setup deadline exhausted before runtime installation')
+    subprocess.run(['/usr/bin/python3.12', '-I', str(code), str(STAGING / 'wheels'),
+                    str(STAGING / 'driver/docs/linux-supplemental.lock'), str(environment)],
+                   check=True, timeout=remaining,
+                   env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8', 'HOME': '/root',
+                        'PYTHON_DOTENV_DISABLED': '1', 'HF_HUB_OFFLINE': '1'})
+    readonly(environment)
+    return environment
+
+
+def prepare_runtime(manifests, requested_at):
+    """Install verified wheels before transferring the 23GB model stream."""
+    if (os.getuid() != 0 or set(manifests) != {'driver', 'wheels'}
+            or not 0 <= time.time() - requested_at < 5400):
+        raise ValueError('root, fresh setup clock and exact runtime inputs required')
+    for kind, sha in manifests.items():
+        checked_tree(STAGING / kind, sha)
+    readonly(STAGING / 'driver')
+    environment = install_runtime(requested_at, 5400)
+    receipt = {'manifests': dict(manifests), 'requested_at': requested_at,
+               'inventory_sha256': digest(environment / 'inventory.json')}
+    with (STAGING / 'runtime-ready.json').open('x') as stream:
+        os.fchmod(stream.fileno(), 0o600)
+        json.dump(receipt, stream); stream.flush(); os.fsync(stream.fileno())
+    return {'runtime_installation': 'PASS', 'model_transfer': 'NOT STARTED', **receipt}
+
+
+def require_prepared_runtime(manifests, requested_at):
+    receipt = STAGING / 'runtime-ready.json'
+    if (receipt.is_symlink() or receipt.stat().st_uid != 0 or receipt.stat().st_mode & 0o077
+            or json.loads(receipt.read_text()) != {
+                'manifests': {kind: manifests[kind] for kind in ('driver', 'wheels')},
+                'requested_at': requested_at,
+                'inventory_sha256': digest(Path('/opt/backtrace-runtime/inventory.json'))}):
+        raise ValueError('prepared runtime differs from this verified activation')
+
+
+def activate(manifests, requested_at, *, runtime=True, policy='prepaid10-external-v2',
+             prepared_runtime=False):
     """Verify all bytes first, then activate exact logical generation inputs."""
     if os.getuid() != 0 or set(manifests) != {'driver', 'wheels', 'task', 'model'}:
         raise ValueError('root and complete frozen streams required')
@@ -171,6 +217,10 @@ def activate(manifests, requested_at, *, runtime=True, policy='prepaid10-externa
     if policy not in limits:
         raise ValueError('unknown activation policy')
     setup_seconds = limits[policy]
+    if prepared_runtime:
+        if policy != 'prepaid10-actions-v1' or runtime is not True:
+            raise ValueError('prepared runtime is restricted to the Actions path')
+        require_prepared_runtime(manifests, requested_at)
     if not 0 <= time.time() - requested_at < setup_seconds:
         raise ValueError('setup deadline exhausted')
     checked = {kind: checked_tree(STAGING / kind, sha) for kind, sha in manifests.items()}
@@ -185,21 +235,10 @@ def activate(manifests, requested_at, *, runtime=True, policy='prepaid10-externa
         readonly(target)
     readonly(STAGING / 'driver')
     WORKING.mkdir(mode=0o700, parents=True, exist_ok=True)
-    if runtime:
+    if runtime and not prepared_runtime:
         # Build at the final public path: venv console-script shebangs are
         # absolute, so relocating an installed environment is not supported.
-        environment = Path('/opt/backtrace-runtime')
-        if environment.exists() or environment.is_symlink():
-            raise ValueError('runtime path already exists')
-        ensure_venv_seed(STAGING / 'wheels')
-        code = STAGING / 'driver/tools/linux_runtime.py'
-        remaining = setup_seconds - (time.time() - requested_at)
-        subprocess.run(['/usr/bin/python3.12', '-I', str(code), str(STAGING / 'wheels'),
-                        str(STAGING / 'driver/docs/linux-supplemental.lock'), str(environment)],
-                       check=True, timeout=max(0.001, remaining),
-                       env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8', 'HOME': '/root',
-                            'PYTHON_DOTENV_DISABLED': '1', 'HF_HUB_OFFLINE': '1'})
-        readonly(environment)
+        install_runtime(requested_at, setup_seconds)
     if time.time() - requested_at >= setup_seconds:
         raise ValueError('setup deadline exhausted after activation')
     return {'activation': 'PASS', 'input_access': 'root-owned / agent read-only permissions',

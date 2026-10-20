@@ -15,13 +15,13 @@ from tools import a100_delivery as frozen, cloud_resolver as resolver, cloud_tas
 from tools.cloud_probe import failure
 from tools.direct_delivery import pull, DownloadError
 from tools.runpod_job import private_json
-from tools import cloud_reference, cloud_state
+from tools import cloud_reference, cloud_state, cloud_image
 
 
 def qualify(root, emit):
     root = Path(root).absolute(); root.mkdir(mode=0o700, parents=True)
-    if shutil.disk_usage(root).free < 23 * 1024**3:
-        raise ValueError('free CPU disk space below 23 GiB')
+    if shutil.disk_usage(root).free < 45 * 1024**3:
+        raise ValueError('free CPU disk space below 45 GiB for host and pinned image')
     report = {'gpu_allocations': 0, 'server_starts': 0, 'task_executions': 0, 'stages': {}}
     stage = 'private_source'
     try:
@@ -145,6 +145,18 @@ def qualify(root, emit):
                 env=env, cwd=frozen.ROOT, stdout=subprocess.PIPE, stderr=log, check=True, timeout=300)
         report['stages'][stage] = json.loads(result.stdout)
         emit({'stage': stage, **report['stages'][stage]})
+        stage = 'pinned_image_cpu'
+        with (root / 'pinned-image.log').open('xb') as log:
+            report['stages'][stage] = cloud_image.qualify(root, log)
+        emit({'stage': stage, 'status': 'PASS', 'image': report['stages'][stage]['image'],
+              'gpu_allocations': 0, 'server_starts': 0, 'task_executions': 0})
+        stage = 'concurrent_controller'
+        with (root / 'concurrent-controller.log').open('xb') as log:
+            result = subprocess.run(['sudo', sys.executable, '-I',
+                str(frozen.ROOT / 'tests/official_cloud_lifecycle.py')], env=env,
+                stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=log, check=True, timeout=300)
+        report['stages'][stage] = json.loads(result.stdout)
+        emit({'stage': stage, **report['stages'][stage]})
         report['status'] = 'PASS'
     except Exception as error:
         report.update(status='FAIL', failed_stage=stage, failure=failure(error))
@@ -163,7 +175,8 @@ def qualify(root, emit):
             report['failure']['reason'] = str(error)
     private = {}
     for name in ('retained-source.ipynb', 'offline-runtime.log', 'official-cloud-driver.log', 'cpu-task-layout.log',
-                 'actual-cpu-prerequisites.log', 'cuda-runtime.log', 'transport-loopback.log', 'transport/build.log'):
+                 'actual-cpu-prerequisites.log', 'cuda-runtime.log', 'transport-loopback.log', 'transport/build.log',
+                 'pinned-image.log', 'concurrent-controller.log'):
         path = root / name
         if path.is_file():
             private[name] = path

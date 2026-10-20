@@ -118,13 +118,19 @@ class CloudOwnerTests(unittest.TestCase):
             result = self.run_lifecycle()
         self.assertNotIn('SECRET-ERROR-CANARY', json.dumps(result))
         self.assertEqual(result['allocation_requests'], 1)
+        diagnostic = json.loads((self.root / 'controller-diagnostic.json').read_text())
+        self.assertNotIn('SECRET-ERROR-CANARY', json.dumps(diagnostic))
+        self.assertEqual(result['failure']['stage'], 'provider_create')
+        self.assertTrue(diagnostic['frames'])
 
     def test_encrypted_results_keep_status_but_exclude_control_credentials(self):
-        for name in ('owner-result.json', 'job-status.json', 'worker-plan.json'):
+        for name in ('owner-result.json', 'job-status.json', 'setup-status.json',
+                     'controller-diagnostic.json', 'worker-plan.json'):
             private_json(self.root / name, {'fixture': name})
         with patch.object(owner.cloud_seal, 'seal', side_effect=lambda files, output: set(files)):
             retained = owner.seal_results(self.root, self.root / 'result.age')
-        self.assertEqual(retained, {'owner-result.json', 'job-status.json'})
+        self.assertEqual(retained, {'owner-result.json', 'job-status.json',
+                                   'setup-status.json', 'controller-diagnostic.json'})
 
     def test_finished_heartbeat_can_precede_the_child_process_exit(self):
         private_json(self.root / 'job-status.json', {'attempt': 'a' * 32, 'state': 'finished',

@@ -1,5 +1,5 @@
 name: A100 free private-input qualification
-# Renew after correcting the agent-side strict-base64 reference handoff.
+# CPU qualification includes the actual pinned deployment image and concurrent controllers.
 
 on:
   push:
@@ -8,6 +8,12 @@ on:
       - 'tools/a100_task.py'
       - 'tools/a100_driver.py'
       - 'tools/cloud_prepare.py'
+      - 'tools/cloud_image.py'
+      - 'tools/cloud_owner.py'
+      - 'tools/cloud_watch.py'
+      - 'tools/cloud_qualification.py'
+      - 'tools/pod_preflight.py'
+      - 'tools/pod_bootstrap.py'
       - 'tools/cloud_state.py'
       - 'tools/cloud_resolver.py'
       - 'tools/cloud_reference.py'
@@ -20,6 +26,11 @@ on:
       - 'tests/official_a100_task.py'
       - 'tests/official_cloud_transport.py'
       - 'tests/official_cloud_prerequisites.py'
+      - 'tests/official_cloud_image.py'
+      - 'tests/official_cloud_lifecycle.py'
+      - 'tests/test_cloud_state.py'
+      - 'tests/test_cloud_owner.py'
+      - 'tests/test_runpod_control.py'
       - '.github/workflows/a100-prepare.yml'
 permissions:
   contents: write

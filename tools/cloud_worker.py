@@ -49,8 +49,9 @@ def direct_program():
         source += 'exec(' + repr(code) + ',m.__dict__)\n'
     source += '''v=json.loads(sys.stdin.buffer.read(8*1024**2+1))
 assert set(v)=={'requested_at','streams'}
-assert set(v['streams'])=={'wheels','task','model'}
+assert set(v['streams']) in ({'wheels','task'}, {'model'}, {'wheels','task','model'})
 for kind in ('wheels','task','model'):
+ if kind not in v['streams']:continue
  row=v['streams'][kind]
  assert set(row)=={'manifest','sha256','sources'}
  manifest=row['manifest'].encode()
@@ -79,6 +80,37 @@ def code_envelope(source, input_text=''):
     if len(data) > 8 * 1024**2:
         raise ValueError('private direct envelope size limit')
     return remote_python(receiver), data
+
+
+def setup_remote(remote, streams, manifest, requested_at, *, emit=lambda value: None):
+    """Run cheap checks and installation before downloading the model weights."""
+    if set(streams) != {'wheels', 'task', 'model'}:
+        raise ValueError('complete frozen streams required')
+    hashes = {kind: row['sha256'] for kind, row in streams.items()}
+    hashes['driver'] = hashlib.sha256(manifest).hexdigest()
+    preflight = (frozen.ROOT / 'tools/pod_preflight.py').read_text()
+    bootstrap = (frozen.ROOT / 'tools/pod_bootstrap.py').read_text()
+    total = sum(row['bytes'] for stream in streams.values()
+                for row in json.loads(stream['manifest'])['files'])
+    steps = [
+        ('base_environment', code_envelope(preflight + '\nprint(json.dumps(base('
+            + repr(total + 16 * 1024**3) + ')))\n')),
+        ('runtime_inputs', direct_envelope({'requested_at': requested_at,
+            'streams': {kind: streams[kind] for kind in ('wheels', 'task')}})),
+        ('runtime_installation', code_envelope(bootstrap + '\nprint(json.dumps(prepare_runtime('
+            + repr({kind: hashes[kind] for kind in ('driver', 'wheels')}) + ','
+            + repr(requested_at) + ')))\n')),
+        ('runtime_hardware', code_envelope(preflight + '\nprint(json.dumps(runtime()))\n')),
+        ('model_inputs', direct_envelope({'requested_at': requested_at,
+            'streams': {'model': streams['model']}})),
+        ('activation', code_envelope(bootstrap + '\nprint(json.dumps(activate('
+            + repr(hashes) + ',' + repr(requested_at)
+            + ",policy='prepaid10-actions-v1',prepared_runtime=True)))\n")),
+    ]
+    for stage, (argv, data) in steps:
+        emit({'stage': stage, 'status': 'STARTED'})
+        remote(argv, input=data)
+        emit({'stage': stage, 'status': 'PASS'})
 
 
 def run(directory):
@@ -134,15 +166,11 @@ def run(directory):
                                   '/root/backtrace/driver', hashlib.sha256(manifest).hexdigest())
             push(driver, directory / 'driver-manifest.json', command, min(120, remaining(value, state.SETUP)))
             streams = json.loads(read_private(directory / 'worker-inputs.json'))
-            argv, data = direct_envelope({'requested_at': claim['requested_at'], 'streams': streams})
-            remote(argv, input=data)
-            hashes = {kind: row['sha256'] for kind, row in streams.items()}
-            hashes['driver'] = hashlib.sha256(manifest).hexdigest()
-            source = (frozen.ROOT / 'tools/pod_bootstrap.py').read_text()
-            program = source + "\nprint(json.dumps(activate(" + repr(hashes) + ',' + repr(claim['requested_at'])
-            program += ",policy='prepaid10-actions-v1')))\n"
-            argv, data = code_envelope(program)
-            remote(argv, input=data)
+            def setup_event(row):
+                private_json(directory / 'setup-status.json', row)
+                log.write(('BACKTRACE_SETUP ' + json.dumps(row, sort_keys=True) + '\n').encode())
+                log.flush()
+            setup_remote(remote, streams, manifest, claim['requested_at'], emit=setup_event)
             permit = {key: value[key] for key in ('policy', 'run', 'attempt', 'pod_id', 'requested_at')}
             permit['driver_sha256'] = cloud_task.CLOUD_DRIVER_SHA256
             program = ("import os,json,time;from pathlib import Path\n"

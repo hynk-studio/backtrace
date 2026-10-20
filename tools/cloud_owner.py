@@ -13,6 +13,7 @@ import signal
 import subprocess
 import sys
 import time
+import traceback
 
 from tools import cloud_state as state, cloud_task, cloud_worker, cloud_seal
 from tools import runpod_control as control
@@ -28,6 +29,7 @@ SAFE_STATE_REASONS = frozenset({
     'invalid durable-state response',
     'durable-state transport or JSON failure',
     'durable write not independently confirmed',
+    'invalid state object', 'invalid durable document', 'wrong workflow run',
 })
 
 
@@ -87,25 +89,31 @@ def execute(store, api, offer, bootstrap, configuration, directory, run_id, sour
     directory = Path(directory)
     claim = None; pod_record = None; process = None; heartbeat_sha = None
     result = {'allocation_requests': 0, 'worker_exit': None, 'cleanup': None}
+    stage = 'claim'
     try:
         claim, request = state.claim_before_create(store, api, offer, bootstrap, run_id,
                                                    source_sha, wall=wall)
+        stage = 'initial_heartbeat'
         heartbeat_sha = update_heartbeat(store, claim, 'setup', wall())
         result['allocation_requests'] = 1  # No retry, including unknown completion.
+        stage = 'provider_create'
         created = api.create(request)
         control.RunpodAPI.valid_id(created.get('id'))
         if created.get('name') != claim['name']:
             raise state.StateError('create response did not identify this attempt')
         pod_record = {'attempt': claim['attempt'], 'pod_id': created['id']}
+        stage = 'record_pod'
         store.write('pod', pod_record)
         expected = {'request': request, 'region': claim['region'], 'costs': claim['costs']}
         while True:
             now = wall()
             if now - claim['requested_at'] >= 1200:
                 raise TimeoutError('bounded bootstrap readiness exceeded')
+            stage = 'bootstrap_resource'
             pod = api.get(pod_record['pod_id'])
             if not control.resource_matches(pod, expected):
                 raise state.StateError('assigned resource differs from reviewed offer')
+            stage = 'bootstrap_heartbeat'
             heartbeat_sha = update_heartbeat(store, claim, 'setup', now, heartbeat_sha)
             endpoint = pod.get('ssh', {}).get('direct')
             if pod['status'] == 'RUNNING' and endpoint:
@@ -114,29 +122,36 @@ def execute(store, api, offer, bootstrap, configuration, directory, run_id, sour
                 break
             sleep(20)
         first_at = wall()
+        stage = 'spawn_worker'
         process = spawn(directory, configuration, claim, pod_record['pod_id'], endpoint)
         while process.poll() is None:
             now = wall()
+            stage = 'local_heartbeat'
             phase = local_phase(directory, claim, now, first_at=first_at, wall=wall)
             beat = {'attempt': claim['attempt'], 'at': int(now), 'phase': phase}
+            stage = 'owner_status'
             owner = store.run(str(run_id))
             reason = state.cleanup_reason(claim, owner, beat, now)
+            stage = 'watcher_status'
             watcher = store.run(claim['watcher_run_id'])
             if (reason or watcher['status'] != 'in_progress' or watcher['head_sha'] != source_sha
                     or watcher['run_attempt'] != 1):
                 raise state.StateError('lifecycle deadline or independent watcher failure')
+            stage = 'running_resource'
             if not control.resource_matches(api.get(pod_record['pod_id']), expected):
                 raise state.StateError('assigned resource changed during execution')
+            stage = 'publish_heartbeat'
             heartbeat_sha = update_heartbeat(store, claim, phase, now, heartbeat_sha)
             emit({'phase': phase, 'elapsed_seconds': int(now - claim['requested_at']),
                   'pod_id': pod_record['pod_id']})
             sleep(20)
+        stage = 'worker_exit'
         result['worker_exit'] = process.returncode
         if process.returncode != 0:
             raise RuntimeError('single worker failed; no paid retry')
     except Exception as error:
         result['failure'] = {'error_type': type(error).__name__,
-                             'http_status': getattr(error, 'http_status', None)}
+                             'http_status': getattr(error, 'http_status', None), 'stage': stage}
         if isinstance(error, state.StateError):
             message = str(error)
             http = re.fullmatch(r'durable-state HTTP ([0-9]{3})', message)
@@ -144,6 +159,11 @@ def execute(store, api, offer, bootstrap, configuration, directory, run_id, sour
                 result['failure']['reason'] = message
             if http:
                 result['failure']['http_status'] = int(http.group(1))
+        # Preserve source locations, never exception text, command lines or locals.
+        private_json(directory / 'controller-diagnostic.json', {
+            'failure': dict(result['failure']), 'observed_at': wall(),
+            'frames': [{'file': Path(frame.filename).name, 'function': frame.name,
+                        'line': frame.lineno} for frame in traceback.extract_tb(error.__traceback__)]})
     finally:
         try:
             stop(process)
@@ -176,7 +196,8 @@ def seal_results(directory, output):
     """Never traverse the owner's bootstrap keys, source maps or credential files."""
     directory = Path(directory)
     files = {name: directory / name for name in (
-        'owner-result.json', 'job-status.json', 'worker.log', 'worker-process.log', 'receipt-transfer.json')
+        'owner-result.json', 'job-status.json', 'setup-status.json', 'controller-diagnostic.json',
+        'worker.log', 'worker-process.log', 'receipt-transfer.json')
         if (directory / name).is_file()}
     receipts = directory / 'receipts'
     if receipts.is_dir():
