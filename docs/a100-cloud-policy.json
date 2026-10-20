@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "prepaid10-actions-v1",
   "authorization": "owner-cloud-20261021-003938",
-  "status": "CONDITIONAL ONE-ATTEMPT RESUMPTION REQUESTED; UNCLAIMED; FREE QUALIFICATION PENDING",
+  "status": "FREE QUALIFIED; UNCLAIMED; CONDITIONAL ONE-ATTEMPT MONITORING CONFIGURED",
   "authority": "At 2026-10-21 00:36:16 KST the owner reported re-enabling Monitoring. After being told that the existing automation still referenced a consumed attempt and needed the latest qualified preparation plus a new execution record, the owner instructed at 00:39:38 KST: '수정해 줘'. Apply that correction to the conditional one-attempt R0 resumption under the existing wallet, cumulative USD 8 stop and unchanged allocation-inclusive limits. Preserve every consumed claim and old paid/watch branch; this does not authorize repeated paid retries.",
   "controller": "GitHub-hosted free Linux CPU runner; no user Mac/Windows required",
   "wallet_credits_usd": "10.00",
@@ -23,7 +23,7 @@
     "An Actions runner is not durable storage; the fixed create-only claim is external",
     "An independent workflow is not a provider-enforced timer or a guaranteed dollar cap",
     "Synthetic cancellation tests are not a live paid cancellation trial",
-    "Four earlier allocated attempts are consumed and independently deleted. The latest prior live StateError remains unexplained. Free readiness run 39437301557 passed the exact pinned image, actual CPU prerequisites and all five concurrent controller scenarios, but did not initialize a GPU or execute the model/task. The owner's 2026-10-21 correction request establishes a separate one-shot conditional resumption; its changed operational identity must pass renewed free qualification and exact-source CPU checks before any create."
+    "Four earlier allocated attempts are consumed and independently deleted. The latest prior live StateError remains unexplained. Renewed free run 39451054526 at ab9b0e878b8175e5aefcbd19f62da0a6b30ae2a7 passed the exact pinned image, actual CPU prerequisites and five concurrent controller scenarios for owner-cloud-20261021-003938. It initialized no GPU and executed no model/task. The new conditional resumption still requires successful exact-source CPU/free preparation and a fresh independent watcher before the only permitted create."
   ],
   "exclusions": [
     "training",

@@ -12,7 +12,9 @@ The owner re-enabled Monitoring and requested correction of its stale
 configuration at 2026-10-21 00:39:38 KST. The new conditional resumption has a
 separate authorization and execution namespace; all prior allocated attempts
 remain consumed. See [the current queue correction](a100-retry-20261021-0039.md).
-New operational-identity qualification is pending; no new GPU has been allocated.
+New operational-identity qualification passed in run 39451054526, including the
+actual image and five controller scenarios. The renewed receipt binds 52 files;
+no new GPU has been allocated.
 
 ## Prior readiness and paid outcomes
 
