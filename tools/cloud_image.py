@@ -23,6 +23,7 @@ def qualify(root, log):
     for source, target, readonly in (
             *((frozen.ROOT / p, '/work/' + p, True) for p in ('tools', 'docs', 'tests')),
             (root / 'driver', '/inputs/driver', True),
+            (root / 'system', '/inputs/system', True),
             (root / 'wheels', '/root/backtrace/wheels', True),
             (root / 'task', '/inputs/task', True), (output, '/result', False)):
         command += ['--mount', 'type=bind,source=' + str(source.resolve()) + ',target=' + target

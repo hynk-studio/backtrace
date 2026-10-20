@@ -15,7 +15,7 @@ from tools import a100_delivery as frozen, cloud_resolver as resolver, cloud_tas
 from tools.cloud_probe import failure
 from tools.direct_delivery import pull, DownloadError
 from tools.runpod_job import private_json
-from tools import cloud_reference, cloud_state, cloud_image
+from tools import cloud_reference, cloud_state, cloud_image, pod_system
 
 
 def qualify(root, emit):
@@ -61,6 +61,10 @@ def qualify(root, emit):
         stage = 'restore_official'
         report['stages'][stage] = cloud_reference.receive(transfer, identity, prefix, root / 'official')
         emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
+        stage = 'download_system_packages'
+        system_manifest = json.loads((frozen.ROOT / 'docs/a100-system-packages.json').read_text())
+        report['stages'][stage] = pod_system.download(system_manifest, root / 'system', deadline=time.time() + 180)
+        emit({'stage': stage, **report['stages'][stage]})
         stage = 'download_wheels'
         data = frozen.manifest('wheels')
         report['stages'][stage] = pull(root / 'wheels', data, wheel_sources, hashlib.sha256(data).hexdigest(), 1800)

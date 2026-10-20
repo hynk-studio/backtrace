@@ -19,7 +19,7 @@ def base(minimum_free_bytes):
     free = shutil.disk_usage('/root').free
     if free < minimum_free_bytes:
         raise ValueError('insufficient temporary disk before input transfer')
-    if any(shutil.which(name) is None for name in ('setpriv', 'git', 'bash')):
+    if any(shutil.which(name) is None for name in ('setpriv', 'bash')):
         raise ValueError('required workload executable missing')
     # Exercise the actual UID transition and traversal rules under SSH's mask.
     with tempfile.TemporaryDirectory(prefix='backtrace-preflight-') as name:
@@ -44,7 +44,8 @@ assert not os.access(p/'private/key',os.R_OK)
             stdin=subprocess.DEVNULL, check=True, timeout=15)
     return {'status': 'PASS', 'python': platform.python_version(),
             'free_disk_bytes': free, 'required_disk_bytes': minimum_free_bytes,
-            'uid_boundary': 'PASS', 'workload_uid': 65534, 'model_execution': 'NOT RUN'}
+            'uid_boundary': 'PASS', 'workload_uid': 65534, 'model_execution': 'NOT RUN',
+            'system_tools_before_install': {name: shutil.which(name) for name in ('git', 'patch')}}
 
 
 def runtime(*, require_gpu=True):

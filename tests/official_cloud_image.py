@@ -10,7 +10,7 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from tools import a100_delivery as frozen, cloud_task, pod_bootstrap, pod_preflight
+from tools import a100_delivery as frozen, cloud_task, pod_bootstrap, pod_preflight, pod_system
 from tools.private_delivery import emit, receive
 from tests.official_cloud_prerequisites import qualify as prerequisites
 
@@ -23,6 +23,8 @@ def qualify():
     report = {'host': 'exact pinned RunPod image on Actions CPU', 'gpu_allocations': 0,
               'network': 'NONE', 'model_bytes_downloaded': 0, 'stages': {}}
     report['stages']['base'] = pod_preflight.base(8 * 1024**3)
+    system_manifest = json.loads((ROOT / 'docs/a100-system-packages.json').read_text())
+    report['stages']['system_packages'] = pod_system.install(system_manifest, time.time(), local_packages='/inputs/system')
     source = Path('/inputs/driver')
     manifest = cloud_task.manifest(source)
     # Match the real transfer: only manifest-listed files, not preparation logs.

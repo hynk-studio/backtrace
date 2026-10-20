@@ -90,11 +90,15 @@ def setup_remote(remote, streams, manifest, requested_at, *, emit=lambda value: 
     hashes['driver'] = hashlib.sha256(manifest).hexdigest()
     preflight = (frozen.ROOT / 'tools/pod_preflight.py').read_text()
     bootstrap = (frozen.ROOT / 'tools/pod_bootstrap.py').read_text()
+    system_source = (frozen.ROOT / 'tools/pod_system.py').read_text()
+    system_manifest = json.loads((frozen.ROOT / 'docs/a100-system-packages.json').read_text())
     total = sum(row['bytes'] for stream in streams.values()
                 for row in json.loads(stream['manifest'])['files'])
     steps = [
         ('base_environment', code_envelope(preflight + '\nprint(json.dumps(base('
             + repr(total + 16 * 1024**3) + ')))\n')),
+        ('system_packages', code_envelope(system_source + '\nprint(json.dumps(install('
+            + repr(system_manifest) + ',' + repr(requested_at) + ')))\n')),
         ('runtime_inputs', direct_envelope({'requested_at': requested_at,
             'streams': {kind: streams[kind] for kind in ('wheels', 'task')}})),
         ('runtime_installation', code_envelope(bootstrap + '\nprint(json.dumps(prepare_runtime('

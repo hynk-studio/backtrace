@@ -17,7 +17,7 @@ class EarlyPreparationTests(unittest.TestCase):
                 for kind in ('wheels', 'task', 'model')}
 
     def test_environment_installation_and_hardware_failures_never_transfer_model(self):
-        for fail_at in ('base_environment', 'runtime_inputs', 'runtime_installation', 'runtime_hardware'):
+        for fail_at in ('base_environment', 'system_packages', 'runtime_inputs', 'runtime_installation', 'runtime_hardware'):
             with self.subTest(fail_at=fail_at):
                 events = []; transferred = []
                 def remote(argv, *, input):

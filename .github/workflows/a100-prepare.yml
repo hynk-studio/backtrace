@@ -14,6 +14,8 @@ on:
       - 'tools/cloud_qualification.py'
       - 'tools/pod_preflight.py'
       - 'tools/pod_bootstrap.py'
+      - 'tools/pod_system.py'
+      - 'docs/a100-system-packages.json'
       - 'tools/cloud_state.py'
       - 'tools/cloud_resolver.py'
       - 'tools/cloud_reference.py'
