@@ -17,6 +17,10 @@ The claim remains absent. See [the current execution record](a100-execution-2026
 and [the nullable quote compatibility evidence](a100-offer-compatibility.md).
 The subsequent free-watcher handover change preserves the claim and requires
 the previous watcher to be terminal before replacing its unused lease.
+Latest qualified launch source: `80cb0efa905ba7f068ea10e04ecf1c37c4382401`;
+244/244 full CPU tests and actual owner preflight passed. Its 04:40:01Z read
+again found no matching offer, unchanged balance and zero spend. The next
+actual watcher must establish its own fresh lease before a paid claim.
 
 The following is the retained 2026-10-19 readiness record:
 
