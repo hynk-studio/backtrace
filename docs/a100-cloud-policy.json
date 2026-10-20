@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "prepaid10-actions-v1",
   "authorization": "owner-cloud-20261020-211134",
-  "status": "OWNER-REQUESTED RESUMPTION; FREE QUALIFICATION AND EXACT-SOURCE CPU REQUIRED BEFORE ONE NEW PAID ALLOCATION",
+  "status": "OWNER-REQUESTED RESUMPTION; RENEWED FULL FREE QUALIFICATION PASS; FIRST NEW ALLOCATION PENDING EXACT-SOURCE CPU AND WATCHER",
   "authority": "At 2026-10-20 21:11:34 KST, after the report that stock exists, the owner instructed: '\uadf8.. \uc788\uc73c\uba74 \uc880 \ud574\ub77c'. Resume one A100 experiment using the already corrected runtime within the same existing wallet, cumulative USD 8 stop and unchanged allocation-inclusive limits. This is a new instruction; no old claim is reset or reused.",
   "controller": "GitHub-hosted free Linux CPU runner; no user Mac/Windows required",
   "wallet_credits_usd": "10.00",
@@ -23,7 +23,7 @@
     "An Actions runner is not durable storage; the fixed create-only claim is external",
     "An independent workflow is not a provider-enforced timer or a guaranteed dollar cap",
     "Synthetic cancellation tests are not a live paid cancellation trial",
-    "Three earlier allocations remain consumed and independently confirmed deleted. The runtime correction passed complete free qualification at 0dc0bb6088a9ea5f872110ca7daecf0cf6b63820. The new fixed authorization changes only operational identity and must obtain a renewed bound-file receipt before allocation. GPU initialization, serving and task execution under the correction remain NOT RUN until observed."
+    "All three earlier allocations stay consumed and independently confirmed deleted. Renewed complete free qualification passed at d6c48e49950aa1120d7d4828ed8a9ce8fc28a0d8, run 39421393404, all 40 fingerprints bound. Actual cudart 12.8.90 / API 12080 and entire CPU prerequisites passed. This is not a GPU serving result. The fresh owner instruction permits one new attempt after the exact-source CPU and watcher gates."
   ],
   "exclusions": [
     "training",
