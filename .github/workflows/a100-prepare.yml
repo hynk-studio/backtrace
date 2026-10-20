@@ -1,4 +1,5 @@
 name: A100 free private-input qualification
+# Renew after correcting the agent-side strict-base64 reference handoff.
 
 on:
   push:
