@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 import re
 import sys
+import time
 
 from tools import a100_delivery as frozen, cloud_resolver as resolver, cloud_task, cloud_transport
 from tools import cloud_qualification, cloud_offer, cloud_owner, cloud_worker, cloud_state as state
@@ -93,6 +94,30 @@ def preparation(root, store, source_sha, emit):
     return result, initializer, api
 
 
+def wait_for_availability(store, source_sha, availability, emit, *, timeout=360,
+                          inspect=cloud_offer.inspect_offer, wall=time.time,
+                          monotonic=time.monotonic, sleep=time.sleep):
+    """Wait freely for stock after preparation; never claim or create here.
+
+    The independent watcher's existing ten-minute unclaimed window still
+    applies. A stale/dead watcher or any concurrent claim stops this wait.
+    Allocation-inclusive workload deadlines start only at the immutable claim.
+    """
+    started = monotonic()
+    while availability['status'] == 'NO_QUALIFIED_REGION':
+        elapsed = monotonic() - started
+        if elapsed >= timeout:
+            break
+        if store.read('claim') is not None:
+            raise state.StateError('authorization is already consumed; never recreate')
+        state.require_watcher(store, source_sha, int(wall()))
+        emit({'stage': 'stock_wait', 'status': 'WAITING',
+              'free_wait_elapsed_seconds': int(elapsed), 'allocation_requests': 0})
+        sleep(min(20, timeout - elapsed))
+        availability = inspect()
+    return availability, int(monotonic() - started)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--mode', choices=('preflight', 'paid'), required=True)
@@ -109,6 +134,9 @@ def main():
             store = state.GitHubState(os.environ['GITHUB_TOKEN'])
             result, initializer, api = preparation(root, store, source_sha, emit)
             report['preparation'] = result
+            if args.mode == 'paid':
+                result['availability'], result['free_stock_wait_seconds'] = wait_for_availability(
+                    store, source_sha, result['availability'], emit)
             if args.mode == 'preflight':
                 report['status'] = 'PREPARATION_PASS'
             elif result['availability']['status'] != 'QUALIFIED':

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "prepaid10-actions-v1",
   "authorization": "owner-cloud-20261020-211134",
-  "status": "OWNER-REQUESTED RESUMPTION; RENEWED FULL FREE QUALIFICATION PASS; FIRST NEW ALLOCATION PENDING EXACT-SOURCE CPU AND WATCHER",
+  "status": "AUTHORIZED AND UNUSED; FIRST ENTRY HAD ZERO CREATES AFTER STOCK LOSS; FREE WAITING AND CONDITIONAL RESUMPTION",
   "authority": "At 2026-10-20 21:11:34 KST, after the report that stock exists, the owner instructed: '\uadf8.. \uc788\uc73c\uba74 \uc880 \ud574\ub77c'. Resume one A100 experiment using the already corrected runtime within the same existing wallet, cumulative USD 8 stop and unchanged allocation-inclusive limits. This is a new instruction; no old claim is reset or reused.",
   "controller": "GitHub-hosted free Linux CPU runner; no user Mac/Windows required",
   "wallet_credits_usd": "10.00",
@@ -23,7 +23,7 @@
     "An Actions runner is not durable storage; the fixed create-only claim is external",
     "An independent workflow is not a provider-enforced timer or a guaranteed dollar cap",
     "Synthetic cancellation tests are not a live paid cancellation trial",
-    "All three earlier allocations stay consumed and independently confirmed deleted. Renewed complete free qualification passed at d6c48e49950aa1120d7d4828ed8a9ce8fc28a0d8, run 39421393404, all 40 fingerprints bound. Actual cudart 12.8.90 / API 12080 and entire CPU prerequisites passed. This is not a GPU serving result. The fresh owner instruction permits one new attempt after the exact-source CPU and watcher gates."
+    "All three earlier allocations remain consumed and independently confirmed deleted. Fresh authorization owner-cloud-20261020-211134 has no claim or create: owner run 39422868458 ended with NO_QUALIFIED_REGION. Full free qualification 39421393404 passed and all 40 bound files remain unchanged. The controller-only stock wait does not allocate, retry a provider POST, extend paid deadlines or remove any gate. Exact-source full CPU and a fresh matching independent watcher are still required."
   ],
   "exclusions": [
     "training",

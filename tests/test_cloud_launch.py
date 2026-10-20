@@ -1,7 +1,9 @@
 import unittest
 
-from tools.cloud_launch import validate_context
+from tools.cloud_launch import validate_context, wait_for_availability
 from tools.cloud_state import REPOSITORY, StateError
+from tests.test_cloud_state import MemoryStore, SOURCE
+from tests.test_runpod_control import T0
 
 
 class LaunchContextTests(unittest.TestCase):
@@ -24,6 +26,51 @@ class LaunchContextTests(unittest.TestCase):
                                 ('bt-001-a100-start-20261020b', '1')):
             with self.assertRaises(StateError):
                 validate_context('paid', self.context(branch, attempt))
+
+
+class StockWaitTests(unittest.TestCase):
+    def setUp(self):
+        self.store = MemoryStore()
+        self.store.write('watcher', {'run_id': '2', 'source_sha': SOURCE, 'at': T0})
+        self.elapsed = 0
+        self.polls = 0
+        self.events = []
+
+    def sleep(self, seconds):
+        self.elapsed += seconds
+
+    def wait(self, inspect, timeout=40):
+        return wait_for_availability(self.store, SOURCE,
+            {'status': 'NO_QUALIFIED_REGION'}, self.events.append, inspect=inspect,
+            timeout=timeout, wall=lambda: T0 + self.elapsed,
+            monotonic=lambda: self.elapsed, sleep=self.sleep)
+
+    def test_stock_return_uses_fresh_offer_without_consuming_a_claim(self):
+        fresh = {'status': 'QUALIFIED', 'offer': {'observed_at': 'fresh'}}
+        result, elapsed = self.wait(lambda: fresh)
+        self.assertEqual((result, elapsed), (fresh, 20))
+        self.assertIsNone(self.store.read('claim'))
+        self.assertEqual(self.events[0]['allocation_requests'], 0)
+
+    def test_no_stock_wait_is_bounded_and_leaves_authorization_unused(self):
+        def inspect():
+            self.polls += 1
+            return {'status': 'NO_QUALIFIED_REGION'}
+        result, elapsed = self.wait(inspect)
+        self.assertEqual((result['status'], elapsed, self.polls), ('NO_QUALIFIED_REGION', 40, 2))
+        self.assertIsNone(self.store.read('claim'))
+
+    def test_concurrent_claim_stops_before_another_inventory_read(self):
+        self.store.docs['claim'] = ({'already': 'claimed'}, 'a' * 40)
+        with self.assertRaisesRegex(StateError, 'consumed'):
+            self.wait(lambda: self.fail('must not poll after a claim'))
+        self.assertEqual(self.elapsed, 0)
+
+    def test_wrong_source_watcher_stops_before_inventory_or_sleep(self):
+        self.store.docs['watcher'][0]['source_sha'] = 'b' * 40
+        with self.assertRaisesRegex(StateError, 'source'):
+            self.wait(lambda: self.fail('must not poll without the source-bound watcher'))
+        self.assertEqual(self.elapsed, 0)
 
 
 if __name__ == '__main__':

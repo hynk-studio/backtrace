@@ -58,6 +58,11 @@ cumulative stop and 7,200-second allocation-inclusive deadline. Preserve all
 prior state bytes and branches; never reset or rerun their paid workflows.
 Follow `docs/a100-retry-20261020-2111.md`; renew the changed operational
 fingerprints and exact-source CPU qualification before the new allocation.
+Owner entry 39422868458 sent zero create requests after live stock disappeared;
+this fresh authorization is still unused. A controller-only bounded free stock
+wait and conditional resumption may rearm an unallocated entry after exact-source
+CPU and completed-unclaimed watcher handover. Never rerun a paid job, reset any
+claim or repeat an actual provider create.
 Read `docs/a100-owner-region-execution.md` before any future paid work. Long training, additional funding, rule acceptance and
 competition submission remain outside this scope.
 Never expose secrets or commit credentials, model
