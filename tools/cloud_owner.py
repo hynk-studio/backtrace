@@ -8,6 +8,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import signal
 import subprocess
 import sys
@@ -16,6 +17,18 @@ import time
 from tools import cloud_state as state, cloud_task, cloud_worker, cloud_seal
 from tools import runpod_control as control
 from tools.runpod_job import private_json, read_private
+
+SAFE_STATE_REASONS = frozenset({
+    'worker heartbeat is stale or finished',
+    'create response did not identify this attempt',
+    'assigned resource differs from reviewed offer',
+    'exact root endpoint required',
+    'lifecycle deadline or independent watcher failure',
+    'assigned resource changed during execution',
+    'invalid durable-state response',
+    'durable-state transport or JSON failure',
+    'durable write not independently confirmed',
+})
 
 
 def update_heartbeat(store, claim, phase, now, previous_sha=None):
@@ -47,15 +60,18 @@ def spawn_worker(directory, configuration, claim, pod_id, endpoint):
             stdin=subprocess.DEVNULL, stdout=log, stderr=log, start_new_session=True)
 
 
-def local_phase(directory, claim, now, *, first_at):
+def local_phase(directory, claim, now, *, first_at, wall=None):
     path = Path(directory) / 'job-status.json'
     if not path.exists() and now - first_at < 15:
         return 'setup'
     value = json.loads(read_private(path))
+    # The worker can replace its heartbeat after the caller sampled `now`.
+    # Observe time after reading, preserving strict future/staleness checks.
+    observed_at = now if wall is None else wall()
     if (value['attempt'] != claim['attempt'] or value['state'] not in ('running', 'finished')
             or value['phase'] not in ('setup', 'workload', 'retrieval')
             or (value['state'] == 'finished' and value['phase'] != 'retrieval')
-            or not 0 <= now - control.timestamp(value['at']) <= 15):
+            or not 0 <= observed_at - control.timestamp(value['at']) <= 15):
         raise state.StateError('worker heartbeat is stale or finished')
     return value['phase']
 
@@ -101,7 +117,7 @@ def execute(store, api, offer, bootstrap, configuration, directory, run_id, sour
         process = spawn(directory, configuration, claim, pod_record['pod_id'], endpoint)
         while process.poll() is None:
             now = wall()
-            phase = local_phase(directory, claim, now, first_at=first_at)
+            phase = local_phase(directory, claim, now, first_at=first_at, wall=wall)
             beat = {'attempt': claim['attempt'], 'at': int(now), 'phase': phase}
             owner = store.run(str(run_id))
             reason = state.cleanup_reason(claim, owner, beat, now)
@@ -121,6 +137,13 @@ def execute(store, api, offer, bootstrap, configuration, directory, run_id, sour
     except Exception as error:
         result['failure'] = {'error_type': type(error).__name__,
                              'http_status': getattr(error, 'http_status', None)}
+        if isinstance(error, state.StateError):
+            message = str(error)
+            http = re.fullmatch(r'durable-state HTTP ([0-9]{3})', message)
+            if message in SAFE_STATE_REASONS or http:
+                result['failure']['reason'] = message
+            if http:
+                result['failure']['http_status'] = int(http.group(1))
     finally:
         try:
             stop(process)
@@ -153,7 +176,7 @@ def seal_results(directory, output):
     """Never traverse the owner's bootstrap keys, source maps or credential files."""
     directory = Path(directory)
     files = {name: directory / name for name in (
-        'owner-result.json', 'worker.log', 'worker-process.log', 'receipt-transfer.json')
+        'owner-result.json', 'job-status.json', 'worker.log', 'worker-process.log', 'receipt-transfer.json')
         if (directory / name).is_file()}
     receipts = directory / 'receipts'
     if receipts.is_dir():

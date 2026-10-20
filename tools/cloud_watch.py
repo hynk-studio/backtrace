@@ -83,6 +83,9 @@ def watch(store, api, run_id, source_sha, *, wall=time.time, sleep=time.sleep, e
                 owner = store.run(claim['run_id'])
                 recorded = store.read('heartbeat')
                 heartbeat = recorded[0] if recorded else None
+                # A heartbeat written during either request must not appear
+                # to come from the future relative to a pre-request snapshot.
+                now = int(wall())
                 reason = state.cleanup_reason(claim, owner, heartbeat, now)
                 if pod_record is None:
                     recorded = store.read('pod')

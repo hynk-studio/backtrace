@@ -97,7 +97,34 @@ class CloudOwnerTests(unittest.TestCase):
         self.assertEqual(stopped, [process])
         self.assertEqual(result['cleanup']['phase'], 'deleted')
         self.assertLess(self.clock - T0, 90)
+        self.assertEqual(result['failure']['reason'], 'worker heartbeat is stale or finished')
         self.assert_no_owned_resource()
+
+    def test_heartbeat_observation_samples_time_after_the_status_read(self):
+        private_json(self.root / 'job-status.json', {})
+        claim = {'attempt': 'a' * 32}
+        def concurrent_read(path):
+            self.clock = T0 + 1.001
+            return json.dumps(dict(claim, state='running', phase='setup', at=control.utc(T0 + 1)))
+        with patch.object(owner, 'read_private', side_effect=concurrent_read):
+            self.assertEqual(owner.local_phase(self.root, claim, T0 + 0.999, first_at=T0,
+                                               wall=lambda: self.clock), 'setup')
+            for observed_at in (T0 + 0.999, T0 + 17):
+                with self.assertRaises(state.StateError):
+                    owner.local_phase(self.root, claim, T0, first_at=T0, wall=lambda: observed_at)
+
+    def test_unknown_state_error_text_is_not_published(self):
+        with patch.object(self.api, 'create', side_effect=state.StateError('SECRET-ERROR-CANARY')):
+            result = self.run_lifecycle()
+        self.assertNotIn('SECRET-ERROR-CANARY', json.dumps(result))
+        self.assertEqual(result['allocation_requests'], 1)
+
+    def test_encrypted_results_keep_status_but_exclude_control_credentials(self):
+        for name in ('owner-result.json', 'job-status.json', 'worker-plan.json'):
+            private_json(self.root / name, {'fixture': name})
+        with patch.object(owner.cloud_seal, 'seal', side_effect=lambda files, output: set(files)):
+            retained = owner.seal_results(self.root, self.root / 'result.age')
+        self.assertEqual(retained, {'owner-result.json', 'job-status.json'})
 
     def test_finished_heartbeat_can_precede_the_child_process_exit(self):
         private_json(self.root / 'job-status.json', {'attempt': 'a' * 32, 'state': 'finished',

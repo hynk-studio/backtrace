@@ -63,6 +63,12 @@ this fresh authorization is still unused. A controller-only bounded free stock
 wait and conditional resumption may rearm an unallocated entry after exact-source
 CPU and completed-unclaimed watcher handover. Never rerun a paid job, reset any
 claim or repeat an actual provider create.
+The 21:11 instruction was consumed in Pod `17c9n3lugb7qcs` and independently
+confirmed deleted. It stopped during installation with StateError; the exact
+condition was not retained. Read `docs/a100-execution-20261020-2111.md`. The
+conditional resumption task is disabled. Free controller diagnostics and the
+separately reproduced timestamp race fix do not reset this claim or grant a
+paid retry. Preserve the actual paid/watch branch heads and all prior records.
 Read `docs/a100-owner-region-execution.md` before any future paid work. Long training, additional funding, rule acceptance and
 competition submission remain outside this scope.
 Never expose secrets or commit credentials, model

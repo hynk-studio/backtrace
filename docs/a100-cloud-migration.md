@@ -213,3 +213,15 @@ create-only claim; a successful preflight does not reserve stock. An Actions/Git
 provider outage can still delay cleanup; no provider hard timer is claimed.
 
 References #1. No merge, Issue #1 closure, training or submission.
+
+### Latest resumption — 2026-10-20 21:11 KST
+
+The owner explicitly directed resumption. Complete renewed free qualification
+passed at source `d6c48e49950aa1120d7d4828ed8a9ce8fc28a0d8`, run 39421393404.
+After one zero-create stock miss, the fresh authorization allocated a single
+CA-MTL-3 Pod and is now consumed and independently deleted. All 28.9GB of
+frozen input bodies verified, but installation was interrupted by an unspecified
+controller StateError before any model/task execution. The exact condition is
+unconfirmed; free timestamp-observation and error-retention improvements are
+kept separate from that diagnosis. The one-shot automatic resumption was
+disabled. Read [the latest execution record](a100-execution-20261020-2111.md).

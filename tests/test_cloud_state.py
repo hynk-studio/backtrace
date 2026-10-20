@@ -4,6 +4,7 @@ import hashlib
 import io
 import json
 import unittest
+from unittest.mock import patch
 
 from tools import cloud_state as state
 from tools import cloud_watch
@@ -112,6 +113,28 @@ class CloudStateTests(unittest.TestCase):
         self.store.runs['1']['run_attempt'] = 2
         with self.assertRaises(state.StateError): self.claim()
         self.assertIsNone(self.store.read('claim'))
+
+    def test_watcher_observes_time_after_a_concurrently_refreshed_heartbeat(self):
+        claim = self.allocate_fixture()
+        clock = [T0]
+        original_read = self.store.read
+        checked = []
+        def read(name):
+            if name == 'heartbeat':
+                clock[0] = T0 + 1
+                return ({'attempt': claim['attempt'], 'at': T0 + 1, 'phase': 'setup'}, 'c' * 40)
+            return original_read(name)
+        def sleep(seconds):
+            if not checked:
+                self.assertFalse(any(c[0] in ('stop', 'delete') for c in self.api.calls))
+                checked.append(True)
+                self.store.runs['1']['status'] = 'completed'
+            clock[0] += seconds
+        with patch.object(self.store, 'read', side_effect=read):
+            result = cloud_watch.watch(self.store, self.api, '2', SOURCE,
+                wall=lambda: clock[0], sleep=sleep, emit=lambda row: None)
+        self.assertTrue(checked)
+        self.assertEqual((result['phase'], result['reason']), ('deleted', 'owner_finished'))
 
     def test_public_state_rejects_keys_urls_and_unknown_fields(self):
         claim, _ = self.claim()
