@@ -1,6 +1,6 @@
 """Read-only fresh account, regional stock and hardware-price qualification.
 
-Fields and inputs are from https://graphql-spec.runpod.io/ (2026-10-19).
+Fields and inputs are from https://graphql-spec.runpod.io/ (2026-10-20).
 No introspection, account setting changes, payment or resource creation.
 """
 import time
@@ -68,10 +68,19 @@ def inspect_offer(*, read=query, now=time.time):
         gpu = result[0]; price = gpu['lowestPrice']
         regional = next(r for r in report['regions'] if r['id'] == region)
         regional['exact_quote'] = price
+        # The provider's exact filtered single-GPU quote can omit these
+        # nullable output summaries even when it returns stock, price and
+        # hardware. The input already requires one GPU and public IP. Preserve
+        # any explicit contrary summary, but do not interpret null as zero
+        # capacity or false. Never infer availability from a catalog price.
+        public_ip = price.get('supportPublicIp') if price else None
+        counts = price.get('availableGpuCounts') if price else None
         if (gpu['secureCloud'] is not True or not price
                 or regional['available'] is not True
                 or str(price['stockStatus']).lower() not in ('low', 'medium', 'high')
-                or price['supportPublicIp'] is not True or 1 not in (price['availableGpuCounts'] or [])):
+                or (public_ip is not None and public_ip is not True)
+                or (counts is not None and (not isinstance(counts, list)
+                    or not any(type(count) is int and count == 1 for count in counts)))):
             continue
         offer = {'observed_at': report['observed_at'], 'region': region, 'region_policy': control.REGION_POLICY,
             'gpu': control.GPU, 'gpu_count': 1, 'cloud': 'SECURE', 'image': control.BASE,

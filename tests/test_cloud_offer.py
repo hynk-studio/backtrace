@@ -51,5 +51,27 @@ class OfferTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'insufficient host'):
             inspect_offer(read=self.read, now=lambda: T0)
 
+    def test_nullable_summaries_use_exact_filtered_stock_not_unfiltered_price(self):
+        price = self.price['gpuTypes'][0]['lowestPrice']
+        price.update(supportPublicIp=None, availableGpuCounts=None)
+        result = inspect_offer(read=self.read, now=lambda: T0)
+        self.assertEqual(result['status'], 'QUALIFIED')
+        query_input = self.calls[1][1]['price']
+        self.assertEqual(query_input['gpuCount'], 1)
+        self.assertIs(query_input['supportPublicIp'], True)
+        self.assertEqual(query_input['minDisk'], 100)
+        price['stockStatus'] = None
+        self.assertEqual(inspect_offer(read=self.read, now=lambda: T0)['status'], 'NO_QUALIFIED_REGION')
+
+    def test_explicit_incompatible_summaries_still_block(self):
+        for field, value in (('supportPublicIp', False), ('availableGpuCounts', []),
+                             ('availableGpuCounts', [4, 8]), ('availableGpuCounts', [True]),
+                             ('availableGpuCounts', '1')):
+            with self.subTest(field=field, value=value):
+                self.setUp()
+                self.price['gpuTypes'][0]['lowestPrice'][field] = value
+                self.assertEqual(inspect_offer(read=self.read, now=lambda: T0)['status'],
+                                 'NO_QUALIFIED_REGION')
+
 
 if __name__ == '__main__': unittest.main()
