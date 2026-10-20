@@ -50,6 +50,14 @@ one CA-MTL-3 allocation. The Pod is independently confirmed deleted; model
 startup and task execution did not run. Read
 `docs/a100-execution-20261020-1957.md` before any further paid work. The free
 CUDA runtime correction does not grant another allocation or reset the claim.
+At 2026-10-20 21:11:34 KST the owner explicitly directed resumption if stock exists.
+The fresh fixed authorization is `owner-cloud-20261020-211134`, with new
+`20261020c` start/watch branches and a separate create-only namespace. This
+instruction authorizes one further attempt within the unchanged wallet,
+cumulative stop and 7,200-second allocation-inclusive deadline. Preserve all
+prior state bytes and branches; never reset or rerun their paid workflows.
+Follow `docs/a100-retry-20261020-2111.md`; renew the changed operational
+fingerprints and exact-source CPU qualification before the new allocation.
 Read `docs/a100-owner-region-execution.md` before any future paid work. Long training, additional funding, rule acceptance and
 competition submission remain outside this scope.
 Never expose secrets or commit credentials, model

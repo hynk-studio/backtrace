@@ -33,7 +33,7 @@ SAFE_REASONS = frozenset({
 
 
 def validate_context(mode, environ):
-    branch = ('bt-001-a100-start-20261020b' if mode == 'paid'
+    branch = ('bt-001-a100-start-20261020c' if mode == 'paid'
               else 'bt-001-a100-cpu-qualification')
     attempt = environ.get('GITHUB_RUN_ATTEMPT', '')
     if (mode not in ('preflight', 'paid') or environ.get('GITHUB_REPOSITORY') != state.REPOSITORY

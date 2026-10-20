@@ -18,8 +18,8 @@ class MemoryStore:
         self.docs = {}
         self.runs = {str(n): {'id': n, 'status': 'in_progress', 'conclusion': None,
                               'head_sha': SOURCE, 'head_branch': branch, 'run_attempt': 1}
-                     for n, branch in ((1, 'bt-001-a100-start-20261020b'),
-                                       (2, 'bt-001-a100-watch-20261020b'))}
+                     for n, branch in ((1, 'bt-001-a100-start-20261020c'),
+                                       (2, 'bt-001-a100-watch-20261020c'))}
         self.fail_write = None
 
     def read(self, name):
@@ -82,11 +82,13 @@ class CloudStateTests(unittest.TestCase):
 
     def test_previous_consumed_claim_is_not_valid_for_new_owner_authorization(self):
         claim, _ = self.claim()
-        self.assertEqual(claim['authorization'], 'owner-cloud-20261020-155445')
-        self.assertEqual(state.DIRECTORY, 'a100-state/owner-cloud-20261020-155445')
-        claim['authorization'] = 'owner-cloud-20261019-203126'
-        with self.assertRaises(ValueError):
-            state.validate_claim(claim)
+        self.assertEqual(claim['authorization'], 'owner-cloud-20261020-211134')
+        self.assertEqual(state.DIRECTORY, 'a100-state/owner-cloud-20261020-211134')
+        for prior in ('owner-cloud-20261019-203126', 'owner-cloud-20261020-155445'):
+            with self.subTest(authorization=prior):
+                claim['authorization'] = prior
+                with self.assertRaises(ValueError):
+                    state.validate_claim(claim)
 
     def test_two_hour_quote_includes_prior_wallet_spend(self):
         fresh = offer(); fresh['credit_balance'] = '4.00'

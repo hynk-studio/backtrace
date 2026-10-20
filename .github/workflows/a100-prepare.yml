@@ -7,6 +7,7 @@ on:
       - 'tools/a100_task.py'
       - 'tools/a100_driver.py'
       - 'tools/cloud_prepare.py'
+      - 'tools/cloud_state.py'
       - 'tools/cloud_resolver.py'
       - 'tools/cloud_reference.py'
       - 'tools/direct_delivery.py'
