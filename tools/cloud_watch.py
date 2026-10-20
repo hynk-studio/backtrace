@@ -21,14 +21,32 @@ def starting_lease(store, run_id, source_sha):
     previous = store.run(value['run_id'])
     if (previous['status'] != 'completed' or previous['head_sha'] != value['source_sha']
             or previous['head_branch'] != 'bt-001-a100-watch-20261019'
-            or previous['run_attempt'] != 1
-            or previous.get('path') != '.github/workflows/a100-watch.yml'):
+            or previous['run_attempt'] != 1):
         raise state.StateError('another independent watcher owns this authorization')
     if store.read('claim') is not None:
         raise state.StateError('claimed authorization cannot change independent watcher')
     # The next write uses this exact blob CAS; Git history retains the prior
     # lease. The ordinary claim/first-attempt/source gates remain unchanged.
     return sha
+
+
+def write_lease(store, value, previous_sha, *, sleep=time.sleep):
+    """One lease PUT; confirm an ambiguous acknowledgement using bounded reads."""
+    try:
+        return store.write('watcher', value, previous_sha=previous_sha)
+    except state.StateError:
+        # Only this mutable, cleanup-only lease gets recovery reads. Claims,
+        # Pod identities and provider creates retain their existing rules.
+        for attempt in range(3):
+            try:
+                current = store.read('watcher')
+                if current is not None and state.encoded(current[0]) == state.encoded(value):
+                    return current[1]
+            except state.StateError:
+                pass
+            if attempt < 2:
+                sleep(1)
+        raise
 
 
 def watch(store, api, run_id, source_sha, *, wall=time.time, sleep=time.sleep, emit=print):
@@ -54,8 +72,8 @@ def watch(store, api, run_id, source_sha, *, wall=time.time, sleep=time.sleep, e
             elif now - started >= 600:
                 return {'phase': 'no_claim', 'allocation': 'NOT RUN'}
             else:
-                lease_sha = store.write('watcher', {'run_id': str(run_id), 'source_sha': source_sha,
-                                                   'at': now}, previous_sha=lease_sha)
+                lease_sha = write_lease(store, {'run_id': str(run_id), 'source_sha': source_sha,
+                                                'at': now}, lease_sha, sleep=sleep)
                 sleep(20)
                 continue
         if previous and previous['phase'] == 'deleted':

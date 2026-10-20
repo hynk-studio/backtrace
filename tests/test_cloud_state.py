@@ -38,7 +38,11 @@ class MemoryStore:
         return sha
 
     def run(self, run_id):
-        return copy.deepcopy(self.runs[str(run_id)])
+        # Match the real GitHubState projection, rather than inventing fields
+        # (such as workflow path) that production callers cannot observe.
+        value = self.runs[str(run_id)]
+        return {k: copy.deepcopy(value.get(k)) for k in
+                ('id', 'status', 'conclusion', 'head_sha', 'head_branch', 'run_attempt')}
 
 
 class CloudStateTests(unittest.TestCase):
@@ -138,8 +142,7 @@ class CloudStateTests(unittest.TestCase):
     def test_free_watcher_handover_cannot_replace_active_or_unmatched_run(self):
         for change in ({}, {'status': 'completed', 'head_sha': 'b' * 40},
                        {'status': 'completed', 'head_branch': 'other'},
-                       {'status': 'completed', 'run_attempt': 2},
-                       {'status': 'completed', 'path': 'other.yml'}):
+                       {'status': 'completed', 'run_attempt': 2}):
             with self.subTest(change=change):
                 self.setUp()
                 self.store.runs['2']['path'] = '.github/workflows/a100-watch.yml'
@@ -182,6 +185,40 @@ class CloudStateTests(unittest.TestCase):
             self.store.write('watcher', {'run_id': '3', 'source_sha': 'b' * 40, 'at': T0 + 2},
                              previous_sha=lease)
         self.assertEqual(self.store.read('watcher')[0]['run_id'], '4')
+
+    def test_mutable_lease_lost_ack_is_confirmed_without_second_put(self):
+        before = self.store.read('watcher')
+        self.store.fail_write = 'watcher'
+        writes = [0]
+        original = self.store.write
+        def once(*args, **kwargs):
+            writes[0] += 1
+            return original(*args, **kwargs)
+        self.store.write = once
+        value = {'run_id': '2', 'source_sha': SOURCE, 'at': T0 + 20}
+        sha = cloud_watch.write_lease(self.store, value, before[1], sleep=lambda _: None)
+        self.assertEqual((value, sha), self.store.read('watcher'))
+        self.assertEqual(writes[0], 1)
+        self.assertIsNone(self.store.read('claim'))
+        self.assertEqual(self.api.calls, [])
+
+    def test_unconfirmed_mutable_lease_is_not_rewritten(self):
+        before = self.store.read('watcher')
+        writes, reads = [0], [0]
+        original_read = self.store.read
+        def reject(*args, **kwargs):
+            writes[0] += 1
+            raise state.StateError('durable-state transport or JSON failure')
+        def read(name):
+            reads[0] += 1
+            return original_read(name)
+        self.store.write, self.store.read = reject, read
+        with self.assertRaises(state.StateError):
+            cloud_watch.write_lease(self.store, {'run_id': '2', 'source_sha': SOURCE, 'at': T0 + 20},
+                                    before[1], sleep=lambda _: None)
+        self.assertEqual((writes[0], reads[0]), (1, 3))
+        self.assertEqual(original_read('watcher'), before)
+        self.assertEqual(self.api.calls, [])
 
     def test_lost_create_response_is_reconciled_by_exact_random_name(self):
         claim, request = self.claim()
