@@ -41,6 +41,10 @@ at most 7,200 seconds within the same wallet/cumulative budget. Follow
 `docs/a100-cloud-policy.json` and `docs/a100-cloud-migration.md`; implementation
 preparation is not a qualified paid launch. The original notebook paid cells
 remain disabled and the prior attempt must never be reset.
+At 2026-10-20 15:54:45 KST the owner explicitly authorized one further attempt
+after the US-KS-2 pre-inference permission failure. Its fixed authorization is
+`owner-cloud-20261020-155445`; follow `docs/a100-retry-20261020-1554.md`.
+All prior claims stay consumed and immutable; no automatic paid retry.
 Read `docs/a100-owner-region-execution.md` before any future paid work. Long training, additional funding, rule acceptance and
 competition submission remain outside this scope.
 Never expose secrets or commit credentials, model

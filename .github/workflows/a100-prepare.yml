@@ -11,9 +11,11 @@ on:
       - 'tools/ssh_bootstrap.py'
       - 'tools/cloud_transport.py'
       - 'tools/cloud_seal.py'
+      - 'tools/cloud_worker.py'
       - 'docs/cloud-controller-requirements.txt'
       - 'tests/official_a100_task.py'
       - 'tests/official_cloud_transport.py'
+      - 'tests/official_cloud_prerequisites.py'
       - '.github/workflows/a100-prepare.yml'
 permissions:
   contents: write

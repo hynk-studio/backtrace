@@ -24,7 +24,7 @@ WORKLOAD_PYTHON = '/opt/backtrace-runtime/venv/bin/python'
 WORKLOAD_DRIVER = '/root/backtrace/driver/one_task.py'
 
 
-def workload_command(requested_at):
+def workload_command(requested_at, *, cpu_prerequisites=False):
     """Set the driver's file-creation mask without changing private SSH setup.
 
     The retained driver explicitly protects control/output directories with
@@ -35,7 +35,8 @@ def workload_command(requested_at):
     entry = 'import os,sys;os.umask(0o022);os.execv(sys.argv[1],sys.argv[1:])'
     return ['env', 'BACKTRACE_ALLOCATION_REQUESTED_AT=' + str(requested_at),
             WORKLOAD_PYTHON, '-I', '-c', entry,
-            WORKLOAD_PYTHON, '-I', WORKLOAD_DRIVER, '--authorized-run']
+            WORKLOAD_PYTHON, '-I', WORKLOAD_DRIVER,
+            '--cpu-prerequisites' if cpu_prerequisites else '--authorized-run']
 
 
 def direct_program():

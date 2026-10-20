@@ -18,8 +18,8 @@ class MemoryStore:
         self.docs = {}
         self.runs = {str(n): {'id': n, 'status': 'in_progress', 'conclusion': None,
                               'head_sha': SOURCE, 'head_branch': branch, 'run_attempt': 1}
-                     for n, branch in ((1, 'bt-001-a100-start-20261019'),
-                                       (2, 'bt-001-a100-watch-20261019'))}
+                     for n, branch in ((1, 'bt-001-a100-start-20261020b'),
+                                       (2, 'bt-001-a100-watch-20261020b'))}
         self.fail_write = None
 
     def read(self, name):
@@ -79,6 +79,14 @@ class CloudStateTests(unittest.TestCase):
         with self.assertRaisesRegex(state.StateError, 'consumed'):
             self.claim()
         self.assertEqual(self.api.calls, [])
+
+    def test_previous_consumed_claim_is_not_valid_for_new_owner_authorization(self):
+        claim, _ = self.claim()
+        self.assertEqual(claim['authorization'], 'owner-cloud-20261020-155445')
+        self.assertEqual(state.DIRECTORY, 'a100-state/owner-cloud-20261020-155445')
+        claim['authorization'] = 'owner-cloud-20261019-203126'
+        with self.assertRaises(ValueError):
+            state.validate_claim(claim)
 
     def test_two_hour_quote_includes_prior_wallet_spend(self):
         fresh = offer(); fresh['credit_balance'] = '4.00'

@@ -69,10 +69,18 @@ def qualify(root, emit):
                'PYTHON_DOTENV_DISABLED': '1', 'HF_HUB_OFFLINE': '1', 'TRANSFORMERS_OFFLINE': '1',
                'OTEL_SDK_DISABLED': 'true', 'LITELLM_LOCAL_MODEL_COST_MAP': 'True'}
         stage = 'offline_runtime'
+        runtime = Path('/opt/backtrace-runtime')
         with (root / 'offline-runtime.log').open('xb') as log:
-            subprocess.run([sys.executable, '-I', str(frozen.ROOT / 'tools/linux_runtime.py'),
-                str(root / 'wheels'), str(frozen.ROOT / 'docs/linux-supplemental.lock'), str(root / 'runtime')],
+            subprocess.run(['sudo', sys.executable, '-I', str(frozen.ROOT / 'tools/linux_runtime.py'),
+                str(root / 'wheels'), str(frozen.ROOT / 'docs/linux-supplemental.lock'), str(runtime)],
                 env=env, cwd=frozen.ROOT, stdout=log, stderr=log, check=True, timeout=1800)
+            # Build at its final workload-readable path, as on the Pod. Do not
+            # relocate venvs or expose the private source/URL staging directory.
+            program = ('import sys;from pathlib import Path;sys.path.insert(0,'
+                       + repr(str(frozen.ROOT)) + ');from tools.pod_bootstrap import readonly;readonly('
+                       + repr(str(runtime)) + ')')
+            subprocess.run(['sudo', sys.executable, '-I', '-c', program], env=env,
+                           stdout=log, stderr=log, check=True, timeout=120)
         report['stages'][stage] = {'status': 'PASS', 'application_distributions': 245,
                                     'installation_network': 'AUDIT BLOCKED', 'host': 'Actions Ubuntu 24.04 CPU'}
         emit({'stage': stage, **report['stages'][stage]})
@@ -113,11 +121,18 @@ def qualify(root, emit):
         emit({'stage': stage, **report['stages'][stage]})
         stage = 'official_cloud_driver'
         with (root / 'official-cloud-driver.log').open('xb') as log:
-            subprocess.run([str(root / 'runtime/venv/bin/python'), '-I',
+            subprocess.run([str(runtime / 'venv/bin/python'), '-I',
                 str(frozen.ROOT / 'tests/official_a100_task.py'), '--cloud-policy'],
                 env=env, cwd=frozen.ROOT, stdout=log, stderr=log, check=True, timeout=300)
         report['stages'][stage] = {'status': 'PASS', 'driver_sha256': cloud_task.CLOUD_DRIVER_SHA256,
                                   'model_execution': 'NOT RUN', 'hardware': 'INJECTED A100 SM80'}
+        stage = 'actual_cpu_prerequisites'
+        with (root / 'actual-cpu-prerequisites.log').open('xb') as log:
+            result = subprocess.run(['sudo', sys.executable, '-I',
+                str(frozen.ROOT / 'tests/official_cloud_prerequisites.py'), str(root / 'driver')],
+                env=env, cwd=frozen.ROOT, stdout=subprocess.PIPE, stderr=log, check=True, timeout=300)
+        report['stages'][stage] = json.loads(result.stdout)
+        emit({'stage': stage, **report['stages'][stage]})
         report['status'] = 'PASS'
     except Exception as error:
         report.update(status='FAIL', failed_stage=stage, failure=failure(error))
@@ -136,7 +151,7 @@ def qualify(root, emit):
             report['failure']['reason'] = str(error)
     private = {}
     for name in ('retained-source.ipynb', 'offline-runtime.log', 'official-cloud-driver.log', 'cpu-task-layout.log',
-                 'transport-loopback.log', 'transport/build.log'):
+                 'actual-cpu-prerequisites.log', 'transport-loopback.log', 'transport/build.log'):
         path = root / name
         if path.is_file():
             private[name] = path

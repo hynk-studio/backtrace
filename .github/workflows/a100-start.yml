@@ -2,7 +2,7 @@ name: A100 qualified owner preparation and one-attempt start
 
 on:
   push:
-    branches: [bt-001-a100-cpu-qualification, bt-001-a100-start-20261019]
+    branches: [bt-001-a100-cpu-qualification, bt-001-a100-start-20261020b]
     paths:
       - 'tools/cloud_launch.py'
       - 'tools/cloud_qualification.py'
@@ -40,7 +40,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
           KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
-          LAUNCH_MODE: ${{ github.ref_name == 'bt-001-a100-start-20261019' && 'paid' || 'preflight' }}
+          LAUNCH_MODE: ${{ github.ref_name == 'bt-001-a100-start-20261020b' && 'paid' || 'preflight' }}
         run: |
           python_path="$(command -v python)"
           sudo --preserve-env=GITHUB_TOKEN,RUNPOD_API_KEY,KAGGLE_API_TOKEN,GITHUB_SHA,GITHUB_RUN_ID,GITHUB_RUN_ATTEMPT,GITHUB_REPOSITORY,GITHUB_REF_NAME "$python_path" -m tools.cloud_launch --mode "$LAUNCH_MODE"
