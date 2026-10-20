@@ -3,16 +3,9 @@ name: A100 qualified owner preparation and one-attempt start
 on:
   push:
     branches: [bt-001-a100-cpu-qualification, bt-001-a100-start-20261020b]
-    paths:
-      - 'tools/cloud_launch.py'
-      - 'tools/cloud_qualification.py'
-      - 'tools/cloud_owner.py'
-      - 'tools/cloud_worker.py'
-      - 'tools/cloud_watch.py'
-      - 'tools/cloud_state.py'
-      - 'tools/cloud_offer.py'
-      - 'docs/a100-actions-qualification.json'
-      - '.github/workflows/a100-start.yml'
+    # Always trigger on these two exact branches, including a new paid branch
+    # whose qualified head only changed readiness documents. Paid mode still
+    # requires attempt 1, successful exact-source CPU checks and an unused claim.
 
 permissions:
   contents: write
