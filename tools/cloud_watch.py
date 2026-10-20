@@ -8,16 +8,34 @@ from tools import cloud_state as state
 from tools import runpod_control as control
 
 
+def starting_lease(store, run_id, source_sha):
+    """Hand over only a finished, never-claimed free watcher; never reset a claim."""
+    existing = store.read('watcher')
+    if existing is None:
+        return None
+    value, sha = existing
+    if value['run_id'] == str(run_id) and value['source_sha'] == source_sha:
+        return sha
+    if store.read('claim') is not None:
+        raise state.StateError('claimed authorization cannot change independent watcher')
+    previous = store.run(value['run_id'])
+    if (previous['status'] != 'completed' or previous['head_sha'] != value['source_sha']
+            or previous['head_branch'] != 'bt-001-a100-watch-20261019'
+            or previous['run_attempt'] != 1
+            or previous.get('path') != '.github/workflows/a100-watch.yml'):
+        raise state.StateError('another independent watcher owns this authorization')
+    if store.read('claim') is not None:
+        raise state.StateError('claimed authorization cannot change independent watcher')
+    # The next write uses this exact blob CAS; Git history retains the prior
+    # lease. The ordinary claim/first-attempt/source gates remain unchanged.
+    return sha
+
+
 def watch(store, api, run_id, source_sha, *, wall=time.time, sleep=time.sleep, emit=print):
     started = wall()
     claim, pod_record, previous, reason = None, None, None, None
-    lease_sha = None
+    lease_sha = starting_lease(store, run_id, source_sha)
     last_wall = started
-    existing = store.read('watcher')
-    if existing is not None:
-        if existing[0]['run_id'] != str(run_id) or existing[0]['source_sha'] != source_sha:
-            raise state.StateError('another independent watcher owns this authorization')
-        lease_sha = existing[1]
     while wall() - started < state.TOTAL + 900:
         now = int(wall())
         if now < last_wall - 2:

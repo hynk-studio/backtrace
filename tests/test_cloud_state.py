@@ -120,6 +120,69 @@ class CloudStateTests(unittest.TestCase):
         self.assertEqual(set(self.api.pods), {'unrelated'})
         self.assertEqual(sum(c[0] == 'create' for c in self.api.calls), 1)
 
+    def test_completed_unclaimed_free_watcher_can_hand_over_with_cas(self):
+        previous = self.store.read('watcher')
+        self.store.runs['2'].update(status='completed', conclusion='success',
+                                   path='.github/workflows/a100-watch.yml')
+        next_source = 'b' * 40
+        clock = [T0 + 700]
+        result = cloud_watch.watch(self.store, self.api, '3', next_source,
+            wall=lambda: clock[0], sleep=lambda seconds: clock.__setitem__(0, clock[0] + seconds))
+        self.assertEqual(result['phase'], 'no_claim')
+        self.assertEqual(self.store.read('watcher')[0]['run_id'], '3')
+        self.assertEqual(self.store.read('watcher')[0]['source_sha'], next_source)
+        self.assertEqual(previous[0]['run_id'], '2')
+        self.assertIsNone(self.store.read('claim'))
+        self.assertEqual(self.api.calls, [])
+
+    def test_free_watcher_handover_cannot_replace_active_or_unmatched_run(self):
+        for change in ({}, {'status': 'completed', 'head_sha': 'b' * 40},
+                       {'status': 'completed', 'head_branch': 'other'},
+                       {'status': 'completed', 'run_attempt': 2},
+                       {'status': 'completed', 'path': 'other.yml'}):
+            with self.subTest(change=change):
+                self.setUp()
+                self.store.runs['2']['path'] = '.github/workflows/a100-watch.yml'
+                self.store.runs['2'].update(change)
+                before = self.store.read('watcher')
+                with self.assertRaises(state.StateError):
+                    cloud_watch.starting_lease(self.store, '3', 'b' * 40)
+                self.assertEqual(self.store.read('watcher'), before)
+
+    def test_free_watcher_handover_never_resets_even_unallocated_claim(self):
+        self.claim()
+        self.store.runs['2'].update(status='completed', path='.github/workflows/a100-watch.yml')
+        before = copy.deepcopy(self.store.docs)
+        with self.assertRaisesRegex(state.StateError, 'claimed'):
+            cloud_watch.starting_lease(self.store, '3', 'b' * 40)
+        self.assertEqual(self.store.docs, before)
+        self.assertEqual(self.api.calls, [])
+
+    def test_claim_appearing_during_free_watcher_handover_blocks_it(self):
+        self.store.runs['2'].update(status='completed', path='.github/workflows/a100-watch.yml')
+        original = self.store.read
+        reads = [0]
+        def race(name):
+            if name == 'claim':
+                reads[0] += 1
+                if reads[0] == 2:
+                    return ({'appeared': True}, 'f' * 40)
+            return original(name)
+        self.store.read = race
+        with self.assertRaisesRegex(state.StateError, 'claimed'):
+            cloud_watch.starting_lease(self.store, '3', 'b' * 40)
+        self.assertEqual(original('watcher')[0]['run_id'], '2')
+
+    def test_free_watcher_handover_retains_exact_cas_lease(self):
+        self.store.runs['2'].update(status='completed', path='.github/workflows/a100-watch.yml')
+        lease = cloud_watch.starting_lease(self.store, '3', 'b' * 40)
+        self.store.write('watcher', {'run_id': '4', 'source_sha': 'c' * 40, 'at': T0 + 1},
+                         previous_sha=lease)
+        with self.assertRaisesRegex(state.StateError, 'CAS'):
+            self.store.write('watcher', {'run_id': '3', 'source_sha': 'b' * 40, 'at': T0 + 2},
+                             previous_sha=lease)
+        self.assertEqual(self.store.read('watcher')[0]['run_id'], '4')
+
     def test_lost_create_response_is_reconciled_by_exact_random_name(self):
         claim, request = self.claim()
         self.api.drop_ack = True

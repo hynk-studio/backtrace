@@ -8,6 +8,18 @@ USD 8 cumulative stop. The prior CA-MTL-3 attempt remains consumed and deleted.
 
 ## Current readiness
 
+Update 2026-10-20: a fresh exact offer and all free gates passed at source
+`8fc553912ed1a7262793ccfce21ef50702516e97`. The dedicated owner run
+39369857734 then found no stock in any region at its final read, before claim
+or create. Allocation requests, new Pods and new spending were all zero.
+The watcher/start branches are now activated historical runs, not unused triggers.
+The claim remains absent. See [the current execution record](a100-execution-20261020.md)
+and [the nullable quote compatibility evidence](a100-offer-compatibility.md).
+The subsequent free-watcher handover change preserves the claim and requires
+the previous watcher to be terminal before replacing its unused lease.
+
+The following is the retained 2026-10-19 readiness record:
+
 Free input/runtime/wrapper qualification and the real owner preflight passed.
 The qualified launch source is `b2b2ad290aae0967559e0cf14002672d32c05584`.
 Full CPU suite: **235/235**, 27.223 seconds, preflight READY and successful

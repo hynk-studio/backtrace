@@ -8,6 +8,7 @@ on:
       - 'tools/cloud_qualification.py'
       - 'tools/cloud_owner.py'
       - 'tools/cloud_worker.py'
+      - 'tools/cloud_watch.py'
       - 'tools/cloud_state.py'
       - 'tools/cloud_offer.py'
       - 'docs/a100-actions-qualification.json'
