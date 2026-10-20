@@ -69,6 +69,12 @@ condition was not retained. Read `docs/a100-execution-20261020-2111.md`. The
 conditional resumption task is disabled. Free controller diagnostics and the
 separately reproduced timestamp race fix do not reset this claim or grant a
 paid retry. Preserve the actual paid/watch branch heads and all prior records.
+The 2026-10-20 22:38:21 KST instruction requests missing free preparation.
+Read `docs/a100-readiness-20261020-2238.md`: actual pinned-image installation,
+UID prerequisites and five concurrent controller scenarios passed on CPU; the
+renewed receipt binds 52 files. Future setup checks the runtime and hardware
+before model transfer. This preparation grants no paid retry and does not
+establish an actual GPU/model/task result. All paid claims remain consumed.
 Read `docs/a100-owner-region-execution.md` before any future paid work. Long training, additional funding, rule acceptance and
 competition submission remain outside this scope.
 Never expose secrets or commit credentials, model

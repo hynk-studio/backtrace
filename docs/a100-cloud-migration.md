@@ -8,6 +8,21 @@ USD 8 cumulative stop. The prior CA-MTL-3 attempt remains consumed and deleted.
 
 ## Current result
 
+All four paid allocations are consumed and independently confirmed deleted.
+The latest stopped during installation with an unqualified StateError; its
+exact cause is still unknown. See [the latest execution record](a100-execution-20261020-2111.md).
+The owner's subsequent preparation request was completed on free CPU: the
+actual pinned image revealed missing git/patch, now supplied through 24
+hash-pinned Ubuntu packages installed offline. Exact-image runtime/UID checks,
+five concurrent owner/watcher scenarios and 267 full CPU tests passed. The
+renewed qualification binds 52 current files. Setup now checks environment,
+runtime and hardware before transferring the model; stage-specific diagnostic
+evidence is retained. See [the free readiness record](a100-readiness-20261020-2238.md).
+This is not a GPU/model/task result or a new paid authorization. Actual paid
+branches and consumed state remain immutable; conditional resumption is disabled.
+
+## Earlier CUDA correction (historical)
+
 The later 19:57 KST browser queue request found actual matching CA-MTL-3 stock.
 The already-approved single further attempt ran at source
 `91788995fa6e7fd185a4a4e001a13558ce37581b`. All input delivery, offline runtime,
