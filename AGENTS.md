@@ -45,6 +45,11 @@ At 2026-10-20 15:54:45 KST the owner explicitly authorized one further attempt
 after the US-KS-2 pre-inference permission failure. Its fixed authorization is
 `owner-cloud-20261020-155445`; follow `docs/a100-retry-20261020-1554.md`.
 All prior claims stay consumed and immutable; no automatic paid retry.
+The 19:57 KST browser request found stock and consumed that authorization in
+one CA-MTL-3 allocation. The Pod is independently confirmed deleted; model
+startup and task execution did not run. Read
+`docs/a100-execution-20261020-1957.md` before any further paid work. The free
+CUDA runtime correction does not grant another allocation or reset the claim.
 Read `docs/a100-owner-region-execution.md` before any future paid work. Long training, additional funding, rule acceptance and
 competition submission remain outside this scope.
 Never expose secrets or commit credentials, model

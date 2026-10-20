@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "prepaid10-actions-v1",
   "authorization": "owner-cloud-20261020-155445",
-  "status": "CONSUMED AND DELETED; MODEL START NOT RUN; FREE CUDA RUNTIME CORRECTION NEEDS NEW QUALIFICATION",
+  "status": "CONSUMED AND DELETED; CUDA RUNTIME CORRECTION FULL FREE QUALIFICATION PASS; MODEL START AND TASK NOT RUN; NO NEW PAID AUTHORIZATION",
   "authority": "At 2026-10-20 15:54:45 KST the owner instructed: '그러면 지금 가용 가능 자원 있는지 확인하고 있으면 다시 실험 시행하자'. This authorizes one further attempt after the known permission fix and complete free CPU preparation, within the existing wallet and unchanged cumulative USD 8 stop. All previous claims remain consumed and immutable.",
   "controller": "GitHub-hosted free Linux CPU runner; no user Mac/Windows required",
   "wallet_credits_usd": "10.00",
@@ -23,7 +23,7 @@
     "An Actions runner is not durable storage; the fixed create-only claim is external",
     "An independent workflow is not a provider-enforced timer or a guaranteed dollar cap",
     "Synthetic cancellation tests are not a live paid cancellation trial",
-    "All three allocated attempts are consumed and independently confirmed deleted. Actual isolation, sandbox dependencies and model file verification passed on the latest Pod. GPU qualification failed on a missing developer toolkit version manifest before model startup. No R0 task outcome exists. The free runtime correction requires updated qualification; a future paid attempt requires separate authorization."
+    "All three allocated attempts are consumed and independently confirmed deleted. Actual isolation, sandbox dependencies and model file verification passed on the latest Pod. Hardware qualification stopped on a missing developer toolkit manifest before model startup. The corrected runtime component reader passed full free qualification and 251 CPU tests. GPU initialization/serving after the correction, R0 outcome and further paid authorization remain NOT RUN / NOT GRANTED."
   ],
   "exclusions": [
     "training",

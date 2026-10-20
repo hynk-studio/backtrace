@@ -17,8 +17,9 @@ version manifest. Owner and independent watcher confirmed Pod deletion; a fresh
 complete list found zero Pods, USD 9.1617621462 balance and zero hourly spend.
 The authorization is consumed. See [the latest execution record](a100-execution-20261020-1957.md).
 
-The runtime version correction and renewed free qualification are CPU work
-only. No new paid allocation is authorized. The scientific driver, model,
+The runtime version correction passed actual cudart observation, all 251 CPU
+tests and full free qualification at source
+`0dc0bb6088a9ea5f872110ca7daecf0cf6b63820`. No new paid allocation is authorized. The scientific driver, model,
 prompts, candidate, TP1 BF16 and experimental budget remain frozen.
 
 ## Earlier readiness record (historical)
