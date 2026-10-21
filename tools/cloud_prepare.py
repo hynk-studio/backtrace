@@ -15,7 +15,7 @@ from tools import a100_delivery as frozen, cloud_resolver as resolver, cloud_tas
 from tools.cloud_probe import failure
 from tools.direct_delivery import pull, DownloadError
 from tools.runpod_job import private_json
-from tools import cloud_reference, cloud_state, cloud_image, pod_system
+from tools import cloud_reference, cloud_state, cloud_image, pod_system, qualify_api
 
 
 def qualify(root, emit):
@@ -58,9 +58,6 @@ def qualify(root, emit):
         report['stages']['sources'] = {'wheels': len(wheel_sources), 'task': len(task_sources),
                                        'model': len(model_sources), 'urls_published': False}
         emit({'stage': 'sources', 'status': 'PASS', **report['stages']['sources']})
-        stage = 'restore_official'
-        report['stages'][stage] = cloud_reference.receive(transfer, identity, prefix, root / 'official')
-        emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
         stage = 'download_system_packages'
         system_manifest = json.loads((frozen.ROOT / 'docs/a100-system-packages.json').read_text())
         report['stages'][stage] = pod_system.download(system_manifest, root / 'system', deadline=time.time() + 180)
@@ -88,6 +85,21 @@ def qualify(root, emit):
         report['stages'][stage] = {'status': 'PASS', 'application_distributions': 245,
                                     'installation_network': 'AUDIT BLOCKED', 'host': 'Actions Ubuntu 24.04 CPU'}
         emit({'stage': stage, **report['stages'][stage]})
+        stage = 'actual_api_http'
+        old = json.loads((frozen.ROOT / 'docs/a100-api-runtime-amendment.json').read_text())['original']
+        old_manifest = json.dumps({'schema_version': 1, 'phase': 'bootstrap', 'files': [
+            {k: old[k] for k in ('path', 'bytes', 'sha256')}]}).encode()
+        old_source = resolver.pypi_source(old)
+        pull(root / 'api-negative', old_manifest, {old['path']: old_source},
+             hashlib.sha256(old_manifest).hexdigest(), 120)
+        with (root / 'actual-api-http.log').open('xb') as log:
+            report['stages'][stage] = qualify_api.run_checks(runtime / 'venv/bin/python',
+                root / 'api-negative' / old['path'], root / 'api-http-result', log)
+        emit({'stage': stage, **report['stages'][stage]})
+        stage = 'restore_official'
+        # Require the original manifest-verified encrypted handoff.
+        report['stages'][stage] = cloud_reference.receive(transfer, identity, prefix, root / 'official')
+        emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
         stage = 'cuda_runtime'
         # Exercise the actual version reader against the frozen installed
         # libcudart on CPU, with no developer toolkit manifest or GPU needed.
@@ -184,7 +196,7 @@ def qualify(root, emit):
     private = {}
     for name in ('retained-source.ipynb', 'offline-runtime.log', 'official-cloud-driver.log', 'cpu-task-layout.log',
                  'actual-cpu-prerequisites.log', 'cuda-runtime.log', 'transport-loopback.log', 'transport/build.log',
-                 'pinned-image.log', 'concurrent-controller.log'):
+                 'pinned-image.log', 'concurrent-controller.log', 'actual-api-http.log'):
         path = root / name
         if path.is_file():
             private[name] = path

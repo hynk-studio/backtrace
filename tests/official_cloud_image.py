@@ -10,7 +10,7 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from tools import a100_delivery as frozen, cloud_task, pod_bootstrap, pod_preflight, pod_system
+from tools import a100_delivery as frozen, cloud_task, pod_bootstrap, pod_preflight, pod_system, qualify_api
 from tools.private_delivery import emit, receive
 from tests.official_cloud_prerequisites import qualify as prerequisites
 
@@ -35,6 +35,11 @@ def qualify():
     requested = time.time()
     report['stages']['runtime_installation'] = pod_bootstrap.prepare_runtime(hashes, requested)
     report['stages']['runtime'] = pod_preflight.runtime(require_gpu=False)
+    old = json.loads((ROOT / 'docs/a100-api-runtime-amendment.json').read_text())['original']
+    with Path('/result/api-http.log').open('xb') as log:
+        report['stages']['actual_api_http'] = qualify_api.run_checks(
+            '/opt/backtrace-runtime/venv/bin/python', Path('/inputs/api-negative') / old['path'],
+            '/result/api-http', log)
     pod_bootstrap.require_prepared_runtime(hashes, requested)
     # Installation/imports must not add bytecode to the pinned driver tree.
     pod_bootstrap.checked_tree(stage / 'driver', hashes['driver'])

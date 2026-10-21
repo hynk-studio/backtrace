@@ -3,7 +3,7 @@ name: A100 read-only credential check
 
 on:
   push:
-    branches: [bt-001-a100-cpu-qualification]
+    branches: [bt-001-api-readiness-recovery]
     paths:
       - 'tools/cloud_probe.py'
       - 'tools/cloud_inventory.py'

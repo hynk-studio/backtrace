@@ -2,7 +2,7 @@ name: A100 cloud CPU qualification
 
 on:
   push:
-    branches: [bt-001-a100-cpu-qualification]
+    branches: [bt-001-api-readiness-recovery]
 # The owner entry requires a successful suite at its exact source commit,
 # including commits that only update qualification/evidence documents.
 permissions:
@@ -34,6 +34,31 @@ jobs:
           sudo "$python_path" -m unittest discover -s tests -v 2>&1 | tee evidence/cpu-tests.log
           "$python_path" tools/backtrace.py preflight | tee evidence/preflight.json
           git diff --check
+      - name: Real minimal HTTP regression with the deployed dependency subset
+        run: |
+          python -m venv .local/api-minimal
+          .local/api-minimal/bin/python -m pip install --require-hashes --only-binary=:all: -r docs/api-http-minimal.lock
+          python - <<'PY'
+          import json, urllib.request
+          from pathlib import Path
+          from tools.qualify_api import run_checks
+          root = Path('.local/api-control').absolute()
+          root.mkdir(parents=True)
+          old = json.loads(Path('docs/a100-api-runtime-amendment.json').read_text())['original']
+          url = 'https://pypi.org/pypi/fastapi/' + old['version'] + '/json'
+          release = json.load(urllib.request.urlopen(url, timeout=30))
+          match = [r for r in release['urls'] if r['filename'] == old['path']
+                   and r['size'] == old['bytes'] and r['digests']['sha256'] == old['sha256']]
+          assert len(match) == 1
+          wheel = root / old['path']
+          with urllib.request.urlopen(match[0]['url'], timeout=30) as response:
+              wheel.write_bytes(response.read(old['bytes'] + 1))
+          with Path('evidence/api-minimal.log').open('w') as log:
+              result = run_checks(Path('.local/api-minimal/bin/python').absolute(),
+                  wheel, root / 'result', log, mode='minimal')
+          Path('evidence/api-minimal.json').write_text(json.dumps(result, indent=2) + '\n')
+          print(json.dumps(result, sort_keys=True))
+          PY
       - name: Preserve CPU evidence only
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
