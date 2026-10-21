@@ -6,6 +6,7 @@ cannot be added only to the paid path. These are metadata calls, not inference.
 import json
 from urllib.parse import urlsplit
 from urllib.request import ProxyHandler, build_opener
+from tools.runtime_config import PATH
 
 
 def inspect_server(base_url, model):
@@ -17,8 +18,8 @@ def inspect_server(base_url, model):
     origin = base_url[:-3]
     opener = build_opener(ProxyHandler({}))
     replies = []
-    for path in ('/server_info?config_format=json', '/v1/models'):
-        with opener.open(origin + path, timeout=30) as response:
+    for path in (PATH, '/v1/models'):
+        with opener.open(origin + path, timeout=10) as response:
             if response.status != 200:
                 raise ValueError('required serving metadata is not ready')
             body = response.read(4 * 1024**2 + 1)
@@ -29,6 +30,8 @@ def inspect_server(base_url, model):
     config = info['vllm_config']
     parallel = config['parallel_config']
     if (config['model_config']['dtype'] not in ('torch.bfloat16', 'bfloat16')
+            or config['model_config']['model'] != str(model)
+            or config['model_config']['max_model_len'] != 32768
             or parallel['tensor_parallel_size'] != 1
             or parallel['disable_custom_all_reduce'] is not True
             or str(model) not in [row['id'] for row in models['data']]):

@@ -14,7 +14,7 @@ PATHS = tuple(sorted(set(
         'cloud_task', 'cloud_worker', 'cloud_owner', 'cloud_watch', 'cloud_image', 'cloud_qualification',
         'cloud_probe', 'cloud_inventory', 'cloud_seal', 'cloud_state', 'runpod_control', 'runpod_job',
         'ssh_bootstrap', 'direct_delivery', 'private_delivery', 'pod_bootstrap', 'pod_preflight', 'pod_system',
-        'api_probe', 'qualify_api', 'qualify_evaluation')]
+        'api_probe', 'qualify_api', 'qualify_evaluation', 'probe_results')]
     + ['tests/official_a100_task.py', 'tests/official_cloud_transport.py', 'tests/official_cloud_prerequisites.py',
        'tests/official_cloud_image.py', 'tests/official_cloud_lifecycle.py',
        'tests/test_cloud_state.py', 'tests/test_cloud_owner.py', 'tests/test_runpod_control.py',

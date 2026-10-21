@@ -10,12 +10,13 @@ There is no new paid authorization, start/watch branch, or provider create here.
 
 | Failure mechanism | Correction | Evidence required before calling it qualified |
 | --- | --- | --- |
-| Real HTTP probe omitted mandatory driver requests | Production and CPU probe call the same metadata exchange; enable vLLM developer metadata on the existing loopback-only server | Actual installed vLLM `/server_info` and models response; development-disabled negative control fails the actual driver |
+| Real HTTP probe omitted mandatory driver requests | Production and CPU use one metadata exchange; a narrow middleware reads the initialized engine's actual model/dtype/parallel config, followed by native model listing | Missing middleware fails the entire driver; absent state returns 503 and wrong dtype is rejected |
 | CPU task construction stopped before runner entry | Run the whole prepared `server_phase` and its actual task subprocess with scripted content only at the model boundary | Real HTTP schemas, LiteLLM/ADK, official runner, actual selected snapshot and sandbox, real shell/submission tools, trace and patch |
 | Official runner can return an error without nonzero process exit | Validate the emitted task result and actual model request/response receipts inside the task | Error response produces nonzero actual task/driver exit |
 | Worker treated process exit zero as completion | Revalidate actual transferred patch, counts, wire and ATIF trace before reporting finished | Missing, changed or incomplete artifacts rejected after real byte transfer |
 | Recovery could be skipped near deadline or mask a prior failure | Require recovery for success and retain the first workload exception if recovery also fails | Expired recovery and workload-plus-recovery-failure controls |
 | Scientific correctness was conflated with plumbing | Report task completion separately from patch evaluation | No authored response can establish model quality or a resolved task |
+| A first free probe failure concealed unrelated later checks | Collect independent post-prerequisite probe failures, on host and pinned image | Later checks execute after an earlier failure; overall status remains FAIL |
 
 ## What this check can and cannot prevent
 
@@ -53,6 +54,14 @@ this implementation checkpoint. The old launch receipt is stale and cannot
 qualify the changed operational files. Do not infer paid readiness from unit
 test count or this implementation plan.
 
+The pinned upstream API supports custom middleware through `args.middleware`.
+The new hook reads only `app.state.vllm_config`, which upstream `init_app_state`
+sets from the engine client. It performs no environment collection or inference.
+Production stays loopback-only with vLLM development mode disabled. The ordinary
+vLLM health and models handlers remain actual installed handlers. A free child
+also exercises the real startup shim and wrapper environment to import the
+middleware from the hash-qualified, read-only workload code tree.
+
 Exploratory full run 39677844088 at
 `46377688c2c789319469c5d9d3c0070849ca7859` passed offline runtime installation
 but failed on the newly exercised `/server_info` HTTP request with 500. The CPU
@@ -61,3 +70,11 @@ traceback; that evidence-capture defect is corrected. The incomplete CPU engine
 state fixture is being corrected without changing the real route or serializer.
 This failed run is not qualification. Its exact-source Linux run 39677843869
 passed 289 tests and the minimal HTTP controls; those passes did not override it.
+
+Run 39679368908 at `8fb8c5ce539f7fb1ac2e9b3cf84ff2d877131aaf`
+retained the original cause: the broad upstream system-environment collection in
+`/server_info` exceeded the 30-second client timeout. Its incomplete CPU config
+fixture also emitted serialization warnings. Enabling that developer endpoint
+was reconsidered: it is no longer a mandatory production request. The narrow
+engine-state middleware replaces this avoidable dependency. This run did not
+qualify the connected task or image. Linux run 39679368961 passed separately.

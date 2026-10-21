@@ -16,6 +16,7 @@ from tools.cloud_probe import failure
 from tools.direct_delivery import pull, DownloadError
 from tools.runpod_job import private_json
 from tools import cloud_reference, cloud_state, cloud_image, pod_system, qualify_api
+from tools.probe_results import ProbeResults
 
 
 def qualify(root, emit):
@@ -23,6 +24,7 @@ def qualify(root, emit):
     if shutil.disk_usage(root).free < 45 * 1024**3:
         raise ValueError('free CPU disk space below 45 GiB for host and pinned image')
     report = {'gpu_allocations': 0, 'server_starts': 0, 'task_executions': 0, 'stages': {}}
+    probes = ProbeResults(report['stages'])
     stage = 'private_source'
     try:
         transfer = cloud_state.GitHubState(os.environ['GITHUB_TOKEN'])
@@ -94,8 +96,8 @@ def qualify(root, emit):
         pull(root / 'api-negative', old_manifest, {old['path']: old_source},
              hashlib.sha256(old_manifest).hexdigest(), 120)
         with (root / 'actual-api-http.log').open('xb') as log:
-            report['stages'][stage] = qualify_api.run_checks(runtime / 'venv/bin/python',
-                root / 'api-negative' / old['path'], root / 'api-http-result', log)
+            probes.run(stage, lambda: qualify_api.run_checks(runtime / 'venv/bin/python',
+                root / 'api-negative' / old['path'], root / 'api-http-result', log))
         emit({'stage': stage, **report['stages'][stage]})
         stage = 'restore_official'
         # Require the original manifest-verified encrypted handoff.
@@ -155,10 +157,11 @@ def qualify(root, emit):
         emit({'stage': stage, **report['stages'][stage]})
         stage = 'official_cloud_driver'
         with (root / 'official-cloud-driver.log').open('xb') as log:
-            subprocess.run([str(runtime / 'venv/bin/python'), '-I',
+            result = probes.run(stage, lambda: subprocess.run([str(runtime / 'venv/bin/python'), '-I',
                 str(frozen.ROOT / 'tests/official_a100_task.py'), '--cloud-policy'],
-                env=env, cwd=frozen.ROOT, stdout=log, stderr=log, check=True, timeout=300)
-        report['stages'][stage] = {'status': 'PASS', 'driver_sha256': cloud_task.CLOUD_DRIVER_SHA256,
+                env=env, cwd=frozen.ROOT, stdout=log, stderr=log, check=True, timeout=300))
+        if result is not None:
+            report['stages'][stage] = {'status': 'PASS', 'driver_sha256': cloud_task.CLOUD_DRIVER_SHA256,
                                   'model_execution': 'NOT RUN', 'hardware': 'INJECTED A100 SM80',
                                   'event_writer': 'ACTUAL', 'hardware_name_preserved': True,
                                   'post_start_boundary_cases': 7,
@@ -166,32 +169,36 @@ def qualify(root, emit):
                                   'agent_construction': 'ACTUAL; RUNNER ENTRY NOT RUN'}
         stage = 'actual_cpu_prerequisites'
         with (root / 'actual-cpu-prerequisites.log').open('xb') as log:
-            result = subprocess.run(['sudo', sys.executable, '-I',
+            result = probes.run(stage, lambda: subprocess.run(['sudo', sys.executable, '-I',
                 str(frozen.ROOT / 'tests/official_cloud_prerequisites.py'), str(root / 'driver')],
-                env=env, cwd=frozen.ROOT, stdout=subprocess.PIPE, stderr=log, check=True, timeout=300)
-        report['stages'][stage] = json.loads(result.stdout)
+                env=env, cwd=frozen.ROOT, stdout=subprocess.PIPE, stderr=log, check=True, timeout=300))
+        if result is not None:
+            report['stages'][stage] = json.loads(result.stdout)
         emit({'stage': stage, **report['stages'][stage]})
         stage = 'connected_task_path'
         with (root / 'connected-task.log').open('xb') as log:
-            result = subprocess.run(['sudo', str(runtime / 'venv/bin/python'), '-I',
+            result = probes.run(stage, lambda: subprocess.run(['sudo', str(runtime / 'venv/bin/python'), '-I',
                 str(frozen.ROOT / 'tests/official_connected_task.py'), str(root / 'driver'),
                 str(root / 'connected-task'), str(root / 'evaluator/tasks.jsonl')], env=env, cwd=frozen.ROOT,
-                stdout=subprocess.PIPE, stderr=log, check=True, timeout=900)
-        report['stages'][stage] = json.loads(result.stdout)
+                stdout=subprocess.PIPE, stderr=log, check=True, timeout=900))
+        if result is not None:
+            report['stages'][stage] = json.loads(result.stdout)
         emit({'stage': stage, **report['stages'][stage]})
         stage = 'pinned_image_cpu'
         with (root / 'pinned-image.log').open('xb') as log:
-            report['stages'][stage] = cloud_image.qualify(root, log)
-        emit({'stage': stage, 'status': 'PASS', 'image': report['stages'][stage]['image'],
+            probes.run(stage, lambda: cloud_image.qualify(root, log))
+        emit({'stage': stage, 'status': report['stages'][stage].get('status', 'PASS'),
+              'image': report['stages'][stage].get('image'),
               'gpu_allocations': 0, 'server_starts': 0, 'task_executions': 0})
         stage = 'concurrent_controller'
         with (root / 'concurrent-controller.log').open('xb') as log:
-            result = subprocess.run(['sudo', sys.executable, '-I',
+            result = probes.run(stage, lambda: subprocess.run(['sudo', sys.executable, '-I',
                 str(frozen.ROOT / 'tests/official_cloud_lifecycle.py')], env=env,
-                stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=log, check=True, timeout=300)
-        report['stages'][stage] = json.loads(result.stdout)
+                stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=log, check=True, timeout=300))
+        if result is not None:
+            report['stages'][stage] = json.loads(result.stdout)
         emit({'stage': stage, **report['stages'][stage]})
-        report['status'] = 'PASS'
+        report['status'], report['failed_stages'] = probes.status, probes.failed
     except Exception as error:
         report.update(status='FAIL', failed_stage=stage, failure=failure(error))
         if isinstance(error, resolver.ResolutionError):
@@ -220,6 +227,9 @@ def qualify(root, emit):
     image_log = root / 'image-result/api-http.log'
     if image_log.is_file():
         private['image-api-http.log'] = image_log
+    image_report = root / 'image-result/image.json'
+    if image_report.is_file():
+        private['image-report.json'] = image_report
     for path in sorted((root / 'image-result/connected-task').rglob('*')):
         if path.is_file():
             private['image-connected-task/' + path.relative_to(root / 'image-result/connected-task').as_posix()] = path

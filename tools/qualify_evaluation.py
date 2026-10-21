@@ -33,7 +33,7 @@ def select(path, agent_input):
     return record
 
 
-def worker(root, task_inputs):
+def worker(root, task_inputs, *, controls=True):
     import asyncio
     from adk_submission import ModelRegistry
     from swegemma.config import EvalConfig
@@ -59,8 +59,10 @@ def worker(root, task_inputs):
     summaries = []
     # Both controls are verifier-only. No artificial patch can become a claimed
     # model result: every summary explicitly names the source of the patch.
-    for name, patch in (('transport-patch', (root / 'agent.patch').read_text()),
-                        ('public-reference-control', record['patch'])):
+    patches = [('recovered-patch', (root / 'agent.patch').read_text())]
+    if controls:
+        patches.append(('public-reference-control', record['patch']))
+    for name, patch in patches:
         output = root / name; output.mkdir()
         config = EvalConfig(tasks_path=task_inputs / 'agent-task.json',
             snapshots_dir=task_inputs / 'snapshots', results_dir=output,
@@ -82,17 +84,20 @@ def worker(root, task_inputs):
                           'test_exit_code': result.test_exit_code,
                           'duration_seconds': result.duration_seconds,
                           'error_present': bool(result.error_message)})
-    if (summaries[0]['resolved'] or summaries[0]['test_exit_code'] != 1
-            or not summaries[1]['resolved'] or summaries[1]['test_exit_code'] != 0):
+    controls_failed = controls and (summaries[0]['resolved'] or summaries[0]['test_exit_code'] != 1
+        or not summaries[1]['resolved'] or summaries[1]['test_exit_code'] != 0)
+    evaluation_failed = not controls and summaries[0]['test_exit_code'] not in (0, 1)
+    if controls_failed or evaluation_failed:
         (root / 'evaluation.json').write_text(json.dumps({'status': 'FAIL', 'controls': summaries}))
         raise ValueError('actual public-task verifier controls did not match; see private test logs')
     return {'status': 'PASS', 'controls': summaries, 'evaluator_uid': os.getuid(),
             'public_spec_sha256': TASKS_SHA256, 'gpu_allocations': 0,
-            'reference_scope': 'evaluator-only positive control; no agent access',
-            'model_score': 'NOT RUN; scripted transport patch and public reference only'}
+            'reference_scope': 'evaluator-only positive control; no agent access' if controls else 'NOT USED',
+            'model_score': 'NOT RUN; scripted transport patch and public reference only' if controls else
+                           {'resolved': summaries[0]['resolved'], 'source': 'validated recovered task artifacts'}}
 
 
-def qualify(evaluator, task_inputs, patch, output):
+def qualify(evaluator, task_inputs, patch, output, *, controls=True):
     from tools.runpod_job import check_owner_host
     check_owner_host()
     select(evaluator, task_inputs / 'agent-task.json')
@@ -112,7 +117,7 @@ def qualify(evaluator, task_inputs, patch, output):
         with (output / 'evaluator.log').open('wb') as log:
             result = subprocess.run(['setpriv', '--no-new-privs', '--bounding-set=-all', '--reuid=65533',
                 '--regid=65533', '--clear-groups', sys.executable, '-I', __file__, '--worker',
-                str(root), str(task_inputs)], env=env, stdin=subprocess.DEVNULL,
+                str(root), str(task_inputs), 'controls' if controls else 'result'], env=env, stdin=subprocess.DEVNULL,
                 stdout=subprocess.PIPE, stderr=log, timeout=300)
         (output / 'evaluator-stdout.log').write_bytes(result.stdout)
         for path in root.rglob('*'):
@@ -127,9 +132,21 @@ def qualify(evaluator, task_inputs, patch, output):
         return report
 
 
+def evaluate_receipts(evaluator, task_inputs, receipts, output):
+    """Score real recovered results on CPU after provider deletion, with no model call.
+
+    Caller must first confirm provider cleanup. This function has no provider,
+    inference, credential, submission, or positive-reference control operation.
+    """
+    from tools.task_results import validate
+    validate(receipts)
+    return qualify(Path(evaluator), Path(task_inputs), Path(receipts) / 'agent.patch',
+                   Path(output), controls=False)
+
+
 if __name__ == '__main__':
     sys.path.insert(0, str(ROOT))
-    if sys.argv[1:2] == ['--worker'] and len(sys.argv) == 4:
-        print(json.dumps(worker(Path(sys.argv[2]), Path(sys.argv[3])), sort_keys=True))
+    if sys.argv[1:2] == ['--worker'] and len(sys.argv) == 5 and sys.argv[4] in ('controls', 'result'):
+        print(json.dumps(worker(Path(sys.argv[2]), Path(sys.argv[3]), controls=sys.argv[4] == 'controls'), sort_keys=True))
     else:
         raise ValueError('private evaluator worker entry only')

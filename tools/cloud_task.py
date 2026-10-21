@@ -15,7 +15,7 @@ from tools.private_delivery import digest, parse_manifest, verify
 
 POLICY = 'prepaid10-actions-v1'
 SETUP, USEFUL, TOTAL = 5400, 6900, 7200
-CLOUD_DRIVER_SHA256 = '2d55f8b50283a35e69f4b6d7e207d497afa26c1ea5808ae89cd67d2ed97480ab'
+CLOUD_DRIVER_SHA256 = 'd717495d7314171a72aa852fd29d3ff72dffc8be9fdcf72178d26537283235fd'
 
 
 def preserve_finally(source, function):
@@ -66,7 +66,15 @@ def transform(data):
     # derivative is reproduced. The historical driver and paid heads stay intact.
     result = legacy._replace(result,
         " env.update(OFFICIAL_ENV)\n return env\n",
-        " env.update(OFFICIAL_ENV)\n env['VLLM_SERVER_DEV_MODE']='1'\n return env\n")
+        " env.update(OFFICIAL_ENV)\n env['PYTHONPATH']=str(CODE)\n return env\n")
+    result = legacy._replace(result,
+        " server=ns['server_instance'];assert not ns['adapters'].adapters\n",
+        " server=ns['server_instance'];assert not ns['adapters'].adapters\n"
+        " from tools.runtime_config import MIDDLEWARE\n"
+        " server.config.extra_args += ['--middleware',MIDDLEWARE]\n")
+    result = legacy._replace(result,
+        " assert ns['vllm_cfg'].extra_args==['--disable-custom-all-reduce']\n",
+        " assert ns['vllm_cfg'].extra_args==['--disable-custom-all-reduce','--middleware',MIDDLEWARE]\n")
     before = ("  with urllib.request.urlopen('http://127.0.0.1:8000/server_info?config_format=json',timeout=10) as response: info=json.load(response)\n"
               "  with urllib.request.urlopen('http://127.0.0.1:8000/v1/models',timeout=10) as response: models=json.load(response)\n")
     result = legacy._replace(result, before,
@@ -116,7 +124,7 @@ def prepare(source, output):
     receipt.update(prepared_driver_sha256=CLOUD_DRIVER_SHA256, policy=POLICY,
                    setup_seconds=SETUP, useful_seconds=USEFUL, total_seconds=TOTAL,
                    server_and_agent_ast_equal_to_legacy=False,
-                   operational_changes=['loopback developer metadata route', 'shared real HTTP contract',
+                   operational_changes=['narrow initialized-engine metadata middleware', 'shared real HTTP contract',
                                         'model response receipts', 'task artifact validation'])
     receipt['files'] = {str(path.relative_to(output)): digest(path)
                         for path in sorted(output.rglob('*'))

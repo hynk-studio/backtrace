@@ -21,7 +21,7 @@ def run_checks(python, old_wheel, output, log, *, mode='vllm'):
     env = dict(PATH='/usr/bin:/bin', HOME=str(output), LANG='C.UTF-8',
                HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1', OTEL_SDK_DISABLED='true',
                PYTHON_DOTENV_DISABLED='1', VLLM_NO_USAGE_STATS='1', DO_NOT_TRACK='1',
-               LITELLM_LOCAL_MODEL_COST_MAP='True', LITELLM_TELEMETRY='False', VLLM_SERVER_DEV_MODE='1')
+               LITELLM_LOCAL_MODEL_COST_MAP='True', LITELLM_TELEMETRY='False', VLLM_SERVER_DEV_MODE='0')
     results = {}
     with tempfile.TemporaryDirectory(prefix='backtrace-api-control-') as directory:
         # Only a verified official wheel is extracted into this private CPU overlay.
@@ -39,7 +39,7 @@ def run_checks(python, old_wheel, output, log, *, mode='vllm'):
                 bootstrap += 'sys.path.insert(0,' + repr(overlay) + ')\n'
             # pip check is recorded for both combinations; neither alone is an API gate.
             command = bootstrap + "sys.argv=['pip','check'];runpy.run_module('pip',run_name='__main__')"
-            child_env = dict(env, VLLM_SERVER_DEV_MODE='0' if selected == 'missing-metadata' else '1')
+            child_env = dict(env)
             subprocess.run([str(python), '-I', '-c', command], env=child_env,
                            stdout=log, stderr=log, check=True, timeout=60)
             report = output / (selected + '.json')

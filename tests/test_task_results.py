@@ -118,5 +118,19 @@ class DriverFinalizerTests(unittest.TestCase):
                 namespace['main']()
             self.assertEqual(str(caught.exception), 'phase' if failure else 'cleanup')
 
+    def test_independent_free_checks_continue_and_cannot_report_all_pass(self):
+        from tools.probe_results import ProbeResults
+        stages, calls = {}, []
+        probes = ProbeResults(stages)
+        def fail():
+            calls.append('first')
+            raise RuntimeError('first probe failed')
+        probes.run('api', fail)
+        probes.run('task', lambda: calls.append('later') or {'status': 'PASS'})
+        self.assertEqual(calls, ['first', 'later'])
+        self.assertEqual(probes.status, 'FAIL')
+        self.assertEqual(probes.failed, ['api'])
+        self.assertEqual(stages['task']['status'], 'PASS')
+
 
 if __name__ == '__main__': unittest.main()

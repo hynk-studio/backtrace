@@ -40,6 +40,15 @@ def child():
         raise ValueError('actual workload UID required')
 
     def start(server):
+        # Use the real wrapper's child environment and shim to prove the
+        # deployment can import the qualified middleware from read-only CODE.
+        command = [sys.executable, '-I', '-B', str(Path(driver.__file__).with_name('startup_guard.py')),
+            '--exec', sys.executable, '-c',
+            "import tools.runtime_config as m; print(m.__file__)"]
+        imported = subprocess.run(command, env=server.build_env(), capture_output=True,
+            text=True, check=True, timeout=30)
+        if Path(imported.stdout.strip()).resolve() != driver.CODE / 'tools/runtime_config.py':
+            raise AssertionError('serving middleware import escaped the qualified workload code')
         if not server.is_healthy():
             raise RuntimeError('actual CPU HTTP health is not ready')
         return server
@@ -150,7 +159,7 @@ def run_case(source, output, case):
         subprocess.run([str(driver.VENV / 'bin/python'), '-m', 'pip', 'install', '--no-index',
             '--no-deps', '--ignore-installed', *map(str, sorted((data / 'wheels').glob('*.whl')))],
             check=True, timeout=30, stdout=sys.stderr)
-        app, engine = build('vllm')
+        app, engine = build('vllm', metadata=case != 'missing-route')
         generated = GeneratedTokens(case)
         app.state.openai_serving_chat = generated
         sock = socket.socket()
@@ -230,21 +239,29 @@ def run_case(source, output, case):
 def main(source, output, evaluator):
     if any(k in os.environ for k in ('KAGGLE_API_TOKEN', 'RUNPOD_API_KEY', 'GITHUB_TOKEN', 'GH_STATE_TOKEN')):
         raise ValueError('connected task qualification must not inherit account credentials')
-    reports = []
+    from tools.probe_results import ProbeResults
+    output.mkdir(mode=0o700, parents=True, exist_ok=True)
+    stages = {}
+    probes = ProbeResults(stages)
     # Check the actual OS boundary, not just an input-key allowlist.
     check = subprocess.run(['setpriv', '--no-new-privs', '--bounding-set=-all', '--reuid=65534',
         '--regid=65534', '--clear-groups', sys.executable, '-I', '-c',
         'import os,sys;raise SystemExit(1 if os.access(sys.argv[1],os.R_OK) else 0)', str(evaluator)],
         env={'PATH': '/usr/bin:/bin'}, check=True, timeout=10)
     for case in ('missing-route', 'success', 'model-error'):
-        env = dict(os.environ, VLLM_SERVER_DEV_MODE='0' if case == 'missing-route' else '1')
-        result = subprocess.run([sys.executable, '-I', __file__, '--case', str(source), str(output / case), case],
-            env=env, check=True, stdout=subprocess.PIPE, timeout=300)
-        reports.append(json.loads(result.stdout.splitlines()[-1]))
+        env = dict(os.environ, VLLM_SERVER_DEV_MODE='0')
+        result = probes.run(case, lambda: subprocess.run([sys.executable, '-I', __file__, '--case',
+            str(source), str(output / case), case], env=env, check=True, stdout=subprocess.PIPE, timeout=300))
+        if result is not None:
+            stages[case] = json.loads(result.stdout.splitlines()[-1])
     from tools.qualify_evaluation import qualify
-    evaluation = qualify(evaluator, Path('/kaggle/input/r0-inputs'), output / 'success/agent.patch',
-                         output / 'evaluation')
-    return {'status': 'PASS', 'cases': reports, 'gpu_allocations': 0, 'public_evaluation': evaluation,
+    patch = output / 'success/agent.patch'
+    if not patch.is_file():
+        patch = output / 'unmodified-negative.patch'; patch.write_text('')
+    evaluation = probes.run('public_evaluation', lambda: qualify(evaluator,
+        Path('/kaggle/input/r0-inputs'), patch, output / 'evaluation'))
+    report = {'status': probes.status, 'cases': list(stages.values()), 'failed_stages': probes.failed,
+            'gpu_allocations': 0, 'public_evaluation': evaluation,
             'evaluator_agent_access': 'DENIED by actual UID read check',
             'driver': 'entire actual server_phase and actual agent child',
             'http': 'installed vLLM routes/middleware/schemas, real loopback TCP',
@@ -252,6 +269,8 @@ def main(source, output, evaluator):
             'recovery': 'actual manifest/hash transport and production artifact validator',
             'substitutions': ['GPU identity', 'GPU process start', 'chat generation handler with scripted content'],
             'not_established': ['GPU token generation', 'Gemma tool/reasoning parser', 'patch correctness']}
+    (output / 'connected-summary.json').write_text(json.dumps(report, sort_keys=True, indent=2) + '\n')
+    return report
 
 
 if __name__ == '__main__':
@@ -260,6 +279,8 @@ if __name__ == '__main__':
     elif sys.argv[1:2] == ['--case']:
         print(json.dumps(run_case(Path(sys.argv[2]), Path(sys.argv[3]), sys.argv[4]), sort_keys=True))
     elif len(sys.argv) == 4:
-        print(json.dumps(main(Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3])), sort_keys=True))
+        report = main(Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3]))
+        print(json.dumps(report, sort_keys=True))
+        raise SystemExit(0 if report['status'] == 'PASS' else 1)
     else:
         raise ValueError('prepared driver and private evidence directory required')

@@ -14,6 +14,7 @@ from tools import a100_delivery as frozen, cloud_task, pod_bootstrap, pod_prefli
 from tools.private_delivery import emit, receive
 from tests.official_cloud_prerequisites import qualify as prerequisites
 from tests.official_connected_task import main as connected_task
+from tools.probe_results import ProbeResults
 
 
 def qualify():
@@ -23,6 +24,7 @@ def qualify():
     stage = Path('/root/backtrace'); stage.mkdir(mode=0o700, exist_ok=True); stage.chmod(0o700)
     report = {'host': 'exact pinned RunPod image on Actions CPU', 'gpu_allocations': 0,
               'network': 'NONE', 'model_bytes_downloaded': 0, 'stages': {}}
+    probes = ProbeResults(report['stages'])
     report['stages']['base'] = pod_preflight.base(8 * 1024**3)
     system_manifest = json.loads((ROOT / 'docs/a100-system-packages.json').read_text())
     report['stages']['system_packages'] = pod_system.install(system_manifest, time.time(), local_packages='/inputs/system')
@@ -38,9 +40,9 @@ def qualify():
     report['stages']['runtime'] = pod_preflight.runtime(require_gpu=False)
     old = json.loads((ROOT / 'docs/a100-api-runtime-amendment.json').read_text())['original']
     with Path('/result/api-http.log').open('xb') as log:
-        report['stages']['actual_api_http'] = qualify_api.run_checks(
+        probes.run('actual_api_http', lambda: qualify_api.run_checks(
             '/opt/backtrace-runtime/venv/bin/python', Path('/inputs/api-negative') / old['path'],
-            '/result/api-http', log)
+            '/result/api-http', log))
     pod_bootstrap.require_prepared_runtime(hashes, requested)
     # Installation/imports must not add bytecode to the pinned driver tree.
     pod_bootstrap.checked_tree(stage / 'driver', hashes['driver'])
@@ -50,10 +52,11 @@ def qualify():
     pod_bootstrap.input_parent(target)
     shutil.copytree(task, target); (target / 'delivery-manifest.json').unlink()
     pod_bootstrap.readonly(target)
-    report['stages']['actual_cpu_prerequisites'] = prerequisites(source, staged=True, host=report['host'])
-    report['stages']['connected_task_path'] = connected_task(source, Path('/result/connected-task'),
-        Path('/inputs/evaluator/tasks.jsonl'))
-    report.update(status='PASS', gpu_initialization='NOT RUN', server_starts=0, task_executions=0)
+    probes.run('actual_cpu_prerequisites', lambda: prerequisites(source, staged=True, host=report['host']))
+    probes.run('connected_task_path', lambda: connected_task(source, Path('/result/connected-task'),
+        Path('/inputs/evaluator/tasks.jsonl')))
+    report.update(status=probes.status, failed_stages=probes.failed,
+                  gpu_initialization='NOT RUN', server_starts=0, task_executions=0)
     return report
 
 

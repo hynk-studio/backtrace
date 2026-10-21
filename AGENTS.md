@@ -193,3 +193,14 @@ is development-mode-only in the pinned vLLM version, and the actual HTTP
 qualification omitted it. Preserve the first-error and separate cleanup
 evidence. Only free inspection/correction remains within this consumed scope;
 do not reset a claim, create another allocation or automatically retry.
+
+The owner's subsequent 2026-10-22 instruction is a free structural audit and
+correction, including repeated assessment of whether the checks prevent actual
+execution failures. Read `docs/a100-connected-audit-20261022.md` and Draft PR #9
+on `bt-001-connected-qualification`. All paid scopes remain consumed. Require
+the whole driver/HTTP/task/recovery path and separate CPU evaluation controls;
+authored model content is plumbing evidence, never a model score. Independent
+free probes should collect their failures after prerequisites pass, rather than
+hide every later check behind the first failed probe. An old receipt or a large
+unit-test count cannot qualify these changed files. No new paid launch or merge
+is authorized by this free work.
