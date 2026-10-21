@@ -152,3 +152,10 @@ paid/watch heads remain immutable. Existing budget, scientific inputs and
 5,400/6,900/7,200-second limits are unchanged. If this final attempt fails,
 stop paid execution and reconsider the overall process; do not automatically
 retry or reactivate the old resumption automation.
+
+Final-attempt free qualification 39584773912 at
+7bedd35c8edaa9c7fccec0e1d19cceb7abeb3014 passed with a renewed 52-file receipt,
+278 Linux tests, pinned image/UID prerequisites, seven wrapper boundaries and
+five concurrent controller cases. The new 192529 scope is still unused at this
+receipt commit; require final exact-source CPU/preparation and a fresh matching
+watcher before its single paid entry. GPU/model/task execution is NOT RUN here.
