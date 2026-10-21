@@ -1,15 +1,38 @@
 {
   "account": {
     "auto_pay": false,
-    "availability": "NO_QUALIFIED_REGION",
-    "credit_balance_usd": "7.6341384961",
+    "credit_balance_usd": "7.2838481785",
+    "cumulative_observed_debit_usd": "2.7161518215",
     "current_spend_per_hour_usd": "0",
-    "job_id": 119289147318,
-    "observed_at_utc": "2026-10-21T14:45:25Z",
+    "exact_owned_pod_read": {
+      "allocation_requested_at": "2026-10-21T20:27:46Z",
+      "observed_at": "2026-10-21T20:41:58Z",
+      "owned_pod_status": "ABSENT",
+      "pod_id": "u1b700g1qbxhig",
+      "provider_mutations": 0
+    },
+    "final_invoice": "NOT ESTABLISHED",
+    "initial_balance_usd": "7.6341384961",
+    "job_id": 119473779194,
+    "observed_at_utc": "2026-10-21T20:42:02Z",
+    "observed_debit_usd": "0.3502903176",
     "pod_count": 0,
-    "read_only_run_id": 39619584770,
-    "run_attempt": 1
+    "run_attempt": 6,
+    "run_id": 39619584770
   },
+  "account_history": [
+    {
+      "auto_pay": false,
+      "availability": "NO_QUALIFIED_REGION",
+      "credit_balance_usd": "7.6341384961",
+      "current_spend_per_hour_usd": "0",
+      "job_id": 119289147318,
+      "observed_at_utc": "2026-10-21T14:45:25Z",
+      "pod_count": 0,
+      "read_only_run_id": 39619584770,
+      "run_attempt": 1
+    }
+  ],
   "complete_runtime_and_image": {
     "bound_files": 58,
     "completed_at_utc": "2026-10-21T15:04:16Z",
@@ -464,8 +487,8 @@
     "status": "PASS"
   },
   "evaluation": "NOT RUN",
-  "gpu_allocations": 0,
-  "gpu_model_api": "NOT RUN",
+  "gpu_allocations": 1,
+  "gpu_model_api": "Actual model loading and health HTTP 200 PASS; post-readiness server-info diagnostic HTTP 404",
   "linux_cpu": {
     "job_id": 119289150965,
     "preflight": "READY",
@@ -541,6 +564,17 @@
     "model_initialization": "NOT RUN",
     "pip_check": "PASS for both; HTTP results differ",
     "status": "PASS"
+  },
+  "paid_execution": {
+    "attempt": "922de2c1519040c7befca7dfdab9c2a4",
+    "authorization_consumed": true,
+    "owner_run_id": 39670285553,
+    "pod_id": "u1b700g1qbxhig",
+    "primary_failure": "HTTP 404 on /server_info after actual health HTTP 200",
+    "record": "a100-execution-20261022-evidence.json",
+    "source_sha": "7f53553078483cd2555f0bed0abd0410cf42f3d0",
+    "status": "INCOMPLETE",
+    "watcher_run_id": 39670196413
   },
   "prior_full_qualification": [
     {

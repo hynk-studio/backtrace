@@ -1,5 +1,12 @@
 # R0 API readiness recovery
 
+**Latest outcome, 2026-10-22 KST:** the single recovery authorization is now
+consumed. Actual GPU health returned HTTP 200, then the retained driver's
+`/server_info?config_format=json` request returned 404 before inference/task
+entry. Owner and watcher independently confirmed deletion. Read
+[the execution record](a100-execution-20261022.md) and its evidence JSON.
+The earlier preparation and unused-scope observations below are historical.
+
 The owner instructed **권고대로 수행하자** after the failure was reproduced and
 the overall process reconsidered. This scope implements the recommended API
 correction and free qualification, followed by **one** existing public-task run

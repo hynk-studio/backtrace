@@ -1,0 +1,365 @@
+{
+  "account": {
+    "auto_pay": false,
+    "credit_balance_usd": "7.2838481785",
+    "cumulative_observed_debit_usd": "2.7161518215",
+    "current_spend_per_hour_usd": "0",
+    "exact_owned_pod_read": {
+      "allocation_requested_at": "2026-10-21T20:27:46Z",
+      "observed_at": "2026-10-21T20:41:58Z",
+      "owned_pod_status": "ABSENT",
+      "pod_id": "u1b700g1qbxhig",
+      "provider_mutations": 0
+    },
+    "final_invoice": "NOT ESTABLISHED",
+    "initial_balance_usd": "7.6341384961",
+    "job_id": 119473779194,
+    "observed_at_utc": "2026-10-21T20:42:02Z",
+    "observed_debit_usd": "0.3502903176",
+    "pod_count": 0,
+    "run_attempt": 6,
+    "run_id": 39619584770
+  },
+  "actual_start_branch": "bt-001-a100-start-api-recovery",
+  "actual_watch_branch": "bt-001-a100-watch-api-recovery",
+  "artifact": {
+    "ciphertext_bytes": 112894,
+    "ciphertext_sha256": "c71b30a0216cb30bd6369c57a83ef342309075a26d1c2263dc4d3caf28006c2a",
+    "files": 11,
+    "format": "age-v1",
+    "plaintext_bytes": 102750,
+    "plaintext_published": false,
+    "private_artifact_id": 12379613309,
+    "public_artifact_id": 12379313466,
+    "zip_sha256": "cb141c430efee4d269a720d08b52ce4bac7af7a33209e5402c10a9fcbc4b083d"
+  },
+  "authorization": "owner-api-recovery-20261021",
+  "claim": {
+    "attempt": "922de2c1519040c7befca7dfdab9c2a4",
+    "authorization": "owner-api-recovery-20261021",
+    "costs": {
+      "compute_per_hour": "1.79",
+      "hourly_all_in": "1.804",
+      "initial_balance": "7.6341384961",
+      "maximum_all_in": "3.608",
+      "other_total": "0",
+      "spent_before": "2.3658615039",
+      "storage_per_hour": "0.014",
+      "tax_rate": "0"
+    },
+    "name": "backtrace-a100-922de2c1519040c7befca7dfdab9c2a4",
+    "policy": "prepaid10-actions-v1",
+    "region": "CA-MTL-3",
+    "requested_at": 1792614466,
+    "run": "R0-clean-v2-one-public-task/A10080-TP1",
+    "run_id": "39670285553",
+    "schema_version": 1,
+    "setup_seconds": 5400,
+    "source_sha": "7f53553078483cd2555f0bed0abd0410cf42f3d0",
+    "total_seconds": 7200,
+    "useful_seconds": 6900,
+    "watcher_run_id": "39670196413"
+  },
+  "consumed": true,
+  "historical_branches": {
+    "actual_paid_head": "7f53553078483cd2555f0bed0abd0410cf42f3d0",
+    "actual_watch_head": "7f53553078483cd2555f0bed0abd0410cf42f3d0",
+    "changed": [],
+    "checked": 13
+  },
+  "historical_state": {
+    "baseline_sha": "eeded8f1c5bfef8d506a897a6271321bada47fb9",
+    "changed": [],
+    "current_sha": "6fae8b1db4de4573f17b740718f582df646bd231",
+    "old_blob_count": 164
+  },
+  "milestones": {
+    "cuda_graph_capture": {
+      "seconds": 18,
+      "status": "PASS"
+    },
+    "evaluation": "NOT RUN",
+    "evidence_recovery": "PASS",
+    "hardware": "A100 80GB PCIe, 81920 MiB, SM80, native BF16, TP1",
+    "health": {
+      "observed_500s": 0,
+      "status": 200
+    },
+    "inference": "NOT RUN",
+    "input_verification": "PASS",
+    "model_loading": {
+      "memory_gib": 19.48,
+      "seconds": 6.172046,
+      "status": "PASS"
+    },
+    "public_task": "NOT RUN",
+    "runtime_installation": "PASS",
+    "server_info": {
+      "path": "/server_info?config_format=json",
+      "status": 404
+    },
+    "worker_cleanup": "PASS; zero survivors"
+  },
+  "owner": {
+    "job_id": 119466050555,
+    "report": {
+      "allocation_requests": 1,
+      "cleanup": {
+        "absence_reads": 2,
+        "at": 1792615267,
+        "attempt": "922de2c1519040c7befca7dfdab9c2a4",
+        "phase": "deleted",
+        "pod_id": "u1b700g1qbxhig",
+        "reason": "owner_finished"
+      },
+      "failure": {
+        "error_type": "RuntimeError",
+        "http_status": null,
+        "stage": "worker_exit"
+      },
+      "mode": "paid",
+      "preparation": {
+        "allocation_requests": 0,
+        "availability": {
+          "account": {
+            "auto_pay": false,
+            "credit_balance": "7.6341384961",
+            "current_spend_per_hour": "0"
+          },
+          "allocation_requests": 0,
+          "costs": {
+            "compute_per_hour": "1.79",
+            "hourly_all_in": "1.804",
+            "initial_balance": "7.6341384961",
+            "maximum_all_in": "3.608",
+            "other_total": "0",
+            "spent_before": "2.3658615039",
+            "storage_per_hour": "0.014",
+            "tax_rate": "0"
+          },
+          "observed_at": "2026-10-21T20:27:44Z",
+          "offer": {
+            "authenticated": true,
+            "auto_pay": false,
+            "cloud": "SECURE",
+            "compute_per_hour": "1.79",
+            "container_disk_gb": 100,
+            "credit_balance": "7.6341384961",
+            "gpu": "NVIDIA A100 80GB PCIe",
+            "gpu_count": 1,
+            "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+            "interruptible": false,
+            "network_volume": null,
+            "observed_at": "2026-10-21T20:27:44Z",
+            "other_total": "0",
+            "ram_gb": 117,
+            "region": "CA-MTL-3",
+            "region_policy": "owner-equivalent-region-20261019",
+            "stock_available": true,
+            "storage_per_hour": "0.014",
+            "tax_rate": "0",
+            "vcpus": 31,
+            "volume_gb": 0
+          },
+          "regions": [
+            {
+              "available": true,
+              "exact_quote": {
+                "availableGpuCounts": null,
+                "minMemory": 117,
+                "minVcpu": 31,
+                "stockStatus": "Low",
+                "supportPublicIp": null,
+                "uninterruptablePrice": 1.79
+              },
+              "id": "CA-MTL-3",
+              "stock": "Low"
+            },
+            {
+              "available": false,
+              "id": "EU-RO-1",
+              "stock": null
+            },
+            {
+              "available": false,
+              "id": "US-KS-2",
+              "stock": null
+            },
+            {
+              "available": false,
+              "id": "US-MO-1",
+              "stock": null
+            }
+          ],
+          "settings_changed": false,
+          "status": "QUALIFIED"
+        },
+        "cpu": {
+          "run_id": 39625490441,
+          "source_sha": "7f53553078483cd2555f0bed0abd0410cf42f3d0",
+          "status": "PASS"
+        },
+        "create_body_bytes": 5578,
+        "driver_sha256": "67d1cc5c393b8b3c379058f65ab71e966cefb9ef21c4c36d11bca47ed9b48bf2",
+        "free_stock_wait_seconds": 0,
+        "qualification": {
+          "bound_files": 58,
+          "report_sha256": "9057071d4a7c1f93edcaa0a13cefa1de669185486bccacc49772823073722b49",
+          "run_id": 39619584739,
+          "source_sha": "328bdc7c7ebadbce5f32930af8126ffda363895b"
+        },
+        "streams": {
+          "model": 8,
+          "task": 8,
+          "wheels": 246
+        },
+        "transport": {
+          "binary_bytes": 1400320,
+          "binary_sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a",
+          "method": "mutual-tls13-then-pinned-ssh",
+          "minimum_validity_seconds": 3600
+        }
+      },
+      "private_evidence": {
+        "ciphertext_bytes": 112894,
+        "ciphertext_sha256": "c71b30a0216cb30bd6369c57a83ef342309075a26d1c2263dc4d3caf28006c2a",
+        "files": 11,
+        "format": "age-v1",
+        "plaintext_bytes": 102750
+      },
+      "status": "INCOMPLETE",
+      "worker_exit": 1
+    },
+    "run_attempt": 1,
+    "run_id": 39670285553
+  },
+  "pod": {
+    "attempt": "922de2c1519040c7befca7dfdab9c2a4",
+    "pod_id": "u1b700g1qbxhig"
+  },
+  "primary_failure": {
+    "coverage_gap": "The actual HTTP qualification omitted the retained driver's required /server_info request.",
+    "driver_line": 179,
+    "error_type": "HTTPError",
+    "fix_status": "NOT IMPLEMENTED",
+    "message": "HTTP Error 404: Not Found",
+    "stage": "post-readiness server configuration diagnostic",
+    "upstream_condition": "vLLM 0.19.1 registers the server-info route only when VLLM_SERVER_DEV_MODE is enabled; its default is false."
+  },
+  "primary_source_inspection_at_utc": "2026-10-21T20:45:07.136Z",
+  "qualification": {
+    "bound_files": 58,
+    "exact_source_cpu_run_id": 39625490441,
+    "exact_source_preflight_run_id": 39625490460,
+    "full_run_id": 39619584739,
+    "report_sha256": "9057071d4a7c1f93edcaa0a13cefa1de669185486bccacc49772823073722b49",
+    "source_sha": "328bdc7c7ebadbce5f32930af8126ffda363895b"
+  },
+  "runtime_observations": {
+    "health_500_count": 0,
+    "independent_seconds": 825,
+    "model_and_requests": [
+      "(EngineCore pid=1521) INFO 10-21 20:38:07 [gpu_model_runner.py:4820] Model loading took 19.48 GiB memory and 6.172046 seconds",
+      "(EngineCore pid=1521) INFO 10-21 20:40:19 [gpu_model_runner.py:6046] Graph capturing finished in 18 secs, took 0.85 GiB",
+      "(EngineCore pid=1521) INFO 10-21 20:40:20 [core.py:283] init engine (profile, create kv cache, warmup model) took 132.56 seconds",
+      "(APIServer pid=1105) INFO:     127.0.0.1:42158 - \"GET /health HTTP/1.1\" 200 OK",
+      "(APIServer pid=1105) INFO:     127.0.0.1:42168 - \"GET /server_info?config_format=json HTTP/1.1\" 404 Not Found"
+    ],
+    "observed_debit_usd": "0.3502903176",
+    "owner_seconds": 801,
+    "startup_events": [
+      {
+        "error_type": "HTTPError",
+        "event": "server_or_task_error",
+        "message": "HTTP Error 404: Not Found",
+        "seconds": 193.68641066551208,
+        "unix_seconds": 1792615237.6065173
+      },
+      {
+        "event": "server_stop_returned",
+        "seconds": 197.0860698223114,
+        "unix_seconds": 1792615241.006176
+      },
+      {
+        "asgi_traceback_sha256": null,
+        "cleanup_error": "owned startup process group did not disappear",
+        "consecutive_health_500s": 0,
+        "detected": null,
+        "event": "startup_observation",
+        "health_status": 200,
+        "ready": 142172.698665831,
+        "repeated_asgi_tracebacks": 0,
+        "started": 141979.036865385,
+        "teardown_seconds": 3.3991829639999196,
+        "unix_seconds": 1792615241.0063076
+      }
+    ],
+    "worker_end": [
+      {
+        "event": "worker_exit",
+        "exit_code": 1,
+        "peak_used_mib": [
+          73631
+        ],
+        "unix_seconds": 1792615244.0923645
+      },
+      {
+        "event": "worker_cleanup",
+        "survivors": [],
+        "unix_seconds": 1792615244.0948215
+      },
+      {
+        "event": "run_end",
+        "gpu_session_termination": "requires separate provider readback",
+        "receipt_bytes": 27186,
+        "scratch_removed": true,
+        "seconds": 233.52663469314575,
+        "unix_seconds": 1792615244.204934,
+        "verification": "NOT RUN",
+        "worker_cleanup_confirmed": true
+      }
+    ]
+  },
+  "schema_version": 1,
+  "source_sha": "7f53553078483cd2555f0bed0abd0410cf42f3d0",
+  "source_tree": "3527446c701da25f4feb552c9c36cebf8b32a176",
+  "sources": [
+    {
+      "bytes": 742,
+      "evidence_level": "Primary tagged source inspection, consistent with actual HTTP 404 and route listing",
+      "name": "serve_router",
+      "sha256": "574f59a5d16f392b72a78bddf63574b97078e8c753ee4f8e780a81f318c2fcf9",
+      "url": "https://raw.githubusercontent.com/vllm-project/vllm/v0.19.1/vllm/entrypoints/serve/instrumentator/__init__.py",
+      "version": "v0.19.1"
+    },
+    {
+      "bytes": 1670,
+      "evidence_level": "Primary tagged source inspection, consistent with actual HTTP 404 and route listing",
+      "name": "server_info",
+      "sha256": "3ab518aceb14961e009b71b6567d5e3e0b773c2f0b8f350a96dee54721296ae0",
+      "url": "https://raw.githubusercontent.com/vllm-project/vllm/v0.19.1/vllm/entrypoints/serve/instrumentator/server_info.py",
+      "version": "v0.19.1"
+    },
+    {
+      "bytes": 84009,
+      "evidence_level": "Primary tagged source inspection, consistent with actual HTTP 404 and route listing",
+      "name": "environment",
+      "sha256": "0878b5ca5379317b3f9f0fe65d9414c62f0a3a3400f79baeb07419507b933e5d",
+      "url": "https://raw.githubusercontent.com/vllm-project/vllm/v0.19.1/vllm/envs.py",
+      "version": "v0.19.1"
+    }
+  ],
+  "watcher": {
+    "job_id": 119465739850,
+    "report": {
+      "absence_reads": 2,
+      "at": 1792615291,
+      "attempt": "922de2c1519040c7befca7dfdab9c2a4",
+      "phase": "deleted",
+      "pod_id": "u1b700g1qbxhig",
+      "reason": "heartbeat_lost"
+    },
+    "run_attempt": 1,
+    "run_id": 39670196413
+  }
+}

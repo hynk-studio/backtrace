@@ -179,3 +179,17 @@ and one further public-task attempt only after renewed actual API/full CPU
 qualification, within existing wallet and time limits. Use separate
 `owner-api-recovery-20261021` state and `api-recovery` start/watch branches.
 All historical claims/heads remain consumed and immutable; no automatic retry.
+
+The API recovery scope is now consumed in attempt
+`922de2c1519040c7befca7dfdab9c2a4`, Pod `u1b700g1qbxhig`, CA-MTL-3.
+Preserve both actual api-recovery start/watch heads at
+`7f53553078483cd2555f0bed0abd0410cf42f3d0`. Owner 39670285553 and independent
+watcher 39670196413 each confirmed deletion with two absence reads; a separate
+account check found zero Pods and zero current spend. Read
+`docs/a100-execution-20261022.md` and its evidence JSON. Actual GPU/model
+startup and health HTTP 200 passed; the required post-readiness `/server_info`
+request returned 404 before inference/public-task/evaluation entry. That route
+is development-mode-only in the pinned vLLM version, and the actual HTTP
+qualification omitted it. Preserve the first-error and separate cleanup
+evidence. Only free inspection/correction remains within this consumed scope;
+do not reset a claim, create another allocation or automatically retry.
