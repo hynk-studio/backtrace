@@ -97,14 +97,8 @@ def qualify(root, emit):
                 root / 'api-negative' / old['path'], root / 'api-http-result', log)
         emit({'stage': stage, **report['stages'][stage]})
         stage = 'restore_official'
-        # Try the immutable saved source before an external encrypted handoff.
-        # New competition downloads never substitute for the retained bytes.
-        try:
-            report['stages'][stage] = cloud_reference.restore_retained(source, root / 'official')
-        except ValueError as error:
-            if str(error) != 'frozen original references absent from saved notebook':
-                raise
-            report['stages'][stage] = cloud_reference.receive(transfer, identity, prefix, root / 'official')
+        # Require the original manifest-verified encrypted handoff.
+        report['stages'][stage] = cloud_reference.receive(transfer, identity, prefix, root / 'official')
         emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
         stage = 'cuda_runtime'
         # Exercise the actual version reader against the frozen installed

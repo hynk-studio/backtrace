@@ -68,8 +68,8 @@ do not treat failed cleanup observation as proof of process or Pod deletion.
 - Local full discovery was run. Twelve existing foreign-procfs limitations and
   two environment skips prevent a local full-pass claim. A stale wheel-byte
   expectation exposed by the version change was corrected and rechecked.
-- Required full Linux suite, exact full runtime/app assembly and pinned-image
-  qualification: PENDING GitHub Actions.
+- Full Linux suite and actual full runtime/app assembly: PASS in Actions.
+  Pinned-image and remaining full qualification: pending the renewed handoff.
 - Actual corrected GPU API readiness, inference, public task, evaluation and
   result recovery: NOT RUN. A fresh successful receipt and matching independent
   watcher are required before the single paid launch.
@@ -81,8 +81,22 @@ separate milestones. The task is complete only when its result is retrieved and
 interpreted, followed by independent Pod-absence and account-spending checks.
 CPU checks or model loading alone do not complete R0.
 
-The free qualifier first tries to recover the eleven exact original references
-from the already hash-pinned private notebook data archive. It selects only the
-original manifest paths and rechecks every byte hash; notebook code is never
-executed. The prior encrypted handoff remains available when those original
-references are absent. Current competition downloads never replace old inputs.
+Full free run 39615323568 at `1dc5437df47ec7a00205ccb6bfdb647ded727b8d`
+passed the actual installed vLLM HTTP comparison after all 246 wheels were
+verified and installed offline. Corrected health/models returned 200; old
+FastAPI reproduced the exact 500 traceback. Both dependency checks passed.
+It then failed at the missing original-reference handoff deadline, before the
+pinned-image and later controller checks. That failure remains recorded.
+
+The original private reference archive was subsequently recovered from the
+prior working folder: 193,863 bytes, SHA256
+`b3845934d3a848f83d65ef1c31c784ffc0fb9faf7ab30323a6b4b5e3d9308c0b`.
+All eleven members (491,594 bytes) passed the unchanged original manifest.
+The speculative saved-notebook fallback was removed after the observed absence
+of those references. The next free run uses the established ephemeral age
+handoff; no original plaintext or credential is published.
+
+Linux workflow 39615323075 passed all 283 tests in 28.437 seconds, CPU
+preflight and the exact-pin minimal real HTTP controls. Full pinned-image and
+controller qualification still require a fresh successful run. No GPU was
+allocated; no scientific task, evaluation or inference ran.

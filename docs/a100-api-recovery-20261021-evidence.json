@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "source_sha": "1dc5437df47ec7a00205ccb6bfdb647ded727b8d",
+  "source_tree": "34494b6d3dc7241fc13b6c323ffd8a39ffc4d3c7",
+  "linux_cpu": {
+    "run_id": 39615323075,
+    "job_id": 119274676422,
+    "tests": 283,
+    "seconds": 28.437,
+    "status": "PASS",
+    "preflight": "READY"
+  },
+  "minimal_real_http": {
+    "corrected_and_negative_control": {
+      "routing-error": {
+        "app_factory": "authored minimal FastAPI control",
+        "engine": "CPU state fixture; no model execution",
+        "error_signature": "AttributeError: '_IncludedRouter' object has no attribute 'path'",
+        "expected": "routing-error",
+        "gpu_allocations": 0,
+        "http_transport": "real loopback TCP/Uvicorn",
+        "lifespan": "OFF",
+        "mode": "minimal",
+        "responses": {
+          "/health": [
+            500,
+            500,
+            500
+          ],
+          "/v1/models": [
+            500,
+            500,
+            500
+          ]
+        },
+        "startup_classifier": "PASS on actual Uvicorn access/error logs",
+        "status": "PASS",
+        "versions": {
+          "fastapi": "0.141.1",
+          "prometheus-fastapi-instrumentator": "7.1.0",
+          "starlette": "0.52.1"
+        }
+      },
+      "success": {
+        "app_factory": "authored minimal FastAPI control",
+        "engine": "CPU state fixture; no model execution",
+        "error_signature": null,
+        "expected": "success",
+        "gpu_allocations": 0,
+        "http_transport": "real loopback TCP/Uvicorn",
+        "lifespan": "OFF",
+        "mode": "minimal",
+        "responses": {
+          "/health": [
+            200,
+            200,
+            200
+          ],
+          "/metrics": 200,
+          "/unknown-api-probe": 404,
+          "/v1/models": [
+            200,
+            200,
+            200
+          ]
+        },
+        "startup_classifier": "PASS on actual Uvicorn access/error logs",
+        "status": "PASS",
+        "versions": {
+          "fastapi": "0.136.3",
+          "prometheus-fastapi-instrumentator": "7.1.0",
+          "starlette": "0.52.1"
+        }
+      }
+    },
+    "gpu_allocations": 0,
+    "model_initialization": "NOT RUN",
+    "pip_check": "PASS for both; HTTP results differ",
+    "status": "PASS"
+  },
+  "complete_runtime_and_image": {
+    "run_id": 39615323568,
+    "job_id": 119275381075,
+    "status": "FAIL",
+    "failed_stage": "restore_official",
+    "reason": "Original reference handoff absent; 600-second deadline",
+    "report": {
+      "failed_stage": "restore_official",
+      "failure": {
+        "error_type": "TimeoutError",
+        "http_status": null,
+        "status": "FAIL"
+      },
+      "gpu_allocations": 0,
+      "private_evidence": {
+        "ciphertext_bytes": 1290838,
+        "ciphertext_sha256": "98cdebcf5b097ba6a1c3a8d4d61864b4495ed2538e579cb5224207aee3fac392",
+        "files": 5,
+        "format": "age-v1",
+        "plaintext_bytes": 1280105
+      },
+      "server_starts": 0,
+      "stages": {
+        "actual_api_http": {
+          "corrected_and_negative_control": {
+            "routing-error": {
+              "app_factory": "installed vLLM build_app",
+              "engine": "CPU state fixture; no model execution",
+              "error_signature": "AttributeError: '_IncludedRouter' object has no attribute 'path'",
+              "expected": "routing-error",
+              "gpu_allocations": 0,
+              "http_transport": "real loopback TCP/Uvicorn",
+              "lifespan": "OFF",
+              "mode": "vllm",
+              "responses": {
+                "/health": [
+                  500,
+                  500,
+                  500
+                ],
+                "/v1/models": [
+                  500,
+                  500,
+                  500
+                ]
+              },
+              "startup_classifier": "PASS on actual Uvicorn access/error logs",
+              "status": "PASS",
+              "versions": {
+                "fastapi": "0.141.1",
+                "prometheus-fastapi-instrumentator": "7.1.0",
+                "starlette": "0.52.1",
+                "vllm": "0.19.1"
+              }
+            },
+            "success": {
+              "app_factory": "installed vLLM build_app",
+              "engine": "CPU state fixture; no model execution",
+              "error_signature": null,
+              "expected": "success",
+              "gpu_allocations": 0,
+              "http_transport": "real loopback TCP/Uvicorn",
+              "lifespan": "OFF",
+              "mode": "vllm",
+              "responses": {
+                "/health": [
+                  200,
+                  200,
+                  200
+                ],
+                "/health-engine-dead": 503,
+                "/metrics": 200,
+                "/unknown-api-probe": 404,
+                "/v1/models": [
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "startup_classifier": "PASS on actual Uvicorn access/error logs",
+              "status": "PASS",
+              "versions": {
+                "fastapi": "0.136.3",
+                "prometheus-fastapi-instrumentator": "7.1.0",
+                "starlette": "0.52.1",
+                "vllm": "0.19.1"
+              }
+            }
+          },
+          "gpu_allocations": 0,
+          "model_initialization": "NOT RUN",
+          "pip_check": "PASS for both; HTTP results differ",
+          "status": "PASS"
+        },
+        "download_system_packages": {
+          "bytes": 16917572,
+          "files": 24,
+          "status": "PASS"
+        },
+        "download_wheels": {
+          "bytes": 5373545117,
+          "credentials": "short-lived file URLs only",
+          "files": 246,
+          "manifest_sha256": "054e0e813a797e1eb4d76bab563b3bfbbefe104010391cec30f24d99a48da569",
+          "phase": "bootstrap",
+          "schema_version": 1,
+          "transport": "direct-https",
+          "verified": true
+        },
+        "offline_runtime": {
+          "application_distributions": 245,
+          "host": "Actions Ubuntu 24.04 CPU",
+          "installation_network": "AUDIT BLOCKED",
+          "status": "PASS"
+        },
+        "sources": {
+          "model": 8,
+          "task": 8,
+          "urls_published": false,
+          "wheels": 246
+        },
+        "transport_build": {
+          "binaries": {
+            "dropbear": {
+              "bytes": 1400320,
+              "sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a"
+            },
+            "dropbearkey": {
+              "bytes": 1165584,
+              "sha256": "5d33b842b70f674859459713ce3f28e62e32bdaca04950d6a599e1b8d84f3690"
+            }
+          },
+          "matches_prior_transport": true,
+          "paid_transport": "NOT STARTED",
+          "source_sha256": "827d3f6e510e7554ee18d5c6a00dfee1a6a555559495e65e2e8f8d41c79eed84"
+        },
+        "transport_loopback": {
+          "binary_sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a",
+          "clean_child_environment": "PASS",
+          "keygen_sha256": "5d33b842b70f674859459713ce3f28e62e32bdaca04950d6a599e1b8d84f3690",
+          "mutual_tls": "PASS",
+          "network": "LOOPBACK ONLY",
+          "paid_operations": 0,
+          "private_transfer_bytes": 147456,
+          "profile": "actions-20261019",
+          "strict_ssh": "PASS",
+          "wrong_host": "REJECTED"
+        }
+      },
+      "status": "FAIL",
+      "task_executions": 0
+    }
+  },
+  "gpu_allocations": 0,
+  "gpu_model_api": "NOT RUN",
+  "public_task": "NOT RUN",
+  "evaluation": "NOT RUN",
+  "account": {
+    "observed_at_utc": "2026-10-21T14:25:44Z",
+    "credit_balance_usd": "7.6341384961",
+    "current_spend_per_hour_usd": "0",
+    "auto_pay": false,
+    "availability": "NO_QUALIFIED_REGION",
+    "read_only_run_id": 39615085090,
+    "run_attempt": 2,
+    "job_id": 119279470239,
+    "pod_count": 0
+  },
+  "reference_recovery": {
+    "verified_files": 11,
+    "bytes": 491594,
+    "archive_bytes": 193863,
+    "archive_sha256": "b3845934d3a848f83d65ef1c31c784ffc0fb9faf7ab30323a6b4b5e3d9308c0b",
+    "plaintext_published": false
+  }
+}
