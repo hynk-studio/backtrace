@@ -26,6 +26,7 @@ def qualify(root, log):
             (root / 'system', '/inputs/system', True),
             (root / 'wheels', '/root/backtrace/wheels', True),
             (root / 'api-negative', '/inputs/api-negative', True),
+            (root / 'evaluator', '/inputs/evaluator', True),
             (root / 'task', '/inputs/task', True), (output, '/result', False)):
         command += ['--mount', 'type=bind,source=' + str(source.resolve()) + ',target=' + target
                     + (',readonly' if readonly else '')]
@@ -37,6 +38,6 @@ def qualify(root, log):
         subprocess.run(['docker', 'rm', '-f', name], stdin=subprocess.DEVNULL,
                        stdout=log, stderr=log, timeout=30)
     report = json.loads((output / 'image.json').read_text())
-    if report.get('status') != 'PASS':
-        raise ValueError('pinned image CPU prerequisites did not pass')
+    if report.get('status') not in ('PASS', 'FAIL'):
+        raise ValueError('pinned image did not emit its actual check status')
     return dict(report, image=control.BASE, image_id=image[0]['Id'])

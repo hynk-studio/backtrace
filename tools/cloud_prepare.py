@@ -1,5 +1,6 @@
 """Free Actions input/runtime qualification. There is no provider allocation path."""
 import contextlib
+import base64
 import hashlib
 import io
 import json
@@ -16,13 +17,17 @@ from tools.cloud_probe import failure
 from tools.direct_delivery import pull, DownloadError
 from tools.runpod_job import private_json
 from tools import cloud_reference, cloud_state, cloud_image, pod_system, qualify_api
+from tools.probe_results import ProbeResults
+from tools import qualification_evidence
 
 
 def qualify(root, emit):
     root = Path(root).absolute(); root.mkdir(mode=0o700, parents=True)
     if shutil.disk_usage(root).free < 45 * 1024**3:
         raise ValueError('free CPU disk space below 45 GiB for host and pinned image')
-    report = {'gpu_allocations': 0, 'server_starts': 0, 'task_executions': 0, 'stages': {}}
+    report = {'gpu_allocations': 0, 'gpu_model_server_starts': 0, 'gpu_model_task_executions': 0,
+              'scripted_cpu_checks': 'reported separately per stage', 'stages': {}}
+    probes = ProbeResults(report['stages'])
     stage = 'private_source'
     try:
         transfer = cloud_state.GitHubState(os.environ['GITHUB_TOKEN'])
@@ -41,6 +46,16 @@ def qualify(root, emit):
                 env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
         report['stages'][stage] = json.loads(result.stdout)
         emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
+        stage = 'private_evidence_permissions'
+        import pyrage
+        sites = str(Path(pyrage.__file__).resolve().parent.parent)
+        with (root / 'evidence-permissions.log').open('xb') as log:
+            result = subprocess.run(['sudo', sys.executable, '-I',
+                str(frozen.ROOT / 'tests/official_private_evidence.py'), sites],
+                env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'},
+                stdout=subprocess.PIPE, stderr=log, check=True, timeout=60)
+        report['stages'][stage] = json.loads(result.stdout)
+        emit({'stage': stage, **report['stages'][stage]})
         stage = 'private_source'
         with resolver.kaggle_client() as client:
             source = resolver.get_source(client)
@@ -52,6 +67,7 @@ def qualify(root, emit):
                 progress=lambda name, count: emit({'stage': name, 'count': count}))
             stage = 'resolve_task_model'
             task_sources = resolver.resolve_task(client)
+            evaluator_manifest, evaluator_sources = resolver.resolve_evaluator(client)
             model_sources = resolver.resolve_model(client)
         private_json(root / 'private-sources.json', {'wheels': wheel_sources, 'task': task_sources,
                                                      'model': model_sources})
@@ -93,8 +109,8 @@ def qualify(root, emit):
         pull(root / 'api-negative', old_manifest, {old['path']: old_source},
              hashlib.sha256(old_manifest).hexdigest(), 120)
         with (root / 'actual-api-http.log').open('xb') as log:
-            report['stages'][stage] = qualify_api.run_checks(runtime / 'venv/bin/python',
-                root / 'api-negative' / old['path'], root / 'api-http-result', log)
+            probes.run(stage, lambda: qualify_api.run_checks(runtime / 'venv/bin/python',
+                root / 'api-negative' / old['path'], root / 'api-http-result', log))
         emit({'stage': stage, **report['stages'][stage]})
         stage = 'restore_official'
         # Require the original manifest-verified encrypted handoff.
@@ -116,6 +132,19 @@ def qualify(root, emit):
         data = frozen.manifest('task')
         report['stages'][stage] = pull(root / 'task', data, task_sources, hashlib.sha256(data).hexdigest(), 600)
         emit({'stage': stage, 'status': 'PASS', 'verified_files': len(task_sources)})
+        stage = 'private_public_evaluator'
+        report['stages'][stage] = pull(root / 'evaluator', evaluator_manifest, evaluator_sources,
+            hashlib.sha256(evaluator_manifest).hexdigest(), 120)
+        # This root-private tree is not included in the task/driver manifests.
+        emit({'stage': stage, 'status': 'PASS', 'agent_access': False})
+        stage = 'cpu_evaluator_dependencies'
+        rows = json.loads((frozen.ROOT / 'docs/a100-evaluator-dependencies.json').read_text())['files']
+        data = json.dumps({'schema_version': 1, 'phase': 'bootstrap', 'files': [
+            {k: row[k] for k in ('path', 'bytes', 'sha256')} for row in rows]}).encode()
+        sources = {row['path']: resolver.pypi_source(row) for row in rows}
+        report['stages'][stage] = pull(root / 'evaluator/wheels', data, sources,
+            hashlib.sha256(data).hexdigest(), 120)
+        emit({'stage': stage, 'status': 'PASS', 'verified_files': len(rows), 'agent_access': False})
         stage = 'restore_cpu_inputs'
         report['stages'][stage] = resolver.restore_cpu_inputs(source, frozen.ROOT, root / 'wheels', root / 'task', root / 'official')
         prepared = cloud_task.prepare(frozen.ROOT / '.local/smoke/no-custom-ar/one_task.py', root / 'driver')
@@ -149,10 +178,11 @@ def qualify(root, emit):
         emit({'stage': stage, **report['stages'][stage]})
         stage = 'official_cloud_driver'
         with (root / 'official-cloud-driver.log').open('xb') as log:
-            subprocess.run([str(runtime / 'venv/bin/python'), '-I',
+            result = probes.run(stage, lambda: subprocess.run([str(runtime / 'venv/bin/python'), '-I',
                 str(frozen.ROOT / 'tests/official_a100_task.py'), '--cloud-policy'],
-                env=env, cwd=frozen.ROOT, stdout=log, stderr=log, check=True, timeout=300)
-        report['stages'][stage] = {'status': 'PASS', 'driver_sha256': cloud_task.CLOUD_DRIVER_SHA256,
+                env=env, cwd=frozen.ROOT, stdout=log, stderr=log, check=True, timeout=300))
+        if result is not None:
+            report['stages'][stage] = {'status': 'PASS', 'driver_sha256': cloud_task.CLOUD_DRIVER_SHA256,
                                   'model_execution': 'NOT RUN', 'hardware': 'INJECTED A100 SM80',
                                   'event_writer': 'ACTUAL', 'hardware_name_preserved': True,
                                   'post_start_boundary_cases': 7,
@@ -160,24 +190,51 @@ def qualify(root, emit):
                                   'agent_construction': 'ACTUAL; RUNNER ENTRY NOT RUN'}
         stage = 'actual_cpu_prerequisites'
         with (root / 'actual-cpu-prerequisites.log').open('xb') as log:
-            result = subprocess.run(['sudo', sys.executable, '-I',
+            result = probes.run(stage, lambda: subprocess.run(['sudo', sys.executable, '-I',
                 str(frozen.ROOT / 'tests/official_cloud_prerequisites.py'), str(root / 'driver')],
-                env=env, cwd=frozen.ROOT, stdout=subprocess.PIPE, stderr=log, check=True, timeout=300)
-        report['stages'][stage] = json.loads(result.stdout)
+                env=env, cwd=frozen.ROOT, stdout=subprocess.PIPE, stderr=log, check=True, timeout=300))
+        if result is not None:
+            report['stages'][stage] = json.loads(result.stdout)
         emit({'stage': stage, **report['stages'][stage]})
+        stage = 'connected_task_path'
+        with (root / 'connected-task.log').open('xb') as log:
+            result = probes.run(stage, lambda: subprocess.run(['sudo', str(runtime / 'venv/bin/python'), '-I',
+                str(frozen.ROOT / 'tests/official_connected_task.py'), str(root / 'driver'),
+                str(root / 'connected-task'), str(root / 'evaluator/tasks.jsonl')], env=env, cwd=frozen.ROOT,
+                stdout=subprocess.PIPE, stderr=log, check=True, timeout=900))
+        if result is not None:
+            report['stages'][stage] = json.loads(result.stdout)
+        emit({'stage': stage, **report['stages'][stage]})
+        if probes.failed:
+            # Do not wait for a second image installation to expose the host's
+            # first failure. Only bounded owner-encrypted diagnostics leave here.
+            try:
+                output = root / 'host-failure.age'
+                checkpoint = qualification_evidence.privileged(root, output, early=True)
+                encoded = base64.b64encode(output.read_bytes())
+                path = prefix + '/host-diagnostic.age.b64'
+                transfer.request('PUT', '/contents/' + path, {'branch': cloud_state.BRANCH,
+                    'message': 'Preserve owner-encrypted free host diagnostics',
+                    'content': base64.b64encode(encoded).decode()})
+                report['early_private_diagnostic'] = dict(checkpoint, path=path)
+                emit({'stage': 'host_failure_evidence', 'status': 'SEALED', 'path': path, **checkpoint})
+            except Exception as error:
+                report['early_private_diagnostic'] = {'status': 'FAILED', 'error_type': type(error).__name__}
         stage = 'pinned_image_cpu'
         with (root / 'pinned-image.log').open('xb') as log:
-            report['stages'][stage] = cloud_image.qualify(root, log)
-        emit({'stage': stage, 'status': 'PASS', 'image': report['stages'][stage]['image'],
-              'gpu_allocations': 0, 'server_starts': 0, 'task_executions': 0})
+            probes.run(stage, lambda: cloud_image.qualify(root, log))
+        emit({'stage': stage, 'status': report['stages'][stage].get('status', 'PASS'),
+              'image': report['stages'][stage].get('image'),
+              'gpu_allocations': 0, 'gpu_model_server_starts': 0, 'gpu_model_task_executions': 0})
         stage = 'concurrent_controller'
         with (root / 'concurrent-controller.log').open('xb') as log:
-            result = subprocess.run(['sudo', sys.executable, '-I',
+            result = probes.run(stage, lambda: subprocess.run(['sudo', sys.executable, '-I',
                 str(frozen.ROOT / 'tests/official_cloud_lifecycle.py')], env=env,
-                stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=log, check=True, timeout=300)
-        report['stages'][stage] = json.loads(result.stdout)
+                stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=log, check=True, timeout=300))
+        if result is not None:
+            report['stages'][stage] = json.loads(result.stdout)
         emit({'stage': stage, **report['stages'][stage]})
-        report['status'] = 'PASS'
+        report['status'], report['failed_stages'] = probes.status, probes.failed
     except Exception as error:
         report.update(status='FAIL', failed_stage=stage, failure=failure(error))
         if isinstance(error, resolver.ResolutionError):
@@ -193,16 +250,12 @@ def qualify(root, emit):
                 'resolve the final storage URL on the owner host', 'bounded storage retries exhausted',
                 'invalid encoded input', 'unexpected HTTP content encoding', 'download deadline reached'}:
             report['failure']['reason'] = str(error)
-    private = {}
-    for name in ('retained-source.ipynb', 'offline-runtime.log', 'official-cloud-driver.log', 'cpu-task-layout.log',
-                 'actual-cpu-prerequisites.log', 'cuda-runtime.log', 'transport-loopback.log', 'transport/build.log',
-                 'pinned-image.log', 'concurrent-controller.log', 'actual-api-http.log'):
-        path = root / name
-        if path.is_file():
-            private[name] = path
-    if private:
-        report['private_evidence'] = cloud_seal.seal(private,
-            frozen.ROOT / 'evidence/cloud-private.age', limit=16 * 1024**2)
+    try:
+        report['private_evidence'] = qualification_evidence.privileged(root,
+            frozen.ROOT / 'evidence/cloud-private.age')
+    except Exception as error:
+        # Keep the complete stage report even if encrypted export fails.
+        report.update(status='FAIL', evidence_failure=failure(error))
     return report
 
 

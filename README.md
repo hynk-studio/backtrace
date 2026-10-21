@@ -1,15 +1,21 @@
 # Backtrace
 
-Current work: [owner-directed A100 execution](docs/a100-owner-region-execution.md).
-The existing USD 10 wallet, USD 8 cumulative early stop and 50-minute total
-window remain in force under the [amended policy](docs/a100-prepaid-policy.json).
-The owner delegated equivalent region choices. One A100 PCIe 80GB / Secure Pod
-was allocated in CA-MTL-3 on 2026-10-19; the small TLS-to-SSH bootstrap succeeded.
-Bulk input transfer sustained about 7.4 MB/s and could not fit the existing
-20-minute setup window, so the worker was stopped early. Pod deletion was
-confirmed after 411.032 seconds; inference and the public task did not run.
-Estimated quote-time cost is USD 0.206; final billing is pending. The prior
-failed create remains preserved, and no automatic paid retry is configured.
+Current work: [free connected-path audit](docs/a100-connected-audit-20261022.md).
+The full free qualification now passes on the Actions host and exact offline
+deployment image: actual HTTP, all declared tools/delegation, patch/trace
+recovery and separate public-test controls. The neutral patch fails two of four
+tests; the evaluator-only reference passes all four in both environments.
+The [renewed receipt](docs/a100-actions-qualification.json) binds 69 files to
+successful run 39689758659, with 295 Linux tests passing separately.
+R0 remains incomplete. The latest paid run loaded the A100 model and passed
+health readiness, then stopped on a missing mandatory metadata route before
+inference or task entry. That Pod is confirmed deleted and its authorization
+consumed; see the [execution evidence](docs/a100-execution-20261022.md).
+No paid retry is authorized by the current free audit. The new work connects
+actual HTTP, official task/tool execution and recovered result validation,
+with a separate CPU evaluator and explicit negative controls. Scripted CPU
+model content is not a model result. The older experiments below are historical
+evidence, not the current approval or qualification state.
 
 Does post-training logical/abductive inference, Bayesian belief revision, and
 selection of useful inspections improve Gemma's software-engineering performance

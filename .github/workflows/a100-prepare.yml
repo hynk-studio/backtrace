@@ -3,12 +3,23 @@ name: A100 free private-input qualification
 
 on:
   push:
-    branches: [bt-001-api-readiness-recovery]
+    branches: [bt-001-api-readiness-recovery, bt-001-connected-qualification]
     paths:
       - 'tools/a100_task.py'
       - 'tools/startup_guard.py'
       - 'tools/api_probe.py'
       - 'tools/qualify_api.py'
+      - 'tools/serving_contract.py'
+      - 'tools/task_results.py'
+      - 'tools/qualify_evaluation.py'
+      - 'docs/a100-evaluator-dependencies.json'
+      - 'tests/test_evaluation.py'
+      - 'tools/probe_results.py'
+      - 'tools/runtime_config.py'
+      - 'tools/qualification_evidence.py'
+      - 'tests/official_private_evidence.py'
+      - 'tools/cloud_task.py'
+      - 'tests/official_connected_task.py'
       - 'docs/a100-api-runtime-amendment.json'
       - 'docs/linux-supplemental.lock'
       - 'docs/linux-wheel-manifest.json'

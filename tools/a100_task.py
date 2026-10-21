@@ -21,7 +21,8 @@ WHEEL_MANIFEST_SHA256 = '72ec973f6e5cf390b891cf8f6354f0c5a95be5e6252c90976afad7c
 # must never be swept into the private worker tree as new files are added.
 POD_TOOLS = ('a100_task.py', 'a100_driver.py', 'guard_driver.py', 'compile_probe.py',
              'backtrace.py', 'artifacts.py', 'r0.py', 'native_dtype.py',
-             'official_check.py', 'startup_guard.py', 'errors.py', 'linux_runtime.py')
+             'official_check.py', 'startup_guard.py', 'errors.py', 'linux_runtime.py',
+             'serving_contract.py', 'task_results.py', 'runtime_config.py')
 POD_DOCS = ('source-manifest.json', 'linux-wheel-manifest.json',
             'a100-runtime-amendment.json', 'linux-supplemental.lock')
 

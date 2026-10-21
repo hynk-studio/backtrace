@@ -15,7 +15,27 @@ from tools.private_delivery import digest, parse_manifest, verify
 
 POLICY = 'prepaid10-actions-v1'
 SETUP, USEFUL, TOTAL = 5400, 6900, 7200
-CLOUD_DRIVER_SHA256 = '67d1cc5c393b8b3c379058f65ab71e966cefb9ef21c4c36d11bca47ed9b48bf2'
+CLOUD_DRIVER_SHA256 = '174bd6359c3e3f53e149a2ec5210cb220ab46ec41e1e9b34b6b0c915631c55b1'
+
+
+def preserve_finally(source, function):
+    """Retain a phase failure even when its finalizer raises a second error."""
+    node = next(n for n in ast.parse(source).body if isinstance(n, ast.FunctionDef) and n.name == function)
+    finalizers = [n for n in node.body if isinstance(n, ast.Try) and n.finalbody]
+    if len(finalizers) != 1:
+        raise ValueError('one outer finalizer required in ' + function)
+    body = finalizers[0].finalbody
+    lines = source.splitlines(keepends=True)
+    start, end = body[0].lineno - 1, body[-1].end_lineno
+    old = lines[start:end]
+    indent = ' ' * body[0].col_offset
+    new = [indent + 'phase_failure=sys.exc_info()[1]\n', indent + 'try:\n']
+    new += [' ' + line if line.strip() else line for line in old]
+    new += [indent + 'except BaseException as cleanup_failure:\n',
+            indent + ' if phase_failure is None: raise\n',
+            indent + " phase_failure.add_note('Separate cleanup failure: '+type(cleanup_failure).__name__)\n",
+            indent + ' raise phase_failure\n']
+    return ''.join(lines[:start] + new + lines[end:])
 
 
 def transform(data):
@@ -42,6 +62,56 @@ def transform(data):
                 and not (isinstance(node, ast.FunctionDef) and node.name == 'main')]
     if frozen(original) != frozen(result):
         raise ValueError('non-policy driver definition changed')
+    # Deliberate operational corrections, applied only after the old policy-only
+    # derivative is reproduced. The historical driver and paid heads stay intact.
+    result = legacy._replace(result,
+        " env.update(OFFICIAL_ENV)\n return env\n",
+        " env.update(OFFICIAL_ENV)\n env['PYTHONPATH']=str(CODE)\n return env\n")
+    # The official context accepts string directories and its graph loaders call
+    # str.endswith. Preserve the same pinned paths at that API boundary.
+    result = legacy._replace(result,
+        "graph_dir=ns['GRAPH_DIR'],embeddings_dir=ns['EMBEDDINGS_DIR']",
+        "graph_dir=str(ns['GRAPH_DIR']),embeddings_dir=str(ns['EMBEDDINGS_DIR'])")
+    result = legacy._replace(result,
+        " server=ns['server_instance'];assert not ns['adapters'].adapters\n",
+        " server=ns['server_instance'];assert not ns['adapters'].adapters\n"
+        " from tools.runtime_config import MIDDLEWARE\n"
+        " server.config.extra_args += ['--middleware',MIDDLEWARE]\n")
+    result = legacy._replace(result,
+        " assert ns['vllm_cfg'].extra_args==['--disable-custom-all-reduce']\n",
+        " assert ns['vllm_cfg'].extra_args==['--disable-custom-all-reduce','--middleware',MIDDLEWARE]\n")
+    before = ("  with urllib.request.urlopen('http://127.0.0.1:8000/server_info?config_format=json',timeout=10) as response: info=json.load(response)\n"
+              "  with urllib.request.urlopen('http://127.0.0.1:8000/v1/models',timeout=10) as response: models=json.load(response)\n")
+    result = legacy._replace(result, before,
+        "  from tools.serving_contract import inspect_server\n"
+        "  info,models=inspect_server(server.base_url,MODEL)\n")
+    result = legacy._replace(result,
+        "'request_sha256':hashlib.sha256(request.content).hexdigest()}",
+        "'request_sha256':hashlib.sha256(request.content).hexdigest(),'event':'request'}")
+    result = legacy._replace(result,
+        "  if request.url.path.endswith('/chat/completions'): event('model_http_response',status=result.status_code)\n",
+        "  if request.url.path.endswith('/chat/completions'):\n"
+        "   with wire.open('a') as stream: stream.write(json.dumps({'event':'response','status':result.status_code,'request_sha256':hashlib.sha256(request.content).hexdigest()},sort_keys=True)+'\\n')\n"
+        "   event('model_http_response',status=result.status_code)\n")
+    result = legacy._replace(result, "  event('task_end',**result)\n",
+        "  event('task_end',**result)\n"
+        "  from tools.task_results import validate\n"
+        "  validate(WORK)\n")
+    result = legacy._replace(result, "  manager.close();httpx.AsyncClient.send=original\n",
+        "  try: manager.close()\n  finally: httpx.AsyncClient.send=original\n")
+    result = legacy._replace(result,
+        "  if Path(server.log_path).is_file(): shutil.copyfile(server.log_path,WORK/'server.log')\n  server.stop()\n",
+        "  try:\n   if Path(server.log_path).is_file(): shutil.copyfile(server.log_path,WORK/'server.log')\n"
+        "  finally: server.stop()\n")
+    for function in ('server_phase', 'agent_phase', 'main'):
+        result = preserve_finally(result, function)
+    # Prompt, task/answer separation, sampling, model and budgets are still the
+    # byte-pinned definitions. Changed functions are only the named operations.
+    def definitions(source):
+        return {n.targets[0].id: ast.dump(n) for n in ast.parse(source).body
+                if isinstance(n, ast.Assign) and isinstance(n.targets[0], ast.Name)}
+    if definitions(original) != definitions(result):
+        raise ValueError('scientific input or driver constant changed')
     compile(result, '<private-cloud-driver>', 'exec')
     return result
 
@@ -58,7 +128,10 @@ def prepare(source, output):
         fromfile='retained-t4/one_task.py', tofile='cloud-a100/one_task.py')))
     receipt.update(prepared_driver_sha256=CLOUD_DRIVER_SHA256, policy=POLICY,
                    setup_seconds=SETUP, useful_seconds=USEFUL, total_seconds=TOTAL,
-                   server_and_agent_ast_equal_to_legacy=True)
+                   server_and_agent_ast_equal_to_legacy=False,
+                   operational_changes=['narrow initialized-engine metadata middleware', 'shared real HTTP contract',
+                                        'model response receipts', 'task artifact validation',
+                                        'string paths at official graph context boundary'])
     receipt['files'] = {str(path.relative_to(output)): digest(path)
                         for path in sorted(output.rglob('*'))
                         if path.is_file() and path.name != 'prepare-receipt.json'}
