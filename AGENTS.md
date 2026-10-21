@@ -112,3 +112,14 @@ found zero Pods and zero current spend/hour. Read
 model startup. The correction and actual logger regression are recorded there.
 Only unpaid evidence inspection and correction remain within this consumed scope.
 Preserve the actual paid/watch heads and immutable state; no automatic paid retry.
+
+The owner next instructed '1,2,3번 순서대로 진행하자': free preflight, correction
+and complete revalidation, then actual GPU minimum smoke. This is one new
+bounded attempt, recorded at 2026-10-21 16:07:57 KST as
+`owner-cloud-20261021-160757`. Read `docs/a100-staged-smoke-20261021.md`.
+Use separate `20261021b` start/watch branches and a create-only state namespace.
+Every earlier claim and actual paid/watch head remains immutable and consumed.
+Renew changed operational fingerprints and actual full free qualification first.
+Existing USD 10 wallet / USD 8 cumulative stop, one A100/server/public task,
+5,400/6,900/7,200-second limits and all scientific inputs remain unchanged.
+No automatic second paid allocation and no resumption-automation reactivation.

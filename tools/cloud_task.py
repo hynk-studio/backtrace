@@ -15,7 +15,7 @@ from tools.private_delivery import digest, parse_manifest, verify
 
 POLICY = 'prepaid10-actions-v1'
 SETUP, USEFUL, TOTAL = 5400, 6900, 7200
-CLOUD_DRIVER_SHA256 = 'e041e336f409e3d5c63faee529a0c9ad2c9d42f496918785b9b2c2c686788ccb'
+CLOUD_DRIVER_SHA256 = '67d1cc5c393b8b3c379058f65ab71e966cefb9ef21c4c36d11bca47ed9b48bf2'
 
 
 def transform(data):

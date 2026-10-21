@@ -2,14 +2,14 @@ name: A100 independent cleanup
 
 on:
   push:
-    branches: [bt-001-a100-watch-20261021a]
+    branches: [bt-001-a100-watch-20261021b]
 
 permissions:
   contents: write
   actions: read
 
 concurrency:
-  group: a100-cleanup-owner-cloud-20261021-003938
+  group: a100-cleanup-owner-cloud-20261021-160757
   cancel-in-progress: false
 
 jobs:

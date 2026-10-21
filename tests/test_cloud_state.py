@@ -20,8 +20,8 @@ class MemoryStore:
         self.docs = {}
         self.runs = {str(n): {'id': n, 'status': 'in_progress', 'conclusion': None,
                               'head_sha': SOURCE, 'head_branch': branch, 'run_attempt': 1}
-                     for n, branch in ((1, 'bt-001-a100-start-20261021a'),
-                                       (2, 'bt-001-a100-watch-20261021a'))}
+                     for n, branch in ((1, 'bt-001-a100-start-20261021b'),
+                                       (2, 'bt-001-a100-watch-20261021b'))}
         self.fail_write = None
 
     def read(self, name):
@@ -84,10 +84,10 @@ class CloudStateTests(unittest.TestCase):
 
     def test_previous_consumed_claim_is_not_valid_for_new_owner_authorization(self):
         claim, _ = self.claim()
-        self.assertEqual(claim['authorization'], 'owner-cloud-20261021-003938')
-        self.assertEqual(state.DIRECTORY, 'a100-state/owner-cloud-20261021-003938')
+        self.assertEqual(claim['authorization'], 'owner-cloud-20261021-160757')
+        self.assertEqual(state.DIRECTORY, 'a100-state/owner-cloud-20261021-160757')
         for prior in ('owner-cloud-20261019-203126', 'owner-cloud-20261020-155445',
-                      'owner-cloud-20261020-211134'):
+                      'owner-cloud-20261020-211134', 'owner-cloud-20261021-003938'):
             with self.subTest(authorization=prior):
                 claim['authorization'] = prior
                 with self.assertRaises(ValueError):

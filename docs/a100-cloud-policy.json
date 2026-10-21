@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "id": "prepaid10-actions-v1",
-  "authorization": "owner-cloud-20261021-003938",
-  "status": "CONSUMED; POD DELETED; LOGGING FIX FREE QUALIFIED; NO PAID RETRY",
-  "authority": "At 2026-10-21 00:36:16 KST the owner reported re-enabling Monitoring. After being told that the existing automation still referenced a consumed attempt and needed the latest qualified preparation plus a new execution record, the owner instructed at 00:39:38 KST: '\uc218\uc815\ud574 \uc918'. Apply that correction to the conditional one-attempt R0 resumption under the existing wallet, cumulative USD 8 stop and unchanged allocation-inclusive limits. Preserve every consumed claim and old paid/watch branch; this does not authorize repeated paid retries.",
+  "authorization": "owner-cloud-20261021-160757",
+  "status": "STAGED OWNER-DIRECTED SMOKE; FREE QUALIFICATION REQUIRED; NOT ALLOCATED",
+  "authority": "The owner instructed '1,2,3번 순서대로 진행하자' after the three-stage plan: free inspection, correction and complete revalidation, then the actual GPU minimum smoke. This instruction is recorded at 2026-10-21T07:07:57Z (16:07:57 KST; record time, not an asserted message timestamp). It authorizes one further bounded attempt within the existing wallet/cumulative cap and unchanged scientific inputs. Preserve every prior consumed claim and actual paid/watch head. No automatic paid retry.",
   "controller": "GitHub-hosted free Linux CPU runner; no user Mac/Windows required",
   "wallet_credits_usd": "10.00",
   "cumulative_stop_usd": "8.00",
@@ -16,14 +16,14 @@
   "useful_seconds": 6900,
   "request_to_confirmed_deletion_seconds": 7200,
   "automatic_paid_retry": false,
-  "previous_allocated_attempt": "280db614d5b14e9abcc75dbcf4ce688c / Pod 1h29jip02mmaf4; d314b1bf207147c3a92259b80caba0fe / Pod oaqns8gv9avo2p; both consumed and independently confirmed deleted; 0de2835ad98d4f258476d4ee81f43d84 / Pod p70xyu9hqatdxf; consumed and independently confirmed deleted; 5b37996b581a412094ae8033ee4e0ce3 / Pod 17c9n3lugb7qcs; consumed and independently confirmed deleted; 00849e0b667e4b87ade08050ab172405 / Pod so5pvfqgxxs4pp; current scope consumed and independently confirmed deleted; workload exited 1",
+  "previous_allocated_attempt": "280db614d5b14e9abcc75dbcf4ce688c / Pod 1h29jip02mmaf4; d314b1bf207147c3a92259b80caba0fe / Pod oaqns8gv9avo2p; both consumed and independently confirmed deleted; 0de2835ad98d4f258476d4ee81f43d84 / Pod p70xyu9hqatdxf; consumed and independently confirmed deleted; 5b37996b581a412094ae8033ee4e0ce3 / Pod 17c9n3lugb7qcs; consumed and independently confirmed deleted; 00849e0b667e4b87ade08050ab172405 / Pod so5pvfqgxxs4pp; previous scope consumed and independently confirmed deleted; workload exited 1",
   "unchanged": "A100 PCIe 80GB x1 Secure, frozen model v2, TP1 native BF16, exact runtime/task/candidate/prompts/inference budget, no persistent or network volume",
   "credentials": "GitHub and RunPod account credentials remain on controller runners. The Pod may receive only scoped short-lived input download URLs before dropping to the workload UID. New credential access needs the browser's action-time confirmation.",
   "claims_not_made": [
     "An Actions runner is not durable storage; the fixed create-only claim is external",
     "An independent workflow is not a provider-enforced timer or a guaranteed dollar cap",
     "Synthetic cancellation tests are not a live paid cancellation trial",
-    "The owner-cloud-20261021-003938 scope remains consumed and its Pod independently deleted. Private evidence establishes an event(name, **values) / hardware.name collision before server start. The operational event signature is corrected, with all other generated cloud-driver bytes unchanged. Model server start, inference, R0 task execution and evaluation did not run. Full free qualification 39549794781 at b8b05264153a6f1eca8dc12a63203caa19066eba passed with the actual event writer and hardware name preserved. The 52-file receipt is renewed. Corrected GPU/model/task execution remains NOT RUN; no paid retry is authorized by this correction."
+    "Previous authorization owner-cloud-20261021-003938 remains consumed and Pod so5pvfqgxxs4pp independently deleted. The new scope is owner-cloud-20261021-160757. Free inspection reproduced another operational bug: a nonzero agent child exit could return success through the server wrapper. Propagate that failure and requalify actual response handling plus task-side construction before a new GPU allocation. Actual model startup/inference/task outcome for the corrected driver is NOT RUN."
   ],
   "exclusions": [
     "training",

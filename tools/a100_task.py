@@ -166,6 +166,10 @@ def transform(data):
         # Hardware observations contain a `name` field. Keep the event label
         # positional-only so real telemetry can retain that field unchanged.
         ('def event(name,**values):', 'def event(name,/,**values):'),
+        # A nonzero agent child must propagate through the server/owner path.
+        ("  event('agent_process_exit',exit_code=result.returncode)\n",
+         "  event('agent_process_exit',exit_code=result.returncode)\n"
+         "  if result.returncode: raise RuntimeError('agent child failed; see retained task log')\n"),
         ("RUN_NAME='R0-clean-v2-one-public-task/T4-native-no-custom-ar'",
          "RUN_NAME='R0-clean-v2-one-public-task/A10080-TP1'"),
         ("ROOT=Path('/tmp/backtrace-smoke')", "ROOT=Path('/tmp/backtrace-a100-smoke')"),

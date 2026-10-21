@@ -13,7 +13,7 @@ from tools.private_delivery import digest, parse_manifest, regular_file, verify
 
 SOURCE_SHA256 = '873e9dc7cf372948c154fb6b9d1e24170f1eb74fea4426d32fc17702581a030a'
 TASK_SHA256 = '3cf1409f7dd48366b194523bfa7ee42bd0dd5289be68f3c26cdf140fc98faab3'
-DRIVER_SHA256 = '8c237bfb0d3cfc0190089319c27668f14d88a1738f4971c638e636857344fe7a'
+DRIVER_SHA256 = '13b5150de9c3ae5f060a009c748428e7b2dbf40ef2ed28a3560422821ca1339f'
 
 
 def pinned_document(name, expected):
