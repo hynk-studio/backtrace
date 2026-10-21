@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "prepaid10-external-v2",
+  "status": "owner-directed-execution",
+  "authority": {
+    "original": "https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5895260495",
+    "amendment": "Owner's 2026-10-17/18 conversation: work within one USD 10 top-up; accept the proposed USD 8 early-stop/external-controller plan; finish everything possible before funding.",
+    "funding_action": "Owner funded USD 10 on 2026-10-19; no further top-up authorized.",
+    "new_credentials": "Separate browser action-time confirmation required before creating or expanding access. No secret values in chat or public Git.",
+    "equivalent_regions": "Owner conversation 2026-10-19T19:36:05+09:00: adjust regions and equivalent implementation details without further confirmation when purpose, budget and substantive conditions do not change."
+  },
+  "wallet_credits_usd": "10.00",
+  "stop_total_consumption_usd": "8.00",
+  "reserve_usd": "2.00",
+  "automatic_top_up": false,
+  "additional_top_up": false,
+  "native_expiry": "NOT USED: unsupported enforcement/readback; not a prerequisite under this amended plan",
+  "external_controller": "Owner-side Linux CPU process outside the Pod, separate from its transport/workload worker. Free Kaggle CPU or an existing qualified Linux host; no paid controller server.",
+  "host_outage_fallback": "Provider's documented zero-balance termination for Pods without network volumes. Billing runs every five minutes; this is not a guaranteed exact USD 10 cutoff.",
+  "initial_attempt": {
+    "allocations": 1,
+    "server_starts": 1,
+    "maximum_tasks": 1,
+    "request_to_confirmed_deletion_seconds": 3000,
+    "setup_seconds": 1200,
+    "startup_seconds": 1200,
+    "useful_work_seconds": 2700,
+    "run": "R0-clean-v2-one-public-task/A10080-TP1",
+    "gpu": "NVIDIA A100 80GB PCIe",
+    "gpu_count": 1,
+    "cloud": "SECURE",
+    "region": "One exact region selected from the current authenticated A100 Secure catalog before create; immutable after create.",
+    "container_disk_gb": 100,
+    "persistent_or_network_volumes": 0,
+    "automatic_retry_or_substitution": false,
+    "original_region": "EU-RO-1",
+    "automatic_region_selection_before_single_create": true
+  },
+  "unchanged": [
+    "Frozen v2 model, candidate, five-field fastapi_11194 input and both prompts",
+    "TP1/native BF16/no-custom-all-reduce/context 32768 and approved dependency closure",
+    "One minute/ten tools/fifty turns/sixty-second command task limits",
+    "Provider/Kaggle credentials outside the agent Pod; root control/dropped UID 65534",
+    "No training, competition submission, merge, issue closure or public private-asset publication"
+  ],
+  "next_spend": "Review the first result before proposing use of any remaining wallet. This preparation does not authorize automatic additional attempts.",
+  "checkout": "Existing funded USD 10 wallet only; no checkout or additional payment is performed by this execution."
+}

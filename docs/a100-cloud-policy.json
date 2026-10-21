@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "id": "prepaid10-actions-v1",
+  "authorization": "owner-cloud-20261021-192529",
+  "status": "CONSUMED; POD DELETED; MODEL LOADED BUT HTTP READINESS FAILED; PROCESS RECONSIDERATION BEFORE ANY PAID WORK",
+  "authority": "The owner instructed '그럼 전체 과정을 재고하기 전 마지막으로 시도해보자' after the status and next-attempt estimate. Recorded at 2026-10-21T10:25:29Z / 19:25:29 KST (record time, not an asserted message timestamp). This authorizes one final bounded attempt before reconsidering the overall process, within the unchanged wallet, cumulative cap and scientific inputs. If it fails, do not repeat paid execution. Preserve every consumed claim and actual paid/watch branch.",
+  "controller": "GitHub-hosted free Linux CPU runner; no user Mac/Windows required",
+  "wallet_credits_usd": "10.00",
+  "cumulative_stop_usd": "8.00",
+  "additional_funding": false,
+  "automatic_top_up": false,
+  "maximum_new_allocations": 1,
+  "maximum_server_starts": 1,
+  "maximum_tasks": 1,
+  "setup_seconds": 5400,
+  "useful_seconds": 6900,
+  "request_to_confirmed_deletion_seconds": 7200,
+  "automatic_paid_retry": false,
+  "previous_allocated_attempt": "280db614d5b14e9abcc75dbcf4ce688c / Pod 1h29jip02mmaf4; d314b1bf207147c3a92259b80caba0fe / Pod oaqns8gv9avo2p; both consumed and independently confirmed deleted; 0de2835ad98d4f258476d4ee81f43d84 / Pod p70xyu9hqatdxf; consumed and independently confirmed deleted; 5b37996b581a412094ae8033ee4e0ce3 / Pod 17c9n3lugb7qcs; consumed and independently confirmed deleted; 00849e0b667e4b87ade08050ab172405 / Pod so5pvfqgxxs4pp; previous scope consumed and independently confirmed deleted; workload exited 1; 319399b9318e4bd9935f9b89f68b4b7e / Pod xfx5hsrc28h2sb; previous scope consumed and independently confirmed deleted; owner stopped during runtime installation on heartbeat readback mismatch; 4c2e9bc867bc4f3aac9fac1c36c8e5d3 / Pod wggriyrf6yb8ww; final scope consumed and independently confirmed deleted; model loaded but health endpoint returned HTTP 500",
+  "unchanged": "A100 PCIe 80GB x1 Secure, frozen model v2, TP1 native BF16, exact runtime/task/candidate/prompts/inference budget, no persistent or network volume",
+  "credentials": "GitHub and RunPod account credentials remain on controller runners. The Pod may receive only scoped short-lived input download URLs before dropping to the workload UID. New credential access needs the browser's action-time confirmation.",
+  "claims_not_made": [
+    "An Actions runner is not durable storage; the fixed create-only claim is external",
+    "An independent workflow is not a provider-enforced timer or a guaranteed dollar cap",
+    "Synthetic cancellation tests are not a live paid cancellation trial",
+    "Scope owner-cloud-20261021-160757 is consumed in one US-MO-1 allocation at ec58d2d6a8200a7cfb74185fce9ccc82dabaab81. Owner 39563206076 stopped at publish_heartbeat with durable write not independently confirmed during runtime installation. Owner and watcher 39563149559 each confirmed deletion with two absence reads. Model transfer, server start and task execution did not run. The heartbeat value was actually committed; the original mismatching GET response is not retained. A bounded read-only confirmation correction for existing mutable heartbeats is under free qualification, without changing initial heartbeat, claim, Pod identity or provider-create behavior. This correction grants no paid retry. Full free correction qualification 39565232280 at 8864490e7656d30dccc1740679c91d137bb6405f passed: exact image and UID prerequisites, all seven wrapper boundaries, actual agent construction and all five concurrent controller cases, including two delayed owner-heartbeat views and blocked recreation. The renewed 52-file receipt binds report SHA256 5b3ed1fe6c2918bae714b35dc3856cb7d78d16cc24208fe37b299a8d0ea81cba. Linux full suite passed 278 tests. Corrected GPU/model/task execution remains NOT RUN, and the authorization remains consumed.",
+    "The final owner-cloud-20261021-192529 scope is consumed in CA-MTL-3 at source 5aea23d2456233414c74f3346f1163acd0779fa2. Owner 39587471913 and watcher 39587415214 independently confirmed deletion. Hardware, model loading and CUDA graph capture passed, but the actual API health route returned 981 HTTP 500 responses from prometheus_fastapi_instrumentator routing AttributeError involving FastAPI _IncludedRouter. Readiness never passed, and inference/public task/evaluation did not run. The 1200-second readiness wait ended with a secondary process-group cleanup error; outer worker and provider cleanup succeeded. Stop paid retries and reconsider actual HTTP coverage and live progress/error visibility. No version change or new paid attempt is authorized by this consumed scope."
+  ],
+  "exclusions": [
+    "training",
+    "competition submission",
+    "terms acceptance",
+    "merge",
+    "Issue #1 closure",
+    "public private-asset publication"
+  ]
+}

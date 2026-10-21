@@ -1,4 +1,29 @@
-# R0-clean-v2-one-public-task/A10080-TP1 — proposal, NOT authorized execution
+# R0-clean-v2-one-public-task/A10080-TP1 — proposal and subsequent approval
+
+**2026-10-18 amendment:** [Current prepaid preparation](a100-prepayment-ready.md)
+and its [policy](a100-prepaid-policy.json) supersede the native-timer/$2 control
+requirements below. Original observations remain historical evidence.
+
+**Status update (2026-10-15 UTC):** the owner subsequently authorized this exact
+conditional attempt in [Issue #1](https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5895260495).
+The proposal below preserves its original evidence and authorization status at
+writing; another GPU approval or intermediate merge is not required inside the
+approved limits. See the [Kaggle CPU follow-up](kaggle-cpu-followup.md) for execution
+results and blockers. On 2026-10-16 the owner also approved exactly three
+[dependency substitutions](a100-runtime-amendment.md); the build recipe below
+incorporates that amendment. No A100 allocation has been requested.
+
+The subsequent [offline CPU qualification](a100-offline-qualification.md)
+records restored inputs, the completed wheel bundle and actual base user-space
+checks. Historical acquisition statements below are not current blockers;
+the A100 task/controller and provider gates remain separate. The active Issue #1
+authorization explicitly allows a CPU-qualified private offline bootstrap on
+the pinned public base. A private image/registry is not required. The owner has
+subsequently created and signed into RunPod. The
+[prepayment audit](a100-prepayment-audit.md) replaces the historical account,
+price and provider-control assumptions below. Funding remains a separate owner
+decision; the approved native expiry control is not established.
+See the [current free-resource assessment](free-resource-assessment.md).
 
 Recommend **one RunPod Secure Cloud on-demand `NVIDIA A100 80GB PCIe`,
 EU-RO-1**, full GPU, TP=1. No reservation, spot instance, MIG slice, second
@@ -73,36 +98,49 @@ evidence of permission to pull that image on RunPod. Do not depend on it.
 
 Proposed image name: **backtrace-r0-linux-cu128**. Accessible public base:
 `pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca`.
-Anonymous manifest/config retrieval succeeded; config identifies Linux amd64,
+At the original proposal stage, anonymous manifest/config retrieval succeeded;
+config identifies Linux amd64,
 Ubuntu 24.04, Python 3.12 paths, Torch 2.10.0 and CUDA build argument 12.8.1.
 Only 6.4KB of manifest/config bytes were acquired, **no layers pulled or image
 executed**. This is an explicit image/OS delta, not Kaggle-image parity.
 
 The private CPU build recipe is:
 
-1. Start from that digest. Materialize the existing wheelhouse v25's 41 exact
-   wheel hashes (880,829,403 bytes), existing task dependency wheels and a
+1. Start from that digest. Materialize 38 unchanged wheelhouse v25 wheels and the
+   three exact replacements in `docs/a100-runtime-amendment.json` (41 selected
+   runtime wheels, 833,990,706 bytes), existing task dependency wheels and a
    supplemental **Linux CPython 3.12 dependency lock with hashes**. Keep
    `swegemma==0.2.7`, `adk-submission==0.2.11`, `adk-eval-core==0.1.0`,
    `google-adk==1.36.1`, `google-genai==2.11.0`, `vllm==0.19.1`,
    `torch==2.10.0+cu128`, `compressed-tensors==0.15.0.1`,
-   `transformers==5.13.1` and every supplied wheel fixed. Use the existing
+   `transformers==5.13.1` fixed. The approved replacements are
+   `opentelemetry-exporter-otlp==1.41.1`,
+   `prometheus-fastapi-instrumentator==7.1.0` and `xgrammar==0.2.8`.
+   Preserve the original v25 manifest as acquisition history. Use the existing
    separate task venv/Starlette 0.48.0 dependency strategy.
-2. Install the complete Linux lock offline with
-   `python3 -m pip install --no-index --require-hashes --find-links=/private/wheels -r /private/linux-runtime.lock`;
-   apply the pinned notebook's 41-wheel `--no-deps --force-reinstall` step and
-   unchanged serving environment. Provision system `git`, `setpriv`, `ps`, SSH
+2. Include the separately hash-pinned pip 25.0.1 bootstrap wheel: this base lacks
+   `ensurepip`. Run `tools/linux_runtime.py` with the complete wheel directory
+   and `docs/linux-supplemental.lock`. It creates a fresh `--without-pip` venv,
+   bootstraps pip from the verified wheel and installs the complete Linux lock
+   with `--no-index --require-hashes`;
+   apply the selected 41-wheel `runtime-pins.lock` with `--no-deps --force-reinstall`
+   through `tools/linux_runtime.py`, retaining the serving environment variables.
+   Do not reinstall the three superseded v25 wheels. Provision system `git`, `setpriv`, `ps`, SSH
    transport and build prerequisites in that private CPU build; pin its resulting
    image digest and package inventory. Run `pip check`, import checks, the actual
    candidate CPU checks and disposable-process isolation/cleanup checks before
    renting a GPU. No latest-version resolution during a GPU allocation.
-3. **Not yet build-ready:** the base lacks the Kaggle preinstalled dependency
-   closure; the supplemental Linux lock and final private image have not been
-   built/validated. Docker is unavailable locally. The macOS CPU lock is not a
-   substitute. A qualified existing free Linux CPU builder is a prerequisite;
-   no paid builder/storage is authorized or costed here. Do not publish a derived
-   image containing competition packages. If a private image cannot be delivered
-   without extra charges, stop and revise the proposal before allocating.
+3. The portable Linux wheel closure and supplemental lock now exist; see the
+   [execution boundary](a100-offline-qualification.md) for base user-space checks.
+   **The final deployable private image is not yet built/qualified.** It is optional
+   under the later owner authorization: the qualified private offline bootstrap
+   on the same pinned public base is an acceptable delivery path. Kaggle's
+   CPU host permits chroot but denies mount/network namespaces; it is not a
+   Docker isolation qualification. The macOS CPU lock is not a substitute.
+   A separate image builder/registry is unnecessary for the offline bootstrap
+   path. No paid builder/storage is authorized or costed here. Do not publish a
+   derived image containing competition packages. Keep the bootstrap, wheels and
+   input transfer private and count installation/transfer inside setup time.
 
 Model v2's eight pinned files total **23,297,590,856 bytes**; the public-task bundle
 is about 222MB, and base-image compressed layers total **4,432,776,135 bytes**.
@@ -110,7 +148,7 @@ Budget roughly 29GB cold transfer plus image expansion, caches and scratch withi
 100GB. These sizes, not measured transfer speed, motivate the 20-minute setup
 cap. Privately pre-stage only on existing permitted storage. After later approval,
 fetch versioned Kaggle bytes in the owner-controlled acquisition process, check
-the retained eight-file/41-wheel/input manifests, then transfer over authenticated
+the retained model/input manifests and selected runtime wheel identities, then transfer over authenticated
 SSH to root-owned paths. Do not mount the full competition dataset. No Kaggle or
 RunPod credential enters the image's agent environment or shell-visible files.
 

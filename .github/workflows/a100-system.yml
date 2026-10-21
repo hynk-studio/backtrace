@@ -1,0 +1,34 @@
+name: A100 free exact-image system package inventory
+on:
+  push:
+    branches: [bt-001-a100-cpu-qualification]
+    paths:
+      - '.github/workflows/a100-system.yml'
+      - 'tools/cloud_system_inventory.py'
+permissions:
+  contents: read
+jobs:
+  inventory:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Discover and verify missing system dependencies on free CPU
+        run: |
+          mkdir -p evidence
+          image=$(python3 -c 'from tools.runpod_control import BASE; print(BASE)')
+          docker pull "$image"
+          docker run --rm --entrypoint /usr/bin/python3.12 \
+            --mount "type=bind,source=$PWD/tools,target=/work/tools,readonly" \
+            --mount "type=bind,source=$PWD/evidence,target=/result" \
+            "$image" -I /work/tools/cloud_system_inventory.py
+      - name: Preserve package identities only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: a100-system-${{ github.sha }}
+          path: evidence/system-inventory.json
+          retention-days: 7
+          if-no-files-found: error

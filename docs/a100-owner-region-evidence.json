@@ -1,0 +1,127 @@
+{
+  "attempt": "280db614d5b14e9abcc75dbcf4ce688c",
+  "automatic_paid_retries": 0,
+  "billing_console_delay_notice_hours": 1,
+  "billing_final": false,
+  "billing_observed_at_utc": "2026-10-19T11:07:12.422166Z",
+  "billing_record_count": 0,
+  "billing_total_usd": 0,
+  "bootstrap_transfer": {
+    "bytes": 1400320,
+    "sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a"
+  },
+  "cleanup_absence_reads": 2,
+  "cleanup_errors": [],
+  "competition_submission": "NOT RUN",
+  "confirmed_allocations": 1,
+  "controller_exit_code": 0,
+  "deadline_exceeded": false,
+  "deletion_confirmed_at_utc": "2026-10-19T10:57:49Z",
+  "estimated_quote_time_cost_usd": 0.205528,
+  "evidence_source": "Observed notebook execution output and post-restart authenticated provider reads; not a recovered raw allocation journal",
+  "execution_source_commit": "2e7adb2a3ae5722ec7528751ecbb1ac04b6ca9b9",
+  "free_bulk_comparison": {
+    "attempts": 3,
+    "cause_of_session_stops": "UNKNOWN",
+    "comparison_completed": false,
+    "production_receive_window_changed": false,
+    "provider_api_calls": 0,
+    "source_git_blob": "d1b6ecfee3cb8e941c815a2a18ea558f76a84a2a",
+    "status": "NOT QUALIFIED"
+  },
+  "free_session_restart": {
+    "allocated_raw_journal_restored": false,
+    "cause": "UNKNOWN",
+    "consumption_receipt_reconstructed_from_observed_outputs": true,
+    "first_bulk_cpu_benchmark_result": "LOST / NOT CLAIMED",
+    "guard_filename": "allocated-attempt-280db614d5b14e9abcc75dbcf4ce688c-consumed.json",
+    "local_consumption_receipt_survival_after_later_rollbacks": "NOT ASSUMED",
+    "older_checkpoint_restored": true,
+    "original_archive_sha256_observed_before_restart": "c12636234c1b57c60fdc320ba7f28b736398f9a81486ab302339ce9e21bf06fd",
+    "original_restored_journal_sha256": "c12636234c1b57c60fdc320ba7f28b736398f9a81486ab302339ce9e21bf06fd"
+  },
+  "full_input_transfer": "NOT COMPLETED",
+  "hardware_read_only": {
+    "compute_capability": "8.0",
+    "driver": "595.91.07",
+    "gpu": "NVIDIA A100 80GB PCIe",
+    "memory_mib": 81920
+  },
+  "inference": "NOT RUN",
+  "inference_starts": 0,
+  "owner_region_delegation_at_utc": "2026-10-19T10:36:05Z",
+  "paid_notebook_entry_cells": {
+    "count": 2,
+    "mechanism": "Unconditional consumed-attempt exception before preserved original code",
+    "status": "DISABLED IN SAVED DRAFT"
+  },
+  "pod_id": "1h29jip02mmaf4",
+  "post_restart_provider_reads": [
+    {
+      "at_utc": "2026-10-19T11:07:11.584440Z",
+      "complete_list_count": 0,
+      "exact_pod_absent": true
+    },
+    {
+      "at_utc": "2026-10-19T11:07:12.131082Z",
+      "complete_list_count": 0,
+      "exact_pod_absent": true
+    }
+  ],
+  "post_run_regression": {
+    "focused_controller_tests": 39,
+    "new_test": "restored old checkpoint with consumed allocation receipt cannot retry",
+    "seconds": 2.878,
+    "status": "PASS"
+  },
+  "pre_execution_cpu_qualification": {
+    "preflight": "READY",
+    "raw_current_run_logs_restored_after_restart": false,
+    "source_map_sha256": "b238f5c98f2d5c391d0dfad7eadbe0480741d32e6cb79e5b2dc435bfefe0426d",
+    "status": "PASS",
+    "suite_log_sha256_observed": "b939b789f45c875725aa561ce437443a84d2c080dc68f5496f0331ae0c78fda9",
+    "tests": 168,
+    "unittest_seconds": 34.947
+  },
+  "provider_readback": {
+    "cloud": "SECURE",
+    "compute_usd_hour": "1.79",
+    "count": 1,
+    "disk_gb": 100,
+    "host_ram_gb": 117,
+    "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+    "vcpus": 31
+  },
+  "public_task_result": "NOT RUN",
+  "public_tasks": 0,
+  "quote_total_usd_hour": "1.804",
+  "region": "CA-MTL-3",
+  "renewed_create_requests": 1,
+  "request_to_deletion_seconds": 411.03191944360196,
+  "requested_at_utc": "2026-10-19T10:50:58Z",
+  "runtime_install": "NOT RUN",
+  "schema_version": 1,
+  "ssh_receive_window_bytes": 1048576,
+  "stop_reason": "Sustained input transfer could not fit existing setup and total deadlines",
+  "tcp_rtt_ms": 96.042,
+  "temporary_api_key_present_after_restart": false,
+  "temporary_api_key_removed_before_restart": true,
+  "transfer_samples": [
+    {
+      "at_utc": "2026-10-19T10:54:05.918210Z",
+      "sender_written_bytes": 507023360,
+      "stream": "wheels"
+    },
+    {
+      "at_utc": "2026-10-19T10:54:45.704036Z",
+      "sender_written_bytes": 802232320,
+      "stream": "wheels"
+    },
+    {
+      "at_utc": "2026-10-19T10:55:46.344710Z",
+      "sender_written_bytes": 1254707200,
+      "stream": "wheels"
+    }
+  ],
+  "worker_terminated_at_utc": "2026-10-19T10:57:16.293462Z"
+}

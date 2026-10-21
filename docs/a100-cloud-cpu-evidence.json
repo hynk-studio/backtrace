@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "authorization": "owner-cloud-20261019-203126",
+  "tested_source_sha": "b2b2ad290aae0967559e0cf14002672d32c05584",
+  "workflow_run_id": 39289473985,
+  "workflow_run_url": "https://github.com/hynk-studio/backtrace/actions/runs/39289473985",
+  "job_id": 118186052088,
+  "conclusion": "success",
+  "python": "3.12.14",
+  "runner": "ubuntu-24.04",
+  "root_linux_pid_namespace": "PASS",
+  "full_cpu_tests": {
+    "passed": 235,
+    "failed": 0,
+    "seconds": 27.223
+  },
+  "preflight": "READY",
+  "official_validator": "NOT RUN",
+  "artifact": {
+    "id": 12204733480,
+    "name": "a100-cpu-b2b2ad290aae0967559e0cf14002672d32c05584-1",
+    "bytes": 7428,
+    "digest": "sha256:37c0085f004875d7602288854e79bc169c88f610c7bb237283ad3e25a786d003",
+    "expires_at_utc": "2026-10-26T16:54:46Z",
+    "contains": "Secret-free CPU test log and preflight only"
+  },
+  "evidence_scope": "Real Linux CPU execution; synthetic HTTP/RunPod/GitHub fixtures for fault cases",
+  "live_direct_download_throughput": "246 wheel bodies and all eight selected task bodies verified on Actions run 39284346940; large saved outputs use bounded 16MiB ranges",
+  "live_paid_cancellation": "NOT RUN",
+  "new_allocations": 0,
+  "server_starts": 0,
+  "public_tasks_executed": 0,
+  "additional_funding": "NONE",
+  "actual_offline_runtime": "245 application distributions installed and imported, installation network audit blocked; Actions Ubuntu 24.04 CPU",
+  "actual_transport": "Pinned Actions rebuild, mutual TLS, strict SSH, wrong-host rejection and 147456-byte private transfer PASS",
+  "official_wrapper_cloud_driver": "PASS: actual adk-submission 0.2.11 constructor, TP1/native BF16 configuration, injected A100 SM80, no server/task/network/process execution",
+  "free_input_qualification": {
+    "run_id": 39284346940,
+    "source_sha": "fb74d7ffcaec1f25b04ff655063b55c910894212",
+    "status": "PASS",
+    "report_sha256": "520f97e423919cb3d927b55b222410d0948b7d48b1ea4f914af8b2a7295128fc",
+    "task_download_seconds": 588.285,
+    "limits_unchanged": true
+  },
+  "owner_preflight": {
+    "run_id": 39289474231,
+    "run_url": "https://github.com/hynk-studio/backtrace/actions/runs/39289474231",
+    "source_sha": "b2b2ad290aae0967559e0cf14002672d32c05584",
+    "status": "PREPARATION_PASS",
+    "workflow_conclusion": "success",
+    "completed_at_utc": "2026-10-19T16:57:40Z",
+    "report_sha256": "71316afd9c73d93f2b14d712f245f561221a02f313d396a594ec7da0bdbc0946",
+    "create_body_bytes": 5578,
+    "create_body_limit_bytes": 102400,
+    "allocation_requests": 0,
+    "driver_sha256": "9542d7c47eb394247fb30a61a90303ba381b3f0eadbf6a6ef8fb8939bae7f342",
+    "streams": {
+      "wheels": 246,
+      "task": 8,
+      "model": 8
+    },
+    "current_claim": "ABSENT",
+    "transport": "qualified actual rebuild and fresh private identities"
+  },
+  "provider_status_incident": {
+    "url": "https://www.githubstatus.com/incidents/8tzbpcnl75jp",
+    "observed_at_utc": "2026-10-19T16:46:00Z",
+    "scope": "Actions workflow status updates, Pages and Webhooks; required workflow conclusion is not bypassed",
+    "required_gate_passed_at_utc": "2026-10-19T16:54:52Z"
+  },
+  "latest_account": {
+    "observed_at_utc": "2026-10-19T16:57:39Z",
+    "balance_usd": "9.8508333333",
+    "current_spend_per_hour": "0",
+    "auto_pay": false,
+    "pods": 0,
+    "pod_list_observed_at_utc": "2026-10-19T16:54:21Z",
+    "qualified_offer": null,
+    "exact_quote_status": "NO_QUALIFIED_REGION"
+  },
+  "remaining": "Fresh allocatable matching offer, live independent watcher and one authorized paid entry; GPU model/server/public task remain NOT RUN"
+}

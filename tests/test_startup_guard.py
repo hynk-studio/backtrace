@@ -3,20 +3,24 @@
 official_startup_guard.py reuses these cases with the REAL pinned lifecycle.
 """
 import json
+import ctypes
 import os
 from pathlib import Path
 import socket
+import select
+import signal
 import subprocess
 import sys
 import tempfile
 import time
 from types import SimpleNamespace
 import unittest
+from unittest.mock import patch
 import urllib.error
 import urllib.request
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from tools.startup_guard import FatalTrace, group_members, guarded_server
+from tools.startup_guard import FatalTrace, group_members, guarded_server, stop_group
 from startup_fixture import fatal, worker_trace
 
 
@@ -70,7 +74,31 @@ class LifecycleCases:
     error_type = FixtureError
     boundary = 'authored lifecycle and CPU payload; NOT official vLLM'
 
-    def exercise(self, mode, total=4, startup=4):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # Container PID 1 need not reap orphaned grandchildren. This test-owned
+        # subreaper is separate from fixture boot timing and production policy.
+        cls._previous_subreaper = None
+        if sys.platform == 'linux':
+            cls._libc = ctypes.CDLL(None, use_errno=True)
+            previous = ctypes.c_int()
+            if cls._libc.prctl(37, ctypes.byref(previous), 0, 0, 0) != 0:
+                raise OSError(ctypes.get_errno(), 'PR_GET_CHILD_SUBREAPER')
+            if cls._libc.prctl(36, 1, 0, 0, 0) != 0:
+                raise OSError(ctypes.get_errno(), 'PR_SET_CHILD_SUBREAPER')
+            cls._previous_subreaper = previous.value
+
+    @classmethod
+    def tearDownClass(cls):
+        try:
+            if cls._previous_subreaper is not None:
+                if cls._libc.prctl(36, cls._previous_subreaper, 0, 0, 0) != 0:
+                    raise OSError(ctypes.get_errno(), 'restore child subreaper')
+        finally:
+            super().tearDownClass()
+
+    def exercise(self, mode, total=12, startup=12, boot_delay=0):
         # Reserve a loopback port, then relinquish it immediately before launch.
         with socket.socket() as sock:
             sock.bind(('127.0.0.1', 0))
@@ -83,7 +111,7 @@ class LifecycleCases:
             class Payload(self.lifecycle):
                 def build_cmd(self):
                     return [sys.executable, '-I', '-B', str(Path(__file__).with_name('startup_fixture.py')),
-                            mode, str(port), str(directory), 'parent']
+                            mode, str(port), str(directory), 'parent', str(boot_delay)]
 
                 def build_env(self):
                     # No inherited credentials, external network configuration or telemetry.
@@ -144,11 +172,16 @@ class LifecycleCases:
                 self.assertGreaterEqual(before['teardown_seconds'], 0.9)
 
     def configuration(self, port, directory):
-        return SimpleNamespace(port=port, directory=directory, startup_timeout=4,
+        return SimpleNamespace(port=port, directory=directory, startup_timeout=12,
                                health_check_interval=0.05)
 
     def test_fatal_worker_parent_alive(self):
         self.exercise('fatal')
+
+    def test_slow_fixture_boot_preserves_post_evidence_bound(self):
+        # Deliberately exceed the old four-second fixture allowance. Detection
+        # still has the same <5s assertion measured from emitted evidence.
+        self.exercise('fatal', boot_delay=4.2)
 
     def test_fatal_during_health_wins(self):
         self.exercise('race')
@@ -177,6 +210,53 @@ class LifecycleCases:
 @unittest.skipUnless(os.name == 'posix', 'POSIX launch/session guard')
 class StartupGuardTests(LifecycleCases, unittest.TestCase):
     pass
+
+
+@unittest.skipUnless(sys.platform == 'linux', 'Linux process metadata and cleanup')
+class GroupCleanupTests(unittest.TestCase):
+    def test_foreign_procfs_namespace_cannot_prove_group_absence(self):
+        with patch('tools.startup_guard.os.getpid', return_value=-1):
+            with self.assertRaisesRegex(OSError, 'PID namespace'):
+                group_members(123)
+
+    def test_linux_group_observation_does_not_launch_ps(self):
+        with patch('tools.startup_guard.subprocess.check_output', side_effect=AssertionError('ps launched')):
+            self.assertIn(os.getpid(), group_members(os.getpgrp()))
+
+    def test_observation_failure_still_kills_and_reaps_owned_process(self):
+        for persistent in (False, True):
+            with self.subTest(persistent=persistent):
+                process = subprocess.Popen(
+                    [sys.executable, '-I', '-c',
+                     'import signal,time,ctypes; ctypes.CDLL(None).prctl(15, b"odd ) \\xff name", 0, 0, 0); '
+                     'signal.signal(signal.SIGTERM, signal.SIG_IGN); '
+                     'print("ready", flush=True); time.sleep(60)'],
+                    start_new_session=True, stdout=subprocess.PIPE, text=True)
+                try:
+                    self.assertTrue(select.select([process.stdout], [], [], 5)[0])
+                    self.assertEqual(process.stdout.readline().strip(), 'ready')
+                    self.assertIn(process.pid, group_members(process.pid))
+                    calls = []
+
+                    def observe(pgid):
+                        calls.append(pgid)
+                        if persistent or len(calls) == 1:
+                            raise PermissionError('authored metadata failure')
+                        return group_members(pgid)
+
+                    with patch('tools.startup_guard.group_members', side_effect=observe):
+                        if persistent:
+                            with self.assertRaises(PermissionError):
+                                stop_group(process, process.pid, grace=0.1)
+                        else:
+                            stop_group(process, process.pid, grace=0.1)
+                    self.assertEqual(process.returncode, -signal.SIGKILL)
+                    self.assertEqual(group_members(process.pid), [])
+                finally:
+                    if process.poll() is None:
+                        process.kill()
+                    process.wait(timeout=2)
+                    process.stdout.close()
 
 
 class TraceTests(unittest.TestCase):

@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-10-21T04:09:54.633Z",
+  "authorization": "owner-cloud-20261021-003938",
+  "source_sha": "6b7a861f286a2e68b169ccb9c4c1fb99c9ead756",
+  "qualification": {
+    "source_sha": "633f523675b9b69d7fcf34d697c229573b2f0bdb",
+    "run_id": 39538574345,
+    "report_sha256": "15b8c33790eaa4f1c244d68eb7ed1ea5e93ac7cf87d23370301a62f6a0379cf1",
+    "bound_files": 52
+  },
+  "final_cpu": {
+    "run_id": 39540618271,
+    "tests": 273,
+    "status": "PASS",
+    "seconds": 29.513
+  },
+  "final_preparation": {
+    "run_id": 39540618258,
+    "status": "PREPARATION_PASS",
+    "allocation_requests": 0
+  },
+  "owner": {
+    "run_id": 39540891710,
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "failure",
+    "allocation_requests": 1,
+    "worker_exit": 1,
+    "result_status": "INCOMPLETE",
+    "failure": {
+      "error_type": "RuntimeError",
+      "http_status": null,
+      "stage": "worker_exit"
+    }
+  },
+  "watcher": {
+    "run_id": 39540838731,
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "claim": {
+    "attempt": "00849e0b667e4b87ade08050ab172405",
+    "authorization": "owner-cloud-20261021-003938",
+    "costs": {
+      "compute_per_hour": "1.79",
+      "hourly_all_in": "1.804",
+      "initial_balance": "8.9917074258",
+      "maximum_all_in": "3.608",
+      "other_total": "0",
+      "spent_before": "1.0082925742",
+      "storage_per_hour": "0.014",
+      "tax_rate": "0"
+    },
+    "name": "backtrace-a100-00849e0b667e4b87ade08050ab172405",
+    "policy": "prepaid10-actions-v1",
+    "region": "CA-MTL-3",
+    "requested_at": 1792554788,
+    "run": "R0-clean-v2-one-public-task/A10080-TP1",
+    "run_id": "39540891710",
+    "schema_version": 1,
+    "setup_seconds": 5400,
+    "source_sha": "6b7a861f286a2e68b169ccb9c4c1fb99c9ead756",
+    "total_seconds": 7200,
+    "useful_seconds": 6900,
+    "watcher_run_id": "39540838731"
+  },
+  "pod": {
+    "attempt": "00849e0b667e4b87ade08050ab172405",
+    "pod_id": "so5pvfqgxxs4pp"
+  },
+  "owner_cleanup": {
+    "absence_reads": 2,
+    "at": 1792555391,
+    "attempt": "00849e0b667e4b87ade08050ab172405",
+    "phase": "deleted",
+    "pod_id": "so5pvfqgxxs4pp",
+    "reason": "owner_finished"
+  },
+  "watcher_cleanup": {
+    "absence_reads": 2,
+    "at": 1792555392,
+    "attempt": "00849e0b667e4b87ade08050ab172405",
+    "phase": "deleted",
+    "pod_id": "so5pvfqgxxs4pp",
+    "reason": "heartbeat_lost"
+  },
+  "observed_workload": {
+    "first_heartbeat_elapsed_seconds": 536,
+    "last_heartbeat_elapsed_seconds": 558,
+    "server_readiness": "NOT RUN",
+    "model_inference": "NOT RUN",
+    "task_execution": "NOT RUN",
+    "task_result": "NOT ESTABLISHED"
+  },
+  "post_cleanup_read": {
+    "run_id": 39380847302,
+    "job_id": 119031605250,
+    "observed_at": "2026-10-21T04:04:28Z",
+    "pod_count": 0,
+    "backtrace_pod_count": 0,
+    "current_spend_per_hour_usd": "0",
+    "auto_pay": false,
+    "initial_balance_usd": "8.9917074258",
+    "ending_balance_usd": "8.7033146851",
+    "observed_balance_change_usd": "0.2883927407",
+    "cumulative_wallet_debit_usd": "1.2966853149",
+    "billing_finality": "observed wallet difference; not a final invoice"
+  },
+  "allocation_to_watcher_confirmed_deletion_seconds": 604,
+  "quote_based_estimate_usd": "0.3026711111",
+  "artifacts": [
+    {
+      "id": 12320081005,
+      "name": "a100-owner-39540891710",
+      "bytes": 1592,
+      "sha256": "bf29fa2b58a15bafabd28be9a33806687b6aff70d89b6df7443670c8c868ff81",
+      "expires_at": "2026-10-28T04:03:12Z"
+    },
+    {
+      "id": 12319866645,
+      "name": "a100-owner-private-39540891710",
+      "bytes": 92574,
+      "sha256": "b31a4514c7295912949e897c20c330eed3a66bb71fc02fa237d366005dd3a8d7",
+      "expires_at": "2026-10-28T04:03:13Z"
+    }
+  ],
+  "private_evidence": {
+    "ciphertext_bytes": 92416,
+    "ciphertext_sha256": "5bab503f77f0b535c0e54cb7154fe72f3ad9acab58290c62465d68c1c70d5d74",
+    "files": 10,
+    "format": "age-v1",
+    "plaintext_bytes": 77045
+  },
+  "automatic_paid_retry": false,
+  "automation_enabled": false,
+  "diagnostic_limit": "Resolved in follow-up: retained encrypted logs were decrypted and exact generated-driver TypeError reproduced. Actual corrected GPU/model execution remains NOT RUN.",
+  "diagnosis": {
+    "status": "CONFIRMED",
+    "phase": "server_phase before model server start",
+    "exception": "TypeError: event() got multiple values for argument 'name'",
+    "execution_log_sha256": "c2daaabd72b1438692d106956ac8ba22514582863885a3572ac5f79dd3a7d657",
+    "worker_log_sha256": "9919cc9627fd72ba576c9c6129359cf04d7e6a4231c9b1f9ab221dc529a5bf87",
+    "server_starts": 0,
+    "task_executions": 0,
+    "local_regression": {
+      "prior": {
+        "status": "EXPECTED_FAILURE_REPRODUCED",
+        "error": "event() got multiple values for argument 'name'"
+      },
+      "fixed": {
+        "status": "PASS",
+        "name_preserved": true,
+        "all_hardware_fields_preserved": true
+      },
+      "only_change": "event label made positional-only; all other generated bytes identical",
+      "old_driver_sha256": "9542d7c47eb394247fb30a61a90303ba381b3f0eadbf6a6ef8fb8939bae7f342",
+      "new_driver_sha256": "e041e336f409e3d5c63faee529a0c9ad2c9d42f496918785b9b2c2c686788ccb",
+      "gpu_allocations": 0,
+      "model_execution": "NOT RUN",
+      "task_execution": "NOT RUN"
+    }
+  },
+  "correction_qualification": {
+    "source_sha": "b8b05264153a6f1eca8dc12a63203caa19066eba",
+    "run_id": 39549794781,
+    "run_attempt": 1,
+    "status": "PASS",
+    "report_sha256": "818ef2ce437e2e641580f9c6aa61011ee98d22d62ee7e72428c5fa38af226451",
+    "bound_files": 52,
+    "cpu_run_id": 39549794857,
+    "cpu_tests": 273,
+    "cpu_seconds": 26.641,
+    "actual_driver_regression": {
+      "actual_private_driver_sha256": "e041e336f409e3d5c63faee529a0c9ad2c9d42f496918785b9b2c2c686788ccb",
+      "policy": "prepaid10-actions-v1",
+      "candidate_sha256": "2e24495826cb971053439a00d9ad8350471fc0efffa41a54b82082feedaa7358",
+      "actual_wrapper": "adk-submission 0.2.11",
+      "requested_dtype": "bfloat16",
+      "tp": 1,
+      "guard_constructed": true,
+      "hardware": "INJECTED",
+      "server_start": "NOT RUN",
+      "actual_event_writer": "PASS",
+      "hardware_name_preserved": true,
+      "task_execution": "NOT RUN",
+      "denied_execution_attempts": [],
+      "private_log_sha256": "5817d66b1576a34fc7520551f745330fc8ab482847f939a9ac52af4630ea6c96"
+    },
+    "pinned_image": "PASS",
+    "concurrent_cases": 5,
+    "gpu_allocations": 0,
+    "server_starts": 0,
+    "task_executions": 0,
+    "public_artifact_id": 12323507482,
+    "private_artifact_id": 12323652096
+  }
+}

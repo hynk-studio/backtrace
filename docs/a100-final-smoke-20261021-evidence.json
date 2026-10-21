@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "authorization": "owner-cloud-20261021-192529",
+  "status": "CONSUMED; INCOMPLETE; INDEPENDENTLY DELETED; NO MORE PAID ATTEMPTS",
+  "source": "5aea23d2456233414c74f3346f1163acd0779fa2",
+  "tree": "d5232c4dd83f69327c149981fdb98ed37429b7b4",
+  "owner_run": 39587471913,
+  "owner_job": 119179850417,
+  "watch_run": 39587415214,
+  "watch_job": 119179658463,
+  "attempt": "4c2e9bc867bc4f3aac9fac1c36c8e5d3",
+  "pod_id": "wggriyrf6yb8ww",
+  "region": "CA-MTL-3",
+  "requested_at": 1792579891,
+  "requested_at_utc": "2026-10-21T10:51:31+00:00",
+  "allocation_requests": 1,
+  "owner_cleanup": {
+    "absence_reads": 2,
+    "at": 1792581748,
+    "attempt": "4c2e9bc867bc4f3aac9fac1c36c8e5d3",
+    "phase": "deleted",
+    "pod_id": "wggriyrf6yb8ww",
+    "reason": "owner_finished"
+  },
+  "independent_cleanup": {
+    "absence_reads": 2,
+    "at": 1792581767,
+    "attempt": "4c2e9bc867bc4f3aac9fac1c36c8e5d3",
+    "phase": "deleted",
+    "pod_id": "wggriyrf6yb8ww",
+    "reason": "heartbeat_lost"
+  },
+  "request_to_independent_deletion_seconds": 1876,
+  "stages": {
+    "system_packages": "PASS",
+    "offline_runtime": "PASS",
+    "runtime_hardware": "PASS",
+    "model_transfer": "PASS: 8 files / 23297590856 bytes",
+    "activation": "PASS",
+    "isolation": "PASS: UID 65534; no account API access",
+    "gpu_model_loading": "PASS: 19.48 GiB; 6.732018 seconds",
+    "cuda_graph_capture": "PASS: 16 seconds; 0.85 GiB",
+    "api_server_process": "STARTED on loopback",
+    "http_readiness": "FAIL: 981 GET /health responses HTTP 500; zero HTTP 200",
+    "inference": "NOT RUN",
+    "public_task": "NOT RUN",
+    "evaluation": "NOT RUN",
+    "submission": "NOT RUN"
+  },
+  "serving_runtime": {
+    "fastapi": "0.141.1",
+    "starlette": "0.52.1",
+    "prometheus_fastapi_instrumentator": "7.1.0",
+    "vllm": "0.19.1",
+    "torch": "2.10.0+cu128",
+    "task_overlay_starlette": "0.48.0 (separate; not identified as cause)"
+  },
+  "primary_observed_failure": {
+    "type": "AttributeError",
+    "message": "'_IncludedRouter' object has no attribute 'path'",
+    "module": "prometheus_fastapi_instrumentator/routing.py",
+    "line": 55,
+    "health_500_count": 981,
+    "health_200_count": 0,
+    "post_chat_completions_count": 0,
+    "model_loading_at_utc": "2026-10-21T11:02:42Z",
+    "graph_capture_complete_at_utc": "2026-10-21T11:05:12Z",
+    "api_server_start_at_utc": "2026-10-21T11:05:31Z",
+    "startup_timeout_seconds": 1200,
+    "server_start_unix_seconds": 1792580516.1390352,
+    "outer_error_unix_seconds": 1792581723.1683636
+  },
+  "secondary_cleanup_error": {
+    "message": "owned startup process group did not disappear",
+    "startup_observation": {
+      "cleanup_error": "owned startup process group did not disappear",
+      "detected": null,
+      "event": "startup_observation",
+      "ready": null,
+      "started": 136695.275383296,
+      "teardown_seconds": 3.0400529699982144,
+      "unix_seconds": 1792581726.2101765
+    },
+    "outer_worker_survivors": [],
+    "provider_deletion_confirmed": true,
+    "unverified": "Why the inner process group remained at its short teardown deadline is not established; do not infer a live resource leak after independent Pod deletion."
+  },
+  "watcher_reason_context": "heartbeat_lost followed the owner terminal failed heartbeat and cleanup; it is not the primary API failure.",
+  "budget": {
+    "initial_balance_usd": "8.5552962304",
+    "hourly_all_in_usd": "1.804",
+    "quote_time_estimate_usd": "0.9400844444444444444444444444",
+    "final_account_observation": {
+      "run_id": 39592209527,
+      "job_id": 119195715955,
+      "observed_at": "2026-10-21T11:28:48Z",
+      "balance_usd": "7.6341384961",
+      "observed_attempt_debit_usd": "0.9211577343",
+      "observed_cumulative_debit_usd": "2.3658615039",
+      "pod_count": 0,
+      "backtrace_pod_count": 0,
+      "current_spend_per_hour_usd": "0",
+      "auto_pay": false,
+      "owned_pod_status": "ABSENT",
+      "provider_mutations": 0
+    },
+    "final_invoice": "NOT CLAIMED"
+  },
+  "private_evidence": {
+    "ciphertext_bytes": 3124287,
+    "ciphertext_sha256": "acc9c354e8fe6f5f58bffce22918070c69771043c3b5bc517a591556454464d6",
+    "files": 11,
+    "format": "age-v1",
+    "plaintext_bytes": 3104749
+  },
+  "artifact_ids": {
+    "public": 12342351832,
+    "private": 12342392044
+  },
+  "coverage_gap": "The free wrapper checks used authored health/model/config replies and spied actual server startup; they did not exercise the actual FastAPI/instrumentation HTTP request path. Install/import/pip-check success did not establish API behavior.",
+  "next_gate": "Reconsider the runtime validation and observation process before further paid work; require actual CPU HTTP middleware tests and reviewed compatible pins; preserve primary failures separately from teardown errors.",
+  "preservation": {
+    "prior_execution_branches_unchanged": true,
+    "changed_prior_branches": [],
+    "prior_state_files_unchanged": true,
+    "changed_prior_state_files": [],
+    "prior_state_blob_count": 153,
+    "new_execution_heads": [
+      {
+        "name": "bt-001-a100-start-20261021c",
+        "sha": "5aea23d2456233414c74f3346f1163acd0779fa2"
+      },
+      {
+        "name": "bt-001-a100-watch-20261021c",
+        "sha": "5aea23d2456233414c74f3346f1163acd0779fa2"
+      }
+    ],
+    "main": "23616971a4ec57d32fcce769e0a2abf44faa9cfe"
+  },
+  "artifact_zip_sha256": {
+    "owner-public.zip": "fba3570e3caed0f6e34a245e7b3802b40f72fad6d8121bca8cfc88213a3999e5",
+    "owner-private.zip": "f2e861f900ae6355dd6cf06de949be5969e1b71af219d57e645c219855d5a2bf",
+    "qualification-public.zip": "cdd8cb3335454c25086cc48db949ace5671e268bfd5abc54e83321f12580dba4",
+    "qualification-private.zip": "5dc1574de908d052aeb991e83f7c4beb1ac9cdc156546bb72b2b58691b68dfc8"
+  }
+}

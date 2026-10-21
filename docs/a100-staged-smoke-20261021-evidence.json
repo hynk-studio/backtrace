@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "authorization": "owner-cloud-20261021-160757",
+  "source_sha": "ec58d2d6a8200a7cfb74185fce9ccc82dabaab81",
+  "attempt": "319399b9318e4bd9935f9b89f68b4b7e",
+  "pod_id": "xfx5hsrc28h2sb",
+  "region": "US-MO-1",
+  "requested_at": 1792568397,
+  "owner_run": 39563206076,
+  "owner_job": 119099117481,
+  "watch_run": 39563149559,
+  "watch_job": 119098932135,
+  "allocation_requests": 1,
+  "status": "INCOMPLETE; CONSUMED; POD DELETED",
+  "failure": {
+    "error_type": "StateError",
+    "http_status": null,
+    "reason": "durable write not independently confirmed",
+    "stage": "publish_heartbeat"
+  },
+  "diagnostic": {
+    "failure": {
+      "error_type": "StateError",
+      "http_status": null,
+      "reason": "durable write not independently confirmed",
+      "stage": "publish_heartbeat"
+    },
+    "frames": [
+      {
+        "file": "cloud_owner.py",
+        "function": "execute",
+        "line": 144
+      },
+      {
+        "file": "cloud_owner.py",
+        "function": "update_heartbeat",
+        "line": 37
+      },
+      {
+        "file": "cloud_state.py",
+        "function": "write",
+        "line": 187
+      }
+    ],
+    "observed_at": 1792568695.7056134
+  },
+  "owner_cleanup": {
+    "absence_reads": 2,
+    "at": 1792568708,
+    "attempt": "319399b9318e4bd9935f9b89f68b4b7e",
+    "phase": "deleted",
+    "pod_id": "xfx5hsrc28h2sb",
+    "reason": "owner_finished"
+  },
+  "watcher_cleanup": {
+    "absence_reads": 2,
+    "at": 1792568737,
+    "attempt": "319399b9318e4bd9935f9b89f68b4b7e",
+    "phase": "deleted",
+    "pod_id": "xfx5hsrc28h2sb",
+    "reason": "provider_resource_changed"
+  },
+  "allocation_to_independent_deletion_seconds": 340,
+  "hourly_quote_usd": "1.804",
+  "quote_time_estimate_usd": "0.1703777777777777777777777778",
+  "initial_balance_usd": "8.7033146851",
+  "final_balance_usd": "8.5552962304",
+  "model_transfer": "NOT RUN",
+  "actual_gpu_hardware_qualification": "NOT RUN",
+  "server_start": "NOT RUN",
+  "task_execution": "NOT RUN",
+  "evaluation": "NOT RUN",
+  "setup_last_stage": "runtime_installation STARTED",
+  "verified_setup": {
+    "system_packages": 24,
+    "wheels_files": 246,
+    "wheels_bytes": 5373559590,
+    "task_files": 8,
+    "task_bytes": 222386501
+  },
+  "committed_heartbeat": {
+    "commit": "6ac46461b4045bd7d5f5df799b55f655932e6236",
+    "at": 1792568693,
+    "blob_sha": "ddc4037d6aa429a43a10862ce960ffc83315b289"
+  },
+  "prior_heartbeat": {
+    "commit": "7d84fba25016b2cc1df6f30e02f603d5feeb2703",
+    "at": 1792568671,
+    "blob_sha": "461604d1fe1c795c494d68d3ddef955610e49514"
+  },
+  "inference": "The updated heartbeat committed before the immediate verification failure. A transient older/missing branch view is consistent with this, but the original GET response was not retained; exact service-level cause is not established.",
+  "private_artifact": {
+    "id": 12328283602,
+    "zip_sha256": "bde1f3d8bb4f125742ed8882a11e8bcece85a9d0c6e126068306de9ddf6db1b5",
+    "age_sha256": "e3355734e6a5de4e9c5155976379b22767315194bd1562a505ae5d7573dbc9cf"
+  },
+  "public_artifact": {
+    "id": 12328408519,
+    "zip_sha256": "2c7fa20ab2ee916b1062e55716fe47faad3f0bd99011049614fd49abc7f09812"
+  },
+  "correction": {
+    "scope": "existing mutable heartbeat confirmation only",
+    "additional_puts": 0,
+    "maximum_recovery_reads": 3,
+    "initial_heartbeat_claim_and_provider_create": "UNCHANGED STRICT",
+    "status": "FULL FREE QUALIFICATION PASS",
+    "source_sha": "8864490e7656d30dccc1740679c91d137bb6405f",
+    "linux_cpu_run": 39565232276,
+    "linux_cpu_job": 119105795557,
+    "tests": 278,
+    "seconds": 28.346,
+    "full_free_run": 39565232280,
+    "full_free_job": 119105795753,
+    "report_sha256": "5b3ed1fe6c2918bae714b35dc3856cb7d78d16cc24208fe37b299a8d0ea81cba",
+    "bound_files": 52,
+    "all_concurrent_controller_cases": "PASS",
+    "injected_delayed_owner_reads": 2,
+    "public_artifact_id": 12329867597,
+    "private_artifact_id": 12330416784,
+    "public_zip_sha256": "2eaccf759b5dbc615f8bc3e701a45b1ff1a70b4ec6caf15110d34d4f081f0789",
+    "private_zip_sha256": "9e2a5c8ed4f89c0cfa20164878bc168fa7c9b390cd64d1ff8b46f3f36360a61f"
+  },
+  "new_paid_retry_authorized": false,
+  "observed_debit_usd": "0.1480184547",
+  "observed_cumulative_wallet_debit_usd": "1.4447037696",
+  "post_cleanup_account": {
+    "run_id": 39565232302,
+    "job_id": 119105795597,
+    "observed_at": "2026-10-21T07:54:12Z",
+    "pods": 0,
+    "spend_per_hour": "0",
+    "auto_pay": false,
+    "invoice_status": "observed balance, not final invoice"
+  }
+}

@@ -1,0 +1,87 @@
+name: A100 read-only credential check
+# Verify account balance and absence after the consumed final 20261021c attempt.
+
+on:
+  push:
+    branches: [bt-001-a100-cpu-qualification]
+    paths:
+      - 'tools/cloud_probe.py'
+      - 'tools/cloud_inventory.py'
+      - 'tools/cloud_offer.py'
+      - 'tools/cloud_task.py'
+      - 'docs/cloud-controller-requirements.txt'
+      - '.github/workflows/a100-access.yml'
+permissions:
+  contents: read
+
+concurrency:
+  group: a100-access-check
+  cancel-in-progress: false
+
+jobs:
+  access:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Install separately pinned owner-side SDK
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
+      - name: Read-only provider and exact small-input checks
+        env:
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        run: |
+          python -m tools.cloud_probe
+      - name: Read only projected metadata for the immutable owned Pod
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
+        run: |
+          python - <<'PY'
+          import json, os, time
+          from tools import cloud_state as state, runpod_control as control
+          from tools.cloud_probe import secret
+          result = {'observed_at': control.utc(time.time()), 'provider_mutations': 0}
+          try:
+              store = state.GitHubState(os.environ['GITHUB_TOKEN'])
+              claim, identity = store.read('claim'), store.read('pod')
+              if identity is None:
+                  result['owned_pod_status'] = 'NOT_RECORDED'
+              else:
+                  if claim is None or identity[0]['attempt'] != claim[0]['attempt']:
+                      raise ValueError('immutable identity mismatch')
+                  value, pod_id = claim[0], identity[0]['pod_id']
+                  pod = control.RunpodAPI(secret('RUNPOD_API_KEY')).get(pod_id)
+                  result.update(pod_id=pod_id, allocation_requested_at=control.utc(value['requested_at']))
+                  if pod is None:
+                      result['owned_pod_status'] = 'ABSENT'
+                  else:
+                      if pod.get('name') != value['name']:
+                          raise ValueError('immutable ownership mismatch')
+                      expected = {'request': {'name': value['name']},
+                                  'region': value['region'], 'costs': value['costs']}
+                      gpu = pod.get('gpu') or {}
+                      result.update(owned_pod_status=pod.get('status'), region=pod.get('dataCenterId'),
+                          resource_matches_quote=control.resource_matches(pod, expected),
+                          gpu={k: gpu.get(k) for k in ('id', 'count', 'memory', 'vcpuCount')},
+                          cost_per_hour=pod.get('cost'), created_at=pod.get('createdAt'),
+                          started_at=pod.get('startedAt'),
+                          direct_ssh_ready=bool((pod.get('ssh') or {}).get('direct')))
+          except Exception as error:
+              result['failure'] = {'error_type': type(error).__name__}
+          print(json.dumps({'owned_pod_read': result}, sort_keys=True))
+          raise SystemExit(1 if 'failure' in result else 0)
+          PY
+      - name: Read account and exact regional stock independently of input probes
+        if: always()
+        env:
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        run: python -m tools.cloud_inventory

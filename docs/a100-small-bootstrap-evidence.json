@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-19",
+  "status": "PRE_GPU_CPU_PREPARATION_COMPLETE__CONSUMED_ATTEMPT_PRESERVED",
+  "base_commit": "b091c77fd5723695ddee5f4687f432df65f0c904",
+  "scope": "Owner requested preparation up to GPU execution; no paid request in this follow-up",
+  "wire": {
+    "old_bytes": 863192,
+    "qualified_bytes": 5577,
+    "limit_bytes": 102400,
+    "binary_in_create_request": false,
+    "binary_transferred_bytes": 1400320,
+    "binary_sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a",
+    "method": "TLS 1.3 mutual authentication; fixed SHA256; hand same TCP port to pinned Dropbear"
+  },
+  "validation": {
+    "kaggle": {
+      "python": "3.12.14",
+      "tests": 162,
+      "errors": 0,
+      "skipped": 0,
+      "suite_wall_seconds": 34.186,
+      "suite_log_sha256": "4c636f4e098e17bd77141ba9371a8de2aa9b86c74f1c06930f9da3e54bd84912",
+      "preflight": "READY",
+      "preflight_seconds": 0.116,
+      "preflight_log_sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f",
+      "unittest_seconds": 32.679
+    },
+    "cloud": {
+      "transport_tests": 8,
+      "transport_passed": 8,
+      "transport_seconds": 1.379,
+      "controller_job_tests": 46,
+      "controller_job_passed": 46,
+      "full_suite_tests": 162,
+      "full_suite_errors": 12,
+      "full_suite_seconds": 19.98,
+      "full_suite_error_reason": "Existing foreign-procfs PID namespace limitation in startup_guard tests",
+      "full_suite_pass_claimed": false,
+      "preflight": "READY"
+    },
+    "real_loopback": {
+      "status": "PASS",
+      "seconds": 2.464,
+      "log_sha256": "8d5b2998a0f208a41fcaf3e18181830e67ac4346a8af15ceb0389c0e504a7b1b",
+      "files": 18,
+      "bytes": 295011,
+      "manifest_sha256": "d07a1ce03093765bb48050763f1072f75f0d1dfb506262209650972a81cfd203",
+      "tls_to_ssh_same_port": "PASS",
+      "wrong_ssh_host_identity": "REFUSED",
+      "credential_environment": "ABSENT",
+      "owned_daemon_exited": true,
+      "temporary_keys_removed": true,
+      "fixture_substitutions": [
+        "private root",
+        "loopback TCP port"
+      ],
+      "internet_bandwidth_measured": false
+    },
+    "system_python_loopback": {
+      "interpreter": "/usr/bin/python3.12 on Kaggle CPU, not a RunPod image execution",
+      "status": "PASS",
+      "seconds": 2.486,
+      "exact_driver_files": 18,
+      "exact_driver_bytes": 295011
+    }
+  },
+  "retained_failures": [
+    {
+      "stage": "first real loopback fixture",
+      "result": "TLS binary delivery PASS; SSH destination refused because fixture used /tmp",
+      "correction": "Fixture moved under /root; production destination restriction unchanged",
+      "cleanup": {
+        "owned_daemon_exited": true,
+        "temporary_keys_removed": true
+      },
+      "evidence_location": "private notebook draft output"
+    },
+    {
+      "stage": "free CPU session replacement",
+      "result": "Uncheckpointed source and asynchronous follow-up outputs missing after Files-only restoration",
+      "correction": "Restored exact-hash public source patch and reran final qualification",
+      "original_consumed_journal_unchanged": true
+    }
+  ],
+  "session_preparation": {
+    "unused_original_wheelhouse_input_detached": true,
+    "frozen_private_246_wheels_unchanged": true,
+    "pinned_model_and_selected_task_inputs_attached": true,
+    "accelerator": "None",
+    "persistence": "Files only",
+    "saved_notebook_version": 3
+  },
+  "prior_attempt": {
+    "journal_sha256": "c12636234c1b57c60fdc320ba7f28b736398f9a81486ab302339ce9e21bf06fd",
+    "journal_preserved": true,
+    "journal_reset": false,
+    "replacement_state_directory_created": false,
+    "automatic_retry_added": false
+  },
+  "this_followup": {
+    "provider_api_calls": 0,
+    "paid_create_requests": 0,
+    "gpu_allocations": 0,
+    "inference_server_starts": 0,
+    "task_executions": 0,
+    "additional_funding": 0,
+    "training": 0,
+    "submissions": 0
+  },
+  "source_sha256": {
+    "tools/a100_delivery.py": "590d509143e141f1dc875402d71dc1b8db3a638149ecdaf79cd60520585867eb",
+    "tools/a100_driver.py": "ea06e2cf6d87091a7f5f3ad0fc0cba12af43b4a0276f65c23b6a4414235d344c",
+    "tools/a100_task.py": "f7e1c745680a85c4b73cc4104a85797325bb063c047af2cdd9ba91c3dd7ab43e",
+    "tools/artifacts.py": "69e2bcd31bfb6b00dc0bb730eeae1e03681830f8e97594cbaf27cde36db58b8c",
+    "tools/backtrace.py": "10fa8d46788703bdf1eb9052edcb9d0159cb782a015a5fa6f74196b1bc23c58f",
+    "tools/compile_probe.py": "a5248fb9ed8fb59dc3d9bd84081d5d02b71012cd360211dc1e3002a60c2d5f59",
+    "tools/errors.py": "eb5a7c91f7d540aa417065d528e49b5926a9c6dbef772a303ff80ad3902ec470",
+    "tools/guard_driver.py": "52da5a42a2ae89973cfee7437ced9602f331143154ec538bfc2a2b854e8c38ca",
+    "tools/linux_runtime.py": "feffd81c92cd91679c174d9824c91628e2d2a41426a437e6783438570eaf7574",
+    "tools/native_dtype.py": "d6d03561491155f470dba1ea1b36790821363416e29f9493581ac43fc039cc60",
+    "tools/official_check.py": "c6ad5915d671a68377f383d90abcd30ec1e05a39b2bed541ebe18c5ebb39ef7b",
+    "tools/pod_bootstrap.py": "0d7dbb05fee412ed815a4411c6d6eb81dac1c69b28334e6d69e29ef4ec6f1dd5",
+    "tools/private_delivery.py": "f010c41715e2548b86a4b3dfc009e22e57fcbf5a52429e4f7f1165632f1a4a40",
+    "tools/qualify_ssh_transport.py": "f54a6fcdfa1d47bf51f9ce90e2717888dfc4c349e4929c8cdc74cd824b902c6e",
+    "tools/r0.py": "cf84b6378edc1ffbcee0ec99e6d39b44216ed0c6737e1ed50771b4216f318411",
+    "tools/runpod_control.py": "2416c0ec68dbef5c82861334644f81c8718e73e3d4f2865780a25a1a9aca1835",
+    "tools/runpod_job.py": "ca8424770adf9a946e018891e8eb4dc41f6cb21e7a8130968d20c2e642a5d0d0",
+    "tools/select_smoke_task.py": "f0057ed055fe95aeec54a36b08e96f21fc907e656f41e3e7d62f8f71618a03f2",
+    "tools/ssh_bootstrap.py": "0394c7b298507ad65ecee824e637dac8f07b4108f07c18975dec72b9bf7ced74",
+    "tools/startup_guard.py": "d0474a0015d3f72139b16782421f4dc1be5c55b8574e7f235666710cc3870c69",
+    "tests/official_a100_task.py": "c658d50cae3931c6ab7b0bffd2b9b937e614e45e00de6181ed23309e9495c168",
+    "tests/official_binding.py": "34b0ac886301fe2833b95fad5c2cce076720e6926f115d72d3b2cf09aa3096fc",
+    "tests/official_server_command.py": "c71be871eacdef4141a1567aaa90350bcd8713df561b36641d8be7851ce27a32",
+    "tests/official_startup_guard.py": "567352bfc0c3fb551b932e20402efce2f466fbefb5bda6d2b63c4e03c7dd60f4",
+    "tests/startup_fixture.py": "06f3f344f4b552e9eefce969c08da4f7269f312eb93fd47c80606db70fdb4a43",
+    "tests/test_a100_delivery.py": "fe3e25511e2744d68f194581073315656964335ddce1a5ab54fc58cab3ff8c13",
+    "tests/test_a100_driver.py": "27e98b1f3cc08ea332bcfbfbc149bf0b7960d96fefd9a816358f1047fa52adc7",
+    "tests/test_a100_task.py": "9653a008b60cbd8d7821ff43b310b8fefede41a08372ace2297cdeeb47fdc097",
+    "tests/test_artifacts.py": "cc73f6154095a59a843ac2e504ae68638824d1e734f3d1c48e8286813cfd824f",
+    "tests/test_backtrace.py": "f257dc266acdf86b59e5368e5a1b3162692f5106825787d139da875fe3e33a3f",
+    "tests/test_compile_probe.py": "15fb08fc63f09baa5bf1aac937c48cdebaec5b8972099ff796703a4b0e45b726",
+    "tests/test_guard_driver.py": "38fc2d162ba0d1fc72638d88f1d9aeb33c0e1a8583a6f50feae73bca4026c9cc",
+    "tests/test_linux_runtime.py": "6568337389b519436beb1211bddc23f1ccd5748f369c3cab1989d61656fa565d",
+    "tests/test_native_dtype.py": "f7c71bbba4e131bc2752036d08d980eb052b70ecc42139eb5c0708b166c1f473",
+    "tests/test_prepayment_job.py": "3b5d3624c03cbdad1a54778a80d87448731e2398f43996e93d79a70ae183ac63",
+    "tests/test_private_delivery.py": "9d716ae24821bfeb69c9c0a51bc8f2b5cf074ef0e7325701cadd34e84c23f5de",
+    "tests/test_r0.py": "07db71f53d86d0926ae2723f04da8bdeb3c11023d9ff14a90e789d6a766baded",
+    "tests/test_runpod_control.py": "1111fcd9eeadbf1b639797abaf4cca7d36fbfd1662c1788cfedb754b799774e2",
+    "tests/test_select_smoke_task.py": "31ad9efc490d37953617b67bb7dbb888e25860478b3221cbeffb36c851d988b1",
+    "tests/test_ssh_bootstrap.py": "08974b23179509f66a043e6d3c6bbc9c97fa9487f1c21275700be2e4a7c1f6e1",
+    "tests/test_startup_guard.py": "44a5c86fa15321f51a94e9696bd478d4d6095d54b1de466351774475f04106fd"
+  },
+  "source_sha256_canonical": "2d5a98c7a2216386430748ddd4e0b2eb312da733449431136a5ec2af7e94777d",
+  "unrun": [
+    "RunPod create/readback",
+    "Pinned image execution on assigned host",
+    "Public port routing and full model internet transfer",
+    "A100 hardware/driver/MIG/isolation",
+    "Inference and one task",
+    "Resource deletion and final billing"
+  ],
+  "publication": {
+    "draft_pr": 7,
+    "issue_1_open": true,
+    "merge": false
+  },
+  "completed_at_utc": "2026-10-19T08:21:17.429901+00:00",
+  "prepared_inputs": {
+    "verified": true,
+    "files": 280,
+    "bytes": 28893831958,
+    "full_sha256_rehash_seconds": 228.08,
+    "streams": {
+      "driver": {
+        "files": 18,
+        "bytes": 295011,
+        "manifest_sha256": "d07a1ce03093765bb48050763f1072f75f0d1dfb506262209650972a81cfd203"
+      },
+      "model": {
+        "files": 8,
+        "bytes": 23297590856,
+        "manifest_sha256": "5da90d200d82ff2f2b3a5563b7adce4390d82418f178a3d97037ff076cc2f5a7"
+      },
+      "task": {
+        "files": 8,
+        "bytes": 222386501,
+        "manifest_sha256": "7e757d6a8b6d61fc917a623509a3ed5ee13b1ed69a91d3956550d776709d2ee8"
+      },
+      "wheels": {
+        "files": 246,
+        "bytes": 5373559590,
+        "manifest_sha256": "678a11ce1dbf772d3bf08b0032eaae9597b3940829ed7e85415602d9a821c694"
+      }
+    },
+    "private_plan_prepared": true,
+    "fixed_attempt_state_directory_unchanged": true,
+    "prepared_transport_certificate_expires_utc": "2026-10-26T08:17:29Z",
+    "prepared_create_request_bytes": 5577
+  }
+}

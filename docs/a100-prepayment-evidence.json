@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-10-17T04:35:31.689807+00:00",
+  "decision": "HOLD_PAYMENT_AND_ALLOCATION",
+  "scope": "Read-only prepayment audit; report-only repository changes",
+  "repository_at_audit": {
+    "base": "23616971a4ec57d32fcce769e0a2abf44faa9cfe",
+    "head": "30827ede6cfe7dc8da59a511b7ca8ce37773719f",
+    "tree": "b86ad3802f4bbc32459b0247c696d72c9d8c8322"
+  },
+  "production_readonly": {
+    "checked_at_utc": "2026-10-17T04:28:55.631965+00:00",
+    "checks": [
+      {
+        "check": "expiry_readback",
+        "url": "https://api.runpod.io/graphql",
+        "method": "POST",
+        "authenticated": false,
+        "http_status": 400,
+        "detail": [
+          {
+            "message": "Cannot query field \"stopAfter\" on type \"Pod\".",
+            "code": "GRAPHQL_VALIDATION_FAILED"
+          },
+          {
+            "message": "Cannot query field \"terminateAfter\" on type \"Pod\".",
+            "code": "GRAPHQL_VALIDATION_FAILED"
+          }
+        ]
+      },
+      {
+        "check": "rest_pods_reachability",
+        "url": "https://rest.runpod.io/v1/pods",
+        "method": "GET",
+        "authenticated": false,
+        "http_status": 401,
+        "detail": {
+          "text": ""
+        }
+      }
+    ],
+    "mutations_sent": 0,
+    "allocation_attempts": 0
+  },
+  "readback_query": {
+    "query": "query BacktraceExpiryReadbackCompatibility($input: PodFilter) { pod(input: $input) { id stopAfter terminateAfter } }",
+    "variables": {
+      "input": null
+    }
+  },
+  "earlier_session_introspection": {
+    "authenticated": false,
+    "http_status": 400,
+    "code": "INTROSPECTION_DISABLED",
+    "authenticated_introspection": "NOT RUN",
+    "exact_time": "not retained"
+  },
+  "rest_v2_spec": {
+    "url": "https://api.runpod.io/v2/openapi.json",
+    "http_status": 200,
+    "checked_at_utc": "2026-10-17T04:33:20.877126+00:00",
+    "bytes": 274963,
+    "sha256": "fe8a74b177282ec89a9ba1c75d3ce1d4bd1a2a9b9609fbdb4bd131d5b4a24506",
+    "info": {
+      "title": "Runpod REST API",
+      "version": "2.0.0",
+      "description": "Runpod public REST API \u2014 v2"
+    },
+    "selected_schema_properties_after_ref_and_composition_resolution": {
+      "Pod": [
+        "actions",
+        "args",
+        "cloud",
+        "cluster",
+        "cmd",
+        "cost",
+        "cpu",
+        "createdAt",
+        "cudaVersion",
+        "dataCenterId",
+        "disk",
+        "entrypoint",
+        "env",
+        "globalNetworking",
+        "gpu",
+        "id",
+        "image",
+        "locked",
+        "mounts",
+        "name",
+        "ports",
+        "registry",
+        "runtime",
+        "ssh",
+        "startedAt",
+        "status",
+        "template"
+      ],
+      "CreatePodRequest": [
+        "args",
+        "cloud",
+        "cmd",
+        "cpu",
+        "dataCenterIds",
+        "disk",
+        "entrypoint",
+        "env",
+        "globalNetworking",
+        "gpu",
+        "image",
+        "mounts",
+        "name",
+        "ports",
+        "registry",
+        "startJupyter",
+        "startSsh",
+        "templateId"
+      ],
+      "UpdatePodRequest": [
+        "args",
+        "cmd",
+        "disk",
+        "entrypoint",
+        "env",
+        "globalNetworking",
+        "image",
+        "locked",
+        "mounts",
+        "name",
+        "ports",
+        "registry",
+        "templateId"
+      ],
+      "PodActionRequest": [
+        "action"
+      ]
+    },
+    "timer_named_schema_property_paths": [],
+    "pod_paths": [
+      "/v2/billing/pods",
+      "/v2/clusters/{id}/pods",
+      "/v2/pods",
+      "/v2/pods/{id}",
+      "/v2/pods/{id}/action",
+      "/v2/pods/{id}/logs"
+    ]
+  },
+  "upstream": [
+    {
+      "url": "https://github.com/runpod/runpodctl/pull/330",
+      "state": "closed",
+      "merged": true,
+      "merged_at": "2026-08-27T22:51:22Z",
+      "merge_commit": "51ca7f02ab5cb57c09ad917172af36c29a58790c",
+      "head_commit": "d38156399b795c488059ea3aa7d8f450feddcc27",
+      "finding": "Removed flags after accepted deadlines failed to stop running/billing Pods; upstream execution evidence, not ours"
+    },
+    {
+      "url": "https://github.com/runpod/runpodctl/pull/331",
+      "state": "closed",
+      "merged": false,
+      "closed_at": "2026-10-05T17:46:48Z",
+      "head_commit": "9188ca5cb61010f8335234a1d58df2eeae061ef7",
+      "finding": "Restoration required backend enforcement; write-only input was not persistence evidence"
+    }
+  ],
+  "rest_v1_retirement": {
+    "date": "2026-11-15",
+    "source": "https://docs.runpod.io/api-reference-v2/migrate-from-v1",
+    "current_controller_uses_v1": true
+  },
+  "console_offer": {
+    "observation_date_utc": "2026-10-17",
+    "authenticated_ui": true,
+    "cloud": "SECURE",
+    "region": "EU-RO-1",
+    "gpu": "NVIDIA A100 80GB PCIe",
+    "gpu_count": 1,
+    "on_demand": true,
+    "host_ram_gb": 188,
+    "vcpus": 16,
+    "container_disk_gb": 100,
+    "persistent_or_network_volume_selected": false,
+    "compute_usd_per_hour": "1.79",
+    "storage_usd_per_hour": "0.014",
+    "rounded_ui_total_usd_per_hour": "1.80",
+    "modeled_3000_seconds_before_tax_usd": "1.503333333333333333333333333",
+    "all_in_quote": "NOT ESTABLISHED",
+    "stock_transition": "available -> out of capacity during inspection",
+    "default_image_was_unapproved": true,
+    "valid_launch_offer": false,
+    "reservation_created": false
+  },
+  "payload_inventory": {
+    "wheels": {
+      "files": 246,
+      "bytes": 5373559590
+    },
+    "task": {
+      "files": 8,
+      "bytes": 222386501
+    },
+    "model": {
+      "files": 8,
+      "bytes": 23297590856
+    },
+    "driver": {
+      "files": 16,
+      "bytes": 269695
+    }
+  },
+  "storage": {
+    "free_bytes_at_inspection": 27872649216,
+    "combined_payload_bytes": 28893806642,
+    "simultaneous_payload_only_shortfall_bytes": 1021157426,
+    "excludes": "base image, installed runtime, temporary files and safety margin"
+  },
+  "verification": {
+    "executed_tool_test_hashes_checked": 35,
+    "all_match_previous_tested_source": true,
+    "tested_source_commit": "ed3d346b9fcdcd680f28a325b47686b66316c552",
+    "driver_actual_files_verified": true,
+    "wheel_task_model_manifests_verified": true,
+    "full_payloads_redownloaded_or_transferred": false,
+    "tooling_changed": false,
+    "full_suite_rerun": false,
+    "prior_kaggle_suite": {
+      "passed": 132,
+      "skipped": 0,
+      "elapsed_seconds": 27.942
+    }
+  },
+  "not_ready": [
+    "provider-native expiry enforcement and readback",
+    "durable external owner controller and private journal host",
+    "secure provider credential connection and real SSH host identity",
+    "pinned-base bootstrap and fixed read-only input activation integration",
+    "adequate private input staging / verified sequential streaming",
+    "fresh exact offer, stock, tax and existing credit"
+  ],
+  "not_run": [
+    "authenticated provider API",
+    "provider allocation/expiry/deletion/billing",
+    "internet/provider SSH",
+    "actual Pod hardware/isolation",
+    "model payload download in this preparation",
+    "model serving and task execution"
+  ],
+  "side_effects": {
+    "allocation_requests": 0,
+    "attempt_consumed": false,
+    "api_keys_generated": 0,
+    "ssh_keys_registered": 0,
+    "funding_submitted": false,
+    "payment_details_entered": false,
+    "terms_accepted_by_agent": false,
+    "support_message_sent": false,
+    "merge": false
+  }
+}

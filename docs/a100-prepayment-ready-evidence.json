@@ -1,0 +1,352 @@
+{
+  "recorded_at_utc": "2026-10-18T01:42:19.320498+00:00",
+  "policy": "prepaid10-external-v2",
+  "source_parent": "9886e2a108e2d03f5c8343d37a117884d2378c36",
+  "code_snapshot": "9b08f11a3e59a875bab93d0f6109ebc814c22177",
+  "cloud": {
+    "python": "3.12.14",
+    "system": "Linux",
+    "tests_run": 150,
+    "seconds": 17.465,
+    "result": "FAILED",
+    "errors": 12,
+    "passed": 138,
+    "skipped": 0,
+    "reason": "Existing foreign procfs namespace lifecycle errors. No effective capabilities; static SSH authentication succeeded but command execution stopped at setgroups. Neither is called a full Cloud pass.",
+    "tests_log_sha256": "9623cdae0ed0cc6d88aa5ec576b5c6bd9bdfb0513051e073b159ade23d8fefe3",
+    "preflight": {
+      "dependencies": "standard library only",
+      "local_tooling": "READY",
+      "official_validator": "NOT RUN",
+      "python": "3.12.14",
+      "r0_clean_packaging": "NOT RUN"
+    }
+  },
+  "prepared_private_driver_sha256": "8609f4cd74d22a13e99a58865818a80ba482eddc37676b74c6297b424a2501a1",
+  "frozen_components_ast_equal": true,
+  "source_sha256": {
+    "tools/a100_delivery.py": "590d509143e141f1dc875402d71dc1b8db3a638149ecdaf79cd60520585867eb",
+    "tools/a100_driver.py": "ea06e2cf6d87091a7f5f3ad0fc0cba12af43b4a0276f65c23b6a4414235d344c",
+    "tools/a100_task.py": "f7e1c745680a85c4b73cc4104a85797325bb063c047af2cdd9ba91c3dd7ab43e",
+    "tools/artifacts.py": "69e2bcd31bfb6b00dc0bb730eeae1e03681830f8e97594cbaf27cde36db58b8c",
+    "tools/backtrace.py": "10fa8d46788703bdf1eb9052edcb9d0159cb782a015a5fa6f74196b1bc23c58f",
+    "tools/compile_probe.py": "a5248fb9ed8fb59dc3d9bd84081d5d02b71012cd360211dc1e3002a60c2d5f59",
+    "tools/errors.py": "eb5a7c91f7d540aa417065d528e49b5926a9c6dbef772a303ff80ad3902ec470",
+    "tools/guard_driver.py": "52da5a42a2ae89973cfee7437ced9602f331143154ec538bfc2a2b854e8c38ca",
+    "tools/linux_runtime.py": "feffd81c92cd91679c174d9824c91628e2d2a41426a437e6783438570eaf7574",
+    "tools/native_dtype.py": "d6d03561491155f470dba1ea1b36790821363416e29f9493581ac43fc039cc60",
+    "tools/official_check.py": "c6ad5915d671a68377f383d90abcd30ec1e05a39b2bed541ebe18c5ebb39ef7b",
+    "tools/pod_bootstrap.py": "0d7dbb05fee412ed815a4411c6d6eb81dac1c69b28334e6d69e29ef4ec6f1dd5",
+    "tools/private_delivery.py": "f010c41715e2548b86a4b3dfc009e22e57fcbf5a52429e4f7f1165632f1a4a40",
+    "tools/r0.py": "cf84b6378edc1ffbcee0ec99e6d39b44216ed0c6737e1ed50771b4216f318411",
+    "tools/runpod_control.py": "1b29d000491ba49e53ad92836faefab5409f81c6944e5719a9171ed6d91c0d50",
+    "tools/runpod_job.py": "c78133fb9b49fda86789083b47de39b291c5bbfaeb4de6861ad72c03528f7f85",
+    "tools/select_smoke_task.py": "f0057ed055fe95aeec54a36b08e96f21fc907e656f41e3e7d62f8f71618a03f2",
+    "tools/ssh_bootstrap.py": "bc7a59ba80bb3511e9ca6422aa3c3489bb94ef6999f9a85c3fdb660e5840fd6d",
+    "tools/startup_guard.py": "d0474a0015d3f72139b16782421f4dc1be5c55b8574e7f235666710cc3870c69",
+    "tests/official_a100_task.py": "c658d50cae3931c6ab7b0bffd2b9b937e614e45e00de6181ed23309e9495c168",
+    "tests/official_binding.py": "34b0ac886301fe2833b95fad5c2cce076720e6926f115d72d3b2cf09aa3096fc",
+    "tests/official_server_command.py": "c71be871eacdef4141a1567aaa90350bcd8713df561b36641d8be7851ce27a32",
+    "tests/official_startup_guard.py": "567352bfc0c3fb551b932e20402efce2f466fbefb5bda6d2b63c4e03c7dd60f4",
+    "tests/startup_fixture.py": "06f3f344f4b552e9eefce969c08da4f7269f312eb93fd47c80606db70fdb4a43",
+    "tests/test_a100_delivery.py": "fe3e25511e2744d68f194581073315656964335ddce1a5ab54fc58cab3ff8c13",
+    "tests/test_a100_driver.py": "27e98b1f3cc08ea332bcfbfbc149bf0b7960d96fefd9a816358f1047fa52adc7",
+    "tests/test_a100_task.py": "9653a008b60cbd8d7821ff43b310b8fefede41a08372ace2297cdeeb47fdc097",
+    "tests/test_artifacts.py": "cc73f6154095a59a843ac2e504ae68638824d1e734f3d1c48e8286813cfd824f",
+    "tests/test_backtrace.py": "f257dc266acdf86b59e5368e5a1b3162692f5106825787d139da875fe3e33a3f",
+    "tests/test_compile_probe.py": "15fb08fc63f09baa5bf1aac937c48cdebaec5b8972099ff796703a4b0e45b726",
+    "tests/test_guard_driver.py": "38fc2d162ba0d1fc72638d88f1d9aeb33c0e1a8583a6f50feae73bca4026c9cc",
+    "tests/test_linux_runtime.py": "6568337389b519436beb1211bddc23f1ccd5748f369c3cab1989d61656fa565d",
+    "tests/test_native_dtype.py": "f7c71bbba4e131bc2752036d08d980eb052b70ecc42139eb5c0708b166c1f473",
+    "tests/test_prepayment_job.py": "39ae8517f324d9e861a2e47cc3c0deb3315bcde421c56f1573b2ac56dc90b7bb",
+    "tests/test_private_delivery.py": "9d716ae24821bfeb69c9c0a51bc8f2b5cf074ef0e7325701cadd34e84c23f5de",
+    "tests/test_r0.py": "07db71f53d86d0926ae2723f04da8bdeb3c11023d9ff14a90e789d6a766baded",
+    "tests/test_runpod_control.py": "87adb550b0520a15dad9ab0c4f01897aeb1e03d7ff616a04fe2a965b65425c07",
+    "tests/test_select_smoke_task.py": "31ad9efc490d37953617b67bb7dbb888e25860478b3221cbeffb36c851d988b1",
+    "tests/test_startup_guard.py": "44a5c86fa15321f51a94e9696bd478d4d6095d54b1de466351774475f04106fd"
+  },
+  "provider_openapi": {
+    "url": "https://api.runpod.io/v2/openapi.json",
+    "bytes": 274963,
+    "sha256": "fe8a74b177282ec89a9ba1c75d3ce1d4bd1a2a9b9609fbdb4bd131d5b4a24506"
+  },
+  "provider_authentication": "NOT RUN: new key/action-time confirmation pending",
+  "funding": "NOT RUN",
+  "allocations": 0,
+  "server_starts": 0,
+  "model_transfers": 0,
+  "task_executions": 0,
+  "api_keys_created": 0,
+  "ssh_account_keys_registered": 0,
+  "merge": false,
+  "kaggle_cpu": {
+    "result": "PASS",
+    "tests_run": 150,
+    "passed": 150,
+    "errors": 0,
+    "skipped": 0,
+    "suite_wrapper_seconds": 31.074,
+    "tests_log_sha256": "709a077b40ba67f12ee79282b1e91ab0fa58ce9e1f9cc42cd4d2684f2f4cde2d",
+    "preflight": "READY",
+    "preflight_log_sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f",
+    "ssh_loopback": {
+      "result": "PASS",
+      "seconds": 1.57,
+      "log_sha256": "5280374b883035e8b10b1b4e6d84e0c4cf45fd10711b55ece94bd498192f1283",
+      "scope": "18-file actual private workload; independently known host key; wrong-key refusal; clean server environment; owned daemon and temporary-key removal. No internet or GPU performance claim."
+    },
+    "wheel_acquisition": {
+      "files": 246,
+      "total_bytes": 5373559590,
+      "seconds": 104.644,
+      "log_sha256": "c2e3fbb0a3fbd386e7155adf5edbe190b77d34da30d677404ab554dc5f534e3c"
+    },
+    "offline_install": {
+      "result": "PASS",
+      "seconds": 397.491,
+      "log_sha256": "2076233677844a3e20907fd83664ba8ebee2c64cb7d9721e9aa16f19a3124a27",
+      "no_index": true,
+      "require_hashes": true,
+      "pip_check": "No broken requirements found",
+      "serving_and_harness_imports": "PASS",
+      "model_execution": "NOT RUN"
+    },
+    "fixture_python": {
+      "initial": "owner-private portable CPython 3.12.14",
+      "qualified_base": "/usr/bin/python3.12",
+      "version": "3.12.3",
+      "installed_inventory_unchanged": true,
+      "owner_directory_permissions_weakened": false,
+      "production_change": false
+    },
+    "private_driver_cpu": {
+      "result": "PASS",
+      "seconds": 14.972,
+      "log_sha256": "d4c894664138217d0945a69a4b5bed349854db62963e7870932a1ddc38340202",
+      "uid": 65534,
+      "no_new_privs": true,
+      "parent_canary_readable": false,
+      "parent_environment_readable": false,
+      "account_api_available": false,
+      "sandbox_versions": {
+        "starlette": "0.48.0",
+        "pdm-backend": "2.4.9",
+        "swegemma": "0.2.7",
+        "google-adk": "1.36.1"
+      },
+      "owned_survivors": 0,
+      "scratch_removed": true,
+      "model_start": "NOT RUN",
+      "qualification_snapshot": "cf6392cf10d43ecfcaf75dae7167851c9dd25359"
+    },
+    "nested_venv_bootstrap": {
+      "result": "PASS",
+      "seconds": 0.115,
+      "log_sha256": "c38fbb81e9f61e6e973f03871f69fd5e241fce83301d5362089d0b5027e20936",
+      "frozen_pip": "25.0.1",
+      "new_package_versions": 0,
+      "official_harness_edits": 0,
+      "base_environment_seeding": "REFUSED",
+      "different_existing_ensurepip": "REFUSED",
+      "network_access": "DENIED"
+    },
+    "runtime_target": {
+      "path": "/opt/backtrace-runtime",
+      "production_construction": "directly at final path; no relocation",
+      "private_workload_changed": false
+    },
+    "tests_seconds": 30.692,
+    "current_source_steps": [
+      {
+        "step": "unit-tests-current",
+        "exit_code": 0,
+        "seconds": 31.074,
+        "log_sha256": "709a077b40ba67f12ee79282b1e91ab0fa58ce9e1f9cc42cd4d2684f2f4cde2d"
+      },
+      {
+        "step": "preflight-current",
+        "exit_code": 0,
+        "seconds": 0.165,
+        "log_sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+      },
+      {
+        "step": "nested-venv-seed-current",
+        "exit_code": 0,
+        "seconds": 0.115,
+        "log_sha256": "c38fbb81e9f61e6e973f03871f69fd5e241fce83301d5362089d0b5027e20936"
+      }
+    ],
+    "private_workload_manifest_identical": true,
+    "private_workload_manifest_sha256": "d07a1ce03093765bb48050763f1072f75f0d1dfb506262209650972a81cfd203"
+  },
+  "billing_ui": {
+    "balance_usd": "0.00",
+    "current_spend_usd_per_hour": "0.000",
+    "auto_pay": "Disabled",
+    "payment_methods": 0,
+    "other_amount_field": "10",
+    "pay_with_card_enabled": true,
+    "pay_clicked": false,
+    "checkout_tax": "NOT CHECKED",
+    "funding": "NOT RUN"
+  },
+  "kaggle_session": {
+    "accelerator": "None",
+    "internet": "On",
+    "environment": "original 2026-10-03",
+    "persistence": "Files only",
+    "state_directory": "/kaggle/working/backtrace-a100-owner-state",
+    "stopped": "OBSERVED: off (run a cell to start)",
+    "draft": "Saved",
+    "new_saved_version": false,
+    "last_confirmed_version": 3
+  },
+  "transport": {
+    "source_url": "https://codeload.github.com/mkj/dropbear/tar.gz/refs/tags/DROPBEAR_2026.94",
+    "archive_bytes": 2923600,
+    "archive_sha256": "827d3f6e510e7554ee18d5c6a00dfee1a6a555559495e65e2e8f8d41c79eed84",
+    "gpg_signature_verified": false,
+    "build_host": "Kaggle free CPU",
+    "compiler": "GCC 13.3.0-6ubuntu2~24.04.1",
+    "glibc": "2.39-0ubuntu8.9",
+    "binary_sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a",
+    "keygen_sha256": "5d33b842b70f674859459713ce3f28e62e32bdaca04950d6a599e1b8d84f3690",
+    "configuration": [
+      "DROPBEAR_SVR_PASSWORD_AUTH 0",
+      "DROPBEAR_SVR_PAM_AUTH 0",
+      "DROPBEAR_SFTPSERVER 0",
+      "DROPBEAR_SVR_AGENTFWD 0",
+      "DROPBEAR_SVR_LOCALTCPFWD 0",
+      "DROPBEAR_SVR_REMOTETCPFWD 0",
+      "DROPBEAR_X11FWD 0"
+    ],
+    "configure": [
+      "--enable-static",
+      "--disable-zlib",
+      "--disable-syslog",
+      "--disable-lastlog",
+      "--disable-utmp",
+      "--disable-wtmp"
+    ],
+    "programs": [
+      "dropbear",
+      "dropbearkey"
+    ],
+    "stripped": true,
+    "public_binary_redistribution": false
+  },
+  "qualification_history": [
+    {
+      "stage": "Cloud static SSH",
+      "result": "Authentication succeeded; execution refused by setgroups with CapEff=0. NOT PASS."
+    },
+    {
+      "stage": "Kaggle first transport pin",
+      "result": "Different compiler/glibc build refused before execution. Qualified official-source Kaggle build pinned before retry."
+    },
+    {
+      "stage": "Kaggle first authenticated transfer",
+      "result": "Refused by Dropbear String too long (command >9000 bytes). Fixed transport commands with bounded stdlib compression and receipt-manifest stdin.",
+      "failed_log_sha256": "90f8e0d9f93f33c0ad21b1e29873c736cc7892886cf72b29804cf1968519e29c"
+    },
+    {
+      "stage": "Private driver CPU fixture",
+      "result": "Initial private Python base inaccessible to UID 65534 (encodings not found). Runtime rebased to public system Python without changing installed packages; prior fixture receipt/scratch paths preserved. Scientific task/model not run.",
+      "initial_failed_log_sha256": "bc899ae732c53a1ff2a8c7d9185e9f2876eb6742ba5c9edac68b18f0fbbfbcf9",
+      "subsequent_guard_refusals": [
+        "existing receipts",
+        "existing scratch"
+      ],
+      "counts_toward_gpu_attempt": false
+    },
+    {
+      "stage": "Actual nested sandbox on public Python",
+      "result": "UID/account isolation passed; nested venv failed because pinned-base Python has no ensurepip. Restored limited venv CLI seeding with the already frozen pip wheel, without harness or package-version changes; then actual private-driver CPU prerequisites passed.",
+      "failed_log_sha256": "4251daeb738cfadf61325b830c25398bc7120ccc6fcf0db3f43c866ad3baac20",
+      "counts_toward_gpu_attempt": false
+    }
+  ],
+  "server_starts_semantics": "Scientific vLLM serving starts; the CPU-only SSH fixture daemon is recorded separately.",
+  "live_quote_ui": {
+    "observed_at_utc": "2026-10-18T01:36:10.445811+00:00",
+    "source": "Authenticated RunPod deploy UI; read-only quote draft, Deploy Pod NOT clicked",
+    "cloud": "Secure",
+    "region": "EU-RO-1",
+    "gpu": "A100 PCIe",
+    "gpu_count": 1,
+    "vram_gb": 80,
+    "displayed_system_ram_gb": 125,
+    "displayed_vcpu": 16,
+    "displayed_available_count": 1,
+    "displayed_cuda_versions": "13.2",
+    "image_override": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+    "jupyter": false,
+    "provider_start_ssh": false,
+    "http_ports": [],
+    "tcp_ports": [
+      22
+    ],
+    "container_disk_gb": 100,
+    "persistent_storage_gb": 0,
+    "gpu_usd_per_hour": "1.79",
+    "container_disk_usd_per_hour": "0.014",
+    "sum_usd_per_hour_before_tax": "1.804",
+    "ui_rounded_total_usd_per_hour": "1.80",
+    "nominal_3000_seconds_usd_before_tax": "1.5033333333",
+    "tax_and_other_costs": "NOT VERIFIED",
+    "reserved": false,
+    "qualified_authenticated_api_offer": false,
+    "deploy_clicked": false
+  },
+  "prepared_streams": {
+    "driver": {
+      "bytes": 295011,
+      "files": 18,
+      "manifest_sha256": "d07a1ce03093765bb48050763f1072f75f0d1dfb506262209650972a81cfd203",
+      "phase": "bootstrap",
+      "schema_version": 1,
+      "verified": true
+    },
+    "model": {
+      "bytes": 23297590856,
+      "files": 8,
+      "manifest_sha256": "5da90d200d82ff2f2b3a5563b7adce4390d82418f178a3d97037ff076cc2f5a7",
+      "phase": "model",
+      "schema_version": 1,
+      "verified": true
+    },
+    "task": {
+      "bytes": 222386501,
+      "files": 8,
+      "manifest_sha256": "7e757d6a8b6d61fc917a623509a3ed5ee13b1ed69a91d3956550d776709d2ee8",
+      "phase": "task",
+      "schema_version": 1,
+      "verified": true
+    },
+    "wheels": {
+      "bytes": 5373559590,
+      "files": 246,
+      "manifest_sha256": "678a11ce1dbf772d3bf08b0032eaae9597b3940829ed7e85415602d9a821c694",
+      "phase": "bootstrap",
+      "schema_version": 1,
+      "verified": true
+    }
+  },
+  "prepared_total_bytes": 28893831958,
+  "prepared_total_files": 280,
+  "owner_plan": {
+    "result": "READY",
+    "provider_authentication": "NOT CHECKED",
+    "allocation": "NOT RUN",
+    "state_directory": "/kaggle/working/backtrace-a100-owner-state",
+    "attempt_marker": "NOT CREATED",
+    "source_inputs_rehashed_before_create": true
+  },
+  "private_download": {
+    "bytes": 1344295,
+    "sha256": "f96a476266b5869b3da0f07af18708cadaa53fcea2b43d35860c39cd3dbe80bf",
+    "ssh_private_keys_included": false,
+    "api_credentials_included": false,
+    "model_weights_included": false
+  }
+}

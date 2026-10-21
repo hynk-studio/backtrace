@@ -1,0 +1,32 @@
+name: A100 independent cleanup
+
+on:
+  push:
+    branches: [bt-001-a100-watch-20261021c]
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: a100-cleanup-owner-cloud-20261021-192529
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 140
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Observe one authorization and reconcile only its exact Pod
+        env:
+          GH_STATE_TOKEN: ${{ github.token }}
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
+          WATCH_RUN_ID: ${{ github.run_id }}
+          SOURCE_SHA: ${{ github.sha }}
+        run: python -m tools.cloud_watch --run-id "$WATCH_RUN_ID" --source-sha "$SOURCE_SHA"

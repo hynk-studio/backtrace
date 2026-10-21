@@ -1,0 +1,576 @@
+"""Owner-side one-attempt REST v2 controller for a USD 10 prepaid wallet.
+
+The USD 8 stop threshold and external watchdog replace unavailable native
+timers. No financial hard cap is promised. Credentials never enter the Pod.
+This module's CLI only inspects/reconciles an already recorded attempt.
+"""
+import argparse
+from datetime import datetime, timezone
+from decimal import Decimal, InvalidOperation
+import fcntl
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import tempfile
+import time
+import urllib.error
+import urllib.request
+import uuid
+
+RUN = 'R0-clean-v2-one-public-task/A10080-TP1'
+BASE = ('pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:'
+        'b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca')
+GPU = 'NVIDIA A100 80GB PCIe'
+TOTAL, USEFUL, STOP = 3000, 2700, 2880
+WALLET = Decimal('10.00')
+CAP = Decimal('8.00')
+POLICY = 'prepaid10-external-v2'
+REGION_POLICY = 'owner-equivalent-region-20261019'
+ID = re.compile(r'[A-Za-z0-9_-]{1,128}')
+MAX_CREATE_BYTES = 102400  # REST v2 rejects larger bodies before processing.
+
+
+def utc(timestamp):
+    return datetime.fromtimestamp(timestamp, timezone.utc).isoformat(timespec='seconds').replace('+00:00', 'Z')
+
+
+def timestamp(value):
+    result = datetime.fromisoformat(value.replace('Z', '+00:00'))
+    if result.tzinfo is None:
+        raise ValueError('timezone required')
+    return result.timestamp()
+
+
+def money(value):
+    if not isinstance(value, str):
+        raise ValueError('money values must be decimal strings')
+    try:
+        result = Decimal(value)
+    except InvalidOperation as error:
+        raise ValueError('invalid cost') from error
+    if not result.is_finite() or result < 0:
+        raise ValueError('invalid cost')
+    return result
+
+
+def validate_region(region):
+    if not isinstance(region, str) or not re.fullmatch(r'[A-Z]{2,3}-[A-Z0-9]{1,8}-[0-9]{1,3}', region):
+        raise ValueError('one exact data center ID required')
+    return region
+
+
+def validate_offer(offer, now):
+    region = validate_region(offer.get('region'))
+    if region != 'EU-RO-1' and offer.get('region_policy') != REGION_POLICY:
+        raise ValueError('owner equivalent-region instruction required')
+    exact = {'gpu': GPU, 'gpu_count': 1, 'cloud': 'SECURE',
+             'container_disk_gb': 100, 'volume_gb': 0, 'network_volume': None,
+             'interruptible': False, 'stock_available': True, 'auto_pay': False,
+             'authenticated': True, 'image': BASE}
+    if any(type(offer.get(k)) is not type(v) or offer.get(k) != v for k, v in exact.items()):
+        raise ValueError('offer does not match the authorized configuration')
+    if (type(offer.get('vcpus')) is not int or offer['vcpus'] < 8
+            or type(offer.get('ram_gb')) is not int or offer['ram_gb'] < 117):
+        raise ValueError('insufficient host offer')
+    if not 0 <= now - timestamp(offer['observed_at']) <= 300:
+        raise ValueError('authenticated offer is stale or from the future')
+    compute = money(offer['compute_per_hour'])
+    storage = money(offer['storage_per_hour'])
+    tax = money(offer['tax_rate'])
+    fixed = money(offer['other_total'])
+    hourly = (compute + storage) * (1 + tax)
+    maximum = hourly * Decimal(TOTAL) / 3600 + fixed
+    balance = money(offer['credit_balance'])
+    if balance > WALLET:
+        raise ValueError('this plan requires a single wallet of at most USD 10')
+    spent_before = WALLET - balance
+    if maximum + spent_before > CAP or balance < hourly + fixed:
+        raise ValueError('insufficient existing credit or all-in cap exceeded')
+    return {'hourly_all_in': str(hourly), 'other_total': str(fixed),
+            'maximum_all_in': str(maximum), 'compute_per_hour': str(compute),
+            'storage_per_hour': str(storage), 'tax_rate': str(tax),
+            'spent_before': str(spent_before), 'initial_balance': str(balance)}
+
+
+def make_request(attempt, requested_at, bootstrap=None, *, region='EU-RO-1', transport_profile=None):
+    if not re.fullmatch(r'[0-9a-f]{32}', attempt):
+        raise ValueError('unique UUID hex attempt required')
+    request = {'cloud': 'SECURE', 'gpu': {'id': GPU, 'count': 1,
+               'minRamPerGpu': 117, 'minVcpuCountPerGpu': 8, 'minCudaVersion': '12.8'},
+               'dataCenterIds': [validate_region(region)], 'image': BASE, 'disk': 100,
+               'mounts': {}, 'startSsh': False, 'startJupyter': False,
+               'ports': ['22/tcp'], 'globalNetworking': False,
+               'name': 'backtrace-a100-' + attempt}
+    if bootstrap is not None:
+        from tools.ssh_bootstrap import validate_initializer
+        validate_initializer(bootstrap, profile=transport_profile)
+        request.update(bootstrap)
+    return request
+
+
+def encode_create_request(payload):
+    """Check the exact wire bytes, before consuming an attempt or opening HTTP."""
+    data = json.dumps(payload).encode()
+    if len(data) > MAX_CREATE_BYTES:
+        raise ValueError('RunPod create request exceeds 102400 bytes; transport redesign required')
+    return data
+
+
+class ProviderError(RuntimeError):
+    """Deliberately excludes response bodies, URLs with secrets and tokens."""
+    def __init__(self, message, *, http_status=None):
+        super().__init__(message)
+        self.http_status = http_status
+
+
+class RunpodAPI:
+    def __init__(self, key, opener=None):
+        if not key or '\n' in key or '\r' in key:
+            raise ValueError('controller API key required')
+        self._key = key
+        self._open = opener or urllib.request.build_opener(NoRedirect()).open
+
+    def request(self, method, path, body=None, missing=False):
+        if not re.fullmatch(r'/pods(?:\?limit=1000(?:&cursor=[A-Za-z0-9%_.~-]+)?'
+                            r'|/[A-Za-z0-9_-]{1,128}(?:/action)?)?', path):
+            raise ValueError('unsupported provider path')
+        url = 'https://api.runpod.io/v2' + path
+        headers = {'Authorization': 'Bearer ' + self._key, 'Content-Type': 'application/json'}
+        data = (encode_create_request(body) if method == 'POST' and path == '/pods'
+                else None if body is None else json.dumps(body).encode())
+        request = urllib.request.Request(url, data=data,
+                                         headers=headers, method=method)
+        try:
+            with self._open(request, timeout=10) as response:
+                status = response.status
+                raw = response.read(1024**2 + 1)
+        except urllib.error.HTTPError as error:
+            if missing and error.code == 404:
+                return None
+            raise ProviderError('provider HTTP ' + str(error.code), http_status=error.code) from None
+        except (OSError, TimeoutError):
+            raise ProviderError('provider transport failure') from None
+        if not 200 <= status < 300 or len(raw) > 1024**2:
+            raise ProviderError('invalid provider response')
+        if not raw:
+            return {}  # A successful DELETE acknowledgement is not deletion evidence.
+        try:
+            return json.loads(raw)
+        except (ValueError, UnicodeError):
+            raise ProviderError('invalid provider JSON') from None
+
+    def create(self, payload):
+        # Never retry this non-idempotent request, including on 429 or 5xx.
+        return self.request('POST', '/pods', payload)
+
+    @staticmethod
+    def valid_id(pod_id):
+        if not isinstance(pod_id, str) or not ID.fullmatch(pod_id):
+            raise ValueError('invalid exact Pod ID')
+
+    def get(self, pod_id):
+        self.valid_id(pod_id)
+        result = self.request('GET', '/pods/' + pod_id, missing=True)
+        if result is not None and (not isinstance(result, dict) or result.get('id') != pod_id):
+            raise ProviderError('wrong or incomplete Pod readback')
+        return result
+
+    def list(self):
+        from urllib.parse import quote
+        pods, cursors, ids = [], set(), set()
+        path = '/pods?limit=1000'
+        for _ in range(100):
+            result = self.request('GET', path)
+            if not isinstance(result, dict) or not isinstance(result.get('pods'), list):
+                raise ProviderError('invalid v2 Pod list')
+            for pod in result['pods']:
+                if not isinstance(pod, dict) or not isinstance(pod.get('id'), str) or pod['id'] in ids:
+                    raise ProviderError('incomplete or duplicate Pod list')
+                self.valid_id(pod['id']); ids.add(pod['id']); pods.append(pod)
+            page = result.get('pagination')
+            if not isinstance(page, dict) or type(page.get('hasNextPage')) is not bool:
+                raise ProviderError('missing v2 pagination evidence')
+            if not page['hasNextPage']:
+                return pods
+            cursor = page.get('nextCursor')
+            if not isinstance(cursor, str) or not cursor or len(cursor) > 4096 or cursor in cursors:
+                raise ProviderError('invalid or repeated pagination cursor')
+            cursors.add(cursor)
+            path = '/pods?limit=1000&cursor=' + quote(cursor, safe='')
+        raise ProviderError('Pod list pagination limit exceeded')
+
+    def stop(self, pod_id):
+        self.valid_id(pod_id)
+        return self.request('POST', '/pods/' + pod_id + '/action', {'action': 'stop'})
+
+    def delete(self, pod_id):
+        self.valid_id(pod_id)
+        return self.request('DELETE', '/pods/' + pod_id)
+
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, *args, **kwargs):
+        raise ProviderError('provider redirects are refused')
+
+
+class Journal:
+    """One fixed journal per authorization; caller holds an exclusive lock."""
+    def __init__(self, directory):
+        self.directory = Path(directory).absolute()
+        self.path = self.directory / 'a100-attempt.json'
+        self.lock = None
+
+    def __enter__(self):
+        p = self.directory
+        if (not p.is_dir() or p.resolve() != p or p.stat().st_uid != os.getuid()
+                or p.stat().st_mode & 0o077):
+            raise ValueError('controller directory must be real, private and owner-controlled')
+        fd = os.open(p / 'controller.lock', os.O_CREAT | os.O_RDWR | os.O_NOFOLLOW, 0o600)
+        self.lock = os.fdopen(fd, 'r+')
+        try:
+            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BaseException:
+            self.lock.close()
+            raise
+        return self
+
+    def __exit__(self, *args):
+        self.lock.close()
+
+    def read(self):
+        if (self.path.is_symlink() or not self.path.is_file()
+                or self.path.stat().st_uid != os.getuid() or self.path.stat().st_mode & 0o077):
+            raise ValueError('private regular attempt journal required')
+        value = json.loads(self.path.read_text())
+        if (value['schema_version'] != 2 or value['run'] != RUN or value['policy'] != POLICY
+                or value['request'] != make_request(value['attempt'], value['requested_at'], value.get('bootstrap'),
+                                                     region=value.get('region', 'EU-RO-1'))):
+            raise ValueError('journal scope changed')
+        if value.get('pod_id') is not None:
+            RunpodAPI.valid_id(value['pod_id'])
+        return value
+
+    def write(self, value, first=False):
+        data = json.dumps(value, sort_keys=True, indent=2).encode() + b'\n'
+        if first:
+            fd = os.open(self.path, os.O_CREAT | os.O_EXCL | os.O_WRONLY | os.O_NOFOLLOW, 0o600)
+            with os.fdopen(fd, 'wb') as stream:
+                stream.write(data); stream.flush(); os.fsync(stream.fileno())
+        else:
+            fd, temporary = tempfile.mkstemp(prefix='.attempt-', dir=self.directory)
+            try:
+                with os.fdopen(fd, 'wb') as stream:
+                    stream.write(data); stream.flush(); os.fsync(stream.fileno())
+                os.replace(temporary, self.path)
+            finally:
+                if os.path.exists(temporary):
+                    os.unlink(temporary)
+        fd = os.open(self.directory, os.O_RDONLY | os.O_DIRECTORY)
+        try:
+            os.fsync(fd)
+        finally:
+            os.close(fd)
+
+
+def archive_unallocated_attempt(api, journal, authorization, wall=time.time):
+    """Explicit owner follow-up only; never called by recovery or the CLI.
+
+    Preserve the exact old journal under the SAME locked state directory. Two
+    complete live lists must contain no Backtrace resource. This does not label
+    an uncertain historical create as deleted or automatically retry it.
+    """
+    if journal.lock is None or journal.lock.closed:
+        raise ValueError('exclusive journal lock required')
+    if (set(authorization) != {'id', 'at_utc', 'previous_sha256'}
+            or not re.fullmatch(r'[a-z0-9-]{1,80}', authorization['id'])
+            or not re.fullmatch(r'[0-9a-f]{64}', authorization['previous_sha256'])):
+        raise ValueError('explicit new owner authorization and previous digest required')
+    p = journal.path
+    if (p.is_symlink() or not p.is_file() or p.stat().st_uid != os.getuid()
+            or p.stat().st_mode & 0o077):
+        raise ValueError('private original journal required')
+    raw = p.read_bytes()
+    if hashlib.sha256(raw).hexdigest() != authorization['previous_sha256']:
+        raise ValueError('previous attempt digest changed; no transition')
+    old = json.loads(raw)
+    now = wall()
+    if (old['schema_version'] != 2 or old['run'] != RUN or old['policy'] != POLICY
+            or old['phase'] != 'cleanup_unresolved' or old['pod_id'] is not None
+            or old['ownership_confirmed'] is not False
+            or not re.fullmatch(r'[0-9a-f]{32}', old['attempt'])
+            or old['request']['name'] != 'backtrace-a100-' + old['attempt']
+            or not old['requested_at'] < timestamp(authorization['at_utc']) <= now
+            or now - old['requested_at'] < 3600
+            or not any(e.get('event') == 'create_failed' for e in old['events'])):
+        raise ValueError('only an aged unallocated failed create may be archived')
+    state_files = set(x.name for x in journal.directory.iterdir())
+    if not state_files <= {'controller.lock', 'a100-attempt.json', 'job-status.json', 'history'}:
+        raise ValueError('unexpected prior state requires inspection')
+    status = journal.directory / 'job-status.json'
+    if status.exists() or status.is_symlink():
+        if status.is_symlink() or not status.is_file() or status.stat().st_uid != os.getuid():
+            raise ValueError('invalid previous heartbeat')
+    history = journal.directory / 'history'
+    if history.exists() or history.is_symlink():
+        if (history.is_symlink() or not history.is_dir() or history.stat().st_uid != os.getuid()
+                or history.stat().st_mode & 0o077):
+            raise ValueError('private history directory required')
+    reads = []
+    for _ in range(2):
+        pods = api.list()
+        if any(x.get('name', '').startswith('backtrace-a100-') for x in pods):
+            raise ValueError('existing Backtrace resource requires reconciliation')
+        reads.append({'at_utc': utc(wall()), 'complete_list_count': len(pods), 'backtrace_count': 0})
+    history.mkdir(mode=0o700, exist_ok=True)
+    archive = history / old['attempt']
+    archive.mkdir(mode=0o700)  # Refuse a repeated/partially completed transition.
+    receipt = {'authorization': authorization, 'previous_phase': old['phase'],
+               'previous_pod_id': None, 'live_absence': reads,
+               'history': 'original bytes preserved; historical ambiguity not relabeled'}
+    with (archive / 'transition.json').open('x') as stream:
+        os.fchmod(stream.fileno(), 0o600)
+        json.dump(receipt, stream, sort_keys=True)
+        stream.flush(); os.fsync(stream.fileno())
+    if status.exists():
+        os.rename(status, archive / 'job-status.json')
+    os.rename(p, archive / p.name)
+    for directory in (archive, history, journal.directory):
+        fd = os.open(directory, os.O_RDONLY | os.O_DIRECTORY)
+        try:
+            os.fsync(fd)
+        finally:
+            os.close(fd)
+    if (archive / p.name).read_bytes() != raw:
+        raise RuntimeError('archived journal verification failed')
+    return receipt
+
+
+def begin(api, journal, offer, wall=time.time, bootstrap=None):
+    """Single non-idempotent request, with durable marker written before sending.
+
+    This is a library integration seam, not a ready-to-rent CLI. External launch
+    qualification (delivery/SSH/isolation/credential separation) is still needed.
+    """
+    if journal.path.exists() or journal.path.is_symlink():
+        raise ValueError('attempt already consumed; never recreate after restart')
+    costs = validate_offer(offer, wall())
+    attempt = uuid.uuid4().hex
+    request = make_request(attempt, int(wall()), bootstrap, region=offer['region'])
+    encode_create_request(request)
+    if any(p.get('name', '').startswith('backtrace-a100-') for p in api.list()):
+        raise ValueError('an earlier Backtrace Pod needs reconciliation; no second create')
+    t0 = int(wall())
+    validate_offer(offer, t0)
+    value = {'schema_version': 2, 'run': RUN, 'policy': POLICY, 'attempt': attempt, 'requested_at': t0,
+             'bootstrap': bootstrap, 'request': request, 'costs': costs, 'region': offer['region'],
+             'phase': 'requested', 'pod_id': None, 'ownership_confirmed': False,
+             'native_expiry_verified': False, 'absence_reads': 0, 'events': []}
+    journal.write(value, first=True)
+    try:
+        result = api.create(value['request'])
+        bind(value, result)
+        journal.write(value)
+        # The owner replaced unavailable native timers with external cleanup
+        # plus a prepaid wallet. Do not send or claim unsupported expiry fields.
+        value['phase'] = 'allocated'
+        journal.write(value)
+    except Exception as error:
+        value['phase'] = 'cleanup_required'
+        event = {'event': 'create_failed', 'type': type(error).__name__}
+        if isinstance(error, ProviderError) and type(error.http_status) is int:
+            event['http_status'] = error.http_status
+        value['events'].append(event)
+        journal.write(value)
+        cleanup_once(api, journal, value)
+        raise RuntimeError('attempt consumed; allocation failed; inspect private journal') from None
+    return value
+
+
+def bind(value, pod):
+    if not isinstance(pod, dict) or pod.get('name') != value['request']['name']:
+        raise ValueError('attempt ownership is not established')
+    RunpodAPI.valid_id(pod.get('id'))
+    if value['pod_id'] not in (None, pod['id']):
+        raise ValueError('another Pod cannot replace this attempt')
+    value['pod_id'] = pod['id']
+    value['ownership_confirmed'] = True
+
+
+def resource_matches(pod, value):
+    """Validate v2 nested state without treating a provisioning Pod as healthy."""
+    if not isinstance(pod, dict):
+        return False
+    gpu = pod.get('gpu', {})
+    pending = pod.get('status') in ('PROVISIONING', 'STARTING')
+    if (pod.get('name') != value['request']['name'] or pod.get('image') != BASE
+            or pod.get('cloud') != 'SECURE' or pod.get('disk') != 100
+            or pod.get('mounts') != {} or pod.get('ports') != ['22/tcp']
+            or gpu.get('id') != GPU or type(gpu.get('count')) is not int or gpu['count'] != 1
+            or pod.get('status') not in ('PROVISIONING', 'STARTING', 'RUNNING')
+            or pod.get('locked') is not False or pod.get('cluster')
+            or pod.get('dataCenterId') not in ((value.get('region', 'EU-RO-1'), None) if pending
+                                               else (value.get('region', 'EU-RO-1'),))):
+        return False
+    for name, minimum in (('vcpuCount', 8), ('memory', 117)):
+        number = gpu.get(name)
+        if pending and number is None:
+            continue
+        if type(number) not in (int, float) or not number >= minimum:
+            return False
+    quoted = money(value['costs']['compute_per_hour']) + money(value['costs']['storage_per_hour'])
+    return money(str(pod['cost'])) <= quoted
+
+
+def cleanup_once(api, journal, value):
+    """Bounded pass; uncertain or stopped resources are never called deleted."""
+    if value['phase'] == 'deleted':
+        return True
+    errors = []
+    if value['pod_id'] is None:
+        try:
+            matches = [p for p in api.list() if p.get('name') == value['request']['name']]
+            if len(matches) != 1:
+                raise ValueError('ambiguous create remains unresolved')
+            bind(value, matches[0])
+            journal.write(value)
+        except Exception as error:
+            value['phase'] = 'cleanup_unresolved'
+            value['events'].append({'event': 'reconcile_failed', 'type': type(error).__name__})
+            journal.write(value)
+            return False
+    pod_id = value['pod_id']
+    if not value['ownership_confirmed']:
+        raise ValueError('refuse mutation without attempt ownership')
+    # The immutable returned ID + random exact name establish ownership. If a
+    # read succeeds and contradicts that name, do not mutate the resource.
+    try:
+        current = api.get(pod_id)
+        if current is not None and current.get('name') != value['request']['name']:
+            raise ValueError('Pod ownership changed')
+    except ProviderError:
+        current = 'unknown'  # A transient read failure must not suppress exact-ID cleanup.
+    except Exception:
+        value['phase'] = 'ownership_conflict'
+        journal.write(value)
+        return False
+    if current is not None:
+        for action in ('stop', 'delete'):
+            try:
+                getattr(api, action)(pod_id)
+            except Exception as error:
+                errors.append({'action': action, 'type': type(error).__name__})
+    try:
+        absent = api.get(pod_id) is None
+        listed = api.list()
+        absent = absent and not any(p['id'] == pod_id or p.get('name') == value['request']['name'] for p in listed)
+        value['absence_reads'] = value['absence_reads'] + 1 if absent else 0
+    except Exception as error:
+        value['absence_reads'] = 0
+        errors.append({'action': 'readback', 'type': type(error).__name__})
+    value['phase'] = 'deleted' if value['absence_reads'] >= 2 else 'cleanup_unresolved'
+    value['events'].append({'event': 'cleanup_pass', 'errors': errors,
+                            'absence_reads': value['absence_reads']})
+    # Keep bounded metadata, never store provider raw bodies or account secrets.
+    value['events'] = value['events'][-128:]
+    journal.write(value)
+    return value['phase'] == 'deleted'
+
+
+def watchdog(api, journal, wall=time.time, monotonic=time.monotonic, sleep=time.sleep):
+    """Separate owner process; survives worker failure and can resume journal.
+
+    An owner-only job-status.json heartbeat is written by the separate worker.
+    Missing/stale status triggers immediate cleanup; no workload is started here.
+    """
+    value = journal.read()
+    initial_wall, initial_mono = wall(), monotonic()
+    last_wall = initial_wall
+    next_provider_read = initial_wall
+    while True:
+        now = wall()
+        elapsed = max(now - value['requested_at'],
+                      initial_wall - value['requested_at'] + monotonic() - initial_mono)
+        reason = None
+        if now < last_wall - 2:
+            reason = 'clock_regression'
+        last_wall = now
+        if value['phase'] == 'deleted':
+            return value
+        if value['phase'] != 'allocated' or value['policy'] != POLICY:
+            reason = 'incomplete_launch'
+        if elapsed >= USEFUL:
+            reason = 'useful_deadline'
+        projected = (money(value['costs']['hourly_all_in']) * Decimal(str(max(0, elapsed) + 300))
+                     / 3600 + money(value['costs']['other_total']) + money(value['costs']['spent_before']))
+        if projected > CAP:
+            reason = 'projected_budget'
+        if reason is None:
+            try:
+                path = journal.directory / 'job-status.json'
+                if path.is_symlink() or path.stat().st_mode & 0o077 or path.stat().st_uid != os.getuid():
+                    raise ValueError('private owner heartbeat required')
+                status = json.loads(path.read_text())
+                if (status['attempt'] != value['attempt'] or status['state'] != 'running'
+                        or not 0 <= now - timestamp(status['at']) <= 30):
+                    reason = 'job_finished_failed_or_stale'
+                if status.get('phase') == 'setup' and elapsed >= 1200:
+                    reason = 'setup_deadline'
+            except (OSError, KeyError, TypeError, ValueError):
+                reason = 'missing_or_invalid_job_status'
+        if reason is None and now >= next_provider_read:
+            try:
+                pod = api.get(value['pod_id'])
+                if not resource_matches(pod, value):
+                    reason = 'provider_resource_changed'
+                next_provider_read = now + 10
+            except Exception:
+                reason = 'provider_observation_failed'
+        if reason:
+            value['events'].append({'event': 'cleanup_trigger', 'reason': reason})
+            value['phase'] = 'cleanup_required'
+            journal.write(value)
+        if value['phase'] != 'allocated':
+            if cleanup_once(api, journal, value):
+                confirmed = wall()
+                value['deletion_confirmed_at'] = utc(confirmed)
+                # Cleanup/readback itself consumes time. Do not use the stale
+                # timestamp taken before network calls for cap compliance.
+                final_elapsed = max(confirmed - value['requested_at'],
+                                    initial_wall - value['requested_at'] + monotonic() - initial_mono)
+                value['deadline_exceeded'] = final_elapsed > TOTAL
+                value['request_to_deletion_seconds'] = final_elapsed
+                value['billing'] = 'PENDING separate actual billing evidence'
+                journal.write(value)
+                return value
+        # Continue bounded cleanup after the deadline; do not call it free time
+        # or guaranteed cap compliance. Resume uses the same immutable attempt.
+        if elapsed >= TOTAL + 180:
+            value['deadline_exceeded'] = True
+            journal.write(value)
+            raise RuntimeError('cleanup unconfirmed; same attempt needs immediate reconciliation')
+        sleep(2)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('mode', choices=('status', 'watch'))
+    parser.add_argument('directory', type=Path)
+    parser.add_argument('--api-key-file', type=Path)
+    args = parser.parse_args()
+    with Journal(args.directory) as journal:
+        if args.mode == 'status':
+            value = journal.read()
+        else:
+            p = args.api_key_file
+            if (p is None or p.is_symlink() or not p.is_file() or p.stat().st_uid != os.getuid()
+                    or p.stat().st_mode & 0o077):
+                parser.error('private owner-side API key file required')
+            api = RunpodAPI(p.read_text().strip())
+            value = watchdog(api, journal)
+        print(json.dumps({k: value.get(k) for k in ('run', 'phase', 'pod_id', 'native_expiry_verified',
+                                                   'deletion_confirmed_at', 'deadline_exceeded', 'billing')}))
+
+
+if __name__ == '__main__':
+    main()
