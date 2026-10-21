@@ -19,7 +19,8 @@ PATHS = tuple(sorted(set(
        'tests/official_cloud_image.py', 'tests/official_cloud_lifecycle.py',
        'tests/test_cloud_state.py', 'tests/test_cloud_owner.py', 'tests/test_runpod_control.py',
        'docs/a100-task-delivery.json', 'docs/a100-result-recipient.txt', 'docs/a100-system-packages.json',
-       'docs/a100-api-runtime-amendment.json', 'tests/test_api_readiness.py',
+       'docs/a100-api-runtime-amendment.json', 'docs/api-http-minimal.lock',
+       '.github/workflows/a100-cpu.yml', 'tests/test_api_readiness.py',
        'docs/cloud-controller-requirements.txt', '.github/workflows/a100-prepare.yml'])))
 
 

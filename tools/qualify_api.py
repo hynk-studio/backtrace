@@ -10,7 +10,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def run_checks(python, old_wheel, output, log):
+def run_checks(python, old_wheel, output, log, *, mode='vllm'):
     output = Path(output)
     output.mkdir(mode=0o700)
     old_wheel = Path(old_wheel)
@@ -43,7 +43,7 @@ def run_checks(python, old_wheel, output, log):
                      " if event=='socket.connect' and (not isinstance(args[1],tuple) or args[1][0] not in ('127.0.0.1','::1')):\n"
                      "  raise RuntimeError('API qualification blocks external connections')\n"
                      "sys.addaudithook(audit)\n")
-            command = bootstrap + audit + ('sys.argv=' + repr(['api_probe.py', '--mode', 'vllm',
+            command = bootstrap + audit + ('sys.argv=' + repr(['api_probe.py', '--mode', mode,
                 '--expect', selected, '--output', str(report)]) + '\n'
                 + 'runpy.run_path(' + repr(str(ROOT / 'tools/api_probe.py')) + ",run_name='__main__')")
             subprocess.run([str(python), '-I', '-c', command], env=env,
