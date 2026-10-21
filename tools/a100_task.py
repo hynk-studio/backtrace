@@ -163,6 +163,9 @@ def transform(data):
                       'sys.path.insert(0,str(Path(__file__).resolve().parent))\n'
                       'from tools.a100_task import check_runtime, inherit_runtime, check_gpu, require_local_procfs\n')
     changes = [
+        # Hardware observations contain a `name` field. Keep the event label
+        # positional-only so real telemetry can retain that field unchanged.
+        ('def event(name,**values):', 'def event(name,/,**values):'),
         ("RUN_NAME='R0-clean-v2-one-public-task/T4-native-no-custom-ar'",
          "RUN_NAME='R0-clean-v2-one-public-task/A10080-TP1'"),
         ("ROOT=Path('/tmp/backtrace-smoke')", "ROOT=Path('/tmp/backtrace-a100-smoke')"),

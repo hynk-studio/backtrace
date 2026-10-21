@@ -141,7 +141,8 @@ def qualify(root, emit):
                 str(frozen.ROOT / 'tests/official_a100_task.py'), '--cloud-policy'],
                 env=env, cwd=frozen.ROOT, stdout=log, stderr=log, check=True, timeout=300)
         report['stages'][stage] = {'status': 'PASS', 'driver_sha256': cloud_task.CLOUD_DRIVER_SHA256,
-                                  'model_execution': 'NOT RUN', 'hardware': 'INJECTED A100 SM80'}
+                                  'model_execution': 'NOT RUN', 'hardware': 'INJECTED A100 SM80',
+                                  'event_writer': 'ACTUAL', 'hardware_name_preserved': True}
         stage = 'actual_cpu_prerequisites'
         with (root / 'actual-cpu-prerequisites.log').open('xb') as log:
             result = subprocess.run(['sudo', sys.executable, '-I',

@@ -5,8 +5,10 @@ identity is injected. Only the generated server function's pre-start statements
 execute; a start spy and process/network audit independently reject execution.
 """
 import ast
+import contextlib
 import hashlib
 import importlib.util
+import io
 import json
 import os
 from pathlib import Path
@@ -18,6 +20,7 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from tools.a100_task import prepare
+from tools.a100_driver import qualify_hardware
 from tools.compile_probe import FROZEN_SHA256, NoExecution
 from tools.official_check import check_installed_wheels
 from tools.r0 import expected_candidate, inspect_candidate
@@ -54,9 +57,13 @@ def main():
         stop = next(i for i, n in enumerate(function.body) if isinstance(n, ast.Try))
         prefix = ast.Module(body=function.body[:stop], type_ignores=[])
         namespace = dict(driver.__dict__)
-        namespace['check_gpu'] = lambda cuda: {'fixture': 'injected A100 SM80 / TP1 / BF16'}
-        events = []
-        namespace['event'] = lambda name, **fields: events.append(name)
+        # Keep the real event writer and hardware validator. The previous
+        # fixture removed hardware.name and replaced event(), masking the
+        # production keyword collision before server construction.
+        namespace['check_gpu'] = lambda cuda: qualify_hardware(
+            'NVIDIA A100 80GB PCIe, GPU-cpu-fixture, 81920, 595.91.07, Disabled\n',
+            cuda, runtime_version='12.8.90')
+        event_output = io.StringIO()
         guard = NoExecution()
         guard.install()
         with patch.dict(os.environ, dict(driver.OFFICIAL_ENV, BACKTRACE_USEFUL_DEADLINE=str(time.time() + 2700))), \
@@ -65,11 +72,18 @@ def main():
                 patch.object(torch.cuda, 'get_device_capability', return_value=(8, 0)), \
                 patch.object(torch.cuda, 'get_device_name', return_value='NVIDIA A100-PCIE-80GB'), \
                 patch.object(torch.cuda, 'is_bf16_supported', return_value=True) as bf16, \
-                patch.object(VllmServer, 'start', side_effect=AssertionError('CPU check must not start')) as start:
+                patch.object(VllmServer, 'start', side_effect=AssertionError('CPU check must not start')) as start, \
+                contextlib.redirect_stdout(event_output):
             exec(compile(prefix, '<prepared-private-pre-start>', 'exec'), namespace)
             start.assert_not_called()
             assert all(call.kwargs == {'including_emulation': False} for call in bf16.call_args_list)
         guard.assert_unused()
+        events = [json.loads(line.removeprefix('BACKTRACE '))
+                  for line in event_output.getvalue().splitlines() if line.startswith('BACKTRACE ')]
+        hardware_events = [row for row in events if row.get('event') == 'qualified_hardware']
+        assert len(hardware_events) == 1
+        assert hardware_events[0]['name'] == 'NVIDIA A100 80GB PCIe'
+        assert hardware_events[0]['native_bf16'] is True and hardware_events[0]['tp'] == 1
         server = namespace['server']
         assert server.config.dtype == 'bfloat16' and server.config.tensor_parallel_size == 1
         assert server.config.max_model_len == 32768 and server.config.startup_timeout == 1200
@@ -84,6 +98,7 @@ def main():
                           'requested_dtype': server.config.dtype, 'tp': 1,
                           'argv': argv, 'guard_constructed': True,
                           'hardware': 'INJECTED', 'server_start': 'NOT RUN',
+                          'actual_event_writer': 'PASS', 'hardware_name_preserved': True,
                           'task_execution': 'NOT RUN', 'denied_execution_attempts': guard.attempts}))
 
 

@@ -2,8 +2,8 @@
   "schema_version": 1,
   "id": "prepaid10-actions-v1",
   "authorization": "owner-cloud-20261021-003938",
-  "status": "CONSUMED; POD DELETED; R0 INCOMPLETE; PRIVATE DIAGNOSIS PENDING",
-  "authority": "At 2026-10-21 00:36:16 KST the owner reported re-enabling Monitoring. After being told that the existing automation still referenced a consumed attempt and needed the latest qualified preparation plus a new execution record, the owner instructed at 00:39:38 KST: '수정해 줘'. Apply that correction to the conditional one-attempt R0 resumption under the existing wallet, cumulative USD 8 stop and unchanged allocation-inclusive limits. Preserve every consumed claim and old paid/watch branch; this does not authorize repeated paid retries.",
+  "status": "CONSUMED; POD DELETED; PRE-SERVER LOGGING BUG FIXED; FREE REQUALIFICATION PENDING",
+  "authority": "At 2026-10-21 00:36:16 KST the owner reported re-enabling Monitoring. After being told that the existing automation still referenced a consumed attempt and needed the latest qualified preparation plus a new execution record, the owner instructed at 00:39:38 KST: '\uc218\uc815\ud574 \uc918'. Apply that correction to the conditional one-attempt R0 resumption under the existing wallet, cumulative USD 8 stop and unchanged allocation-inclusive limits. Preserve every consumed claim and old paid/watch branch; this does not authorize repeated paid retries.",
   "controller": "GitHub-hosted free Linux CPU runner; no user Mac/Windows required",
   "wallet_credits_usd": "10.00",
   "cumulative_stop_usd": "8.00",
@@ -23,7 +23,7 @@
     "An Actions runner is not durable storage; the fixed create-only claim is external",
     "An independent workflow is not a provider-enforced timer or a guaranteed dollar cap",
     "Synthetic cancellation tests are not a live paid cancellation trial",
-    "The current owner-cloud-20261021-003938 allocation is consumed. Source 6b7a861f286a2e68b169ccb9c4c1fb99c9ead756 passed 273 CPU tests and free preparation after full 52-file qualification run 39538574345. Owner 39540891710 allocated exactly one Pod, entered workload, then exited 1. Owner and watcher independently confirmed deletion; subsequent complete account reads found zero Pods and zero current spend/hour. Server readiness, model inference, R0 completion and the underlying workload failure remain unverified pending private-evidence decryption. No paid retry is authorized by this consumed claim."
+    "The owner-cloud-20261021-003938 scope remains consumed and its Pod independently deleted. Private evidence establishes an event(name, **values) / hardware.name collision before server start. The operational event signature is corrected, with all other generated cloud-driver bytes unchanged. Model server start, inference, R0 task execution and evaluation did not run. Free requalification of the changed fingerprints is pending; no paid retry is authorized by this correction."
   ],
   "exclusions": [
     "training",
