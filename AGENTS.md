@@ -140,3 +140,15 @@ Full free correction qualification 39565232280 at
 concurrent controller cases including two older owner-heartbeat views. This
 qualifies the free correction only; the 160757 paid scope remains consumed and
 actual corrected model/task execution is NOT RUN. No automatic paid retry.
+
+The owner now instructed '그럼 전체 과정을 재고하기 전 마지막으로 시도해보자'.
+Recorded at 2026-10-21 19:25:29 KST (record time, not the asserted message time),
+this authorizes one final bounded attempt as `owner-cloud-20261021-192529`.
+Read `docs/a100-final-smoke-20261021.md`. Use new `20261021c` start/watch
+branches and a separate create-only namespace. Renew the changed operational
+identity's full free qualification, then require exact-source CPU/preparation
+and a fresh independent watcher. All earlier consumed records and actual
+paid/watch heads remain immutable. Existing budget, scientific inputs and
+5,400/6,900/7,200-second limits are unchanged. If this final attempt fails,
+stop paid execution and reconsider the overall process; do not automatically
+retry or reactivate the old resumption automation.

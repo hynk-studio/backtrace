@@ -20,8 +20,8 @@ class MemoryStore:
         self.docs = {}
         self.runs = {str(n): {'id': n, 'status': 'in_progress', 'conclusion': None,
                               'head_sha': SOURCE, 'head_branch': branch, 'run_attempt': 1}
-                     for n, branch in ((1, 'bt-001-a100-start-20261021b'),
-                                       (2, 'bt-001-a100-watch-20261021b'))}
+                     for n, branch in ((1, 'bt-001-a100-start-20261021c'),
+                                       (2, 'bt-001-a100-watch-20261021c'))}
         self.fail_write = None
 
     def read(self, name):
@@ -84,10 +84,11 @@ class CloudStateTests(unittest.TestCase):
 
     def test_previous_consumed_claim_is_not_valid_for_new_owner_authorization(self):
         claim, _ = self.claim()
-        self.assertEqual(claim['authorization'], 'owner-cloud-20261021-160757')
-        self.assertEqual(state.DIRECTORY, 'a100-state/owner-cloud-20261021-160757')
+        self.assertEqual(claim['authorization'], 'owner-cloud-20261021-192529')
+        self.assertEqual(state.DIRECTORY, 'a100-state/owner-cloud-20261021-192529')
         for prior in ('owner-cloud-20261019-203126', 'owner-cloud-20261020-155445',
-                      'owner-cloud-20261020-211134', 'owner-cloud-20261021-003938'):
+                      'owner-cloud-20261020-211134', 'owner-cloud-20261021-003938',
+                      'owner-cloud-20261021-160757'):
             with self.subTest(authorization=prior):
                 claim['authorization'] = prior
                 with self.assertRaises(ValueError):
@@ -108,7 +109,7 @@ class CloudStateTests(unittest.TestCase):
                 if failure == 'stale': self.store.docs['watcher'][0]['at'] = T0 - 61
                 if failure == 'cancelled': self.store.runs['2']['status'] = 'completed'
                 if failure == 'source': self.store.runs['2']['head_sha'] = 'b' * 40
-                if failure == 'previous_branch': self.store.runs['2']['head_branch'] = 'bt-001-a100-watch-20261020c'
+                if failure == 'previous_branch': self.store.runs['2']['head_branch'] = 'bt-001-a100-watch-20261021b'
                 with self.assertRaises(state.StateError): self.claim()
                 self.assertIsNone(self.store.read('claim'))
 

@@ -1,6 +1,5 @@
 name: A100 read-only credential check
-# Recheck account and inventory for the new owner-directed staged smoke.
-# Refresh read-only billing/absence after the consumed 20261021b attempt.
+# Refresh account, absence and stock for the owner-directed final 20261021c attempt.
 
 on:
   push:
