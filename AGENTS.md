@@ -123,3 +123,13 @@ Renew changed operational fingerprints and actual full free qualification first.
 Existing USD 10 wallet / USD 8 cumulative stop, one A100/server/public task,
 5,400/6,900/7,200-second limits and all scientific inputs remain unchanged.
 No automatic second paid allocation and no resumption-automation reactivation.
+
+The staged instruction above is now consumed in attempt
+`319399b9318e4bd9935f9b89f68b4b7e`, Pod `xfx5hsrc28h2sb`, US-MO-1.
+Owner 39563206076 stopped during runtime installation on immediate heartbeat
+readback mismatch; owner and watch 39563149559 each confirmed deletion.
+Read `docs/a100-staged-smoke-20261021.md` and its evidence JSON. The correct
+heartbeat was committed, but the original GET response was not retained.
+Only free diagnostics/correction remain in this consumed scope. The bounded
+mutable-heartbeat read confirmation change does not reset any claim or permit
+a new paid allocation. Preserve both 20261021b heads at ec58d2d6a8200a7cfb74185fce9ccc82dabaab81.

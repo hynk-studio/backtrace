@@ -33,9 +33,30 @@ SAFE_STATE_REASONS = frozenset({
 })
 
 
-def update_heartbeat(store, claim, phase, now, previous_sha=None):
-    return store.write('heartbeat', {'attempt': claim['attempt'], 'at': int(now), 'phase': phase},
-                       previous_sha=previous_sha)
+def update_heartbeat(store, claim, phase, now, previous_sha=None, *, sleep=time.sleep):
+    value = {'attempt': claim['attempt'], 'at': int(now), 'phase': phase}
+    try:
+        return store.write('heartbeat', value, previous_sha=previous_sha)
+    except state.StateError as error:
+        # Only an already-existing mutable heartbeat may recover from a
+        # successful PUT whose immediate readback did not confirm the value.
+        # No second PUT, claim recovery, initial-heartbeat recovery or create.
+        if previous_sha is None or str(error) != 'durable write not independently confirmed':
+            raise
+        for attempt in range(3):
+            try:
+                check = store.read('heartbeat')
+            except state.StateError:
+                check = None
+            if check is not None:
+                current, sha = check
+                if state.encoded(current) == state.encoded(value):
+                    return sha
+                if current['attempt'] != value['attempt'] or current['at'] >= value['at']:
+                    raise error
+            if attempt < 2:
+                sleep(.25 * (attempt + 1))
+        raise
 
 
 def stop_worker(process):

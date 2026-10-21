@@ -1,8 +1,8 @@
 """Private A100 driver construction against the real wrapper; no model start.
 
 Requires the qualified private CPython 3.12 venv and retained artifacts. CUDA
-identity is injected. Only the generated server function's pre-start statements
-execute; a start spy and process/network audit independently reject execution.
+identity and post-start replies are injected. Actual construction and response
+handling execute; spies and the process/network audit reject real execution.
 """
 import ast
 import contextlib

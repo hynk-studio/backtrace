@@ -35,8 +35,10 @@ class Backend:
         self.requests = self.heartbeat_writes = 0
         self.fault_sent = False
         self.conflict_documents = set()
+        self.stale_heartbeat = None
+        self.stale_reads_left = self.stale_reads_served = 0
 
-    def request(self, method, path, body):
+    def request(self, method, path, body, actor=None):
         with self.lock:
             self.requests += 1
             path = urllib.parse.urlsplit(path).path
@@ -57,6 +59,9 @@ class Backend:
                     return 409, {}
                 if name == 'heartbeat':
                     self.heartbeat_writes += 1
+                    if self.scenario == 'success' and self.heartbeat_writes == 3:
+                        self.stale_heartbeat = self.memory.read(name)
+                        self.stale_reads_left = 2
                     if (self.scenario == 'state_http_failure' and self.heartbeat_writes == 3):
                         self.fault_sent = True
                         return 503, {}
@@ -67,6 +72,11 @@ class Backend:
                     return 409, {}
                 return 201, {}
             document = self.memory.read(name)
+            if (name == 'heartbeat' and actor == 'Bearer fixture-owner'
+                    and self.stale_reads_left):
+                document = self.stale_heartbeat
+                self.stale_reads_left -= 1
+                self.stale_reads_served += 1
             if document is None:
                 return 404, {}
             value, sha = document
@@ -80,7 +90,8 @@ class Handler(BaseHTTPRequestHandler):
 
     def handle_request(self):
         body = json.loads(self.rfile.read(int(self.headers['Content-Length']))) if self.command == 'PUT' else None
-        status, value = self.server.backend.request(self.command, self.path, body)
+        status, value = self.server.backend.request(
+            self.command, self.path, body, self.headers.get('X-Fixture-Actor'))
         data = json.dumps(value).encode()
         self.send_response(status); self.send_header('Content-Length', str(len(data))); self.end_headers()
         self.wfile.write(data)
@@ -136,9 +147,10 @@ def scenario(name):
         if not request.full_url.startswith(base + '/'):
             raise ValueError('fixture forbids external network requests')
         url = 'http://127.0.0.1:' + str(server.server_port) + request.full_url[len(base):]
-        return opener.open(urllib.request.Request(url, data=request.data, method=request.method), timeout=timeout)
-    owner_store = state.GitHubState('fixture-only', opener=local_open)
-    watcher_store = state.GitHubState('fixture-only', opener=local_open)
+        return opener.open(urllib.request.Request(url, data=request.data, method=request.method,
+            headers={'X-Fixture-Actor': request.get_header('Authorization', '')}), timeout=timeout)
+    owner_store = state.GitHubState('fixture-owner', opener=local_open)
+    watcher_store = state.GitHubState('fixture-watch', opener=local_open)
     watcher_result = {}
     def watch():
         try:
@@ -189,6 +201,7 @@ def scenario(name):
                 assert float((root / 'child-finished').read_text()) <= api.deleted_at
                 assert backend.heartbeat_writes >= 5, 'healthy concurrent polling was not exercised'
                 assert backend.conflict_documents == {'claim', 'heartbeat'}
+                assert backend.stale_reads_served == 2 and backend.stale_reads_left == 0
             if name == 'state_http_failure':
                 assert backend.fault_sent and result['failure']['http_status'] == 503
                 assert result['failure']['stage'] == 'publish_heartbeat'
@@ -201,6 +214,7 @@ def scenario(name):
                     'watcher': watcher_result['phase'], 'loopback_http_requests': backend.requests,
                     'elapsed_seconds': round(time.monotonic() - started, 2),
                     'explicit_branch_conflicts': len(backend.conflict_documents),
+                    'delayed_owner_heartbeat_reads': backend.stale_reads_served,
                     'child_reaped': True, 'recreate_blocked': True}
     finally:
         if process is not None:

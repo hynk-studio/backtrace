@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "authorization": "owner-cloud-20261021-160757",
+  "source_sha": "ec58d2d6a8200a7cfb74185fce9ccc82dabaab81",
+  "attempt": "319399b9318e4bd9935f9b89f68b4b7e",
+  "pod_id": "xfx5hsrc28h2sb",
+  "region": "US-MO-1",
+  "requested_at": 1792568397,
+  "owner_run": 39563206076,
+  "owner_job": 119099117481,
+  "watch_run": 39563149559,
+  "watch_job": 119098932135,
+  "allocation_requests": 1,
+  "status": "INCOMPLETE; CONSUMED; POD DELETED",
+  "failure": {
+    "error_type": "StateError",
+    "http_status": null,
+    "reason": "durable write not independently confirmed",
+    "stage": "publish_heartbeat"
+  },
+  "diagnostic": {
+    "failure": {
+      "error_type": "StateError",
+      "http_status": null,
+      "reason": "durable write not independently confirmed",
+      "stage": "publish_heartbeat"
+    },
+    "frames": [
+      {
+        "file": "cloud_owner.py",
+        "function": "execute",
+        "line": 144
+      },
+      {
+        "file": "cloud_owner.py",
+        "function": "update_heartbeat",
+        "line": 37
+      },
+      {
+        "file": "cloud_state.py",
+        "function": "write",
+        "line": 187
+      }
+    ],
+    "observed_at": 1792568695.7056134
+  },
+  "owner_cleanup": {
+    "absence_reads": 2,
+    "at": 1792568708,
+    "attempt": "319399b9318e4bd9935f9b89f68b4b7e",
+    "phase": "deleted",
+    "pod_id": "xfx5hsrc28h2sb",
+    "reason": "owner_finished"
+  },
+  "watcher_cleanup": {
+    "absence_reads": 2,
+    "at": 1792568737,
+    "attempt": "319399b9318e4bd9935f9b89f68b4b7e",
+    "phase": "deleted",
+    "pod_id": "xfx5hsrc28h2sb",
+    "reason": "provider_resource_changed"
+  },
+  "allocation_to_independent_deletion_seconds": 340,
+  "hourly_quote_usd": "1.804",
+  "quote_time_estimate_usd": "0.1703777777777777777777777778",
+  "initial_balance_usd": "8.7033146851",
+  "final_balance_usd": "PENDING READ-ONLY CHECK",
+  "model_transfer": "NOT RUN",
+  "actual_gpu_hardware_qualification": "NOT RUN",
+  "server_start": "NOT RUN",
+  "task_execution": "NOT RUN",
+  "evaluation": "NOT RUN",
+  "setup_last_stage": "runtime_installation STARTED",
+  "verified_setup": {
+    "system_packages": 24,
+    "wheels_files": 246,
+    "wheels_bytes": 5373559590,
+    "task_files": 8,
+    "task_bytes": 222386501
+  },
+  "committed_heartbeat": {
+    "commit": "6ac46461b4045bd7d5f5df799b55f655932e6236",
+    "at": 1792568693,
+    "blob_sha": "ddc4037d6aa429a43a10862ce960ffc83315b289"
+  },
+  "prior_heartbeat": {
+    "commit": "7d84fba25016b2cc1df6f30e02f603d5feeb2703",
+    "at": 1792568671,
+    "blob_sha": "461604d1fe1c795c494d68d3ddef955610e49514"
+  },
+  "inference": "The updated heartbeat committed before the immediate verification failure. A transient older/missing branch view is consistent with this, but the original GET response was not retained; exact service-level cause is not established.",
+  "private_artifact": {
+    "id": 12328283602,
+    "zip_sha256": "bde1f3d8bb4f125742ed8882a11e8bcece85a9d0c6e126068306de9ddf6db1b5",
+    "age_sha256": "e3355734e6a5de4e9c5155976379b22767315194bd1562a505ae5d7573dbc9cf"
+  },
+  "public_artifact": {
+    "id": 12328408519,
+    "zip_sha256": "2c7fa20ab2ee916b1062e55716fe47faad3f0bd99011049614fd49abc7f09812"
+  },
+  "correction": {
+    "scope": "existing mutable heartbeat confirmation only",
+    "additional_puts": 0,
+    "maximum_recovery_reads": 3,
+    "initial_heartbeat_claim_and_provider_create": "UNCHANGED STRICT",
+    "status": "FOCUSED TESTS PASS; FULL FREE QUALIFICATION PENDING"
+  },
+  "new_paid_retry_authorized": false
+}

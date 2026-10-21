@@ -80,3 +80,46 @@ Actual corrected GPU execution is still NOT RUN at this receipt commit.
 No GPU allocation occurred during this free inspection/correction.
 
 References #1.
+
+## Actual GPU stage and follow-up correction
+
+The final receipt source `ec58d2d6a8200a7cfb74185fce9ccc82dabaab81` passed
+273 Linux tests in run 39562780309 (27.437 seconds) and actual free owner
+preparation 39562780302. A fresh exact-source watcher 39563149559 preceded
+first-attempt owner 39563206076. After 109 seconds of free stock waiting, a
+fresh US-MO-1 offer matched the same cost and resource constraints.
+
+One allocation consumed this scope: attempt `319399b9318e4bd9935f9b89f68b4b7e`,
+Pod `xfx5hsrc28h2sb`, requested 2026-10-21T07:39:57Z / 16:39:57 KST. Owner
+stopped at `publish_heartbeat` with `durable write not independently confirmed`
+at 07:44:55.705613Z, during runtime installation. The worker was stopped by
+the controller; this was not an observed model or GPU-kernel failure. System
+packages and verified wheels/task transfer had passed. Runtime installation
+did not finish; model transfer, GPU hardware qualification, server start,
+inference, public task and evaluation are NOT RUN. R0 is incomplete.
+
+Owner independently confirmed deletion at 07:45:08Z and the watcher at
+07:45:37Z, each with two absence reads. The latter is 340 seconds after
+request. The watcher's secondary `provider_resource_changed` reason occurred
+after owner cleanup and is not the primary failure. Quote-time estimate is
+USD 0.1703777777777777777777777778; this is not a final invoice.
+
+Git history proves that heartbeat `at=1792568693` committed at 07:44:54Z
+(commit `6ac46461b4045bd7d5f5df799b55f655932e6236`), before the confirmation
+failure. The original older/missing GET response was not retained. Transient
+branch-read visibility is a supported hypothesis, not an established service
+root cause. The exact confirmed failure is the strict immediate readback
+mismatch. The consumed claim and both actual paid/watch branch heads remain
+unchanged.
+
+The free correction permits at most three extra GETs, and zero extra PUTs,
+only after that exact confirmation error for an already-existing mutable
+heartbeat. It continues only after reading the complete exact intended value;
+a different attempt or newer/conflicting phase immediately stops recovery.
+Unconfirmed values still abort and clean up. Initial heartbeat, immutable
+claim/Pod writes, all other state failures, provider create and all deadlines
+remain strict and unchanged. This neither recovers a claim nor retries paid
+creation. Five focused regressions pass. The real concurrent HTTP fixture now
+injects two older owner-heartbeat reads into its success scenario, in addition
+to the existing explicit branch conflicts and negative cleanup cases. Full
+free qualification of the correction is pending. No paid retry is authorized.

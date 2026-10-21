@@ -44,6 +44,72 @@ class CloudOwnerTests(unittest.TestCase):
         self.assertEqual(set(self.api.pods), {'unrelated'})
         self.assertEqual(sum(call[0] == 'create' for call in self.api.calls), 1)
 
+    def test_mutable_heartbeat_readback_lag_recovers_exact_value_without_rewriting(self):
+        claim = {'attempt': 'a' * 32}
+        prior_sha = owner.update_heartbeat(self.store, claim, 'setup', T0)
+        prior = self.store.read('heartbeat')
+        original = self.store.write
+        def persist_then_miss(name, value, **kwargs):
+            original(name, value, **kwargs)
+            raise state.StateError('durable write not independently confirmed')
+        reads = [0]
+        def lagged(name):
+            reads[0] += 1
+            return prior if reads[0] < 3 else self.store.docs[name]
+        with patch.object(self.store, 'write', side_effect=persist_then_miss) as write, \
+                patch.object(self.store, 'read', side_effect=lagged), patch.object(owner.time, 'sleep') as sleep:
+            sha = owner.update_heartbeat(self.store, claim, 'setup', T0 + 20,
+                                         prior_sha, sleep=sleep)
+        self.assertEqual(sha, self.store.read('heartbeat')[1])
+        self.assertEqual((write.call_count, reads[0], sleep.call_count), (1, 3, 2))
+        self.assertEqual(self.api.calls, [])
+
+    def test_unconfirmed_heartbeat_exhausts_reads_without_rewriting(self):
+        claim = {'attempt': 'a' * 32}
+        prior_sha = owner.update_heartbeat(self.store, claim, 'setup', T0)
+        prior = self.store.read('heartbeat')
+        with patch.object(self.store, 'write', side_effect=state.StateError(
+                'durable write not independently confirmed')) as write, \
+                patch.object(self.store, 'read', return_value=prior) as read, \
+                patch.object(owner.time, 'sleep') as sleep:
+            with self.assertRaisesRegex(state.StateError, 'not independently confirmed'):
+                owner.update_heartbeat(self.store, claim, 'setup', T0 + 20, prior_sha, sleep=sleep)
+        self.assertEqual((write.call_count, read.call_count, sleep.call_count), (1, 3, 2))
+        self.assertEqual(self.store.read('heartbeat'), prior)
+        self.assertEqual(self.api.calls, [])
+
+    def test_changed_attempt_or_newer_heartbeat_stops_readback_recovery(self):
+        claim = {'attempt': 'a' * 32}
+        for current in ({'attempt': 'b' * 32, 'at': T0, 'phase': 'setup'},
+                        {'attempt': 'a' * 32, 'at': T0 + 21, 'phase': 'setup'},
+                        {'attempt': 'a' * 32, 'at': T0 + 20, 'phase': 'failed'}):
+            with self.subTest(current=current), patch.object(self.store, 'write',
+                    side_effect=state.StateError('durable write not independently confirmed')) as write, \
+                    patch.object(self.store, 'read', return_value=(current, 'f' * 40)) as read:
+                with self.assertRaises(state.StateError):
+                    owner.update_heartbeat(self.store, claim, 'setup', T0 + 20, 'e' * 40)
+                self.assertEqual((write.call_count, read.call_count), (1, 1))
+
+    def test_initial_heartbeat_keeps_strict_unconfirmed_write_failure(self):
+        with patch.object(self.store, 'write', side_effect=state.StateError(
+                'durable write not independently confirmed')) as write, \
+                patch.object(self.store, 'read') as read:
+            with self.assertRaises(state.StateError):
+                owner.update_heartbeat(self.store, {'attempt': 'a' * 32}, 'setup', T0)
+            self.assertEqual(write.call_count, 1)
+            read.assert_not_called()
+        self.assertEqual(self.api.calls, [])
+
+    def test_other_heartbeat_write_failures_do_not_enter_readback_recovery(self):
+        for reason in ('durable-state HTTP 503', 'durable-state HTTP 409',
+                       'durable-state transport or JSON failure'):
+            with self.subTest(reason=reason), patch.object(self.store, 'write',
+                    side_effect=state.StateError(reason)) as write, patch.object(self.store, 'read') as read:
+                with self.assertRaises(state.StateError):
+                    owner.update_heartbeat(self.store, {'attempt': 'a' * 32}, 'setup', T0, 'e' * 40)
+                self.assertEqual(write.call_count, 1)
+                read.assert_not_called()
+
     def test_one_create_then_two_independent_absence_reads(self):
         result = self.run_lifecycle()
         self.assertEqual(result['status'], 'COMPLETE')
