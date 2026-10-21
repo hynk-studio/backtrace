@@ -43,7 +43,7 @@ containing the exact old FastAPI wheel, with all other installed packages held
 constant. Both combinations must pass `pip check`; old-pin real requests must
 produce the original `_IncludedRouter.path` traceback, while the correction
 must return 200. The guard must recognize the actual Uvicorn failure logs.
-Both controls run on the free Actions host and inside the exact deployment
+Both controls passed on the free Actions host and inside the exact deployment
 image. Their source files are bound into the renewed qualification receipt.
 
 ## Startup failure handling
@@ -69,7 +69,7 @@ do not treat failed cleanup observation as proof of process or Pod deletion.
   two environment skips prevent a local full-pass claim. A stale wheel-byte
   expectation exposed by the version change was corrected and rechecked.
 - Full Linux suite and actual full runtime/app assembly: PASS in Actions.
-  Pinned-image and remaining full qualification: pending the renewed handoff.
+  Pinned-image and remaining full qualification: PASS after the renewed handoff.
 - Actual corrected GPU API readiness, inference, public task, evaluation and
   result recovery: NOT RUN. A fresh successful receipt and matching independent
   watcher are required before the single paid launch.
@@ -97,6 +97,33 @@ of those references. The next free run uses the established ephemeral age
 handoff; no original plaintext or credential is published.
 
 Linux workflow 39615323075 passed all 283 tests in 28.437 seconds, CPU
-preflight and the exact-pin minimal real HTTP controls. Full pinned-image and
-controller qualification still require a fresh successful run. No GPU was
+preflight and the exact-pin minimal real HTTP controls. At that checkpoint, full pinned-image and
+controller qualification still required a fresh successful run. No GPU was
 allocated; no scientific task, evaluation or inference ran.
+
+## Completed free qualification
+
+Run **39619584739**, job **119289147735**, attempt 1 passed at source
+`328bdc7c7ebadbce5f32930af8126ffda363895b`; final projected report emitted at
+2026-10-21T15:04:16Z. The renewed receipt binds all **58** operational files.
+The previous missing-reference failure above remains part of the record.
+
+- All 246 wheel, eight task and eleven original-reference bodies verified.
+  Full runtime installed offline on Actions and in the pinned deployment image.
+- Actual installed vLLM HTTP controls passed in both environments: corrected
+  health/models 3x200, metrics 200, unknown route 404 and engine-dead health 503.
+  Exact old FastAPI returned 3x500 on health and models with the original cause.
+  Both dependency checks passed, and actual log classification passed.
+- Actual sandbox dependency/UID prerequisites and worker cleanup passed in
+  both environments; the retained driver passed seven boundary cases.
+- All five concurrent owner/watcher scenarios passed, including delayed old
+  heartbeats, worker failure, stale worker, state failure and owner cancellation.
+  Provider replies are authored CPU fixtures; these are not paid GPU results.
+- The same source passed all 283 Linux tests in 30.914 seconds, local-tooling
+  preflight and the minimal exact-pin HTTP comparison (run 39619584891).
+
+No GPU, inference, public task or evaluation ran. A fresh matching watcher
+and available approved offer remain necessary for the single authorized launch.
+At 14:45:25Z, the independent read-only account check found zero Pods, zero
+spend/hour, Auto-Pay off, unchanged USD 7.6341384961 balance and no qualified
+offer in any of the four approved regions. The authorization is still unused.
