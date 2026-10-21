@@ -1,0 +1,867 @@
+{
+  "failed_stages": [],
+  "gpu_allocations": 0,
+  "gpu_model_server_starts": 0,
+  "gpu_model_task_executions": 0,
+  "private_evidence": {
+    "ciphertext_bytes": 1792755,
+    "ciphertext_sha256": "2de95813c081df2ab0a889fb01e91af42e697e309273f33ad889504bc1041e0a",
+    "files": 87,
+    "format": "age-v1",
+    "plaintext_bytes": 1726759
+  },
+  "scripted_cpu_checks": "reported separately per stage",
+  "stages": {
+    "actual_api_http": {
+      "corrected_and_negative_control": {
+        "missing-metadata": {
+          "app_factory": "installed vLLM build_app",
+          "developer_mode": "0",
+          "engine": "CPU state fixture; no model execution",
+          "error_signature": null,
+          "expected": "missing-metadata",
+          "gpu_allocations": 0,
+          "http_transport": "real loopback TCP/Uvicorn",
+          "lifespan": "OFF",
+          "mode": "vllm",
+          "responses": {
+            "/health": [
+              200,
+              200,
+              200
+            ],
+            "/health-engine-dead": 503,
+            "/metrics": 200,
+            "/unknown-api-probe": 404,
+            "/v1/models": [
+              200,
+              200,
+              200
+            ],
+            "driver_metadata_contract": "REJECTED HTTP 404",
+            "legacy_server_info": 404
+          },
+          "startup_classifier": "PASS on actual Uvicorn access/error logs",
+          "status": "PASS",
+          "versions": {
+            "fastapi": "0.136.3",
+            "prometheus-fastapi-instrumentator": "7.1.0",
+            "starlette": "0.52.1",
+            "vllm": "0.19.1"
+          }
+        },
+        "routing-error": {
+          "app_factory": "installed vLLM build_app",
+          "developer_mode": "0",
+          "engine": "CPU state fixture; no model execution",
+          "error_signature": "AttributeError: '_IncludedRouter' object has no attribute 'path'",
+          "expected": "routing-error",
+          "gpu_allocations": 0,
+          "http_transport": "real loopback TCP/Uvicorn",
+          "lifespan": "OFF",
+          "mode": "vllm",
+          "responses": {
+            "/health": [
+              500,
+              500,
+              500
+            ],
+            "/v1/models": [
+              500,
+              500,
+              500
+            ]
+          },
+          "startup_classifier": "PASS on actual Uvicorn access/error logs",
+          "status": "PASS",
+          "versions": {
+            "fastapi": "0.141.1",
+            "prometheus-fastapi-instrumentator": "7.1.0",
+            "starlette": "0.52.1",
+            "vllm": "0.19.1"
+          }
+        },
+        "success": {
+          "app_factory": "installed vLLM build_app",
+          "developer_mode": "0",
+          "engine": "CPU state fixture; no model execution",
+          "error_signature": null,
+          "expected": "success",
+          "gpu_allocations": 0,
+          "http_transport": "real loopback TCP/Uvicorn",
+          "lifespan": "OFF",
+          "mode": "vllm",
+          "responses": {
+            "/health": [
+              200,
+              200,
+              200
+            ],
+            "/health-engine-dead": 503,
+            "/metrics": 200,
+            "/unknown-api-probe": 404,
+            "/v1/models": [
+              200,
+              200,
+              200
+            ],
+            "driver_metadata_contract": "PASS initialized-engine middleware and native models",
+            "legacy_server_info": 404,
+            "wrong_engine_dtype": "REJECTED actual state"
+          },
+          "startup_classifier": "PASS on actual Uvicorn access/error logs",
+          "status": "PASS",
+          "versions": {
+            "fastapi": "0.136.3",
+            "prometheus-fastapi-instrumentator": "7.1.0",
+            "starlette": "0.52.1",
+            "vllm": "0.19.1"
+          }
+        }
+      },
+      "gpu_allocations": 0,
+      "model_initialization": "NOT RUN",
+      "pip_check": "PASS for both; HTTP results differ",
+      "status": "PASS"
+    },
+    "actual_cpu_prerequisites": {
+      "actual_sandbox_dependency_check": "PASS",
+      "driver_sha256": "174bd6359c3e3f53e149a2ec5210cb220ab46ec41e1e9b34b6b0c915631c55b1",
+      "events": [
+        "run_begin",
+        "offline_runtime",
+        "isolation",
+        "sandbox_dependency_inheritance",
+        "setup_ready",
+        "cpu_prerequisites_passed",
+        "worker_cleanup",
+        "run_end"
+      ],
+      "gpu_allocations": 0,
+      "host": "Actions Ubuntu 24.04 CPU",
+      "inherited_umask": "077",
+      "model_execution": "NOT RUN",
+      "private_log_sha256": "6d4d8efd3bf0fce832a627a44c4fc6c936a6484cf0e851cb596217cf0b685f05",
+      "runtime_path": "/opt/backtrace-runtime",
+      "server_starts": 0,
+      "status": "PASS",
+      "task_executions": 0,
+      "worker_cleanup": "PASS",
+      "workload_uid": 65534,
+      "workload_umask": "022"
+    },
+    "concurrent_controller": {
+      "cases": [
+        {
+          "child_reaped": true,
+          "delayed_owner_heartbeat_reads": 2,
+          "elapsed_seconds": 80.02,
+          "explicit_branch_conflicts": 2,
+          "loopback_http_requests": 53,
+          "owner": "COMPLETE",
+          "recreate_blocked": true,
+          "scenario": "success",
+          "status": "PASS",
+          "watcher": "deleted"
+        },
+        {
+          "child_reaped": true,
+          "delayed_owner_heartbeat_reads": 0,
+          "elapsed_seconds": 60.02,
+          "explicit_branch_conflicts": 0,
+          "loopback_http_requests": 42,
+          "owner": "INCOMPLETE",
+          "recreate_blocked": true,
+          "scenario": "worker_failure",
+          "status": "PASS",
+          "watcher": "deleted"
+        },
+        {
+          "child_reaped": true,
+          "delayed_owner_heartbeat_reads": 0,
+          "elapsed_seconds": 60.02,
+          "explicit_branch_conflicts": 0,
+          "loopback_http_requests": 42,
+          "owner": "INCOMPLETE",
+          "recreate_blocked": true,
+          "scenario": "stale_worker",
+          "status": "PASS",
+          "watcher": "deleted"
+        },
+        {
+          "child_reaped": true,
+          "delayed_owner_heartbeat_reads": 0,
+          "elapsed_seconds": 40.02,
+          "explicit_branch_conflicts": 0,
+          "loopback_http_requests": 39,
+          "owner": "INCOMPLETE",
+          "recreate_blocked": true,
+          "scenario": "state_http_failure",
+          "status": "PASS",
+          "watcher": "deleted"
+        },
+        {
+          "child_reaped": true,
+          "delayed_owner_heartbeat_reads": 0,
+          "elapsed_seconds": 40.02,
+          "explicit_branch_conflicts": 0,
+          "loopback_http_requests": 42,
+          "owner": "INCOMPLETE",
+          "recreate_blocked": true,
+          "scenario": "owner_cancelled",
+          "status": "PASS",
+          "watcher": "deleted"
+        }
+      ],
+      "owner_watcher": "CONCURRENT ACTUAL LOOPS",
+      "paid_operations": 0,
+      "provider": "SIMULATED",
+      "state_api": "LOOPBACK HTTP",
+      "status": "PASS",
+      "worker": "REAL CPU FIXTURE PROCESS"
+    },
+    "connected_task_path": {
+      "cases": [
+        {
+          "actual_model_http_requests": 0,
+          "case": "missing-route",
+          "driver_exit": 1,
+          "exercised_tools": [],
+          "gpu_allocations": 0,
+          "model_generation": "SCRIPTED CPU CONTENT; NOT A MODEL RESULT",
+          "status": "PASS"
+        },
+        {
+          "actual_model_http_requests": 3,
+          "case": "success",
+          "driver_exit": 0,
+          "exercised_tools": [],
+          "gpu_allocations": 0,
+          "model_generation": "SCRIPTED CPU CONTENT; NOT A MODEL RESULT",
+          "status": "PASS"
+        },
+        {
+          "actual_model_http_requests": 13,
+          "case": "tools",
+          "driver_exit": 0,
+          "exercised_tools": [
+            "run_command",
+            "read_file",
+            "write_file",
+            "edit_file",
+            "get_status",
+            "search_similar_code",
+            "get_code_neighbors",
+            "get_code_subgraph",
+            "code_analyzer_agent",
+            "read_file",
+            "submit_patch"
+          ],
+          "gpu_allocations": 0,
+          "model_generation": "SCRIPTED CPU CONTENT; NOT A MODEL RESULT",
+          "status": "PASS"
+        },
+        {
+          "actual_model_http_requests": 1,
+          "case": "model-error",
+          "driver_exit": 1,
+          "exercised_tools": [],
+          "gpu_allocations": 0,
+          "model_generation": "SCRIPTED CPU CONTENT; NOT A MODEL RESULT",
+          "status": "PASS"
+        },
+        {
+          "controls": [
+            {
+              "actual_tests": {
+                "errors": 0,
+                "failures": 2,
+                "junit_sha256": "885bc5e4e915508cdcbd50a2ebe78e65fc05186efbb1cc894d35ba2828867cca",
+                "passed": 2,
+                "skipped": 0,
+                "tests": 4
+              },
+              "control": "recovered-patch",
+              "duration_seconds": 4.353382592000003,
+              "error_present": false,
+              "resolved": false,
+              "test_exit_code": 1,
+              "validation_error": null
+            },
+            {
+              "actual_tests": {
+                "errors": 0,
+                "failures": 0,
+                "junit_sha256": "684a5733bb8b4dc31edf1600d8c7d6e0178c4cec83c3bad8a5ad1c055ab94c39",
+                "passed": 4,
+                "skipped": 0,
+                "tests": 4
+              },
+              "control": "public-reference-control",
+              "duration_seconds": 4.315128323999943,
+              "error_present": false,
+              "resolved": true,
+              "test_exit_code": 0,
+              "validation_error": null
+            }
+          ],
+          "evaluator_uid": 65533,
+          "gpu_allocations": 0,
+          "model_score": "NOT RUN; scripted transport patch and public reference only",
+          "public_spec_sha256": "e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6",
+          "reference_scope": "evaluator-only positive control; no agent access",
+          "status": "PASS"
+        }
+      ],
+      "driver": "entire actual server_phase and actual agent child",
+      "evaluator_agent_access": "DENIED by actual UID read check",
+      "failed_stages": [],
+      "gpu_allocations": 0,
+      "http": "installed vLLM routes/middleware/schemas, real loopback TCP",
+      "not_established": [
+        "GPU token generation",
+        "Gemma tool/reasoning parser",
+        "patch correctness"
+      ],
+      "public_evaluation": {
+        "controls": [
+          {
+            "actual_tests": {
+              "errors": 0,
+              "failures": 2,
+              "junit_sha256": "885bc5e4e915508cdcbd50a2ebe78e65fc05186efbb1cc894d35ba2828867cca",
+              "passed": 2,
+              "skipped": 0,
+              "tests": 4
+            },
+            "control": "recovered-patch",
+            "duration_seconds": 4.353382592000003,
+            "error_present": false,
+            "resolved": false,
+            "test_exit_code": 1,
+            "validation_error": null
+          },
+          {
+            "actual_tests": {
+              "errors": 0,
+              "failures": 0,
+              "junit_sha256": "684a5733bb8b4dc31edf1600d8c7d6e0178c4cec83c3bad8a5ad1c055ab94c39",
+              "passed": 4,
+              "skipped": 0,
+              "tests": 4
+            },
+            "control": "public-reference-control",
+            "duration_seconds": 4.315128323999943,
+            "error_present": false,
+            "resolved": true,
+            "test_exit_code": 0,
+            "validation_error": null
+          }
+        ],
+        "evaluator_uid": 65533,
+        "gpu_allocations": 0,
+        "model_score": "NOT RUN; scripted transport patch and public reference only",
+        "public_spec_sha256": "e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6",
+        "reference_scope": "evaluator-only positive control; no agent access",
+        "status": "PASS"
+      },
+      "recovery": "actual manifest/hash transport and production artifact validator",
+      "status": "PASS",
+      "substitutions": [
+        "GPU identity",
+        "GPU process start",
+        "chat generation handler with scripted content"
+      ],
+      "task": "actual official runner, selected snapshot, sandbox, tools, patch and ATIF trace"
+    },
+    "cpu_evaluator_dependencies": {
+      "bytes": 370240,
+      "credentials": "short-lived file URLs only",
+      "files": 3,
+      "manifest_sha256": "69c145a9842c4c0ab718737a9fa5d7af5e6975b3a6621f563b296c87ca07e843",
+      "phase": "bootstrap",
+      "schema_version": 1,
+      "transport": "direct-https",
+      "verified": true
+    },
+    "cpu_task_layout": {
+      "discovery_path": "/kaggle/input/r0-inputs",
+      "permissions": "READ ONLY",
+      "status": "PASS",
+      "verified_files": 8
+    },
+    "cuda_runtime": {
+      "api_version": 12080,
+      "gpu_initialization": "NOT RUN",
+      "library_sha256": "c3a75b33af334a3486d197dbd1584a2985183ba4688d237a2be5f2f679329920",
+      "model_execution": "NOT RUN",
+      "status": "PASS",
+      "version": "12.8.90",
+      "version_source": "qualified wheel metadata and loaded libcudart cudaRuntimeGetVersion"
+    },
+    "download_system_packages": {
+      "bytes": 16917572,
+      "files": 24,
+      "status": "PASS"
+    },
+    "download_task": {
+      "bytes": 222386501,
+      "credentials": "short-lived file URLs only",
+      "files": 8,
+      "manifest_sha256": "7e757d6a8b6d61fc917a623509a3ed5ee13b1ed69a91d3956550d776709d2ee8",
+      "phase": "task",
+      "schema_version": 1,
+      "transport": "direct-https",
+      "verified": true
+    },
+    "download_wheels": {
+      "bytes": 5373545117,
+      "credentials": "short-lived file URLs only",
+      "files": 246,
+      "manifest_sha256": "054e0e813a797e1eb4d76bab563b3bfbbefe104010391cec30f24d99a48da569",
+      "phase": "bootstrap",
+      "schema_version": 1,
+      "transport": "direct-https",
+      "verified": true
+    },
+    "driver": {
+      "policy": "prepaid10-actions-v1",
+      "prepared_driver_sha256": "174bd6359c3e3f53e149a2ec5210cb220ab46ec41e1e9b34b6b0c915631c55b1",
+      "server_and_agent_ast_equal_to_legacy": false,
+      "setup_seconds": 5400,
+      "total_seconds": 7200,
+      "useful_seconds": 6900
+    },
+    "official_cloud_driver": {
+      "agent_construction": "ACTUAL; RUNNER ENTRY NOT RUN",
+      "boundary_replies": "AUTHORED; GPU/HTTP/TASK ENTRY SPIED",
+      "driver_sha256": "174bd6359c3e3f53e149a2ec5210cb220ab46ec41e1e9b34b6b0c915631c55b1",
+      "event_writer": "ACTUAL",
+      "hardware": "INJECTED A100 SM80",
+      "hardware_name_preserved": true,
+      "model_execution": "NOT RUN",
+      "post_start_boundary_cases": 7,
+      "status": "PASS"
+    },
+    "offline_runtime": {
+      "application_distributions": 245,
+      "host": "Actions Ubuntu 24.04 CPU",
+      "installation_network": "AUDIT BLOCKED",
+      "status": "PASS"
+    },
+    "pinned_image_cpu": {
+      "failed_stages": [],
+      "gpu_allocations": 0,
+      "gpu_initialization": "NOT RUN",
+      "gpu_model_server_starts": 0,
+      "gpu_model_task_executions": 0,
+      "host": "exact pinned RunPod image on Actions CPU",
+      "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+      "image_id": "sha256:4638f27bc2a17c4487d2dcb57e0dca10c9cf6601ee6bf849162b58f1d8b1ee8e",
+      "model_bytes_downloaded": 0,
+      "network": "NONE",
+      "stages": {
+        "actual_api_http": {
+          "corrected_and_negative_control": {
+            "missing-metadata": {
+              "app_factory": "installed vLLM build_app",
+              "developer_mode": "0",
+              "engine": "CPU state fixture; no model execution",
+              "error_signature": null,
+              "expected": "missing-metadata",
+              "gpu_allocations": 0,
+              "http_transport": "real loopback TCP/Uvicorn",
+              "lifespan": "OFF",
+              "mode": "vllm",
+              "responses": {
+                "/health": [
+                  200,
+                  200,
+                  200
+                ],
+                "/health-engine-dead": 503,
+                "/metrics": 200,
+                "/unknown-api-probe": 404,
+                "/v1/models": [
+                  200,
+                  200,
+                  200
+                ],
+                "driver_metadata_contract": "REJECTED HTTP 404",
+                "legacy_server_info": 404
+              },
+              "startup_classifier": "PASS on actual Uvicorn access/error logs",
+              "status": "PASS",
+              "versions": {
+                "fastapi": "0.136.3",
+                "prometheus-fastapi-instrumentator": "7.1.0",
+                "starlette": "0.52.1",
+                "vllm": "0.19.1"
+              }
+            },
+            "routing-error": {
+              "app_factory": "installed vLLM build_app",
+              "developer_mode": "0",
+              "engine": "CPU state fixture; no model execution",
+              "error_signature": "AttributeError: '_IncludedRouter' object has no attribute 'path'",
+              "expected": "routing-error",
+              "gpu_allocations": 0,
+              "http_transport": "real loopback TCP/Uvicorn",
+              "lifespan": "OFF",
+              "mode": "vllm",
+              "responses": {
+                "/health": [
+                  500,
+                  500,
+                  500
+                ],
+                "/v1/models": [
+                  500,
+                  500,
+                  500
+                ]
+              },
+              "startup_classifier": "PASS on actual Uvicorn access/error logs",
+              "status": "PASS",
+              "versions": {
+                "fastapi": "0.141.1",
+                "prometheus-fastapi-instrumentator": "7.1.0",
+                "starlette": "0.52.1",
+                "vllm": "0.19.1"
+              }
+            },
+            "success": {
+              "app_factory": "installed vLLM build_app",
+              "developer_mode": "0",
+              "engine": "CPU state fixture; no model execution",
+              "error_signature": null,
+              "expected": "success",
+              "gpu_allocations": 0,
+              "http_transport": "real loopback TCP/Uvicorn",
+              "lifespan": "OFF",
+              "mode": "vllm",
+              "responses": {
+                "/health": [
+                  200,
+                  200,
+                  200
+                ],
+                "/health-engine-dead": 503,
+                "/metrics": 200,
+                "/unknown-api-probe": 404,
+                "/v1/models": [
+                  200,
+                  200,
+                  200
+                ],
+                "driver_metadata_contract": "PASS initialized-engine middleware and native models",
+                "legacy_server_info": 404,
+                "wrong_engine_dtype": "REJECTED actual state"
+              },
+              "startup_classifier": "PASS on actual Uvicorn access/error logs",
+              "status": "PASS",
+              "versions": {
+                "fastapi": "0.136.3",
+                "prometheus-fastapi-instrumentator": "7.1.0",
+                "starlette": "0.52.1",
+                "vllm": "0.19.1"
+              }
+            }
+          },
+          "gpu_allocations": 0,
+          "model_initialization": "NOT RUN",
+          "pip_check": "PASS for both; HTTP results differ",
+          "status": "PASS"
+        },
+        "actual_cpu_prerequisites": {
+          "actual_sandbox_dependency_check": "PASS",
+          "driver_sha256": "174bd6359c3e3f53e149a2ec5210cb220ab46ec41e1e9b34b6b0c915631c55b1",
+          "events": [
+            "run_begin",
+            "offline_runtime",
+            "isolation",
+            "sandbox_dependency_inheritance",
+            "setup_ready",
+            "cpu_prerequisites_passed",
+            "worker_cleanup",
+            "run_end"
+          ],
+          "gpu_allocations": 0,
+          "host": "exact pinned RunPod image on Actions CPU",
+          "inherited_umask": "077",
+          "model_execution": "NOT RUN",
+          "private_log_sha256": "a07595ee1ed71e96c7f695139fea827c13b079eb6e7b35c7dd75901f2859fcbc",
+          "runtime_path": "/opt/backtrace-runtime",
+          "server_starts": 0,
+          "status": "PASS",
+          "task_executions": 0,
+          "worker_cleanup": "PASS",
+          "workload_uid": 65534,
+          "workload_umask": "022"
+        },
+        "base": {
+          "free_disk_bytes": 83333640192,
+          "model_execution": "NOT RUN",
+          "python": "3.12.3",
+          "required_disk_bytes": 8589934592,
+          "status": "PASS",
+          "system_tools_before_install": {
+            "git": null,
+            "patch": null
+          },
+          "uid_boundary": "PASS",
+          "workload_uid": 65534
+        },
+        "connected_task_path": {
+          "cases": [
+            {
+              "actual_model_http_requests": 0,
+              "case": "missing-route",
+              "driver_exit": 1,
+              "exercised_tools": [],
+              "gpu_allocations": 0,
+              "model_generation": "SCRIPTED CPU CONTENT; NOT A MODEL RESULT",
+              "status": "PASS"
+            },
+            {
+              "actual_model_http_requests": 3,
+              "case": "success",
+              "driver_exit": 0,
+              "exercised_tools": [],
+              "gpu_allocations": 0,
+              "model_generation": "SCRIPTED CPU CONTENT; NOT A MODEL RESULT",
+              "status": "PASS"
+            },
+            {
+              "actual_model_http_requests": 13,
+              "case": "tools",
+              "driver_exit": 0,
+              "exercised_tools": [
+                "run_command",
+                "read_file",
+                "write_file",
+                "edit_file",
+                "get_status",
+                "search_similar_code",
+                "get_code_neighbors",
+                "get_code_subgraph",
+                "code_analyzer_agent",
+                "read_file",
+                "submit_patch"
+              ],
+              "gpu_allocations": 0,
+              "model_generation": "SCRIPTED CPU CONTENT; NOT A MODEL RESULT",
+              "status": "PASS"
+            },
+            {
+              "actual_model_http_requests": 1,
+              "case": "model-error",
+              "driver_exit": 1,
+              "exercised_tools": [],
+              "gpu_allocations": 0,
+              "model_generation": "SCRIPTED CPU CONTENT; NOT A MODEL RESULT",
+              "status": "PASS"
+            },
+            {
+              "controls": [
+                {
+                  "actual_tests": {
+                    "errors": 0,
+                    "failures": 2,
+                    "junit_sha256": "87bb3f9d4b400fd13be7f1526716e8b392dac0dadca7bc2d20dd2a4fb6962b0b",
+                    "passed": 2,
+                    "skipped": 0,
+                    "tests": 4
+                  },
+                  "control": "recovered-patch",
+                  "duration_seconds": 5.391739412999868,
+                  "error_present": false,
+                  "resolved": false,
+                  "test_exit_code": 1,
+                  "validation_error": null
+                },
+                {
+                  "actual_tests": {
+                    "errors": 0,
+                    "failures": 0,
+                    "junit_sha256": "c375a69fa08869a38ee0e342696013d7e0b26522043d559c97f7e790892a35ee",
+                    "passed": 4,
+                    "skipped": 0,
+                    "tests": 4
+                  },
+                  "control": "public-reference-control",
+                  "duration_seconds": 5.2172121800001605,
+                  "error_present": false,
+                  "resolved": true,
+                  "test_exit_code": 0,
+                  "validation_error": null
+                }
+              ],
+              "evaluator_uid": 65533,
+              "gpu_allocations": 0,
+              "model_score": "NOT RUN; scripted transport patch and public reference only",
+              "public_spec_sha256": "e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6",
+              "reference_scope": "evaluator-only positive control; no agent access",
+              "status": "PASS"
+            }
+          ],
+          "driver": "entire actual server_phase and actual agent child",
+          "evaluator_agent_access": "DENIED by actual UID read check",
+          "failed_stages": [],
+          "gpu_allocations": 0,
+          "http": "installed vLLM routes/middleware/schemas, real loopback TCP",
+          "not_established": [
+            "GPU token generation",
+            "Gemma tool/reasoning parser",
+            "patch correctness"
+          ],
+          "public_evaluation": {
+            "controls": [
+              {
+                "actual_tests": {
+                  "errors": 0,
+                  "failures": 2,
+                  "junit_sha256": "87bb3f9d4b400fd13be7f1526716e8b392dac0dadca7bc2d20dd2a4fb6962b0b",
+                  "passed": 2,
+                  "skipped": 0,
+                  "tests": 4
+                },
+                "control": "recovered-patch",
+                "duration_seconds": 5.391739412999868,
+                "error_present": false,
+                "resolved": false,
+                "test_exit_code": 1,
+                "validation_error": null
+              },
+              {
+                "actual_tests": {
+                  "errors": 0,
+                  "failures": 0,
+                  "junit_sha256": "c375a69fa08869a38ee0e342696013d7e0b26522043d559c97f7e790892a35ee",
+                  "passed": 4,
+                  "skipped": 0,
+                  "tests": 4
+                },
+                "control": "public-reference-control",
+                "duration_seconds": 5.2172121800001605,
+                "error_present": false,
+                "resolved": true,
+                "test_exit_code": 0,
+                "validation_error": null
+              }
+            ],
+            "evaluator_uid": 65533,
+            "gpu_allocations": 0,
+            "model_score": "NOT RUN; scripted transport patch and public reference only",
+            "public_spec_sha256": "e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6",
+            "reference_scope": "evaluator-only positive control; no agent access",
+            "status": "PASS"
+          },
+          "recovery": "actual manifest/hash transport and production artifact validator",
+          "status": "PASS",
+          "substitutions": [
+            "GPU identity",
+            "GPU process start",
+            "chat generation handler with scripted content"
+          ],
+          "task": "actual official runner, selected snapshot, sandbox, tools, patch and ATIF trace"
+        },
+        "runtime": {
+          "cuda_runtime": {
+            "api_version": 12080,
+            "library_sha256": "c3a75b33af334a3486d197dbd1584a2985183ba4688d237a2be5f2f679329920",
+            "version": "12.8.90",
+            "version_source": "qualified wheel metadata and loaded libcudart cudaRuntimeGetVersion"
+          },
+          "distributions": 246,
+          "hardware": "NOT RUN",
+          "model_execution": "NOT RUN",
+          "status": "PASS"
+        },
+        "runtime_installation": {
+          "inventory_sha256": "d184f7380331aa744dc98b31286ad804c4005e875908f0fb0f51b335e028368b",
+          "manifests": {
+            "driver": "502b3766576dc2092fde3734fc8bd242aa017cf7749be29ebaa5b75def992b4d",
+            "wheels": "054e0e813a797e1eb4d76bab563b3bfbbefe104010391cec30f24d99a48da569"
+          },
+          "model_transfer": "NOT STARTED",
+          "requested_at": 1792623939.5420506,
+          "runtime_installation": "PASS"
+        },
+        "system_packages": {
+          "files": 24,
+          "git_version": "git version 2.43.0",
+          "installation_network": "NOT USED",
+          "isolated_git_patch_smoke": "PASS",
+          "status": "PASS"
+        }
+      },
+      "status": "PASS"
+    },
+    "private_evidence_permissions": {
+      "ciphertext_read": "PASS",
+      "ciphertext_reader_uid": 65533,
+      "gpu_allocations": 0,
+      "plaintext_access_from_controller": "DENIED",
+      "plaintext_permissions": "UNCHANGED",
+      "plaintext_reader_uid": 0,
+      "status": "PASS"
+    },
+    "private_public_evaluator": {
+      "bytes": 1984455,
+      "credentials": "short-lived file URLs only",
+      "files": 1,
+      "manifest_sha256": "944a638b55ed1d14317a7684601fcb1758c7d0f8c1b61749b94f175b4ffe261e",
+      "phase": "bootstrap",
+      "schema_version": 1,
+      "transport": "direct-https",
+      "verified": true
+    },
+    "restore_cpu_inputs": {
+      "candidate_sha256": "2e24495826cb971053439a00d9ad8350471fc0efffa41a54b82082feedaa7358",
+      "notebook_cells_executed": 0,
+      "official_artifacts": 16
+    },
+    "restore_official": {
+      "bytes": 491594,
+      "plaintext_published": false,
+      "source": "retained-original-manifest",
+      "transport": "ephemeral-age",
+      "verified_files": 11
+    },
+    "sources": {
+      "model": 8,
+      "task": 8,
+      "urls_published": false,
+      "wheels": 246
+    },
+    "transport_build": {
+      "binaries": {
+        "dropbear": {
+          "bytes": 1400320,
+          "sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a"
+        },
+        "dropbearkey": {
+          "bytes": 1165584,
+          "sha256": "5d33b842b70f674859459713ce3f28e62e32bdaca04950d6a599e1b8d84f3690"
+        }
+      },
+      "matches_prior_transport": true,
+      "paid_transport": "NOT STARTED",
+      "source_sha256": "827d3f6e510e7554ee18d5c6a00dfee1a6a555559495e65e2e8f8d41c79eed84"
+    },
+    "transport_loopback": {
+      "binary_sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a",
+      "clean_child_environment": "PASS",
+      "keygen_sha256": "5d33b842b70f674859459713ce3f28e62e32bdaca04950d6a599e1b8d84f3690",
+      "mutual_tls": "PASS",
+      "network": "LOOPBACK ONLY",
+      "paid_operations": 0,
+      "private_transfer_bytes": 147456,
+      "profile": "actions-20261019",
+      "strict_ssh": "PASS",
+      "wrong_host": "REJECTED"
+    }
+  },
+  "status": "PASS"
+}

@@ -38,7 +38,7 @@ The full driver setup and controller/transport lifecycle checks remain separate
 requirements, and must not be renamed complete GPU qualification.
 
 The model-facing driver does **not** mount the evaluator-only record. A separate
-free CPU verifier is being qualified with a different UID: the neutral README
+free CPU verifier runs with a different UID: the neutral README
 transport patch must fail the actual public tests, and the original public
 reference patch must pass. The latter is only an evaluator positive control;
 it never enters agent inputs or scripted model responses. Neither control is
@@ -46,16 +46,47 @@ a model score, competition acceptance, or hosted scoring.
 
 ## Status
 
+Full free qualification **PASS** in
+[39689758659](https://github.com/hynk-studio/backtrace/actions/runs/39689758659)
+at `47f27dc15908f9562993e214e4be786cbafe11fd`, attempt 1. Its exact-source
+Linux run 39689758585 passed 295 tests. The renewed
+[receipt](a100-actions-qualification.json) binds 69 unchanged qualification files
+to the [actual public report](a100-connected-qualification-20261022.json), SHA-256
+`590f74b2ce06725a24b9816e005f6d236b4f3e8e513aec97d9d419b9b1e2d171`.
+
+| Actual check | Actions host | Exact offline deployment image |
+| --- | --- | --- |
+| Entire driver/basic task, patch, ATIF and verified byte recovery | PASS; 3 real chat requests | PASS; 3 real chat requests |
+| All declared workspace/graph tools and code-analyzer delegation | PASS; 13 real chat requests | PASS; 13 real chat requests |
+| Missing metadata and actual model HTTP error controls | PASS; both fail the driver | PASS; both fail the driver |
+| Neutral recovered patch in separate evaluator UID | 4 tests; 2 failures, 2 passes; exit 1 | 4 tests; 2 failures, 2 passes; exit 1 |
+| Evaluator-only public reference control | 4 tests pass; exit 0 | 4 tests pass; exit 0 |
+
+Both evaluator controls have real JUnit receipts, zero collection errors and
+zero skipped tests. All five concurrent owner/watcher cases, actual UID/sandbox
+prerequisites, HTTP negative controls, transport and private evidence export
+also passed. The final encrypted export retained 87 files; ciphertext SHA-256
+`2de95813c081df2ab0a889fb01e91af42e697e309273f33ad889504bc1041e0a`.
+Downloaded private/public reports and actual result artifacts were checked for
+agreement. The receipt gate passed using the actual retrieved successful GitHub
+run metadata; the old receipt was rejected before remote access.
+
+This establishes the free plumbing and verifier controls. Scripted CPU content
+does not establish GPU generation, Gemma tool/reasoning parsing, a model score,
+competition acceptance or hosted scoring. All paid scopes remain consumed.
+The failures and evidence gaps below are preserved as earlier checkpoints.
+
+## Acquisition and earlier exploration
+
 Pinned five-wheel private source acquisition: PASS in free Actions run
 39676417093; original wheel hashes verified before inspection. A preceding YAML
 syntax error in the newly added acquisition workflow was corrected before the
 job ran. No acquired third-party bytes enter the public branch.
 
 Local artifact/recovery negative tests and local-tooling preflight: PASS.
-Actual full-runtime connected-path checks: **PARTIAL PASSES; OVERALL FAIL**.
-No corrected complete pinned-image pass exists yet. The old launch receipt is stale and cannot
-qualify the changed operational files. Do not infer paid readiness from unit
-test count or this implementation plan.
+Earlier full-runtime checkpoints had partial passes and overall failures.
+Their old launch receipts could not qualify the changed operational files.
+The successful replacement and its precise limits are recorded above.
 
 The pinned upstream API supports custom middleware through `args.middleware`.
 The new hook reads only `app.state.vllm_config`, which upstream `init_app_state`

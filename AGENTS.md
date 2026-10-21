@@ -204,3 +204,17 @@ free probes should collect their failures after prerequisites pass, rather than
 hide every later check behind the first failed probe. An old receipt or a large
 unit-test count cannot qualify these changed files. No new paid launch or merge
 is authorized by this free work.
+
+The free connected-path audit now passed full run 39689758659 at
+`47f27dc15908f9562993e214e4be786cbafe11fd`, attempt 1, with the renewed 69-file
+receipt. Both Actions host and exact offline image passed the entire driver,
+all declared workspace/graph tools and code-analyzer delegation, actual patch/
+ATIF/hash recovery, missing-route and model-error controls, and public verifier
+controls under a separate UID. The neutral patch failed 2/4 tests; the public
+reference control passed 4/4, with actual JUnit and no skipped/collection errors.
+All five concurrent controller cases and private ciphertext export passed;
+exact-source Linux run 39689758585 passed 295 tests. Read
+`docs/a100-connected-audit-20261022.md` and its linked public report/receipt.
+This is free plumbing evidence with scripted model content, not GPU token
+generation, Gemma parser qualification or a model score. All paid claims remain
+consumed; this receipt grants no allocation, paid retry, merge or submission.

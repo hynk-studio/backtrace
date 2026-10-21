@@ -1,6 +1,12 @@
 # Backtrace
 
 Current work: [free connected-path audit](docs/a100-connected-audit-20261022.md).
+The full free qualification now passes on the Actions host and exact offline
+deployment image: actual HTTP, all declared tools/delegation, patch/trace
+recovery and separate public-test controls. The neutral patch fails two of four
+tests; the evaluator-only reference passes all four in both environments.
+The [renewed receipt](docs/a100-actions-qualification.json) binds 69 files to
+successful run 39689758659, with 295 Linux tests passing separately.
 R0 remains incomplete. The latest paid run loaded the A100 model and passed
 health readiness, then stopped on a missing mandatory metadata route before
 inference or task entry. That Pod is confirmed deleted and its authorization
