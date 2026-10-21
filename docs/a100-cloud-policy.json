@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "prepaid10-actions-v1",
   "authorization": "owner-cloud-20261021-160757",
-  "status": "STAGED OWNER-DIRECTED SMOKE; FREE QUALIFICATION REQUIRED; NOT ALLOCATED",
+  "status": "FREE QUALIFIED; FINAL EXACT-SOURCE PREFLIGHT REQUIRED; NOT ALLOCATED",
   "authority": "The owner instructed '1,2,3번 순서대로 진행하자' after the three-stage plan: free inspection, correction and complete revalidation, then the actual GPU minimum smoke. This instruction is recorded at 2026-10-21T07:07:57Z (16:07:57 KST; record time, not an asserted message timestamp). It authorizes one further bounded attempt within the existing wallet/cumulative cap and unchanged scientific inputs. Preserve every prior consumed claim and actual paid/watch head. No automatic paid retry.",
   "controller": "GitHub-hosted free Linux CPU runner; no user Mac/Windows required",
   "wallet_credits_usd": "10.00",
@@ -23,7 +23,7 @@
     "An Actions runner is not durable storage; the fixed create-only claim is external",
     "An independent workflow is not a provider-enforced timer or a guaranteed dollar cap",
     "Synthetic cancellation tests are not a live paid cancellation trial",
-    "Previous authorization owner-cloud-20261021-003938 remains consumed and Pod so5pvfqgxxs4pp independently deleted. The new scope is owner-cloud-20261021-160757. Free inspection reproduced another operational bug: a nonzero agent child exit could return success through the server wrapper. Propagate that failure and requalify actual response handling plus task-side construction before a new GPU allocation. Actual model startup/inference/task outcome for the corrected driver is NOT RUN."
+    "Previous authorization owner-cloud-20261021-003938 remains consumed and Pod so5pvfqgxxs4pp independently deleted. The new scope is owner-cloud-20261021-160757. Free inspection reproduced another operational bug: a nonzero agent child exit could return success through the server wrapper. Propagate that failure and requalify actual response handling plus task-side construction before a new GPU allocation. Actual model startup/inference/task outcome for the corrected driver is NOT RUN. Full free qualification 39560546054 at 1c30add83be6ebcd0277cdb9950cd19a6e3ce25d passed with seven post-start boundary cases, actual agent construction, pinned-image prerequisites and all concurrent controller scenarios. The renewed 52-file receipt binds report SHA256 f5a7e4c49f88101fedb20574ac53d4a6639828102be9049e180592475c8fda8f."
   ],
   "exclusions": [
     "training",

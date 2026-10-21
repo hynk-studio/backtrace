@@ -60,7 +60,23 @@ checked, stopping before the runner entry. This is not GPU/model execution.
    model, BF16 and TP1 before the one bounded task. Stop and confirm deletion on
    success or failure; report actual result and observed debit separately.
 
-Qualification and corrected GPU execution are pending at document creation.
+Full free qualification passed in run 39560546054, job 119090472727, attempt 1,
+at source `1c30add83be6ebcd0277cdb9950cd19a6e3ce25d`. Report SHA256:
+`f5a7e4c49f88101fedb20574ac53d4a6639828102be9049e180592475c8fda8f`.
+The receipt binds 52 files. All seven post-start boundary cases, actual task-side
+construction and signature binding, pinned-image offline installation, actual
+UID prerequisites and all five concurrent controller scenarios passed. Private
+construction-log SHA256 is recorded in the encrypted qualification evidence.
+
+Linux Actions run 39560546117 / job 119090473134 passed all 273 tests in
+28.494 seconds, with CPU preflight READY. Local full discovery executed 273
+with 12 foreign-procfs errors and 2 skips; this is not a local full pass.
+Read-only access run 39560546074 observed balance USD 8.7033146851, zero current
+spend/hour and AutoPay false. Its offer is historical and must be refreshed at
+execution. Initial preflight 39560546313 correctly blocked the stale receipt,
+with zero allocation requests; the new receipt resolves that expected gate.
+
+Actual corrected GPU execution is still NOT RUN at this receipt commit.
 No GPU allocation occurred during this free inspection/correction.
 
 References #1.
