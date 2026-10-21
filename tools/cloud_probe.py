@@ -84,6 +84,20 @@ def verify_small_response(response, row):
                 'wire_bytes': wire, 'storage_host': url.hostname}
 
 
+def retained_archive(data):
+    """Decode only the already pinned data archive, never execute notebook cells."""
+    if (len(data) != 837896 or hashlib.sha256(data).hexdigest()
+            != 'ebd011f3e9acc7890b94b7fb1ed8acc03a19f62435de866eb70cda52152e09e8'):
+        raise ValueError('retained packed archive mismatch')
+    decoder = zlib.decompressobj()
+    raw = decoder.decompress(base64.b64decode(data, validate=True), 2 * 1024**2)
+    if (not decoder.eof or decoder.unused_data or decoder.unconsumed_tail
+            or hashlib.sha256(raw).hexdigest()
+            != 'f35ec577d4657cb0ce45dbca58fea9a7361418b097db64e3568a26afb7c9ee7d'):
+        raise ValueError('retained packed archive mismatch')
+    return json.loads(raw)
+
+
 def retained_literal(source):
     """Find only the exact retained driver bytes; never run notebook cells."""
     from tools.a100_task import DRIVER_SHA256
@@ -106,13 +120,7 @@ def retained_literal(source):
                     return data
                 if (len(data) == 837896 and hashlib.sha256(data).hexdigest()
                         == 'ebd011f3e9acc7890b94b7fb1ed8acc03a19f62435de866eb70cda52152e09e8'):
-                    decoder = zlib.decompressobj()
-                    raw = decoder.decompress(base64.b64decode(data, validate=True), 2 * 1024**2)
-                    if (not decoder.eof or decoder.unused_data or decoder.unconsumed_tail
-                            or hashlib.sha256(raw).hexdigest()
-                            != 'f35ec577d4657cb0ce45dbca58fea9a7361418b097db64e3568a26afb7c9ee7d'):
-                        raise ValueError('retained packed archive mismatch')
-                    data = base64.b64decode(json.loads(raw)['.local/smoke/no-custom-ar/one_task.py'],
+                    data = base64.b64decode(retained_archive(data)['.local/smoke/no-custom-ar/one_task.py'],
                                             validate=True)
                     if len(data) == 33461 and hashlib.sha256(data).hexdigest() == DRIVER_SHA256:
                         return data

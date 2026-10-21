@@ -4,6 +4,7 @@ The official start/readiness loop still runs. Its public build_cmd/is_healthy/st
 hooks add a private process group, fresh-log observation, and group cleanup.
 No thread, model import, request retry, or installed-wheel modification.
 """
+import hashlib
 import math
 import os
 from pathlib import Path
@@ -22,6 +23,67 @@ MARKERS = {'multiproc_executor': {'WorkerProc hit an exception.'},
            'core': {'EngineCore failed to start.', 'EngineCore encountered a fatal error.'}}
 READ_LIMIT = 256 * 1024
 CONTEXT_LIMIT = 64 * 1024
+
+
+class HTTPFailureTrace:
+    """Three identical ASGI tracebacks paired with consecutive /health 500s.
+
+    Connection errors and 503 warmup replies are not permanent failures. Only
+    fresh complete uvicorn records from the owned log participate; arbitrary
+    ERROR strings, a single exception, and quoted tracebacks are insufficient.
+    """
+    prefix = re.compile(r'^\(APIServer pid=\d+\) ')
+    health = re.compile(r'^INFO:\s+\S+ - "GET /health HTTP/1\.[01]" (\d{3})(?: .*)?$')
+
+    def __init__(self):
+        self.pending = b''
+        self.status = None
+        self.http_500s = 0
+        self.sequence = 0
+        self.paired = -1
+        self.trace = None
+        self.fingerprint = None
+        self.repeated = 0
+        self.cause = self.context = None
+
+    def feed(self, data):
+        self.pending += data
+        while b'\n' in self.pending:
+            raw, self.pending = self.pending.split(b'\n', 1)
+            if len(raw) > CONTEXT_LIMIT:
+                self.trace = None
+                continue
+            line = self.prefix.sub('', raw.decode('utf-8', 'replace'))
+            match = self.health.fullmatch(line)
+            if match:
+                self.status = int(match[1])
+                self.sequence += 1
+                self.http_500s = self.http_500s + 1 if self.status == 500 else 0
+                if self.status != 500:
+                    self.repeated = 0
+                    self.fingerprint = None
+                self.trace = None
+            elif re.fullmatch(r'ERROR:\s+Exception in ASGI application\s*', line):
+                self.trace = [] if self.status == 500 and self.paired != self.sequence else None
+            elif self.trace is not None:
+                if not self.trace and line != 'Traceback (most recent call last):':
+                    self.trace = None
+                    continue
+                self.trace.append(line)
+                if sum(map(len, self.trace)) > CONTEXT_LIMIT:
+                    self.trace = None
+                    continue
+                if CAUSE.fullmatch(line):
+                    context = '\n'.join(self.trace) + '\n'
+                    fingerprint = hashlib.sha256(context.encode()).hexdigest()
+                    self.repeated = self.repeated + 1 if fingerprint == self.fingerprint else 1
+                    self.fingerprint = fingerprint
+                    self.paired = self.sequence
+                    if self.repeated >= 3 and self.http_500s >= 3 and self.cause is None:
+                        self.cause, self.context = line, context
+                    self.trace = None
+        if len(self.pending) > CONTEXT_LIMIT:
+            self.pending = b'!' * (CONTEXT_LIMIT + 1)
 
 
 class FatalTrace:
@@ -168,6 +230,8 @@ def guarded_server(server_type, *, total_deadline, error_type=None):
                                         'ready': None, 'teardown_seconds': None}
             self._deadline = min(total_deadline, now + self.config.startup_timeout)
             self._trace = FatalTrace()
+            self._http_trace = HTTPFailureTrace()
+            self._primary_error = None
             self._offset = 0
             self._caught_up = True
             self._group = None
@@ -175,7 +239,23 @@ def guarded_server(server_type, *, total_deadline, error_type=None):
             self._observing = True
             if now >= self._deadline:
                 raise error_type('startup total deadline already expired', output='')
-            return super().start()
+            try:
+                return super().start()
+            except BaseException as error:
+                # Some wrapper exits call stop before raising their timeout.
+                # Preserve the first readiness failure across that path and a
+                # second stop from the caller's finally block.
+                if self._primary_error is not None and error is not self._primary_error:
+                    raise self._primary_error from error
+                self._primary_error = error
+                self.startup_observation.setdefault('primary_error', str(error))
+                raise
+
+        def _fail(self, message, output=''):
+            if self._primary_error is None:
+                self._primary_error = error_type(message, output=output)
+                self.startup_observation['primary_error'] = message
+            raise self._primary_error
 
         def build_cmd(self):
             # exec keeps the official Popen PID; setsid prevents broad name kills.
@@ -199,23 +279,31 @@ def guarded_server(server_type, *, total_deadline, error_type=None):
                     expected = os.fstat(writer.fileno())
                     actual = os.fstat(log.fileno())
                     if (actual.st_dev, actual.st_ino) != (expected.st_dev, expected.st_ino):
-                        raise error_type('startup log identity changed', output='')
+                        self._fail('startup log identity changed')
                     log.seek(self._offset)
                     data = log.read(READ_LIMIT)
                     self._offset += len(data)
                     self._trace.feed(data)
+                    self._http_trace.feed(data)
+                    self.startup_observation.update(
+                        health_status=self._http_trace.status,
+                        consecutive_health_500s=self._http_trace.http_500s,
+                        repeated_asgi_tracebacks=self._http_trace.repeated,
+                        asgi_traceback_sha256=self._http_trace.fingerprint)
                     self._caught_up = self._offset >= os.fstat(log.fileno()).st_size
-            if self._trace.cause:
+            trace = self._trace if self._trace.cause else self._http_trace
+            if trace.cause:
                 self.startup_observation['detected'] = time.monotonic()
                 # Python 3.9 macOS monotonic() has process-local origins. Use
                 # the POSIX clock separately for fixture cross-process latency.
                 self.startup_observation['detected_posix'] = time.clock_gettime(time.CLOCK_MONOTONIC)
                 self.startup_observation['parent_alive_at_detection'] = self.process.poll() is None
                 self._observing = False
-                raise error_type('fatal startup worker/engine traceback: ' + self._trace.cause,
-                                 output=self._trace.context)
+                kind = ('fatal startup worker/engine traceback: ' if trace is self._trace else
+                        'repeated HTTP 500 with identical ASGI traceback: ')
+                self._fail(kind + trace.cause, output=trace.context)
             if time.monotonic() >= self._deadline:
-                raise error_type('startup readiness/total deadline expired', output='')
+                self._fail('startup readiness/total deadline expired')
 
         def is_healthy(self):
             self._observe_startup()
@@ -235,19 +323,24 @@ def guarded_server(server_type, *, total_deadline, error_type=None):
             if self._closed:
                 return
             before = time.monotonic()
-            active_cause = sys.exc_info()[1]
+            active_cause = self._primary_error or sys.exc_info()[1]
+            if active_cause is None and self._observing and self.process is not None:
+                # The official timeout path may stop outside an except block.
+                active_cause = error_type('startup stopped before HTTP readiness', output='')
+                self._primary_error = active_cause
+                self.startup_observation['primary_error'] = str(active_cause)
             self._observing = False
             process = self.process
             if process is not None:
-                if self._group is None:
-                    try:
-                        if os.getpgid(process.pid) == process.pid:
-                            self._group = process.pid
-                    except ProcessLookupError:
-                        pass
-                if self._group is None and process.poll() is not None and group_members(process.pid):
-                    self._group = process.pid
                 try:
+                    if self._group is None:
+                        try:
+                            if os.getpgid(process.pid) == process.pid:
+                                self._group = process.pid
+                        except ProcessLookupError:
+                            pass
+                    if self._group is None and process.poll() is not None and group_members(process.pid):
+                        self._group = process.pid
                     stop_group(process, self._group, grace=min(timeout, 1.0))
                 except Exception as cleanup_error:
                     self.startup_observation['cleanup_error'] = str(cleanup_error)
@@ -257,7 +350,14 @@ def guarded_server(server_type, *, total_deadline, error_type=None):
                     if active_cause is None:
                         raise
                     return
-            super().stop(timeout=timeout)
+            try:
+                super().stop(timeout=timeout)
+            except Exception as cleanup_error:
+                self.startup_observation['cleanup_error'] = str(cleanup_error)
+                self.startup_observation['teardown_seconds'] = time.monotonic() - before
+                if active_cause is None:
+                    raise
+                return
             self._closed = True
             self.startup_observation['teardown_seconds'] = time.monotonic() - before
 

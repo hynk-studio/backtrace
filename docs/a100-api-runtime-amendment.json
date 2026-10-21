@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "status": "approved-for-qualification",
+  "authority": "Owner instruction in this conversation: 권고대로 수행하자. Apply the recommended FastAPI correction and free integration gates before one bounded public-task run.",
+  "original": {
+    "name": "fastapi",
+    "version": "0.141.1",
+    "path": "fastapi-0.141.1-py3-none-any.whl",
+    "bytes": 131954,
+    "sha256": "bfb91aa2d334c61cb35ba9a116fc123b3d3df31640b801cf57a7a78ec3f603b3"
+  },
+  "replacement": {
+    "name": "fastapi",
+    "version": "0.136.3",
+    "path": "fastapi-0.136.3-py3-none-any.whl",
+    "bytes": 117481,
+    "sha256": "3d2a69bdf04b7e9f3afa292c3bc7a98816bbfafa10bc9b45f3f3700d2f761620"
+  },
+  "unchanged": [
+    "Starlette 0.52.1",
+    "prometheus-fastapi-instrumentator 7.1.0",
+    "all other runtime wheels",
+    "model, TP1 BF16, prompts, public task, inference budget"
+  ],
+  "negative_control": "Original FastAPI wheel is CPU-test-only and is not in the delivered runtime inventory.",
+  "gpu_execution": "NOT RUN"
+}

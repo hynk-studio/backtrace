@@ -16,7 +16,7 @@ import sys
 from tools.guard_driver import DRIVER_SHA256, transform as guard_transform
 
 ROOT = Path(__file__).resolve().parents[1]
-WHEEL_MANIFEST_SHA256 = '3c5decd1c9aa3a71543242d1ac0e1c3e98ddf07fa26f7e4bf2cc6c7b66dfad6a'
+WHEEL_MANIFEST_SHA256 = '72ec973f6e5cf390b891cf8f6354f0c5a95be5e6252c90976afad7ccf27be488'
 # Explicit workload-side dependency closure. Owner delivery/controller tools
 # must never be swept into the private worker tree as new files are added.
 POD_TOOLS = ('a100_task.py', 'a100_driver.py', 'guard_driver.py', 'compile_probe.py',

@@ -17,7 +17,7 @@ class FrozenDeliveryTests(unittest.TestCase):
         self.assertFalse(any('answer' in n or 'solution' in n or 'test_patch' in n for n in names))
         wheels = json.loads(frozen.manifest('wheels'))
         self.assertEqual(len(wheels['files']), 246)
-        self.assertEqual(sum(r['bytes'] for r in wheels['files']), 5373559590)
+        self.assertEqual(sum(r['bytes'] for r in wheels['files']), 5373545117)
         model = json.loads(frozen.manifest('model'))
         self.assertEqual(len(model['files']), 8)
         self.assertEqual(sum(r['bytes'] for r in model['files']), 23297590856)

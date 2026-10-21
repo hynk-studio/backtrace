@@ -171,3 +171,11 @@ JSON. Stop paid retries. Reconsider actual HTTP-path coverage, runtime pins,
 fail-fast diagnostics and live progress before proposing any further paid work.
 A secondary inner process-group cleanup exception masked the primary readiness
 failure; outer worker cleanup and independent Pod deletion succeeded.
+
+The owner subsequently instructed "권고대로 수행하자" after the API failure was
+reproduced and the overall process reconsidered. Follow
+`docs/a100-api-recovery-20261021.md`. This permits the recommended free fixes
+and one further public-task attempt only after renewed actual API/full CPU
+qualification, within existing wallet and time limits. Use separate
+`owner-api-recovery-20261021` state and `api-recovery` start/watch branches.
+All historical claims/heads remain consumed and immutable; no automatic retry.

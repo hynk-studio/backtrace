@@ -22,7 +22,7 @@ def starting_lease(store, run_id, source_sha):
         raise state.StateError('claimed authorization cannot change independent watcher')
     previous = store.run(value['run_id'])
     if (previous['status'] != 'completed' or previous['head_sha'] != value['source_sha']
-            or previous['head_branch'] != 'bt-001-a100-watch-20261021c'
+            or previous['head_branch'] != 'bt-001-a100-watch-api-recovery'
             or previous['run_attempt'] != 1):
         raise state.StateError('another independent watcher owns this authorization')
     if store.read('claim') is not None:

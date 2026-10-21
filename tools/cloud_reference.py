@@ -4,6 +4,7 @@ Only a public age recipient and ciphertext enter Git. The identity remains on
 the disposable free runner. This separate namespace cannot write paid claims.
 """
 import base64
+import ast
 import hashlib
 import io
 import json
@@ -15,6 +16,43 @@ import zipfile
 
 from tools import cloud_state
 from tools.cloud_resolver import official_manifest
+
+
+def restore_retained(source, root):
+    """Recover exact original references from the hash-pinned private notebook.
+
+    Select only manifest-listed data; ignore every executable/archive path.
+    A missing retained file fails instead of substituting a current download.
+    """
+    from tools.cloud_probe import retained_archive
+    from tools.cloud_resolver import NOTEBOOK_SHA256
+    if hashlib.sha256(source).hexdigest() != NOTEBOOK_SHA256:
+        raise ValueError('saved private notebook identity changed')
+    for cell in json.loads(source)['cells']:
+        if cell.get('cell_type') != 'code':
+            continue
+        try:
+            tree = ast.parse(''.join(cell['source']))
+        except SyntaxError:
+            continue
+        for node in ast.walk(tree):
+            if not isinstance(node, ast.Constant) or not isinstance(node.value, str):
+                continue
+            data = node.value.encode()
+            if (len(data) != 837896 or hashlib.sha256(data).hexdigest()
+                    != 'ebd011f3e9acc7890b94b7fb1ed8acc03a19f62435de866eb70cda52152e09e8'):
+                continue
+            records = retained_archive(data)
+            packed = io.BytesIO()
+            with zipfile.ZipFile(packed, 'w') as archive:
+                for row in json.loads(official_manifest())['files']:
+                    key = '.local/official/' + row['path']
+                    if key not in records:
+                        raise ValueError('frozen original references absent from saved notebook')
+                    archive.writestr(row['path'], base64.b64decode(records[key], validate=True))
+            return dict(restore_zip(packed.getvalue(), root),
+                        source='hash-pinned private notebook data; original hashes verified')
+    raise ValueError('frozen original references absent from saved notebook')
 
 
 def transfer_path(run_id, source_sha):

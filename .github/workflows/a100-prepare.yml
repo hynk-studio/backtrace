@@ -3,9 +3,16 @@ name: A100 free private-input qualification
 
 on:
   push:
-    branches: [bt-001-a100-cpu-qualification]
+    branches: [bt-001-api-readiness-recovery]
     paths:
       - 'tools/a100_task.py'
+      - 'tools/startup_guard.py'
+      - 'tools/api_probe.py'
+      - 'tools/qualify_api.py'
+      - 'docs/a100-api-runtime-amendment.json'
+      - 'docs/linux-supplemental.lock'
+      - 'docs/linux-wheel-manifest.json'
+      - 'tests/test_api_readiness.py'
       - 'tools/a100_driver.py'
       - 'tools/cloud_prepare.py'
       - 'tools/cloud_image.py'
