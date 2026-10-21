@@ -58,6 +58,7 @@ def server_boundaries(function, namespace, vllm_server):
         caught = None
         with patch.object(vllm_server, 'start', side_effect=(
                 RuntimeError('authored startup failure') if case == 'startup_failure' else None)) as start, \
+                patch('tools.serving_contract.inspect_server', return_value=(info, models)), \
                 patch('urllib.request.urlopen', side_effect=responses) as http, \
                 patch.object(subprocess, 'run', side_effect=(
                     subprocess.TimeoutExpired('authored-agent-boundary', 180)

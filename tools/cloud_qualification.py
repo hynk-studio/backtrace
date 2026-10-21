@@ -20,7 +20,8 @@ PATHS = tuple(sorted(set(
        'tests/test_cloud_state.py', 'tests/test_cloud_owner.py', 'tests/test_runpod_control.py',
        'docs/a100-task-delivery.json', 'docs/a100-result-recipient.txt', 'docs/a100-system-packages.json',
        'docs/a100-api-runtime-amendment.json', 'docs/api-http-minimal.lock',
-       '.github/workflows/a100-cpu.yml', 'tests/test_api_readiness.py',
+       '.github/workflows/a100-cpu.yml', 'tests/test_api_readiness.py', 'tests/official_connected_task.py',
+       'tests/test_task_results.py',
        'docs/cloud-controller-requirements.txt', '.github/workflows/a100-prepare.yml'])))
 
 
@@ -37,7 +38,7 @@ def require_receipt(store, root, receipt):
     run = store.request('GET', '/actions/runs/' + str(receipt['run_id']))
     if (run.get('status') != 'completed' or run.get('conclusion') != 'success'
             or run.get('run_attempt') != 1 or run.get('head_sha') != receipt['source_sha']
-            or run.get('head_branch') != 'bt-001-api-readiness-recovery'
+            or run.get('head_branch') != 'bt-001-connected-qualification'
             or run.get('path') != '.github/workflows/a100-prepare.yml'):
         raise ValueError('actual free qualification run is not successful at the recorded source')
     return {'run_id': receipt['run_id'], 'source_sha': receipt['source_sha'],
@@ -51,7 +52,7 @@ def require_current_cpu(store, source_sha, *, timeout=600, wall=time.monotonic, 
     while wall() < deadline:
         runs = store.request('GET', '/actions/runs?head_sha=' + source_sha + '&per_page=100')['workflow_runs']
         candidates = [r for r in runs if r.get('path') == '.github/workflows/a100-cpu.yml'
-                      and r.get('head_branch') == 'bt-001-api-readiness-recovery'
+                      and r.get('head_branch') == 'bt-001-connected-qualification'
                       and r.get('head_sha') == source_sha and r.get('run_attempt') == 1]
         if len(candidates) > 1:
             raise ValueError('ambiguous current CPU run')

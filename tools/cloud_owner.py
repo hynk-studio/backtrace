@@ -221,7 +221,7 @@ def seal_results(directory, output):
     directory = Path(directory)
     files = {name: directory / name for name in (
         'owner-result.json', 'job-status.json', 'setup-status.json', 'controller-diagnostic.json',
-        'worker.log', 'worker-process.log', 'receipt-transfer.json')
+        'worker.log', 'worker-process.log', 'receipt-transfer.json', 'task-validation.json', 'retrieval-error.json')
         if (directory / name).is_file()}
     receipts = directory / 'receipts'
     if receipts.is_dir():

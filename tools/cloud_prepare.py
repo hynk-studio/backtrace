@@ -165,6 +165,14 @@ def qualify(root, emit):
                 env=env, cwd=frozen.ROOT, stdout=subprocess.PIPE, stderr=log, check=True, timeout=300)
         report['stages'][stage] = json.loads(result.stdout)
         emit({'stage': stage, **report['stages'][stage]})
+        stage = 'connected_task_path'
+        with (root / 'connected-task.log').open('xb') as log:
+            result = subprocess.run(['sudo', str(runtime / 'venv/bin/python'), '-I',
+                str(frozen.ROOT / 'tests/official_connected_task.py'), str(root / 'driver'),
+                str(root / 'connected-task')], env=env, cwd=frozen.ROOT,
+                stdout=subprocess.PIPE, stderr=log, check=True, timeout=900)
+        report['stages'][stage] = json.loads(result.stdout)
+        emit({'stage': stage, **report['stages'][stage]})
         stage = 'pinned_image_cpu'
         with (root / 'pinned-image.log').open('xb') as log:
             report['stages'][stage] = cloud_image.qualify(root, log)
@@ -196,10 +204,19 @@ def qualify(root, emit):
     private = {}
     for name in ('retained-source.ipynb', 'offline-runtime.log', 'official-cloud-driver.log', 'cpu-task-layout.log',
                  'actual-cpu-prerequisites.log', 'cuda-runtime.log', 'transport-loopback.log', 'transport/build.log',
-                 'pinned-image.log', 'concurrent-controller.log', 'actual-api-http.log'):
+                 'pinned-image.log', 'concurrent-controller.log', 'actual-api-http.log', 'connected-task.log'):
         path = root / name
         if path.is_file():
             private[name] = path
+    for path in sorted((root / 'connected-task').rglob('*')):
+        if path.is_file():
+            private['connected-task/' + path.relative_to(root / 'connected-task').as_posix()] = path
+    image_log = root / 'image-result/api-http.log'
+    if image_log.is_file():
+        private['image-api-http.log'] = image_log
+    for path in sorted((root / 'image-result/connected-task').rglob('*')):
+        if path.is_file():
+            private['image-connected-task/' + path.relative_to(root / 'image-result/connected-task').as_posix()] = path
     if private:
         report['private_evidence'] = cloud_seal.seal(private,
             frozen.ROOT / 'evidence/cloud-private.age', limit=16 * 1024**2)

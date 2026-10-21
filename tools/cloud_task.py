@@ -15,7 +15,7 @@ from tools.private_delivery import digest, parse_manifest, verify
 
 POLICY = 'prepaid10-actions-v1'
 SETUP, USEFUL, TOTAL = 5400, 6900, 7200
-CLOUD_DRIVER_SHA256 = '67d1cc5c393b8b3c379058f65ab71e966cefb9ef21c4c36d11bca47ed9b48bf2'
+CLOUD_DRIVER_SHA256 = '458f18446f1e988822f8cd43b772d40f4a01ed0b0bd240cd1b3cab5224c4f54d'
 
 
 def transform(data):
@@ -42,6 +42,35 @@ def transform(data):
                 and not (isinstance(node, ast.FunctionDef) and node.name == 'main')]
     if frozen(original) != frozen(result):
         raise ValueError('non-policy driver definition changed')
+    # Deliberate operational corrections, applied only after the old policy-only
+    # derivative is reproduced. The historical driver and paid heads stay intact.
+    result = legacy._replace(result,
+        " env.update(OFFICIAL_ENV)\n return env\n",
+        " env.update(OFFICIAL_ENV)\n env['VLLM_SERVER_DEV_MODE']='1'\n return env\n")
+    before = ("  with urllib.request.urlopen('http://127.0.0.1:8000/server_info?config_format=json',timeout=10) as response: info=json.load(response)\n"
+              "  with urllib.request.urlopen('http://127.0.0.1:8000/v1/models',timeout=10) as response: models=json.load(response)\n")
+    result = legacy._replace(result, before,
+        "  from tools.serving_contract import inspect_server\n"
+        "  info,models=inspect_server(server.base_url,MODEL)\n")
+    result = legacy._replace(result,
+        "'request_sha256':hashlib.sha256(request.content).hexdigest()}",
+        "'request_sha256':hashlib.sha256(request.content).hexdigest(),'event':'request'}")
+    result = legacy._replace(result,
+        "  if request.url.path.endswith('/chat/completions'): event('model_http_response',status=result.status_code)\n",
+        "  if request.url.path.endswith('/chat/completions'):\n"
+        "   with wire.open('a') as stream: stream.write(json.dumps({'event':'response','status':result.status_code,'request_sha256':hashlib.sha256(request.content).hexdigest()},sort_keys=True)+'\\n')\n"
+        "   event('model_http_response',status=result.status_code)\n")
+    result = legacy._replace(result, "  event('task_end',**result)\n",
+        "  event('task_end',**result)\n"
+        "  from tools.task_results import validate\n"
+        "  validate(WORK)\n")
+    # Prompt, task/answer separation, sampling, model and budgets are still the
+    # byte-pinned definitions. Changed functions are only the named operations.
+    def definitions(source):
+        return {n.targets[0].id: ast.dump(n) for n in ast.parse(source).body
+                if isinstance(n, ast.Assign) and isinstance(n.targets[0], ast.Name)}
+    if definitions(original) != definitions(result):
+        raise ValueError('scientific input or driver constant changed')
     compile(result, '<private-cloud-driver>', 'exec')
     return result
 
@@ -58,7 +87,9 @@ def prepare(source, output):
         fromfile='retained-t4/one_task.py', tofile='cloud-a100/one_task.py')))
     receipt.update(prepared_driver_sha256=CLOUD_DRIVER_SHA256, policy=POLICY,
                    setup_seconds=SETUP, useful_seconds=USEFUL, total_seconds=TOTAL,
-                   server_and_agent_ast_equal_to_legacy=True)
+                   server_and_agent_ast_equal_to_legacy=False,
+                   operational_changes=['loopback developer metadata route', 'shared real HTTP contract',
+                                        'model response receipts', 'task artifact validation'])
     receipt['files'] = {str(path.relative_to(output)): digest(path)
                         for path in sorted(output.rglob('*'))
                         if path.is_file() and path.name != 'prepare-receipt.json'}

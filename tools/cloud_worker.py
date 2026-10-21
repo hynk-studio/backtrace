@@ -17,6 +17,7 @@ from tools import cloud_state as state, cloud_task, ssh_bootstrap as ssh
 from tools import a100_delivery as frozen
 from tools.private_delivery import digest, push, remote_python, ssh_command, verify
 from tools.runpod_job import check_owner_host, heartbeat, private_json, read_private, remaining, retrieve
+from tools.task_results import validate as validate_task_results
 
 PROFILE = 'actions-20261019'
 CLEAN = {'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'}
@@ -183,22 +184,42 @@ def run(directory):
                        + "json.dump(" + repr(permit) + ",f);f.flush();os.fsync(f.fileno());f.close()\n")
             remote(['python3', '-I', '-c', program])
             phase[0] = 'workload'
-            try:
-                remote(workload_command(claim['requested_at']), limit=state.USEFUL - 180)
-                outcome = 'finished'
-            finally:
-                phase[0] = 'retrieval'
-                if remaining(value, state.USEFUL) > 15:
-                    try:
-                        receipt = retrieve(prefix, value, directory, log, useful_seconds=state.USEFUL)
-                        private_json(directory / 'receipt-transfer.json', receipt)
-                    except Exception as error:
-                        private_json(directory / 'receipt-transfer.json', {'error_type': type(error).__name__})
-                        outcome = 'failed'
+            complete_workload(remote, prefix, value, directory, log, phase)
+            outcome = 'finished'
         finally:
             finished.set(); thread.join(timeout=5)
             heartbeat(directory, claim['attempt'], outcome, phase[0])
     return outcome
+
+
+def complete_workload(remote, prefix, value, directory, log, phase):
+    """Always recover available evidence; preserve workload errors over cleanup.
+
+    A skipped/failed retrieval can never turn an exit-zero process into success.
+    The same real artifact validator runs in the task and after byte transfer.
+    """
+    directory = Path(directory)
+    primary = None
+    try:
+        remote(workload_command(value['requested_at']), limit=state.USEFUL - 180)
+    except BaseException as error:
+        primary = error
+    phase[0] = 'retrieval'
+    try:
+        if remaining(value, state.USEFUL) <= 15:
+            raise TimeoutError('insufficient time to retrieve actual task receipts')
+        receipt = retrieve(prefix, value, directory, log, useful_seconds=state.USEFUL)
+        private_json(directory / 'receipt-transfer.json', receipt)
+        if primary is None:
+            verified = validate_task_results(directory / 'receipts')
+            private_json(directory / 'task-validation.json', verified)
+    except BaseException as error:
+        private_json(directory / 'retrieval-error.json', {'error_type': type(error).__name__})
+        if primary is None:
+            raise
+        primary.add_note('Evidence retrieval also failed: ' + type(error).__name__)
+    if primary is not None:
+        raise primary
 
 
 if __name__ == '__main__':

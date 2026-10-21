@@ -13,6 +13,7 @@ sys.path.insert(0, str(ROOT))
 from tools import a100_delivery as frozen, cloud_task, pod_bootstrap, pod_preflight, pod_system, qualify_api
 from tools.private_delivery import emit, receive
 from tests.official_cloud_prerequisites import qualify as prerequisites
+from tests.official_connected_task import main as connected_task
 
 
 def qualify():
@@ -50,6 +51,7 @@ def qualify():
     shutil.copytree(task, target); (target / 'delivery-manifest.json').unlink()
     pod_bootstrap.readonly(target)
     report['stages']['actual_cpu_prerequisites'] = prerequisites(source, staged=True, host=report['host'])
+    report['stages']['connected_task_path'] = connected_task(source, Path('/result/connected-task'))
     report.update(status='PASS', gpu_initialization='NOT RUN', server_starts=0, task_executions=0)
     return report
 

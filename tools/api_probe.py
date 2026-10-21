@@ -10,12 +10,17 @@ import importlib.metadata
 import io
 import json
 import logging
+import os
 import socket
 import sys
 import threading
 import time
 from pathlib import Path
 from types import SimpleNamespace
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from tools.compile_probe import MODEL_PATH
+from tools.serving_contract import inspect_server
 
 PINS = {'starlette': '0.52.1', 'prometheus-fastapi-instrumentator': '7.1.0'}
 SIGNATURE = "AttributeError: '_IncludedRouter' object has no attribute 'path'"
@@ -27,9 +32,20 @@ def build(mode):
         from vllm.entrypoints.openai.models.protocol import BaseModelPath
         from vllm.entrypoints.openai.models.serving import OpenAIServingModels
         from vllm.v1.engine.exceptions import EngineDeadError
+        from vllm.config import VllmConfig, ModelConfig, ParallelConfig
+        import torch
+
+        # Real dataclass types and real Pydantic serializer; no model downloads
+        # or config validation/engine initialization are claimed by this fixture.
+        config = object.__new__(VllmConfig)
+        model = object.__new__(ModelConfig)
+        parallel = object.__new__(ParallelConfig)
+        model.dtype, model.max_model_len, model.model = torch.bfloat16, 32768, MODEL_PATH
+        parallel.tensor_parallel_size, parallel.disable_custom_all_reduce = 1, True
+        config.model_config, config.parallel_config = model, parallel
 
         class EngineState:
-            model_config = SimpleNamespace(max_model_len=128)
+            model_config = model
             renderer = io_processor = input_processor = None
             calls = 0
             dead = False
@@ -48,7 +64,8 @@ def build(mode):
         engine = EngineState()
         app.state.engine_client = engine
         app.state.openai_serving_models = OpenAIServingModels(engine,
-            [BaseModelPath(name='cpu-api-fixture', model_path='/unused/cpu-api-fixture')])
+            [BaseModelPath(name=MODEL_PATH, model_path=MODEL_PATH)])
+        app.state.vllm_config = config
         app.state.enable_server_load_tracking = False
         app.state.server_load_metrics = 0
         return app, engine
@@ -111,11 +128,24 @@ def probe(mode, expected):
                 want = 500 if expected == 'routing-error' else 200
                 if responses[path] != [want] * 3:
                     raise AssertionError(f'{path}: {responses[path]} expected {want}')
-                if mode == 'vllm' and expected == 'success' and path == '/v1/models':
+                if mode == 'vllm' and expected != 'routing-error' and path == '/v1/models':
                     body = replies[-1].json()
                     assert body['object'] == 'list'
-                    assert [r['id'] for r in body['data']] == ['cpu-api-fixture']
-            if expected == 'success':
+                    assert [r['id'] for r in body['data']] == [MODEL_PATH]
+            if expected != 'routing-error':
+                if mode == 'vllm':
+                    if expected == 'missing-metadata':
+                        from urllib.error import HTTPError
+                        try:
+                            inspect_server(f'http://127.0.0.1:{port}/v1', MODEL_PATH)
+                        except HTTPError as error:
+                            assert error.code == 404
+                            responses['driver_metadata_contract'] = 'REJECTED HTTP 404'
+                        else:
+                            raise AssertionError('disabled developer route was accepted')
+                    else:
+                        inspect_server(f'http://127.0.0.1:{port}/v1', MODEL_PATH)
+                        responses['driver_metadata_contract'] = 'PASS actual server_info and models'
                 responses['/metrics'] = client.get('/metrics').status_code
                 responses['/unknown-api-probe'] = client.get('/unknown-api-probe').status_code
                 assert responses['/metrics'] == 200
@@ -142,12 +172,13 @@ def probe(mode, expected):
     trace.feed(log.getvalue().encode())
     if expected == 'routing-error' and trace.cause != SIGNATURE:
         raise AssertionError('startup guard did not classify the actual repeated API traceback')
-    if expected == 'success' and trace.cause is not None:
+    if expected != 'routing-error' and trace.cause is not None:
         raise AssertionError('startup guard falsely classified successful HTTP replies')
     return {'status': 'PASS', 'mode': mode, 'expected': expected, 'versions': observed,
             'responses': responses, 'http_transport': 'real loopback TCP/Uvicorn',
             'app_factory': 'installed vLLM build_app' if mode == 'vllm' else 'authored minimal FastAPI control',
             'engine': 'CPU state fixture; no model execution', 'lifespan': 'OFF',
+            'developer_mode': os.environ.get('VLLM_SERVER_DEV_MODE', '0'),
             'error_signature': SIGNATURE if expected == 'routing-error' else None,
             'startup_classifier': 'PASS on actual Uvicorn access/error logs',
             'gpu_allocations': 0}
@@ -156,7 +187,7 @@ def probe(mode, expected):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--mode', choices=('minimal', 'vllm'), required=True)
-    parser.add_argument('--expect', choices=('success', 'routing-error'), required=True)
+    parser.add_argument('--expect', choices=('success', 'routing-error', 'missing-metadata'), required=True)
     parser.add_argument('--output')
     args = parser.parse_args()
     result = probe(args.mode, args.expect)
