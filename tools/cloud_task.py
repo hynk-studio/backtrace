@@ -15,7 +15,27 @@ from tools.private_delivery import digest, parse_manifest, verify
 
 POLICY = 'prepaid10-actions-v1'
 SETUP, USEFUL, TOTAL = 5400, 6900, 7200
-CLOUD_DRIVER_SHA256 = '458f18446f1e988822f8cd43b772d40f4a01ed0b0bd240cd1b3cab5224c4f54d'
+CLOUD_DRIVER_SHA256 = '2d55f8b50283a35e69f4b6d7e207d497afa26c1ea5808ae89cd67d2ed97480ab'
+
+
+def preserve_finally(source, function):
+    """Retain a phase failure even when its finalizer raises a second error."""
+    node = next(n for n in ast.parse(source).body if isinstance(n, ast.FunctionDef) and n.name == function)
+    finalizers = [n for n in node.body if isinstance(n, ast.Try) and n.finalbody]
+    if len(finalizers) != 1:
+        raise ValueError('one outer finalizer required in ' + function)
+    body = finalizers[0].finalbody
+    lines = source.splitlines(keepends=True)
+    start, end = body[0].lineno - 1, body[-1].end_lineno
+    old = lines[start:end]
+    indent = ' ' * body[0].col_offset
+    new = [indent + 'phase_failure=sys.exc_info()[1]\n', indent + 'try:\n']
+    new += [' ' + line if line.strip() else line for line in old]
+    new += [indent + 'except BaseException as cleanup_failure:\n',
+            indent + ' if phase_failure is None: raise\n',
+            indent + " phase_failure.add_note('Separate cleanup failure: '+type(cleanup_failure).__name__)\n",
+            indent + ' raise phase_failure\n']
+    return ''.join(lines[:start] + new + lines[end:])
 
 
 def transform(data):
@@ -64,6 +84,14 @@ def transform(data):
         "  event('task_end',**result)\n"
         "  from tools.task_results import validate\n"
         "  validate(WORK)\n")
+    result = legacy._replace(result, "  manager.close();httpx.AsyncClient.send=original\n",
+        "  try: manager.close()\n  finally: httpx.AsyncClient.send=original\n")
+    result = legacy._replace(result,
+        "  if Path(server.log_path).is_file(): shutil.copyfile(server.log_path,WORK/'server.log')\n  server.stop()\n",
+        "  try:\n   if Path(server.log_path).is_file(): shutil.copyfile(server.log_path,WORK/'server.log')\n"
+        "  finally: server.stop()\n")
+    for function in ('server_phase', 'agent_phase', 'main'):
+        result = preserve_finally(result, function)
     # Prompt, task/answer separation, sampling, model and budgets are still the
     # byte-pinned definitions. Changed functions are only the named operations.
     def definitions(source):

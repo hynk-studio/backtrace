@@ -11,6 +11,7 @@ on:
       - 'tools/qualify_api.py'
       - 'tools/serving_contract.py'
       - 'tools/task_results.py'
+      - 'tools/qualify_evaluation.py'
       - 'tools/cloud_task.py'
       - 'tests/official_connected_task.py'
       - 'docs/a100-api-runtime-amendment.json'

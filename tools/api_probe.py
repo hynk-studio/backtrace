@@ -6,6 +6,7 @@ is replaced. Uvicorn lifespan is disabled because GPU initialization is outside
 this probe. The minimal mode is a separate compatibility regression control.
 """
 import argparse
+import dataclasses
 import importlib.metadata
 import io
 import json
@@ -37,9 +38,14 @@ def build(mode):
 
         # Real dataclass types and real Pydantic serializer; no model downloads
         # or config validation/engine initialization are claimed by this fixture.
-        config = object.__new__(VllmConfig)
-        model = object.__new__(ModelConfig)
-        parallel = object.__new__(ParallelConfig)
+        def state_fixture(cls):
+            value = object.__new__(cls)
+            for field in dataclasses.fields(cls):
+                setattr(value, field.name, field.default if field.default is not dataclasses.MISSING else None)
+            return value
+        config = state_fixture(VllmConfig)
+        model = state_fixture(ModelConfig)
+        parallel = state_fixture(ParallelConfig)
         model.dtype, model.max_model_len, model.model = torch.bfloat16, 32768, MODEL_PATH
         parallel.tensor_parallel_size, parallel.disable_custom_all_reduce = 1, True
         config.model_config, config.parallel_config = model, parallel
@@ -156,6 +162,11 @@ def probe(mode, expected):
                     responses['/health-engine-dead'] = client.get('/health').status_code
                     assert responses['/health-engine-dead'] == 503
                     assert engine.calls == 4
+    except BaseException:
+        # A failed HTTP response is useful only if its original ASGI traceback
+        # is retained too. This child has a credential-cleared environment.
+        sys.stderr.write(log.getvalue())
+        raise
     finally:
         server.should_exit = True
         thread.join(timeout=5)

@@ -213,6 +213,20 @@ def resolve_task(client):
     return result
 
 
+def resolve_evaluator(client):
+    """Original public test specifications, separate from every agent map."""
+    from kagglesdk.competitions.types.competition_api_service import ApiDownloadDataFileRequest
+    spec = next(r for r in json.loads((frozen.ROOT / 'docs/source-manifest.json').read_text())[
+        'smoke_preallocation']['artifacts'] if r.get('source_path') == 'tasks.jsonl')
+    row = {'path': 'tasks.jsonl', 'bytes': spec['size_bytes'], 'sha256': spec['sha256']}
+    request = ApiDownloadDataFileRequest()
+    request.competition_name = 'gemma-4-developer-agent'
+    request.file_name = 'tasks.jsonl'
+    response = client.competitions.competition_api_client.download_data_file(request)
+    data = json.dumps({'schema_version': 1, 'phase': 'bootstrap', 'files': [row]}).encode()
+    return data, {'tasks.jsonl': public_source(response.url, row)}
+
+
 def resolve_model(client):
     from kagglesdk.models.types.model_api_service import ApiDownloadModelInstanceVersionRequest, ModelFramework
     result = {}

@@ -1,6 +1,6 @@
 """Run the prepared driver through real HTTP, official task/tools and recovery.
 
-Only GPU identity/start and generated token content are CPU fixtures. Metadata
+GPU identity/start and the chat generation handler are CPU fixtures. Metadata
 routes, chat request/response schemas, middleware, registry, official runner,
 task snapshot, sandbox, tools, trace, patch, artifact validation and byte transfer
 execute. This is plumbing evidence, never a model result or task score.
@@ -185,7 +185,10 @@ def run_case(source, output, case):
                     or b'HTTP Error 404' not in (output / 'execution.log').read_bytes()):
                 raise AssertionError('actual retained driver missed the missing metadata route')
         elif case == 'model-error':
-            if result.returncode == 0 or not generated.requests:
+            task_result = json.loads((driver.WORK / 'task-result.json').read_text())
+            wire = [json.loads(line) for line in (driver.WORK / 'wire.jsonl').read_text().splitlines()]
+            if (result.returncode == 0 or not generated.requests or not task_result['agent_error']
+                    or not any(row.get('event') == 'response' and row.get('status') == 400 for row in wire)):
                 raise AssertionError('actual task/model error was reported as successful')
         else:
             if result.returncode != 0:
@@ -224,21 +227,30 @@ def run_case(source, output, case):
         shutil.rmtree(driver.ROOT)
 
 
-def main(source, output):
+def main(source, output, evaluator):
     if any(k in os.environ for k in ('KAGGLE_API_TOKEN', 'RUNPOD_API_KEY', 'GITHUB_TOKEN', 'GH_STATE_TOKEN')):
         raise ValueError('connected task qualification must not inherit account credentials')
     reports = []
+    # Check the actual OS boundary, not just an input-key allowlist.
+    check = subprocess.run(['setpriv', '--no-new-privs', '--bounding-set=-all', '--reuid=65534',
+        '--regid=65534', '--clear-groups', sys.executable, '-I', '-c',
+        'import os,sys;raise SystemExit(1 if os.access(sys.argv[1],os.R_OK) else 0)', str(evaluator)],
+        env={'PATH': '/usr/bin:/bin'}, check=True, timeout=10)
     for case in ('missing-route', 'success', 'model-error'):
         env = dict(os.environ, VLLM_SERVER_DEV_MODE='0' if case == 'missing-route' else '1')
         result = subprocess.run([sys.executable, '-I', __file__, '--case', str(source), str(output / case), case],
             env=env, check=True, stdout=subprocess.PIPE, timeout=300)
         reports.append(json.loads(result.stdout.splitlines()[-1]))
-    return {'status': 'PASS', 'cases': reports, 'gpu_allocations': 0,
+    from tools.qualify_evaluation import qualify
+    evaluation = qualify(evaluator, Path('/kaggle/input/r0-inputs'), output / 'success/agent.patch',
+                         output / 'evaluation')
+    return {'status': 'PASS', 'cases': reports, 'gpu_allocations': 0, 'public_evaluation': evaluation,
+            'evaluator_agent_access': 'DENIED by actual UID read check',
             'driver': 'entire actual server_phase and actual agent child',
             'http': 'installed vLLM routes/middleware/schemas, real loopback TCP',
             'task': 'actual official runner, selected snapshot, sandbox, tools, patch and ATIF trace',
             'recovery': 'actual manifest/hash transport and production artifact validator',
-            'substitutions': ['GPU identity', 'GPU process start', 'generated token content'],
+            'substitutions': ['GPU identity', 'GPU process start', 'chat generation handler with scripted content'],
             'not_established': ['GPU token generation', 'Gemma tool/reasoning parser', 'patch correctness']}
 
 
@@ -247,7 +259,7 @@ if __name__ == '__main__':
         child()
     elif sys.argv[1:2] == ['--case']:
         print(json.dumps(run_case(Path(sys.argv[2]), Path(sys.argv[3]), sys.argv[4]), sort_keys=True))
-    elif len(sys.argv) == 3:
-        print(json.dumps(main(Path(sys.argv[1]), Path(sys.argv[2])), sort_keys=True))
+    elif len(sys.argv) == 4:
+        print(json.dumps(main(Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3])), sort_keys=True))
     else:
         raise ValueError('prepared driver and private evidence directory required')

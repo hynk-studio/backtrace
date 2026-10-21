@@ -4,6 +4,7 @@ Receives only private local paths, scoped file URLs and the exact owned Pod's
 pre-authenticated SSH endpoint. It has no provider create/delete capability.
 """
 import argparse
+import contextlib
 import hashlib
 import json
 import os
@@ -214,7 +215,8 @@ def complete_workload(remote, prefix, value, directory, log, phase):
             verified = validate_task_results(directory / 'receipts')
             private_json(directory / 'task-validation.json', verified)
     except BaseException as error:
-        private_json(directory / 'retrieval-error.json', {'error_type': type(error).__name__})
+        with contextlib.suppress(OSError):
+            private_json(directory / 'retrieval-error.json', {'error_type': type(error).__name__})
         if primary is None:
             raise
         primary.add_note('Evidence retrieval also failed: ' + type(error).__name__)

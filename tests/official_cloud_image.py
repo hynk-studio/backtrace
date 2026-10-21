@@ -51,7 +51,8 @@ def qualify():
     shutil.copytree(task, target); (target / 'delivery-manifest.json').unlink()
     pod_bootstrap.readonly(target)
     report['stages']['actual_cpu_prerequisites'] = prerequisites(source, staged=True, host=report['host'])
-    report['stages']['connected_task_path'] = connected_task(source, Path('/result/connected-task'))
+    report['stages']['connected_task_path'] = connected_task(source, Path('/result/connected-task'),
+        Path('/inputs/evaluator/tasks.jsonl'))
     report.update(status='PASS', gpu_initialization='NOT RUN', server_starts=0, task_executions=0)
     return report
 

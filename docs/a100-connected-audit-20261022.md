@@ -26,17 +26,19 @@ transport/tool exercise on the real public-task snapshot, not an attempted
 solution and not a model result. The existing model, prompts, candidate,
 sampling, task input hashes and inference limits remain pinned.
 
-Only GPU identity/start and model-generated content are substituted. Actual
+GPU identity/start and the chat generation handler with scripted content are substituted. Actual
 vLLM route handlers, middleware and request/response schema validation execute;
 Gemma token generation and its tool/reasoning parser do not. Both the Actions
 host and pinned deployment image must pass. The image has no external network.
 The full driver setup and controller/transport lifecycle checks remain separate
 requirements, and must not be renamed complete GPU qualification.
 
-The current private driver explicitly does **not** mount the evaluator-only
-record or run patch evaluation. Even a completed agent task cannot establish a
-resolved public task. That limitation remains a blocker for any claim of full
-evaluation readiness; no competition acceptance/scoring is implied.
+The model-facing driver does **not** mount the evaluator-only record. A separate
+free CPU verifier is being qualified with a different UID: the neutral README
+transport patch must fail the actual public tests, and the original public
+reference patch must pass. The latter is only an evaluator positive control;
+it never enters agent inputs or scripted model responses. Neither control is
+a model score, competition acceptance, or hosted scoring.
 
 ## Status
 
@@ -50,3 +52,12 @@ Actual full-runtime connected-path and pinned-image checks: **NOT YET RUN** at
 this implementation checkpoint. The old launch receipt is stale and cannot
 qualify the changed operational files. Do not infer paid readiness from unit
 test count or this implementation plan.
+
+Exploratory full run 39677844088 at
+`46377688c2c789319469c5d9d3c0070849ca7859` passed offline runtime installation
+but failed on the newly exercised `/server_info` HTTP request with 500. The CPU
+probe originally retained only the client exception, omitting its captured ASGI
+traceback; that evidence-capture defect is corrected. The incomplete CPU engine
+state fixture is being corrected without changing the real route or serializer.
+This failed run is not qualification. Its exact-source Linux run 39677843869
+passed 289 tests and the minimal HTTP controls; those passes did not override it.

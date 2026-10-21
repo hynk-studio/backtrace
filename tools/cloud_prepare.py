@@ -52,6 +52,7 @@ def qualify(root, emit):
                 progress=lambda name, count: emit({'stage': name, 'count': count}))
             stage = 'resolve_task_model'
             task_sources = resolver.resolve_task(client)
+            evaluator_manifest, evaluator_sources = resolver.resolve_evaluator(client)
             model_sources = resolver.resolve_model(client)
         private_json(root / 'private-sources.json', {'wheels': wheel_sources, 'task': task_sources,
                                                      'model': model_sources})
@@ -116,6 +117,11 @@ def qualify(root, emit):
         data = frozen.manifest('task')
         report['stages'][stage] = pull(root / 'task', data, task_sources, hashlib.sha256(data).hexdigest(), 600)
         emit({'stage': stage, 'status': 'PASS', 'verified_files': len(task_sources)})
+        stage = 'private_public_evaluator'
+        report['stages'][stage] = pull(root / 'evaluator', evaluator_manifest, evaluator_sources,
+            hashlib.sha256(evaluator_manifest).hexdigest(), 120)
+        # This root-private tree is not included in the task/driver manifests.
+        emit({'stage': stage, 'status': 'PASS', 'agent_access': False})
         stage = 'restore_cpu_inputs'
         report['stages'][stage] = resolver.restore_cpu_inputs(source, frozen.ROOT, root / 'wheels', root / 'task', root / 'official')
         prepared = cloud_task.prepare(frozen.ROOT / '.local/smoke/no-custom-ar/one_task.py', root / 'driver')
@@ -169,7 +175,7 @@ def qualify(root, emit):
         with (root / 'connected-task.log').open('xb') as log:
             result = subprocess.run(['sudo', str(runtime / 'venv/bin/python'), '-I',
                 str(frozen.ROOT / 'tests/official_connected_task.py'), str(root / 'driver'),
-                str(root / 'connected-task')], env=env, cwd=frozen.ROOT,
+                str(root / 'connected-task'), str(root / 'evaluator/tasks.jsonl')], env=env, cwd=frozen.ROOT,
                 stdout=subprocess.PIPE, stderr=log, check=True, timeout=900)
         report['stages'][stage] = json.loads(result.stdout)
         emit({'stage': stage, **report['stages'][stage]})

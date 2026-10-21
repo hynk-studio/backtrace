@@ -94,5 +94,29 @@ class RecoveryTests(unittest.TestCase):
             self.assertIs(caught.exception, primary)
             self.assertEqual(json.loads((root / 'retrieval-error.json').read_text())['error_type'], 'TimeoutError')
 
+    def test_failed_diagnostic_write_cannot_replace_workload_error(self):
+        with tempfile.TemporaryDirectory() as directory:
+            primary = RuntimeError('original workload failure')
+            def failed(*a, **k): raise primary
+            with patch.object(cloud_worker, 'remaining', return_value=0), \
+                    patch.object(cloud_worker, 'private_json', side_effect=OSError('disk full')):
+                with self.assertRaises(RuntimeError) as caught:
+                    cloud_worker.complete_workload(failed, [], {'requested_at': 1}, Path(directory), io.BytesIO(), ['workload'])
+            self.assertIs(caught.exception, primary)
+
+
+class DriverFinalizerTests(unittest.TestCase):
+    def test_phase_failure_and_cleanup_only_failure_keep_their_actual_cause(self):
+        from tools.cloud_task import preserve_finally
+        for failure in (True, False):
+            source = ('import sys\ndef main():\n try:\n  '
+                      + ("raise ValueError('phase')" if failure else 'return 123')
+                      + "\n finally:\n  raise RuntimeError('cleanup')\n")
+            namespace = {}
+            exec(preserve_finally(source, 'main'), namespace)
+            with self.assertRaises(ValueError if failure else RuntimeError) as caught:
+                namespace['main']()
+            self.assertEqual(str(caught.exception), 'phase' if failure else 'cleanup')
+
 
 if __name__ == '__main__': unittest.main()

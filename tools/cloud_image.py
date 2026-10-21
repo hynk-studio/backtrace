@@ -26,6 +26,7 @@ def qualify(root, log):
             (root / 'system', '/inputs/system', True),
             (root / 'wheels', '/root/backtrace/wheels', True),
             (root / 'api-negative', '/inputs/api-negative', True),
+            (root / 'evaluator', '/inputs/evaluator', True),
             (root / 'task', '/inputs/task', True), (output, '/result', False)):
         command += ['--mount', 'type=bind,source=' + str(source.resolve()) + ',target=' + target
                     + (',readonly' if readonly else '')]
