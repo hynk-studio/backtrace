@@ -1,1 +1,1 @@
-{"absence_reads":1,"at":1792568714,"attempt":"319399b9318e4bd9935f9b89f68b4b7e","phase":"unresolved","pod_id":"xfx5hsrc28h2sb","reason":"provider_resource_changed"}
+{"absence_reads":2,"at":1792568737,"attempt":"319399b9318e4bd9935f9b89f68b4b7e","phase":"deleted","pod_id":"xfx5hsrc28h2sb","reason":"provider_resource_changed"}
