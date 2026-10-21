@@ -53,7 +53,8 @@ def build(mode, *, metadata=True):
         args = argparse.Namespace(disable_fastapi_docs=False, enable_offline_docs=False,
             root_path='', allowed_origins=['*'], allow_credentials=False,
             allowed_methods=['*'], allowed_headers=['*'], api_key=None,
-            enable_request_id_headers=False, middleware=[MIDDLEWARE] if metadata else [])
+            enable_request_id_headers=False, log_error_stack=False,
+            middleware=[MIDDLEWARE] if metadata else [])
         app = build_app(args, supported_tasks=('generate',))
         engine = EngineState()
         app.state.engine_client = engine

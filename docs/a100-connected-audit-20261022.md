@@ -17,6 +17,8 @@ There is no new paid authorization, start/watch branch, or provider create here.
 | Recovery could be skipped near deadline or mask a prior failure | Require recovery for success and retain the first workload exception if recovery also fails | Expired recovery and workload-plus-recovery-failure controls |
 | Scientific correctness was conflated with plumbing | Report task completion separately from patch evaluation | No authored response can establish model quality or a resolved task |
 | A first free probe failure concealed unrelated later checks | Collect independent post-prerequisite probe failures, on host and pinned image | Later checks execute after an earlier failure; overall status remains FAIL |
+| Actual graph loader calls `endswith` on directories, but the driver passed `Path` | Convert the same pinned graph/embedding paths to strings at the official context boundary | Execute search, neighbors and subgraph tools in the actual task |
+| Isolated evaluator UID could not traverse the source checkout | Copy the qualified verifier worker into its private UID-owned staging directory | Actual public-test negative and positive controls under UID 65533 |
 
 ## What this check can and cannot prevent
 
@@ -49,8 +51,8 @@ syntax error in the newly added acquisition workflow was corrected before the
 job ran. No acquired third-party bytes enter the public branch.
 
 Local artifact/recovery negative tests and local-tooling preflight: PASS.
-Actual full-runtime connected-path and pinned-image checks: **NOT YET RUN** at
-this implementation checkpoint. The old launch receipt is stale and cannot
+Actual full-runtime connected-path checks: **PARTIAL PASSES; OVERALL FAIL**.
+No corrected complete pinned-image pass exists yet. The old launch receipt is stale and cannot
 qualify the changed operational files. Do not infer paid readiness from unit
 test count or this implementation plan.
 
@@ -95,7 +97,34 @@ for image/controller checks. An actual different-UID ciphertext/plaintext access
 test is required before installing the large runtime. The local managed executor
 cannot map UID 65533 (chown returns EINVAL), so that check requires free Linux CI.
 
-An additional scripted scenario exercises all declared workspace/graph tools
-and the unchanged code-analyzer AgentTool, within the same 10-tool/50-turn
-budget. It uses public graph identifiers and neutral file edits, not reference
-answers. That extended scenario is still awaiting execution at this checkpoint.
+Run 39684433596 at `a2223134329a581e5cd3601f9e2c0c87cddfa2fb`
+passed the real different-UID evidence-export precheck and actual vLLM HTTP
+controls. Its complete driver/basic shell/patch/ATIF/recovery scenario passed
+with three real chat HTTP requests. Missing metadata produced driver exit 1
+before a model call, and actual model HTTP 400 produced a nonzero task/driver
+exit. The full-tool and separate evaluation stages failed, so the run cannot
+qualify the changed path. Exact-source Linux run 39684433451 passed 292 tests.
+
+The early encrypted diagnostic was successfully read as root and exported as
+ciphertext (SHA-256
+`265fde680158003e36ea6ffd3fdb9d56b3277176609900ee7aa4e24d866d33d5`).
+Unlike the prior lost-log run, it retained the original causes: actual
+`search_similar_code` returned `SimilaritySearchError` because its directory
+was a PosixPath instead of a string; the evaluator UID could not open the
+verifier in the private source checkout. The exact acquired embedding utility
+also reproduces Path failure/string success locally. The production derivative
+now converts only those two context arguments, preserving paths and scientific
+constants. The evaluator stages only its qualified worker under UID 65533,
+without exposing the source checkout or reference record to the agent.
+
+The scripted scenario exercises all declared workspace/graph tools and the
+unchanged code-analyzer AgentTool within the same 10-tool/50-turn budget. It
+uses public graph identifiers and neutral file edits, not reference answers.
+An assertion failure at that scripted content boundary now yields a terminal
+400 instead of a synthetic 500 retry ladder, and actual receipts are retained
+even when a case fails. These corrections still require a fresh full run.
+
+Meta-assessment: this expanded check found a real production graph-API mismatch
+after the narrower shell/submit check passed. That is useful evidence of
+failure prevention. It is not evidence of Gemma generation/parser compatibility,
+a correct solution, or permission to repeat a paid allocation.

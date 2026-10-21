@@ -14,7 +14,6 @@ import tempfile
 import time
 import zipfile
 
-ROOT = Path(__file__).resolve().parents[1]
 TASKS_SHA256 = 'e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6'
 
 
@@ -111,12 +110,17 @@ def qualify(evaluator, task_inputs, patch, output, *, controls=True):
             target = root / name
             shutil.copyfile(source, target)
             target.chmod(0o400); os.chown(target, 65533, 65533)
+        # The source checkout need not be traversable by the isolated evaluator.
+        # Copy only this trusted, qualified worker, keeping agent access denied.
+        script = root / 'verify.py'
+        shutil.copyfile(__file__, script)
+        script.chmod(0o400); os.chown(script, 65533, 65533)
         env = {'PATH': '/usr/bin:/bin', 'HOME': str(root), 'LANG': 'C.UTF-8',
                'HF_HUB_OFFLINE': '1', 'TRANSFORMERS_OFFLINE': '1', 'OTEL_SDK_DISABLED': 'true',
                'LITELLM_LOCAL_MODEL_COST_MAP': 'True', 'PYTHON_DOTENV_DISABLED': '1'}
         with (output / 'evaluator.log').open('wb') as log:
             result = subprocess.run(['setpriv', '--no-new-privs', '--bounding-set=-all', '--reuid=65533',
-                '--regid=65533', '--clear-groups', sys.executable, '-I', __file__, '--worker',
+                '--regid=65533', '--clear-groups', sys.executable, '-I', str(script), '--worker',
                 str(root), str(task_inputs), 'controls' if controls else 'result'], env=env, stdin=subprocess.DEVNULL,
                 stdout=subprocess.PIPE, stderr=log, timeout=300)
         (output / 'evaluator-stdout.log').write_bytes(result.stdout)
@@ -145,7 +149,6 @@ def evaluate_receipts(evaluator, task_inputs, receipts, output):
 
 
 if __name__ == '__main__':
-    sys.path.insert(0, str(ROOT))
     if sys.argv[1:2] == ['--worker'] and len(sys.argv) == 5 and sys.argv[4] in ('controls', 'result'):
         print(json.dumps(worker(Path(sys.argv[2]), Path(sys.argv[3]), controls=sys.argv[4] == 'controls'), sort_keys=True))
     else:

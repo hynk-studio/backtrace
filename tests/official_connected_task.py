@@ -69,6 +69,7 @@ class GeneratedTokens:
     """Deterministic content at the model boundary, without a reference answer."""
     def __init__(self, case):
         self.case, self.requests = case, []
+        self.failure = None
         self.root_calls, self.delegate_calls, self.exercised_tools = 0, 0, []
         self.node = None
         if case == 'tools':
@@ -89,6 +90,11 @@ class GeneratedTokens:
             elif isinstance(value, dict):
                 if value.get('status') == 'error':
                     raise AssertionError('actual official tool returned ' + str(value.get('error_type')))
+                if value.get('status') == 'ok':
+                    if 'query' in value and 'results' in value and value.get('count', 0) < 1:
+                        raise AssertionError('real embedding lookup returned no matching code')
+                    if 'node_count' in value and value['node_count'] < 1:
+                        raise AssertionError('real graph lookup did not contain the public probe node')
                 for item in value.values(): check(item)
             elif isinstance(value, list):
                 for item in value: check(item)
@@ -145,7 +151,14 @@ class GeneratedTokens:
         if self.case != 'tools' and not {'run_command', 'submit_patch'}.issubset(names):
             raise AssertionError('real official tool schemas were not sent')
         if self.case == 'tools':
-            message = self.tools_message(data)
+            try:
+                message = self.tools_message(data)
+            except AssertionError as error:
+                # A failed plumbing assertion is terminal. A synthetic HTTP
+                # 500 would trigger the official client's long retry ladder.
+                self.failure = str(error)
+                return ErrorResponse.model_validate({'error': {'message': self.failure,
+                    'type': 'BadRequestError', 'code': 400}})
         elif number == 1:
             command = ('python -c "from pathlib import Path; p=Path(\'README.md\'); '
                        'p.write_text(p.read_text()+\'\\nBacktrace CPU transport probe.\\n\'); '
@@ -206,6 +219,7 @@ def run_case(source, output, case):
         target = driver.WORK / folder
         target.mkdir(mode=0o700)
         os.chown(target, 65534, 65534)
+    generated = None
     try:
         for name in ('one_task.py', 'startup_guard.py', 'tools', 'docs'):
             src, dst = source / name, driver.CODE / name
@@ -296,15 +310,35 @@ def run_case(source, output, case):
                 pass
             else:
                 raise AssertionError('missing recovered result was accepted')
-        for name in ('task-result.json', 'wire.jsonl', 'agent.patch'):
-            if (driver.WORK / name).is_file():
-                shutil.copyfile(driver.WORK / name, output / name)
         return {'case': case, 'status': 'PASS', 'driver_exit': result.returncode,
                 'actual_model_http_requests': len(generated.requests), 'gpu_allocations': 0,
                 'exercised_tools': generated.exercised_tools,
                 'model_generation': 'SCRIPTED CPU CONTENT; NOT A MODEL RESULT'}
     finally:
-        shutil.rmtree(driver.ROOT)
+        primary, recovery_error = sys.exc_info()[1], None
+        try:
+            # Retain actual receipts even when an assertion or driver fails.
+            for name in ('task-result.json', 'wire.jsonl', 'agent.patch',
+                         'results/traces/trace_fastapi_11194.json'):
+                if (driver.WORK / name).is_file():
+                    target = output / name
+                    target.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+                    shutil.copyfile(driver.WORK / name, target)
+            if generated is not None:
+                (output / 'scripted-model-summary.json').write_text(json.dumps({
+                    'case': case, 'http_requests': len(generated.requests),
+                    'exercised_tools': generated.exercised_tools,
+                    'failure': generated.failure}, sort_keys=True) + '\n')
+        except Exception as error:
+            recovery_error = error
+        try:
+            shutil.rmtree(driver.ROOT)
+        except Exception as error:
+            recovery_error = recovery_error or error
+        if recovery_error is not None:
+            if primary is None:
+                raise recovery_error
+            primary.add_note('Separate CPU evidence/cleanup failure: ' + type(recovery_error).__name__)
 
 
 def main(source, output, evaluator):

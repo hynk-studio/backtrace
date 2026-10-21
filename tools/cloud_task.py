@@ -15,7 +15,7 @@ from tools.private_delivery import digest, parse_manifest, verify
 
 POLICY = 'prepaid10-actions-v1'
 SETUP, USEFUL, TOTAL = 5400, 6900, 7200
-CLOUD_DRIVER_SHA256 = 'd717495d7314171a72aa852fd29d3ff72dffc8be9fdcf72178d26537283235fd'
+CLOUD_DRIVER_SHA256 = '174bd6359c3e3f53e149a2ec5210cb220ab46ec41e1e9b34b6b0c915631c55b1'
 
 
 def preserve_finally(source, function):
@@ -67,6 +67,11 @@ def transform(data):
     result = legacy._replace(result,
         " env.update(OFFICIAL_ENV)\n return env\n",
         " env.update(OFFICIAL_ENV)\n env['PYTHONPATH']=str(CODE)\n return env\n")
+    # The official context accepts string directories and its graph loaders call
+    # str.endswith. Preserve the same pinned paths at that API boundary.
+    result = legacy._replace(result,
+        "graph_dir=ns['GRAPH_DIR'],embeddings_dir=ns['EMBEDDINGS_DIR']",
+        "graph_dir=str(ns['GRAPH_DIR']),embeddings_dir=str(ns['EMBEDDINGS_DIR'])")
     result = legacy._replace(result,
         " server=ns['server_instance'];assert not ns['adapters'].adapters\n",
         " server=ns['server_instance'];assert not ns['adapters'].adapters\n"
@@ -125,7 +130,8 @@ def prepare(source, output):
                    setup_seconds=SETUP, useful_seconds=USEFUL, total_seconds=TOTAL,
                    server_and_agent_ast_equal_to_legacy=False,
                    operational_changes=['narrow initialized-engine metadata middleware', 'shared real HTTP contract',
-                                        'model response receipts', 'task artifact validation'])
+                                        'model response receipts', 'task artifact validation',
+                                        'string paths at official graph context boundary'])
     receipt['files'] = {str(path.relative_to(output)): digest(path)
                         for path in sorted(output.rglob('*'))
                         if path.is_file() and path.name != 'prepare-receipt.json'}
