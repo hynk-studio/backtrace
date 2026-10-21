@@ -122,4 +122,34 @@ remain strict and unchanged. This neither recovers a claim nor retries paid
 creation. Five focused regressions pass. The real concurrent HTTP fixture now
 injects two older owner-heartbeat reads into its success scenario, in addition
 to the existing explicit branch conflicts and negative cleanup cases. Full
-free qualification of the correction is pending. No paid retry is authorized.
+free qualification of the correction passed as recorded below. No paid retry is authorized.
+
+## Completed free correction qualification
+
+Run 39565232280 / job 119105795753 / attempt 1 passed at source
+`8864490e7656d30dccc1740679c91d137bb6405f`. The renewed 52-file receipt binds
+report SHA256 `5b3ed1fe6c2918bae714b35dc3856cb7d78d16cc24208fe37b299a8d0ea81cba`.
+The concurrent actual owner/watcher/CPU-child success case received two older
+owner-heartbeat views and completed with one simulated provider create, two
+independent deletion reads, child reaping and blocked recreation. All four
+negative cleanup cases also passed. Provider behavior is simulated; the actual
+HTTP adapter and production controller loops execute. The same qualification
+also passed pinned-image offline installation and UID prerequisites, seven
+real-wrapper boundary cases and actual task-side construction. It allocated
+zero GPUs and started zero actual model servers or tasks.
+
+Actual Linux suite 39565232276 / job 119105795557 passed all 278 tests in
+28.346 seconds, CPU preflight READY. Local full discovery ran 278 with the
+same 12 foreign-procfs errors and two skips; it is not a local full pass.
+
+Post-cleanup read-only run 39565232302 / job 119105795597 observed zero Pods,
+zero spend/hour and AutoPay false. At 2026-10-21T07:54:12Z the balance was
+USD 8.5552962304, an observed debit of USD 0.1480184547 from the attempt's
+initial balance. Total observed debit from the original USD 10 wallet is
+USD 1.4447037696. This is not a final invoice.
+
+The generated cloud driver remains SHA256
+`67d1cc5c393b8b3c379058f65ab71e966cefb9ef21c4c36d11bca47ed9b48bf2`.
+All paid/watch heads and consumed records are preserved. The correction is
+free-qualified, but actual corrected model startup/inference/task execution
+remains NOT RUN. R0 is incomplete; no further paid attempt is authorized.

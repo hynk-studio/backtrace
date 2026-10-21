@@ -133,3 +133,10 @@ heartbeat was committed, but the original GET response was not retained.
 Only free diagnostics/correction remain in this consumed scope. The bounded
 mutable-heartbeat read confirmation change does not reset any claim or permit
 a new paid allocation. Preserve both 20261021b heads at ec58d2d6a8200a7cfb74185fce9ccc82dabaab81.
+
+Full free correction qualification 39565232280 at
+8864490e7656d30dccc1740679c91d137bb6405f passed with the renewed 52-file receipt,
+278 Linux tests, actual pinned image, seven wrapper boundaries and five
+concurrent controller cases including two older owner-heartbeat views. This
+qualifies the free correction only; the 160757 paid scope remains consumed and
+actual corrected model/task execution is NOT RUN. No automatic paid retry.

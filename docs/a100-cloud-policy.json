@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "prepaid10-actions-v1",
   "authorization": "owner-cloud-20261021-160757",
-  "status": "CONSUMED; POD DELETED; HEARTBEAT READBACK CORRECTION FREE QUALIFICATION PENDING; NO PAID RETRY",
+  "status": "CONSUMED; POD DELETED; HEARTBEAT READBACK CORRECTION FREE QUALIFIED; NO PAID RETRY",
   "authority": "The owner instructed '1,2,3번 순서대로 진행하자' after the three-stage plan: free inspection, correction and complete revalidation, then the actual GPU minimum smoke. This instruction is recorded at 2026-10-21T07:07:57Z (16:07:57 KST; record time, not an asserted message timestamp). It authorizes one further bounded attempt within the existing wallet/cumulative cap and unchanged scientific inputs. Preserve every prior consumed claim and actual paid/watch head. No automatic paid retry.",
   "controller": "GitHub-hosted free Linux CPU runner; no user Mac/Windows required",
   "wallet_credits_usd": "10.00",
@@ -23,7 +23,7 @@
     "An Actions runner is not durable storage; the fixed create-only claim is external",
     "An independent workflow is not a provider-enforced timer or a guaranteed dollar cap",
     "Synthetic cancellation tests are not a live paid cancellation trial",
-    "Scope owner-cloud-20261021-160757 is consumed in one US-MO-1 allocation at ec58d2d6a8200a7cfb74185fce9ccc82dabaab81. Owner 39563206076 stopped at publish_heartbeat with durable write not independently confirmed during runtime installation. Owner and watcher 39563149559 each confirmed deletion with two absence reads. Model transfer, server start and task execution did not run. The heartbeat value was actually committed; the original mismatching GET response is not retained. A bounded read-only confirmation correction for existing mutable heartbeats is under free qualification, without changing initial heartbeat, claim, Pod identity or provider-create behavior. This correction grants no paid retry."
+    "Scope owner-cloud-20261021-160757 is consumed in one US-MO-1 allocation at ec58d2d6a8200a7cfb74185fce9ccc82dabaab81. Owner 39563206076 stopped at publish_heartbeat with durable write not independently confirmed during runtime installation. Owner and watcher 39563149559 each confirmed deletion with two absence reads. Model transfer, server start and task execution did not run. The heartbeat value was actually committed; the original mismatching GET response is not retained. A bounded read-only confirmation correction for existing mutable heartbeats is under free qualification, without changing initial heartbeat, claim, Pod identity or provider-create behavior. This correction grants no paid retry. Full free correction qualification 39565232280 at 8864490e7656d30dccc1740679c91d137bb6405f passed: exact image and UID prerequisites, all seven wrapper boundaries, actual agent construction and all five concurrent controller cases, including two delayed owner-heartbeat views and blocked recreation. The renewed 52-file receipt binds report SHA256 5b3ed1fe6c2918bae714b35dc3856cb7d78d16cc24208fe37b299a8d0ea81cba. Linux full suite passed 278 tests. Corrected GPU/model/task execution remains NOT RUN, and the authorization remains consumed."
   ],
   "exclusions": [
     "training",
