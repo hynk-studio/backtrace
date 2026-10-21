@@ -161,5 +161,39 @@
       "model_execution": "NOT RUN",
       "task_execution": "NOT RUN"
     }
+  },
+  "correction_qualification": {
+    "source_sha": "b8b05264153a6f1eca8dc12a63203caa19066eba",
+    "run_id": 39549794781,
+    "run_attempt": 1,
+    "status": "PASS",
+    "report_sha256": "818ef2ce437e2e641580f9c6aa61011ee98d22d62ee7e72428c5fa38af226451",
+    "bound_files": 52,
+    "cpu_run_id": 39549794857,
+    "cpu_tests": 273,
+    "cpu_seconds": 26.641,
+    "actual_driver_regression": {
+      "actual_private_driver_sha256": "e041e336f409e3d5c63faee529a0c9ad2c9d42f496918785b9b2c2c686788ccb",
+      "policy": "prepaid10-actions-v1",
+      "candidate_sha256": "2e24495826cb971053439a00d9ad8350471fc0efffa41a54b82082feedaa7358",
+      "actual_wrapper": "adk-submission 0.2.11",
+      "requested_dtype": "bfloat16",
+      "tp": 1,
+      "guard_constructed": true,
+      "hardware": "INJECTED",
+      "server_start": "NOT RUN",
+      "actual_event_writer": "PASS",
+      "hardware_name_preserved": true,
+      "task_execution": "NOT RUN",
+      "denied_execution_attempts": [],
+      "private_log_sha256": "5817d66b1576a34fc7520551f745330fc8ab482847f939a9ac52af4630ea6c96"
+    },
+    "pinned_image": "PASS",
+    "concurrent_cases": 5,
+    "gpu_allocations": 0,
+    "server_starts": 0,
+    "task_executions": 0,
+    "public_artifact_id": 12323507482,
+    "private_artifact_id": 12323652096
   }
 }
