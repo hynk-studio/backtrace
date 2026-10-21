@@ -102,3 +102,13 @@ never enter agent inputs. Split synthetic tasks by underlying world/problem
 family. Never use hidden evaluation cases or leaderboard feedback as labels.
 Do not invent calibrated probabilities for real repository diagnoses. Keep
 synthetic competence separate from software-engineering transfer.
+
+The 2026-10-21 daytime resumption consumed `owner-cloud-20261021-003938` in
+attempt `00849e0b667e4b87ade08050ab172405`, Pod `so5pvfqgxxs4pp`.
+Owner 39540891710 entered workload after setup, then exited 1. Owner and watcher
+39540838731 independently confirmed deletion; read-only account verification
+found zero Pods and zero current spend/hour. Read
+`docs/a100-execution-20261021.md` and its evidence JSON. The private workload
+cause remains unverified because the local analysis execution service disconnected.
+Only unpaid evidence inspection and correction remain within this consumed scope.
+Preserve the actual paid/watch heads and immutable state; no automatic paid retry.

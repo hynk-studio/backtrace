@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "prepaid10-actions-v1",
   "authorization": "owner-cloud-20261021-003938",
-  "status": "FREE QUALIFIED; UNCLAIMED; CONDITIONAL ONE-ATTEMPT MONITORING CONFIGURED",
+  "status": "CONSUMED; POD DELETED; R0 INCOMPLETE; PRIVATE DIAGNOSIS PENDING",
   "authority": "At 2026-10-21 00:36:16 KST the owner reported re-enabling Monitoring. After being told that the existing automation still referenced a consumed attempt and needed the latest qualified preparation plus a new execution record, the owner instructed at 00:39:38 KST: '수정해 줘'. Apply that correction to the conditional one-attempt R0 resumption under the existing wallet, cumulative USD 8 stop and unchanged allocation-inclusive limits. Preserve every consumed claim and old paid/watch branch; this does not authorize repeated paid retries.",
   "controller": "GitHub-hosted free Linux CPU runner; no user Mac/Windows required",
   "wallet_credits_usd": "10.00",
@@ -16,14 +16,14 @@
   "useful_seconds": 6900,
   "request_to_confirmed_deletion_seconds": 7200,
   "automatic_paid_retry": false,
-  "previous_allocated_attempt": "280db614d5b14e9abcc75dbcf4ce688c / Pod 1h29jip02mmaf4; d314b1bf207147c3a92259b80caba0fe / Pod oaqns8gv9avo2p; both consumed and independently confirmed deleted; 0de2835ad98d4f258476d4ee81f43d84 / Pod p70xyu9hqatdxf; consumed and independently confirmed deleted; 5b37996b581a412094ae8033ee4e0ce3 / Pod 17c9n3lugb7qcs; consumed and independently confirmed deleted",
+  "previous_allocated_attempt": "280db614d5b14e9abcc75dbcf4ce688c / Pod 1h29jip02mmaf4; d314b1bf207147c3a92259b80caba0fe / Pod oaqns8gv9avo2p; both consumed and independently confirmed deleted; 0de2835ad98d4f258476d4ee81f43d84 / Pod p70xyu9hqatdxf; consumed and independently confirmed deleted; 5b37996b581a412094ae8033ee4e0ce3 / Pod 17c9n3lugb7qcs; consumed and independently confirmed deleted; 00849e0b667e4b87ade08050ab172405 / Pod so5pvfqgxxs4pp; current scope consumed and independently confirmed deleted; workload exited 1",
   "unchanged": "A100 PCIe 80GB x1 Secure, frozen model v2, TP1 native BF16, exact runtime/task/candidate/prompts/inference budget, no persistent or network volume",
   "credentials": "GitHub and RunPod account credentials remain on controller runners. The Pod may receive only scoped short-lived input download URLs before dropping to the workload UID. New credential access needs the browser's action-time confirmation.",
   "claims_not_made": [
     "An Actions runner is not durable storage; the fixed create-only claim is external",
     "An independent workflow is not a provider-enforced timer or a guaranteed dollar cap",
     "Synthetic cancellation tests are not a live paid cancellation trial",
-    "Four earlier allocated attempts are consumed and independently deleted. The latest prior live StateError remains unexplained. Renewed free run 39451054526 at ab9b0e878b8175e5aefcbd19f62da0a6b30ae2a7 passed the exact pinned image, actual CPU prerequisites and five concurrent controller scenarios for owner-cloud-20261021-003938. It initialized no GPU and executed no model/task. The new conditional resumption still requires successful exact-source CPU/free preparation and a fresh independent watcher before the only permitted create."
+    "The current owner-cloud-20261021-003938 allocation is consumed. Source 6b7a861f286a2e68b169ccb9c4c1fb99c9ead756 passed 273 CPU tests and free preparation after full 52-file qualification run 39538574345. Owner 39540891710 allocated exactly one Pod, entered workload, then exited 1. Owner and watcher independently confirmed deletion; subsequent complete account reads found zero Pods and zero current spend/hour. Server readiness, model inference, R0 completion and the underlying workload failure remain unverified pending private-evidence decryption. No paid retry is authorized by this consumed claim."
   ],
   "exclusions": [
     "training",
