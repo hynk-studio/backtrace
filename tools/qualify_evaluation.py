@@ -118,6 +118,8 @@ def worker(root, task_inputs, *, controls=True):
         actual_exec, receipts = manager.exec, []
         def observed_exec(sandbox_id, command, *, timeout=None):
             outcome = actual_exec(sandbox_id, command, timeout=timeout)
+            if ' -m pytest ' not in command or '--junitxml=' not in command:
+                return outcome
             paths = [arg.split('=', 1)[1] for arg in shlex.split(command)
                      if arg.startswith('--junitxml=')]
             if paths:
