@@ -30,6 +30,10 @@ class StateError(RuntimeError):
     pass
 
 
+class StateConflictError(StateError):
+    """An explicit HTTP 409 rejection, not an ambiguous write acknowledgement."""
+
+
 def encoded(value):
     return (json.dumps(value, sort_keys=True, separators=(',', ':')) + '\n').encode()
 
@@ -127,6 +131,8 @@ class GitHubState:
         except urllib.error.HTTPError as error:
             if missing and error.code == 404:
                 return None
+            if error.code == 409:
+                raise StateConflictError('durable-state HTTP 409') from None
             raise StateError('durable-state HTTP ' + str(error.code)) from None
         except (OSError, TimeoutError, ValueError):
             raise StateError('durable-state transport or JSON failure') from None
@@ -160,8 +166,22 @@ class GitHubState:
                 'content': base64.b64encode(data).decode()}
         if previous_sha is not None:
             body['sha'] = previous_sha
-        # Never retry PUT. A timeout means unknown completion, not permission to create.
-        self.request('PUT', '/contents/' + DIRECTORY + '/' + name + '.json', body)
+        # Different files still share a Git branch head. An unrelated lease
+        # commit can explicitly reject this PUT with 409. Retry only that
+        # rejection, with the identical body and unchanged file-level CAS.
+        # Timeouts, 5xx and lost acknowledgements are never write-retried.
+        for attempt in range(3):
+            try:
+                self.request('PUT', '/contents/' + DIRECTORY + '/' + name + '.json', body)
+                break
+            except StateConflictError:
+                if attempt == 2:
+                    raise
+                current = self.read(name)
+                current_sha = current[1] if current is not None else None
+                if current_sha != previous_sha:
+                    raise
+                time.sleep(.25 * (attempt + 1))
         check = self.read(name)
         if check is None or encoded(check[0]) != data:
             raise StateError('durable write not independently confirmed')

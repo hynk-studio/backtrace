@@ -34,6 +34,7 @@ class Backend:
         self.scenario = scenario
         self.requests = self.heartbeat_writes = 0
         self.fault_sent = False
+        self.conflict_documents = set()
 
     def request(self, method, path, body):
         with self.lock:
@@ -48,6 +49,12 @@ class Backend:
             if name not in state.DOCUMENTS:
                 return 404, {}
             if method == 'PUT':
+                # Model rejection from a concurrent commit to another file on
+                # the shared state branch, without changing this file's CAS.
+                if (self.scenario == 'success' and name in ('claim', 'heartbeat')
+                        and name not in self.conflict_documents):
+                    self.conflict_documents.add(name)
+                    return 409, {}
                 if name == 'heartbeat':
                     self.heartbeat_writes += 1
                     if (self.scenario == 'state_http_failure' and self.heartbeat_writes == 3):
@@ -181,6 +188,7 @@ def scenario(name):
             if name == 'success':
                 assert float((root / 'child-finished').read_text()) <= api.deleted_at
                 assert backend.heartbeat_writes >= 5, 'healthy concurrent polling was not exercised'
+                assert backend.conflict_documents == {'claim', 'heartbeat'}
             if name == 'state_http_failure':
                 assert backend.fault_sent and result['failure']['http_status'] == 503
                 assert result['failure']['stage'] == 'publish_heartbeat'
@@ -192,6 +200,7 @@ def scenario(name):
             return {'scenario': name, 'status': 'PASS', 'owner': result['status'],
                     'watcher': watcher_result['phase'], 'loopback_http_requests': backend.requests,
                     'elapsed_seconds': round(time.monotonic() - started, 2),
+                    'explicit_branch_conflicts': len(backend.conflict_documents),
                     'child_reaped': True, 'recreate_blocked': True}
     finally:
         if process is not None:

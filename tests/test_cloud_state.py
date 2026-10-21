@@ -4,6 +4,7 @@ import hashlib
 import io
 import json
 import unittest
+import urllib.error
 from unittest.mock import patch
 
 from tools import cloud_state as state
@@ -312,6 +313,93 @@ class CloudStateTests(unittest.TestCase):
         self.assertEqual(store.write('claim', claim), 'f' * 40)
         self.assertEqual([r.method for r in requests], ['PUT', 'GET'])
         with self.assertRaises(ValueError): store.write('claim', claim, previous_sha='f' * 40)
+
+    def github_conflict_fixture(self, value, *, previous=None, changed=None,
+                                status=409, conflicts=1, lost_ack=False):
+        calls, documents = [], {}
+        if previous is not None:
+            documents['value'] = previous
+        class Response(io.BytesIO):
+            status = 200
+        def open_request(request, timeout):
+            calls.append(request)
+            if request.method == 'PUT':
+                count = sum(r.method == 'PUT' for r in calls)
+                if count <= conflicts:
+                    if changed is not None:
+                        documents['value'] = changed
+                    if lost_ack:
+                        documents['value'] = (value, 'f' * 40)
+                        raise TimeoutError('lost acknowledgement')
+                    raise urllib.error.HTTPError(request.full_url, status, 'fixture', {}, None)
+                documents['value'] = (value, 'f' * 40)
+                return Response(b'{}')
+            current = documents.get('value')
+            if current is None:
+                raise urllib.error.HTTPError(request.full_url, 404, 'absent', {}, None)
+            body, sha = current
+            return Response(json.dumps({'type': 'file', 'encoding': 'base64', 'sha': sha,
+                'content': base64.b64encode(state.encoded(body)).decode()}).encode())
+        return state.GitHubState('TEST-ONLY-TOKEN', opener=open_request), calls, documents
+
+    def test_explicit_branch_conflict_retries_identical_create_only_claim(self):
+        claim, _ = self.claim()
+        store, calls, docs = self.github_conflict_fixture(claim)
+        with patch.object(state.time, 'sleep'):
+            self.assertEqual(store.write('claim', claim), 'f' * 40)
+        puts = [r for r in calls if r.method == 'PUT']
+        self.assertEqual(len(puts), 2)
+        self.assertEqual(puts[0].data, puts[1].data)
+        self.assertNotIn('sha', json.loads(puts[1].data))
+        self.assertEqual(docs['value'][0], claim)
+
+    def test_conflicting_claim_that_already_exists_never_gets_second_put(self):
+        claim, _ = self.claim()
+        store, calls, _ = self.github_conflict_fixture(claim, changed=(claim, 'e' * 40))
+        with self.assertRaises(state.StateConflictError):
+            store.write('claim', claim)
+        self.assertEqual(sum(r.method == 'PUT' for r in calls), 1)
+
+    def test_mutable_conflict_preserves_original_cas_and_refuses_changed_file(self):
+        prior = ({'run_id': '2', 'source_sha': SOURCE, 'at': T0}, 'a' * 40)
+        value = dict(prior[0], at=T0 + 1)
+        for changed in (None, (dict(value, run_id='3'), 'b' * 40)):
+            with self.subTest(changed=changed):
+                store, calls, _ = self.github_conflict_fixture(value, previous=prior, changed=changed)
+                with patch.object(state.time, 'sleep'):
+                    if changed:
+                        with self.assertRaises(state.StateConflictError):
+                            store.write('watcher', value, previous_sha=prior[1])
+                    else:
+                        self.assertEqual(store.write('watcher', value, previous_sha=prior[1]), 'f' * 40)
+                puts = [r for r in calls if r.method == 'PUT']
+                self.assertEqual(len(puts), 1 if changed else 2)
+                self.assertTrue(all(json.loads(r.data)['sha'] == prior[1] for r in puts))
+
+    def test_conflict_retry_is_bounded_and_does_not_create_claim(self):
+        claim, _ = self.claim()
+        store, calls, docs = self.github_conflict_fixture(claim, conflicts=10)
+        with patch.object(state.time, 'sleep'), self.assertRaises(state.StateConflictError):
+            store.write('claim', claim)
+        self.assertEqual(sum(r.method == 'PUT' for r in calls), 3)
+        self.assertFalse(docs)
+
+    def test_ambiguous_or_other_http_errors_never_retry_claim_put(self):
+        claim, _ = self.claim()
+        for kwargs in ({'lost_ack': True}, {'status': 503}, {'status': 403}, {'status': 422}):
+            with self.subTest(kwargs=kwargs):
+                store, calls, _ = self.github_conflict_fixture(claim, **kwargs)
+                with self.assertRaises(state.StateError):
+                    store.write('claim', claim)
+                self.assertEqual(sum(r.method == 'PUT' for r in calls), 1)
+
+    def test_conflict_followed_by_unreadable_state_does_not_retry_put(self):
+        claim, _ = self.claim()
+        store, calls, _ = self.github_conflict_fixture(claim)
+        with patch.object(store, 'read', side_effect=state.StateError('unobservable')):
+            with self.assertRaisesRegex(state.StateError, 'unobservable'):
+                store.write('claim', claim)
+        self.assertEqual(sum(r.method == 'PUT' for r in calls), 1)
 
 
 if __name__ == '__main__':
