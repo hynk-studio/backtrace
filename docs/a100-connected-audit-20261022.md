@@ -78,3 +78,24 @@ fixture also emitted serialization warnings. Enabling that developer endpoint
 was reconsidered: it is no longer a mandatory production request. The narrow
 engine-state middleware replaces this avoidable dependency. This run did not
 qualify the connected task or image. Linux run 39679368961 passed separately.
+
+Consolidated run 39681137641 at
+`48effc94d10bb6685a861c29d5fc52a1e84d018d` passed actual installed-vLLM HTTP
+controls, original inputs, actual UID/sandbox prerequisites and all five
+concurrent owner/watcher cases. Connected task and pinned-image checks failed.
+The final unprivileged evidence collector then hit PermissionError while
+traversing root-owned private outputs; original task-error logs were not
+exported. The public stage observations survive, but the underlying task/image
+causes remain unaudited for this run. It is not qualification.
+
+The replacement collector reads private logs as root and exports only encrypted
+bytes to the ordinary controller. It preserves the complete stage report if
+export fails and can export an early encrypted host checkpoint before waiting
+for image/controller checks. An actual different-UID ciphertext/plaintext access
+test is required before installing the large runtime. The local managed executor
+cannot map UID 65533 (chown returns EINVAL), so that check requires free Linux CI.
+
+An additional scripted scenario exercises all declared workspace/graph tools
+and the unchanged code-analyzer AgentTool, within the same 10-tool/50-turn
+budget. It uses public graph identifiers and neutral file edits, not reference
+answers. That extended scenario is still awaiting execution at this checkpoint.

@@ -56,7 +56,7 @@ def qualify():
     probes.run('connected_task_path', lambda: connected_task(source, Path('/result/connected-task'),
         Path('/inputs/evaluator/tasks.jsonl')))
     report.update(status=probes.status, failed_stages=probes.failed,
-                  gpu_initialization='NOT RUN', server_starts=0, task_executions=0)
+                  gpu_initialization='NOT RUN', gpu_model_server_starts=0, gpu_model_task_executions=0)
     return report
 
 

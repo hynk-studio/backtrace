@@ -4,8 +4,12 @@ This is a free read-only input acquisition, not runtime qualification. The only
 published output is encrypted to the existing owner result recipient.
 """
 import hashlib
+import contextlib
+import io
 import json
+import logging
 from pathlib import Path
+import sys
 
 from tools import cloud_resolver as resolver, cloud_seal
 from tools.a100_delivery import ROOT
@@ -51,10 +55,19 @@ def main():
          hashlib.sha256(evaluator_manifest).hexdigest(), 60)
     files['evaluator/tasks.jsonl'] = root / 'evaluator/tasks.jsonl'
     receipt = cloud_seal.seal(files, ROOT / 'evidence/audit-sources.age', limit=16 * 1024**2)
-    print(json.dumps({'status': 'PASS', 'purpose': 'private primary-source audit only',
+    return {'status': 'PASS', 'purpose': 'private primary-source audit only',
                       'wheels_verified': len(rows), 'package_code_executed': False,
-                      'gpu_allocations': 0, 'private_evidence': receipt}, sort_keys=True))
+                      'gpu_allocations': 0, 'private_evidence': receipt}
 
 
 if __name__ == '__main__':
-    main()
+    # SDK/request exceptions can contain private signed download URLs. Publish
+    # only the same projected fields as the full free qualification workflow.
+    logging.disable(logging.CRITICAL)
+    with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+        try:
+            result = main()
+        except Exception as error:
+            result = {'status': 'FAIL', 'error_type': type(error).__name__, 'gpu_allocations': 0}
+    print(json.dumps(result, sort_keys=True))
+    raise SystemExit(0 if result['status'] == 'PASS' else 1)

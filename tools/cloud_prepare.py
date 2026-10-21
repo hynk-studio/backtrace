@@ -1,5 +1,6 @@
 """Free Actions input/runtime qualification. There is no provider allocation path."""
 import contextlib
+import base64
 import hashlib
 import io
 import json
@@ -17,13 +18,15 @@ from tools.direct_delivery import pull, DownloadError
 from tools.runpod_job import private_json
 from tools import cloud_reference, cloud_state, cloud_image, pod_system, qualify_api
 from tools.probe_results import ProbeResults
+from tools import qualification_evidence
 
 
 def qualify(root, emit):
     root = Path(root).absolute(); root.mkdir(mode=0o700, parents=True)
     if shutil.disk_usage(root).free < 45 * 1024**3:
         raise ValueError('free CPU disk space below 45 GiB for host and pinned image')
-    report = {'gpu_allocations': 0, 'server_starts': 0, 'task_executions': 0, 'stages': {}}
+    report = {'gpu_allocations': 0, 'gpu_model_server_starts': 0, 'gpu_model_task_executions': 0,
+              'scripted_cpu_checks': 'reported separately per stage', 'stages': {}}
     probes = ProbeResults(report['stages'])
     stage = 'private_source'
     try:
@@ -43,6 +46,16 @@ def qualify(root, emit):
                 env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
         report['stages'][stage] = json.loads(result.stdout)
         emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
+        stage = 'private_evidence_permissions'
+        import pyrage
+        sites = str(Path(pyrage.__file__).resolve().parent.parent)
+        with (root / 'evidence-permissions.log').open('xb') as log:
+            result = subprocess.run(['sudo', sys.executable, '-I',
+                str(frozen.ROOT / 'tests/official_private_evidence.py'), sites],
+                env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'},
+                stdout=subprocess.PIPE, stderr=log, check=True, timeout=60)
+        report['stages'][stage] = json.loads(result.stdout)
+        emit({'stage': stage, **report['stages'][stage]})
         stage = 'private_source'
         with resolver.kaggle_client() as client:
             source = resolver.get_source(client)
@@ -184,12 +197,27 @@ def qualify(root, emit):
         if result is not None:
             report['stages'][stage] = json.loads(result.stdout)
         emit({'stage': stage, **report['stages'][stage]})
+        if probes.failed:
+            # Do not wait for a second image installation to expose the host's
+            # first failure. Only bounded owner-encrypted diagnostics leave here.
+            try:
+                output = root / 'host-failure.age'
+                checkpoint = qualification_evidence.privileged(root, output, early=True)
+                encoded = base64.b64encode(output.read_bytes())
+                path = prefix + '/host-diagnostic.age.b64'
+                transfer.request('PUT', '/contents/' + path, {'branch': cloud_state.BRANCH,
+                    'message': 'Preserve owner-encrypted free host diagnostics',
+                    'content': base64.b64encode(encoded).decode()})
+                report['early_private_diagnostic'] = dict(checkpoint, path=path)
+                emit({'stage': 'host_failure_evidence', 'status': 'SEALED', 'path': path, **checkpoint})
+            except Exception as error:
+                report['early_private_diagnostic'] = {'status': 'FAILED', 'error_type': type(error).__name__}
         stage = 'pinned_image_cpu'
         with (root / 'pinned-image.log').open('xb') as log:
             probes.run(stage, lambda: cloud_image.qualify(root, log))
         emit({'stage': stage, 'status': report['stages'][stage].get('status', 'PASS'),
               'image': report['stages'][stage].get('image'),
-              'gpu_allocations': 0, 'server_starts': 0, 'task_executions': 0})
+              'gpu_allocations': 0, 'gpu_model_server_starts': 0, 'gpu_model_task_executions': 0})
         stage = 'concurrent_controller'
         with (root / 'concurrent-controller.log').open('xb') as log:
             result = probes.run(stage, lambda: subprocess.run(['sudo', sys.executable, '-I',
@@ -214,28 +242,12 @@ def qualify(root, emit):
                 'resolve the final storage URL on the owner host', 'bounded storage retries exhausted',
                 'invalid encoded input', 'unexpected HTTP content encoding', 'download deadline reached'}:
             report['failure']['reason'] = str(error)
-    private = {}
-    for name in ('retained-source.ipynb', 'offline-runtime.log', 'official-cloud-driver.log', 'cpu-task-layout.log',
-                 'actual-cpu-prerequisites.log', 'cuda-runtime.log', 'transport-loopback.log', 'transport/build.log',
-                 'pinned-image.log', 'concurrent-controller.log', 'actual-api-http.log', 'connected-task.log'):
-        path = root / name
-        if path.is_file():
-            private[name] = path
-    for path in sorted((root / 'connected-task').rglob('*')):
-        if path.is_file():
-            private['connected-task/' + path.relative_to(root / 'connected-task').as_posix()] = path
-    image_log = root / 'image-result/api-http.log'
-    if image_log.is_file():
-        private['image-api-http.log'] = image_log
-    image_report = root / 'image-result/image.json'
-    if image_report.is_file():
-        private['image-report.json'] = image_report
-    for path in sorted((root / 'image-result/connected-task').rglob('*')):
-        if path.is_file():
-            private['image-connected-task/' + path.relative_to(root / 'image-result/connected-task').as_posix()] = path
-    if private:
-        report['private_evidence'] = cloud_seal.seal(private,
-            frozen.ROOT / 'evidence/cloud-private.age', limit=16 * 1024**2)
+    try:
+        report['private_evidence'] = qualification_evidence.privileged(root,
+            frozen.ROOT / 'evidence/cloud-private.age')
+    except Exception as error:
+        # Keep the complete stage report even if encrypted export fails.
+        report.update(status='FAIL', evidence_failure=failure(error))
     return report
 
 

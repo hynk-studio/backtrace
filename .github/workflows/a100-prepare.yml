@@ -14,6 +14,8 @@ on:
       - 'tools/qualify_evaluation.py'
       - 'tools/probe_results.py'
       - 'tools/runtime_config.py'
+      - 'tools/qualification_evidence.py'
+      - 'tests/official_private_evidence.py'
       - 'tools/cloud_task.py'
       - 'tests/official_connected_task.py'
       - 'docs/a100-api-runtime-amendment.json'
