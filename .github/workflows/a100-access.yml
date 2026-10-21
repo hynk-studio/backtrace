@@ -1,5 +1,5 @@
 name: A100 read-only credential check
-# Refresh account, absence and stock for the owner-directed final 20261021c attempt.
+# Verify account balance and absence after the consumed final 20261021c attempt.
 
 on:
   push:

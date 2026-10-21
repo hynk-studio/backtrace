@@ -159,3 +159,15 @@ Final-attempt free qualification 39584773912 at
 five concurrent controller cases. The new 192529 scope is still unused at this
 receipt commit; require final exact-source CPU/preparation and a fresh matching
 watcher before its single paid entry. GPU/model/task execution is NOT RUN here.
+
+That final scope is now consumed in attempt `4c2e9bc867bc4f3aac9fac1c36c8e5d3`,
+Pod `wggriyrf6yb8ww`, CA-MTL-3. Preserve both actual 20261021c heads at
+`5aea23d2456233414c74f3346f1163acd0779fa2`. Owner 39587471913 and independent
+watcher 39587415214 each confirmed deletion. Hardware, model loading and CUDA
+graph capture passed; HTTP readiness failed with 981 health-route HTTP 500s
+from the FastAPI/instrumentation routing interaction. No inference, public task
+or evaluation ran. Read `docs/a100-final-smoke-20261021.md` and its evidence
+JSON. Stop paid retries. Reconsider actual HTTP-path coverage, runtime pins,
+fail-fast diagnostics and live progress before proposing any further paid work.
+A secondary inner process-group cleanup exception masked the primary readiness
+failure; outer worker cleanup and independent Pod deletion succeeded.
