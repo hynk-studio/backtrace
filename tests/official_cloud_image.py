@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import shutil
+import subprocess
 import sys
 import time
 
@@ -13,7 +14,6 @@ sys.path.insert(0, str(ROOT))
 from tools import a100_delivery as frozen, cloud_task, pod_bootstrap, pod_preflight, pod_system, qualify_api
 from tools.private_delivery import emit, receive
 from tests.official_cloud_prerequisites import qualify as prerequisites
-from tests.official_connected_task import main as connected_task
 from tools.probe_results import ProbeResults
 
 
@@ -53,8 +53,15 @@ def qualify():
     shutil.copytree(task, target); (target / 'delivery-manifest.json').unlink()
     pod_bootstrap.readonly(target)
     probes.run('actual_cpu_prerequisites', lambda: prerequisites(source, staged=True, host=report['host']))
-    probes.run('connected_task_path', lambda: connected_task(source, Path('/result/connected-task'),
-        Path('/inputs/evaluator/tasks.jsonl')))
+    def connected_task():
+        # This parent deliberately bootstraps with the base system Python.
+        # The task and evaluator must use the installed, qualified runtime.
+        result = subprocess.run(['/opt/backtrace-runtime/venv/bin/python', '-I',
+            str(ROOT / 'tests/official_connected_task.py'), str(source),
+            '/result/connected-task', '/inputs/evaluator/tasks.jsonl'],
+            stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, check=True, timeout=900)
+        return json.loads(result.stdout.splitlines()[-1])
+    probes.run('connected_task_path', connected_task)
     report.update(status=probes.status, failed_stages=probes.failed,
                   gpu_initialization='NOT RUN', gpu_model_server_starts=0, gpu_model_task_executions=0)
     return report

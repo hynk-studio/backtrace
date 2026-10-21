@@ -128,3 +128,14 @@ Meta-assessment: this expanded check found a real production graph-API mismatch
 after the narrower shell/submit check passed. That is useful evidence of
 failure prevention. It is not evidence of Gemma generation/parser compatibility,
 a correct solution, or permission to repeat a paid allocation.
+
+The final encrypted export for 39684433596 succeeded (36 private files;
+ciphertext SHA-256
+`68a8fbc3148cca31c965739cb042cc71e3b1544f8bfb11fbc598003edbb746cd`).
+All five independent concurrent controller cases passed. The image's connected
+test used the bootstrap system Python instead of its installed runtime, so its
+children could not import uvicorn/adk_submission. This is a qualification-runner
+defect, not observed failure of the production runtime; image runtime and actual
+UID prerequisites passed separately. The image now enters the whole connected
+test through `/opt/backtrace-runtime/venv/bin/python`, as the host does. This
+additional correction also needs a fresh complete qualification.
