@@ -25,7 +25,8 @@ def collect(root, output, *, early=False):
     for tree in trees:
         for path in sorted((root / tree).rglob('*')):
             if path.is_file() and (not early or path.name in ('execution.log', 'connected-summary.json',
-                    'evaluation.json', 'evaluator.log', 'test-output.txt', 'scripted-model-summary.json')):
+                    'evaluation.json', 'evaluator.log', 'test-output.txt', 'test-results.xml',
+                    'scripted-model-summary.json')):
                 files[path.relative_to(root).as_posix()] = path
     if not files:
         return None

@@ -19,6 +19,7 @@ There is no new paid authorization, start/watch branch, or provider create here.
 | A first free probe failure concealed unrelated later checks | Collect independent post-prerequisite probe failures, on host and pinned image | Later checks execute after an earlier failure; overall status remains FAIL |
 | Actual graph loader calls `endswith` on directories, but the driver passed `Path` | Convert the same pinned graph/embedding paths to strings at the official context boundary | Execute search, neighbors and subgraph tools in the actual task |
 | Isolated evaluator UID could not traverse the source checkout | Copy the qualified verifier worker into its private UID-owned staging directory | Actual public-test negative and positive controls under UID 65533 |
+| Missing pytest exits 1, which could be mistaken for an unresolved model patch | Install hash-pinned evaluator-only dependencies and require actual JUnit tests with a consistent outcome | Missing receipt, collection errors, skipped-only runs and contradictory counts are rejected |
 
 ## What this check can and cannot prevent
 
@@ -139,3 +140,29 @@ defect, not observed failure of the production runtime; image runtime and actual
 UID prerequisites passed separately. The image now enters the whole connected
 test through `/opt/backtrace-runtime/venv/bin/python`, as the host does. This
 additional correction also needs a fresh complete qualification.
+
+Run 39687329560 at `c29dd27a474cd860510c0e9eda721e759f0fb9e2`
+passed every host connected-driver case, including all declared workspace/graph
+tools and code-analyzer delegation (13 actual chat HTTP requests). Actual basic
+task/recovery and both missing-route/model-error controls passed as well. The
+evaluator worker now ran under its separate UID, but both controls exited 1
+because pytest was absent. The positive control correctly prevented this from
+being reported as successful evaluation; overall qualification remains FAIL.
+
+The new evaluator-only closure pins pytest 8.3.5, iniconfig 2.1.0 and pluggy 1.5.0
+to wheel hashes and sizes observed from official PyPI release metadata on
+2026-10-21. Its private wheels and site-packages never enter the model/agent
+runtime or task manifest. Verification also observes the real JUnit file before
+official sandbox teardown: missing/errored/skipped-only tests cannot become an
+unresolved model score, even when the process exits 1. Both public control
+results still come from the unchanged official verifier and actual test patch.
+The exact three wheels were acquired locally with manifest/hash verification;
+an offline target installation ran real pytest 8.3.5 and produced valid JUnit
+for one deliberate assertion failure and one passing selection. This is a
+dependency/receipt smoke, not yet the selected public-task control result.
+
+The latest local discovery additionally observed a TLS rejection arriving as a
+TCP reset rather than an SSLError. The negative control now accepts that exact
+rejection form while still requiring that no executable was written and the
+authenticated owner can subsequently complete delivery. The known local procfs
+limitations remain; this is not a complete local pass.

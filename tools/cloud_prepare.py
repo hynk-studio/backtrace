@@ -137,6 +137,14 @@ def qualify(root, emit):
             hashlib.sha256(evaluator_manifest).hexdigest(), 120)
         # This root-private tree is not included in the task/driver manifests.
         emit({'stage': stage, 'status': 'PASS', 'agent_access': False})
+        stage = 'cpu_evaluator_dependencies'
+        rows = json.loads((frozen.ROOT / 'docs/a100-evaluator-dependencies.json').read_text())['files']
+        data = json.dumps({'schema_version': 1, 'phase': 'bootstrap', 'files': [
+            {k: row[k] for k in ('path', 'bytes', 'sha256')} for row in rows]}).encode()
+        sources = {row['path']: resolver.pypi_source(row) for row in rows}
+        report['stages'][stage] = pull(root / 'evaluator/wheels', data, sources,
+            hashlib.sha256(data).hexdigest(), 120)
+        emit({'stage': stage, 'status': 'PASS', 'verified_files': len(rows), 'agent_access': False})
         stage = 'restore_cpu_inputs'
         report['stages'][stage] = resolver.restore_cpu_inputs(source, frozen.ROOT, root / 'wheels', root / 'task', root / 'official')
         prepared = cloud_task.prepare(frozen.ROOT / '.local/smoke/no-custom-ar/one_task.py', root / 'driver')

@@ -118,7 +118,8 @@ class BootstrapTests(unittest.TestCase):
         ctx.minimum_version = ssl.TLSVersion.TLSv1_3
         ctx.load_verify_locations(cafile=self.owner / 'server.crt')
         with socket.create_connection(('127.0.0.1', port), timeout=5) as raw:
-            with self.assertRaises(ssl.SSLError):
+            # The TLS alert may arrive as an SSL exception or a TCP reset.
+            with self.assertRaises((ssl.SSLError, ConnectionResetError)):
                 with ctx.wrap_socket(raw, server_hostname='backtrace-bootstrap') as conn:
                     conn.sendall(b'not an authorized executable'); conn.recv(1)
         self.assertFalse((target / 'dropbear').exists())

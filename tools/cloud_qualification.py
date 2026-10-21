@@ -22,6 +22,7 @@ PATHS = tuple(sorted(set(
        'docs/a100-api-runtime-amendment.json', 'docs/api-http-minimal.lock',
        '.github/workflows/a100-cpu.yml', 'tests/test_api_readiness.py', 'tests/official_connected_task.py',
        'tests/test_task_results.py', 'tests/official_private_evidence.py',
+       'docs/a100-evaluator-dependencies.json', 'tests/test_evaluation.py',
        'docs/cloud-controller-requirements.txt', '.github/workflows/a100-prepare.yml'])))
 
 
