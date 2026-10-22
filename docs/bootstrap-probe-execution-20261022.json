@@ -83,9 +83,326 @@
         },
         "status": "NO_QUALIFIED_STOCK"
       }
+    },
+    {
+      "run_id": 39743403014,
+      "job_id": 119705887084,
+      "source_sha": "f7cb1164e06586486254ce193e30201e12e5c424",
+      "result": {
+        "allocation_requests": 1,
+        "authorization": "owner-bootstrap-probe-20261022",
+        "availability": {
+          "account": {
+            "auto_pay": false,
+            "credit_balance": "7.2408300035",
+            "current_spend_per_hour": "0"
+          },
+          "allocation_requests": 0,
+          "costs": {
+            "compute_per_hour": "1.79",
+            "hourly_all_in": "1.804",
+            "initial_balance": "7.2408300035",
+            "maximum_all_in": "0.902",
+            "other_total": "0",
+            "spent_before": "2.7591699965",
+            "storage_per_hour": "0.014",
+            "tax_rate": "0"
+          },
+          "observed_at": "2026-10-22T07:51:36Z",
+          "offer": {
+            "authenticated": true,
+            "auto_pay": false,
+            "cloud": "SECURE",
+            "compute_per_hour": "1.79",
+            "container_disk_gb": 100,
+            "credit_balance": "7.2408300035",
+            "gpu": "NVIDIA A100 80GB PCIe",
+            "gpu_count": 1,
+            "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+            "interruptible": false,
+            "network_volume": null,
+            "observed_at": "2026-10-22T07:51:36Z",
+            "other_total": "0",
+            "ram_gb": 117,
+            "region": "CA-MTL-3",
+            "region_policy": "owner-equivalent-region-20261019",
+            "stock_available": true,
+            "storage_per_hour": "0.014",
+            "tax_rate": "0",
+            "vcpus": 31,
+            "volume_gb": 0
+          },
+          "regions": [
+            {
+              "available": true,
+              "exact_quote": {
+                "availableGpuCounts": null,
+                "minMemory": 117,
+                "minVcpu": 31,
+                "stockStatus": "Low",
+                "supportPublicIp": null,
+                "uninterruptablePrice": 1.79
+              },
+              "id": "CA-MTL-3",
+              "stock": "Low"
+            },
+            {
+              "available": true,
+              "id": "EU-RO-1",
+              "stock": "Low"
+            },
+            {
+              "available": false,
+              "id": "US-KS-2",
+              "stock": null
+            },
+            {
+              "available": false,
+              "id": "US-MO-1",
+              "stock": null
+            }
+          ],
+          "settings_changed": false,
+          "status": "QUALIFIED"
+        },
+        "bootstrap": {
+          "deadline_seconds": 1200,
+          "history": [
+            {
+              "direct_endpoint_present": false,
+              "direct_endpoint_valid": false,
+              "elapsed_seconds": 6,
+              "provider_status": "RUNNING",
+              "readiness": "WAIT_DIRECT_ENDPOINT",
+              "runtime_present": false,
+              "started_at_present": true
+            },
+            {
+              "direct_endpoint_present": false,
+              "direct_endpoint_valid": false,
+              "elapsed_seconds": 31,
+              "provider_status": "RUNNING",
+              "readiness": "WAIT_DIRECT_ENDPOINT",
+              "runtime_present": false,
+              "started_at_present": true
+            },
+            {
+              "direct_endpoint_present": false,
+              "direct_endpoint_valid": false,
+              "elapsed_seconds": 53,
+              "provider_status": "RUNNING",
+              "readiness": "WAIT_DIRECT_ENDPOINT",
+              "runtime_present": false,
+              "started_at_present": true
+            },
+            {
+              "direct_endpoint_present": false,
+              "direct_endpoint_valid": false,
+              "elapsed_seconds": 75,
+              "provider_status": "RUNNING",
+              "readiness": "WAIT_DIRECT_ENDPOINT",
+              "runtime_present": false,
+              "started_at_present": true
+            },
+            {
+              "direct_endpoint_present": true,
+              "direct_endpoint_valid": true,
+              "elapsed_seconds": 101,
+              "provider_status": "RUNNING",
+              "readiness": "READY",
+              "runtime_present": true,
+              "started_at_present": true
+            }
+          ],
+          "last": {
+            "direct_endpoint_present": true,
+            "direct_endpoint_valid": true,
+            "elapsed_seconds": 101,
+            "provider_status": "RUNNING",
+            "readiness": "READY",
+            "runtime_present": true,
+            "started_at_present": true
+          },
+          "polls": 5
+        },
+        "cleanup": {
+          "absence_reads": 2,
+          "at": 1792655635,
+          "attempt": "1ba8a23aba7d46978b3936cd43ae26c4",
+          "phase": "deleted",
+          "pod_id": "aj5xf8kle6iici",
+          "reason": "owner_finished"
+        },
+        "log_samples": [
+          {
+            "bytes": 5900,
+            "events": 51,
+            "interpretation": "Text signatures only; not a root-cause determination",
+            "malformed_events": 0,
+            "raw_text_retained": false,
+            "sha256": "7379a5965cc230f5718948b0c8e928c69db36edb1b0e7e15e59de64588c65731",
+            "signals": {
+              "image_pull_progress": 43,
+              "unclassified": 8
+            },
+            "sources": {
+              "system": 51
+            },
+            "stopped": "READ_LIMIT"
+          },
+          {
+            "bytes": 6306,
+            "events": 50,
+            "interpretation": "Text signatures only; not a root-cause determination",
+            "malformed_events": 0,
+            "raw_text_retained": false,
+            "sha256": "d718df8f49b0d8f8bda644581815ee8c78320e6f188cd115c711215d9b8c67ec",
+            "signals": {
+              "image_pull_progress": 44,
+              "unclassified": 6
+            },
+            "sources": {
+              "system": 50
+            },
+            "stopped": "READ_TIMEOUT"
+          }
+        ],
+        "pre_cleanup_diagnostic": {
+          "bytes": 7099,
+          "events": 54,
+          "interpretation": "Text signatures only; not a root-cause determination",
+          "malformed_events": 0,
+          "raw_text_retained": false,
+          "sha256": "0b4d9e3ace9bf9c6f9c9ac965f9a816b21615820fdf3fa694971feaf81c987a2",
+          "signals": {
+            "image_pull_progress": 44,
+            "unclassified": 10
+          },
+          "sources": {
+            "container": 4,
+            "system": 50
+          },
+          "stopped": "READ_LIMIT"
+        },
+        "private_evidence": {
+          "ciphertext_bytes": 10504,
+          "ciphertext_sha256": "fbab80881ea47615a4fac50db547d18355b7fea68267abad5bef8dd6f876e121",
+          "files": 6,
+          "format": "age-v1",
+          "plaintext_bytes": 3745
+        },
+        "probe": {
+          "elapsed_seconds": 1.697,
+          "mutual_tls": {
+            "bytes": 1400320,
+            "sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a"
+          },
+          "ssh": {
+            "clean_environment": true,
+            "gpu": {
+              "driver": "595.91.07",
+              "memory_mib": 81920,
+              "name": "NVIDIA A100 80GB PCIe"
+            },
+            "model_execution": "NOT RUN",
+            "python": "3.12.3",
+            "root": true
+          },
+          "status": "PASS"
+        },
+        "purpose": "BOOTSTRAP ONLY; no model/task",
+        "qualification": {
+          "bound_files": 83,
+          "cpu_run_id": 39742657160,
+          "run_id": 39740489400,
+          "source_sha": "dc7ae5d37d51ef158c11d26215d10ce9887aa22c"
+        },
+        "status": "COMPLETE",
+        "worker_exit": 0
+      }
     }
   ],
-  "allocation_requests": 0,
-  "authorization_consumed": false,
-  "actual_gpu_probe": "NOT RUN; stock unavailable at the fresh entry quote"
+  "allocation_requests": 1,
+  "authorization_consumed": true,
+  "actual_gpu_probe": "PASS",
+  "account_after": {
+    "availability": {
+      "account": {
+        "auto_pay": false,
+        "credit_balance": "7.2408300035",
+        "current_spend_per_hour": "0"
+      },
+      "allocation_requests": 0,
+      "costs": {
+        "compute_per_hour": "1.79",
+        "hourly_all_in": "1.804",
+        "initial_balance": "7.2408300035",
+        "maximum_all_in": "0.902",
+        "other_total": "0",
+        "spent_before": "2.7591699965",
+        "storage_per_hour": "0.014",
+        "tax_rate": "0"
+      },
+      "observed_at": "2026-10-22T07:58:20Z",
+      "offer": {
+        "authenticated": true,
+        "auto_pay": false,
+        "cloud": "SECURE",
+        "compute_per_hour": "1.79",
+        "container_disk_gb": 100,
+        "credit_balance": "7.2408300035",
+        "gpu": "NVIDIA A100 80GB PCIe",
+        "gpu_count": 1,
+        "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+        "interruptible": false,
+        "network_volume": null,
+        "observed_at": "2026-10-22T07:58:20Z",
+        "other_total": "0",
+        "ram_gb": 236,
+        "region": "CA-MTL-3",
+        "region_policy": "owner-equivalent-region-20261019",
+        "stock_available": true,
+        "storage_per_hour": "0.014",
+        "tax_rate": "0",
+        "vcpus": 31,
+        "volume_gb": 0
+      },
+      "regions": [
+        {
+          "available": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 236,
+            "minVcpu": 31,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 1.79
+          },
+          "id": "CA-MTL-3",
+          "stock": "Low"
+        },
+        {
+          "available": true,
+          "id": "EU-RO-1",
+          "stock": "Low"
+        },
+        {
+          "available": false,
+          "id": "US-KS-2",
+          "stock": null
+        },
+        {
+          "available": false,
+          "id": "US-MO-1",
+          "stock": null
+        }
+      ],
+      "settings_changed": false,
+      "status": "QUALIFIED"
+    },
+    "observed_at": "2026-10-22T07:58:19Z",
+    "owned_pod_status": "ABSENT",
+    "pod_count": 0,
+    "provider_mutations": 0
+  }
 }

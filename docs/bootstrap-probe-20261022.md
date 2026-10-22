@@ -114,3 +114,11 @@ successful exact-source CPU, a fresh matching watcher lease and a fresh offer.
 The existing handover permits only a completed never-claimed watcher. Every
 source/run remains in Git history; all actually allocated historical heads stay
 immutable. Any claim or uncertain create permanently stops this free re-entry.
+
+## Actual diagnostic result
+
+Run 39743403014 at f7cb1164e06586486254ce193e30201e12e5c424 passed. CA-MTL-3 Pod aj5xf8kle6iici reached a valid direct endpoint after 101 seconds. Mutual TLS transferred the verified 1400320-byte transport; pinned SSH and clean-environment Python observed NVIDIA A100 80GB PCIe, 81920 MiB, driver 595.91.07. Worker exit was zero. No model, inference, task or evaluation ran.
+
+Owner confirmed deletion at 07:53:55Z, followed by watcher absence confirmation at 07:54:06Z. The watcher classified its later reconciliation as heartbeat_lost; this does not replace the earlier successful worker result or owner_finished cleanup. Account read at 07:58:19Z found zero Pods and zero hourly spend; observed balance 7.2408300035 is not a final invoice.
+
+This establishes that boot and the real connection path can work with this image and region; it neither explains the previous US-KS-2 timeout nor proves full model execution. Readiness history and bounded provider-log observations distinguish boot progress from later transport failures. A transient RUNNING-without-endpoint observation is not itself a diagnosis. All 192 pre-existing state entries were preserved. The allocation is consumed.

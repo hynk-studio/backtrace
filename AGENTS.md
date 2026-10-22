@@ -284,3 +284,5 @@ section of `docs/bootstrap-probe-20261022.md`: preserve this evidence, require a
 completed never-claimed watcher before handover, unchanged qualified operational
 hashes, new exact-source CPU/first-attempt entry and fresh stock. Never rerun a
 paid job, reset a claim or advance an actually allocated paid/watch head.
+
+The bootstrap diagnostic is now consumed in attempt `1ba8a23aba7d46978b3936cd43ae26c4`, Pod `aj5xf8kle6iici`, CA-MTL-3. Preserve both actual bootstrap-probe start/watch heads at `f7cb1164e06586486254ce193e30201e12e5c424`. Owner 39743403014 passed boot, mutual TLS, pinned SSH and actual A100 81920 MiB observation; no model/task ran. Owner and watcher 39743322363 each confirmed deletion. Independent account verification found zero Pods and spend/hour. See `docs/bootstrap-probe-execution-20261022.json`. No second allocation or full-model launch is authorized.
