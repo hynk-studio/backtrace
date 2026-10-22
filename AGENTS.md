@@ -248,3 +248,12 @@ account read found zero Pods and zero spend/hour. Read the execution section of
 status and container logs were not retained, so do not invent a deeper cause.
 The observed balance was unchanged, but it is not a final invoice. No automatic
 second allocation, claim reset, automation activation, merge or submission.
+
+The owner's subsequent instruction to inspect and improve the failure permits
+the free bootstrap correction on `bt-001-bootstrap-diagnostics`. Read
+`docs/a100-bootstrap-diagnostics-20261022.md`: retain allowlisted readiness
+observations, check controller liveness during bootstrap, preserve the deadline
+and bound diagnostic log sampling independently of cleanup. The changed 77-file
+source is not qualified by the historical 75-file receipt. Preserve that receipt,
+the original execution evidence and all actual paid/watch heads. This correction
+does not establish a retrospective provider cause or grant another paid attempt.
