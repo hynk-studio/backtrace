@@ -36,6 +36,7 @@ jobs:
         run: |
           sudo chmod 0755 evidence
           sudo chmod 0644 evidence/bootstrap-probe-qualify.json
+          if sudo test -f evidence/bootstrap-qualification-private.age; then sudo chmod 0644 evidence/bootstrap-qualification-private.age; fi
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
@@ -43,3 +44,11 @@ jobs:
           path: evidence/bootstrap-probe-qualify.json
           retention-days: 7
           if-no-files-found: error
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: bootstrap-probe-qualification-private-${{ github.run_id }}
+          path: evidence/bootstrap-qualification-private.age
+          compression-level: 0
+          retention-days: 7
+          if-no-files-found: ignore

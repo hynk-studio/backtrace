@@ -203,9 +203,29 @@ def qualify(root):
     from tests.official_cloud_lifecycle import scenario
     binaries, built = transport(root)
     report = {'status': 'RUNNING', 'files': hashes(), 'transport': built, 'paid_operations': 0}
-    report['host_transport'] = host_transport(binaries / 'dropbear', binaries / 'dropbearkey', PROFILE)
-    report['lifecycle'] = [scenario(n) for n in ('success','worker_failure','stale_worker',
-        'state_http_failure','owner_cancelled','bootstrap_delayed','bootstrap_timeout')]
+    report['stages']={}; failed=[]
+    def check(name,operation):
+        print(json.dumps({'qualification_stage':name,'status':'STARTED'}),flush=True)
+        try:
+            value=operation()
+            report['stages'][name]={'status':'PASS','result':value}
+        except Exception as error:
+            failed.append(name)
+            value={'error_type':type(error).__name__}
+            if isinstance(error,ProbeFailure):value.update(error.diagnostic)
+            report['stages'][name]={'status':'FAIL','failure':value}
+        private_json(root/'qualification-progress.json',report)
+        print(json.dumps({'qualification_stage':name,'status':report['stages'][name]['status']}),flush=True)
+    check('host_transport',lambda:host_transport(binaries/'dropbear',binaries/'dropbearkey',PROFILE))
+    check('exact_image_transport',lambda:qualify_image(root,binaries))
+    for name in ('success','worker_failure','stale_worker','state_http_failure',
+                 'owner_cancelled','bootstrap_delayed','bootstrap_timeout'):
+        check('lifecycle_'+name,lambda name=name:scenario(name))
+    report.update(status='FAIL' if failed else 'PASS',failed_stages=failed)
+    return report
+
+
+def qualify_image(root,binaries):
     with tempfile.TemporaryDirectory(prefix='backtrace-image-boot-', dir='/root') as td:
         work = Path(td)
         initializer = ssh.prepare(binaries / 'dropbear', binaries / 'dropbearkey', work / 'ssh', profile=PROFILE)
@@ -222,12 +242,26 @@ def qualify(root):
                     *initializer['entrypoint'][1:],*initializer['cmd']],stdout=log,stderr=log,check=True,timeout=30)
                 value = json.loads(subprocess.check_output(['docker','inspect',name],timeout=20))[0]
                 port = int(value['NetworkSettings']['Ports']['22/tcp'][0]['HostPort'])
-                report['exact_image_transport'] = connect(work / 'ssh',{'host':'127.0.0.1','port':port},gpu_required=False)
-                report['exact_image'] = {'reference':control.BASE,'id':inspect['Id']}
+                # Docker publishes a proxy before the container's Python TLS
+                # receiver binds port 22. Inspect the actual listener, instead
+                # of equating published-port metadata with a ready receiver.
+                listener_check=("from pathlib import Path;raise SystemExit(0 if any("
+                    "x.split()[1].endswith(':0016') and x.split()[3]=='0A' for x in "
+                    "Path('/proc/net/tcp').read_text().splitlines()[1:]) else 1)")
+                deadline=time.monotonic()+30
+                while True:
+                    ready=subprocess.run(['docker','exec',name,'/usr/bin/python3.12','-I','-c',listener_check],
+                        stdout=log,stderr=log,timeout=5)
+                    if ready.returncode==0:break
+                    if time.monotonic()>=deadline:raise TimeoutError('image receiver did not listen')
+                    time.sleep(.2)
+                result=connect(work/'ssh',{'host':'127.0.0.1','port':port},gpu_required=False)
+                return dict(result,image=control.BASE,image_id=inspect['Id'],listener_observed=True)
             finally:
+                with (root/'image-container.log').open('wb') as container_log:
+                    subprocess.run(['docker','logs','--tail','100',name],stdout=container_log,
+                                   stderr=container_log,timeout=10)
                 subprocess.run(['docker','rm','-f',name],stdout=log,stderr=log,timeout=20)
-    report['status']='PASS'
-    return report
 
 
 def paid(root):
@@ -291,9 +325,14 @@ def main():
         except Exception as error:
             result={'status':'BLOCKED','error_type':type(error).__name__,'http_status':getattr(error,'http_status',None)}
             if isinstance(error,ProbeFailure): result['diagnostic']=error.diagnostic
+            progress=root/'qualification-progress.json'
+            if args.mode=='qualify' and progress.exists():result['partial']=json.loads(read_private(progress))
+        if args.mode=='qualify':
+            logs={n:root/n for n in ('image.log','image-container.log') if (root/n).is_file()}
+            if logs:result['private_evidence']=cloud_seal.seal(logs,ROOT/'evidence/bootstrap-qualification-private.age')
         path=ROOT/'evidence'/('bootstrap-probe-'+args.mode+'.json')
         path.write_text(json.dumps(result,sort_keys=True,indent=2)+'\n');print(json.dumps(result,sort_keys=True),flush=True)
-        if result.get('status') in ('BLOCKED','INCOMPLETE') or (args.mode=='watch' and result.get('phase') not in ('deleted','no_claim')):
+        if result.get('status') in ('BLOCKED','INCOMPLETE','FAIL') or (args.mode=='watch' and result.get('phase') not in ('deleted','no_claim')):
             raise SystemExit(1)
 
 
