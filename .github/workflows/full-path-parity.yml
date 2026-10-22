@@ -33,6 +33,7 @@ jobs:
       - name: Expose only the projected public report and owner ciphertext
         if: always()
         run: |
+          if sudo test -d evidence; then sudo chmod 0755 evidence; fi
           for file in evidence/full-path-parity.json evidence/full-path-parity-private.age; do
             if sudo test -f "$file"; then sudo chmod 0644 "$file"; fi
           done

@@ -118,8 +118,11 @@ def setup_remote(remote, streams, manifest, requested_at, *, emit=lambda value: 
         try:
             remote(argv, input=data)
         except Exception as error:
-            emit({'stage': stage, 'status': 'FAIL', 'error_type': type(error).__name__,
-                  'returncode': getattr(error, 'returncode', None)})
+            try:
+                emit({'stage': stage, 'status': 'FAIL', 'error_type': type(error).__name__,
+                      'returncode': getattr(error, 'returncode', None)})
+            except Exception as retention_error:
+                error.add_note('Setup status retention also failed: ' + type(retention_error).__name__)
             raise
         emit({'stage': stage, 'status': 'PASS'})
 

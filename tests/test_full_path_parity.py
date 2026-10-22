@@ -75,5 +75,18 @@ class SetupBoundaryTests(unittest.TestCase):
                                     'error_type': 'CalledProcessError', 'returncode': 17})
         self.assertNotIn('PRIVATE-CANARY', json.dumps(events))
 
+    def test_failed_status_write_preserves_the_original_remote_failure(self):
+        streams = {k: {'manifest': '{"files":[]}', 'sha256': 'b' * 64, 'sources': {}}
+                   for k in ('wheels', 'task', 'model')}
+        primary = subprocess.CalledProcessError(17, 'remote-command')
+        def emit(row):
+            if row['status'] == 'FAIL':
+                raise OSError('private status-write details')
+        with self.assertRaises(subprocess.CalledProcessError) as caught:
+            worker.setup_remote(lambda *a, **kw: (_ for _ in ()).throw(primary),
+                                streams, b'manifest', 1, emit=emit)
+        self.assertIs(caught.exception, primary)
+        self.assertEqual(primary.__notes__, ['Setup status retention also failed: OSError'])
+
 
 if __name__ == '__main__': unittest.main()
