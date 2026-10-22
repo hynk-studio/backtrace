@@ -306,3 +306,35 @@ and ciphertext export passed; four encrypted logs were recovered. Read
 `docs/full-path-parity-20261022.md`. All 18 consumed start/watch heads and the
 state-branch head are unchanged. Neither historical receipt is renewed by this
 partial boundary check; no paid launch or merge follows automatically.
+
+The owner then instructed **할 수 있는 건 다 해보자** after the recommendation
+to complete the remaining free runtime and URL checks. Work on
+`bt-001-full-setup-cpu`; follow `docs/full-setup-cpu-20261022.md`. Run the actual
+frozen inputs and installation through production SSH setup, the retained CPU
+prerequisites, source-lifetime/header checks and the complete free qualification.
+Preserve every consumed paid authorization and actual start/watch head. No GPU
+create, paid retry, permit, model execution, merge, submission or recurring
+resumption is authorized by this free preparation.
+
+The first full free run 39782490197 failed before SSH installation (KeyError)
+and then on a disconnected public system-package read. Preserve its original
+report and encrypted evidence. The free correction explicitly preserves only
+the child run ID through sudo, retains private tracebacks and retries transient
+idempotent package reads at most three times within the existing deadline.
+Permanent HTTP, redirect and size/hash failures remain fatal. Complete renewed
+free qualification is required before calling the installation check passed;
+the earlier header check after failed setup is not post-install evidence.
+
+The corrected complete free qualification **39784201691** passed at
+`ae38cf6a831e277ed91e97daff2c6867eb14f5b8`; exact-source Linux **39784201752**
+passed 331 tests and actual minimal HTTP. Real pinned SSH transferred all 246
+frozen wheels and 8 task files, installed the full runtime and passed the
+retained CPU prerequisites/cleanup in 354.482 seconds. All 8 original model
+URLs remained accessible after setup; task URL lifetime remains unverifiable.
+Host/offline-image HTTP, scripted connected/evaluator controls and five
+concurrent lifecycle cases passed. All 92 private records were recovered.
+Read `docs/full-setup-cpu-20261022.md` and its result/execution/schema-2 receipt.
+That receipt is human free-CPU evidence, not a paid launch gate. All historical
+receipts, 198 prior state blobs and 18 actual paid/start/watch heads remain
+unchanged. GPU initialization/model weights/loading/inference were NOT RUN;
+no new paid allocation, permit, merge, submission or automation is authorized.

@@ -19,7 +19,8 @@ def collect(root, output, *, early=False):
         'evidence-permissions.log', 'retained-source.ipynb', 'offline-runtime.log', 'official-cloud-driver.log', 'cpu-task-layout.log',
         'actual-cpu-prerequisites.log', 'cuda-runtime.log', 'transport-loopback.log', 'transport/build.log',
         'pinned-image.log', 'concurrent-controller.log', 'actual-api-http.log', 'image-result/api-http.log',
-        'image-result/image.json', 'connected-task.log')
+        'image-result/image.json', 'connected-task.log', 'full-setup-process.log',
+        'full-setup-result.json', 'full-setup/image.log', 'full-setup/ssh.log', 'full-setup/container.log')
     files = {name: root / name for name in names if (root / name).is_file()}
     trees = ('connected-task',) if early else ('connected-task', 'image-result/connected-task')
     for tree in trees:

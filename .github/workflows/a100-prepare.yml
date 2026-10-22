@@ -3,7 +3,7 @@ name: A100 free private-input qualification
 
 on:
   push:
-    branches: [bt-001-connected-gpu-smoke]
+    branches: [bt-001-connected-gpu-smoke, bt-001-full-setup-cpu]
     paths:
       - 'tools/a100_task.py'
       - 'tools/startup_guard.py'
@@ -48,6 +48,10 @@ on:
       - 'tests/official_cloud_prerequisites.py'
       - 'tests/official_cloud_image.py'
       - 'tests/official_cloud_lifecycle.py'
+      - 'tests/official_full_setup.py'
+      - 'tools/cloud_sources.py'
+      - 'tests/test_cloud_sources.py'
+      - 'tests/test_pod_system.py'
       - 'tests/test_cloud_state.py'
       - 'tests/test_cloud_owner.py'
       - 'tests/test_runpod_control.py'
@@ -63,7 +67,7 @@ concurrency:
 jobs:
   prepare:
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:

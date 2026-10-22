@@ -16,9 +16,9 @@ from tools import a100_delivery as frozen, cloud_resolver as resolver, cloud_tas
 from tools.cloud_probe import failure
 from tools.direct_delivery import pull, DownloadError
 from tools.runpod_job import private_json
-from tools import cloud_reference, cloud_state, cloud_image, pod_system, qualify_api
+from tools import cloud_reference, cloud_state, cloud_image, pod_system, qualify_api, cloud_sources
 from tools.probe_results import ProbeResults
-from tools import qualification_evidence
+from tools import qualification_evidence, cloud_qualification
 
 
 def qualify(root, emit):
@@ -26,7 +26,9 @@ def qualify(root, emit):
     if shutil.disk_usage(root).free < 45 * 1024**3:
         raise ValueError('free CPU disk space below 45 GiB for host and pinned image')
     report = {'gpu_allocations': 0, 'gpu_model_server_starts': 0, 'gpu_model_task_executions': 0,
-              'scripted_cpu_checks': 'reported separately per stage', 'stages': {}}
+              'scripted_cpu_checks': 'reported separately per stage', 'stages': {},
+              'source_sha': os.environ['GITHUB_SHA'], 'run_id': os.environ['GITHUB_RUN_ID'],
+              'files': cloud_qualification.file_hashes(frozen.ROOT)}
     probes = ProbeResults(report['stages'])
     stage = 'private_source'
     try:
@@ -74,6 +76,43 @@ def qualify(root, emit):
         report['stages']['sources'] = {'wheels': len(wheel_sources), 'task': len(task_sources),
                                        'model': len(model_sources), 'urls_published': False}
         emit({'stage': 'sources', 'status': 'PASS', **report['stages']['sources']})
+        stage = 'source_lifetime_before_setup'
+        maps = {'wheels': wheel_sources, 'task': task_sources, 'model': model_sources}
+        report['stages'][stage] = cloud_sources.snapshot(maps)
+        emit({'stage': stage, **report['stages'][stage]})
+        # The same frozen manifests and production setup orchestrator now run
+        # through real pinned SSH, including installation, on a free CPU image.
+        raw_driver = root / 'ssh-retained-driver.py'
+        raw_driver.write_bytes(resolver.retained_literal(source))
+        cloud_task.prepare(raw_driver, root / 'ssh-driver')
+        streams = {}
+        for kind, sources in maps.items():
+            data = frozen.manifest(kind)
+            streams[kind] = {'manifest': data.decode(), 'sha256': hashlib.sha256(data).hexdigest(),
+                             'sources': sources}
+        private_json(root / 'full-ssh-streams.json', streams)
+        stage = 'full_setup_ssh'
+        def full_setup():
+            with (root / 'full-setup-process.log').open('xb') as log:
+                subprocess.run(['sudo', '--preserve-env=GITHUB_RUN_ID', sys.executable, '-I',
+                    str(frozen.ROOT / 'tests/official_full_setup.py'), str(root)],
+                    env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8',
+                         'GITHUB_RUN_ID':os.environ['GITHUB_RUN_ID']},
+                    stdin=subprocess.DEVNULL, stderr=log, timeout=3000)
+            return json.loads((root / 'full-setup-result.json').read_text())
+        probes.run(stage, full_setup)
+        emit({'stage': stage, **report['stages'][stage]})
+        stage = 'model_sources_after_real_setup'
+        def check_model_sources():
+            for row in json.loads(frozen.manifest('model'))['files']:
+                original = model_sources[row['path']]
+                checked = resolver.retry_read(lambda: resolver.public_source(original['url'], row))
+                if checked != original:
+                    raise ValueError('model source header/encoding changed after setup')
+            return {'status':'PASS','files':len(model_sources),'body_read':False,
+                    'declared_lifetime':cloud_sources.snapshot({'model':model_sources})}
+        probes.run(stage, check_model_sources)
+        emit({'stage': stage, **report['stages'][stage]})
         stage = 'download_system_packages'
         system_manifest = json.loads((frozen.ROOT / 'docs/a100-system-packages.json').read_text())
         report['stages'][stage] = pod_system.download(system_manifest, root / 'system', deadline=time.time() + 180)
