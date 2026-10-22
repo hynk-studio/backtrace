@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "authorization": "owner-connected-gpu-20261022",
+  "paid_source": "cdef8537994f65e6a26645ec684f5917bd126c7b",
+  "full_free_run": 39724341717,
+  "qualified_source": "0569315dd622959e01c6daf035c38afa3f5a45c4",
+  "qualified_files": 75,
+  "report_sha256": "aa9e3d75cb512e6cdf6ecde7b7127cdfc06cca975472fcbfc79c4423141b3f4f",
+  "exact_cpu_run": 39726566531,
+  "free_preparation_run": 39726566540,
+  "owner_run": 39726869677,
+  "watcher_run": 39726817315,
+  "claim": {
+    "attempt": "1af3976193e9411f8a85959dd186ed96",
+    "authorization": "owner-connected-gpu-20261022",
+    "costs": {
+      "compute_per_hour": "1.79",
+      "hourly_all_in": "1.804",
+      "initial_balance": "7.2408300035",
+      "maximum_all_in": "3.608",
+      "other_total": "0",
+      "spent_before": "2.7591699965",
+      "storage_per_hour": "0.014",
+      "tax_rate": "0"
+    },
+    "name": "backtrace-a100-1af3976193e9411f8a85959dd186ed96",
+    "policy": "prepaid10-actions-v1",
+    "region": "US-KS-2",
+    "requested_at": 1792646129,
+    "run": "R0-clean-v2-one-public-task/A10080-TP1",
+    "run_id": "39726869677",
+    "schema_version": 1,
+    "setup_seconds": 5400,
+    "source_sha": "cdef8537994f65e6a26645ec684f5917bd126c7b",
+    "total_seconds": 7200,
+    "useful_seconds": 6900,
+    "watcher_run_id": "39726817315"
+  },
+  "owner": {
+    "allocation_requests": 1,
+    "cleanup": {
+      "absence_reads": 2,
+      "at": 1792647360,
+      "attempt": "1af3976193e9411f8a85959dd186ed96",
+      "phase": "deleted",
+      "pod_id": "2iulner7v22rza",
+      "reason": "owner_finished"
+    },
+    "failure": {
+      "error_type": "TimeoutError",
+      "http_status": null,
+      "stage": "bootstrap_heartbeat"
+    },
+    "mode": "paid",
+    "preparation": {
+      "allocation_requests": 0,
+      "availability": {
+        "account": {
+          "auto_pay": false,
+          "credit_balance": "7.2408300035",
+          "current_spend_per_hour": "0"
+        },
+        "allocation_requests": 0,
+        "costs": {
+          "compute_per_hour": "1.79",
+          "hourly_all_in": "1.804",
+          "initial_balance": "7.2408300035",
+          "maximum_all_in": "3.608",
+          "other_total": "0",
+          "spent_before": "2.7591699965",
+          "storage_per_hour": "0.014",
+          "tax_rate": "0"
+        },
+        "observed_at": "2026-10-22T05:15:27Z",
+        "offer": {
+          "authenticated": true,
+          "auto_pay": false,
+          "cloud": "SECURE",
+          "compute_per_hour": "1.79",
+          "container_disk_gb": 100,
+          "credit_balance": "7.2408300035",
+          "gpu": "NVIDIA A100 80GB PCIe",
+          "gpu_count": 1,
+          "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+          "interruptible": false,
+          "network_volume": null,
+          "observed_at": "2026-10-22T05:15:27Z",
+          "other_total": "0",
+          "ram_gb": 125,
+          "region": "US-KS-2",
+          "region_policy": "owner-equivalent-region-20261019",
+          "stock_available": true,
+          "storage_per_hour": "0.014",
+          "tax_rate": "0",
+          "vcpus": 14,
+          "volume_gb": 0
+        },
+        "regions": [
+          {
+            "available": false,
+            "exact_quote": {
+              "availableGpuCounts": null,
+              "minMemory": null,
+              "minVcpu": null,
+              "stockStatus": null,
+              "supportPublicIp": null,
+              "uninterruptablePrice": null
+            },
+            "id": "CA-MTL-3",
+            "stock": null
+          },
+          {
+            "available": false,
+            "exact_quote": {
+              "availableGpuCounts": null,
+              "minMemory": null,
+              "minVcpu": null,
+              "stockStatus": null,
+              "supportPublicIp": null,
+              "uninterruptablePrice": null
+            },
+            "id": "EU-RO-1",
+            "stock": null
+          },
+          {
+            "available": true,
+            "exact_quote": {
+              "availableGpuCounts": null,
+              "minMemory": 125,
+              "minVcpu": 14,
+              "stockStatus": "Low",
+              "supportPublicIp": null,
+              "uninterruptablePrice": 1.79
+            },
+            "id": "US-KS-2",
+            "stock": "Low"
+          },
+          {
+            "available": false,
+            "id": "US-MO-1",
+            "stock": null
+          }
+        ],
+        "settings_changed": false,
+        "status": "QUALIFIED"
+      },
+      "cpu": {
+        "run_id": 39726566531,
+        "source_sha": "cdef8537994f65e6a26645ec684f5917bd126c7b",
+        "status": "PASS"
+      },
+      "create_body_bytes": 5578,
+      "driver_sha256": "174bd6359c3e3f53e149a2ec5210cb220ab46ec41e1e9b34b6b0c915631c55b1",
+      "free_stock_wait_seconds": 0,
+      "qualification": {
+        "bound_files": 75,
+        "report_sha256": "aa9e3d75cb512e6cdf6ecde7b7127cdfc06cca975472fcbfc79c4423141b3f4f",
+        "run_id": 39724341717,
+        "source_sha": "0569315dd622959e01c6daf035c38afa3f5a45c4"
+      },
+      "streams": {
+        "model": 8,
+        "task": 8,
+        "wheels": 246
+      },
+      "transport": {
+        "binary_bytes": 1400320,
+        "binary_sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a",
+        "method": "mutual-tls13-then-pinned-ssh",
+        "minimum_validity_seconds": 3600
+      }
+    },
+    "private_evidence": {
+      "ciphertext_bytes": 10558,
+      "ciphertext_sha256": "61ed521d658a40296c68611040b652fa0a47152d7a8de5999dea1bfb4f28abf7",
+      "files": 2,
+      "format": "age-v1",
+      "plaintext_bytes": 550
+    },
+    "status": "INCOMPLETE",
+    "worker_exit": null
+  },
+  "independent_cleanup": {
+    "absence_reads": 2,
+    "at": 1792647388,
+    "attempt": "1af3976193e9411f8a85959dd186ed96",
+    "phase": "deleted",
+    "pod_id": "2iulner7v22rza",
+    "reason": "heartbeat_lost"
+  },
+  "provider_diagnostics": {
+    "retained": false,
+    "known": "RUNNING plus direct SSH readiness condition did not pass before 1200-second limit",
+    "unknown": "Last provider status, container startup logs and reason for missing readiness were not retained"
+  },
+  "result": {
+    "worker_started": false,
+    "hardware_execution": "NOT RUN",
+    "model_initialization": "NOT RUN",
+    "inference": "NOT RUN",
+    "public_task": "NOT RUN",
+    "evaluation": "NOT RUN",
+    "r0_complete": false
+  },
+  "account_after": {
+    "run_id": 39619584770,
+    "job_id": 119659837673,
+    "observed_at": "2026-10-22T05:38:11Z",
+    "account": {
+      "auto_pay": false,
+      "credit_balance": "7.2408300035",
+      "current_spend_per_hour": "0"
+    },
+    "pods": {
+      "authenticated": true,
+      "backtrace_pod_count": 0,
+      "pod_count": 0,
+      "status": "PASS",
+      "write_permission": "NOT TESTED; no resource mutation"
+    },
+    "provider_mutations": 0,
+    "balance_change_observed_usd": "0.0000000000",
+    "final_invoice": false,
+    "scope": "Reused read-only account probe; its old-driver checks and historical owned-Pod field are not qualification or exact-Pod evidence for this attempt.",
+    "status": "PASS"
+  },
+  "private_artifact": {
+    "id": 12403879389,
+    "name": "a100-owner-private-39726869677",
+    "size_in_bytes": 10716,
+    "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12403879389",
+    "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12403879389/zip",
+    "expired": false,
+    "created_at": "2026-10-22T05:36:03Z",
+    "expires_at": "2026-10-29T05:36:02Z",
+    "updated_at": "2026-10-22T05:36:03Z",
+    "digest": "sha256:a89a3c08319103397d573d465dd6e40d5fde149476f41e35f0a4f2dc24172786",
+    "workflow_run": {
+      "id": 39726869677,
+      "repository_id": 1393671873,
+      "head_repository_id": 1393671873,
+      "head_branch": "bt-001-a100-start-connected-gpu",
+      "head_sha": "cdef8537994f65e6a26645ec684f5917bd126c7b"
+    }
+  },
+  "diagnostic": {
+    "error_type": "TimeoutError",
+    "source_file": "tools/cloud_owner.py",
+    "function": "execute",
+    "line": 132,
+    "condition": "now - claim.requested_at >= 1200 before RUNNING and nonempty direct SSH endpoint",
+    "observed_at_epoch": 1792647348.4306097
+  }
+}

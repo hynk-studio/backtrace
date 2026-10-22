@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "id": "prepaid10-actions-v1",
-  "authorization": "owner-api-recovery-20261021",
-  "status": "AUTHORIZED ONCE AFTER NEW API AND FULL CPU QUALIFICATION; NOT YET ALLOCATED",
-  "authority": "Owner instruction in this conversation: 권고대로 수행하자. This follows the completed process reconsideration and authorizes the recommended FastAPI 0.136.3 correction, actual API integration qualification, first-error preservation and one public-task attempt after free gates. No new funding or automatic paid retry. Earlier claims and actual paid/watch heads remain immutable.",
+  "authorization": "owner-connected-gpu-20261022",
+  "status": "CONSUMED: one US-KS-2 allocation; bootstrap readiness timeout before worker/model/task; owner and watcher independently confirmed deletion",
+  "authority": "Owner instruction on 2026-10-22: 그래픽 자원 있는지 확인하고 진행하자. One fresh bounded GPU/public-task attempt if qualified stock exists, after the connected-path audit and renewed operational-source qualification. Existing USD 10 wallet / USD 8 cumulative stop and 5400/6900/7200-second limits remain unchanged. No additional funding or automatic second allocation. All previous claims and actual paid/watch heads remain immutable.",
   "controller": "GitHub-hosted free Linux CPU runner; no user Mac/Windows required",
   "wallet_credits_usd": "10.00",
   "cumulative_stop_usd": "8.00",
@@ -16,8 +16,8 @@
   "useful_seconds": 6900,
   "request_to_confirmed_deletion_seconds": 7200,
   "automatic_paid_retry": false,
-  "previous_allocated_attempt": "280db614d5b14e9abcc75dbcf4ce688c / Pod 1h29jip02mmaf4; d314b1bf207147c3a92259b80caba0fe / Pod oaqns8gv9avo2p; both consumed and independently confirmed deleted; 0de2835ad98d4f258476d4ee81f43d84 / Pod p70xyu9hqatdxf; consumed and independently confirmed deleted; 5b37996b581a412094ae8033ee4e0ce3 / Pod 17c9n3lugb7qcs; consumed and independently confirmed deleted; 00849e0b667e4b87ade08050ab172405 / Pod so5pvfqgxxs4pp; previous scope consumed and independently confirmed deleted; workload exited 1; 319399b9318e4bd9935f9b89f68b4b7e / Pod xfx5hsrc28h2sb; previous scope consumed and independently confirmed deleted; owner stopped during runtime installation on heartbeat readback mismatch; 4c2e9bc867bc4f3aac9fac1c36c8e5d3 / Pod wggriyrf6yb8ww; final scope consumed and independently confirmed deleted; model loaded but health endpoint returned HTTP 500",
-  "unchanged": "A100 PCIe 80GB x1 Secure, frozen model v2, TP1 native BF16, task/candidate/prompts/inference budget and no persistent/network volume. The sole application pin change is FastAPI 0.141.1 to 0.136.3, subject to new qualification.",
+  "previous_allocated_attempt": "280db614d5b14e9abcc75dbcf4ce688c / Pod 1h29jip02mmaf4; d314b1bf207147c3a92259b80caba0fe / Pod oaqns8gv9avo2p; both consumed and independently confirmed deleted; 0de2835ad98d4f258476d4ee81f43d84 / Pod p70xyu9hqatdxf; consumed and independently confirmed deleted; 5b37996b581a412094ae8033ee4e0ce3 / Pod 17c9n3lugb7qcs; consumed and independently confirmed deleted; 00849e0b667e4b87ade08050ab172405 / Pod so5pvfqgxxs4pp; previous scope consumed and independently confirmed deleted; workload exited 1; 319399b9318e4bd9935f9b89f68b4b7e / Pod xfx5hsrc28h2sb; previous scope consumed and independently confirmed deleted; owner stopped during runtime installation on heartbeat readback mismatch; 4c2e9bc867bc4f3aac9fac1c36c8e5d3 / Pod wggriyrf6yb8ww; final scope consumed and independently confirmed deleted; model loaded but health endpoint returned HTTP 500; 922de2c1519040c7befca7dfdab9c2a4 / Pod u1b700g1qbxhig; API-recovery scope consumed and independently confirmed deleted; health 200 then required metadata route 404 before inference; 1af3976193e9411f8a85959dd186ed96 / Pod 2iulner7v22rza; owner-connected-gpu-20261022 consumed at cdef8537994f65e6a26645ec684f5917bd126c7b; 1200-second bootstrap readiness timeout before worker entry; independently confirmed deleted",
+  "unchanged": "A100 PCIe 80GB x1 Secure, frozen v2 model, TP1 native BF16, task/candidate/prompts/inference budget and no persistent/network volume. Runtime and actual connected-path corrections are those reviewed in Draft PR #9 and fully qualified at 47f27dc15908f9562993e214e4be786cbafe11fd. This scope changes operational identity only, subject to renewed qualification.",
   "credentials": "GitHub and RunPod account credentials remain on controller runners. The Pod may receive only scoped short-lived input download URLs before dropping to the workload UID. New credential access needs the browser's action-time confirmation.",
   "claims_not_made": [
     "An Actions runner is not durable storage; the fixed create-only claim is external",

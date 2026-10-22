@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "authorization": "owner-connected-gpu-20261022",
+  "source": "GitHub Actions read-only account job",
+  "run_id": 39619584770,
+  "job_id": 119643734815,
+  "provider_mutations": 0,
+  "records": [
+    {
+      "checks": {
+        "kaggle_model_v2": {
+          "bytes": 18711,
+          "encoding": "raw",
+          "sha256": "b100d85e571c25b688e82919d819253063a1defb0e6cee3b9b1c1fbad99bd0c2",
+          "status": "PASS",
+          "storage_host": "storage.googleapis.com",
+          "wire_bytes": 18711
+        },
+        "kaggle_private_task_v1": {
+          "bytes": 810,
+          "encoding": "raw",
+          "sha256": "6ed92f4e646c17728aa8b9ca433a032d61b6b06827eec463a02c00f331c25d60",
+          "status": "PASS",
+          "storage_host": "www.kaggleusercontent.com",
+          "wire_bytes": 810
+        },
+        "kaggle_retained_notebook_v3": {
+          "cloud_driver_bytes": 29156,
+          "cloud_driver_sha256": "67d1cc5c393b8b3c379058f65ab71e966cefb9ef21c4c36d11bca47ed9b48bf2",
+          "cloud_server_agent_ast_preserved": true,
+          "execution": "NOT RUN",
+          "is_private": true,
+          "retained_driver_bytes": 33461,
+          "retained_driver_sha256": "c7eda43a043535eed064b8f347bf271b22eb235c539e44dfe1633c43f47f5189",
+          "source_bytes": 935780,
+          "source_sha256": "1541b75bcff02705539b85d29ee810df0ee25ae01cbb9fd01ec36a10f11b8dc6",
+          "status": "PASS"
+        },
+        "runpod_read": {
+          "authenticated": true,
+          "backtrace_pod_count": 0,
+          "pod_count": 0,
+          "status": "PASS",
+          "write_permission": "NOT TESTED; no resource mutation"
+        }
+      },
+      "gpu_allocations": 0,
+      "observed_at_epoch": 1792644264,
+      "schema_version": 1
+    },
+    {
+      "owned_pod_read": {
+        "allocation_requested_at": "2026-10-21T20:27:46Z",
+        "observed_at": "2026-10-22T04:44:26Z",
+        "owned_pod_status": "ABSENT",
+        "pod_id": "u1b700g1qbxhig",
+        "provider_mutations": 0
+      }
+    },
+    {
+      "checks": {
+        "catalog": {
+          "availability": "LOW",
+          "cudaVersions": [
+            {
+              "available": true,
+              "version": "13.2"
+            }
+          ],
+          "data_centers": [
+            {
+              "availability": "LOW",
+              "id": "CA-MTL-3"
+            },
+            {
+              "availability": "LOW",
+              "id": "EU-RO-1"
+            }
+          ],
+          "id": "NVIDIA A100 80GB PCIe",
+          "memory": 80,
+          "price": {
+            "community": 1.19,
+            "secure": 1.79,
+            "serverless": 2.72
+          },
+          "status": "PASS"
+        },
+        "fresh_offer": {
+          "account": {
+            "auto_pay": false,
+            "credit_balance": "7.2408300035",
+            "current_spend_per_hour": "0"
+          },
+          "allocation_requests": 0,
+          "costs": {
+            "compute_per_hour": "1.79",
+            "hourly_all_in": "1.804",
+            "initial_balance": "7.2408300035",
+            "maximum_all_in": "3.608",
+            "other_total": "0",
+            "spent_before": "2.7591699965",
+            "storage_per_hour": "0.014",
+            "tax_rate": "0"
+          },
+          "observed_at": "2026-10-22T04:44:29Z",
+          "offer": {
+            "authenticated": true,
+            "auto_pay": false,
+            "cloud": "SECURE",
+            "compute_per_hour": "1.79",
+            "container_disk_gb": 100,
+            "credit_balance": "7.2408300035",
+            "gpu": "NVIDIA A100 80GB PCIe",
+            "gpu_count": 1,
+            "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+            "interruptible": false,
+            "network_volume": null,
+            "observed_at": "2026-10-22T04:44:29Z",
+            "other_total": "0",
+            "ram_gb": 117,
+            "region": "CA-MTL-3",
+            "region_policy": "owner-equivalent-region-20261019",
+            "stock_available": true,
+            "storage_per_hour": "0.014",
+            "tax_rate": "0",
+            "vcpus": 31,
+            "volume_gb": 0
+          },
+          "qualification": "QUALIFIED",
+          "regions": [
+            {
+              "available": true,
+              "exact_quote": {
+                "availableGpuCounts": null,
+                "minMemory": 117,
+                "minVcpu": 31,
+                "stockStatus": "Low",
+                "supportPublicIp": null,
+                "uninterruptablePrice": 1.79
+              },
+              "id": "CA-MTL-3",
+              "stock": "Low"
+            },
+            {
+              "available": true,
+              "id": "EU-RO-1",
+              "stock": "Low"
+            },
+            {
+              "available": false,
+              "id": "US-KS-2",
+              "stock": null
+            },
+            {
+              "available": false,
+              "id": "US-MO-1",
+              "stock": null
+            }
+          ],
+          "settings_changed": false,
+          "status": "PASS"
+        },
+        "regional_catalog": {
+          "data_centers": [
+            {
+              "availability": "LOW",
+              "id": "CA-MTL-3"
+            },
+            {
+              "availability": "LOW",
+              "id": "EU-RO-1"
+            }
+          ],
+          "gpu": "NVIDIA A100 80GB PCIe",
+          "status": "PASS"
+        },
+        "saved_assets": {
+          "available_archive_names": [],
+          "complete_listing": true,
+          "downloaded_bytes": 0,
+          "expected_transport_binaries": 2,
+          "expected_wheels": 246,
+          "listed_count": 55,
+          "saved_output_urls": "NOT PUBLISHED",
+          "saved_transport_binaries": 0,
+          "saved_wheels": 0,
+          "status": "PASS",
+          "version": 3
+        },
+        "wallet": {
+          "clientBalance": "7.2408300035",
+          "currentSpendPerHr": "0",
+          "status": "PASS"
+        }
+      },
+      "gpu_allocations": 0,
+      "observed_at_epoch": 1792644267
+    }
+  ]
+}

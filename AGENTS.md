@@ -218,3 +218,33 @@ exact-source Linux run 39689758585 passed 295 tests. Read
 This is free plumbing evidence with scripted model content, not GPU token
 generation, Gemma parser qualification or a model score. All paid claims remain
 consumed; this receipt grants no allocation, paid retry, merge or submission.
+
+The owner next instructed **그래픽 자원 있는지 확인하고 진행하자** on 2026-10-22.
+This authorizes one fresh bounded GPU/public-task attempt if qualified stock
+exists, after the connected-path audit and renewed operational qualification.
+Read `docs/a100-connected-gpu-20261022.md`. Use `owner-connected-gpu-20261022`,
+review branch `bt-001-connected-gpu-smoke` and dedicated `connected-gpu`
+start/watch branches. Preserve every earlier consumed claim and actual paid/
+watch head. Existing wallet/cumulative/time limits and all scientific inputs
+remain unchanged. Require full renewed qualification, exact-source CPU and
+preparation, fresh stock and a matching independent watcher before one create.
+Do not automatically retry an allocated attempt or enable recurring resumption.
+
+The new scope's full free qualification **39724341717** passed at
+`0569315dd622959e01c6daf035c38afa3f5a45c4`; Linux **39724341819** passed 295 tests.
+The renewed 75-file receipt includes paid-entry and watcher orchestration. Host
+and exact offline image passed all connected/evaluator controls; five concurrent
+cleanup cases and encrypted evidence recovery passed. The scope is still unused
+at this receipt checkpoint. Require final exact-source CPU/preparation and a
+fresh matching independent watcher before its one paid create.
+
+That scope is now consumed in attempt `1af3976193e9411f8a85959dd186ed96`, Pod
+`2iulner7v22rza`, US-KS-2. Preserve both actual connected-gpu start/watch heads at
+`cdef8537994f65e6a26645ec684f5917bd126c7b`. Owner 39726869677 reached the
+1200-second initial readiness deadline before worker/model/task entry. Owner
+and watcher 39726817315 each confirmed deletion with two absence reads; a separate
+account read found zero Pods and zero spend/hour. Read the execution section of
+`docs/a100-connected-gpu-20261022.md` and its execution JSON. The last provider
+status and container logs were not retained, so do not invent a deeper cause.
+The observed balance was unchanged, but it is not a final invoice. No automatic
+second allocation, claim reset, automation activation, merge or submission.

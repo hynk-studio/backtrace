@@ -2,7 +2,7 @@ name: A100 cloud CPU qualification
 
 on:
   push:
-    branches: [bt-001-api-readiness-recovery, bt-001-connected-qualification]
+    branches: [bt-001-connected-gpu-smoke]
 # The owner entry requires a successful suite at its exact source commit,
 # including commits that only update qualification/evidence documents.
 permissions:
