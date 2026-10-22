@@ -6,9 +6,11 @@ API credentials, password login or account-wide SSH key changes occur in a Pod.
 import base64
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import re
+import shlex
 import socket
 import ssl
 import subprocess
@@ -268,3 +270,33 @@ def known_hosts(directory, host, port):
         os.fchmod(stream.fileno(), 0o600)
         stream.write(f'[{host}]:{port} {public}\n{host} {public}\n')
     return target
+
+
+def wait_for_command(prefix, argv, timeout, *, log=None, clock=time.monotonic, sleep=time.sleep):
+    """Bound initial pinned SSH readiness, including each subprocess call.
+
+    Only SSH's not-ready exit (255) may repeat. Host/key failures and remote
+    command failures stop immediately. Never borrow the full setup budget for
+    this short handshake. Command/stdout/stderr stay in the private caller.
+    """
+    if type(timeout) not in (int, float) or not math.isfinite(timeout) or not 0 < timeout <= 60:
+        raise ValueError('initial SSH command requires at most 60 seconds')
+    deadline = clock() + timeout
+    while True:
+        left = deadline - clock()
+        if left <= 0:
+            raise TimeoutError('initial pinned SSH deadline')
+        result = subprocess.run(prefix + [shlex.join(argv)], stdin=subprocess.DEVNULL,
+            capture_output=True, timeout=min(25, left), env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
+        if log is not None:
+            log.write(result.stdout); log.write(result.stderr); log.flush()
+        # A successful process observed after the deadline is not readiness.
+        if clock() >= deadline:
+            raise TimeoutError('initial pinned SSH deadline')
+        if result.returncode == 0:
+            return result
+        if result.returncode != 255 or any(text in result.stderr.lower() for text in (
+                b'host key verification failed', b'remote host identification', b'permission denied', b'traceback')):
+            raise subprocess.CalledProcessError(result.returncode, 'initial pinned SSH command',
+                                                output=result.stdout, stderr=result.stderr)
+        sleep(min(1, max(0, deadline - clock())))
