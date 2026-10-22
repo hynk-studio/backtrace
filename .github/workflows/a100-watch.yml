@@ -2,14 +2,14 @@ name: A100 independent cleanup
 
 on:
   push:
-    branches: [bt-001-a100-watch-api-recovery]
+    branches: [bt-001-a100-watch-connected-gpu]
 
 permissions:
   contents: write
   actions: read
 
 concurrency:
-  group: a100-cleanup-owner-api-recovery-20261021
+  group: a100-cleanup-owner-connected-gpu-20261022
   cancel-in-progress: false
 
 jobs:

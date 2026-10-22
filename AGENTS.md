@@ -218,3 +218,14 @@ exact-source Linux run 39689758585 passed 295 tests. Read
 This is free plumbing evidence with scripted model content, not GPU token
 generation, Gemma parser qualification or a model score. All paid claims remain
 consumed; this receipt grants no allocation, paid retry, merge or submission.
+
+The owner next instructed **그래픽 자원 있는지 확인하고 진행하자** on 2026-10-22.
+This authorizes one fresh bounded GPU/public-task attempt if qualified stock
+exists, after the connected-path audit and renewed operational qualification.
+Read `docs/a100-connected-gpu-20261022.md`. Use `owner-connected-gpu-20261022`,
+review branch `bt-001-connected-gpu-smoke` and dedicated `connected-gpu`
+start/watch branches. Preserve every earlier consumed claim and actual paid/
+watch head. Existing wallet/cumulative/time limits and all scientific inputs
+remain unchanged. Require full renewed qualification, exact-source CPU and
+preparation, fresh stock and a matching independent watcher before one create.
+Do not automatically retry an allocated attempt or enable recurring resumption.

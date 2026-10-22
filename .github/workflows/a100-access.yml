@@ -1,9 +1,9 @@
 name: A100 read-only credential check
-# Verify account balance and absence after the consumed final 20261021c attempt.
+# Read current account, approved stock and this fresh scope without provider mutations.
 
 on:
   push:
-    branches: [bt-001-api-readiness-recovery]
+    branches: [bt-001-connected-gpu-smoke]
     paths:
       - 'tools/cloud_probe.py'
       - 'tools/cloud_inventory.py'

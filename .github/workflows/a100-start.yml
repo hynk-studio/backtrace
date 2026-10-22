@@ -2,7 +2,7 @@ name: A100 qualified owner preparation and one-attempt start
 
 on:
   push:
-    branches: [bt-001-api-readiness-recovery, bt-001-a100-start-api-recovery]
+    branches: [bt-001-connected-gpu-smoke, bt-001-a100-start-connected-gpu]
     # Always trigger on these two exact branches, including a new paid branch
     # whose qualified head only changed readiness documents. Paid mode still
     # requires attempt 1, successful exact-source CPU checks and an unused claim.
@@ -33,7 +33,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
           KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
-          LAUNCH_MODE: ${{ github.ref_name == 'bt-001-a100-start-api-recovery' && 'paid' || 'preflight' }}
+          LAUNCH_MODE: ${{ github.ref_name == 'bt-001-a100-start-connected-gpu' && 'paid' || 'preflight' }}
         run: |
           python_path="$(command -v python)"
           sudo --preserve-env=GITHUB_TOKEN,RUNPOD_API_KEY,KAGGLE_API_TOKEN,GITHUB_SHA,GITHUB_RUN_ID,GITHUB_RUN_ATTEMPT,GITHUB_REPOSITORY,GITHUB_REF_NAME "$python_path" -m tools.cloud_launch --mode "$LAUNCH_MODE"

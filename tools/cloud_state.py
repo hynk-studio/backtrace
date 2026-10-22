@@ -16,7 +16,7 @@ import uuid
 
 from tools import runpod_control as control
 
-AUTHORIZATION = 'owner-api-recovery-20261021'
+AUTHORIZATION = 'owner-connected-gpu-20261022'
 POLICY = 'prepaid10-actions-v1'
 REPOSITORY = 'hynk-studio/backtrace'
 BRANCH = 'bt-001-a100-state'
@@ -214,7 +214,7 @@ def require_watcher(store, source_sha, now):
         raise StateError('independent cleanup lease is stale or differs from source')
     run = store.run(value['run_id'])
     if (run['status'] != 'in_progress' or run['head_sha'] != source_sha
-            or run['head_branch'] != 'bt-001-a100-watch-api-recovery' or run['run_attempt'] != 1):
+            or run['head_branch'] != 'bt-001-a100-watch-connected-gpu' or run['run_attempt'] != 1):
         raise StateError('independent cleanup run is not qualified')
     return value['run_id']
 
@@ -233,7 +233,7 @@ def claim_before_create(store, api, offer, bootstrap, run_id, source_sha, *, wal
     watcher = require_watcher(store, source_sha, now)
     run = store.run(str(run_id))
     if (run['status'] != 'in_progress' or run['head_sha'] != source_sha
-            or run['head_branch'] != 'bt-001-a100-start-api-recovery' or run['run_attempt'] != 1):
+            or run['head_branch'] != 'bt-001-a100-start-connected-gpu' or run['run_attempt'] != 1):
         raise StateError('first, exact owner workflow run required')
     if any(p.get('name', '').startswith('backtrace-a100-') for p in api.list()):
         raise StateError('earlier owned Pod requires reconciliation')

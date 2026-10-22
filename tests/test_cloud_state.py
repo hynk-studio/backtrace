@@ -20,8 +20,8 @@ class MemoryStore:
         self.docs = {}
         self.runs = {str(n): {'id': n, 'status': 'in_progress', 'conclusion': None,
                               'head_sha': SOURCE, 'head_branch': branch, 'run_attempt': 1}
-                     for n, branch in ((1, 'bt-001-a100-start-api-recovery'),
-                                       (2, 'bt-001-a100-watch-api-recovery'))}
+                     for n, branch in ((1, 'bt-001-a100-start-connected-gpu'),
+                                       (2, 'bt-001-a100-watch-connected-gpu'))}
         self.fail_write = None
 
     def read(self, name):
@@ -84,11 +84,12 @@ class CloudStateTests(unittest.TestCase):
 
     def test_previous_consumed_claim_is_not_valid_for_new_owner_authorization(self):
         claim, _ = self.claim()
-        self.assertEqual(claim['authorization'], 'owner-api-recovery-20261021')
-        self.assertEqual(state.DIRECTORY, 'a100-state/owner-api-recovery-20261021')
+        self.assertEqual(claim['authorization'], 'owner-connected-gpu-20261022')
+        self.assertEqual(state.DIRECTORY, 'a100-state/owner-connected-gpu-20261022')
         for prior in ('owner-cloud-20261019-203126', 'owner-cloud-20261020-155445',
                       'owner-cloud-20261020-211134', 'owner-cloud-20261021-003938',
-                      'owner-cloud-20261021-160757'):
+                      'owner-cloud-20261021-160757', 'owner-cloud-20261021-192529',
+                      'owner-api-recovery-20261021'):
             with self.subTest(authorization=prior):
                 claim['authorization'] = prior
                 with self.assertRaises(ValueError):
