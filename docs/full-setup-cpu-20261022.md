@@ -17,8 +17,8 @@ runtime_hardware boundary the CPU test stops explicitly, runs the existing
 using existing verification/permission functions, and invokes the retained
 driver's `--cpu-prerequisites` entry over the same SSH connection.
 
-No model stream, launch permit, GPU initialization, model server or actual
-model/agent task is entered. Paid hardware checks retain their defaults and
+No model-weight stream, launch permit, GPU initialization or actual Gemma
+server/task is entered. Paid hardware checks retain their defaults and
 are not weakened. The child has no account credentials; scoped URLs arrive
 only through a private file and authenticated stdin. Only source counts,
 hashes, known stage results and declared lifetime aggregates may be public.
@@ -49,8 +49,10 @@ Primary definitions checked 2026-10-22:
 
 ## Evidence and limits
 
-Actual results pending. The projected complete report and owner-encrypted
-private logs will be retained, with exact source/run/file hashes. New reference
+The corrected complete free qualification passed run **39784201691** at
+`ae38cf6a831e277ed91e97daff2c6867eb14f5b8`. The projected complete report and
+owner-encrypted logs were retained and recovered, with exact source/run/file
+hashes. New reference
 transfer files use the existing unique free-run namespace; no historical paid
 claim, Pod record, start/watch head or old qualification receipt is reset.
 
@@ -79,7 +81,7 @@ encrypted artifact 12427836474 was recovered and verified. Linux run
 model-header check passed but ran after a failed setup; it is not post-install
 evidence. The eight model sources declared about 72 hours remaining; all eight
 task URLs had an opaque/unverifiable lifetime. The corrected complete free
-qualification is still pending.
+qualification is recorded below.
 
 All work here is free CPU/read-only source acquisition. No further GPU create,
 paid job rerun, top-up, automation activation, merge or submission is authorized
@@ -90,3 +92,49 @@ Meta-assessment: the new check directly exercises the previously omitted
 installation boundary with real inputs and the same production orchestrator.
 Lifetime inspection can identify stale/short-lived sources before a later paid
 proposal; it cannot establish a retrospective cause for older failures.
+
+## Corrected observed results
+
+The first-attempt corrected workflow completed successfully in about 29 minutes.
+Exact-source Linux **39784201752** passed **331 tests** and actual minimal HTTP.
+The full public report contains 24 stage entries, zero failed stages and all
+84 current operational/test hashes. The new schema-2 receipt is human evidence;
+it is not accepted by, or a replacement for, the historical paid launch gate.
+
+| Boundary | Observed result |
+| --- | --- |
+| Exact-image mutual TLS and pinned SSH | PASS; same fixed transport |
+| Frozen driver transfer | PASS; 21 files, driver SHA 174bd635… |
+| Frozen runtime/task HTTPS transfer through SSH | PASS; 246 wheels / 5,373,545,117 bytes and 8 task files / 222,386,501 bytes; all manifest hashes verified |
+| Production setup through runtime_installation | PASS; stopped before GPU check |
+| Installed runtime and retained CPU prerequisites over SSH | PASS; 246 distributions, libcudart 12.8.90, actual UID 65534/dependency boundary and worker cleanup |
+| SSH installation and CPU preparation duration | 354.482 seconds; container removed |
+| Original model URLs after actual setup | All 8 metadata reads PASS; no model body read; minimum declared remaining lifetime 258,752 seconds |
+| Task URL lifetime | 8 UNVERIFIABLE declarations; actual frozen task downloads PASS |
+| Host plus exact offline image HTTP/connected path | PASS; actual installed vLLM routes, agent/tools/patch/retrieval/evaluator plumbing with scripted CPU model content |
+| Evaluator controls in both environments | Recovered scripted patch unresolved (2/4 tests pass); evaluator-only public reference resolved (4/4); agent access denied |
+| Concurrent control cases | All 5 PASS; real owner/watcher loops and CPU children with simulated provider, including stale heartbeat views, failure, cancellation and recreate rejection |
+| Private evidence recovery | PASS; 92 files decrypted; SSH result matches encrypted record and CPU log hash matches |
+
+Public result: `full-setup-result-20261022.json`, **49,920 bytes**, SHA-256
+`6bf9c115323f90ffd5bf11c9539e9f92f3113d85a2fc2774fedecf53737dc4c9`.
+See `full-setup-receipt-20261022.json` and
+`full-setup-execution-20261022.json` for exact run/artifact/transport identities.
+Owner ciphertext is **1,874,607 bytes**, SHA-256
+`f02fe09242875a18e8e3381b40bc5eea99ec8e1c82345b106861f5be8a356452`;
+private artifact ZIP 12431305084 has SHA-256
+`2d8b38f94e7690f69481a82160586e1a9151e2b92458040e06f70ff6da9b392d`.
+Keys, URL/source maps and image environment files were not exported.
+
+All 18 consumed paid/start/watch heads and all 198 original state blobs are
+unchanged. State head advanced only to add four uniquely named public-receiver/
+encrypted-reference files for the two free runs. Main and old receipts are
+unchanged; PR #14 remains draft.
+
+Final assessment: the previously omitted actual-input SSH installation boundary
+is now observed to pass, and the first free run exposed a child identity handoff
+error plus a transient package-read failure that were corrected. This reduces
+specific preparation risks and improves diagnosability. GPU memory, CUDA
+execution, model loading/parser behavior and actual Gemma inference remain
+NOT RUN on this source. The CPU controls do not predict a model score or
+guarantee a later paid execution; no further paid allocation is authorized here.

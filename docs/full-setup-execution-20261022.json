@@ -1,0 +1,422 @@
+{
+  "schema_version": 1,
+  "recorded_date_utc": "2026-10-22",
+  "pull_request": "https://github.com/hynk-studio/backtrace/pull/14",
+  "scope": "All remaining authorized free checks; no GPU create or model execution",
+  "initial_execution": {
+    "run_id": 39782490197,
+    "source_sha": "dd257ba2eaf951e1fecf94163162eb70eaca076d",
+    "status": "FAIL",
+    "report_path": "docs/full-setup-initial-result-20261022.json",
+    "report_bytes": 12616,
+    "report_sha256": "608588cfc4dda046170918daa1074fd3c050af9cf542855973c9c2e932a7264e",
+    "observations": {
+      "ssh_child": "KeyError before image log/container creation",
+      "host_system_download": "RemoteDisconnected",
+      "post_install_model_access": "NOT ESTABLISHED; setup had failed"
+    },
+    "private_artifact": {
+      "id": 12427836474,
+      "name": "a100-private-dd257ba2eaf951e1fecf94163162eb70eaca076d-1",
+      "size_in_bytes": 1229473,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12427836474",
+      "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12427836474/zip",
+      "expired": false,
+      "created_at": "2026-10-22T13:00:47Z",
+      "expires_at": "2026-10-29T13:00:46Z",
+      "updated_at": "2026-10-22T13:00:47Z",
+      "digest": "sha256:d3bf9cd130cb1fceee7bc819ddc9221127bd3bce914a13df94b416407b63921f",
+      "workflow_run": {
+        "id": 39782490197,
+        "repository_id": 1393671873,
+        "head_repository_id": 1393671873,
+        "head_branch": "bt-001-full-setup-cpu",
+        "head_sha": "dd257ba2eaf951e1fecf94163162eb70eaca076d"
+      }
+    },
+    "private_evidence": {
+      "ciphertext_bytes": 1229325,
+      "ciphertext_sha256": "edf9ae3bd2713adcd422392df6cacea7d75f6ff949151ec163769287f151bd9b",
+      "files": 6,
+      "format": "age-v1",
+      "plaintext_bytes": 1216595
+    },
+    "recovered_files": 6
+  },
+  "corrected_execution": {
+    "run_id": 39784201691,
+    "source_sha": "ae38cf6a831e277ed91e97daff2c6867eb14f5b8",
+    "run_attempt": 1,
+    "workflow_path": ".github/workflows/a100-prepare.yml",
+    "head_branch": "bt-001-full-setup-cpu",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-22T13:08:07Z",
+    "completed_metadata_at": "2026-10-22T13:37:33Z",
+    "approx_duration_seconds": 1766,
+    "bound_files": 84,
+    "linux_cpu": {
+      "run_id": 39784201752,
+      "source_sha": "ae38cf6a831e277ed91e97daff2c6867eb14f5b8",
+      "run_attempt": 1,
+      "full_suite": 331,
+      "actual_minimal_http": "PASS"
+    },
+    "report_sha256": "6bf9c115323f90ffd5bf11c9539e9f92f3113d85a2fc2774fedecf53737dc4c9",
+    "report_bytes": 49920,
+    "artifacts": [
+      {
+        "id": 12431305084,
+        "name": "a100-private-ae38cf6a831e277ed91e97daff2c6867eb14f5b8-1",
+        "size_in_bytes": 1874755,
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12431305084",
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12431305084/zip",
+        "expired": false,
+        "created_at": "2026-10-22T13:36:56Z",
+        "expires_at": "2026-10-29T13:36:54Z",
+        "updated_at": "2026-10-22T13:36:56Z",
+        "digest": "sha256:2d8b38f94e7690f69481a82160586e1a9151e2b92458040e06f70ff6da9b392d",
+        "workflow_run": {
+          "id": 39784201691,
+          "repository_id": 1393671873,
+          "head_repository_id": 1393671873,
+          "head_branch": "bt-001-full-setup-cpu",
+          "head_sha": "ae38cf6a831e277ed91e97daff2c6867eb14f5b8"
+        }
+      },
+      {
+        "id": 12431150387,
+        "name": "a100-free-prepare-ae38cf6a831e277ed91e97daff2c6867eb14f5b8-1",
+        "size_in_bytes": 10971,
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12431150387",
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12431150387/zip",
+        "expired": false,
+        "created_at": "2026-10-22T13:36:54Z",
+        "expires_at": "2026-10-29T13:36:52Z",
+        "updated_at": "2026-10-22T13:36:54Z",
+        "digest": "sha256:0b3673a183b4b2f66895e0d7cec7e89c3b5f1716423df33c746017423284de1b",
+        "workflow_run": {
+          "id": 39784201691,
+          "repository_id": 1393671873,
+          "head_repository_id": 1393671873,
+          "head_branch": "bt-001-full-setup-cpu",
+          "head_sha": "ae38cf6a831e277ed91e97daff2c6867eb14f5b8"
+        }
+      }
+    ]
+  },
+  "observed_ssh_setup": {
+    "status": "PASS",
+    "setup_seconds": 354.482,
+    "input_streams": [
+      {
+        "bytes": 5373545117,
+        "credentials": "short-lived file URLs only",
+        "files": 246,
+        "manifest_sha256": "054e0e813a797e1eb4d76bab563b3bfbbefe104010391cec30f24d99a48da569",
+        "phase": "bootstrap",
+        "schema_version": 1,
+        "stream": "wheels",
+        "transport": "direct-https",
+        "verified": true
+      },
+      {
+        "bytes": 222386501,
+        "credentials": "short-lived file URLs only",
+        "files": 8,
+        "manifest_sha256": "7e757d6a8b6d61fc917a623509a3ed5ee13b1ed69a91d3956550d776709d2ee8",
+        "phase": "task",
+        "schema_version": 1,
+        "stream": "task",
+        "transport": "direct-https",
+        "verified": true
+      }
+    ],
+    "production_setup": {
+      "stages": [
+        "base_environment",
+        "system_packages",
+        "runtime_inputs",
+        "runtime_installation"
+      ],
+      "status": "PASS",
+      "stopped": "BEFORE_GPU_CHECK"
+    },
+    "actual_cpu_runtime": {
+      "cuda_runtime": {
+        "api_version": 12080,
+        "library_sha256": "c3a75b33af334a3486d197dbd1584a2985183ba4688d237a2be5f2f679329920",
+        "version": "12.8.90",
+        "version_source": "qualified wheel metadata and loaded libcudart cudaRuntimeGetVersion"
+      },
+      "distributions": 246,
+      "hardware": "NOT RUN",
+      "model_execution": "NOT RUN",
+      "status": "PASS"
+    },
+    "actual_cpu_prerequisites": {
+      "actual_sandbox_dependency_check": "PASS",
+      "driver_sha256": "174bd6359c3e3f53e149a2ec5210cb220ab46ec41e1e9b34b6b0c915631c55b1",
+      "events": [
+        "run_begin",
+        "offline_runtime",
+        "isolation",
+        "sandbox_dependency_inheritance",
+        "setup_ready",
+        "cpu_prerequisites_passed",
+        "worker_cleanup",
+        "run_end"
+      ],
+      "gpu_allocations": 0,
+      "host": "exact image via pinned SSH",
+      "inherited_umask": "077",
+      "model_execution": "NOT RUN",
+      "private_log_sha256": "a078ca616b2e84ae7bc2f8036a6169ab4d68bedc89d8f26ff20b11d7ec74a723",
+      "runtime_path": "/opt/backtrace-runtime",
+      "server_starts": 0,
+      "status": "PASS",
+      "task_executions": 0,
+      "worker_cleanup": "PASS",
+      "workload_uid": 65534,
+      "workload_umask": "022"
+    },
+    "container_cleanup": "REMOVED"
+  },
+  "source_lifetime_before": {
+    "interpretation": "Declared lifetime only; no URL/signature is published",
+    "observed_at_epoch": 1792674619,
+    "required_setup_window_seconds": 5400,
+    "streams": {
+      "model": {
+        "expired": 0,
+        "files": 8,
+        "formats": {
+          "GCS_V4": 8
+        },
+        "minimum_declared_remaining_seconds": 259196,
+        "shorter_than_setup_window": 0,
+        "unverifiable": 0
+      },
+      "task": {
+        "expired": 0,
+        "files": 8,
+        "formats": {
+          "UNVERIFIABLE": 8
+        },
+        "minimum_declared_remaining_seconds": null,
+        "shorter_than_setup_window": 0,
+        "unverifiable": 8
+      },
+      "wheels": {
+        "expired": 0,
+        "files": 246,
+        "formats": {
+          "GCS_V4": 38,
+          "PUBLIC_NO_DECLARED_EXPIRY": 208
+        },
+        "minimum_declared_remaining_seconds": 259166,
+        "shorter_than_setup_window": 0,
+        "unverifiable": 0
+      }
+    }
+  },
+  "model_sources_after_setup": {
+    "body_read": false,
+    "declared_lifetime": {
+      "interpretation": "Declared lifetime only; no URL/signature is published",
+      "observed_at_epoch": 1792675063,
+      "required_setup_window_seconds": 5400,
+      "streams": {
+        "model": {
+          "expired": 0,
+          "files": 8,
+          "formats": {
+            "GCS_V4": 8
+          },
+          "minimum_declared_remaining_seconds": 258752,
+          "shorter_than_setup_window": 0,
+          "unverifiable": 0
+        }
+      }
+    },
+    "files": 8,
+    "status": "PASS"
+  },
+  "connected_checks": {
+    "host": "PASS",
+    "offline_pinned_image": "PASS",
+    "tools": [
+      "run_command",
+      "read_file",
+      "write_file",
+      "edit_file",
+      "get_status",
+      "search_similar_code",
+      "get_code_neighbors",
+      "get_code_subgraph",
+      "code_analyzer_agent",
+      "read_file",
+      "submit_patch"
+    ],
+    "model_content": "SCRIPTED; not actual Gemma output or a model score",
+    "evaluator_agent_access": "DENIED by actual UID read check",
+    "negative_control_resolved": false,
+    "public_reference_control_resolved": true
+  },
+  "concurrent_controls": {
+    "provider": "SIMULATED; no provider call",
+    "owner_watcher": "actual concurrent loops over loopback state HTTP",
+    "cases": [
+      {
+        "scenario": "success",
+        "status": "PASS",
+        "child_reaped": true,
+        "recreate_blocked": true,
+        "watcher": "deleted"
+      },
+      {
+        "scenario": "worker_failure",
+        "status": "PASS",
+        "child_reaped": true,
+        "recreate_blocked": true,
+        "watcher": "deleted"
+      },
+      {
+        "scenario": "stale_worker",
+        "status": "PASS",
+        "child_reaped": true,
+        "recreate_blocked": true,
+        "watcher": "deleted"
+      },
+      {
+        "scenario": "state_http_failure",
+        "status": "PASS",
+        "child_reaped": true,
+        "recreate_blocked": true,
+        "watcher": "deleted"
+      },
+      {
+        "scenario": "owner_cancelled",
+        "status": "PASS",
+        "child_reaped": true,
+        "recreate_blocked": true,
+        "watcher": "deleted"
+      }
+    ]
+  },
+  "evidence_recovery": {
+    "status": "VERIFIED AND DECRYPTED",
+    "files": 92,
+    "private_evidence": {
+      "ciphertext_bytes": 1874607,
+      "ciphertext_sha256": "f02fe09242875a18e8e3381b40bc5eea99ec8e1c82345b106861f5be8a356452",
+      "files": 92,
+      "format": "age-v1",
+      "plaintext_bytes": 1804559
+    },
+    "ssh_report_matches_encrypted_record": true,
+    "actual_cpu_driver_log_hash_matches": true,
+    "source_maps_and_keys_exported": false
+  },
+  "preservation": {
+    "main_sha": "23616971a4ec57d32fcce769e0a2abf44faa9cfe",
+    "state_before": "0ddbc6734dca197d6ffafced970d41542c2e675b",
+    "state_after": "7897dc168fe1d066b950eb2c40f816dda5d4304f",
+    "prior_blob_count": 198,
+    "prior_blobs_unchanged": true,
+    "new_paths": [
+      "a100-transfer/39782490197-dd257ba2eaf951e1fecf94163162eb70eaca076d/receiver.json",
+      "a100-transfer/39782490197-dd257ba2eaf951e1fecf94163162eb70eaca076d/references.age.b64",
+      "a100-transfer/39784201691-ae38cf6a831e277ed91e97daff2c6867eb14f5b8/receiver.json",
+      "a100-transfer/39784201691-ae38cf6a831e277ed91e97daff2c6867eb14f5b8/references.age.b64"
+    ],
+    "protected_paid_refs": [
+      {
+        "ref": "refs/heads/bt-001-a100-start-20261019",
+        "sha": "80cb0efa905ba7f068ea10e04ecf1c37c4382401"
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-start-20261020b",
+        "sha": "91788995fa6e7fd185a4a4e001a13558ce37581b"
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-start-20261020c",
+        "sha": "48dafadc25e42980e3674c247627662695891b84"
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-start-20261021a",
+        "sha": "6b7a861f286a2e68b169ccb9c4c1fb99c9ead756"
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-start-20261021b",
+        "sha": "ec58d2d6a8200a7cfb74185fce9ccc82dabaab81"
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-start-20261021c",
+        "sha": "5aea23d2456233414c74f3346f1163acd0779fa2"
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-start-api-recovery",
+        "sha": "7f53553078483cd2555f0bed0abd0410cf42f3d0"
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-start-bootstrap-probe",
+        "sha": "f7cb1164e06586486254ce193e30201e12e5c424"
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-start-connected-gpu",
+        "sha": "cdef8537994f65e6a26645ec684f5917bd126c7b"
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-watch-20261019",
+        "sha": "80cb0efa905ba7f068ea10e04ecf1c37c4382401"
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-watch-20261020b",
+        "sha": "91788995fa6e7fd185a4a4e001a13558ce37581b"
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-watch-20261020c",
+        "sha": "48dafadc25e42980e3674c247627662695891b84"
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-watch-20261021a",
+        "sha": "6b7a861f286a2e68b169ccb9c4c1fb99c9ead756"
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-watch-20261021b",
+        "sha": "ec58d2d6a8200a7cfb74185fce9ccc82dabaab81"
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-watch-20261021c",
+        "sha": "5aea23d2456233414c74f3346f1163acd0779fa2"
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-watch-api-recovery",
+        "sha": "7f53553078483cd2555f0bed0abd0410cf42f3d0"
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-watch-bootstrap-probe",
+        "sha": "f7cb1164e06586486254ce193e30201e12e5c424"
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-watch-connected-gpu",
+        "sha": "cdef8537994f65e6a26645ec684f5917bd126c7b"
+      }
+    ],
+    "protected_paid_refs_unchanged": true,
+    "historical_receipts": "PRESERVED"
+  },
+  "not_run": [
+    "GPU initialization",
+    "model-weight transfer",
+    "model loading/inference",
+    "actual Gemma public-task execution or score",
+    "new provider allocation",
+    "launch permit",
+    "merge",
+    "submission",
+    "recurring resumption"
+  ],
+  "meta_assessment": "The actual frozen SSH installation/CPU boundary now has observed coverage. Transient package-read recovery and child identity transfer are corrected. CPU fixtures do not establish GPU memory, CUDA execution, model parsing or inference. No retrospective cause is assigned to earlier paid failures."
+}
