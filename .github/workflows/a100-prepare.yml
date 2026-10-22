@@ -51,6 +51,7 @@ on:
       - 'tests/official_full_setup.py'
       - 'tools/cloud_sources.py'
       - 'tests/test_cloud_sources.py'
+      - 'tests/test_pod_system.py'
       - 'tests/test_cloud_state.py'
       - 'tests/test_cloud_owner.py'
       - 'tests/test_runpod_control.py'

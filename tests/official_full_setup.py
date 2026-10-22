@@ -13,6 +13,7 @@ import shlex
 import subprocess
 import sys
 import time
+import traceback
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -159,6 +160,7 @@ def main():
     except Exception as error:
         report['status']='FAIL'
         report['failure']={'error_type':type(error).__name__,'returncode':getattr(error,'returncode',None)}
+        traceback.print_exc(file=sys.stderr)  # Retained only in owner-encrypted evidence.
     path=parent/'full-setup-result.json'
     path.write_text(json.dumps(report,sort_keys=True,indent=2)+'\n');path.chmod(0o644)
     print(json.dumps({'full_ssh_result':report},sort_keys=True),flush=True)

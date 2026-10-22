@@ -54,6 +54,33 @@ private logs will be retained, with exact source/run/file hashes. New reference
 transfer files use the existing unique free-run namespace; no historical paid
 claim, Pod record, start/watch head or old qualification receipt is reset.
 
+### First free execution and corrections
+
+Run 39782490197 at `dd257ba2eaf951e1fecf94163162eb70eaca076d` failed.
+The new SSH child returned KeyError before starting a container; its clean
+parent environment supplied GITHUB_RUN_ID but sudo did not explicitly preserve
+it. This is corrected with `--preserve-env=GITHUB_RUN_ID`. The corrected child
+also retains its traceback in the owner-encrypted private process log, so a
+later failure does not lose its location. This does not establish a cause for
+any earlier paid failure.
+
+Independently, the existing host system-package download stopped with
+RemoteDisconnected. Idempotent package reads now retry transient connections,
+429/selected 5xx and short bodies at most three times within the original
+shared deadline. Redirects, permanent HTTP errors and changed hashes remain
+fatal; incomplete/unverified bytes never become package files. Four regression
+tests cover transient recovery, persistent-failure bounds, permanent identity
+failures and deadline exhaustion. These tests do not simulate successful GPU
+execution.
+
+The original public result is `full-setup-initial-result-20261022.json`;
+encrypted artifact 12427836474 was recovered and verified. Linux run
+39782490098 passed all 327 tests plus actual minimal HTTP. The first attempt's
+model-header check passed but ran after a failed setup; it is not post-install
+evidence. The eight model sources declared about 72 hours remaining; all eight
+task URLs had an opaque/unverifiable lifetime. The corrected complete free
+qualification is still pending.
+
 All work here is free CPU/read-only source acquisition. No further GPU create,
 paid job rerun, top-up, automation activation, merge or submission is authorized
 by this preparation. Any remaining actual CUDA, model loading and inference

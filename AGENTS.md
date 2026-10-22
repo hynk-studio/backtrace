@@ -315,3 +315,12 @@ prerequisites, source-lifetime/header checks and the complete free qualification
 Preserve every consumed paid authorization and actual start/watch head. No GPU
 create, paid retry, permit, model execution, merge, submission or recurring
 resumption is authorized by this free preparation.
+
+The first full free run 39782490197 failed before SSH installation (KeyError)
+and then on a disconnected public system-package read. Preserve its original
+report and encrypted evidence. The free correction explicitly preserves only
+the child run ID through sudo, retains private tracebacks and retries transient
+idempotent package reads at most three times within the existing deadline.
+Permanent HTTP, redirect and size/hash failures remain fatal. Complete renewed
+free qualification is required before calling the installation check passed;
+the earlier header check after failed setup is not post-install evidence.

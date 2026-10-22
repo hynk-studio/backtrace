@@ -1,5 +1,6 @@
 """Hash-pinned Ubuntu system utilities, installed offline before Python inputs."""
 import hashlib
+import http.client
 import json
 import os
 from pathlib import Path
@@ -10,6 +11,7 @@ import tempfile
 import time
 import urllib.parse
 import urllib.request
+import urllib.error
 
 IMAGE = ('pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:'
          'b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca')
@@ -53,12 +55,27 @@ def verify(value, directory):
 def download(value, directory, *, deadline):
     value = validate(value); directory = Path(directory); directory.mkdir(mode=0o700)
     for row in value['files']:
-        remaining = deadline - time.time()
-        if remaining <= 0: raise TimeoutError('system input deadline')
-        with urllib.request.urlopen(row['url'], timeout=min(60, remaining)) as response:
-            if response.geturl() != row['url']:
-                raise ValueError('unexpected system package redirect')
-            data = response.read(row['bytes'] + 1)
+        # These are idempotent reads. Retry transient transport/5xx failures
+        # only, keeping one shared deadline and the exact size/hash contract.
+        for attempt in range(3):
+            remaining = deadline - time.time()
+            if remaining <= 0: raise TimeoutError('system input deadline')
+            try:
+                with urllib.request.urlopen(row['url'], timeout=min(60, remaining)) as response:
+                    if response.geturl() != row['url']:
+                        raise ValueError('unexpected system package redirect')
+                    data = response.read(row['bytes'] + 1)
+                    if len(data) < row['bytes']:
+                        raise http.client.IncompleteRead(data, row['bytes'] - len(data))
+                break
+            except urllib.error.HTTPError as error:
+                if error.code not in (429, 500, 502, 503, 504) or attempt == 2: raise
+            except (OSError, http.client.IncompleteRead):
+                if attempt == 2: raise
+            remaining = deadline - time.time()
+            if remaining <= 0: raise TimeoutError('system input deadline')
+            time.sleep(min(attempt + 1, remaining))
+        if time.time() >= deadline: raise TimeoutError('system input deadline')
         if len(data) != row['bytes'] or hashlib.sha256(data).hexdigest() != row['sha256']:
             raise ValueError('system package download identity mismatch')
         with (directory / row['path']).open('xb') as stream:

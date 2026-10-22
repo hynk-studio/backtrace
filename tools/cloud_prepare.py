@@ -94,7 +94,7 @@ def qualify(root, emit):
         stage = 'full_setup_ssh'
         def full_setup():
             with (root / 'full-setup-process.log').open('xb') as log:
-                subprocess.run(['sudo', sys.executable, '-I',
+                subprocess.run(['sudo', '--preserve-env=GITHUB_RUN_ID', sys.executable, '-I',
                     str(frozen.ROOT / 'tests/official_full_setup.py'), str(root)],
                     env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8',
                          'GITHUB_RUN_ID':os.environ['GITHUB_RUN_ID']},
