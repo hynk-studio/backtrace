@@ -2,7 +2,7 @@ name: A100 cloud CPU qualification
 
 on:
   push:
-    branches: [bt-001-connected-gpu-smoke, bt-001-bootstrap-diagnostics]
+    branches: [bt-001-connected-gpu-smoke, bt-001-bootstrap-diagnostics, bt-001-bootstrap-probe]
 # The owner entry requires a successful suite at its exact source commit,
 # including commits that only update qualification/evidence documents.
 permissions:

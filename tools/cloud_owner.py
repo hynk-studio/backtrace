@@ -103,7 +103,8 @@ def local_phase(directory, claim, now, *, first_at, wall=None):
 
 def execute(store, api, offer, bootstrap, configuration, directory, run_id, source_sha, *,
             wall=time.time, sleep=time.sleep, spawn=spawn_worker, stop=stop_worker,
-            emit=lambda value: print(json.dumps(value, sort_keys=True), flush=True)):
+            emit=lambda value: print(json.dumps(value, sort_keys=True), flush=True),
+            before_cleanup=None):
     """One immutable claim, at most one POST, cleanup on every exit after claim.
 
     Tests inject provider and process fixtures. No synthetic result can qualify
@@ -139,13 +140,13 @@ def execute(store, api, offer, bootstrap, configuration, directory, run_id, sour
             owner = store.run(str(run_id))
             if (owner['status'] != 'in_progress' or owner['head_sha'] != source_sha
                     or owner['run_attempt'] != 1
-                    or owner['head_branch'] != 'bt-001-a100-start-connected-gpu'):
+                    or owner['head_branch'] != state.OWNER_BRANCH):
                 raise state.StateError('lifecycle deadline or independent watcher failure')
             stage = 'bootstrap_watcher_status'
             watcher = store.run(claim['watcher_run_id'])
             if (watcher['status'] != 'in_progress'
                     or watcher['head_sha'] != source_sha or watcher['run_attempt'] != 1
-                    or watcher['head_branch'] != 'bt-001-a100-watch-connected-gpu'):
+                    or watcher['head_branch'] != state.WATCH_BRANCH):
                 raise state.StateError('lifecycle deadline or independent watcher failure')
             stage = 'bootstrap_resource'
             pod = api.get(pod_record['pod_id'])
@@ -239,6 +240,12 @@ def execute(store, api, offer, bootstrap, configuration, directory, run_id, sour
             stop(process)
         except Exception as error:
             result['worker_stop_error'] = type(error).__name__
+        if pod_record is not None and before_cleanup is not None:
+            try:
+                result['pre_cleanup_diagnostic'] = before_cleanup(pod_record['pod_id'])
+            except Exception as error:
+                result['pre_cleanup_diagnostic'] = {'status': 'UNAVAILABLE',
+                                                     'error_type': type(error).__name__}
         if claim is not None:
             # Preserve local cleanup ability even if all GitHub writes fail.
             with contextlib.suppress(Exception):
@@ -268,6 +275,7 @@ def seal_results(directory, output):
     files = {name: directory / name for name in (
         'owner-result.json', 'job-status.json', 'setup-status.json', 'controller-diagnostic.json',
         'bootstrap-readiness.json',
+        'bootstrap-probe-result.json', 'probe.log',
         'worker.log', 'worker-process.log', 'receipt-transfer.json', 'task-validation.json', 'retrieval-error.json')
         if (directory / name).is_file()}
     receipts = directory / 'receipts'
