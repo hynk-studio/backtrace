@@ -26,6 +26,15 @@ REVIEW = 'bt-001-bootstrap-probe'
 START = 'bt-001-a100-start-bootstrap-probe'
 WATCH = 'bt-001-a100-watch-bootstrap-probe'
 PROFILE = 'actions-20261019'
+
+
+class ProbeFailure(RuntimeError):
+    def __init__(self, stage, error_type, *, returncode=None, private_output=b''):
+        super().__init__('bounded diagnostic stage failed')
+        self.diagnostic = {'status':'INCOMPLETE','stage':stage,'error_type':error_type,
+                           'returncode':returncode,
+                           'private_output_sha256':hashlib.sha256(private_output).hexdigest()}
+        self.private_output = private_output[-8192:]
 BOUND = tuple(sorted([
     'tools/' + n + '.py' for n in ('bootstrap_probe', 'cloud_state', 'cloud_owner', 'cloud_watch',
       'cloud_bootstrap', 'runpod_control', 'ssh_bootstrap', 'cloud_transport', 'cloud_seal',
@@ -113,24 +122,34 @@ r['gpu']={'name':rows[0][0],'memory_mib':float(rows[0][1]),'driver':rows[0][2]}
 def connect(root, endpoint, *, gpu_required, emit=lambda row: None):
     stage = 'mutual_tls_transfer'; started = time.monotonic()
     emit({'stage': stage, 'status': 'STARTED'})
-    transfer = ssh.deliver(root, endpoint['host'], endpoint['port'], 120, profile=PROFILE)
+    try:
+        transfer = ssh.deliver(root, endpoint['host'], endpoint['port'], 120, profile=PROFILE)
+    except Exception as error:
+        raise ProbeFailure(stage,type(error).__name__) from None
     emit({'stage': stage, 'status': 'PASS'})
     stage = 'pinned_ssh'; known = ssh.known_hosts(root, endpoint['host'], endpoint['port'])
     prefix = ssh_command(endpoint['host'], endpoint['port'], Path(root) / 'owner-key', known,
                          '/root/backtrace/unused', '0' * 64)[:-1]
+    emit({'stage':stage,'status':'STARTED'})
     deadline = time.monotonic() + 60
     while True:
-        process = subprocess.run(prefix + [shlex.join(['python3', '-I', '-c', remote_program(gpu_required)])],
-            stdin=subprocess.DEVNULL, capture_output=True, timeout=25,
-            env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
+        try:
+            process = subprocess.run(prefix + [shlex.join(['python3', '-I', '-c', remote_program(gpu_required)])],
+                stdin=subprocess.DEVNULL, capture_output=True, timeout=25,
+                env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
+        except subprocess.TimeoutExpired as error:
+            raise ProbeFailure(stage,'TimeoutExpired',private_output=error.stderr or b'') from None
         if process.returncode == 0:
-            result = json.loads(process.stdout)
+            try: result = json.loads(process.stdout)
+            except ValueError:
+                raise ProbeFailure('ssh_remote_probe','InvalidJSON',private_output=process.stdout) from None
             emit({'stage': stage, 'status': 'PASS'})
             return {'status': 'PASS', 'mutual_tls': transfer, 'ssh': result,
                     'elapsed_seconds': round(time.monotonic() - started, 3)}
-        if time.monotonic() >= deadline or any(x in process.stderr.lower() for x in
+        if process.returncode != 255 or time.monotonic() >= deadline or any(x in process.stderr.lower() for x in
                 (b'host key verification failed', b'permission denied', b'traceback')):
-            raise RuntimeError('diagnostic remote command failed')
+            raise ProbeFailure('pinned_ssh' if process.returncode==255 else 'ssh_remote_probe',
+                'RemoteCommandError',returncode=process.returncode,private_output=process.stderr) from None
         time.sleep(1)
 
 
@@ -149,7 +168,10 @@ def run_worker(directory):
             emit=lambda row: private_json(root / 'setup-status.json', row))
         return 0
     except Exception as error:
-        result['error_type'] = type(error).__name__
+        if isinstance(error,ProbeFailure):
+            result=error.diagnostic
+            sys.stderr.buffer.write(error.private_output);sys.stderr.buffer.flush()
+        else: result['error_type'] = type(error).__name__
         return 1
     finally:
         done.set(); thread.join(timeout=3)
@@ -268,6 +290,7 @@ def main():
                 control.RunpodAPI(os.environ['RUNPOD_API_KEY'].strip()),os.environ['GITHUB_RUN_ID'],os.environ['GITHUB_SHA'])
         except Exception as error:
             result={'status':'BLOCKED','error_type':type(error).__name__,'http_status':getattr(error,'http_status',None)}
+            if isinstance(error,ProbeFailure): result['diagnostic']=error.diagnostic
         path=ROOT/'evidence'/('bootstrap-probe-'+args.mode+'.json')
         path.write_text(json.dumps(result,sort_keys=True,indent=2)+'\n');print(json.dumps(result,sort_keys=True),flush=True)
         if result.get('status') in ('BLOCKED','INCOMPLETE') or (args.mode=='watch' and result.get('phase') not in ('deleted','no_claim')):

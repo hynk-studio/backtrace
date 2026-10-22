@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from tools import bootstrap_probe as probe, cloud_state as state, cloud_owner, runpod_control as control
@@ -86,6 +87,24 @@ class ProbeTests(unittest.TestCase):
         self.assertIn('.github/workflows/bootstrap-probe-start.yml',files)
         self.assertIn('.github/workflows/bootstrap-probe-watch.yml',files)
         self.assertIn('tools/cloud_owner.py',files)
+
+    def test_tls_and_remote_command_failures_keep_specific_stages_without_public_stderr(self):
+        with patch.object(probe.ssh,'deliver',side_effect=TimeoutError('CANARY')):
+            with self.assertRaises(probe.ProbeFailure) as error:
+                probe.connect(Path('/fixture'),{'host':'127.0.0.1','port':1234},gpu_required=True)
+            self.assertEqual(error.exception.diagnostic['stage'],'mutual_tls_transfer')
+            self.assertNotIn('CANARY',json.dumps(error.exception.diagnostic))
+        with patch.object(probe.ssh,'deliver',return_value={}), \
+             patch.object(probe.ssh,'known_hosts',return_value=Path('/fixture/hosts')), \
+             patch.object(probe,'ssh_command',return_value=['ssh','remote']), \
+             patch.object(probe.subprocess,'run',return_value=SimpleNamespace(
+                 returncode=1,stdout=b'',stderr=b'CANARY remote traceback')):
+            with self.assertRaises(probe.ProbeFailure) as error:
+                probe.connect(Path('/fixture'),{'host':'127.0.0.1','port':1234},gpu_required=True)
+            self.assertEqual(error.exception.diagnostic['stage'],'ssh_remote_probe')
+            self.assertEqual(error.exception.diagnostic['returncode'],1)
+            self.assertIn(b'CANARY',error.exception.private_output)
+            self.assertNotIn('CANARY',json.dumps(error.exception.diagnostic))
 
 
 if __name__=='__main__':unittest.main()
