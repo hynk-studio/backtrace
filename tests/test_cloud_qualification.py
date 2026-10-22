@@ -15,7 +15,7 @@ class QualificationTests(unittest.TestCase):
     def setUp(self):
         self.sha = 'a' * 40
         self.run = {'id': 123, 'status': 'completed', 'conclusion': 'success', 'run_attempt': 1,
-                    'head_sha': self.sha, 'head_branch': 'bt-001-connected-gpu-smoke',
+                    'head_sha': self.sha, 'head_branch': 'bt-001-qualified-gpu-20261023',
                     'path': '.github/workflows/a100-prepare.yml'}
         self.receipt = {'schema_version': 1, 'source_sha': self.sha, 'run_id': 123,
                         'report_sha256': 'b' * 64, 'files': {'pinned': 'c' * 64}, 'transport': {}}
@@ -25,7 +25,8 @@ class QualificationTests(unittest.TestCase):
             result = gate.require_receipt(Store(self.run), Path('/fixture'), self.receipt)
             self.assertEqual(result['source_sha'], self.sha)
             for key, value in (('conclusion', 'failure'), ('head_sha', 'd' * 40), ('run_attempt', 2),
-                               ('path', '.github/workflows/a100-cpu.yml')):
+                               ('path', '.github/workflows/a100-cpu.yml'),
+                               ('head_branch', 'bt-001-connected-gpu-smoke')):
                 changed = dict(self.run, **{key: value})
                 with self.assertRaises(ValueError): gate.require_receipt(Store(changed), Path('/fixture'), self.receipt)
         with patch.object(gate, 'file_hashes', return_value={'pinned': 'changed'}):

@@ -3,7 +3,7 @@ name: A100 free private-input qualification
 
 on:
   push:
-    branches: [bt-001-connected-gpu-smoke, bt-001-full-setup-cpu]
+    branches: [bt-001-connected-gpu-smoke, bt-001-full-setup-cpu, bt-001-qualified-gpu-20261023]
     paths:
       - 'tools/a100_task.py'
       - 'tools/startup_guard.py'
@@ -51,6 +51,9 @@ on:
       - 'tests/official_full_setup.py'
       - 'tools/cloud_sources.py'
       - 'tests/test_cloud_sources.py'
+      - 'tests/test_cloud_offer.py'
+      - 'docs/qualified-gpu-authorization-20261023.json'
+      - '.github/workflows/qualified-gpu-start.yml'
       - 'tests/test_pod_system.py'
       - 'tests/test_cloud_state.py'
       - 'tests/test_cloud_owner.py'

@@ -59,3 +59,33 @@ SHA-256 `a33599818620ef0649353ceb02315029b45adf469c8dddfbf3fcc21af4f36a0a`.
 Artifact 12445417487 ZIP SHA-256 is
 `d325be5511efd8f4e289e5969007e7018273474382cabe950c46b93357aeed79`.
 See `qualified-gpu-execution-20261023.json` for the run and preservation proof.
+
+## Same unused authorization: stock returned
+
+The owner then instructed **재고있으면 진행해줘**. This continues the same
+unused single allocation; it does not authorize a second create. The read-only
+availability job was repeated as run 39822924063, **attempt 2**, not a paid job.
+At **2026-10-23 08:43:35 KST**, CA-MTL-3 returned a qualified exact A100 80GB
+quote with 117GB host RAM and 31 vCPUs, USD 1.79/h compute plus USD 0.014/h
+temporary storage. The two-hour maximum quote is USD 3.608; prior wallet spend
+is USD 2.8203268382, within the unchanged USD 8 cumulative stop. Balance remains
+USD 7.1796731618, current spend/hour 0, auto-pay false and zero Pods. EU-RO-1
+also reported broad stock, which still needs an exact eligible hardware quote.
+Preserve the original 02:28 no-stock observation. The new exact stock result is
+`qualified-gpu-stock-0843-20261023.json` (artifact 12467541602).
+
+The current controller now uses the new fixed authorization and dedicated
+start/watch branches. The paid worker inherits that exact namespace through the
+existing worker entry. An eligible European region is checked first; otherwise
+the existing equivalent-region delegation applies. Old allocated scopes and
+receipts remain untouched. Scientific driver/model/task/runtime bytes and all
+budgets/deadlines remain unchanged.
+
+The complete binding now covers **87 files**, including the new authorization,
+European quote/fallback tests and dedicated paid workflow. The full free
+qualification and exact-source Linux suite must pass before the new schema-1
+receipt is written to `qualified-gpu-actions-qualification-20261023.json`.
+Historical receipts are preserved and cannot qualify the changed controller.
+Free owner preparation triggers on that new receipt; paid entry triggers only
+on its dedicated new branch. A matching independent watcher and fresh offer
+are required again immediately before the sole allocation claim.

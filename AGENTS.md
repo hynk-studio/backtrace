@@ -356,3 +356,14 @@ is UNUSED: no claim, paid/start/watch entry or provider create occurred. All
 files remain unchanged. See `docs/qualified-gpu-execution-20261023.json`.
 No recurring wait was activated; any later allocation still requires renewed
 entry qualification, exact-source Linux and a fresh matching watcher/offer.
+
+The owner reiterated **재고있으면 진행해줘**. This continues the same unused
+owner-qualified-gpu-20261023 scope. Read-only run 39822924063 attempt 2 found
+qualified CA-MTL-3 stock at 2026-10-23 08:43:35 KST (EU-RO-1 broad stock too),
+USD 1.804/h all-in, USD 3.608 two-hour maximum, balance 7.1796731618 and zero
+Pods/spend/hour. Prefer an eligible European exact quote. Renew the changed
+87-file controller/entry qualification and exact-source Linux; create its new
+schema-1 receipt without overwriting old receipts, then require matching fresh
+watcher and stock before one claim. Use new dedicated qualified-20261023
+start/watch branches. All previous paid heads/claims remain immutable; no
+automatic second allocation, top-up, recurring wait, merge or submission.

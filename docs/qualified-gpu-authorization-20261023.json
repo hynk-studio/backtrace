@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "authorization": "owner-qualified-gpu-20261023",
+  "authority": "Owner instructed 자원 있으면 돌려보자 and then 재고있으면 진행해줘; the same unused single conditional scope, not two allocations",
+  "review_branch": "bt-001-qualified-gpu-20261023",
+  "start_branch": "bt-001-a100-start-qualified-20261023",
+  "watch_branch": "bt-001-a100-watch-qualified-20261023",
+  "policy": "prepaid10-actions-v1",
+  "wallet_credits_usd": "10.00",
+  "cumulative_stop_usd": "8.00",
+  "maximum_new_allocations": 1,
+  "maximum_server_starts": 1,
+  "maximum_public_tasks": 1,
+  "setup_seconds": 5400,
+  "useful_seconds": 6900,
+  "total_seconds": 7200,
+  "additional_funding": false,
+  "auto_top_up": false,
+  "automatic_paid_retry": false,
+  "recurring_wait": false,
+  "region_preference": "Eligible EU region first; otherwise previously authorized equivalent region",
+  "scientific_inputs": "Unchanged frozen model/task/harness/prompts/TP1/native dtype/inference budget",
+  "previous_authorizations": "All previously allocated scopes remain consumed; preserve all old claims, receipts and actual paid/watch heads",
+  "exclusions": [
+    "training",
+    "merge",
+    "submission",
+    "terms acceptance",
+    "extra allocation",
+    "recurring automation"
+  ],
+  "status": "UNUSED; require renewed complete qualification and exact-source Linux before entry"
+}

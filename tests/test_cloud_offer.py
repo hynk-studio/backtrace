@@ -39,6 +39,26 @@ class OfferTests(unittest.TestCase):
                 self.assertEqual(len(self.calls), 1)
                 self.assertFalse(result['settings_changed'])
 
+    def test_eligible_european_quote_is_checked_before_other_regions(self):
+        europe=copy.deepcopy(self.account['dataCenters'][0]);europe['id']='EU-RO-1'
+        self.account['dataCenters'].append(europe)
+        result=inspect_offer(read=self.read,now=lambda:T0)
+        self.assertEqual(result['offer']['region'],'EU-RO-1')
+        self.assertEqual(self.calls[1][1]['price']['dataCenterId'],'EU-RO-1')
+
+    def test_european_broad_stock_without_exact_quote_falls_back_to_qualified_region(self):
+        europe=copy.deepcopy(self.account['dataCenters'][0]);europe['id']='EU-RO-1'
+        self.account['dataCenters'].append(europe)
+        def read(source,variables=None):
+            value=self.read(source,variables)
+            if variables and variables['price']['dataCenterId']=='EU-RO-1':
+                value['gpuTypes'][0]['lowestPrice']=None
+            return value
+        result=inspect_offer(read=read,now=lambda:T0)
+        self.assertEqual(result['offer']['region'],'CA-MTL-3')
+        self.assertEqual([v['price']['dataCenterId'] for _,v in self.calls if v],
+                         ['EU-RO-1','CA-MTL-3'])
+
     def test_unavailable_region_or_only_multiple_gpu_capacity_is_not_qualified(self):
         self.account['dataCenters'][0]['gpuAvailability'][0]['available'] = False
         self.assertEqual(inspect_offer(read=self.read, now=lambda: T0)['status'], 'NO_QUALIFIED_REGION')

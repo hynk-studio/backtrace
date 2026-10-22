@@ -16,13 +16,13 @@ import uuid
 
 from tools import runpod_control as control
 
-AUTHORIZATION = 'owner-connected-gpu-20261022'
+AUTHORIZATION = 'owner-qualified-gpu-20261023'
 POLICY = 'prepaid10-actions-v1'
 REPOSITORY = 'hynk-studio/backtrace'
 BRANCH = 'bt-001-a100-state'
 DIRECTORY = 'a100-state/' + AUTHORIZATION
-OWNER_BRANCH = 'bt-001-a100-start-connected-gpu'
-WATCH_BRANCH = 'bt-001-a100-watch-connected-gpu'
+OWNER_BRANCH = 'bt-001-a100-start-qualified-20261023'
+WATCH_BRANCH = 'bt-001-a100-watch-qualified-20261023'
 SETUP, USEFUL, TOTAL = 5400, 6900, 7200
 DOCUMENTS = frozenset({'claim', 'pod', 'heartbeat', 'watcher', 'cleanup'})
 SHA = re.compile(r'[0-9a-f]{40}')
