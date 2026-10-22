@@ -229,3 +229,11 @@ watch head. Existing wallet/cumulative/time limits and all scientific inputs
 remain unchanged. Require full renewed qualification, exact-source CPU and
 preparation, fresh stock and a matching independent watcher before one create.
 Do not automatically retry an allocated attempt or enable recurring resumption.
+
+The new scope's full free qualification **39724341717** passed at
+`0569315dd622959e01c6daf035c38afa3f5a45c4`; Linux **39724341819** passed 295 tests.
+The renewed 75-file receipt includes paid-entry and watcher orchestration. Host
+and exact offline image passed all connected/evaluator controls; five concurrent
+cleanup cases and encrypted evidence recovery passed. The scope is still unused
+at this receipt checkpoint. Require final exact-source CPU/preparation and a
+fresh matching independent watcher before its one paid create.

@@ -52,3 +52,27 @@ separately on free CPU only after cleanup; a verifier infrastructure error is
 not an unresolved model score.
 
 Initial state: qualification renewal pending; provider allocations: **0**.
+
+## Renewed free qualification
+
+Full free run **39724341717**, attempt 1, passed at source
+`0569315dd622959e01c6daf035c38afa3f5a45c4`. The byte-preserved public report is
+`a100-connected-gpu-qualification-20261022.json`, 30,380 bytes, SHA-256
+`aa9e3d75cb512e6cdf6ecde7b7127cdfc06cca975472fcbfc79c4423141b3f4f`.
+The renewed receipt binds **75** operational files and the exact transport
+binaries. Both host and offline deployment image passed actual HTTP, the full
+driver and all tools/delegation, patch/ATIF/byte recovery and evaluator controls.
+The neutral patch failed 2/4 public tests; the evaluator-only public reference
+passed 4/4. All five concurrent owner/watcher cases passed, including cleanup
+and blocked recreation. The 87 private evidence files were encrypted and
+recovered with their ciphertext hash verified.
+
+Exact-source Linux run **39724341819** passed **295 tests**, preflight and real
+minimal HTTP controls. Local full discovery still has the known foreign-procfs
+limitations: 5 failures, 7 errors and 2 skips; no full local-pass claim is made.
+The first free owner preparation **39724341777** correctly rejected the old
+69-file receipt before any allocation request. It was an expected stale-receipt
+block, not a model or GPU failure.
+
+The final receipt commit still requires its own exact-source CPU/preparation.
+At this checkpoint the new authorization remains unused: zero GPU allocations.
