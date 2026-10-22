@@ -25,7 +25,8 @@ jobs:
         with:
           python-version: '3.12.14'
       - name: Install pinned controller dependencies
-        run: python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
       - name: Qualify host, exact image transport and concurrent cleanup without provider credentials
         run: |
           python_path="$(command -v python)"
