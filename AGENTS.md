@@ -294,3 +294,15 @@ exercise the actual SSH/envelope boundaries on free CPU. Fixture byte transfer
 and public pip downloads do not qualify the scientific streams or full runtime.
 Preserve all historical receipts and consumed start/watch heads. This scope
 does not authorize a GPU create, full-model run, merge or automation.
+
+The free difference audit passed run 39772757946 at
+`54a42e05c6c0b0b890ad7ef2a7c061e2c304c5ea`. The actual pinned image passed
+TLS/SSH, fixture transfer, command envelopes and the production setup prefix
+through runtime_inputs; full runtime installation and model/task execution were
+NOT RUN. Linux 39772757948 passed 324 tests and actual minimal HTTP. Initial
+SSH now shares a real 60-second bound with at most 25 seconds per subprocess;
+failed status retention preserves the original remote exception. Public report
+and ciphertext export passed; four encrypted logs were recovered. Read
+`docs/full-path-parity-20261022.md`. All 18 consumed start/watch heads and the
+state-branch head are unchanged. Neither historical receipt is renewed by this
+partial boundary check; no paid launch or merge follows automatically.

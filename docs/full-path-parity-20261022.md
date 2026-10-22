@@ -51,8 +51,33 @@ model transfer, launch permit and public-task execution are absent.
 
 ## Evidence and interpretation
 
-Results pending actual free workflow completion. Local targeted regression checks
-passed; the local complete suite and actual Linux suite are reported separately.
+Final source `54a42e05c6c0b0b890ad7ef2a7c061e2c304c5ea` passed actual free run
+[39772757946](https://github.com/hynk-studio/backtrace/actions/runs/39772757946),
+job 119805963874, attempt 1. The exact public report is retained byte-for-byte in
+`full-path-parity-result-20261022.json` (3539 bytes, SHA-256
+`8a1818017e446bd4849bc398740b3ff05cfd42c526c9d06be54257718981f3cc`).
+It records nine passing checks, including the actual production setup prefix:
+base_environment, system_packages, runtime_inputs; it stops before runtime
+installation. The 81200-byte source envelope used a 422-byte command; a changed
+source was rejected. Manifested SSH transfer verified 176128 fixture bytes.
+All 24 pinned system packages installed and the dropped-UID git/patch smoke
+passed. Two public pip-wheel fixture streams transferred 3683052 bytes with
+verified hashes. No scientific task/model bytes were transferred.
+
+Exact-source Linux run 39772757948/job 119804106450 passed all 324 tests and the
+actual minimal HTTP regression. The local full suite ran 324 tests with the same
+known foreign-procfs 5 failures, 7 errors and 2 skips; local preflight passed.
+A status-write failure regression also verifies that retention cannot replace
+the original remote exception. Four encrypted private logs were recovered and
+verified (291170 plaintext bytes); bootstrap key files and private source maps are not collected.
+
+Two earlier free workflow revisions passed their actual checks but failed
+artifact export because the root-created evidence directory was not traversable
+by the upload action. The final workflow grants traversal only to the projected
+report/ciphertext directory. Final export succeeded; earlier private ciphertext
+was not retained. Execution and source details are in
+`full-path-parity-execution-20261022.json`. All 18 allocated start/watch refs and
+the state-branch head remained unchanged.
 
 The original full receipt binds 75 files and predates bootstrap changes. The
 current full qualification closure has 80 files. The old receipt is intentionally

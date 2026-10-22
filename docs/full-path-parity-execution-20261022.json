@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "scope": "Free diagnostic/full-path difference audit; no paid operation",
+  "base_sha": "e655960cb7db584e869709ba3c504dedcd73dee0",
+  "source_sha": "54a42e05c6c0b0b890ad7ef2a7c061e2c304c5ea",
+  "run": {
+    "id": 39772757946,
+    "job_id": 119805963874,
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "cpu": {
+    "run_id": 39772757948,
+    "job_id": 119804106450,
+    "tests": 324,
+    "status": "PASS",
+    "minimal_http": "PASS"
+  },
+  "local_cpu": {
+    "tests": 324,
+    "failures": 5,
+    "errors": 7,
+    "skipped": 2,
+    "cause": "Previously observed foreign procfs PID namespace; actual root Linux suite passes"
+  },
+  "public_report": {
+    "path": "docs/full-path-parity-result-20261022.json",
+    "bytes": 3539,
+    "sha256": "8a1818017e446bd4849bc398740b3ff05cfd42c526c9d06be54257718981f3cc",
+    "artifact_id": 12422883521,
+    "artifact_zip_sha256": "bc1a9ae80423ee378c9e897f8565f3e1fd22162849d97ac78ccc093d2bbba18f"
+  },
+  "private_evidence": {
+    "ciphertext_bytes": 297267,
+    "ciphertext_sha256": "45754550916b45997a0a664067eec3903ccf237b93c711d03b3a49c800c13de0",
+    "files": 4,
+    "format": "age-v1",
+    "plaintext_bytes": 291170,
+    "artifact_id": 12422479873,
+    "artifact_zip_sha256": "bab974b9dc790b3b583aa697779a4d1b685bff3223306f58481c25cc35ed4dc7",
+    "recovered_files": 4
+  },
+  "previous_free_runs": [
+    {
+      "run_id": 39771956821,
+      "source_sha": "629d01a228f6998aa969f15010579c78ffd96ac8",
+      "actual_checks": "PASS",
+      "workflow": "FAIL: result-directory traversal denied artifact upload",
+      "private_export": "NOT RETAINED"
+    },
+    {
+      "run_id": 39772488063,
+      "source_sha": "f6a23552a45fe0557f04ce3092be4dc0fc2c4984",
+      "production_setup_prefix": "PASS",
+      "workflow": "FAIL: same artifact directory permission, fixed in final source",
+      "private_export": "NOT RETAINED"
+    }
+  ],
+  "invariants": {
+    "provider_operations": 0,
+    "gpu_allocations": 0,
+    "state_branch_unchanged": "0ddbc6734dca197d6ffafced970d41542c2e675b",
+    "allocated_refs": [
+      {
+        "ref": "refs/heads/bt-001-a100-start-20261019",
+        "sha": "80cb0efa905ba7f068ea10e04ecf1c37c4382401",
+        "unchanged": true
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-start-20261020b",
+        "sha": "91788995fa6e7fd185a4a4e001a13558ce37581b",
+        "unchanged": true
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-start-20261020c",
+        "sha": "48dafadc25e42980e3674c247627662695891b84",
+        "unchanged": true
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-start-20261021a",
+        "sha": "6b7a861f286a2e68b169ccb9c4c1fb99c9ead756",
+        "unchanged": true
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-start-20261021b",
+        "sha": "ec58d2d6a8200a7cfb74185fce9ccc82dabaab81",
+        "unchanged": true
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-start-20261021c",
+        "sha": "5aea23d2456233414c74f3346f1163acd0779fa2",
+        "unchanged": true
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-start-api-recovery",
+        "sha": "7f53553078483cd2555f0bed0abd0410cf42f3d0",
+        "unchanged": true
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-start-bootstrap-probe",
+        "sha": "f7cb1164e06586486254ce193e30201e12e5c424",
+        "unchanged": true
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-start-connected-gpu",
+        "sha": "cdef8537994f65e6a26645ec684f5917bd126c7b",
+        "unchanged": true
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-watch-20261019",
+        "sha": "80cb0efa905ba7f068ea10e04ecf1c37c4382401",
+        "unchanged": true
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-watch-20261020b",
+        "sha": "91788995fa6e7fd185a4a4e001a13558ce37581b",
+        "unchanged": true
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-watch-20261020c",
+        "sha": "48dafadc25e42980e3674c247627662695891b84",
+        "unchanged": true
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-watch-20261021a",
+        "sha": "6b7a861f286a2e68b169ccb9c4c1fb99c9ead756",
+        "unchanged": true
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-watch-20261021b",
+        "sha": "ec58d2d6a8200a7cfb74185fce9ccc82dabaab81",
+        "unchanged": true
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-watch-20261021c",
+        "sha": "5aea23d2456233414c74f3346f1163acd0779fa2",
+        "unchanged": true
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-watch-api-recovery",
+        "sha": "7f53553078483cd2555f0bed0abd0410cf42f3d0",
+        "unchanged": true
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-watch-bootstrap-probe",
+        "sha": "f7cb1164e06586486254ce193e30201e12e5c424",
+        "unchanged": true
+      },
+      {
+        "ref": "refs/heads/bt-001-a100-watch-connected-gpu",
+        "sha": "cdef8537994f65e6a26645ec684f5917bd126c7b",
+        "unchanged": true
+      }
+    ],
+    "historical_receipts": "PRESERVED; not renewed by this partial boundary check"
+  },
+  "not_run": [
+    "full runtime installation on this SSH path",
+    "torch CUDA kernel execution",
+    "model loading",
+    "model inference",
+    "public task",
+    "Kaggle submission/hosted scoring"
+  ]
+}
