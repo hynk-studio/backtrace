@@ -95,3 +95,22 @@ Auto-Pay off, unchanged observed USD 7.2408300035 balance and qualified US-MO-1
 stock at USD 1.804/h, maximum USD 0.902 for this diagnostic. The actual entry
 must refresh the quote. At this receipt checkpoint this scope has no allocation;
 require final-source CPU success and a fresh matching independent watcher.
+
+## First entry: no allocation
+
+Entry **39742214627**, attempt 1 at
+`289d8e1dd5efd796b4077f41fdee2811cb129e95`, refreshed stock at **16:41:39 KST**.
+All exact matching regional offers were unavailable. It returned
+`NO_QUALIFIED_STOCK` with **zero create requests** before claim creation.
+No GPU diagnostic ran, and this one-allocation authorization remains unused.
+Preserve this run/source as an unallocated entry in the execution JSON.
+
+Conditional re-entry remains within the same single-allocation instruction only
+while there is no immutable claim and the completed prior entry sent zero create
+requests. Do not rerun a paid job or reset state. After the unclaimed watcher
+finishes, an unchanged qualified operational source may advance the unallocated
+entry/watch refs to a new recorded metadata commit, with new first-attempt runs,
+successful exact-source CPU, a fresh matching watcher lease and a fresh offer.
+The existing handover permits only a completed never-claimed watcher. Every
+source/run remains in Git history; all actually allocated historical heads stay
+immutable. Any claim or uncertain create permanently stops this free re-entry.

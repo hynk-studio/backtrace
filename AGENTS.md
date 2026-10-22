@@ -276,3 +276,11 @@ cases passed; exact-source Linux 39740489374 passed 317 tests. Read the receipt
 checkpoint in `docs/bootstrap-probe-20261022.md`. The diagnostic allocation is
 still unused at this checkpoint; require receipt-source CPU and a fresh matching
 watcher. This qualification covers boot/connectivity only, not model inference.
+
+Diagnostic entry 39742214627 at 289d8e1dd5efd796b4077f41fdee2811cb129e95 sent
+zero create requests after fresh stock disappeared. No claim was created and
+the single diagnostic allocation remains unused. Follow the unallocated-entry
+section of `docs/bootstrap-probe-20261022.md`: preserve this evidence, require a
+completed never-claimed watcher before handover, unchanged qualified operational
+hashes, new exact-source CPU/first-attempt entry and fresh stock. Never rerun a
+paid job, reset a claim or advance an actually allocated paid/watch head.
