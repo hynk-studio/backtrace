@@ -71,3 +71,27 @@ not qualify these changed files or any future model run.
 No merge, recurring automation, additional funds, second allocation or hosted
 submission is included. References #1. Actual execution results will be appended
 after this diagnostic, with unknowns preserved.
+
+## Completed free qualification
+
+Run **39740489400**, attempt 1 at
+`dc7ae5d37d51ef158c11d26215d10ce9887aa22c`, passed all nine stages: host transport,
+exact-image transport and seven concurrent owner/watcher cases. Linux
+**39740489374** passed 317 tests and actual minimal HTTP controls at that source.
+The receipt binds 83 operational files to the byte-preserved public report
+SHA-256 `96ba9f4fc59f9f5624315d044b7ba268bf08ad14c6d5092b4322d26e43ee78ea`.
+
+An earlier free run **39738924392** was blocked at exact-image TLS transfer with
+ConnectionResetError, before any allocation. Docker publishes its host proxy
+before the container's Python receiver is necessarily listening. The revised
+CPU fixture observes the actual internal listener before the same authenticated
+transfer; the image test then passed. This identifies a readiness assumption in
+the CPU fixture, not the cause of the prior deleted Runpod Pod's timeout.
+Independent stage results are now retained even if another stage fails, and
+container/build logs are encrypted rather than discarded.
+
+Read-only job **119699280369** at **16:34:37 KST** found zero Pods/current spend,
+Auto-Pay off, unchanged observed USD 7.2408300035 balance and qualified US-MO-1
+stock at USD 1.804/h, maximum USD 0.902 for this diagnostic. The actual entry
+must refresh the quote. At this receipt checkpoint this scope has no allocation;
+require final-source CPU success and a fresh matching independent watcher.

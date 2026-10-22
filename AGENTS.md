@@ -268,3 +268,11 @@ diagnostic qualification and final-source Linux suite before one create. This
 minimum diagnostic intentionally excludes model/task inputs and does not
 qualify or authorize full model execution. Preserve all earlier claims, reports
 and actual paid/watch heads; no automatic second allocation or automation.
+
+Diagnostic free qualification 39740489400 passed at
+`dc7ae5d37d51ef158c11d26215d10ce9887aa22c`, with nine retained stages and the
+83-file receipt. Exact-image TLS/pinned SSH and all seven concurrent lifecycle
+cases passed; exact-source Linux 39740489374 passed 317 tests. Read the receipt
+checkpoint in `docs/bootstrap-probe-20261022.md`. The diagnostic allocation is
+still unused at this checkpoint; require receipt-source CPU and a fresh matching
+watcher. This qualification covers boot/connectivity only, not model inference.
