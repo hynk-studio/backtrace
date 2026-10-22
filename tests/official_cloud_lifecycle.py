@@ -4,6 +4,7 @@ GitHub and RunPod are loopback/in-memory fixtures. This cannot allocate a GPU,
 qualify the network providers, or stand in for an actual model/task execution.
 """
 import base64
+from contextlib import ExitStack
 import copy
 import hashlib
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -17,10 +18,11 @@ import threading
 import time
 import urllib.parse
 import urllib.request
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from tools import cloud_owner, cloud_state as state, cloud_watch
+from tools import cloud_owner, cloud_state as state, cloud_watch, cloud_bootstrap
 from tools.runpod_job import check_owner_host
 from tests.test_cloud_state import MemoryStore, SOURCE
 from tests.test_cloud_owner import Provider
@@ -100,14 +102,25 @@ class Handler(BaseHTTPRequestHandler):
 
 
 class LockedProvider(Provider):
-    def __init__(self):
+    def __init__(self, scenario):
         super().__init__(); self.lock = threading.RLock(); self.deleted_at = None
+        self.scenario = scenario; self.reads = 0
 
     def create(self, value):
         with self.lock: return super().create(value)
 
     def get(self, value):
-        with self.lock: return super().get(value)
+        with self.lock:
+            pod = super().get(value)
+            if pod is not None and value == 'owned123' and self.scenario.startswith('bootstrap_'):
+                self.reads += 1
+                if self.scenario == 'bootstrap_timeout' or self.reads <= 3:
+                    pod['status'] = 'STARTING'; pod['ssh'] = {'direct': None}
+            return pod
+
+    def bootstrap_logs(self, pod_id):
+        assert pod_id == 'owned123'
+        return cloud_bootstrap.log_summary(b'data: {"source":"system","line":"pulling image"}\n')
 
     def list(self):
         with self.lock: return super().list()
@@ -128,7 +141,7 @@ from tools.runpod_job import heartbeat
 root=Path(sys.argv[2]);attempt=sys.argv[3];scenario=sys.argv[4]
 start=time.monotonic()
 heartbeat(root,attempt,'running','setup')
-while time.monotonic()-start < (25 if scenario=='success' else 60):
+while time.monotonic()-start < (2 if scenario=='bootstrap_delayed' else 25 if scenario=='success' else 60):
  if scenario=='worker_failure' and time.monotonic()-start>2:sys.exit(2)
  if scenario!='stale_worker':heartbeat(root,attempt,'running','setup')
  time.sleep(0.2)
@@ -138,7 +151,7 @@ heartbeat(root,attempt,'finished','retrieval')
 
 
 def scenario(name):
-    backend = Backend(name); api = LockedProvider()
+    backend = Backend(name); api = LockedProvider(name)
     server = ThreadingHTTPServer(('127.0.0.1', 0), Handler); server.backend = backend
     http_thread = threading.Thread(target=server.serve_forever, daemon=True); http_thread.start()
     base = 'https://api.github.com/repos/' + state.REPOSITORY
@@ -164,7 +177,13 @@ def scenario(name):
     process = None
     started = time.monotonic()
     try:
-        with tempfile.TemporaryDirectory(prefix='backtrace-concurrent-') as directory:
+        with tempfile.TemporaryDirectory(prefix='backtrace-concurrent-') as directory, ExitStack() as overrides:
+            if name.startswith('bootstrap_'):
+                # Only the fixture's durations are shortened; exercise the
+                # actual loop, state HTTP, heartbeat writes and cleanup path.
+                overrides.enter_context(patch.object(cloud_bootstrap, 'POLL_SECONDS', .2))
+                overrides.enter_context(patch.object(cloud_bootstrap, 'DEADLINE_SECONDS',
+                                                       2 if name == 'bootstrap_timeout' else 10))
             root = Path(directory)
             watch_thread.start()
             deadline = time.monotonic() + 5
@@ -193,10 +212,20 @@ def scenario(name):
             assert watcher_result.get('phase') == 'deleted', watcher_result
             assert watcher_result['absence_reads'] == 2
             assert result['cleanup']['phase'] == 'deleted', result
-            assert result['status'] == ('COMPLETE' if name == 'success' else 'INCOMPLETE'), result
+            successful = name in ('success', 'bootstrap_delayed')
+            assert result['status'] == ('COMPLETE' if successful else 'INCOMPLETE'), result
             assert set(api.pods) == {'unrelated'}
             assert sum(row[0] == 'create' for row in api.calls) == 1
-            assert process is not None and process.poll() is not None
+            if name == 'bootstrap_timeout':
+                assert process is None, 'a timed-out bootstrap spawned a worker'
+                assert result['failure']['stage'] == 'bootstrap_deadline'
+                assert result['bootstrap']['last']['readiness'] == 'WAIT_PROVIDER_RUNNING'
+                assert result['bootstrap']['log_sample']['events'] == 1
+            else:
+                assert process is not None and process.poll() is not None
+            if name == 'bootstrap_delayed':
+                observed = [x['readiness'] for x in result['bootstrap']['history']]
+                assert 'WAIT_PROVIDER_RUNNING' in observed and observed[-1] == 'READY'
             if name == 'success':
                 assert float((root / 'child-finished').read_text()) <= api.deleted_at
                 assert backend.heartbeat_writes >= 5, 'healthy concurrent polling was not exercised'
@@ -215,7 +244,8 @@ def scenario(name):
                     'elapsed_seconds': round(time.monotonic() - started, 2),
                     'explicit_branch_conflicts': len(backend.conflict_documents),
                     'delayed_owner_heartbeat_reads': backend.stale_reads_served,
-                    'child_reaped': True, 'recreate_blocked': True}
+                    'child_reaped': process is None or process.poll() is not None,
+                    'bootstrap': result.get('bootstrap'), 'recreate_blocked': True}
     finally:
         if process is not None:
             cloud_owner.stop_worker(process)
@@ -225,8 +255,9 @@ def scenario(name):
 
 if __name__ == '__main__':
     check_owner_host()
-    rows = [scenario(name) for name in ('success', 'worker_failure', 'stale_worker',
-                                       'state_http_failure', 'owner_cancelled')]
+    names = (('bootstrap_delayed', 'bootstrap_timeout') if '--bootstrap-only' in sys.argv
+             else ('success', 'worker_failure', 'stale_worker', 'state_http_failure', 'owner_cancelled'))
+    rows = [scenario(name) for name in names]
     print(json.dumps({'status': 'PASS', 'cases': rows, 'paid_operations': 0,
                       'provider': 'SIMULATED', 'state_api': 'LOOPBACK HTTP',
                       'owner_watcher': 'CONCURRENT ACTUAL LOOPS', 'worker': 'REAL CPU FIXTURE PROCESS'}))

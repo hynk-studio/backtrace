@@ -2,7 +2,7 @@ name: A100 cloud CPU qualification
 
 on:
   push:
-    branches: [bt-001-connected-gpu-smoke]
+    branches: [bt-001-connected-gpu-smoke, bt-001-bootstrap-diagnostics]
 # The owner entry requires a successful suite at its exact source commit,
 # including commits that only update qualification/evidence documents.
 permissions:
@@ -59,6 +59,12 @@ jobs:
           Path('evidence/api-minimal.json').write_text(json.dumps(result, indent=2) + '\n')
           print(json.dumps(result, sort_keys=True))
           PY
+      - name: Concurrent owner and watcher lifecycle including provider readiness waits
+        if: github.ref_name == 'bt-001-bootstrap-diagnostics'
+        run: |
+          set -euo pipefail
+          python_path="$(command -v python3)"
+          sudo "$python_path" tests/official_cloud_lifecycle.py --bootstrap-only | tee evidence/lifecycle.json
       - name: Preserve CPU evidence only
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

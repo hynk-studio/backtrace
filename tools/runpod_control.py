@@ -177,6 +177,48 @@ class RunpodAPI:
             raise ProviderError('wrong or incomplete Pod readback')
         return result
 
+    def bootstrap_logs(self, pod_id):
+        """One read-only bounded SSE sample; never postpone cleanup for a stream.
+
+        At most 32 KiB, eight reads and ~4 seconds including a final socket
+        timeout. Raw text is classified in memory and is never returned/saved.
+        """
+        from tools import cloud_bootstrap
+        self.valid_id(pod_id)
+        request = urllib.request.Request(
+            'https://api.runpod.io/v2/pods/' + pod_id + '/logs?tail=50',
+            headers={'Authorization': 'Bearer ' + self._key, 'Accept': 'text/event-stream'},
+            method='GET')
+        raw = bytearray()
+        stopped = 'READ_LIMIT'
+        deadline = time.monotonic() + 2
+        try:
+            with self._open(request, timeout=2) as response:
+                if (response.status != 200 or
+                        not response.headers.get('Content-Type', '').startswith('text/event-stream')):
+                    raise ProviderError('invalid provider log response')
+                for _ in range(8):
+                    if time.monotonic() >= deadline:
+                        stopped = 'TIME_LIMIT'
+                        break
+                    try:
+                        part = response.read1(min(4096, cloud_bootstrap.MAX_LOG_BYTES - len(raw)))
+                    except (OSError, TimeoutError):
+                        stopped = 'READ_TIMEOUT'
+                        break
+                    if not part:
+                        stopped = 'EOF'
+                        break
+                    raw.extend(part)
+                    if len(raw) >= cloud_bootstrap.MAX_LOG_BYTES:
+                        stopped = 'BYTE_LIMIT'
+                        break
+        except urllib.error.HTTPError as error:
+            raise ProviderError('provider log HTTP ' + str(error.code), http_status=error.code) from None
+        except (OSError, TimeoutError):
+            raise ProviderError('provider log transport failure') from None
+        return dict(cloud_bootstrap.log_summary(bytes(raw)), stopped=stopped)
+
     def list(self):
         from urllib.parse import quote
         pods, cursors, ids = [], set(), set()

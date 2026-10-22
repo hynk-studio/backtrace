@@ -15,7 +15,7 @@ PATHS = tuple(sorted(set(
         'cloud_probe', 'cloud_inventory', 'cloud_seal', 'cloud_state', 'runpod_control', 'runpod_job',
         'ssh_bootstrap', 'direct_delivery', 'private_delivery', 'pod_bootstrap', 'pod_preflight', 'pod_system',
         'api_probe', 'qualify_api', 'qualify_evaluation', 'probe_results', 'qualification_evidence',
-        'cloud_launch', 'cloud_offer')]
+        'cloud_launch', 'cloud_offer', 'cloud_bootstrap')]
     + ['tests/official_a100_task.py', 'tests/official_cloud_transport.py', 'tests/official_cloud_prerequisites.py',
        'tests/official_cloud_image.py', 'tests/official_cloud_lifecycle.py',
        'tests/test_cloud_state.py', 'tests/test_cloud_owner.py', 'tests/test_runpod_control.py',
@@ -26,7 +26,8 @@ PATHS = tuple(sorted(set(
        'docs/a100-evaluator-dependencies.json', 'tests/test_evaluation.py',
        'docs/cloud-controller-requirements.txt', '.github/workflows/a100-prepare.yml',
        '.github/workflows/a100-start.yml', '.github/workflows/a100-watch.yml',
-       'tests/test_cloud_launch.py', 'tests/test_cloud_qualification.py'])))
+       'tests/test_cloud_launch.py', 'tests/test_cloud_qualification.py',
+       'tests/test_cloud_bootstrap.py'])))
 
 
 def file_hashes(root):

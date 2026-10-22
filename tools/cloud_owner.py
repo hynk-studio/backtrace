@@ -15,7 +15,7 @@ import sys
 import time
 import traceback
 
-from tools import cloud_state as state, cloud_task, cloud_worker, cloud_seal
+from tools import cloud_state as state, cloud_task, cloud_worker, cloud_seal, cloud_bootstrap
 from tools import runpod_control as control
 from tools.runpod_job import private_json, read_private
 
@@ -30,6 +30,8 @@ SAFE_STATE_REASONS = frozenset({
     'durable-state transport or JSON failure',
     'durable write not independently confirmed',
     'invalid state object', 'invalid durable document', 'wrong workflow run',
+    'bootstrap provider resource is absent', 'bootstrap provider reached a terminal state',
+    'bootstrap provider returned an unknown state', 'invalid exact bootstrap endpoint',
 })
 
 
@@ -111,6 +113,8 @@ def execute(store, api, offer, bootstrap, configuration, directory, run_id, sour
     claim = None; pod_record = None; process = None; heartbeat_sha = None
     result = {'allocation_requests': 0, 'worker_exit': None, 'cleanup': None}
     stage = 'claim'
+    bootstrap_evidence = {'deadline_seconds': cloud_bootstrap.DEADLINE_SECONDS,
+                          'polls': 0, 'history': []}
     try:
         claim, request = state.claim_before_create(store, api, offer, bootstrap, run_id,
                                                    source_sha, wall=wall)
@@ -128,20 +132,52 @@ def execute(store, api, offer, bootstrap, configuration, directory, run_id, sour
         expected = {'request': request, 'region': claim['region'], 'costs': claim['costs']}
         while True:
             now = wall()
-            if now - claim['requested_at'] >= 1200:
+            stage = 'bootstrap_deadline'
+            if now - claim['requested_at'] >= cloud_bootstrap.DEADLINE_SECONDS:
                 raise TimeoutError('bounded bootstrap readiness exceeded')
+            stage = 'bootstrap_owner_status'
+            owner = store.run(str(run_id))
+            if (owner['status'] != 'in_progress' or owner['head_sha'] != source_sha
+                    or owner['run_attempt'] != 1
+                    or owner['head_branch'] != 'bt-001-a100-start-connected-gpu'):
+                raise state.StateError('lifecycle deadline or independent watcher failure')
+            stage = 'bootstrap_watcher_status'
+            watcher = store.run(claim['watcher_run_id'])
+            if (watcher['status'] != 'in_progress'
+                    or watcher['head_sha'] != source_sha or watcher['run_attempt'] != 1
+                    or watcher['head_branch'] != 'bt-001-a100-watch-connected-gpu'):
+                raise state.StateError('lifecycle deadline or independent watcher failure')
             stage = 'bootstrap_resource'
             pod = api.get(pod_record['pod_id'])
+            observation = cloud_bootstrap.observe(pod, wall() - claim['requested_at'])
+            bootstrap_evidence['polls'] += 1
+            bootstrap_evidence['last'] = observation
+            bootstrap_evidence['history'] = (bootstrap_evidence['history'] + [observation])[-64:]
+            private_json(directory / 'bootstrap-readiness.json', bootstrap_evidence)
+            result['bootstrap'] = bootstrap_evidence
+            emit({'bootstrap': observation, 'pod_id': pod_record['pod_id']})
+            reasons = {'POD_ABSENT': 'bootstrap provider resource is absent',
+                       'PROVIDER_TERMINAL': 'bootstrap provider reached a terminal state',
+                       'UNKNOWN_PROVIDER_STATE': 'bootstrap provider returned an unknown state',
+                       'INVALID_DIRECT_ENDPOINT': 'invalid exact bootstrap endpoint'}
+            if observation['readiness'] in reasons:
+                raise state.StateError(reasons[observation['readiness']])
             if not control.resource_matches(pod, expected):
                 raise state.StateError('assigned resource differs from reviewed offer')
+            # A slow read must not start a worker past the bootstrap deadline.
+            stage = 'bootstrap_deadline'
+            if wall() - claim['requested_at'] >= cloud_bootstrap.DEADLINE_SECONDS:
+                raise TimeoutError('bounded bootstrap readiness exceeded')
             stage = 'bootstrap_heartbeat'
-            heartbeat_sha = update_heartbeat(store, claim, 'setup', now, heartbeat_sha)
-            endpoint = pod.get('ssh', {}).get('direct')
-            if pod['status'] == 'RUNNING' and endpoint:
-                if endpoint.get('username') != 'root':
-                    raise state.StateError('exact root endpoint required')
+            heartbeat_sha = update_heartbeat(store, claim, 'setup', wall(), heartbeat_sha)
+            if observation['readiness'] == 'READY':
+                stage = 'bootstrap_deadline'
+                if wall() - claim['requested_at'] >= cloud_bootstrap.DEADLINE_SECONDS:
+                    raise TimeoutError('bounded bootstrap readiness exceeded')
+                endpoint = pod['ssh']['direct']
                 break
-            sleep(20)
+            sleep(min(cloud_bootstrap.POLL_SECONDS,
+                      max(0, claim['requested_at'] + cloud_bootstrap.DEADLINE_SECONDS - wall())))
         first_at = wall()
         stage = 'spawn_worker'
         process = spawn(directory, configuration, claim, pod_record['pod_id'], endpoint)
@@ -180,6 +216,16 @@ def execute(store, api, offer, bootstrap, configuration, directory, run_id, sour
                 result['failure']['reason'] = message
             if http:
                 result['failure']['http_status'] = int(http.group(1))
+        if stage.startswith('bootstrap_') and pod_record is not None:
+            # A failed log sample is secondary evidence; never mask the first
+            # failure or prevent exact-ID deletion. Production API is bounded.
+            sample = cloud_bootstrap.sample_logs(api, pod_record['pod_id'])
+            bootstrap_evidence['log_sample'] = sample
+            result['bootstrap'] = bootstrap_evidence
+            try:
+                private_json(directory / 'bootstrap-readiness.json', bootstrap_evidence)
+            except OSError:
+                result['bootstrap_diagnostic_write'] = 'FAILED'
         # Preserve source locations, never exception text, command lines or locals.
         try:
             private_json(directory / 'controller-diagnostic.json', {
@@ -221,6 +267,7 @@ def seal_results(directory, output):
     directory = Path(directory)
     files = {name: directory / name for name in (
         'owner-result.json', 'job-status.json', 'setup-status.json', 'controller-diagnostic.json',
+        'bootstrap-readiness.json',
         'worker.log', 'worker-process.log', 'receipt-transfer.json', 'task-validation.json', 'retrieval-error.json')
         if (directory / name).is_file()}
     receipts = directory / 'receipts'
