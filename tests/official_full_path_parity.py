@@ -106,13 +106,6 @@ def qualify(root, report):
             preflight = (ROOT / 'tools/pod_preflight.py').read_text()
             argv, envelope = worker.code_envelope(preflight + '\nprint(json.dumps(base(' + repr(required) + ')))\n')
             stages['base_environment_over_ssh'] = json.loads(remote(argv, envelope).stdout)
-            requested = time.time()
-            system = (ROOT / 'tools/pod_system.py').read_text()
-            packages = json.loads((ROOT / 'docs/a100-system-packages.json').read_text())
-            argv, envelope = worker.code_envelope(system + '\nprint(json.dumps(install('
-                + repr(packages) + ',' + repr(requested) + ')))\n')
-            response = remote(argv, envelope)
-            stages['system_packages_over_ssh'] = dict(json.loads(response.stdout.splitlines()[-1]), status='PASS')
             # Exercise the actual private URL envelope and HTTPS downloader with
             # one public frozen wheel. No private task/model URLs or bytes.
             rows = json.loads((ROOT / 'docs/linux-wheel-manifest.json').read_text())
@@ -126,10 +119,37 @@ def qualify(root, report):
                 raw = json.dumps(value)
                 streams[kind] = {'manifest': raw, 'sha256': hashlib.sha256(raw.encode()).hexdigest(),
                                  'sources': {wheel['path']: download}}
-            argv, envelope = worker.direct_envelope({'requested_at': requested, 'streams': streams})
-            replies = [json.loads(line) for line in remote(argv, envelope).stdout.splitlines()]
-            if [x['stream'] for x in replies] != ['wheels', 'task']:
-                raise ValueError('actual HTTPS stream replies incomplete')
+            raw = json.dumps({'schema_version': 1, 'phase': 'model', 'files': [
+                {'path': 'not-requested.bin', 'bytes': 0, 'sha256': hashlib.sha256(b'').hexdigest()}]})
+            streams['model'] = {'manifest': raw, 'sha256': hashlib.sha256(raw.encode()).hexdigest(), 'sources': {}}
+            # Enter the production setup orchestrator, not a copied sequence.
+            # Stop explicitly at the first unqualified runtime-install boundary.
+            # No runtime, activation, permit or model step may execute here.
+            class RuntimeBoundary(Exception): pass
+            history = []; active = [None]
+            def progress(row):
+                if row == {'stage': 'runtime_installation', 'status': 'STARTED'}:
+                    raise RuntimeBoundary()
+                history.append(row); active[0] = row['stage']
+            def setup_call(argv, *, input):
+                response = remote(argv, input)
+                values = [json.loads(line) for line in response.stdout.splitlines() if line.startswith(b'{')]
+                if active[0] == 'system_packages':
+                    stages['system_packages_over_ssh'] = dict(values[-1], status='PASS')
+                elif active[0] == 'runtime_inputs':
+                    if [x.get('stream') for x in values] != ['wheels', 'task']:
+                        raise ValueError('actual HTTPS stream replies incomplete')
+            try:
+                worker.setup_remote(setup_call, streams, manifest, time.time(), emit=progress)
+            except RuntimeBoundary:
+                pass
+            else:
+                raise ValueError('free CPU setup crossed its runtime boundary')
+            completed = [row['stage'] for row in history if row['status'] == 'PASS']
+            if completed != ['base_environment', 'system_packages', 'runtime_inputs']:
+                raise ValueError('production setup prefix did not complete')
+            stages['production_setup_prefix'] = {'status': 'PASS', 'stages': completed,
+                'stopped': 'BEFORE_RUNTIME_INSTALLATION', 'stream_inputs': 'FIXTURES'}
             stages['direct_https_envelope'] = {'status': 'PASS', 'streams': ['wheels', 'task'],
                 'inputs': 'PUBLIC PINNED PIP WHEEL FIXTURES', 'bytes': 2 * wheel['bytes'],
                 'sha256': wheel['sha256'], 'task_model_bytes': 0}
