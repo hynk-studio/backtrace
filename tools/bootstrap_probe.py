@@ -7,7 +7,6 @@ import hashlib
 import json
 import os
 from pathlib import Path
-import shlex
 import subprocess
 import sys
 import tempfile
@@ -131,26 +130,19 @@ def connect(root, endpoint, *, gpu_required, emit=lambda row: None):
     prefix = ssh_command(endpoint['host'], endpoint['port'], Path(root) / 'owner-key', known,
                          '/root/backtrace/unused', '0' * 64)[:-1]
     emit({'stage':stage,'status':'STARTED'})
-    deadline = time.monotonic() + 60
-    while True:
-        try:
-            process = subprocess.run(prefix + [shlex.join(['python3', '-I', '-c', remote_program(gpu_required)])],
-                stdin=subprocess.DEVNULL, capture_output=True, timeout=25,
-                env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
-        except subprocess.TimeoutExpired as error:
-            raise ProbeFailure(stage,'TimeoutExpired',private_output=error.stderr or b'') from None
-        if process.returncode == 0:
-            try: result = json.loads(process.stdout)
-            except ValueError:
-                raise ProbeFailure('ssh_remote_probe','InvalidJSON',private_output=process.stdout) from None
-            emit({'stage': stage, 'status': 'PASS'})
-            return {'status': 'PASS', 'mutual_tls': transfer, 'ssh': result,
-                    'elapsed_seconds': round(time.monotonic() - started, 3)}
-        if process.returncode != 255 or time.monotonic() >= deadline or any(x in process.stderr.lower() for x in
-                (b'host key verification failed', b'permission denied', b'traceback')):
-            raise ProbeFailure('pinned_ssh' if process.returncode==255 else 'ssh_remote_probe',
-                'RemoteCommandError',returncode=process.returncode,private_output=process.stderr) from None
-        time.sleep(1)
+    try:
+        process = ssh.wait_for_command(prefix, ['python3', '-I', '-c', remote_program(gpu_required)], 60)
+    except subprocess.CalledProcessError as error:
+        raise ProbeFailure('pinned_ssh' if error.returncode == 255 else 'ssh_remote_probe',
+            'RemoteCommandError', returncode=error.returncode, private_output=error.stderr or b'') from None
+    except (subprocess.TimeoutExpired, TimeoutError) as error:
+        raise ProbeFailure(stage, 'TimeoutExpired', private_output=getattr(error, 'stderr', None) or b'') from None
+    try: result = json.loads(process.stdout)
+    except ValueError:
+        raise ProbeFailure('ssh_remote_probe','InvalidJSON',private_output=process.stdout) from None
+    emit({'stage': stage, 'status': 'PASS'})
+    return {'status': 'PASS', 'mutual_tls': transfer, 'ssh': result,
+            'elapsed_seconds': round(time.monotonic() - started, 3)}
 
 
 def run_worker(directory):

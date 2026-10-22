@@ -1,0 +1,116 @@
+{
+  "gpu_allocations": 0,
+  "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+  "image_id": "sha256:4638f27bc2a17c4487d2dcb57e0dca10c9cf6601ee6bf849162b58f1d8b1ee8e",
+  "model_execution": "NOT RUN",
+  "private_evidence": {
+    "ciphertext_bytes": 297267,
+    "ciphertext_sha256": "45754550916b45997a0a664067eec3903ccf237b93c711d03b3a49c800c13de0",
+    "files": 4,
+    "format": "age-v1",
+    "plaintext_bytes": 291170
+  },
+  "provider_operations": 0,
+  "public_task_execution": "NOT RUN",
+  "runtime_installation": "NOT RUN; separately qualified historically",
+  "source_sha": "54a42e05c6c0b0b890ad7ef2a7c061e2c304c5ea",
+  "stages": {
+    "base_environment_over_ssh": {
+      "free_disk_bytes": 100429176832,
+      "model_execution": "NOT RUN",
+      "python": "3.12.3",
+      "required_disk_bytes": 46073391658,
+      "status": "PASS",
+      "system_tools_before_install": {
+        "git": null,
+        "patch": null
+      },
+      "uid_boundary": "PASS",
+      "workload_uid": 65534
+    },
+    "direct_https_envelope": {
+      "bytes": 3683052,
+      "inputs": "PUBLIC PINNED PIP WHEEL FIXTURES",
+      "sha256": "c46efd13b6aa8279f33f2864459c8ce587ea6a1a59ee20de055868d8f7688f7f",
+      "status": "PASS",
+      "streams": [
+        "wheels",
+        "task"
+      ],
+      "task_model_bytes": 0
+    },
+    "image_connection": {
+      "elapsed_seconds": 0.248,
+      "mutual_tls": {
+        "bytes": 1400320,
+        "sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a"
+      },
+      "ssh": {
+        "clean_environment": true,
+        "gpu": "NOT RUN: free CPU image",
+        "model_execution": "NOT RUN",
+        "python": "3.12.3",
+        "root": true
+      },
+      "status": "PASS"
+    },
+    "large_code_envelope": {
+      "command_bytes": 422,
+      "status": "PASS",
+      "stdin_bytes": 81200,
+      "tampered_source": "REJECTED"
+    },
+    "private_input_transfer": {
+      "bytes": 176128,
+      "files": 1,
+      "inputs": "FIXTURE",
+      "manifest_sha256": "dd74948383689c19b52d74987e2e97fe38ee42096ba419a26e782ec163c75b8f",
+      "phase": "bootstrap",
+      "schema_version": 1,
+      "status": "PASS",
+      "verified": true
+    },
+    "production_setup_prefix": {
+      "stages": [
+        "base_environment",
+        "system_packages",
+        "runtime_inputs"
+      ],
+      "status": "PASS",
+      "stopped": "BEFORE_RUNTIME_INSTALLATION",
+      "stream_inputs": "FIXTURES"
+    },
+    "request_parity": {
+      "create_wire_bytes": 5579,
+      "disk_gb": 100,
+      "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+      "initializer_sha256": "22d6cbf8abf7c5ab15b3a368b4f8d7825016ed4dbfa6cfa0d70dd5e33cddfbaf",
+      "ports": [
+        "22/tcp"
+      ],
+      "provider_calls": 0,
+      "status": "PASS"
+    },
+    "system_packages_over_ssh": {
+      "files": 24,
+      "git_version": "git version 2.43.0",
+      "installation_network": "NOT USED",
+      "isolated_git_patch_smoke": "PASS",
+      "status": "PASS"
+    },
+    "transport_build": {
+      "binaries": {
+        "dropbear": {
+          "bytes": 1400320,
+          "sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a"
+        },
+        "dropbearkey": {
+          "bytes": 1165584,
+          "sha256": "5d33b842b70f674859459713ce3f28e62e32bdaca04950d6a599e1b8d84f3690"
+        }
+      },
+      "status": "PASS"
+    }
+  },
+  "status": "PASS"
+}

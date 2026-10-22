@@ -115,7 +115,15 @@ def setup_remote(remote, streams, manifest, requested_at, *, emit=lambda value: 
     ]
     for stage, (argv, data) in steps:
         emit({'stage': stage, 'status': 'STARTED'})
-        remote(argv, input=data)
+        try:
+            remote(argv, input=data)
+        except Exception as error:
+            try:
+                emit({'stage': stage, 'status': 'FAIL', 'error_type': type(error).__name__,
+                      'returncode': getattr(error, 'returncode', None)})
+            except Exception as retention_error:
+                error.add_note('Setup status retention also failed: ' + type(retention_error).__name__)
+            raise
         emit({'stage': stage, 'status': 'PASS'})
 
 
@@ -155,19 +163,7 @@ def run(directory):
             known = ssh.known_hosts(ssh_root, endpoint['host'], endpoint['port'])
             prefix = ssh_command(endpoint['host'], endpoint['port'], ssh_root / 'owner-key', known,
                                  '/root/backtrace/unused', '0' * 64)[:-1]
-            probe_deadline = min(time.time() + 60, claim['requested_at'] + state.SETUP)
-            while True:
-                try:
-                    remote(['true'])
-                    break
-                except subprocess.CalledProcessError:
-                    log.flush()
-                    with (directory / 'worker.log').open('rb') as errors:
-                        errors.seek(max(0, errors.seek(0, 2) - 8192)); tail = errors.read().lower()
-                    if time.time() >= probe_deadline or any(message in tail for message in (
-                            b'host key verification failed', b'remote host identification', b'permission denied')):
-                        raise
-                    time.sleep(2)
+            ssh.wait_for_command(prefix, ['true'], min(60, remaining(value, state.SETUP)), log=log)
             command = ssh_command(endpoint['host'], endpoint['port'], ssh_root / 'owner-key', known,
                                   '/root/backtrace/driver', hashlib.sha256(manifest).hexdigest())
             push(driver, directory / 'driver-manifest.json', command, min(120, remaining(value, state.SETUP)))

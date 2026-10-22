@@ -286,3 +286,23 @@ hashes, new exact-source CPU/first-attempt entry and fresh stock. Never rerun a
 paid job, reset a claim or advance an actually allocated paid/watch head.
 
 The bootstrap diagnostic is now consumed in attempt `1ba8a23aba7d46978b3936cd43ae26c4`, Pod `aj5xf8kle6iici`, CA-MTL-3. Preserve both actual bootstrap-probe start/watch heads at `f7cb1164e06586486254ce193e30201e12e5c424`. Owner 39743403014 passed boot, mutual TLS, pinned SSH and actual A100 81920 MiB observation; no model/task ran. Owner and watcher 39743322363 each confirmed deletion. Independent account verification found zero Pods and spend/hour. See `docs/bootstrap-probe-execution-20261022.json`. No second allocation or full-model launch is authorized.
+
+The owner next directed the recommended free difference audit. Work on
+`bt-001-full-path-parity`; see `docs/full-path-parity-20261022.md`. Compare the
+observed minimum diagnostic with the full setup, correct demonstrated gaps and
+exercise the actual SSH/envelope boundaries on free CPU. Fixture byte transfer
+and public pip downloads do not qualify the scientific streams or full runtime.
+Preserve all historical receipts and consumed start/watch heads. This scope
+does not authorize a GPU create, full-model run, merge or automation.
+
+The free difference audit passed run 39772757946 at
+`54a42e05c6c0b0b890ad7ef2a7c061e2c304c5ea`. The actual pinned image passed
+TLS/SSH, fixture transfer, command envelopes and the production setup prefix
+through runtime_inputs; full runtime installation and model/task execution were
+NOT RUN. Linux 39772757948 passed 324 tests and actual minimal HTTP. Initial
+SSH now shares a real 60-second bound with at most 25 seconds per subprocess;
+failed status retention preserves the original remote exception. Public report
+and ciphertext export passed; four encrypted logs were recovered. Read
+`docs/full-path-parity-20261022.md`. All 18 consumed start/watch heads and the
+state-branch head are unchanged. Neither historical receipt is renewed by this
+partial boundary check; no paid launch or merge follows automatically.
