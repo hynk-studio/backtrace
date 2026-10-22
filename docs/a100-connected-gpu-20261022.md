@@ -1,5 +1,13 @@
 # One GPU attempt after the connected-path audit
 
+**Latest outcome, 2026-10-22 14:38 KST:** the authorization is consumed in one
+US-KS-2 allocation. Initial provider/SSH readiness timed out before the worker,
+hardware check, model or task started. Owner and independent watcher each
+confirmed deletion. A separate account read found zero Pods, zero current spend,
+Auto-Pay off and unchanged observed USD 7.2408300035 balance. This is an observed
+balance, not a final invoice. R0 remains incomplete. See the execution section
+below and `a100-connected-gpu-execution-20261022.json`.
+
 The owner's instruction, **그래픽 자원 있는지 확인하고 진행하자**, authorizes
 checking stock and proceeding once under the established budget and conditions.
 This scope was recorded at 2026-10-22 13:44 KST; this is the record time, not an
@@ -76,3 +84,61 @@ block, not a model or GPU failure.
 
 The final receipt commit still requires its own exact-source CPU/preparation.
 At this checkpoint the new authorization remains unused: zero GPU allocations.
+
+## Actual GPU attempt and cleanup
+
+- Paid source and both immutable start/watch heads:
+  `cdef8537994f65e6a26645ec684f5917bd126c7b`.
+- Final exact-source CPU **39726566531** passed 295 tests; free owner preparation
+  **39726566540** passed before the fresh independent watcher was started.
+- Owner **39726869677**; independent watcher **39726817315**, both attempt 1.
+- Attempt `1af3976193e9411f8a85959dd186ed96`; Pod `2iulner7v22rza`.
+- Allocation requested **14:15:29 KST / 05:15:29Z**. The immediately preceding
+  exact quote showed CA-MTL-3 and EU-RO-1 unavailable, and qualified US-KS-2 at
+  the same USD 1.804/h all-in bound, with 14 vCPUs and 125 GB RAM. One create
+  was sent; no substitution or second allocation followed.
+
+At **14:35:48 KST**, `cloud_owner.execute`, line 132, raised the bounded
+bootstrap readiness timeout after 1,219 seconds. The loop never obtained both
+provider status `RUNNING` and a nonempty direct SSH endpoint. `worker_exit` is
+null; no worker, GPU hardware validation, runtime installation, model transfer,
+server start, inference, public task or evaluation ran. The public phase field
+`bootstrap_heartbeat` names the last completed controller stage, not a proven
+heartbeat failure. The private traceback establishes the readiness timeout.
+
+The last provider response and provider container logs were not retained.
+Therefore image-download delay, provider capacity, host state and endpoint
+failure remain unconfirmed alternatives; none is asserted as the cause.
+
+| Observer | Deletion confirmation KST | Seconds from allocation request |
+| --- | --- | ---: |
+| Owner, two absence reads | 14:36:00 | 1,231 |
+| Independent watcher, two absence reads | 14:36:28 | 1,259 |
+
+The watcher's `heartbeat_lost` cleanup reason is preserved separately from the
+primary readiness timeout. The private owner artifact contains two records /
+550 plaintext bytes, encrypted to 10,558 bytes with SHA-256
+`61ed521d658a40296c68611040b652fa0a47152d7a8de5999dea1bfb4f28abf7`.
+Both records were recovered and checked. No task output existed to evaluate.
+
+At **14:38:11 KST**, independent read-only job **119659837673** reported zero
+account Pods, zero spend/hour, Auto-Pay off and USD **7.2408300035** balance,
+unchanged from before allocation. No additional debit was observed at that time;
+this is not a final invoice. Its reused historical driver/Pod checks are not
+qualification or exact-Pod evidence for this new attempt.
+
+## What the checks did and did not prevent
+
+The renewed free checks still establish actual application HTTP/tool/recovery
+and verifier plumbing on host and the exact image. The stale receipt was
+rejected before a create; this attempt remained incomplete instead of becoming
+a false model result. The initial-readiness deadline and two independent cleanup
+paths bounded the failed attempt, with deletion observed rather than assumed.
+
+They did not predict live provider readiness. The lack of projected provider
+status/endpoint observations during bootstrap leaves the underlying cause
+unresolved. The extra read-only account probe queued during this attempt, so it
+did not provide live diagnostics; an independent read succeeded after deletion.
+Do not interpret these free passes or the allocation as successful GPU inference.
+The remaining gap is provider-readiness observability and diagnosis, not another
+unit-test count. Preserve this consumed attempt and do not automatically retry.

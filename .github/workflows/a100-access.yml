@@ -1,5 +1,5 @@
 name: A100 read-only credential check
-# Read current account, approved stock and this fresh scope without provider mutations.
+# Read-only post-run account/absence check after the connected GPU bootstrap timeout.
 
 on:
   push:

@@ -237,3 +237,14 @@ and exact offline image passed all connected/evaluator controls; five concurrent
 cleanup cases and encrypted evidence recovery passed. The scope is still unused
 at this receipt checkpoint. Require final exact-source CPU/preparation and a
 fresh matching independent watcher before its one paid create.
+
+That scope is now consumed in attempt `1af3976193e9411f8a85959dd186ed96`, Pod
+`2iulner7v22rza`, US-KS-2. Preserve both actual connected-gpu start/watch heads at
+`cdef8537994f65e6a26645ec684f5917bd126c7b`. Owner 39726869677 reached the
+1200-second initial readiness deadline before worker/model/task entry. Owner
+and watcher 39726817315 each confirmed deletion with two absence reads; a separate
+account read found zero Pods and zero spend/hour. Read the execution section of
+`docs/a100-connected-gpu-20261022.md` and its execution JSON. The last provider
+status and container logs were not retained, so do not invent a deeper cause.
+The observed balance was unchanged, but it is not a final invoice. No automatic
+second allocation, claim reset, automation activation, merge or submission.
