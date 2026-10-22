@@ -21,6 +21,8 @@ POLICY = 'prepaid10-actions-v1'
 REPOSITORY = 'hynk-studio/backtrace'
 BRANCH = 'bt-001-a100-state'
 DIRECTORY = 'a100-state/' + AUTHORIZATION
+OWNER_BRANCH = 'bt-001-a100-start-connected-gpu'
+WATCH_BRANCH = 'bt-001-a100-watch-connected-gpu'
 SETUP, USEFUL, TOTAL = 5400, 6900, 7200
 DOCUMENTS = frozenset({'claim', 'pod', 'heartbeat', 'watcher', 'cleanup'})
 SHA = re.compile(r'[0-9a-f]{40}')
@@ -76,6 +78,22 @@ def validate_claim(value):
 
 
 def validate_document(name, value):
+    if name == 'observation' and AUTHORIZATION == 'owner-bootstrap-probe-20261022':
+        fields = {'attempt', 'at', 'provider_status', 'readiness',
+                  'direct_endpoint_present', 'direct_endpoint_valid', 'log_status', 'log_events'}
+        if (not isinstance(value, dict) or set(value) != fields
+                or not re.fullmatch(r'[0-9a-f]{32}', value['attempt'])
+                or type(value['at']) is not int or value['at'] <= 0
+                or value['provider_status'] not in ('PROVISIONING', 'STARTING', 'RUNNING',
+                                                   'EXITED', 'ERROR', 'TERMINATED', 'UNKNOWN', 'ABSENT')
+                or value['readiness'] not in ('WAIT_PROVIDER_RUNNING', 'WAIT_DIRECT_ENDPOINT',
+                    'READY', 'POD_ABSENT', 'PROVIDER_TERMINAL', 'UNKNOWN_PROVIDER_STATE',
+                    'INVALID_DIRECT_ENDPOINT')
+                or any(type(value[k]) is not bool for k in ('direct_endpoint_present', 'direct_endpoint_valid'))
+                or value['log_status'] not in ('SAMPLED', 'UNAVAILABLE', 'TIME_LIMIT')
+                or type(value['log_events']) is not int or not 0 <= value['log_events'] <= 32768):
+            raise ValueError('invalid diagnostic observation')
+        return
     if name == 'claim':
         validate_claim(value)
         return
@@ -214,7 +232,7 @@ def require_watcher(store, source_sha, now):
         raise StateError('independent cleanup lease is stale or differs from source')
     run = store.run(value['run_id'])
     if (run['status'] != 'in_progress' or run['head_sha'] != source_sha
-            or run['head_branch'] != 'bt-001-a100-watch-connected-gpu' or run['run_attempt'] != 1):
+            or run['head_branch'] != WATCH_BRANCH or run['run_attempt'] != 1):
         raise StateError('independent cleanup run is not qualified')
     return value['run_id']
 
@@ -233,7 +251,7 @@ def claim_before_create(store, api, offer, bootstrap, run_id, source_sha, *, wal
     watcher = require_watcher(store, source_sha, now)
     run = store.run(str(run_id))
     if (run['status'] != 'in_progress' or run['head_sha'] != source_sha
-            or run['head_branch'] != 'bt-001-a100-start-connected-gpu' or run['run_attempt'] != 1):
+            or run['head_branch'] != OWNER_BRANCH or run['run_attempt'] != 1):
         raise StateError('first, exact owner workflow run required')
     if any(p.get('name', '').startswith('backtrace-a100-') for p in api.list()):
         raise StateError('earlier owned Pod requires reconciliation')

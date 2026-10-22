@@ -257,3 +257,32 @@ and bound diagnostic log sampling independently of cleanup. The changed 77-file
 source is not qualified by the historical 75-file receipt. Preserve that receipt,
 the original execution evidence and all actual paid/watch heads. This correction
 does not establish a retrospective provider cause or grant another paid attempt.
+
+The owner then instructed **진단 실험부터 하자**. Follow
+`docs/bootstrap-probe-20261022.md`: one new input-free boot/TLS/SSH/GPU-observation
+diagnostic as `owner-bootstrap-probe-20261022`, with its own start/watch branches
+and immutable namespace. Repetition of that instruction is the same single
+scope. Keep the existing wallet/cumulative/hourly bounds and stricter
+1200/1500/1800-second diagnostic limits. Require the complete source-bound
+diagnostic qualification and final-source Linux suite before one create. This
+minimum diagnostic intentionally excludes model/task inputs and does not
+qualify or authorize full model execution. Preserve all earlier claims, reports
+and actual paid/watch heads; no automatic second allocation or automation.
+
+Diagnostic free qualification 39740489400 passed at
+`dc7ae5d37d51ef158c11d26215d10ce9887aa22c`, with nine retained stages and the
+83-file receipt. Exact-image TLS/pinned SSH and all seven concurrent lifecycle
+cases passed; exact-source Linux 39740489374 passed 317 tests. Read the receipt
+checkpoint in `docs/bootstrap-probe-20261022.md`. The diagnostic allocation is
+still unused at this checkpoint; require receipt-source CPU and a fresh matching
+watcher. This qualification covers boot/connectivity only, not model inference.
+
+Diagnostic entry 39742214627 at 289d8e1dd5efd796b4077f41fdee2811cb129e95 sent
+zero create requests after fresh stock disappeared. No claim was created and
+the single diagnostic allocation remains unused. Follow the unallocated-entry
+section of `docs/bootstrap-probe-20261022.md`: preserve this evidence, require a
+completed never-claimed watcher before handover, unchanged qualified operational
+hashes, new exact-source CPU/first-attempt entry and fresh stock. Never rerun a
+paid job, reset a claim or advance an actually allocated paid/watch head.
+
+The bootstrap diagnostic is now consumed in attempt `1ba8a23aba7d46978b3936cd43ae26c4`, Pod `aj5xf8kle6iici`, CA-MTL-3. Preserve both actual bootstrap-probe start/watch heads at `f7cb1164e06586486254ce193e30201e12e5c424`. Owner 39743403014 passed boot, mutual TLS, pinned SSH and actual A100 81920 MiB observation; no model/task ran. Owner and watcher 39743322363 each confirmed deletion. Independent account verification found zero Pods and spend/hour. See `docs/bootstrap-probe-execution-20261022.json`. No second allocation or full-model launch is authorized.

@@ -20,8 +20,7 @@ class MemoryStore:
         self.docs = {}
         self.runs = {str(n): {'id': n, 'status': 'in_progress', 'conclusion': None,
                               'head_sha': SOURCE, 'head_branch': branch, 'run_attempt': 1}
-                     for n, branch in ((1, 'bt-001-a100-start-connected-gpu'),
-                                       (2, 'bt-001-a100-watch-connected-gpu'))}
+                     for n, branch in ((1, state.OWNER_BRANCH), (2, state.WATCH_BRANCH))}
         self.fail_write = None
 
     def read(self, name):
