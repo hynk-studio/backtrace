@@ -338,3 +338,12 @@ That receipt is human free-CPU evidence, not a paid launch gate. All historical
 receipts, 198 prior state blobs and 18 actual paid/start/watch heads remain
 unchanged. GPU initialization/model weights/loading/inference were NOT RUN;
 no new paid allocation, permit, merge, submission or automation is authorized.
+
+The owner subsequently instructed **자원 있으면 돌려보자** (client date
+2026-10-23). This is a new single qualified GPU/public-task scope, not a reset
+of any consumed attempt. Follow `docs/qualified-gpu-20261023.md`, use
+`owner-qualified-gpu-20261023` and new review/start/watch branches. Keep the
+existing wallet/cumulative/time/scientific limits. Read fresh account/stock,
+qualify the new entry and exact source, and require a matching independent
+watcher before one create-only claim. Never recreate an allocated attempt,
+advance old paid/watch heads, top up, activate recurring waits, merge or submit.
