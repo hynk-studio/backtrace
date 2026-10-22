@@ -306,3 +306,12 @@ and ciphertext export passed; four encrypted logs were recovered. Read
 `docs/full-path-parity-20261022.md`. All 18 consumed start/watch heads and the
 state-branch head are unchanged. Neither historical receipt is renewed by this
 partial boundary check; no paid launch or merge follows automatically.
+
+The owner then instructed **할 수 있는 건 다 해보자** after the recommendation
+to complete the remaining free runtime and URL checks. Work on
+`bt-001-full-setup-cpu`; follow `docs/full-setup-cpu-20261022.md`. Run the actual
+frozen inputs and installation through production SSH setup, the retained CPU
+prerequisites, source-lifetime/header checks and the complete free qualification.
+Preserve every consumed paid authorization and actual start/watch head. No GPU
+create, paid retry, permit, model execution, merge, submission or recurring
+resumption is authorized by this free preparation.

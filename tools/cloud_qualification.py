@@ -28,7 +28,8 @@ PATHS = tuple(sorted(set(
        '.github/workflows/a100-start.yml', '.github/workflows/a100-watch.yml',
        'tests/test_cloud_launch.py', 'tests/test_cloud_qualification.py',
        'tests/test_cloud_bootstrap.py', 'tests/test_full_path_parity.py',
-       'tests/official_full_path_parity.py', '.github/workflows/full-path-parity.yml'])))
+       'tests/official_full_path_parity.py', '.github/workflows/full-path-parity.yml',
+       'tools/cloud_sources.py', 'tests/test_cloud_sources.py', 'tests/official_full_setup.py'])))
 
 
 def file_hashes(root):
