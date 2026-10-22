@@ -347,3 +347,12 @@ existing wallet/cumulative/time/scientific limits. Read fresh account/stock,
 qualify the new entry and exact source, and require a matching independent
 watcher before one create-only claim. Never recreate an allocated attempt,
 advance old paid/watch heads, top up, activate recurring waits, merge or submit.
+
+Read-only check 39822924063 at 59d430b6c552b8ad3b9d7b03708df77c8e7e0b4b
+found no qualified A100 stock at 2026-10-23 02:28:18 KST. Balance was
+7.1796731618 USD, spend/hour 0, zero Pods, auto-pay false. The new authorization
+is UNUSED: no claim, paid/start/watch entry or provider create occurred. All
+18 consumed paid/watch heads, 202 state blobs and 84 qualified operational
+files remain unchanged. See `docs/qualified-gpu-execution-20261023.json`.
+No recurring wait was activated; any later allocation still requires renewed
+entry qualification, exact-source Linux and a fresh matching watcher/offer.
