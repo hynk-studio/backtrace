@@ -45,3 +45,20 @@ Another paid attempt still needs a fresh explicit scope, its own immutable state
 namespace and source qualification, current budget/stock checks and an independent
 watcher. Do not automatically repeat the known public task as a held-out benchmark
 or claim the new generic prompt has improved model accuracy.
+
+The first complete free run 39960937719 at e63306f6aa97e16426c0cbe6ee7701b3d53d4179
+failed only at SSH fixture container cleanup: Docker rm exceeded 30 seconds.
+Actual installation/driver prerequisites passed in 260.170s; all seven host and
+seven offline-image task cases passed, including the new original-tool controls.
+The original Docker removal state was not retained, so do not infer why the CLI
+timed out or claim the original container was confirmed absent. Preserve this
+failed report and its 152 encrypted private records.
+
+The free-container helper now requests removal once and requires two successful
+consecutive exact-name absence reads within one 120-second budget. Query errors,
+malformed output, a changed identity and a still-present container cannot pass.
+Both full SSH and offline-image cleanup use it. Actual Docker controls inject a
+lost acknowledgement after real removal and a false acknowledgement while the
+container remains present. These are authored faults, not a reproduction of the
+unknown original daemon cause. Early encrypted diagnostics now include the SSH
+setup result, so this failure is visible before later image checks finish.

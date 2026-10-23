@@ -21,6 +21,7 @@ from tools import cloud_task, cloud_worker as worker, ssh_bootstrap as ssh, runp
 from tools.private_delivery import push, ssh_command
 from tools.direct_delivery import sources_for
 from tools.runpod_job import check_owner_host, private_json
+from tools.free_container_cleanup import remove as remove_container
 
 
 def qualify(parent, work, report):
@@ -54,14 +55,18 @@ def qualify(parent, work, report):
         if (image['Architecture'] != 'amd64' or image['Os'] != 'linux'
                 or not any(x.endswith('@'+control.BASE.split('@')[1]) for x in image['RepoDigests'])):
             raise ValueError('exact deployment image required')
+        from tests.official_container_cleanup import qualify as cleanup_controls
+        stages['container_cleanup_controls'] = cleanup_controls(control.BASE, os.environ['GITHUB_RUN_ID'], image_log)
         command = ['docker', 'run', '-d', '--rm', '--name', name, '--env-file', str(env_file),
                    '-p', '127.0.0.1::22', '--entrypoint', initializer['entrypoint'][0]]
         for item in ('tools', 'docs', 'tests'):
             command += ['--mount', 'type=bind,source='+str(ROOT/item)+',target=/work/'+item+',readonly']
         command += [control.BASE, *initializer['entrypoint'][1:], *initializer['cmd']]
+        container_id = None
         try:
             subprocess.run(command, stdout=image_log, stderr=image_log, check=True, timeout=30)
             value = json.loads(subprocess.check_output(['docker', 'inspect', name], timeout=20))[0]
+            container_id = value['Id']
             port = int(value['NetworkSettings']['Ports']['22/tcp'][0]['HostPort'])
             listener = ("from pathlib import Path;raise SystemExit(0 if any("
                 "x.split()[1].endswith(':0016') and x.split()[3]=='0A' for x in "
@@ -143,8 +148,10 @@ def qualify(parent, work, report):
             # a previously assigned PASS when removal itself times out.
             report['container_cleanup']='UNCONFIRMED'
             try:
-                removed=subprocess.run(['docker','rm','-f',name],stdout=image_log,stderr=image_log,timeout=30)
-                removed.check_returncode()
+                cleanup = remove_container(name, container_id=container_id)
+                report['container_cleanup_evidence'] = cleanup
+                if cleanup['status'] != 'PASS':
+                    raise RuntimeError('container absence was not confirmed')
             except Exception as error:
                 report.update(status='FAIL',container_cleanup_error=type(error).__name__)
             else: report['container_cleanup']='REMOVED'

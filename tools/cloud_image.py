@@ -2,8 +2,10 @@
 import json
 from pathlib import Path
 import subprocess
+import sys
 
 from tools import a100_delivery as frozen, runpod_control as control
+from tools.free_container_cleanup import remove as remove_container
 
 
 def qualify(root, log):
@@ -35,9 +37,23 @@ def qualify(root, log):
         subprocess.run(command, stdin=subprocess.DEVNULL, stdout=log, stderr=log,
                        check=True, timeout=1800)
     finally:
-        subprocess.run(['docker', 'rm', '-f', name], stdin=subprocess.DEVNULL,
-                       stdout=log, stderr=log, timeout=30)
+        primary = sys.exc_info()[1]
+        try:
+            cleanup = remove_container(name)
+        except Exception as error:
+            if primary is None:
+                raise
+            primary.add_note('Separate free image cleanup exception: ' + type(error).__name__)
+            cleanup = {'status': 'FAIL', 'error_type': type(error).__name__}
+        if cleanup['status'] != 'PASS':
+            if primary is None:
+                raise RuntimeError('free image container absence was not confirmed')
+            primary.add_note('Separate free image cleanup did not confirm absence')
     report = json.loads((output / 'image.json').read_text())
     if report.get('status') not in ('PASS', 'FAIL'):
         raise ValueError('pinned image did not emit its actual check status')
+    report['container_cleanup_evidence'] = cleanup
+    temporary = output / 'image-with-cleanup.json'
+    temporary.write_text(json.dumps(report, sort_keys=True, indent=2) + '\n')
+    temporary.replace(output / 'image.json')
     return dict(report, image=control.BASE, image_id=image[0]['Id'])

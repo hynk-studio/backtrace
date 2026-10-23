@@ -576,3 +576,11 @@ and exact offline image and the full free setup/lifecycle regression. Old R1
 receipts and actual paid heads remain immutable, and old launch qualification
 must reject the changed source. Corrected GPU teardown and revised real-model
 behavior remain NOT RUN until a separately authorized bounded paid attempt.
+
+First retry-preparation full free run39960937719 failed solely on an unconfirmed
+free Docker removal after 30s; setup and all host/image task controls passed.
+Preserve that failure and all152 private records. The new bounded free-container
+cleanup requires two successful consecutive absence reads; errors never count
+as absence. Validate actual Docker lost/false acknowledgement controls and run
+full qualification again. This concerns disposable CPU fixtures, not provider
+deletion or a newly authorized GPU scope.
