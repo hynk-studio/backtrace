@@ -555,3 +555,24 @@ USD5.7669749701; observed decrease from the pre-run wallet USD0.7527560260,
 cumulative observed wallet spend USD4.2330250299. Preserve the earlier
 21:04 observation rather than treating its then-incomplete debit as final.
 The final stock query found no qualified region. No new claim/create follows.
+
+The owner next instructed **분석하고 고치고 재시도 전까지 할 수 있는거 다해서 준비해줘**.
+Work on `bt-001-retry-preparation-20261023`, based on PR #18, with a new Draft
+PR. This authorizes analysis, corrections and complete free preparation only.
+All paid claims remain consumed; do not allocate, start a paid watcher, mint a
+paid launch receipt, reset historical state, merge or activate recurring waits.
+Retain the failed real-model patch/trace bytes. The final attempted edit was
+rejected at the original 30-tool budget; submitted code retained an earlier
+unsuccessful change. Reproduction exceptions were printed but swallowed, so
+three failing commands returned zero. Keep these observations separate from
+the evaluator result and never insert its answers into candidate prompts.
+The generic R1 v2 revision preserves the 300s/30-tool/50-call scientific budget,
+original tools/checkpoint/task/sampling, and adds same-check verification,
+fail-visible assertions and an earlier verification reserve. This is changed
+prompt guidance, not proof the real model follows it. Report trace process
+flags separately from completion and independent public-test correctness.
+Require actual original-tool negative/positive/budget controls on both host
+and exact offline image and the full free setup/lifecycle regression. Old R1
+receipts and actual paid heads remain immutable, and old launch qualification
+must reject the changed source. Corrected GPU teardown and revised real-model
+behavior remain NOT RUN until a separately authorized bounded paid attempt.

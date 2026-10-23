@@ -37,7 +37,8 @@ PATHS = tuple(sorted(set(
        '.github/workflows/qualified-gpu-start.yml',
        'tests/test_task_calibration.py', '.github/workflows/task-calibration.yml',
        'tests/official_startup_reaper.py', 'tests/test_startup_subreaper.py',
-       '.github/workflows/startup-reaper.yml'])))
+       '.github/workflows/startup-reaper.yml', 'tests/verification_fixture.py',
+       'tests/test_task_verification.py', 'docs/retry-preparation-policy-20261023.json'])))
 
 
 def file_hashes(root):

@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "status": "ANALYSIS_COMPLETE",
+  "source_run_id": 39947273089,
+  "source_sha": "6973f96255cdecf2d02f7e1ad976522f7982699d",
+  "trace_sha256": "3c60afc61d9c1d8f0e1babd9e0ec7e192ee6762a96bdc60a0def291a4aa70e59",
+  "patch_sha256": "a5016a37f06976900f50c75b198c2dc6560371edd2f191466305c58585b4dbed",
+  "trace_review": {
+    "schema_version": 1,
+    "kind": "PROCESS_DIAGNOSTIC_NOT_CORRECTNESS",
+    "accepted_mutations": 4,
+    "rejected_mutations": 1,
+    "tool_errors": 1,
+    "budget_rejections": 1,
+    "command_observations": 14,
+    "nonzero_commands": 0,
+    "zero_exit_with_failure_text": 3,
+    "post_mutation_commands": 5,
+    "last_post_mutation_exit_code": 0,
+    "last_post_mutation_failure_text": false,
+    "unrecognized_tool_observations": 0,
+    "flags": [
+      "REJECTED_EDIT_OR_WRITE",
+      "TOOL_BUDGET_EXHAUSTED",
+      "ZERO_EXIT_WITH_FAILURE_TEXT"
+    ],
+    "correctness": "NOT ESTABLISHED; independent verifier required"
+  },
+  "reproduction_exception_structure": [
+    {
+      "step_id": 3,
+      "catch_handlers": 2,
+      "handlers_without_reraise_or_exit": 2
+    },
+    {
+      "step_id": 11,
+      "catch_handlers": 1,
+      "handlers_without_reraise_or_exit": 1
+    },
+    {
+      "step_id": 23,
+      "catch_handlers": 2,
+      "handlers_without_reraise_or_exit": 2
+    }
+  ],
+  "observed_findings": [
+    "One accepted implementation edit changed a shared encoding default; the submitted patch retained that edit plus a reproduction script.",
+    "The final intended implementation edit was rejected by the unchanged official tool at its 30-call budget; it is absent from the submitted patch.",
+    "Three reproduction runs printed failure evidence but exited zero.",
+    "There were no get_status invocations, despite original low-budget warnings.",
+    "The last accepted mutation was followed by another failing reproduction, then only inspections until the rejected edit and submission."
+  ],
+  "correctness": {
+    "source_run_id": 39950033316,
+    "passed": 2,
+    "failed": 2,
+    "resolved": false
+  },
+  "limits": [
+    "No evaluator answer or task-specific fix is embedded in the revised candidate.",
+    "This retrospective public-task diagnosis is not held-out performance.",
+    "Generic prompt compliance and correct real-model edits remain unmeasured."
+  ],
+  "paid_operations": 0
+}

@@ -27,8 +27,9 @@ def validate(root, *, protocol=LEGACY_PROTOCOL):
     trace = json.loads(read(root, TRACE, 64 * 1024**2))
     tools = 10
     if protocol != LEGACY_PROTOCOL:
-        from tools.task_calibration import PROTOCOL
-        if (protocol != PROTOCOL or not isinstance(trace, dict) or result.get('protocol') != PROTOCOL
+        from tools.task_calibration import PROTOCOL as R1
+        from tools.task_verification import PROTOCOL as R1_REVISED
+        if (protocol not in (R1, R1_REVISED) or not isinstance(trace, dict) or result.get('protocol') != protocol
                 or result.get('budget') != {'session_seconds': 300, 'tool_calls': 30, 'llm_calls': 50}
                 or result.get('patch_submitted') is not True or not patch
                 or type(result.get('seconds')) not in (int, float) or not 0 <= result['seconds'] <= 330
@@ -53,11 +54,15 @@ def validate(root, *, protocol=LEGACY_PROTOCOL):
             or not isinstance(trace, dict) or not str(trace.get('schema_version', '')).startswith('ATIF')
             or not trace.get('steps')):
         raise ValueError('actual model requests, responses or trace are incomplete')
-    return {'status': 'PASS', 'instance_id': TASK, 'llm_calls': result['llm_calls'],
+    report = {'status': 'PASS', 'instance_id': TASK, 'llm_calls': result['llm_calls'],
             'wire_requests': len(requests), 'tool_calls': result['tool_calls'],
             'patch_bytes': len(patch), 'patch_sha256': result['patch_sha256'],
             'trace_sha256': hashlib.sha256(read(root, TRACE, 64 * 1024**2)).hexdigest(),
             'verification': 'NOT RUN; task completion is not patch correctness'}
+    if protocol != LEGACY_PROTOCOL:
+        from tools.task_trace_review import review
+        report['trace_review'] = review(trace)
+    return report
 
 
 def _submitted(value):
