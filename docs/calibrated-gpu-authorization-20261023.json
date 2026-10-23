@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "authorization": "owner-calibrated-gpu-20261023",
+  "authority": "Owner: 자원 있으면 해보자, after the completed five-minute task calibration. One new bounded conditional GPU/public-task attempt; all prior paid scopes remain consumed.",
+  "review_branch": "bt-001-calibrated-gpu-20261023",
+  "start_branch": "bt-001-a100-start-calibrated-20261023",
+  "watch_branch": "bt-001-a100-watch-calibrated-20261023",
+  "policy": "prepaid10-actions-v1",
+  "wallet_credits_usd": "10.00",
+  "cumulative_stop_usd": "8.00",
+  "maximum_new_allocations": 1,
+  "maximum_server_starts": 1,
+  "maximum_public_tasks": 1,
+  "setup_seconds": 5400,
+  "useful_seconds": 6900,
+  "total_seconds": 7200,
+  "additional_funding": false,
+  "auto_top_up": false,
+  "automatic_paid_retry": false,
+  "recurring_wait": false,
+  "region_preference": "Eligible EU region first; otherwise previously authorized equivalent region",
+  "scientific_inputs": "Same original model, public task, harness, sampling, BF16/TP1 and official tool implementations. Explicit R1 generic search/completion guidance and five-minute/30-tool calibration, as verified in PR #17. Not a matched comparison with historical one-minute R0.",
+  "previous_authorizations": "All previously allocated scopes remain consumed; preserve all old claims, receipts and actual paid/watch heads",
+  "exclusions": [
+    "training",
+    "merge",
+    "submission",
+    "terms acceptance",
+    "extra allocation",
+    "recurring automation"
+  ],
+  "status": "UNUSED; require FULL_FREE_CPU qualification, receipt-source Linux/free owner preparation, fresh watcher and exact offer before a single create",
+  "protocol": "R1-budget5m-search-guidance-v1/A10080-TP1",
+  "task_budget": {
+    "session_seconds": 300,
+    "tool_calls": 30,
+    "llm_calls": 50,
+    "command_seconds": 60,
+    "agent_child_seconds": 330
+  }
+}

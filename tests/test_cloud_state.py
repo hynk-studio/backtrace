@@ -83,9 +83,9 @@ class CloudStateTests(unittest.TestCase):
 
     def test_previous_consumed_claim_is_not_valid_for_new_owner_authorization(self):
         claim, _ = self.claim()
-        self.assertEqual(claim['authorization'], 'owner-qualified-gpu-20261023')
-        self.assertEqual(state.DIRECTORY, 'a100-state/owner-qualified-gpu-20261023')
-        for prior in ('owner-connected-gpu-20261022', 'owner-bootstrap-probe-20261022',
+        self.assertEqual(claim['authorization'], 'owner-calibrated-gpu-20261023')
+        self.assertEqual(state.DIRECTORY, 'a100-state/owner-calibrated-gpu-20261023')
+        for prior in ('owner-qualified-gpu-20261023', 'owner-connected-gpu-20261022', 'owner-bootstrap-probe-20261022',
                       'owner-cloud-20261019-203126', 'owner-cloud-20261020-155445',
                       'owner-cloud-20261020-211134', 'owner-cloud-20261021-003938',
                       'owner-cloud-20261021-160757', 'owner-cloud-20261021-192529',

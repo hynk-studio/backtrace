@@ -471,3 +471,20 @@ heads are unchanged, and eight free handoff/diagnostic blobs were added. Read
 `docs/task-calibration-20261023.md` and its policy/result/execution JSON. PR #17
 is draft; all paid claims remain consumed, no fresh scope or paid launch
 qualification exists, and no merge/submission/top-up/automation is authorized.
+
+The owner next instructed **자원 있으면 해보자** after PR #17's implemented
+five-minute/30-tool/330-second calibration. This authorizes ONE fresh bounded
+conditional attempt, `owner-calibrated-gpu-20261023`, review branch
+`bt-001-calibrated-gpu-20261023` and new start/watch suffix
+`calibrated-20261023`. Read `docs/calibrated-gpu-20261023.md` and the new
+authorization. Preserve all 20 actual historical paid/watch heads, all 221
+prior state blobs, old R0 receipts, PR #17 and all consumed claims. Renew the
+FULL free setup/SSH/image/task/HTTP/evaluator/lifecycle qualification for the
+changed source, then receipt-source Linux/free owner preparation, fresh matching
+watcher and current offer. The R1 task budget/guidance is explicit; model/task
+bytes and official tools stay unchanged. Existing USD10 wallet/USD8 cumulative
+stop, A10080 TP1 and allocation-inclusive 5400/6900/7200 limits remain. No paid
+rerun, automatic second create, funding/settings change, merge, competition
+submission or recurring wait is authorized. Search/submission choices and task
+correctness still depend on the actual model; CPU scripted checks cannot prove
+those. This repeated public task is a diagnostic, not independent held-out score.
