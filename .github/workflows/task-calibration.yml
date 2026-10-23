@@ -32,11 +32,11 @@ jobs:
       - name: Install pinned input-resolution and encryption libraries
         run: |
           python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
-      - name: Full actual SSH setup, host and offline-image task calibration
+      - name: Actual host and offline-image task calibration
         env:
           GITHUB_TOKEN: ${{ github.token }}
           KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
-        run: python -m tools.cloud_prepare
+        run: python -m tools.cloud_prepare --task-calibration
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:

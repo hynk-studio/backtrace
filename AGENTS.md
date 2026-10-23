@@ -437,11 +437,19 @@ The owner next instructed **직접 보완하고 확인해** after the recommenda
 implement the five-minute/30-tool/330-second calibration and empty-search
 fallback before retrying. Work on `bt-001-task-calibration-20261023`, based on
 PR #16, with one new Draft PR. This authorizes implementation and complete free
-CPU validation, not a provider create. The changed generic guidance and counted
-search fallback are an explicit R1 calibration, not the historical R0 baseline
+CPU validation, not a provider create. The changed generic guidance and budget
+are an explicit R1 calibration using unchanged official tools, not the historical R0 baseline
 or evidence of improved model performance. Preserve original input ZIPs,
 timeouts, partial results, receipts, all 20 actual paid/watch heads and consumed
 claims. Test the actual prepared driver, official parser/runner/tools, real
 wall-time beyond the old limit, counted fallback and submission validation on
 the host and exact offline image. No new paid scope, paid rerun, top-up, merge,
 submission or recurring wait follows from this correction.
+
+The pinned primary harness contract uses closed host tool registries. The final
+calibration therefore keeps original tool factories and implementations and
+uses declarative bare-symbol/text-search guidance. The initial private automatic
+override and unfinished free run 39921830089 are superseded, not final-source
+qualification. The task-only free mode checks changed host/offline-image task,
+HTTP and evaluator paths; unchanged SSH/lifecycle checks are explicitly NOT RUN.
+This narrower scope cannot mint a paid launch receipt or reset any claim.

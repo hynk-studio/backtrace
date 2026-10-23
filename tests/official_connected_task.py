@@ -209,36 +209,39 @@ class GeneratedTokens:
     def fallback_message(self, data, number):
         marker = 'Backtrace_CPU_text_fallback_probe'
         if number == 1:
-            instructions = json.dumps(data['messages'])
-            if 'Search and completion budget' not in instructions:
+            if 'Search and completion budget' not in json.dumps(data['messages']):
                 raise AssertionError('calibrated prompt did not reach the actual model boundary')
-            # The fixture adds its own harmless README marker through the real
-            # tool. It cannot exist in the original precomputed code graph.
             action = ('run_command', {'command': 'python -c "from pathlib import Path; p=Path(\'README.md\'); '
                 'p.write_text(p.read_text()+\'\\nBacktrace CPU transport probe. '
                 + marker + '\\n\')"'})
         elif number == 2:
-            action = ('search_similar_code', {'query': 'def ' + marker, 'k': 1})
+            action = ('search_similar_code', {'query': marker, 'k': 1})
         elif number == 3:
-            found = []
+            graph_responses = []
             def collect(value):
                 if isinstance(value, str):
                     try: collect(json.loads(value))
                     except (ValueError, TypeError): pass
                 elif isinstance(value, dict):
-                    if 'text_search' in value: found.append(value)
+                    if value.get('query') == marker: graph_responses.append(value)
                     for item in value.values(): collect(item)
                 elif isinstance(value, list):
                     for item in value: collect(item)
-            collect(data['messages'])
-            if (len(found) != 1 or found[0].get('query') != marker
-                    or found[0].get('count') != 0 or marker not in json.dumps(found[0]['text_search'])
-                    or found[0]['submission_reserve']['remaining_tool_calls'] != 27):
-                raise AssertionError('empty graph did not produce actual counted repository text search')
-            self.fallback_evidence = {'normalized_query': marker, 'empty_graph': True,
-                                      'counted_operations': 2, 'text_search': 'ACTUAL repository output'}
+            collect([row['content'] for row in data['messages'] if row.get('role') == 'tool'])
+            if (len(graph_responses) != 1 or graph_responses[0].get('status') != 'ok'
+                    or graph_responses[0].get('count') != 0):
+                raise AssertionError('actual empty-graph control was not empty')
+            action = ('run_command', {'command': 'git grep -n -F -- ' + marker})
+        elif number == 4:
+            replies = [row for row in data['messages'] if row.get('role') == 'tool'
+                       and marker in row['content'] and 'README.md:' in row['content']]
+            if len(replies) != 1:
+                raise AssertionError('actual original command tool did not return text-search output')
+            self.fallback_evidence = {'query': marker, 'empty_graph': True, 'counted_operations': 2,
+                'text_search': 'ACTUAL original run_command repository output',
+                'tool_policy': 'original tools unchanged; model decisions scripted'}
             action = ('get_status', {})
-        elif 4 <= number <= 11:
+        elif 5 <= number <= 11:
             action = ('get_status', {})
         elif number == 12:
             action = ('read_file', {'filepath': 'README.md', 'start_line': 1, 'end_line': 2})
@@ -354,7 +357,7 @@ def run_case(source, output, case):
                 raise AssertionError('actual file edit or subagent delegation did not complete')
             if case == 'search-fallback':
                 actual = json.loads((driver.WORK / 'task-result.json').read_text())
-                if not 60 < actual['seconds'] < 300 or actual['tool_calls'] != 14:
+                if not 60 < actual['seconds'] < 300 or actual['tool_calls'] != 13:
                     raise AssertionError('expanded actual session/tool budget was not exercised')
             rows = []
             for name in ('agent.patch', 'task-result.json', 'wire.jsonl',

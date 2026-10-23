@@ -3,24 +3,19 @@
 No reference answer, task-specific symbol, provider API, permit or model call.
 The original input ZIP and retained driver remain immutable inputs.
 """
-import functools
 import hashlib
 import json
 import math
 import os
 from pathlib import Path
-import re
-import shlex
 import time
 
 from tools.task_budget import PROPOSAL, check
 
 ROOT = Path(__file__).resolve().parents[1]
-PROTOCOL = 'R1-budget5m-search-fallback-v1/A10080-TP1'
+PROTOCOL = 'R1-budget5m-search-guidance-v1/A10080-TP1'
 BUDGET = dict(PROPOSAL, protocol=PROTOCOL, status='IMPLEMENTED_FREE_CPU_ONLY')
 SERVER_STOP_SECONDS = 30
-SUBMIT_RESERVE_SECONDS = 45
-SUBMIT_RESERVE_TOOLS = 2
 BASE_DRIVER_SHA256 = '174bd6359c3e3f53e149a2ec5210cb220ab46ec41e1e9b34b6b0c915631c55b1'
 BASE_FILES = {
     'agent.yaml': 'de80dff58c1ab3e758a814b915c21113a16ddf632ac4d5fee238b8d6a1b6b5a8',
@@ -32,9 +27,10 @@ BASE_FILES = {
 }
 GUIDANCE = b'''\n\n## Search and completion budget
 - Graph similarity uses indexed function/class identifiers, not arbitrary prose embeddings.
-- The runtime normalizes simple def/class identifiers. An empty graph result includes
-  a bounded, read-only git text search when the shared tool/time budget permits.
-  Read the returned text_search output before issuing another graph query.
+- Pass a bare identifier, without a def/class prefix. After an empty graph result,
+  use run_command for a narrow, read-only repository text search, for example
+  git grep -n -F -- 'symbol_name'. Read its output before another graph query.
+  Both searches consume the declared shared tool budget.
 - If both searches are empty, read a likely source file or revise the hypothesis;
   do not repeat the same empty search. Do not spend the session polishing repro scripts.
 - Use get_status to inspect the shared budget. Keep the last two tool calls and
@@ -100,56 +96,6 @@ def require_window(phase, *, env=None, now=None):
     return {'phase': phase, 'minimum_useful_seconds': work, 'minimum_total_seconds': all_work}
 
 
-def normalized_query(query):
-    match = re.fullmatch(r'\s*(?:(?:async\s+)?def|class)\s+([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)*)\s*[:(]?\s*', query)
-    return match.group(1) if match else query
-
-
-def install_search_fallback(context_type):
-    """Wrap the official bound tool; fallback calls the real budget-gated command.
-
-    Installation is local to one short-lived agent interpreter. Never mutate
-    installed wheels or use a second model. Both internal operations are counted.
-    """
-    original = context_type.create_tools
-    if getattr(original, '_backtrace_calibration', False):
-        return
-
-    @functools.wraps(original)
-    def create_tools(context):
-        tools = original(context)
-        search, command = tools['search_similar_code'], tools['run_command']
-
-        @functools.wraps(search)
-        def search_with_fallback(query: str, k: int = 10) -> str:
-            normalized = normalized_query(query)
-            result = json.loads(search(normalized, k))
-            result['query_original'] = query
-            left = context.budget.tool_calls - context.tool_calls_used
-            seconds = context.budget.time_minutes * 60 - context.elapsed_seconds
-            result['submission_reserve'] = {'remaining_tool_calls': left, 'remaining_seconds': seconds,
-                'reserve_tool_calls': SUBMIT_RESERVE_TOOLS, 'reserve_seconds': SUBMIT_RESERVE_SECONDS}
-            if result.get('status') == 'ok' and result.get('count') == 0:
-                if (left > SUBMIT_RESERVE_TOOLS and seconds > SUBMIT_RESERVE_SECONDS + 5
-                        and isinstance(normalized, str) and 0 < len(normalized) <= 200
-                        and '\n' not in normalized and '\x00' not in normalized):
-                    # timeout is coreutils in the pinned image; actual CPU probes
-                    # exercise the command. -F/--/shell quoting keep it literal.
-                    text = 'timeout 5s git grep -n -F -m 2 -- ' + shlex.quote(normalized) + ' | head -n 40'
-                    result['text_search'] = json.loads(command(text))
-                    result['text_search_command'] = text
-                    result['submission_reserve']['remaining_tool_calls'] = context.budget.tool_calls - context.tool_calls_used
-                else:
-                    result['text_search'] = {'status': 'not_run', 'reason': 'preserve submission reserve or invalid literal query'}
-            return json.dumps(result, sort_keys=True)
-
-        tools['search_similar_code'] = search_with_fallback
-        return tools
-
-    create_tools._backtrace_calibration = True
-    context_type.create_tools = create_tools
-
-
 def driver_source(source):
     """Apply the declared scientific delta after reproducing the old derivative."""
     if hashlib.sha256(source.encode()).hexdigest() != BASE_DRIVER_SHA256:
@@ -163,7 +109,6 @@ def driver_source(source):
          "  for p in (WORK/'candidate').rglob('*'): os.chown(p,65534,65534)\n"),
         ("==(60,10,1.0,50)\n", "==(60,30,5.0,50)\n"),
         (" start=time.time()\n event('task_start',instance_id=task.instance_id)\n",
-         " from tools.task_calibration import install_search_fallback\n install_search_fallback(SwegemmaContext)\n"
          " start=time.time()\n event('task_start',instance_id=task.instance_id,protocol=RUN_NAME)\n"),
         ("result={'instance_id':task.instance_id,'agent_error':error,",
          "result={'instance_id':task.instance_id,'protocol':RUN_NAME,'patch_submitted':bool(context.patch_submitted),"

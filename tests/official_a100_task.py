@@ -107,13 +107,18 @@ def agent_construction(driver):
         bound = inspect.signature(namespace['run_agent_sandbox']).bind(
             *map(evaluate, invocation.args[1:]),
             **{argument.arg: evaluate(argument.value) for argument in invocation.keywords})
+        from swegemma.context import SwegemmaContext
+        tool_factory = SwegemmaContext.create_tools
+        assert tool_factory.__module__.startswith(('swegemma.', 'adk_eval_core.'))
+        assert not getattr(tool_factory, '_backtrace_calibration', False)
         assert bound.arguments['context'] is namespace['context']
         assert namespace['context'].tool_calls_used == namespace['context'].llm_calls_used == 0
         assert namespace['snapshot'].is_file()
         assert namespace['task'].instance_id == 'fastapi_11194'
         assert namespace['config'].models is namespace['ns']['models']
         return {'status': 'PASS', 'runner_signature': 'ACTUAL', 'task_model_setup': 'ACTUAL',
-                'runner_entry': 'NOT RUN', 'tool_calls': 0, 'llm_calls': 0}
+                'runner_entry': 'NOT RUN', 'tool_calls': 0, 'llm_calls': 0,
+                'tool_factory_module': tool_factory.__module__, 'host_tool_overrides': False}
     finally:
         httpx.AsyncClient.send = original
         if 'manager' in namespace:

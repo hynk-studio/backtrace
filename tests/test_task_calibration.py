@@ -1,11 +1,8 @@
 """Failure controls for real budget boundaries, counted fallback and completion."""
 import hashlib
 import json
-import os
 from pathlib import Path
-import subprocess
 import tempfile
-from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -67,54 +64,6 @@ class CandidateTests(unittest.TestCase):
                 with patch.object(calibration, 'BASE_FILES', hashes), self.assertRaises(ValueError):
                     calibration.apply_candidate(root)
                 self.assertEqual((root / 'eval_config.yaml').read_bytes(), values['eval_config.yaml'])
-
-
-class SearchFallbackTests(unittest.TestCase):
-    def context(self, root, *, used=0, seconds=0, matches=0):
-        class Context:
-            def __init__(self):
-                self.budget = SimpleNamespace(tool_calls=30, time_minutes=5)
-                self.tool_calls_used, self.elapsed_seconds = used, seconds
-                self.commands, self.queries = [], []
-
-            def create_tools(self):
-                def search(query: str, k: int = 10) -> str:
-                    self.tool_calls_used += 1; self.queries.append(query)
-                    return json.dumps({'status': 'ok', 'query': query, 'count': matches, 'results': []})
-                def command(command: str) -> str:
-                    self.tool_calls_used += 1; self.commands.append(command)
-                    p = subprocess.run(command, shell=True, cwd=root, capture_output=True, text=True, timeout=10)
-                    return json.dumps({'status': 'ok', 'stdout': p.stdout, 'stderr': p.stderr, 'exit_code': p.returncode})
-                return {'search_similar_code': search, 'run_command': command}
-        calibration.install_search_fallback(Context)
-        calibration.install_search_fallback(Context)  # Must not double-wrap/count.
-        return Context()
-
-    def repo(self, directory):
-        root = Path(directory)
-        subprocess.run(['git', 'init', '-q', str(root)], check=True)
-        (root / 'source.py').write_text('def sample_symbol():\n    pass\n')
-        subprocess.run(['git', '-C', str(root), 'add', 'source.py'], check=True)
-        return root
-
-    def test_empty_graph_normalizes_identifier_and_executes_counted_real_text_search(self):
-        with tempfile.TemporaryDirectory() as directory:
-            root = self.repo(directory); ctx = self.context(root)
-            result = json.loads(ctx.create_tools()['search_similar_code']('def sample_symbol'))
-            self.assertEqual(ctx.queries, ['sample_symbol'])
-            self.assertIn('source.py:1:def sample_symbol', result['text_search']['stdout'])
-            self.assertEqual(ctx.tool_calls_used, 2)
-            self.assertEqual(result['submission_reserve']['remaining_tool_calls'], 28)
-
-    def test_literal_shell_metacharacters_cannot_execute_and_reserves_suppress_extra_operation(self):
-        with tempfile.TemporaryDirectory() as directory:
-            root = self.repo(directory); ctx = self.context(root)
-            ctx.create_tools()['search_similar_code']("'; touch SHOULD_NOT_EXIST; #")
-            self.assertFalse((root / 'SHOULD_NOT_EXIST').exists())
-            for used, seconds, matches in ((27, 0, 0), (0, 255, 0), (0, 251, 0), (0, 0, 1)):
-                ctx = self.context(root, used=used, seconds=seconds, matches=matches)
-                ctx.create_tools()['search_similar_code']('sample_symbol')
-                self.assertEqual(ctx.commands, [])
 
 
 class CalibratedCompletionTests(unittest.TestCase):

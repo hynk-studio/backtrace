@@ -17,7 +17,7 @@ from tools import task_calibration
 
 POLICY = 'prepaid10-actions-v1'
 SETUP, USEFUL, TOTAL = 5400, 6900, 7200
-CLOUD_DRIVER_SHA256 = '32517bf07d280fea6f7f7a226914cc4262c34de49f988a53499229ce4ce4aefd'
+CLOUD_DRIVER_SHA256 = 'eca5e2ee5065419272e99f8407d09e63798801640f2a8005e5189e7aba9f1b79'
 RUN_NAME = task_calibration.PROTOCOL
 POD_TOOLS = legacy.POD_TOOLS + ('task_budget.py', 'task_calibration.py')
 POD_DOCS = legacy.POD_DOCS
@@ -136,7 +136,7 @@ def prepare(source, output):
     receipt.update(prepared_driver_sha256=CLOUD_DRIVER_SHA256, policy=POLICY,
                    protocol=RUN_NAME, task_budget=task_calibration.BUDGET,
                    scientific_changes=['five-minute/30-tool budget', 'generic search/completion guidance',
-                                       'normalized graph query and counted text-search fallback'],
+                                       'bare-symbol/text-search guidance; official tools unchanged'],
                    setup_seconds=SETUP, useful_seconds=USEFUL, total_seconds=TOTAL,
                    server_and_agent_ast_equal_to_legacy=False,
                    operational_changes=['narrow initialized-engine metadata middleware', 'shared real HTTP contract',
