@@ -598,3 +598,21 @@ the new retry-preparation free result/execution and human report. This is free
 preparation only; old paid qualification rejects the changed source before
 network, all prior claims remain consumed, no paid head moves or new paid gate.
 Revised real-model behavior and corrected GPU teardown remain NOT RUN.
+
+The owner next instructed **그래픽 자원 있으면 시도하자**. This authorizes
+ONE new conditional A100/public-task attempt, recorded on 2026-10-24 KST as
+`owner-verified-gpu-20261024`, after PR #19's completed free preparation. Use
+review branch `bt-001-verified-gpu-20261024`, separate `verified-20261024`
+start/watch branches and a create-only state namespace. Read
+`docs/verified-gpu-20261024.md` and its authorization. Keep the prepared R1 v2
+candidate and original tools/model/task/scientific budgets unchanged. Renew
+full free qualification for the new operational identity, then receipt-source
+Linux/free owner preparation, fresh independent watcher and current exact offer
+before one create. Existing USD10 wallet/USD8 cumulative stop and allocation-
+inclusive 5400/6900/7200-second limits remain. Preserve all 237 baseline state
+blobs, 46 non-state baseline heads including 22 actual paid/watch heads, and
+all consumed claims and original receipts. Actual model verification behavior,
+public correctness and corrected GPU teardown remain unproven until measured.
+No automatic second allocation, paid rerun, top-up/settings change, recurring
+wait, merge or competition submission. Retain completion, correctness and
+cleanup outcomes separately, including failed or incomplete outcomes.

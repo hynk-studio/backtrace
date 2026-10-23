@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "authorization": "owner-verified-gpu-20261024",
+  "authority": "Owner: 그래픽 자원 있으면 시도하자, following the completed PR #19 R1 v2 preparation. ONE new bounded conditional GPU/public-task attempt; all prior paid scopes remain consumed.",
+  "review_branch": "bt-001-verified-gpu-20261024",
+  "start_branch": "bt-001-a100-start-verified-20261024",
+  "watch_branch": "bt-001-a100-watch-verified-20261024",
+  "policy": "prepaid10-actions-v1",
+  "wallet_credits_usd": "10.00",
+  "cumulative_stop_usd": "8.00",
+  "maximum_new_allocations": 1,
+  "maximum_server_starts": 1,
+  "maximum_public_tasks": 1,
+  "setup_seconds": 5400,
+  "useful_seconds": 6900,
+  "total_seconds": 7200,
+  "additional_funding": false,
+  "auto_top_up": false,
+  "automatic_paid_retry": false,
+  "recurring_wait": false,
+  "region_preference": "Eligible EU region first; otherwise previously authorized equivalent region",
+  "scientific_inputs": "Same original model, public task, harness, sampling, BF16/TP1 and official tools. Use the generic R1 v2 verification guidance and corrected local server child reaping prepared in PR #19 at 8b7b1416eec1d714dfbb581e4aa06a06793f2c27. No evaluator answers enter agent inputs. This repeated public task is diagnostic, not independent held-out evidence.",
+  "previous_authorizations": "All previously allocated scopes remain consumed; preserve all old claims, receipts and actual paid/watch heads",
+  "exclusions": [
+    "training",
+    "merge",
+    "submission",
+    "terms acceptance",
+    "extra allocation",
+    "recurring automation"
+  ],
+  "status": "UNUSED; require FULL_FREE_CPU qualification, receipt-source Linux/free owner preparation, fresh watcher and exact offer before a single create",
+  "protocol": "R1-budget5m-verification-guidance-v2/A10080-TP1",
+  "task_budget": {
+    "session_seconds": 300,
+    "tool_calls": 30,
+    "llm_calls": 50,
+    "command_seconds": 60,
+    "agent_child_seconds": 330
+  }
+}

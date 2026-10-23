@@ -2,8 +2,8 @@ name: Qualified A100 free owner preparation
 
 on:
   push:
-    branches: [bt-001-calibrated-gpu-20261023]
-    paths: ['docs/calibrated-gpu-actions-qualification-20261023.json']
+    branches: [bt-001-verified-gpu-20261024]
+    paths: ['docs/verified-gpu-actions-qualification-20261024.json']
     # Only a new recorded qualification receipt starts this free preparation.
     # The paid branch uses its separately bound single-attempt workflow.
 
