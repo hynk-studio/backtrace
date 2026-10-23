@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import signal
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -87,8 +88,20 @@ def probe(expect):
         with tempfile.TemporaryDirectory(prefix='nested-reaper-') as directory:
             os.chown(directory, 65534, 65534)
             def drop(): os.setgroups([]); os.setgid(65534); os.setuid(65534)
-            result = subprocess.run([sys.executable, str(Path(__file__).resolve()), '--phase', directory, str(os.getpid())],
-                preexec_fn=drop, capture_output=True, text=True, check=True, timeout=20)
+            # Match production's readable copied code, rather than the runner's private checkout parents.
+            code = Path(directory) / 'code'
+            (code / 'tests').mkdir(parents=True); (code / 'tools').mkdir()
+            shutil.copyfile(__file__, code / 'tests/official_startup_reaper.py')
+            shutil.copyfile(ROOT / 'tools/startup_guard.py', code / 'tools/startup_guard.py')
+            (code / 'tools/__init__.py').write_text('')
+            for path in code.rglob('*'): path.chmod(0o555 if path.is_dir() else 0o444)
+            code.chmod(0o555)
+            clean = {'PATH':'/usr/bin:/bin', 'LANG':'C.UTF-8', 'LD_LIBRARY_PATH':os.environ.get('LD_LIBRARY_PATH','')}
+            result = subprocess.run([sys.executable, str(code / 'tests/official_startup_reaper.py'), '--phase', directory, str(os.getpid())],
+                preexec_fn=drop, capture_output=True, text=True, env=clean, cwd=directory, timeout=20)
+            if result.returncode:
+                report = {'phase_exit_code':result.returncode,'phase_stderr':result.stderr[-4000:]}
+                raise RuntimeError('authored phase failed before ownership observation')
             report = json.loads(result.stdout.splitlines()[-1])
             until = time.monotonic() + 3
             while time.monotonic() < until:
@@ -110,6 +123,11 @@ def probe(expect):
                 assert report['remaining_child'] is None and report['subreaper_after_stop'] == 0
                 assert reaped == []
             report['status'] = 'PASS'
+    except BaseException as error:
+        if report is None: report = {}
+        report.update(status='FAIL',failure_type=type(error).__name__,failure=str(error))
+        print(json.dumps(report, sort_keys=True), flush=True)
+        raise
     finally:
         # Only direct children of this test process can be targeted/reaped here.
         for path in Path('/proc').iterdir():
