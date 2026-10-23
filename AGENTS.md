@@ -488,3 +488,14 @@ rerun, automatic second create, funding/settings change, merge, competition
 submission or recurring wait is authorized. Search/submission choices and task
 correctness still depend on the actual model; CPU scripted checks cannot prove
 those. This repeated public task is a diagnostic, not independent held-out score.
+
+Full R1 free qualification 39942999774 at
+`7f0de3ccbd8cf469d574f3fffb088126a2777f66` passed all 24 stages; Linux
+39942999754 passed 350 tests. Actual SSH/setup/23-file driver CPU cleanup
+passed in 280.902s. All 112 private records, host/image projections, both
+calibrated task receipts, four JUnit hashes/counts and retained SSH CPU log
+hash were verified; all 93 file bindings match. Read the new calibrated GPU
+qualification/result/schema-1 receipt. This is FULL_FREE_CPU, not the prior
+task-only scope. The new single claim remains unused; before create require
+receipt-source Linux/free owner preparation, a fresh matching independent
+watcher and fresh exact offer. No paid rerun or automatic second allocation.

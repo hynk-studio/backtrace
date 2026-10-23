@@ -39,3 +39,29 @@ Reusing the already inspected public task does not establish independent
 held-out performance or a method improvement over unmatched historical R0.
 
 No paid request has been made at this preparation checkpoint.
+
+## Renewed full free qualification passed
+
+Run 39942999774, attempt 1 at 7f0de3ccbd8cf469d574f3fffb088126a2777f66,
+passed all 24 full free stages; exact-source Linux 39942999754 passed all 350
+tests. The real SSH production setup, 23-file calibrated driver transfer and
+CPU prerequisites/cleanup passed in 280.902 seconds. All 8 original model URLs
+passed after setup; model weights and GPU inference were not executed here.
+The host and exact offline image each crossed 60 seconds and ten charged tools,
+then submitted/recovered the actual calibrated patch and trace. All five
+concurrent simulated-provider/controller cases passed.
+
+All 112 owner-private records were recovered. Private/public setup, host and
+image projections matched; both task receipts and four JUnit hashes/counts
+passed independent validation. The neutral patch failed two of four public
+tests and the evaluator-only reference passed four of four. This is scripted
+CPU validation, not a new real-model result or independent benchmark score.
+The actual CPU log hash matched the final 2702 bytes at offset 68207 in the
+retained SSH output. All 93 bound source hashes match.
+
+The exact public report is 69286 bytes, SHA256
+0cc7f2abe83757dc310318eeac9e46054c5e170a8f8921a85108969e6c38429f.
+See the new qualification proof and schema-1 launch receipt. Old receipts remain
+unchanged. The new claim is still unused at this checkpoint; receipt-source
+Linux and free owner preparation, a fresh matching watcher and live exact offer
+are required before the sole create.

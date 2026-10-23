@@ -1,0 +1,132 @@
+{
+  "artifacts": {
+    "private": {
+      "cipher": {
+        "ciphertext_bytes": 2120426,
+        "ciphertext_sha256": "0ebf241ba192ed9049a5534e7d041187da7c084b585a84d651648e7021b9f775",
+        "files": 112,
+        "format": "age-v1",
+        "plaintext_bytes": 2031131
+      },
+      "id": 12497798926,
+      "zip_sha256": "dab21ffaffc972710106fdc799e023034e17c53aac31b6bdf901705119254524"
+    },
+    "public": {
+      "id": 12498132977,
+      "zip_sha256": "5567ffd1b8bef27b4399b09dbf04192a99c1cc5f84d1332b30b8ba2684b9dc31"
+    }
+  },
+  "bound_files": 93,
+  "connected": {
+    "host": {
+      "controls": [
+        {
+          "actual_tests": {
+            "errors": 0,
+            "failures": 2,
+            "junit_sha256": "9f445d336163b18558d51eb11617beb1312e4fb739ae26dd8455aeabd07940e1",
+            "passed": 2,
+            "skipped": 0,
+            "tests": 4
+          },
+          "control": "recovered-patch"
+        },
+        {
+          "actual_tests": {
+            "errors": 0,
+            "failures": 0,
+            "junit_sha256": "4ccf1e885fb883adf24e0b8eea5bb7c472b5567160eeb6f58e4e3d5996079bde",
+            "passed": 4,
+            "skipped": 0,
+            "tests": 4
+          },
+          "control": "public-reference-control"
+        }
+      ],
+      "observed_task": {
+        "llm_calls": 14,
+        "patch_submitted": true,
+        "seconds": 70.96456909179688,
+        "tool_calls": 12
+      },
+      "receipt": {
+        "instance_id": "fastapi_11194",
+        "llm_calls": 14,
+        "patch_bytes": 305,
+        "patch_sha256": "7977e5980ad7a195b1912366aad9b082803516009791cb56cea0a0e561e93488",
+        "status": "PASS",
+        "tool_calls": 12,
+        "trace_sha256": "9ab9fe786dd2978e7e6cabaf28639ac6a8d78f03ab15c9e7d926c14676426e3f",
+        "verification": "NOT RUN; task completion is not patch correctness",
+        "wire_requests": 14
+      }
+    },
+    "image": {
+      "controls": [
+        {
+          "actual_tests": {
+            "errors": 0,
+            "failures": 2,
+            "junit_sha256": "96ee33d00bf857fbc32a5f63c4b6e9a45e0ce0c94ad05b083c58b7f674429eca",
+            "passed": 2,
+            "skipped": 0,
+            "tests": 4
+          },
+          "control": "recovered-patch"
+        },
+        {
+          "actual_tests": {
+            "errors": 0,
+            "failures": 0,
+            "junit_sha256": "56bc10efdfd8a373411fe3eb50e89f02471935d3f033a4870765aae36a3630ee",
+            "passed": 4,
+            "skipped": 0,
+            "tests": 4
+          },
+          "control": "public-reference-control"
+        }
+      ],
+      "observed_task": {
+        "llm_calls": 14,
+        "patch_submitted": true,
+        "seconds": 71.44741296768188,
+        "tool_calls": 12
+      },
+      "receipt": {
+        "instance_id": "fastapi_11194",
+        "llm_calls": 14,
+        "patch_bytes": 305,
+        "patch_sha256": "7977e5980ad7a195b1912366aad9b082803516009791cb56cea0a0e561e93488",
+        "status": "PASS",
+        "tool_calls": 12,
+        "trace_sha256": "a9b1e0d219fb16f96472f53400718a6829f626752b36dddc203b512e9067b0a2",
+        "verification": "NOT RUN; task completion is not patch correctness",
+        "wire_requests": 14
+      }
+    }
+  },
+  "experimental_protocol": "R1-budget5m-search-guidance-v1/A10080-TP1",
+  "full_setup_seconds": 280.902,
+  "gpu_allocations": 0,
+  "linux": {
+    "job_id": 120378763154,
+    "run_id": 39942999754,
+    "seconds": 29.482,
+    "status": "PASS",
+    "tests": 350
+  },
+  "paid_authorization": "UNUSED; exact receipt-source CPU/owner preparation and live watcher/offer still required",
+  "private_files": 112,
+  "projection_checks": "all match",
+  "qualification_scope": "FULL_FREE_CPU",
+  "report_bytes": 69286,
+  "report_sha256": "0cc7f2abe83757dc310318eeac9e46054c5e170a8f8921a85108969e6c38429f",
+  "run_id": "39942999774",
+  "source_sha": "7f0de3ccbd8cf469d574f3fffb088126a2777f66",
+  "ssh_cpu_log": {
+    "bytes": 2702,
+    "offset": 68207,
+    "sha256": "d5ec8df352e10c5a684dae4123505df4ba93b6a7ce03075b30f7e76da89a0920"
+  },
+  "status": "PASS"
+}
