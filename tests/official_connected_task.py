@@ -240,9 +240,11 @@ class GeneratedTokens:
             self.fallback_evidence = {'query': marker, 'empty_graph': True, 'counted_operations': 2,
                 'text_search': 'ACTUAL original run_command repository output',
                 'tool_policy': 'original tools unchanged; model decisions scripted'}
-            action = ('get_status', {})
+            action = ('run_command', {'command': 'git show HEAD:README.md | head -n 2'})
         elif 5 <= number <= 11:
-            action = ('get_status', {})
+            # get_status is uncharged in the pinned harness. Use harmless
+            # reads through the budget-gated command tool to cross ten.
+            action = ('run_command', {'command': 'git show HEAD:README.md | head -n 2'})
         elif number == 12:
             action = ('read_file', {'filepath': 'README.md', 'start_line': 1, 'end_line': 2})
         elif number == 13:
@@ -357,7 +359,7 @@ def run_case(source, output, case):
                 raise AssertionError('actual file edit or subagent delegation did not complete')
             if case == 'search-fallback':
                 actual = json.loads((driver.WORK / 'task-result.json').read_text())
-                if not 60 < actual['seconds'] < 300 or actual['tool_calls'] != 13:
+                if not 60 < actual['seconds'] < 300 or not 10 < actual['tool_calls'] <= 30:
                     raise AssertionError('expanded actual session/tool budget was not exercised')
             rows = []
             for name in ('agent.patch', 'task-result.json', 'wire.jsonl',
@@ -385,6 +387,8 @@ def run_case(source, output, case):
                 'protocol': driver.RUN_NAME, 'candidate': calibration,
                 'search_fallback': getattr(generated, 'fallback_evidence', None),
                 'crossed_original_time_and_tool_limits': case == 'search-fallback',
+                'observed_task': ({key: actual[key] for key in ('seconds', 'tool_calls', 'llm_calls', 'patch_submitted')}
+                                  if case == 'search-fallback' else None),
                 'exercised_tools': generated.exercised_tools,
                 'model_generation': 'SCRIPTED CPU CONTENT; NOT A MODEL RESULT'}
     finally:
