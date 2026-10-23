@@ -157,6 +157,14 @@ def main():
         from tools.official_check import check_directory
         candidate_check = check_directory(driver.WORK / 'candidate', candidate=True)
         assert candidate_check['official_cpu_checks'] == 'PASS'
+        from adk_submission.yaml_loader import load_yaml
+        from swegemma.config import build_submission_limits
+        limits, _ = build_submission_limits()
+        sample = driver.WORK / 'candidate'
+        analyzer = load_yaml(sample / 'sub_agents/code_analyzer.yaml', sample, limits)
+        assert set(analyzer['tools']) == {'read_file', 'search_similar_code', 'get_code_neighbors', 'get_code_subgraph'}
+        assert not any(tool in analyzer['instruction'] for tool in ('run_command', 'get_status', 'submit_patch'))
+        candidate_check['read_only_analyzer_guidance'] = 'MATCHES ACTUAL DECLARED TOOLS'
         function = next(n for n in ast.parse((root / 'driver/one_task.py').read_text()).body
                         if isinstance(n, ast.FunctionDef) and n.name == 'server_phase')
         stop = next(i for i, n in enumerate(function.body) if isinstance(n, ast.Try))

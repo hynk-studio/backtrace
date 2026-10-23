@@ -65,6 +65,16 @@ class CandidateTests(unittest.TestCase):
                     calibration.apply_candidate(root)
                 self.assertEqual((root / 'eval_config.yaml').read_bytes(), values['eval_config.yaml'])
 
+    def test_read_only_analyzer_is_not_instructed_to_use_root_only_tools(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); values, hashes = self.baseline(root)
+            with patch.object(calibration, 'BASE_FILES', hashes):
+                result = calibration.candidate_files(values)
+            for name in (b'run_command', b'get_status', b'submit_patch'):
+                self.assertNotIn(name, result['prompts/analyzer.md'])
+                self.assertIn(name, result['prompts/system.md'])
+            self.assertIn(b'return', result['prompts/analyzer.md'])
+
 
 class CalibratedCompletionTests(unittest.TestCase):
     def fixture(self, root):

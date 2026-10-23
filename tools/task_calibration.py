@@ -38,6 +38,14 @@ GUIDANCE = b'''\n\n## Search and completion budget
 - Submit an implementation change, not only a reproduction script. If no fix was
   established, report that limitation; never describe a partial patch as resolved.
 '''
+ANALYZER_GUIDANCE = b'''\n\n## Search and shared budget
+- Use bare indexed function/class identifiers, without a def/class prefix.
+- After an empty graph query, read a likely file with read_file or return the
+  missing symbol and a suggested text-search query to the parent agent.
+- The parent owns repository command execution, editing and patch submission.
+  Use only your declared read-only tools. Do not repeat empty graph searches.
+- Keep the diagnosis concise so the parent retains time to implement and submit.
+'''
 
 
 def _replace(data, before, after):
@@ -57,8 +65,8 @@ def candidate_files(files):
     result['prompts/system.md'] = _replace(result['prompts/system.md'],
         b'use `search_similar_code` with keywords from the error message',
         b'use `search_similar_code` with an indexed function or class identifier')
-    for name in ('prompts/system.md', 'prompts/analyzer.md'):
-        result[name] += GUIDANCE
+    result['prompts/system.md'] += GUIDANCE
+    result['prompts/analyzer.md'] += ANALYZER_GUIDANCE
     return result
 
 
