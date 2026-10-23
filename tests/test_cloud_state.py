@@ -60,6 +60,11 @@ class CloudStateTests(unittest.TestCase):
         self.api.create(request)
         return claim
 
+    def test_claim_protocol_matches_the_actual_prepared_task(self):
+        from tools import cloud_task
+        claim, _ = self.claim()
+        self.assertEqual(claim['run'], cloud_task.RUN_NAME)
+
     def test_claim_is_durable_before_caller_can_send_request(self):
         claim, request = self.claim()
         self.assertEqual(self.store.read('claim')[0], claim)

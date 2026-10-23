@@ -33,3 +33,12 @@ private receipts independently verify; active schema-1 receipt matches; final
 source Linux and free owner preparation pass; fresh same-source watcher exists;
 current hardware/stock/account/cumulative budget qualify. No paid launch has
 yet occurred at this checkpoint. No automatic second allocation.
+
+A pre-launch integration review found that the controller still labelled new
+claims with the preceding R1 v1 protocol although the prepared task was R1 v2.
+The controller label now matches the prepared candidate. A regression compares
+an actual projected claim against `cloud_task.RUN_NAME`; without this correction
+the post-deletion verifier would reject the mismatched experiment identity.
+The first new-source free run40034617157 is superseded before any paid launch;
+its passed Linux run40034617261 (365 tests) is retained as intermediate evidence.
+A fresh full free run and Linux suite must qualify the corrected source.
