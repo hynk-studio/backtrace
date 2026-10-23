@@ -2,14 +2,14 @@ name: A100 independent cleanup
 
 on:
   push:
-    branches: [bt-001-a100-watch-qualified-20261023]
+    branches: [bt-001-a100-watch-calibrated-20261023]
 
 permissions:
   contents: write
   actions: read
 
 concurrency:
-  group: a100-cleanup-owner-qualified-gpu-20261023
+  group: a100-cleanup-owner-calibrated-gpu-20261023
   cancel-in-progress: false
 
 jobs:

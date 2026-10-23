@@ -471,3 +471,87 @@ heads are unchanged, and eight free handoff/diagnostic blobs were added. Read
 `docs/task-calibration-20261023.md` and its policy/result/execution JSON. PR #17
 is draft; all paid claims remain consumed, no fresh scope or paid launch
 qualification exists, and no merge/submission/top-up/automation is authorized.
+
+The owner next instructed **자원 있으면 해보자** after PR #17's implemented
+five-minute/30-tool/330-second calibration. This authorizes ONE fresh bounded
+conditional attempt, `owner-calibrated-gpu-20261023`, review branch
+`bt-001-calibrated-gpu-20261023` and new start/watch suffix
+`calibrated-20261023`. Read `docs/calibrated-gpu-20261023.md` and the new
+authorization. Preserve all 20 actual historical paid/watch heads, all 221
+prior state blobs, old R0 receipts, PR #17 and all consumed claims. Renew the
+FULL free setup/SSH/image/task/HTTP/evaluator/lifecycle qualification for the
+changed source, then receipt-source Linux/free owner preparation, fresh matching
+watcher and current offer. The R1 task budget/guidance is explicit; model/task
+bytes and official tools stay unchanged. Existing USD10 wallet/USD8 cumulative
+stop, A10080 TP1 and allocation-inclusive 5400/6900/7200 limits remain. No paid
+rerun, automatic second create, funding/settings change, merge, competition
+submission or recurring wait is authorized. Search/submission choices and task
+correctness still depend on the actual model; CPU scripted checks cannot prove
+those. This repeated public task is a diagnostic, not independent held-out score.
+
+Full R1 free qualification 39942999774 at
+`7f0de3ccbd8cf469d574f3fffb088126a2777f66` passed all 24 stages; Linux
+39942999754 passed 350 tests. Actual SSH/setup/23-file driver CPU cleanup
+passed in 280.902s. All 112 private records, host/image projections, both
+calibrated task receipts, four JUnit hashes/counts and retained SSH CPU log
+hash were verified; all 93 file bindings match. Read the new calibrated GPU
+qualification/result/schema-1 receipt. This is FULL_FREE_CPU, not the prior
+task-only scope. The new single claim remains unused; before create require
+receipt-source Linux/free owner preparation, a fresh matching independent
+watcher and fresh exact offer. No paid rerun or automatic second allocation.
+
+The current consumed R1 attempt also receives free post-deletion public-patch
+verification in `tools/calibrated_evaluation.py` on
+`bt-001-calibrated-evaluation-20261023`. Its CPU runtime may warm while the
+single paid attempt runs. Public tests require the exact consumed claim/Pod,
+completed original owner run, two confirmed absence reads and an encrypted,
+byte-bound four-file receipt handoff. No provider key, model weight transfer,
+model call, agent rerun or reference control is used. Strict R1 completion and
+public-test correctness are separate; rejected/incomplete artifacts remain a
+partial diagnostic and can never become a completed-task model score. Preserve
+the old hard-bound R0 follow-up module and its original receipts unchanged.
+
+Actual R1 attempt 39947273089 at 6973f96255cdecf2d02f7e1ad976522f7982699d
+is CONSUMED in EU-RO-1 Pod i3kf5oiwlg1z3r. The agent submitted a 2350-byte
+patch in 200.585s, 30 tools / 33 LLM calls, with 35 paired HTTP200 responses;
+strict R1 completion passed. The server-phase process-group teardown then
+raised RuntimeError, so overall owner status remains INCOMPLETE. Outer UID
+cleanup found no survivors; owner and watcher independently confirmed deletion.
+Free CPU evaluation 39950033316 at 92456475a47fd5003a25306db48d412d31cc6cf9
+verified the exact recovered patch: 4 public tests, 2 pass / 2 fail, unresolved.
+Do not promote agent completion to correctness or overall operational success.
+At 21:04:15 KST account read attempt9 showed zero Pods/spend, auto-pay false,
+USD5.8736758757 balance; observed wallet decrease USD0.6460551204.
+
+Free ownership probe 39951747247 at 16d1df8ea19d4e760226aad13bcd6f1e3aea8ba6
+reproduced the same stop error with a dropped-UID phase and separate outer
+subreaper. The remaining member was a dead Z process owned by the outer parent;
+that outer parent reaped it after the inner phase exited. Original GPU member
+states were not retained, so the exact original members remain unproven. The
+first probe 39951434934 failed before phase execution and is not reproduction
+evidence. The corrected server now enables local child reaping before spawning,
+restores the prior role after teardown and records PID/PPID/state on future
+cleanup failure. The new same-topology regression and full Linux suite must
+pass. Current binding grows to 96 files; the old 93-file receipt rejects this
+changed code before network. This free correction does not mint another paid
+scope or a current-source full paid-launch qualification. Preserve both actual
+new paid/watch heads at 6973f96255cdecf2d02f7e1ad976522f7982699d; no paid rerun.
+
+Full post-correction free regression 39952681157 at
+`4dcc641cc772988d76cbd2cfa500d95c7326f3e5` passed all 24 stages, actual SSH
+setup/cleanup (242.513s), host and exact offline-image task/HTTP/evaluator
+controls and concurrent controllers. All 112 private records, both R1 task
+receipts, four JUnit hashes/counts, retained SSH CPU log and all 96 bindings
+were verified. Review-source Linux 39952681035 passed all 352 tests. Read the
+new calibrated GPU paid/public-evaluation/reaper-correction/postfix-free
+records. The actual paid source remains6973f96255cdecf2d02f7e1ad976522f7982699d.
+Agent completion passed but public correctness failed2/4; overall paid status
+remains INCOMPLETE from server teardown. Corrected GPU teardown NOT RUN. All
+claims remain consumed; no current paid gate was minted or actual head moved.
+
+Final independent account read39822924063 attempt10/job120423352558 at
+21:51:13KST showed zero Pods/spend and auto-pay false. Later-settled balance
+USD5.7669749701; observed decrease from the pre-run wallet USD0.7527560260,
+cumulative observed wallet spend USD4.2330250299. Preserve the earlier
+21:04 observation rather than treating its then-incomplete debit as final.
+The final stock query found no qualified region. No new claim/create follows.

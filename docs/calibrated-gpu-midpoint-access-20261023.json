@@ -1,0 +1,27 @@
+{
+  "allocation_requests": 0,
+  "availability": {
+    "account": {
+      "auto_pay": false,
+      "credit_balance": "6.4767770887",
+      "current_spend_per_hour": "1.804"
+    },
+    "allocation_requests": 0,
+    "observed_at": "2026-10-23T11:41:03Z",
+    "offer": null,
+    "regions": [],
+    "settings_changed": false,
+    "status": "ACCOUNT_NOT_QUALIFIED"
+  },
+  "pods": [
+    {
+      "desiredStatus": null,
+      "id": "i3kf5oiwlg1z3r",
+      "name": "backtrace-a100-a90828af9e28484380c4a3fee8a2e85a"
+    }
+  ],
+  "run_id": "39822924063",
+  "settings_changed": false,
+  "source_sha": "59d430b6c552b8ad3b9d7b03708df77c8e7e0b4b",
+  "status": "PASS"
+}

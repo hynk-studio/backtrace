@@ -1,0 +1,324 @@
+{
+  "actual_failed_paid_source": "6973f96255cdecf2d02f7e1ad976522f7982699d",
+  "actual_gpu_teardown_with_fix": "NOT RUN",
+  "added_bound_files": [
+    ".github/workflows/startup-reaper.yml",
+    "tests/official_startup_reaper.py",
+    "tests/test_startup_subreaper.py"
+  ],
+  "after": {
+    "artifact_id": 12500961661,
+    "job_id": 120409726358,
+    "linux_tests": {
+      "count": 352,
+      "seconds": 32.314,
+      "status": "PASS"
+    },
+    "report_sha256": "1bc64beb96819f7b506f995e8a5581a50d352732346678450d691afb93082131",
+    "result": {
+      "boundary": "authored payload; real nested Linux UID/subreaper/process groups",
+      "cleanup_error": null,
+      "expect": "clean",
+      "final_group_members": [],
+      "gpu_allocations": 0,
+      "group_members_after_stop": [],
+      "model_calls": 0,
+      "outer_pid": 2643,
+      "outer_reaped": [],
+      "outer_subreaper": 1,
+      "pgid": 2645,
+      "phase_pid": 2644,
+      "phase_uid": 65534,
+      "remaining_child": null,
+      "seconds": 1.0498717680000027,
+      "startup_observation": {
+        "asgi_traceback_sha256": null,
+        "child_subreaper_before": 0,
+        "child_subreaper_restored": 0,
+        "consecutive_health_500s": 0,
+        "detected": null,
+        "health_status": null,
+        "ready": 38.164440306,
+        "repeated_asgi_tracebacks": 0,
+        "started": 38.102258103,
+        "teardown_seconds": 1.0497798560000007
+      },
+      "status": "PASS",
+      "subreaper_after_start": 1,
+      "subreaper_after_stop": 0,
+      "subreaper_before": 0
+    },
+    "run_id": 39952377261,
+    "source_sha": "4dcc641cc772988d76cbd2cfa500d95c7326f3e5",
+    "zip_sha256": "087115b54cf71e42e65c6f3cd0a77c3aae9f52cc560601872f93f681dc923851"
+  },
+  "before": {
+    "artifact_id": 12500437081,
+    "job_id": 120407604525,
+    "report_sha256": "26c2cb0b836f354e19d919970ad47d62e87f48b09af2f84f729ed972977fd502",
+    "result": {
+      "boundary": "authored payload; real nested Linux UID/subreaper/process groups",
+      "cleanup_error": "owned startup process group did not disappear",
+      "expect": "orphan-error",
+      "final_group_members": [],
+      "gpu_allocations": 0,
+      "group_members_after_stop": [
+        2230
+      ],
+      "model_calls": 0,
+      "outer_pid": 2227,
+      "outer_reaped": [
+        2230
+      ],
+      "outer_subreaper": 1,
+      "pgid": 2229,
+      "phase_pid": 2228,
+      "phase_uid": 65534,
+      "remaining_child": {
+        "pgid": 2229,
+        "pid": 2230,
+        "ppid": 2227,
+        "state": "Z"
+      },
+      "seconds": 3.0271731509999995,
+      "startup_observation": {
+        "asgi_traceback_sha256": null,
+        "cleanup_error": "owned startup process group did not disappear",
+        "consecutive_health_500s": 0,
+        "detected": null,
+        "health_status": null,
+        "ready": 32.922992265,
+        "repeated_asgi_tracebacks": 0,
+        "started": 32.881881314,
+        "teardown_seconds": 3.0270586600000016
+      },
+      "status": "PASS",
+      "subreaper_after_start": 0,
+      "subreaper_after_stop": 0,
+      "subreaper_before": 0
+    },
+    "run_id": 39951747247,
+    "source_sha": "16d1df8ea19d4e760226aad13bcd6f1e3aea8ba6",
+    "zip_sha256": "8d88dc89414fcbef0a5c0e75fbf2915b9f92ce451ca0e66d53a2381f1ee63a48"
+  },
+  "changed_previously_bound_files": [
+    "tools/cloud_qualification.py",
+    "tools/startup_guard.py"
+  ],
+  "corrected_source": "4dcc641cc772988d76cbd2cfa500d95c7326f3e5",
+  "fix": "server-phase local child subreaper before spawn; restore prior role only after successful teardown; capture PID/PPID/state on failure",
+  "full_free_regression": {
+    "actual_gpu_teardown_with_fix": "NOT RUN",
+    "artifacts": {
+      "private": {
+        "cipher": {
+          "ciphertext_bytes": 2120456,
+          "ciphertext_sha256": "dc056ad90702bb69bd18ff31d4486453415127d4cba1b4a5f43260e6e226b629",
+          "files": 112,
+          "format": "age-v1",
+          "plaintext_bytes": 2031803
+        },
+        "id": 12501969999,
+        "zip_sha256": "313cc4a80a1cb14b6690a5f871673237c0e7abb50efa8ab4606caab2cf692c05"
+      },
+      "public": {
+        "id": 12502069413,
+        "zip_sha256": "6ffffe0cabff16ef70f198d4f5c7175b0123c7e7b53db5a88c4e82b109dbb744"
+      }
+    },
+    "bound_files": 96,
+    "connected": {
+      "host": {
+        "controls": [
+          {
+            "actual_tests": {
+              "errors": 0,
+              "failures": 2,
+              "junit_sha256": "7ac0ab0b1cb4a2664ed899af8d90f78ebcb3d3d3ed3d4cd4b431097ebaec3f64",
+              "passed": 2,
+              "skipped": 0,
+              "tests": 4
+            },
+            "control": "recovered-patch"
+          },
+          {
+            "actual_tests": {
+              "errors": 0,
+              "failures": 0,
+              "junit_sha256": "9a080d57de00062422cb3b4f22d4a04b0f5bbc9faa9f55e67009231de837afa5",
+              "passed": 4,
+              "skipped": 0,
+              "tests": 4
+            },
+            "control": "public-reference-control"
+          }
+        ],
+        "observed_task": {
+          "llm_calls": 14,
+          "patch_submitted": true,
+          "seconds": 69.20356917381287,
+          "tool_calls": 12
+        },
+        "receipt": {
+          "instance_id": "fastapi_11194",
+          "llm_calls": 14,
+          "patch_bytes": 305,
+          "patch_sha256": "7977e5980ad7a195b1912366aad9b082803516009791cb56cea0a0e561e93488",
+          "status": "PASS",
+          "tool_calls": 12,
+          "trace_sha256": "3b5cd6bd11e12ddbda5bdad45e8463da8e46ca17ef83955ed449809412678c4a",
+          "verification": "NOT RUN; task completion is not patch correctness",
+          "wire_requests": 14
+        }
+      },
+      "image": {
+        "controls": [
+          {
+            "actual_tests": {
+              "errors": 0,
+              "failures": 2,
+              "junit_sha256": "8608ef78732244c8fcc3cae30a021443fc30de35cf13f21088fa30bad096ace1",
+              "passed": 2,
+              "skipped": 0,
+              "tests": 4
+            },
+            "control": "recovered-patch"
+          },
+          {
+            "actual_tests": {
+              "errors": 0,
+              "failures": 0,
+              "junit_sha256": "13c37a845a016c5d0161377e47afdd45308a8819ca42c2be2cb7d554a76554b9",
+              "passed": 4,
+              "skipped": 0,
+              "tests": 4
+            },
+            "control": "public-reference-control"
+          }
+        ],
+        "observed_task": {
+          "llm_calls": 14,
+          "patch_submitted": true,
+          "seconds": 69.61863851547241,
+          "tool_calls": 12
+        },
+        "receipt": {
+          "instance_id": "fastapi_11194",
+          "llm_calls": 14,
+          "patch_bytes": 305,
+          "patch_sha256": "7977e5980ad7a195b1912366aad9b082803516009791cb56cea0a0e561e93488",
+          "status": "PASS",
+          "tool_calls": 12,
+          "trace_sha256": "213ef19498bdbbd0b9163b9ab693b2aaf85c0357b1797fe2b0e0850ddb932425",
+          "verification": "NOT RUN; task completion is not patch correctness",
+          "wire_requests": 14
+        }
+      }
+    },
+    "full_setup_seconds": 242.513,
+    "linux": {
+      "job_id": 120410749088,
+      "run_id": 39952681035,
+      "seconds": 30.636,
+      "status": "PASS",
+      "tests": 352
+    },
+    "paid_launch_authorization": "NONE; consumed claim preserved; historical active 93-file receipt left unchanged",
+    "private_files": 112,
+    "projection_checks": "all match",
+    "qualification_scope": "FULL_FREE_CPU",
+    "report_bytes": 69615,
+    "report_sha256": "0b7e52b5a3e5bf35f0a97d995edbd209263832b25dd9f77b2cfea38777e5b044",
+    "run_id": "39952681157",
+    "schema_version": 2,
+    "source_sha": "4dcc641cc772988d76cbd2cfa500d95c7326f3e5",
+    "ssh_cpu_log": {
+      "bytes": 2699,
+      "offset": 68207,
+      "sha256": "273f83b852cef53d20e85c781d8905f3a618b495d921f5c493f362e51e40f020"
+    },
+    "status": "PASS",
+    "subreaper_observations": [
+      {
+        "before": 0,
+        "path": "image-result/connected-task/model-error/execution.log",
+        "restored": 0,
+        "teardown_seconds": 8.515799981978489e-05
+      },
+      {
+        "before": 0,
+        "path": "image-result/connected-task/tools/execution.log",
+        "restored": 0,
+        "teardown_seconds": 8.796199995231291e-05
+      },
+      {
+        "before": 0,
+        "path": "image-result/connected-task/success/execution.log",
+        "restored": 0,
+        "teardown_seconds": 8.974499996838858e-05
+      },
+      {
+        "before": 0,
+        "path": "image-result/connected-task/missing-route/execution.log",
+        "restored": 0,
+        "teardown_seconds": 6.392500017682323e-05
+      },
+      {
+        "before": 0,
+        "path": "image-result/connected-task/search-fallback/execution.log",
+        "restored": 0,
+        "teardown_seconds": 8.89030000053026e-05
+      },
+      {
+        "before": 0,
+        "path": "connected-task/model-error/execution.log",
+        "restored": 0,
+        "teardown_seconds": 9.811800009629223e-05
+      },
+      {
+        "before": 0,
+        "path": "connected-task/tools/execution.log",
+        "restored": 0,
+        "teardown_seconds": 9.582500001670269e-05
+      },
+      {
+        "before": 0,
+        "path": "connected-task/success/execution.log",
+        "restored": 0,
+        "teardown_seconds": 9.748599995873519e-05
+      },
+      {
+        "before": 0,
+        "path": "connected-task/missing-route/execution.log",
+        "restored": 0,
+        "teardown_seconds": 7.588500000110798e-05
+      },
+      {
+        "before": 0,
+        "path": "connected-task/search-fallback/execution.log",
+        "restored": 0,
+        "teardown_seconds": 0.00010172299994337664
+      }
+    ]
+  },
+  "new_bound_files": 96,
+  "new_startup_guard_sha256": "13033ea60f91da4bf30d0cad0fc27fe8499c50bd0fdba7e3a550a089a1e82afc",
+  "old_active_paid_receipt": "unchanged historical 93-file receipt; rejects corrected source before network",
+  "original_gpu_member_states": "NOT RETAINED; exact original members unproven",
+  "paid_authorization": "CONSUMED; no new allocation",
+  "review_source_linux": {
+    "job_id": 120410749088,
+    "run_id": 39952681035,
+    "seconds": 30.636,
+    "status": "PASS",
+    "tests": 352
+  },
+  "schema_version": 1,
+  "status": "PASS_NESTED_LINUX_FULL_SUITE_AND_FULL_FREE_REGRESSION",
+  "strictness": "group members are still required to disappear; zombies are not silently ignored",
+  "superseded_probe": {
+    "result": "failed before phase execution; not reproduction evidence",
+    "run_id": 39951434934,
+    "source_sha": "b878d985ea6a4521e8d822b6df8ae65777695651"
+  }
+}

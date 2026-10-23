@@ -1,12 +1,12 @@
 name: Qualified GPU read-only live observation
 on:
   push:
-    branches: [bt-001-qualified-observe-20261023]
+    branches: [bt-001-calibrated-observe-20261023]
     paths: ['.github/workflows/qualified-gpu-observe.yml']
 permissions:
   contents: read
 concurrency:
-  group: qualified-gpu-live-observation-20261023
+  group: calibrated-gpu-live-observation-20261023
   cancel-in-progress: false
 jobs:
   observe:
@@ -33,8 +33,8 @@ jobs:
           try:
               store=state.GitHubState(os.environ['GITHUB_TOKEN'])
               claim=store.read('claim')[0]; pod=store.read('pod')[0]
-              if (claim['run_id']!='39878045521' or claim['source_sha']!='626e3a619a025f64e3713af11b8e4097471470ab'
-                  or claim['watcher_run_id']!='39877985689' or pod['pod_id']!='virbb2jab7fi8v'
+              if (claim['run_id']!='39947273089' or claim['source_sha']!='6973f96255cdecf2d02f7e1ad976522f7982699d'
+                  or claim['watcher_run_id']!='39947179144' or pod['pod_id']!='i3kf5oiwlg1z3r'
                   or pod['attempt']!=claim['attempt']):
                   raise ValueError('exact immutable paid attempt required')
               api=control.RunpodAPI(os.environ['RUNPOD_API_KEY'].strip())
