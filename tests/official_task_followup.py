@@ -19,6 +19,7 @@ def run(root, inputs):
     from swegemma.models import Task
     from swegemma.tools.graph import search_similar_code
     from swegemma import graph as graph_api
+    import numpy as np
     import yaml
     check_owner_host()
     if any(k in os.environ for k in ('GITHUB_TOKEN', 'KAGGLE_API_TOKEN', 'RUNPOD_API_KEY')):
@@ -43,7 +44,10 @@ def run(root, inputs):
             raise ValueError('actual graph tool failed')
         rows.append({'query': query, 'original_count': original['count'],
                      'function_name_count': normalized['count']})
-    node = sorted(map(str, graph.nodes()))[0]
+    # A graph node need not have a stored vector. Match the already qualified
+    # original-tool positive control: select an actual NPZ embedding key.
+    with np.load(next((inputs / 'embeddings').glob('*.npz')), allow_pickle=False) as vectors:
+        node = vectors.files[0]
     positive = json.loads(search_similar_code(context, node, k=1))
     if positive.get('status') != 'ok' or positive['count'] != 1:
         raise ValueError('known-node CPU graph positive control failed')

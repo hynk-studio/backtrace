@@ -16,7 +16,8 @@ permissions:
   actions: read
 concurrency:
   group: recovered-task-followup-20261023
-  cancel-in-progress: false
+  # Only this free CPU probe may be superseded; paid/watch workflows are separate.
+  cancel-in-progress: true
 jobs:
   followup:
     runs-on: ubuntu-24.04

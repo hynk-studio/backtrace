@@ -72,3 +72,11 @@ free workflow. The local full-suite attempt terminated before completion on
 the foreign-procfs host; it is not reported as a full pass. Local constraints
 are not replaced by test stubs.
 The exact public results and owner-encrypted evidence will be recorded here.
+
+The initial free source `49e1cd5d0803bb3988507b381bcf3f1a8452625a`, run
+39909915038, passed the actual full Linux suite before input preparation.
+Static review then made the graph positive control select an actual stored
+NPZ embedding key, matching the already qualified original-tool control;
+an arbitrary graph node need not have an embedding. The superseded free run
+is cancelled by this free workflow's concurrency group. Its ephemeral receiver
+and ciphertext remain immutable evidence. Paid/watch runs are unaffected.
