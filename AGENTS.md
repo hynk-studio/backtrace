@@ -499,3 +499,14 @@ qualification/result/schema-1 receipt. This is FULL_FREE_CPU, not the prior
 task-only scope. The new single claim remains unused; before create require
 receipt-source Linux/free owner preparation, a fresh matching independent
 watcher and fresh exact offer. No paid rerun or automatic second allocation.
+
+The current consumed R1 attempt also receives free post-deletion public-patch
+verification in `tools/calibrated_evaluation.py` on
+`bt-001-calibrated-evaluation-20261023`. Its CPU runtime may warm while the
+single paid attempt runs. Public tests require the exact consumed claim/Pod,
+completed original owner run, two confirmed absence reads and an encrypted,
+byte-bound four-file receipt handoff. No provider key, model weight transfer,
+model call, agent rerun or reference control is used. Strict R1 completion and
+public-test correctness are separate; rejected/incomplete artifacts remain a
+partial diagnostic and can never become a completed-task model score. Preserve
+the old hard-bound R0 follow-up module and its original receipts unchanged.
