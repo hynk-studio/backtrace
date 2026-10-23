@@ -1,0 +1,82 @@
+{
+  "allocation_requests": 0,
+  "availability": {
+    "account": {
+      "auto_pay": false,
+      "credit_balance": "6.5197309961",
+      "current_spend_per_hour": "0"
+    },
+    "allocation_requests": 0,
+    "costs": {
+      "compute_per_hour": "1.79",
+      "hourly_all_in": "1.804",
+      "initial_balance": "6.5197309961",
+      "maximum_all_in": "3.608",
+      "other_total": "0",
+      "spent_before": "3.4802690039",
+      "storage_per_hour": "0.014",
+      "tax_rate": "0"
+    },
+    "observed_at": "2026-10-23T06:34:26Z",
+    "offer": {
+      "authenticated": true,
+      "auto_pay": false,
+      "cloud": "SECURE",
+      "compute_per_hour": "1.79",
+      "container_disk_gb": 100,
+      "credit_balance": "6.5197309961",
+      "gpu": "NVIDIA A100 80GB PCIe",
+      "gpu_count": 1,
+      "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+      "interruptible": false,
+      "network_volume": null,
+      "observed_at": "2026-10-23T06:34:26Z",
+      "other_total": "0",
+      "ram_gb": 117,
+      "region": "CA-MTL-3",
+      "region_policy": "owner-equivalent-region-20261019",
+      "stock_available": true,
+      "storage_per_hour": "0.014",
+      "tax_rate": "0",
+      "vcpus": 31,
+      "volume_gb": 0
+    },
+    "regions": [
+      {
+        "available": true,
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": 117,
+          "minVcpu": 31,
+          "stockStatus": "Low",
+          "supportPublicIp": null,
+          "uninterruptablePrice": 1.79
+        },
+        "id": "CA-MTL-3",
+        "stock": "Low"
+      },
+      {
+        "available": false,
+        "id": "EU-RO-1",
+        "stock": null
+      },
+      {
+        "available": false,
+        "id": "US-KS-2",
+        "stock": null
+      },
+      {
+        "available": false,
+        "id": "US-MO-1",
+        "stock": null
+      }
+    ],
+    "settings_changed": false,
+    "status": "QUALIFIED"
+  },
+  "pods": [],
+  "run_id": "39822924063",
+  "settings_changed": false,
+  "source_sha": "59d430b6c552b8ad3b9d7b03708df77c8e7e0b4b",
+  "status": "PASS"
+}
