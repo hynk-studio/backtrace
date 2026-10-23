@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "purpose": "Read-only current stock check for one newly authorized conditional GPU attempt",
+  "authorization": "owner-qualified-gpu-20261023",
+  "authorization_status": "UNUSED; no claim, create request or start/watch branch",
+  "observed_at_utc": "2026-10-22T17:28:18Z",
+  "observed_at_kst": "2026-10-23T02:28:18+09:00",
+  "source_sha": "59d430b6c552b8ad3b9d7b03708df77c8e7e0b4b",
+  "run_id": 39822924063,
+  "run_attempt": 1,
+  "workflow": ".github/workflows/qualified-gpu-access.yml",
+  "status": "completed",
+  "conclusion": "success",
+  "account": {
+    "auto_pay": false,
+    "credit_balance": "7.1796731618",
+    "current_spend_per_hour": "0"
+  },
+  "qualified_stock": "NO_QUALIFIED_REGION",
+  "regions": [
+    {
+      "available": false,
+      "exact_quote": {
+        "availableGpuCounts": null,
+        "minMemory": null,
+        "minVcpu": null,
+        "stockStatus": null,
+        "supportPublicIp": null,
+        "uninterruptablePrice": null
+      },
+      "id": "CA-MTL-3",
+      "stock": null
+    },
+    {
+      "available": false,
+      "exact_quote": {
+        "availableGpuCounts": null,
+        "minMemory": null,
+        "minVcpu": null,
+        "stockStatus": null,
+        "supportPublicIp": null,
+        "uninterruptablePrice": null
+      },
+      "id": "EU-RO-1",
+      "stock": null
+    },
+    {
+      "available": false,
+      "exact_quote": {
+        "availableGpuCounts": null,
+        "minMemory": null,
+        "minVcpu": null,
+        "stockStatus": null,
+        "supportPublicIp": null,
+        "uninterruptablePrice": null
+      },
+      "id": "US-KS-2",
+      "stock": null
+    },
+    {
+      "available": false,
+      "exact_quote": {
+        "availableGpuCounts": null,
+        "minMemory": null,
+        "minVcpu": null,
+        "stockStatus": null,
+        "supportPublicIp": null,
+        "uninterruptablePrice": null
+      },
+      "id": "US-MO-1",
+      "stock": null
+    }
+  ],
+  "pod_count": 0,
+  "allocation_requests": 0,
+  "settings_changed": false,
+  "report": {
+    "path": "docs/qualified-gpu-access-20261023.json",
+    "bytes": 1822,
+    "sha256": "a33599818620ef0649353ceb02315029b45adf469c8dddfbf3fcc21af4f36a0a",
+    "artifact_id": 12445417487,
+    "artifact_zip_sha256": "d325be5511efd8f4e289e5969007e7018273474382cabe950c46b93357aeed79"
+  },
+  "preservation": {
+    "state_head": "7897dc168fe1d066b950eb2c40f816dda5d4304f",
+    "prior_state_blobs": 202,
+    "state_unchanged": true,
+    "paid_watch_heads": 18,
+    "paid_watch_heads_unchanged": true,
+    "qualified_operational_files_unchanged": 84,
+    "historical_receipts": "PRESERVED"
+  },
+  "initial_free_workflow_failure": {
+    "run_id": 39822659185,
+    "source_sha": "9535f451be93ef4960ab649da5dbf6615e1843da",
+    "failure": "YAML plain run scalar contained colon-space; no jobs started",
+    "correction": "Use a literal block scalar, parse YAML, then run a new first-attempt read-only workflow",
+    "provider_requests": 0
+  },
+  "not_run": [
+    "provider create",
+    "paid worker",
+    "model loading/inference",
+    "public-task execution",
+    "merge",
+    "submission",
+    "recurring wait"
+  ]
+}

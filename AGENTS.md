@@ -338,3 +338,66 @@ That receipt is human free-CPU evidence, not a paid launch gate. All historical
 receipts, 198 prior state blobs and 18 actual paid/start/watch heads remain
 unchanged. GPU initialization/model weights/loading/inference were NOT RUN;
 no new paid allocation, permit, merge, submission or automation is authorized.
+
+The owner subsequently instructed **자원 있으면 돌려보자** (client date
+2026-10-23). This is a new single qualified GPU/public-task scope, not a reset
+of any consumed attempt. Follow `docs/qualified-gpu-20261023.md`, use
+`owner-qualified-gpu-20261023` and new review/start/watch branches. Keep the
+existing wallet/cumulative/time/scientific limits. Read fresh account/stock,
+qualify the new entry and exact source, and require a matching independent
+watcher before one create-only claim. Never recreate an allocated attempt,
+advance old paid/watch heads, top up, activate recurring waits, merge or submit.
+
+Read-only check 39822924063 at 59d430b6c552b8ad3b9d7b03708df77c8e7e0b4b
+found no qualified A100 stock at 2026-10-23 02:28:18 KST. Balance was
+7.1796731618 USD, spend/hour 0, zero Pods, auto-pay false. The new authorization
+is UNUSED: no claim, paid/start/watch entry or provider create occurred. All
+18 consumed paid/watch heads, 202 state blobs and 84 qualified operational
+files remain unchanged. See `docs/qualified-gpu-execution-20261023.json`.
+No recurring wait was activated; any later allocation still requires renewed
+entry qualification, exact-source Linux and a fresh matching watcher/offer.
+
+The owner reiterated **재고있으면 진행해줘**. This continues the same unused
+owner-qualified-gpu-20261023 scope. Read-only run 39822924063 attempt 2 found
+qualified CA-MTL-3 stock at 2026-10-23 08:43:35 KST (EU-RO-1 broad stock too),
+USD 1.804/h all-in, USD 3.608 two-hour maximum, balance 7.1796731618 and zero
+Pods/spend/hour. Prefer an eligible European exact quote. Renew the changed
+87-file controller/entry qualification and exact-source Linux; create its new
+schema-1 receipt without overwriting old receipts, then require matching fresh
+watcher and stock before one claim. Use new dedicated qualified-20261023
+start/watch branches. All previous paid heads/claims remain immutable; no
+automatic second allocation, top-up, recurring wait, merge or submission.
+
+Renewed complete free qualification **39874300327**, attempt 1 at
+`b75dd4566f67cc2c9bcc0517ec3afd59e56fecec`, passed all 24 stages with 87 bound
+files. Exact-source Linux **39874300342** passed 333 tests and actual minimal
+HTTP. Actual frozen SSH setup/CPU prerequisites/cleanup passed in 311.658s;
+all 8 model URLs passed after setup. All 92 private records were recovered,
+the setup projection matched and the actual CPU log hash was independently
+verified inside retained SSH output. Read the new qualified-gpu result,
+qualification proof and schema-1 actions receipt. Previous receipts are
+preserved. Before the still-unused single paid claim, require receipt-source
+Linux, free owner preparation, a fresh matching watcher and fresh exact offer.
+Keep the actual start/watch source immutable once entered; never rerun paid.
+
+The qualified GPU scope is now **CONSUMED**. Paid run **39878045521**, attempt
+1, and independent watcher **39877985689** used immutable source
+`626e3a619a025f64e3713af11b8e4097471470ab`. One EU-RO-1 A100 Pod
+`virbb2jab7fi8v` was created. Actual setup, 23.3GB original model integrity,
+BF16/TP1 server readiness and ten retained successful model HTTP responses
+passed. The public task failed at its unchanged **1.0-minute agent session
+limit** after 62.952s; 4316-byte patch/trace recovered, correctness NOT RUN.
+The validator correctly rejected this errored partial task. Do not label it
+task success or raise the scientific budget automatically. The primary timeout
+survived a secondary startup-group teardown diagnostic; outer cleanup found no
+survivors and provider deletion was independently confirmed by two absence reads.
+Post-delete read-only run 39822924063 attempt 4 at 2026-10-23 09:50:16 KST
+showed zero Pods/spend, auto-pay false, USD 6.5197309961 balance (observed wallet
+decrease USD 0.6599421657). All 17 private records were recovered. Read
+`docs/qualified-gpu-paid-execution-20261023.json` and the terminal section in
+`docs/qualified-gpu-20261023.md`. Keep both current start/watch heads fixed;
+all 18 older heads and 202 prior state blobs are unchanged. The authorization
+JSON's UNUSED text remains a bound qualification-time snapshot, superseded by
+the immutable consumed claim. Any later paid attempt requires a fresh scope
+and an explicit decision about the one-minute task budget. No paid rerun,
+automatic reallocation, top-up, merge, submission or recurring wait is allowed.

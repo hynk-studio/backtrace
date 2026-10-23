@@ -1,0 +1,332 @@
+{
+  "actual_counts": {
+    "automatic_second_allocations": 0,
+    "model_server_starts": 1,
+    "provider_create_requests": 1,
+    "public_agent_tasks_completed": 0,
+    "public_agent_tasks_started": 1
+  },
+  "actual_paid_source": "626e3a619a025f64e3713af11b8e4097471470ab",
+  "artifacts": {
+    "live_observation": {
+      "id": 12469419372,
+      "zip_sha256": "24a4edd70250ccf2d02d9a6cc2f0127cd964d043f2ad1d978519eb88c369306b"
+    },
+    "midpoint_account": {
+      "id": 12469138479,
+      "zip_sha256": "40ac71d94ef53cc162a102428389bf2a5208dae8db527f59ba310318e4097dbf"
+    },
+    "owner_private": {
+      "ciphertext_bytes": 184607,
+      "ciphertext_sha256": "39dcf97dd56a34197cc349dd0cbc708894be89f9725bf818efe6002c95191081",
+      "files": 17,
+      "format": "age-v1",
+      "id": 12470655507,
+      "plaintext_bytes": 164844,
+      "recovered_files": 17,
+      "zip_sha256": "48aeebcb5da3ce869883cc46f4cd73ff925eda8777d2f5a048e1b715e5868a46"
+    },
+    "owner_projected": {
+      "id": 12470122691,
+      "zip_sha256": "65e65fcdf19695394939f506019ca707476d7552036e8a402fe530673e45454a"
+    },
+    "post_delete_account": {
+      "id": 12469799621,
+      "zip_sha256": "9f56eed90e954a1e2cd4da118d134edde72a724f1a72d09bdcad7326ba36b56d"
+    },
+    "preflight": {
+      "id": 12468764115,
+      "zip_sha256": "b8b47bd7cf75518b56c10ab7d4565e639a5e8428b532c1b018c54243334877e0"
+    }
+  },
+  "authorization": "owner-qualified-gpu-20261023",
+  "authorization_status": "CONSUMED; never allocate again under this scope",
+  "claim": {
+    "attempt": "0b4b41cdd2124237b8ad930f7c421310",
+    "authorization": "owner-qualified-gpu-20261023",
+    "costs": {
+      "compute_per_hour": "1.79",
+      "hourly_all_in": "1.804",
+      "initial_balance": "7.1796731618",
+      "maximum_all_in": "3.608",
+      "other_total": "0",
+      "spent_before": "2.8203268382",
+      "storage_per_hour": "0.014",
+      "tax_rate": "0"
+    },
+    "name": "backtrace-a100-0b4b41cdd2124237b8ad930f7c421310",
+    "policy": "prepaid10-actions-v1",
+    "region": "EU-RO-1",
+    "requested_at": 1792715215,
+    "run": "R0-clean-v2-one-public-task/A10080-TP1",
+    "run_id": "39878045521",
+    "schema_version": 1,
+    "setup_seconds": 5400,
+    "source_sha": "626e3a619a025f64e3713af11b8e4097471470ab",
+    "total_seconds": 7200,
+    "useful_seconds": 6900,
+    "watcher_run_id": "39877985689"
+  },
+  "cost_observation": {
+    "after_wallet_usd": "6.5197309961",
+    "before_wallet_usd": "7.1796731618",
+    "cumulative_wallet_spend_usd": "3.4802690039",
+    "interpretation": "Observed wallet difference; not a final provider invoice",
+    "wallet_decrease_usd": "0.6599421657"
+  },
+  "diagnosis": {
+    "actual_artifact_validator": "REJECTED timed-out task; no false task success",
+    "cleanup_trigger": "The failed heartbeat phase maps to heartbeat_lost in cleanup_reason; this cleanup reason is not proof of a separate missing-heartbeat root cause.",
+    "frozen_asserted_limits": {
+      "configured_timeout_seconds": 60,
+      "max_llm_calls": 50,
+      "max_time_minutes": 1.0,
+      "max_tool_calls": 10
+    },
+    "incomplete_request": "One request has no retained response at timeout; not proof of a separate server failure",
+    "next_attempt": "Not authorized under this consumed scope. Increasing the frozen 1-minute budget requires an explicit scientific-policy decision; current infrastructure checks cannot guarantee completion within it.",
+    "primary_failure": "Frozen agent session timeout of 1.0 minute",
+    "secondary_cleanup": {
+      "outer_worker_cleanup_survivors": [],
+      "outer_worker_scratch_removed": true,
+      "primary_failure_preserved": true,
+      "provider_deleted": true,
+      "root_cause": "NOT ESTABLISHED; do not substitute for agent timeout",
+      "startup_guard_cleanup_error": "owned startup process group did not disappear"
+    },
+    "verification": "NOT RUN; no patch-correctness claim"
+  },
+  "exact_public_reports": {
+    "docs/qualified-gpu-live-observation-20261023.json": {
+      "bytes": 1011,
+      "sha256": "9dd037fba93216a1fd0d2c27cfd22f048c1ae28b6e6ff3f2d1cbf0dc4f321b17"
+    },
+    "docs/qualified-gpu-midpoint-access-20261023.json": {
+      "bytes": 653,
+      "sha256": "64d5135b72d16a0e9ae8030e3bff0531385586a5441c47b54d7f7d373d13d69f"
+    },
+    "docs/qualified-gpu-owner-result-20261023.json": {
+      "bytes": 5934,
+      "sha256": "4871a9bc28ebea91ef6994aec5b24e03e40ac324dace3a349d9975901be74e9e"
+    },
+    "docs/qualified-gpu-post-delete-access-20261023.json": {
+      "bytes": 2141,
+      "sha256": "e820fda0b38423f848fd5e81bef76248b16a3a471281442993fd8a924639824c"
+    },
+    "docs/qualified-gpu-preflight-result-20261023.json": {
+      "bytes": 3054,
+      "sha256": "57414cda719864aebf9815527e8db543e7650c070ebc160d10399e9f3c996884"
+    }
+  },
+  "exclusions_performed": {
+    "automatic_second_allocation": false,
+    "merge": false,
+    "recurring_automation": false,
+    "settings_change": false,
+    "submission": false,
+    "top_up": false
+  },
+  "independent_cleanup": {
+    "absence_reads": 2,
+    "at": 1792716575,
+    "attempt": "0b4b41cdd2124237b8ad930f7c421310",
+    "phase": "deleted",
+    "pod_id": "virbb2jab7fi8v",
+    "reason": "heartbeat_lost"
+  },
+  "independent_post_delete": {
+    "auto_pay": false,
+    "current_spend_per_hour": "0",
+    "observed_at": "2026-10-23T00:50:16Z",
+    "pods": [],
+    "run_attempt": 4,
+    "run_id": 39822924063,
+    "wallet_balance_usd": "6.5197309961"
+  },
+  "outcome": "REAL_MODEL_INFERENCE_REACHED; TASK_INCOMPLETE_SESSION_TIMEOUT",
+  "owner_cleanup": {
+    "absence_reads": 2,
+    "at": 1792716549,
+    "attempt": "0b4b41cdd2124237b8ad930f7c421310",
+    "phase": "deleted",
+    "pod_id": "virbb2jab7fi8v",
+    "reason": "owner_finished"
+  },
+  "paid_run_attempt": 1,
+  "paid_run_id": 39878045521,
+  "pod": {
+    "attempt": "0b4b41cdd2124237b8ad930f7c421310",
+    "pod_id": "virbb2jab7fi8v"
+  },
+  "preservation": {
+    "authorization_file_status": "Qualification-time UNUSED snapshot retained in the 87-file binding; immutable paid claim and this terminal record establish CONSUMED",
+    "current_paid_watch_heads_immutable": "626e3a619a025f64e3713af11b8e4097471470ab",
+    "historical_receipts": "UNCHANGED",
+    "issue_1": "OPEN",
+    "main_unchanged": "23616971a4ec57d32fcce769e0a2abf44faa9cfe",
+    "pr_15": "DRAFT",
+    "prior_paid_watch_heads_unchanged": 18,
+    "prior_state_blobs_unchanged": 202,
+    "terminal_state_tree": "ba9e3c635f470db9fd98fe22dc0f407779ddf292"
+  },
+  "prevention_assessment": {
+    "gap_revealed": [
+      "Scripted CPU responses do not establish real-model task completion within the 1-minute session limit",
+      "Coarse setup heartbeat does not reveal individual setup progress; isolated read-only live observation narrowed this uncertainty",
+      "Startup process-group teardown emitted a secondary diagnostic despite complete outer/provider cleanup"
+    ],
+    "proved_this_run": [
+      "Fresh quote and budget checks preceded exactly one provider create",
+      "Actual installation, GPU runtime, original model integrity, BF16 TP1 server and real model HTTP succeeded",
+      "Artifact validation rejected an errored partial task despite generated patch",
+      "Original task error survived secondary teardown error",
+      "Independent cleanup confirmed exact resource deletion and subsequent account read showed zero resources/spend"
+    ]
+  },
+  "qualification": {
+    "bound_files": 87,
+    "free_owner_preparation_run_id": 39877662657,
+    "receipt_source_linux_run_id": 39877662635,
+    "run_id": 39874300327,
+    "source_sha": "b75dd4566f67cc2c9bcc0517ec3afd59e56fecec",
+    "status": "PASS",
+    "status_at_paid_entry": "PASS",
+    "tests": 333
+  },
+  "read_only_live_observation": {
+    "branch": "bt-001-qualified-observe-20261023",
+    "mutations": 0,
+    "run_id": 39879593186,
+    "source_sha": "9b63b8ad6ec1998cb38ba7580fe7e0b51cb001c7"
+  },
+  "runtime": {
+    "bootstrap_ready_seconds": 142,
+    "effective_parallel_config": {
+      "disable_custom_all_reduce": true,
+      "distributed_executor_backend": null,
+      "event": "effective_parallel_config",
+      "tensor_parallel_size": 1,
+      "unix_seconds": 1792716444.0615928
+    },
+    "http_contract": {
+      "/backtrace/runtime-config": 200,
+      "/health": 200,
+      "/v1/models": 200
+    },
+    "model_bytes": 23297590856,
+    "model_files": 8,
+    "model_requests": 11,
+    "peak_gpu_used_mib": 73633,
+    "qualified_hardware": {
+      "driver": "595.91.07",
+      "event": "qualified_hardware",
+      "memory_mib": 81920,
+      "name": "NVIDIA A100 80GB PCIe",
+      "native_bf16": true,
+      "runtime": "12.8.90",
+      "runtime_evidence": {
+        "api_version": 12080,
+        "library_sha256": "c3a75b33af334a3486d197dbd1584a2985183ba4688d237a2be5f2f679329920",
+        "version": "12.8.90",
+        "version_source": "qualified wheel metadata and loaded libcudart cudaRuntimeGetVersion"
+      },
+      "sm": [
+        8,
+        0
+      ],
+      "tp": 1,
+      "unix_seconds": 1792716319.8781176
+    },
+    "retained_http_200_responses": 10,
+    "server_healthy": {
+      "event": "server_healthy",
+      "model_ids": [
+        "/kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2"
+      ],
+      "requested_dtype": "bfloat16",
+      "resolved_dtype": "torch.bfloat16",
+      "startup_seconds": 121.25924038887024,
+      "unix_seconds": 1792716444.0616457
+    },
+    "setup_stages": [
+      {
+        "stage": "base_environment",
+        "status": "STARTED"
+      },
+      {
+        "stage": "base_environment",
+        "status": "PASS"
+      },
+      {
+        "stage": "system_packages",
+        "status": "STARTED"
+      },
+      {
+        "stage": "system_packages",
+        "status": "PASS"
+      },
+      {
+        "stage": "runtime_inputs",
+        "status": "STARTED"
+      },
+      {
+        "stage": "runtime_inputs",
+        "status": "PASS"
+      },
+      {
+        "stage": "runtime_installation",
+        "status": "STARTED"
+      },
+      {
+        "stage": "runtime_installation",
+        "status": "PASS"
+      },
+      {
+        "stage": "runtime_hardware",
+        "status": "STARTED"
+      },
+      {
+        "stage": "runtime_hardware",
+        "status": "PASS"
+      },
+      {
+        "stage": "model_inputs",
+        "status": "STARTED"
+      },
+      {
+        "stage": "model_inputs",
+        "status": "PASS"
+      },
+      {
+        "stage": "activation",
+        "status": "STARTED"
+      },
+      {
+        "stage": "activation",
+        "status": "PASS"
+      }
+    ],
+    "task_result": {
+      "agent_error": "Agent exceeded session timeout (1.0 min)",
+      "instance_id": "fastapi_11194",
+      "llm_calls": 10,
+      "patch_bytes": 4316,
+      "patch_sha256": "8c78fa7b2ac299d75fd90cabbb8b4d0ba015c1dc065b19a4078ac0a4fb728154",
+      "seconds": 62.95186686515808,
+      "tool_calls": 10,
+      "verification": "NOT RUN; evaluator-only record not mounted"
+    },
+    "trace_final_metrics": {
+      "total_cached_tokens": 0,
+      "total_completion_tokens": 2722,
+      "total_prompt_tokens": 59232,
+      "total_steps": 12,
+      "total_tokens": 61954
+    },
+    "trace_steps": 12,
+    "unpaired_requests": 1
+  },
+  "schema_version": 1,
+  "watcher_run_id": 39877985689,
+  "watcher_status": "SUCCESS"
+}

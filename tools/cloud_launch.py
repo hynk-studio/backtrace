@@ -34,8 +34,8 @@ SAFE_REASONS = frozenset({
 
 
 def validate_context(mode, environ):
-    branch = ('bt-001-a100-start-connected-gpu' if mode == 'paid'
-              else 'bt-001-connected-gpu-smoke')
+    branch = ('bt-001-a100-start-qualified-20261023' if mode == 'paid'
+              else 'bt-001-qualified-gpu-20261023')
     attempt = environ.get('GITHUB_RUN_ATTEMPT', '')
     if (mode not in ('preflight', 'paid') or environ.get('GITHUB_REPOSITORY') != state.REPOSITORY
             or environ.get('GITHUB_REF_NAME') != branch
@@ -49,7 +49,7 @@ def preparation(root, store, source_sha, emit):
           'local_pid_namespace': int(Path('/proc/self/stat').read_bytes().split(b' ', 1)[0]) == os.getpid()})
     check_owner_host()
     root.mkdir(mode=0o700, parents=True)
-    receipt = json.loads((frozen.ROOT / 'docs/a100-actions-qualification.json').read_text())
+    receipt = json.loads((frozen.ROOT / 'docs/qualified-gpu-actions-qualification-20261023.json').read_text())
     result = {'qualification': cloud_qualification.require_receipt(store, frozen.ROOT, receipt)}
     result['cpu'] = cloud_qualification.require_current_cpu(store, source_sha)
     emit({'stage': 'qualification', 'status': 'PASS', **result})

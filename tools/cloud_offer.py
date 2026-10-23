@@ -51,9 +51,9 @@ def inspect_offer(*, read=query, now=time.time):
                 candidates.append(center['id'])
     if len(candidates) > 32 or len(candidates) != len(set(candidates)):
         raise ValueError('ambiguous regional inventory')
-    # The previous region has no cost/performance preference; a current matching
-    # offer anywhere is allowed by the owner's equivalent-region instruction.
-    for region in sorted(candidates):
+    # Prefer an eligible European region; the owner's equivalent-region
+    # instruction permits another current matching offer when EU is unavailable.
+    for region in sorted(candidates, key=lambda value: (not value.startswith('EU-'), value)):
         result = read('''query($gpu: GpuTypeFilter, $price: GpuLowestPriceInput) {
           gpuTypes(input: $gpu) { id memoryInGb secureCloud
             lowestPrice(input: $price) {
