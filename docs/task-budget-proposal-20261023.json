@@ -1,0 +1,106 @@
+{
+  "authority": "Owner requested completion of remaining free task-budget and verification work; no new GPU allocation scope created",
+  "comparison_policy": "A changed budget requires a new calibration label and matched R0/R1/R2/R3 limits. The old one-minute result is retained and not relabeled.",
+  "completion_requirements": [
+    "No agent error or budget exhaustion",
+    "Matched actual model requests and successful responses",
+    "Valid trace, patch size/hash and original task identity",
+    "Official task submission completion; the recovered task contains no submit_patch event",
+    "Separate public-test verification with actual JUnit evidence",
+    "Confirmed retrieval and provider deletion"
+  ],
+  "conditional_cost_comparison": {
+    "extra_session_seconds": 240,
+    "extra_usd_at_previous_quote": "0.1202666666666666666666666667",
+    "interpretation": "Conditional arithmetic at the previous quote only; excludes unchanged startup/setup and is not a new quote or bill.",
+    "previous_quote_all_in_per_hour_usd": "1.804"
+  },
+  "feasible_if_time_remains": {
+    "compute_authorization": "NONE",
+    "minimum_total_seconds": 2010,
+    "minimum_useful_seconds": 1710,
+    "predicts_task_success": false,
+    "reasons": [],
+    "status": "PASS"
+  },
+  "limits_unchanged": [
+    "model, native dtype and TP1",
+    "prompts and official tool implementation",
+    "temperature, top-p, thinking and request token parameters",
+    "existing wallet and cumulative cap; no funding or auto-pay changes",
+    "no paid attempt or proposal activation in this free work"
+  ],
+  "original_protocol": "R0-clean-v2-one-public-task/A10080-TP1",
+  "original_starter_config": {
+    "bytes": 232,
+    "declared_scope": "Optional participant evaluation configuration for Stage 1 inference",
+    "path": "sample_submission/eval_config.yaml",
+    "sha256": "adb486b67535fa59b427b79d44dafc131176f1f1964d184e16046ed520ede02d"
+  },
+  "proposal": {
+    "agent_child_seconds": 330,
+    "agent_teardown_seconds": 30,
+    "command_seconds": 60,
+    "llm_calls": 50,
+    "protocol": "R0-budget-calibration-v1",
+    "provider_cleanup_seconds": 300,
+    "retrieval_seconds": 180,
+    "server_startup_seconds": 1200,
+    "session_seconds": 300,
+    "status": "REVIEW_ONLY_NOT_ACTIVATED",
+    "tool_calls": 30
+  },
+  "reject_inner_only_extension": {
+    "compute_authorization": "NONE",
+    "minimum_total_seconds": 1860,
+    "minimum_useful_seconds": 1560,
+    "predicts_task_success": false,
+    "reasons": [
+      "agent child expires before the inner session and teardown"
+    ],
+    "status": "BLOCKED"
+  },
+  "reject_late_start": {
+    "compute_authorization": "NONE",
+    "minimum_total_seconds": 2010,
+    "minimum_useful_seconds": 1710,
+    "predicts_task_success": false,
+    "reasons": [
+      "insufficient useful time for startup, task and retrieval",
+      "insufficient total time including confirmed provider cleanup"
+    ],
+    "status": "BLOCKED"
+  },
+  "retrieval_review": {
+    "actual_cpu_queries": [
+      {
+        "function_name_count": 10,
+        "original_count": 0,
+        "query": "def get_request_body"
+      },
+      {
+        "function_name_count": 0,
+        "original_count": 0,
+        "query": "def get_body_params"
+      },
+      {
+        "function_name_count": 0,
+        "original_count": 0,
+        "query": "def solve_dependencies"
+      },
+      {
+        "function_name_count": 10,
+        "original_count": 0,
+        "query": "def get_request_handler"
+      }
+    ],
+    "generic_guidance_proposal": "Use indexed function or class identifiers for graph similarity lookup. After an empty result, use read-only repository text search through run_command (for example git grep), rather than repeating empty similarity queries. Keep a tool slot for submit_patch.",
+    "guidance_is_separate_from_budget_only_proposal": true,
+    "real_model_with_guidance": "NOT RUN",
+    "remaining_gap": "Two of four queries still return no matches as bare function names; normalized input alone is not a complete remedy.",
+    "status": "REVIEW_ONLY; baseline prompts and official tools unchanged"
+  },
+  "schema_version": 1,
+  "status": "REVIEW_ONLY_NOT_ACTIVATED",
+  "uncertainty": "Five minutes and thirty tools have not been tested with the real model; no task-success prediction is established."
+}

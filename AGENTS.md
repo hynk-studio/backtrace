@@ -401,3 +401,34 @@ JSON's UNUSED text remains a bound qualification-time snapshot, superseded by
 the immutable consumed claim. Any later paid attempt requires a fresh scope
 and an explicit decision about the one-minute task budget. No paid rerun,
 automatic reallocation, top-up, merge, submission or recurring wait is allowed.
+
+The owner instructed **남은 과제 진행해줘** after the task-budget/verification
+status report. Complete free CPU follow-up on
+`bt-001-task-budget-evaluation-20261023`; read `docs/task-followup-20261023.md`.
+Verify the original byte-bound partial patch with isolated public tests, replay
+the empty graph queries on the pinned original tool and review nested session,
+child, retrieval and provider-cleanup budgets. Preserve the original timeout
+and all historical paid/evidence records. Partial patch verification must not
+become completed-task success. The five-minute/30-tool calibration proposal is
+review-only, not activated, and all comparison arms would need matched limits.
+This free task does not create another paid scope. No provider/model/agent
+operation, funding/settings change, merge, submission or recurring wait follows.
+
+Free follow-up **39910493395** at
+`4c6c2802a36029d1b0dd294cd3932181ff399931` passed 343 actual Linux tests and
+the original-input CPU diagnostic. The recovered model patch **does not
+resolve** the task: 4 public tests executed, 2 passed / 2 failed, matching the
+empty-patch negative control; evaluator-only reference passed all 4. This is
+valid partial-patch verification, not a completed agent task or benchmark score.
+The original timeout and historical NOT RUN receipt remain unchanged. Four
+actual graph queries all returned zero; bare names recovered two, while two
+stayed zero. Generic symbol/text-search guidance and 5-minute/30-tool/330-second
+child calibration remain review-only. Nested-deadline and incomplete-result
+guards passed; the old paid-launch receipt rejects the changed source.
+All 15 private records and three JUnit receipts were recovered/verified.
+At 2026-10-23 15:34:26 KST, account read 39822924063 attempt 6 showed zero
+Pods/spend, auto-pay false and unchanged USD 6.5197309961 balance. No additional
+GPU/model/agent operation occurred. All 209 prior state blobs, 20 paid/watch
+heads, PR #15 and main are preserved. Read `docs/task-followup-20261023.md`,
+its result/execution JSON and the inactive budget proposal. Draft PR #16
+contains this free follow-up; no new paid scope or launch qualification exists.

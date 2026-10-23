@@ -1,0 +1,33 @@
+{
+  "files": {
+    "agent.patch": {
+      "bytes": 4316,
+      "sha256": "8c78fa7b2ac299d75fd90cabbb8b4d0ba015c1dc065b19a4078ac0a4fb728154"
+    },
+    "execution.log": {
+      "bytes": 12079,
+      "sha256": "99ac3924c88562722f3ed6df475bc283023fbd4f056dcee9b0072feaf6e9fbc0"
+    },
+    "results/traces/trace_fastapi_11194.json": {
+      "bytes": 36225,
+      "sha256": "87d8bb8b1e0e7fbbe6213372da5ab56bace54b79ca17ac2fec492c21d83493fa"
+    },
+    "server.log": {
+      "bytes": 22328,
+      "sha256": "64e7c495c64f564daff62de758ffe46fc75f3c518e58b18a3ba1ee1358e2d47b"
+    },
+    "task-result.json": {
+      "bytes": 342,
+      "sha256": "a9d5a8c97901c05f75c106be1c2c63a6a3266d2d737e92ddcbf9de77ccf03d2b"
+    },
+    "wire.jsonl": {
+      "bytes": 5437,
+      "sha256": "1cde535820355b682ef734aafd48b5655e2aadf2c4640ce9545d95f16e1ed706"
+    }
+  },
+  "paid_run_id": 39878045521,
+  "paid_source_sha": "626e3a619a025f64e3713af11b8e4097471470ab",
+  "pod_id": "virbb2jab7fi8v",
+  "purpose": "recovered-task-cpu-analysis-only",
+  "schema_version": 1
+}

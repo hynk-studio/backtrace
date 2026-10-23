@@ -1,0 +1,399 @@
+{
+  "agent_runs": 0,
+  "analysis": {
+    "changed_files": [
+      "reproduce_issue.py",
+      "reproduce_issue_v2.py"
+    ],
+    "completed_agent_task": false,
+    "counterfactual_success_after_more_budget": "NOT ESTABLISHED",
+    "model_or_provider_calls": 0,
+    "patch_correctness": "NOT RUN",
+    "patch_scope": "reproduction scripts only",
+    "status": "ANALYZED_INCOMPLETE_TASK",
+    "successful_responses": 10,
+    "task_result": {
+      "agent_error": "Agent exceeded session timeout (1.0 min)",
+      "instance_id": "fastapi_11194",
+      "llm_calls": 10,
+      "patch_bytes": 4316,
+      "patch_sha256": "8c78fa7b2ac299d75fd90cabbb8b4d0ba015c1dc065b19a4078ac0a4fb728154",
+      "seconds": 62.95186686515808,
+      "tool_calls": 10,
+      "verification": "NOT RUN; evaluator-only record not mounted"
+    },
+    "trace_tool_events": [
+      {
+        "elapsed_seconds": 16.06703281402588,
+        "status": "ok",
+        "tool": "write_file"
+      },
+      {
+        "elapsed_seconds": 16.86118245124817,
+        "status": "ok",
+        "tool": "run_command"
+      },
+      {
+        "elapsed_seconds": 31.924339532852173,
+        "status": "ok",
+        "tool": "write_file"
+      },
+      {
+        "elapsed_seconds": 32.7364559173584,
+        "status": "ok",
+        "tool": "run_command"
+      },
+      {
+        "elapsed_seconds": 52.506165981292725,
+        "status": "ok",
+        "tool": "write_file"
+      },
+      {
+        "elapsed_seconds": 53.46151638031006,
+        "status": "ok",
+        "tool": "run_command"
+      },
+      {
+        "count": 0,
+        "elapsed_seconds": 58.1826376914978,
+        "query": "def get_request_body",
+        "status": "ok",
+        "tool": "search_similar_code"
+      },
+      {
+        "count": 0,
+        "elapsed_seconds": 59.456125020980835,
+        "query": "def get_body_params",
+        "status": "ok",
+        "tool": "search_similar_code"
+      },
+      {
+        "count": 0,
+        "elapsed_seconds": 59.95332717895508,
+        "query": "def solve_dependencies",
+        "status": "ok",
+        "tool": "search_similar_code"
+      },
+      {
+        "count": 0,
+        "elapsed_seconds": 60.50012421607971,
+        "query": "def get_request_handler",
+        "status": "ok",
+        "tool": "search_similar_code"
+      }
+    ],
+    "unpaired_request_count": 1,
+    "wire_requests": 11
+  },
+  "cleanup": {
+    "absence_reads": 2,
+    "at": 1792716575,
+    "attempt": "0b4b41cdd2124237b8ad930f7c421310",
+    "phase": "deleted",
+    "pod_id": "virbb2jab7fi8v",
+    "reason": "heartbeat_lost"
+  },
+  "evaluator": {
+    "bytes": 1984455,
+    "credentials": "short-lived file URLs only",
+    "files": 1,
+    "manifest_sha256": "944a638b55ed1d14317a7684601fcb1758c7d0f8c1b61749b94f175b4ffe261e",
+    "phase": "bootstrap",
+    "schema_version": 1,
+    "transport": "direct-https",
+    "verified": true
+  },
+  "gpu_allocations": 0,
+  "handoff": {
+    "ciphertext_bytes": 19189,
+    "ciphertext_sha256": "86fa53c5f07aeb9147bc02c6d6c31eb8c0d1c4eea34599b0198902dd10318ac5"
+  },
+  "model_calls": 0,
+  "private_evidence": {
+    "ciphertext_bytes": 123226,
+    "ciphertext_sha256": "bb8e7faea2107af30614e714e3ce6bccf26b5ae8935c86e966f93cecaa3dd5a1",
+    "files": 15,
+    "format": "age-v1",
+    "plaintext_bytes": 104465
+  },
+  "provider_mutations": 0,
+  "result": {
+    "agent_runs": 0,
+    "analysis": {
+      "changed_files": [
+        "reproduce_issue.py",
+        "reproduce_issue_v2.py"
+      ],
+      "completed_agent_task": false,
+      "counterfactual_success_after_more_budget": "NOT ESTABLISHED",
+      "model_or_provider_calls": 0,
+      "patch_correctness": "NOT RUN",
+      "patch_scope": "reproduction scripts only",
+      "status": "ANALYZED_INCOMPLETE_TASK",
+      "successful_responses": 10,
+      "task_result": {
+        "agent_error": "Agent exceeded session timeout (1.0 min)",
+        "instance_id": "fastapi_11194",
+        "llm_calls": 10,
+        "patch_bytes": 4316,
+        "patch_sha256": "8c78fa7b2ac299d75fd90cabbb8b4d0ba015c1dc065b19a4078ac0a4fb728154",
+        "seconds": 62.95186686515808,
+        "tool_calls": 10,
+        "verification": "NOT RUN; evaluator-only record not mounted"
+      },
+      "trace_tool_events": [
+        {
+          "elapsed_seconds": 16.06703281402588,
+          "status": "ok",
+          "tool": "write_file"
+        },
+        {
+          "elapsed_seconds": 16.86118245124817,
+          "status": "ok",
+          "tool": "run_command"
+        },
+        {
+          "elapsed_seconds": 31.924339532852173,
+          "status": "ok",
+          "tool": "write_file"
+        },
+        {
+          "elapsed_seconds": 32.7364559173584,
+          "status": "ok",
+          "tool": "run_command"
+        },
+        {
+          "elapsed_seconds": 52.506165981292725,
+          "status": "ok",
+          "tool": "write_file"
+        },
+        {
+          "elapsed_seconds": 53.46151638031006,
+          "status": "ok",
+          "tool": "run_command"
+        },
+        {
+          "count": 0,
+          "elapsed_seconds": 58.1826376914978,
+          "query": "def get_request_body",
+          "status": "ok",
+          "tool": "search_similar_code"
+        },
+        {
+          "count": 0,
+          "elapsed_seconds": 59.456125020980835,
+          "query": "def get_body_params",
+          "status": "ok",
+          "tool": "search_similar_code"
+        },
+        {
+          "count": 0,
+          "elapsed_seconds": 59.95332717895508,
+          "query": "def solve_dependencies",
+          "status": "ok",
+          "tool": "search_similar_code"
+        },
+        {
+          "count": 0,
+          "elapsed_seconds": 60.50012421607971,
+          "query": "def get_request_handler",
+          "status": "ok",
+          "tool": "search_similar_code"
+        }
+      ],
+      "unpaired_request_count": 1,
+      "wire_requests": 11
+    },
+    "budget_review": {
+      "activation": "NOT ACTIVATED; all scientific comparisons must use one matched budget",
+      "late_setup_checks": {
+        "compute_authorization": "NONE",
+        "minimum_total_seconds": 2010,
+        "minimum_useful_seconds": 1710,
+        "predicts_task_success": false,
+        "reasons": [
+          "insufficient useful time for startup, task and retrieval",
+          "insufficient total time including confirmed provider cleanup"
+        ],
+        "status": "BLOCKED"
+      },
+      "original_agent_child_seconds": 180,
+      "original_candidate": {
+        "max_time_minutes": 1,
+        "max_tool_calls": 10,
+        "max_turns": 50,
+        "timeout_seconds": 60
+      },
+      "proposal": {
+        "agent_child_seconds": 330,
+        "agent_teardown_seconds": 30,
+        "command_seconds": 60,
+        "llm_calls": 50,
+        "protocol": "R0-budget-calibration-v1",
+        "provider_cleanup_seconds": 300,
+        "retrieval_seconds": 180,
+        "server_startup_seconds": 1200,
+        "session_seconds": 300,
+        "status": "REVIEW_ONLY_NOT_ACTIVATED",
+        "tool_calls": 30
+      },
+      "proposal_checks": {
+        "compute_authorization": "NONE",
+        "minimum_total_seconds": 2010,
+        "minimum_useful_seconds": 1710,
+        "predicts_task_success": false,
+        "reasons": [],
+        "status": "PASS"
+      },
+      "unchanged_child_with_longer_session": {
+        "compute_authorization": "NONE",
+        "minimum_total_seconds": 1860,
+        "minimum_useful_seconds": 1560,
+        "predicts_task_success": false,
+        "reasons": [
+          "agent child expires before the inner session and teardown"
+        ],
+        "status": "BLOCKED"
+      }
+    },
+    "gpu_allocations": 0,
+    "graph_replay": {
+      "harness_modified": false,
+      "known_node_control_count": 1,
+      "model_calls": 0,
+      "queries": [
+        {
+          "function_name_count": 10,
+          "original_count": 0,
+          "query": "def get_request_body"
+        },
+        {
+          "function_name_count": 0,
+          "original_count": 0,
+          "query": "def get_body_params"
+        },
+        {
+          "function_name_count": 0,
+          "original_count": 0,
+          "query": "def solve_dependencies"
+        },
+        {
+          "function_name_count": 10,
+          "original_count": 0,
+          "query": "def get_request_handler"
+        }
+      ],
+      "tool_executions": 9
+    },
+    "model_calls": 0,
+    "partial_patch_verification": {
+      "completed_agent_task": false,
+      "controls": [
+        {
+          "actual_tests": {
+            "errors": 0,
+            "failures": 2,
+            "junit_sha256": "73a8addb18bb5fc08c7a13b583d0e389e6f4e4b30a9d45e348a27a7627de4044",
+            "passed": 2,
+            "skipped": 0,
+            "tests": 4
+          },
+          "control": "recovered-patch",
+          "duration_seconds": 3.7162807939999993,
+          "error_present": false,
+          "resolved": false,
+          "test_exit_code": 1,
+          "validation_error": null
+        }
+      ],
+      "evaluator_uid": 65533,
+      "gpu_allocations": 0,
+      "model_score": "NOT CLAIMED; incomplete task patch diagnostic only",
+      "original_task_result": {
+        "agent_error": "Agent exceeded session timeout (1.0 min)",
+        "instance_id": "fastapi_11194",
+        "llm_calls": 10,
+        "patch_bytes": 4316,
+        "patch_sha256": "8c78fa7b2ac299d75fd90cabbb8b4d0ba015c1dc065b19a4078ac0a4fb728154",
+        "seconds": 62.95186686515808,
+        "tool_calls": 10,
+        "verification": "NOT RUN; evaluator-only record not mounted"
+      },
+      "partial_patch_diagnostic": {
+        "resolved": false
+      },
+      "public_spec_sha256": "e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6",
+      "reference_scope": "NOT USED",
+      "status": "PASS"
+    },
+    "status": "PASS",
+    "verifier_controls": {
+      "completed_agent_task": "not assessed by verifier",
+      "controls": [
+        {
+          "actual_tests": {
+            "errors": 0,
+            "failures": 2,
+            "junit_sha256": "e67ffaa27d54b394b2ff570af6c261881bba170087db04c49b5b77be4638a8dd",
+            "passed": 2,
+            "skipped": 0,
+            "tests": 4
+          },
+          "control": "recovered-patch",
+          "duration_seconds": 3.888956101999952,
+          "error_present": false,
+          "resolved": false,
+          "test_exit_code": 1,
+          "validation_error": null
+        },
+        {
+          "actual_tests": {
+            "errors": 0,
+            "failures": 0,
+            "junit_sha256": "ad46b9f8ee4c188b9e5570cef94205eccd423ef58665f0a9ef27784ca1fd1c85",
+            "passed": 4,
+            "skipped": 0,
+            "tests": 4
+          },
+          "control": "public-reference-control",
+          "duration_seconds": 3.699223176999908,
+          "error_present": false,
+          "resolved": true,
+          "test_exit_code": 0,
+          "validation_error": null
+        }
+      ],
+      "evaluator_uid": 65533,
+      "gpu_allocations": 0,
+      "model_score": "NOT RUN; scripted transport patch and public reference only",
+      "partial_patch_diagnostic": null,
+      "public_spec_sha256": "e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6",
+      "reference_scope": "evaluator-only positive control; no agent access",
+      "status": "PASS"
+    }
+  },
+  "run_id": "39910493395",
+  "source_sha": "4c6c2802a36029d1b0dd294cd3932181ff399931",
+  "stage": "finished",
+  "status": "PASS",
+  "task": {
+    "bytes": 222386501,
+    "credentials": "short-lived file URLs only",
+    "files": 8,
+    "manifest_sha256": "7e757d6a8b6d61fc917a623509a3ed5ee13b1ed69a91d3956550d776709d2ee8",
+    "phase": "task",
+    "schema_version": 1,
+    "transport": "direct-https",
+    "verified": true
+  },
+  "wheels": {
+    "bytes": 5373545117,
+    "credentials": "short-lived file URLs only",
+    "files": 246,
+    "manifest_sha256": "054e0e813a797e1eb4d76bab563b3bfbbefe104010391cec30f24d99a48da569",
+    "phase": "bootstrap",
+    "schema_version": 1,
+    "transport": "direct-https",
+    "verified": true
+  }
+}
