@@ -616,3 +616,26 @@ public correctness and corrected GPU teardown remain unproven until measured.
 No automatic second allocation, paid rerun, top-up/settings change, recurring
 wait, merge or competition submission. Retain completion, correctness and
 cleanup outcomes separately, including failed or incomplete outcomes.
+
+Before this new attempt, the actual paid-entry review found two deterministic
+R1 v2 blockers: the controller's claim still named v1, and the task permit
+consumer rejected v2. Align the claim and allow only the two explicit known
+R1 versions under the cloud policy. The actual projected claim/real root-owned
+permit regression failed before correction, then passed with replay and wrong-
+protocol rejection. A separate probe used the actual prepared driver's permit
+arguments and bytes; no model or provider call occurred. Only the deployed
+a100_task.py helper changed, not the prepared driver or candidate prompts.
+
+Full free qualification40035577327 at
+`6b6929c1a6ca91f5a69778c6dc80dd282eeb07a2` passed all24 stages. Linux40035577321
+passed366 tests and the real HTTP regression. All105 source bindings, all152
+private records, host/image seven-case projections, four JUnit hashes/counts
+and the original SSH CPU log hash were verified. Actual setup took290.638s;
+SSH/image containers and lost/false-ack controls confirmed two absence reads.
+The two superseded source runs were cancelled before final reports existed;
+preserve their original logs and intermediate Linux evidence. Read the new
+verified-GPU free result/execution/schema-1 receipt. The single paid scope is
+still unused at this checkpoint. Require receipt-source Linux/free owner
+preparation, fresh matching independent watcher and exact current offer before
+one create. Model compliance/correctness and corrected GPU teardown remain
+NOT RUN. No paid rerun or automatic second allocation.

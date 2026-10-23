@@ -57,3 +57,25 @@ The prepared driver and candidate prompt bytes remain unchanged; its deployed
 Run40035020575 is also superseded; its Linux366-test pass alone missed the
 consumer boundary. Preserve that intermediate evidence rather than treating it
 as final launch qualification.
+
+## Full qualification checkpoint
+
+Final full free run **40035577327** at
+`6b6929c1a6ca91f5a69778c6dc80dd282eeb07a2` passed all **24 stages**.
+Linux **40035577321** passed **366 tests** and the real HTTP regression.
+Independent inspection verified all105 source hashes, all152 owner-private
+records, seven original-tool cases on host and exact offline image, four
+JUnit hashes/counts and the retained SSH CPU log hash. Actual setup took
+290.638 seconds. Real lost/false acknowledgement cleanup controls passed;
+all disposable containers had two successful absence reads.
+
+See `verified-gpu-free-result-20261024.json`,
+`verified-gpu-free-execution-20261024.json` and
+`verified-gpu-actions-qualification-20261024.json`. The two intermediate free
+runs were deliberately superseded before completion and are not qualification.
+Their original logs and Linux artifacts are retained. This final proof still
+does not establish model behavior, correctness or actual GPU teardown.
+
+The schema-1 receipt now binds the corrected source. At this checkpoint the
+new claim remains unused; receipt-source Linux and free owner preparation, a
+fresh matching watcher and current offer must still pass before allocation.
