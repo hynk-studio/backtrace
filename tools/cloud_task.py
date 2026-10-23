@@ -13,13 +13,13 @@ import shutil
 from tools import a100_task as legacy
 from tools.a100_delivery import DRIVER_SHA256 as LEGACY_PREPARED_SHA256
 from tools.private_delivery import digest, parse_manifest, verify
-from tools import task_calibration
+from tools import task_calibration, task_verification
 
 POLICY = 'prepaid10-actions-v1'
 SETUP, USEFUL, TOTAL = 5400, 6900, 7200
-CLOUD_DRIVER_SHA256 = 'eca5e2ee5065419272e99f8407d09e63798801640f2a8005e5189e7aba9f1b79'
-RUN_NAME = task_calibration.PROTOCOL
-POD_TOOLS = legacy.POD_TOOLS + ('task_budget.py', 'task_calibration.py')
+CLOUD_DRIVER_SHA256 = '0a10c8ba12d231dee861f61145d85a77dcac7cf1ce019276f6352cbfe817af06'
+RUN_NAME = task_verification.PROTOCOL
+POD_TOOLS = legacy.POD_TOOLS + ('task_budget.py', 'task_calibration.py', 'task_verification.py', 'task_trace_review.py')
 POD_DOCS = legacy.POD_DOCS
 
 
@@ -118,7 +118,7 @@ def transform(data):
     if definitions(original) != definitions(result):
         raise ValueError('scientific input or driver constant changed')
     compile(result, '<private-cloud-driver>', 'exec')
-    return task_calibration.driver_source(result)
+    return task_verification.driver_source(task_calibration.driver_source(result))
 
 
 def prepare(source, output):
@@ -134,9 +134,10 @@ def prepare(source, output):
         source.read_text().splitlines(True), result.splitlines(True),
         fromfile='retained-t4/one_task.py', tofile='cloud-a100/one_task.py')))
     receipt.update(prepared_driver_sha256=CLOUD_DRIVER_SHA256, policy=POLICY,
-                   protocol=RUN_NAME, task_budget=task_calibration.BUDGET,
+                   protocol=RUN_NAME, task_budget=task_verification.BUDGET,
                    scientific_changes=['five-minute/30-tool budget', 'generic search/completion guidance',
-                                       'bare-symbol/text-search guidance; official tools unchanged'],
+                                       'bare-symbol/text-search guidance; official tools unchanged',
+                                       'same-check verification, fail-visible reproduction and reserved budget'],
                    setup_seconds=SETUP, useful_seconds=USEFUL, total_seconds=TOTAL,
                    server_and_agent_ast_equal_to_legacy=False,
                    operational_changes=['narrow initialized-engine metadata middleware', 'shared real HTTP contract',

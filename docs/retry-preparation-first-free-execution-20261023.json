@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "first_free": {
+    "status": "FAIL",
+    "run_id": 39960937719,
+    "job_id": 120438457972,
+    "source_sha": "e63306f6aa97e16426c0cbe6ee7701b3d53d4179",
+    "failed_stages": [
+      "full_setup_ssh"
+    ],
+    "host_connected": "PASS all seven cases",
+    "image_connected": "PASS",
+    "setup_seconds": 260.17,
+    "setup": "PASS all substantive stages; cleanup unconfirmed",
+    "cleanup_error": "TimeoutExpired during docker rm; original daemon/member state not retained",
+    "private_files": 152,
+    "public_artifact_id": 12506845539,
+    "private_artifact_id": 12506526490,
+    "report_sha256": "2bd6a7f26bc72676a675a58aeb49f985fa294e7263e029cf7e0f5848a4634367",
+    "public_zip_sha256": "fbe1a14e9b5d41cf51f096a6a07c1c09fd8904313ffd579715f032589533b9df",
+    "private_zip_sha256": "45bfb938b9de98779f9d996bdc899ff50556b0a2f3a6bd24373e82d2e3a28ce8",
+    "early_ciphertext_sha256": "07ecf57bc85c4bf7246cca8cc53f149118c74feadb848c83be3dfb0ae587624e"
+  },
+  "cause_status": "Docker rm acknowledgement timed out; actual original daemon/removal state was not recorded",
+  "correction": "Bounded confirmation by two successful consecutive exact-name absence queries; no daemon error may establish absence",
+  "qualification": "NEW FULL FREE RUN REQUIRED",
+  "real_model_or_gpu_retry": false,
+  "primary_docs": [
+    {
+      "url": "https://docs.docker.com/reference/cli/docker/container/ls/",
+      "evidence_level": "primary Docker CLI reference; all/no-trunc/filter/format semantics",
+      "recorded_at": "2026-10-23T14:01:51.458123+00:00"
+    }
+  ]
+}

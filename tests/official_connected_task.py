@@ -72,6 +72,9 @@ class GeneratedTokens:
         self.failure = None
         self.root_calls, self.delegate_calls, self.exercised_tools = 0, 0, []
         self.node = None
+        if case in ('verification-loop', 'budget-rejection'):
+            from tests.verification_fixture import VerificationSequence
+            self.verification_sequence = VerificationSequence(case)
         if case == 'tools':
             import numpy as np
             paths = list(Path('/kaggle/input/r0-inputs/embeddings').glob('*.npz'))
@@ -150,7 +153,15 @@ class GeneratedTokens:
         names = {row['function']['name'] for row in data.get('tools', [])}
         if self.case != 'tools' and not {'run_command', 'submit_patch'}.issubset(names):
             raise AssertionError('real official tool schemas were not sent')
-        if self.case == 'search-fallback':
+        if self.case in ('verification-loop', 'budget-rejection'):
+            try:
+                message = self.verification_sequence.message(data, number)
+                self.exercised_tools.extend(c['function']['name'] for c in message.get('tool_calls', []))
+            except AssertionError as error:
+                self.failure = str(error)
+                return ErrorResponse.model_validate({'error': {'message': self.failure,
+                    'type': 'BadRequestError', 'code': 400}})
+        elif self.case == 'search-fallback':
             try:
                 message = self.fallback_message(data, number)
             except AssertionError as error:
@@ -294,7 +305,7 @@ def run_case(source, output, case):
         data = driver.input_dir()
         with zipfile.ZipFile(data / 'r0-clean.zip') as archive:
             archive.extractall(driver.WORK / 'candidate')  # Previously manifest/hash checked.
-        from tools.task_calibration import apply_candidate
+        from tools.task_verification import apply_candidate
         calibration = apply_candidate(driver.WORK / 'candidate')
         for target in [driver.WORK / 'candidate', *(driver.WORK / 'candidate').rglob('*')]:
             os.chown(target, 65534, 65534)
@@ -350,7 +361,8 @@ def run_case(source, output, case):
             if result.returncode != 0:
                 raise RuntimeError('connected driver failed; see encrypted execution log')
             verified = validate(driver.WORK, protocol=driver.RUN_NAME)
-            expected = 13 if case == 'tools' else 14 if case == 'search-fallback' else 3
+            expected = {'tools': 13, 'search-fallback': 14, 'verification-loop': 14,
+                        'budget-rejection': 33}.get(case, 3)
             if (verified['wire_requests'] != expected
                     or b'Backtrace CPU transport probe.' not in (driver.WORK / 'agent.patch').read_bytes()):
                 raise AssertionError('real model/tool/patch path did not complete')
@@ -361,6 +373,19 @@ def run_case(source, output, case):
                 actual = json.loads((driver.WORK / 'task-result.json').read_text())
                 if not 60 < actual['seconds'] < 300 or not 10 < actual['tool_calls'] <= 30:
                     raise AssertionError('expanded actual session/tool budget was not exercised')
+            if case in ('verification-loop', 'budget-rejection'):
+                audit = verified['trace_review']
+                actual = json.loads((driver.WORK / 'task-result.json').read_text())
+                patch = (driver.WORK / 'agent.patch').read_bytes()
+                if case == 'budget-rejection':
+                    if (actual['tool_calls'] != 30 or audit['rejected_mutations'] != 1
+                            or audit['budget_rejections'] != 1 or b'REJECTED_MUTATION' in patch):
+                        raise AssertionError('budget rejection/unchanged final patch not retained')
+                elif (audit['rejected_mutations'] or audit['nonzero_commands'] != 3
+                        or audit['last_post_mutation_exit_code'] != 0
+                        or audit['last_post_mutation_failure_text']
+                        or generated.verification_sequence.checked_exits != [1, 1, 0, 1, 0]):
+                    raise AssertionError('actual verification evidence was not preserved')
             rows = []
             for name in ('agent.patch', 'task-result.json', 'wire.jsonl',
                          'results/traces/trace_fastapi_11194.json'):
@@ -386,6 +411,9 @@ def run_case(source, output, case):
                 'actual_model_http_requests': len(generated.requests), 'gpu_allocations': 0,
                 'protocol': driver.RUN_NAME, 'candidate': calibration,
                 'search_fallback': getattr(generated, 'fallback_evidence', None),
+                'verification_control': ({'checked_exits': generated.verification_sequence.checked_exits,
+                    'trace_review': verified['trace_review'], 'charged_tools': actual['tool_calls']}
+                    if case in ('verification-loop', 'budget-rejection') else None),
                 'crossed_original_time_and_tool_limits': case == 'search-fallback',
                 'observed_task': ({key: actual[key] for key in ('seconds', 'tool_calls', 'llm_calls', 'patch_submitted')}
                                   if case == 'search-fallback' else None),
@@ -430,7 +458,7 @@ def main(source, output, evaluator):
         '--regid=65534', '--clear-groups', sys.executable, '-I', '-c',
         'import os,sys;raise SystemExit(1 if os.access(sys.argv[1],os.R_OK) else 0)', str(evaluator)],
         env={'PATH': '/usr/bin:/bin'}, check=True, timeout=10)
-    for case in ('missing-route', 'success', 'tools', 'search-fallback', 'model-error'):
+    for case in ('missing-route', 'success', 'tools', 'search-fallback', 'verification-loop', 'budget-rejection', 'model-error'):
         env = dict(os.environ, VLLM_SERVER_DEV_MODE='0')
         result = probes.run(case, lambda: subprocess.run([sys.executable, '-I', __file__, '--case',
             str(source), str(output / case), case], env=env, check=True, stdout=subprocess.PIPE, timeout=450))

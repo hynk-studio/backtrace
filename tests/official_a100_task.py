@@ -139,7 +139,7 @@ def main():
                                       expected_candidate(ROOT / '.local/official'))
     assert report['sha256'] == FROZEN_SHA256
     if cloud:
-        from tools.task_calibration import candidate_files
+        from tools.task_verification import candidate_files
         files = candidate_files(files)
     from adk_submission import VllmServer
     import torch

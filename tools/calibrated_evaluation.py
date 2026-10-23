@@ -16,6 +16,7 @@ import zipfile
 
 from tools import a100_delivery as frozen, cloud_resolver as resolver, cloud_state as state
 from tools import cloud_seal, task_followup, cloud_task
+from tools.task_calibration import PROTOCOL as ORIGINAL_PROTOCOL
 from tools.direct_delivery import pull
 from tools.pod_bootstrap import readonly
 from tools.runpod_job import check_owner_host
@@ -34,7 +35,7 @@ def checked_claim(store):
     claim, pod = store.read('claim')[0], store.read('pod')[0]
     actual = {k: claim[k] for k in BINDING if k != 'pod_id'}
     actual['pod_id'] = pod['pod_id']
-    if actual != BINDING or pod['attempt'] != claim['attempt'] or claim['run'] != cloud_task.RUN_NAME:
+    if actual != BINDING or pod['attempt'] != claim['attempt'] or claim['run'] != ORIGINAL_PROTOCOL:
         raise ValueError('exact consumed R1 claim and Pod required')
     return claim
 
@@ -134,7 +135,7 @@ def run(root, report, emit):
 from pathlib import Path
 sys.path.insert(0,sys.argv[1])
 from tools.task_results import validate
-from tools.cloud_task import RUN_NAME
+from tools.task_calibration import PROTOCOL as RUN_NAME
 from tools.qualify_evaluation import evaluate_receipts,qualify
 root,inputs=map(Path,sys.argv[2:]);receipts=root/'receipts'
 meta=json.loads((receipts/'task-result.json').read_text())

@@ -15,7 +15,7 @@ def collect(root, output, *, early=False):
     root, output = Path(root), Path(output)
     owner = root.stat()
     names = ('evidence-permissions.log', 'actual-api-http.log', 'official-cloud-driver.log', 'actual-cpu-prerequisites.log',
-             'connected-task.log') if early else (
+             'connected-task.log', 'full-setup-result.json', 'full-setup-process.log') if early else (
         'evidence-permissions.log', 'retained-source.ipynb', 'offline-runtime.log', 'official-cloud-driver.log', 'cpu-task-layout.log',
         'actual-cpu-prerequisites.log', 'cuda-runtime.log', 'transport-loopback.log', 'transport/build.log',
         'pinned-image.log', 'concurrent-controller.log', 'actual-api-http.log', 'image-result/api-http.log',
