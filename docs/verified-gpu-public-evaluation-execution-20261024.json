@@ -1,0 +1,61 @@
+{
+  "status": "EVIDENCE_VERIFIED",
+  "binding": {
+    "authorization": "owner-verified-gpu-20261024",
+    "run_id": "40039468878",
+    "source_sha": "e31873dab5b400a1ddc236c7ac9c2440f05fdab7",
+    "attempt": "b5c5e85fa83e4862940350658500fd2d",
+    "pod_id": "gvms91slerswyj"
+  },
+  "source_sha": "bf50a54525b8d78ebe7bb021ea517219c45d70d3",
+  "run_id": "40041608780",
+  "completed_agent_task": true,
+  "resolved": true,
+  "actual_tests": {
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 4,
+    "junit_sha256": "b0d8126ba24416b8ff7f8dc0e8aa73f5dd63254662c2ee84a88b5d2ec42d9a63"
+  },
+  "receipt": {
+    "status": "PASS",
+    "instance_id": "fastapi_11194",
+    "llm_calls": 29,
+    "wire_requests": 30,
+    "tool_calls": 27,
+    "patch_bytes": 7745,
+    "patch_sha256": "0e2e0d87cb71173732ca2e458373ad52f5d4d489e18a0131dff0cc2476dc3ab1",
+    "trace_sha256": "e79bdbad2ea2282ceb720ec4a02b060df75a9357260d06b8bd6d5fd1aafc51e8",
+    "verification": "NOT RUN; task completion is not patch correctness",
+    "trace_review": {
+      "schema_version": 1,
+      "kind": "PROCESS_DIAGNOSTIC_NOT_CORRECTNESS",
+      "accepted_mutations": 7,
+      "rejected_mutations": 0,
+      "tool_errors": 5,
+      "budget_rejections": 0,
+      "command_observations": 10,
+      "nonzero_commands": 5,
+      "zero_exit_with_failure_text": 0,
+      "post_mutation_commands": 0,
+      "last_post_mutation_exit_code": null,
+      "last_post_mutation_failure_text": null,
+      "unrecognized_tool_observations": 0,
+      "flags": [
+        "NO_COMMAND_AFTER_LAST_ACCEPTED_MUTATION"
+      ],
+      "correctness": "NOT ESTABLISHED; independent verifier required"
+    }
+  },
+  "report_sha256": "b411ec87663b5435b54ac36d0e88269b34041a054fa0f0ab952b2f7d3784b410",
+  "report_bytes": 4832,
+  "private_files": 12,
+  "receipt_matches_original_paid_bytes": true,
+  "gpu_allocations": 0,
+  "provider_mutations": 0,
+  "model_calls": 0,
+  "agent_runs": 0,
+  "interpretation": "Repeated previously inspected public-task diagnostic; not held-out performance"
+}

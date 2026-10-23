@@ -33,6 +33,7 @@ PATHS = tuple(sorted(set(
        'tests/test_pod_system.py', 'tests/test_cloud_offer.py',
        'docs/qualified-gpu-authorization-20261023.json',
        'docs/calibrated-gpu-authorization-20261023.json',
+       'docs/verified-gpu-authorization-20261024.json',
        'docs/task-calibration-policy-20261023.json',
        '.github/workflows/qualified-gpu-start.yml',
        'tests/test_task_calibration.py', '.github/workflows/task-calibration.yml',
@@ -56,7 +57,7 @@ def require_receipt(store, root, receipt):
     run = store.request('GET', '/actions/runs/' + str(receipt['run_id']))
     if (run.get('status') != 'completed' or run.get('conclusion') != 'success'
             or run.get('run_attempt') != 1 or run.get('head_sha') != receipt['source_sha']
-            or run.get('head_branch') != 'bt-001-calibrated-gpu-20261023'
+            or run.get('head_branch') != 'bt-001-verified-gpu-20261024'
             or run.get('path') != '.github/workflows/a100-prepare.yml'):
         raise ValueError('actual free qualification run is not successful at the recorded source')
     return {'run_id': receipt['run_id'], 'source_sha': receipt['source_sha'],
@@ -70,7 +71,7 @@ def require_current_cpu(store, source_sha, *, timeout=600, wall=time.monotonic, 
     while wall() < deadline:
         runs = store.request('GET', '/actions/runs?head_sha=' + source_sha + '&per_page=100')['workflow_runs']
         candidates = [r for r in runs if r.get('path') == '.github/workflows/a100-cpu.yml'
-                      and r.get('head_branch') == 'bt-001-calibrated-gpu-20261023'
+                      and r.get('head_branch') == 'bt-001-verified-gpu-20261024'
                       and r.get('head_sha') == source_sha and r.get('run_attempt') == 1]
         if len(candidates) > 1:
             raise ValueError('ambiguous current CPU run')

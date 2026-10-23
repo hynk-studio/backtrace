@@ -1,0 +1,499 @@
+{
+  "schema_version": 1,
+  "source_sha": "6b6929c1a6ca91f5a69778c6dc80dd282eeb07a2",
+  "free_run_id": 40035577327,
+  "free_job_id": 120694179439,
+  "cpu_run_id": 40035577321,
+  "cpu_job_id": 120694085853,
+  "linux": {
+    "status": "PASS",
+    "tests": 366,
+    "seconds": 28.391,
+    "artifact_id": 12536743059,
+    "zip_sha256": "d6eeb620da6576019674ee41f6d71526c3207248422df7bf2354d9a03cd0599e"
+  },
+  "free_result": {
+    "status": "PASS",
+    "stages": 24,
+    "bound_files": 105,
+    "private_files": 152,
+    "report_bytes": 89555,
+    "report_sha256": "012fb5ae0d9df97dde647008c272ea714a65bf97ced103e13795b40bf62d4dca",
+    "full_setup_seconds": 290.638,
+    "public_artifact_id": 12538581369,
+    "public_zip_sha256": "a761a8066c19bc2cd5aa8df8c1716e8c9d9d608b2c3334217c18baa1f9d75111",
+    "private_artifact_id": 12538058112,
+    "private_zip_sha256": "1233aa5643b271f64ac999e293e1a1991e1b2c473818f3fb77a233dfab6100c2"
+  },
+  "independent_proof": {
+    "status": "PASS",
+    "source_sha": "6b6929c1a6ca91f5a69778c6dc80dd282eeb07a2",
+    "run_id": "40035577327",
+    "report_sha256": "012fb5ae0d9df97dde647008c272ea714a65bf97ced103e13795b40bf62d4dca",
+    "report_bytes": 89555,
+    "bound_files": 105,
+    "private_files": 152,
+    "projection_checks": "ALL MATCH",
+    "ssh_cpu_log": {
+      "bytes": 2719,
+      "sha256": "a348f22921e14e105e5b235b3cb2f035688855d06a3818225615280601de19db",
+      "offset": 68207
+    },
+    "connected": {
+      "host": {
+        "receipts": {
+          "search-fallback": {
+            "status": "PASS",
+            "instance_id": "fastapi_11194",
+            "llm_calls": 14,
+            "wire_requests": 14,
+            "tool_calls": 12,
+            "patch_bytes": 305,
+            "patch_sha256": "7977e5980ad7a195b1912366aad9b082803516009791cb56cea0a0e561e93488",
+            "trace_sha256": "bc7c74dd3330505dd29594cdbe259437b4ddedcc1432b20dd4cf505d7d7b162f",
+            "verification": "NOT RUN; task completion is not patch correctness",
+            "trace_review": {
+              "schema_version": 1,
+              "kind": "PROCESS_DIAGNOSTIC_NOT_CORRECTNESS",
+              "accepted_mutations": 0,
+              "rejected_mutations": 0,
+              "tool_errors": 0,
+              "budget_rejections": 0,
+              "command_observations": 10,
+              "nonzero_commands": 0,
+              "zero_exit_with_failure_text": 0,
+              "post_mutation_commands": 0,
+              "last_post_mutation_exit_code": null,
+              "last_post_mutation_failure_text": null,
+              "unrecognized_tool_observations": 0,
+              "flags": [],
+              "correctness": "NOT ESTABLISHED; independent verifier required"
+            }
+          },
+          "verification-loop": {
+            "status": "PASS",
+            "instance_id": "fastapi_11194",
+            "llm_calls": 14,
+            "wire_requests": 14,
+            "tool_calls": 11,
+            "patch_bytes": 400,
+            "patch_sha256": "fe2113dc72cae2b0af22782a16b3ff6470b2a59b4b06b4c405200fd24245bf71",
+            "trace_sha256": "e7dc5895d88ec904e4220a52b050cd8739ee06e271aab4d66d2c9c8a1c100549",
+            "verification": "NOT RUN; task completion is not patch correctness",
+            "trace_review": {
+              "schema_version": 1,
+              "kind": "PROCESS_DIAGNOSTIC_NOT_CORRECTNESS",
+              "accepted_mutations": 5,
+              "rejected_mutations": 0,
+              "tool_errors": 3,
+              "budget_rejections": 0,
+              "command_observations": 6,
+              "nonzero_commands": 3,
+              "zero_exit_with_failure_text": 0,
+              "post_mutation_commands": 2,
+              "last_post_mutation_exit_code": 0,
+              "last_post_mutation_failure_text": false,
+              "unrecognized_tool_observations": 0,
+              "flags": [],
+              "correctness": "NOT ESTABLISHED; independent verifier required"
+            }
+          },
+          "budget-rejection": {
+            "status": "PASS",
+            "instance_id": "fastapi_11194",
+            "llm_calls": 33,
+            "wire_requests": 33,
+            "tool_calls": 30,
+            "patch_bytes": 396,
+            "patch_sha256": "92dcbe1f5a6f794b892029c9274c7044f92b25478674081bfacd6023f90ac8a1",
+            "trace_sha256": "ca40fc056202210079d6cf04a49f479e416332efec7ad54560d090f2bb7255c2",
+            "verification": "NOT RUN; task completion is not patch correctness",
+            "trace_review": {
+              "schema_version": 1,
+              "kind": "PROCESS_DIAGNOSTIC_NOT_CORRECTNESS",
+              "accepted_mutations": 1,
+              "rejected_mutations": 1,
+              "tool_errors": 1,
+              "budget_rejections": 1,
+              "command_observations": 0,
+              "nonzero_commands": 0,
+              "zero_exit_with_failure_text": 0,
+              "post_mutation_commands": 0,
+              "last_post_mutation_exit_code": null,
+              "last_post_mutation_failure_text": null,
+              "unrecognized_tool_observations": 0,
+              "flags": [
+                "REJECTED_EDIT_OR_WRITE",
+                "TOOL_BUDGET_EXHAUSTED",
+                "NO_COMMAND_AFTER_LAST_ACCEPTED_MUTATION"
+              ],
+              "correctness": "NOT ESTABLISHED; independent verifier required"
+            }
+          }
+        },
+        "public_verifier_controls": [
+          {
+            "control": "recovered-patch",
+            "actual_tests": {
+              "errors": 0,
+              "failures": 2,
+              "junit_sha256": "f95455df891af560053493703c767e692d0b31d5f787ecbabad766653674a042",
+              "passed": 2,
+              "skipped": 0,
+              "tests": 4
+            }
+          },
+          {
+            "control": "public-reference-control",
+            "actual_tests": {
+              "errors": 0,
+              "failures": 0,
+              "junit_sha256": "a5384ac51817a69834414547cda087f2bf0b4735985e07a0c7763dae07852687",
+              "passed": 4,
+              "skipped": 0,
+              "tests": 4
+            }
+          }
+        ]
+      },
+      "image": {
+        "receipts": {
+          "search-fallback": {
+            "status": "PASS",
+            "instance_id": "fastapi_11194",
+            "llm_calls": 14,
+            "wire_requests": 14,
+            "tool_calls": 12,
+            "patch_bytes": 305,
+            "patch_sha256": "7977e5980ad7a195b1912366aad9b082803516009791cb56cea0a0e561e93488",
+            "trace_sha256": "0d48b68f6f7bfac63b176e6939f4bb4d2a19e1c5245a4cfd3197362705864370",
+            "verification": "NOT RUN; task completion is not patch correctness",
+            "trace_review": {
+              "schema_version": 1,
+              "kind": "PROCESS_DIAGNOSTIC_NOT_CORRECTNESS",
+              "accepted_mutations": 0,
+              "rejected_mutations": 0,
+              "tool_errors": 0,
+              "budget_rejections": 0,
+              "command_observations": 10,
+              "nonzero_commands": 0,
+              "zero_exit_with_failure_text": 0,
+              "post_mutation_commands": 0,
+              "last_post_mutation_exit_code": null,
+              "last_post_mutation_failure_text": null,
+              "unrecognized_tool_observations": 0,
+              "flags": [],
+              "correctness": "NOT ESTABLISHED; independent verifier required"
+            }
+          },
+          "verification-loop": {
+            "status": "PASS",
+            "instance_id": "fastapi_11194",
+            "llm_calls": 14,
+            "wire_requests": 14,
+            "tool_calls": 11,
+            "patch_bytes": 400,
+            "patch_sha256": "fe2113dc72cae2b0af22782a16b3ff6470b2a59b4b06b4c405200fd24245bf71",
+            "trace_sha256": "75fd84a1c4e3c898b865423fc8e4b0053d862958fe28a84c98abd01389243373",
+            "verification": "NOT RUN; task completion is not patch correctness",
+            "trace_review": {
+              "schema_version": 1,
+              "kind": "PROCESS_DIAGNOSTIC_NOT_CORRECTNESS",
+              "accepted_mutations": 5,
+              "rejected_mutations": 0,
+              "tool_errors": 3,
+              "budget_rejections": 0,
+              "command_observations": 6,
+              "nonzero_commands": 3,
+              "zero_exit_with_failure_text": 0,
+              "post_mutation_commands": 2,
+              "last_post_mutation_exit_code": 0,
+              "last_post_mutation_failure_text": false,
+              "unrecognized_tool_observations": 0,
+              "flags": [],
+              "correctness": "NOT ESTABLISHED; independent verifier required"
+            }
+          },
+          "budget-rejection": {
+            "status": "PASS",
+            "instance_id": "fastapi_11194",
+            "llm_calls": 33,
+            "wire_requests": 33,
+            "tool_calls": 30,
+            "patch_bytes": 396,
+            "patch_sha256": "92dcbe1f5a6f794b892029c9274c7044f92b25478674081bfacd6023f90ac8a1",
+            "trace_sha256": "b2ef154deca8739c5854302cf8b82a780fc2ecf11a08dc133ebe0afe85b6414f",
+            "verification": "NOT RUN; task completion is not patch correctness",
+            "trace_review": {
+              "schema_version": 1,
+              "kind": "PROCESS_DIAGNOSTIC_NOT_CORRECTNESS",
+              "accepted_mutations": 1,
+              "rejected_mutations": 1,
+              "tool_errors": 1,
+              "budget_rejections": 1,
+              "command_observations": 0,
+              "nonzero_commands": 0,
+              "zero_exit_with_failure_text": 0,
+              "post_mutation_commands": 0,
+              "last_post_mutation_exit_code": null,
+              "last_post_mutation_failure_text": null,
+              "unrecognized_tool_observations": 0,
+              "flags": [
+                "REJECTED_EDIT_OR_WRITE",
+                "TOOL_BUDGET_EXHAUSTED",
+                "NO_COMMAND_AFTER_LAST_ACCEPTED_MUTATION"
+              ],
+              "correctness": "NOT ESTABLISHED; independent verifier required"
+            }
+          }
+        },
+        "public_verifier_controls": [
+          {
+            "control": "recovered-patch",
+            "actual_tests": {
+              "errors": 0,
+              "failures": 2,
+              "junit_sha256": "69e4f31ffa41f04cdc470b047fb7f4771031e5d3fba46f600989a84b3ee39ee0",
+              "passed": 2,
+              "skipped": 0,
+              "tests": 4
+            }
+          },
+          {
+            "control": "public-reference-control",
+            "actual_tests": {
+              "errors": 0,
+              "failures": 0,
+              "junit_sha256": "4bccc8b8aff478b5dd21e390406a19bac9d1d16dd895a871130df4256cd68c4b",
+              "passed": 4,
+              "skipped": 0,
+              "tests": 4
+            }
+          }
+        ]
+      }
+    },
+    "full_setup_seconds": 290.638,
+    "container_cleanup": {
+      "setup": {
+        "absence_reads": 2,
+        "container_id": "9b01859a021375dd5c418ee3b6607e2b2322e9a0996aee3dea66118dc869612d",
+        "name": "backtrace-free-full-setup-40035577327",
+        "observations": [
+          {
+            "state": "ABSENT"
+          },
+          {
+            "state": "ABSENT"
+          }
+        ],
+        "request": {
+          "outcome": "ACKNOWLEDGED",
+          "returncode": 0
+        },
+        "seconds": 15.74,
+        "status": "PASS"
+      },
+      "image": {
+        "absence_reads": 2,
+        "container_id": null,
+        "name": "backtrace-free-image-qualification",
+        "observations": [
+          {
+            "state": "ABSENT"
+          },
+          {
+            "state": "ABSENT"
+          }
+        ],
+        "request": {
+          "outcome": "ACKNOWLEDGED",
+          "returncode": 0
+        },
+        "seconds": 1.077,
+        "status": "PASS"
+      },
+      "controls": {
+        "cases": [
+          {
+            "acknowledgement": "AUTHORED FAULT",
+            "case": "lost-ack",
+            "cleanup_evidence": {
+              "absence_reads": 2,
+              "container_id": "fee0ff69d21b53e7fedb615fbdbd860d2ff81539b15396ce0cb8afdd77fc9757",
+              "name": "backtrace-free-full-setup-40035577327-lost-ack",
+              "observations": [
+                {
+                  "state": "ABSENT"
+                },
+                {
+                  "state": "ABSENT"
+                }
+              ],
+              "request": {
+                "outcome": "ACKNOWLEDGED",
+                "returncode": 0
+              },
+              "seconds": 1.03,
+              "status": "PASS"
+            },
+            "container_queries": "ACTUAL DOCKER",
+            "observation": {
+              "absence_reads": 2,
+              "container_id": "fee0ff69d21b53e7fedb615fbdbd860d2ff81539b15396ce0cb8afdd77fc9757",
+              "name": "backtrace-free-full-setup-40035577327-lost-ack",
+              "observations": [
+                {
+                  "state": "ABSENT"
+                },
+                {
+                  "state": "ABSENT"
+                }
+              ],
+              "request": {
+                "error_type": "TimeoutExpired",
+                "outcome": "UNCONFIRMED"
+              },
+              "seconds": 1.072,
+              "status": "PASS"
+            },
+            "status": "PASS"
+          },
+          {
+            "acknowledgement": "AUTHORED FAULT",
+            "case": "false-ack",
+            "cleanup_evidence": {
+              "absence_reads": 2,
+              "container_id": "9244ec38c9af47f82b42baf4206e45e0a792d35dd8eeb0b4a38a170772642066",
+              "name": "backtrace-free-full-setup-40035577327-false-ack",
+              "observations": [
+                {
+                  "state": "ABSENT"
+                },
+                {
+                  "state": "ABSENT"
+                }
+              ],
+              "request": {
+                "outcome": "ACKNOWLEDGED",
+                "returncode": 0
+              },
+              "seconds": 1.067,
+              "status": "PASS"
+            },
+            "container_queries": "ACTUAL DOCKER",
+            "observation": {
+              "absence_reads": 0,
+              "container_id": "9244ec38c9af47f82b42baf4206e45e0a792d35dd8eeb0b4a38a170772642066",
+              "name": "backtrace-free-full-setup-40035577327-false-ack",
+              "observations": [
+                {
+                  "state": "PRESENT"
+                },
+                {
+                  "state": "PRESENT"
+                },
+                {
+                  "state": "PRESENT"
+                }
+              ],
+              "request": {
+                "outcome": "ACKNOWLEDGED",
+                "returncode": 0
+              },
+              "seconds": 3.0,
+              "status": "FAIL"
+            },
+            "status": "PASS"
+          }
+        ],
+        "gpu_allocations": 0,
+        "provider_operations": 0,
+        "status": "PASS"
+      }
+    },
+    "paid_qualification": "INDEPENDENT FREE PROOF; active source receipt still required",
+    "gpu_allocations": 0
+  },
+  "permit_integration": {
+    "status": "PASS",
+    "claim_protocol": "R1-budget5m-verification-guidance-v2/A10080-TP1",
+    "actual_driver_protocol": "R1-budget5m-verification-guidance-v2/A10080-TP1",
+    "actual_driver_permit_arguments": {
+      "policy": "prepaid10-actions-v1",
+      "setup_seconds": 5400,
+      "expected_run": "R1-budget5m-verification-guidance-v2/A10080-TP1"
+    },
+    "driver_sha256": "0a10c8ba12d231dee861f61145d85a77dcac7cf1ce019276f6352cbfe817af06",
+    "deployed_files": 25,
+    "changed_deployed_files": [
+      "tools/a100_task.py"
+    ],
+    "permit_consumer": "ACTUAL root-owned file; no model/provider call",
+    "single_use": "REPLAY REJECTED",
+    "gpu_allocations": 0,
+    "model_calls": 0
+  },
+  "superseded_sources": [
+    {
+      "source_sha": "5421753a084641574714cda88ffe5d5d101cdf85",
+      "source_tree": "94c5348293d43eb0b6acee4bd965d7e92c5fad7f",
+      "free_run_id": 40034617157,
+      "free_job_id": 120690922330,
+      "cpu_run_id": 40034617261,
+      "cpu_job_id": 120690922921,
+      "linux": {
+        "status": "PASS",
+        "tests": 365,
+        "seconds": 28.997,
+        "artifact_id": 12535848505,
+        "zip_sha256": "ea5f8769b5ef93871be3f5dd64beb4d22b724257f4817240fdf7b6877a8432fe"
+      },
+      "free_reference_handoff": {
+        "verified_files": 11,
+        "bytes": 491594,
+        "source": "retained-original-manifest",
+        "transport": "ephemeral-age",
+        "plaintext_published": false,
+        "run_id": "40034617157",
+        "source_sha": "5421753a084641574714cda88ffe5d5d101cdf85",
+        "ciphertext_bytes": 194162,
+        "ciphertext_sha256": "51060b121d570105a6b0e51b179283ec7afc272e436824a0122ac95dbcc1ac71",
+        "blob_bytes": 258884,
+        "blob_sha": "922d86a16be5d651d117b391202010763e3ff1ca",
+        "readback": "EXACT MATCH"
+      },
+      "reason": "Controller claim protocol still labelled previous R1 v1; corrected before any paid entry.",
+      "free_status": "CANCELLED_BY_SUPERSEDING_SOURCE",
+      "free_artifacts": [],
+      "qualification": "NOT COMPLETE; no report/private archive existed before cancellation",
+      "gpu_allocations": 0
+    },
+    {
+      "source_sha": "0648ce1667f397eb48401ea70f75a77512d1859e",
+      "source_tree": "2db3f1d3e24e3830082d0912f36fd72330e13ef7",
+      "free_run_id": 40035020575,
+      "free_job_id": 120692340510,
+      "cpu_run_id": 40035020625,
+      "cpu_job_id": 120692244964,
+      "reason": "Production permit consumer rejects R1 v2 before model entry; fixed and actual single-use boundary tested.",
+      "linux": {
+        "status": "PASS",
+        "tests": 366,
+        "seconds": 29.859,
+        "artifact_id": 12536816988,
+        "zip_sha256": "09348cf8b63e2530ae268b3997d3bf6d1e5db1ae5289fba303a08ff7580d9751"
+      },
+      "free_status": "CANCELLED_BY_SUPERSEDING_SOURCE",
+      "free_artifacts": [],
+      "qualification": "NOT COMPLETE; no projected report or private archive existed before cancellation"
+    }
+  ],
+  "current_paid_authorization": "UNUSED; final-source preparation and fresh watcher/offer still required",
+  "gpu_allocations": 0,
+  "limitations": [
+    "scripted CPU content is plumbing evidence, not Gemma compliance or correctness",
+    "corrected real GPU teardown remains unrun",
+    "the previously inspected public task is diagnostic, not independent held-out evidence"
+  ]
+}

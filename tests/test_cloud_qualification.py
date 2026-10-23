@@ -15,7 +15,7 @@ class QualificationTests(unittest.TestCase):
     def setUp(self):
         self.sha = 'a' * 40
         self.run = {'id': 123, 'status': 'completed', 'conclusion': 'success', 'run_attempt': 1,
-                    'head_sha': self.sha, 'head_branch': 'bt-001-calibrated-gpu-20261023',
+                    'head_sha': self.sha, 'head_branch': 'bt-001-verified-gpu-20261024',
                     'path': '.github/workflows/a100-prepare.yml'}
         self.receipt = {'schema_version': 1, 'source_sha': self.sha, 'run_id': 123,
                         'report_sha256': 'b' * 64, 'files': {'pinned': 'c' * 64}, 'transport': {}}

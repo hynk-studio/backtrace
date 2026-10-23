@@ -19,7 +19,7 @@ import urllib.error
 import urllib.request
 import uuid
 
-RUN = 'R1-budget5m-search-guidance-v1/A10080-TP1'
+RUN = 'R1-budget5m-verification-guidance-v2/A10080-TP1'
 BASE = ('pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:'
         'b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca')
 GPU = 'NVIDIA A100 80GB PCIe'

@@ -2,7 +2,7 @@ name: Qualified A100 single-attempt start
 
 on:
   push:
-    branches: [bt-001-a100-start-calibrated-20261023]
+    branches: [bt-001-a100-start-verified-20261024]
     # This dedicated branch is created only after exact-source free checks.
     # Attempt 1 and the create-only claim independently prevent paid reruns.
 
