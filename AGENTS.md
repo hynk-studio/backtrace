@@ -379,3 +379,25 @@ qualification proof and schema-1 actions receipt. Previous receipts are
 preserved. Before the still-unused single paid claim, require receipt-source
 Linux, free owner preparation, a fresh matching watcher and fresh exact offer.
 Keep the actual start/watch source immutable once entered; never rerun paid.
+
+The qualified GPU scope is now **CONSUMED**. Paid run **39878045521**, attempt
+1, and independent watcher **39877985689** used immutable source
+`626e3a619a025f64e3713af11b8e4097471470ab`. One EU-RO-1 A100 Pod
+`virbb2jab7fi8v` was created. Actual setup, 23.3GB original model integrity,
+BF16/TP1 server readiness and ten retained successful model HTTP responses
+passed. The public task failed at its unchanged **1.0-minute agent session
+limit** after 62.952s; 4316-byte patch/trace recovered, correctness NOT RUN.
+The validator correctly rejected this errored partial task. Do not label it
+task success or raise the scientific budget automatically. The primary timeout
+survived a secondary startup-group teardown diagnostic; outer cleanup found no
+survivors and provider deletion was independently confirmed by two absence reads.
+Post-delete read-only run 39822924063 attempt 4 at 2026-10-23 09:50:16 KST
+showed zero Pods/spend, auto-pay false, USD 6.5197309961 balance (observed wallet
+decrease USD 0.6599421657). All 17 private records were recovered. Read
+`docs/qualified-gpu-paid-execution-20261023.json` and the terminal section in
+`docs/qualified-gpu-20261023.md`. Keep both current start/watch heads fixed;
+all 18 older heads and 202 prior state blobs are unchanged. The authorization
+JSON's UNUSED text remains a bound qualification-time snapshot, superseded by
+the immutable consumed claim. Any later paid attempt requires a fresh scope
+and an explicit decision about the one-minute task budget. No paid rerun,
+automatic reallocation, top-up, merge, submission or recurring wait is allowed.

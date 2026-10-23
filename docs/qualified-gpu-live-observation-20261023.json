@@ -1,0 +1,37 @@
+{
+  "allocation_requests": 0,
+  "attempt": "0b4b41cdd2124237b8ad930f7c421310",
+  "immutable_source_sha": "626e3a619a025f64e3713af11b8e4097471470ab",
+  "log_sample": {
+    "bytes": 7916,
+    "events": 56,
+    "interpretation": "Text signatures only; not a root-cause determination",
+    "malformed_events": 1,
+    "raw_text_retained": false,
+    "sha256": "8830bd06861e20e5459fe2c3540458268ff69234dde2971dca09f3a6643a683f",
+    "signals": {
+      "image_pull_progress": 42,
+      "unclassified": 14
+    },
+    "sources": {
+      "container": 6,
+      "system": 50
+    },
+    "stopped": "READ_LIMIT"
+  },
+  "mutations": 0,
+  "observed_at": "2026-10-23T00:41:31Z",
+  "pod_id": "virbb2jab7fi8v",
+  "provider": {
+    "direct_endpoint_present": true,
+    "direct_endpoint_valid": true,
+    "elapsed_seconds": 877,
+    "provider_status": "RUNNING",
+    "readiness": "READY",
+    "runtime_present": true,
+    "started_at_present": true
+  },
+  "resource_matches": true,
+  "settings_changed": false,
+  "status": "PASS"
+}

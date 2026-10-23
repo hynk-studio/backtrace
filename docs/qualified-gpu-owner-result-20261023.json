@@ -1,0 +1,206 @@
+{
+  "allocation_requests": 1,
+  "bootstrap": {
+    "deadline_seconds": 1200,
+    "history": [
+      {
+        "direct_endpoint_present": false,
+        "direct_endpoint_valid": false,
+        "elapsed_seconds": 8,
+        "provider_status": "RUNNING",
+        "readiness": "WAIT_DIRECT_ENDPOINT",
+        "runtime_present": false,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": false,
+        "direct_endpoint_valid": false,
+        "elapsed_seconds": 30,
+        "provider_status": "RUNNING",
+        "readiness": "WAIT_DIRECT_ENDPOINT",
+        "runtime_present": false,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": false,
+        "direct_endpoint_valid": false,
+        "elapsed_seconds": 52,
+        "provider_status": "RUNNING",
+        "readiness": "WAIT_DIRECT_ENDPOINT",
+        "runtime_present": false,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": false,
+        "direct_endpoint_valid": false,
+        "elapsed_seconds": 75,
+        "provider_status": "RUNNING",
+        "readiness": "WAIT_DIRECT_ENDPOINT",
+        "runtime_present": false,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": false,
+        "direct_endpoint_valid": false,
+        "elapsed_seconds": 97,
+        "provider_status": "RUNNING",
+        "readiness": "WAIT_DIRECT_ENDPOINT",
+        "runtime_present": false,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": false,
+        "direct_endpoint_valid": false,
+        "elapsed_seconds": 119,
+        "provider_status": "RUNNING",
+        "readiness": "WAIT_DIRECT_ENDPOINT",
+        "runtime_present": false,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": true,
+        "direct_endpoint_valid": true,
+        "elapsed_seconds": 142,
+        "provider_status": "RUNNING",
+        "readiness": "READY",
+        "runtime_present": true,
+        "started_at_present": true
+      }
+    ],
+    "last": {
+      "direct_endpoint_present": true,
+      "direct_endpoint_valid": true,
+      "elapsed_seconds": 142,
+      "provider_status": "RUNNING",
+      "readiness": "READY",
+      "runtime_present": true,
+      "started_at_present": true
+    },
+    "polls": 7
+  },
+  "cleanup": {
+    "absence_reads": 2,
+    "at": 1792716549,
+    "attempt": "0b4b41cdd2124237b8ad930f7c421310",
+    "phase": "deleted",
+    "pod_id": "virbb2jab7fi8v",
+    "reason": "owner_finished"
+  },
+  "failure": {
+    "error_type": "RuntimeError",
+    "http_status": null,
+    "stage": "worker_exit"
+  },
+  "mode": "paid",
+  "preparation": {
+    "allocation_requests": 0,
+    "availability": {
+      "account": {
+        "auto_pay": false,
+        "credit_balance": "7.1796731618",
+        "current_spend_per_hour": "0"
+      },
+      "allocation_requests": 0,
+      "costs": {
+        "compute_per_hour": "1.79",
+        "hourly_all_in": "1.804",
+        "initial_balance": "7.1796731618",
+        "maximum_all_in": "3.608",
+        "other_total": "0",
+        "spent_before": "2.8203268382",
+        "storage_per_hour": "0.014",
+        "tax_rate": "0"
+      },
+      "observed_at": "2026-10-23T00:26:54Z",
+      "offer": {
+        "authenticated": true,
+        "auto_pay": false,
+        "cloud": "SECURE",
+        "compute_per_hour": "1.79",
+        "container_disk_gb": 100,
+        "credit_balance": "7.1796731618",
+        "gpu": "NVIDIA A100 80GB PCIe",
+        "gpu_count": 1,
+        "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+        "interruptible": false,
+        "network_volume": null,
+        "observed_at": "2026-10-23T00:26:54Z",
+        "other_total": "0",
+        "ram_gb": 125,
+        "region": "EU-RO-1",
+        "region_policy": "owner-equivalent-region-20261019",
+        "stock_available": true,
+        "storage_per_hour": "0.014",
+        "tax_rate": "0",
+        "vcpus": 16,
+        "volume_gb": 0
+      },
+      "regions": [
+        {
+          "available": true,
+          "id": "CA-MTL-3",
+          "stock": "Low"
+        },
+        {
+          "available": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 125,
+            "minVcpu": 16,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 1.79
+          },
+          "id": "EU-RO-1",
+          "stock": "Low"
+        },
+        {
+          "available": true,
+          "id": "US-KS-2",
+          "stock": "Low"
+        },
+        {
+          "available": false,
+          "id": "US-MO-1",
+          "stock": null
+        }
+      ],
+      "settings_changed": false,
+      "status": "QUALIFIED"
+    },
+    "cpu": {
+      "run_id": 39877662635,
+      "source_sha": "626e3a619a025f64e3713af11b8e4097471470ab",
+      "status": "PASS"
+    },
+    "create_body_bytes": 5578,
+    "driver_sha256": "174bd6359c3e3f53e149a2ec5210cb220ab46ec41e1e9b34b6b0c915631c55b1",
+    "free_stock_wait_seconds": 0,
+    "qualification": {
+      "bound_files": 87,
+      "report_sha256": "c0b6b4147bf5c40950ccbd6b5019d3af411db6f7db6e668ee933f876b70a3ffb",
+      "run_id": 39874300327,
+      "source_sha": "b75dd4566f67cc2c9bcc0517ec3afd59e56fecec"
+    },
+    "streams": {
+      "model": 8,
+      "task": 8,
+      "wheels": 246
+    },
+    "transport": {
+      "binary_bytes": 1400320,
+      "binary_sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a",
+      "method": "mutual-tls13-then-pinned-ssh",
+      "minimum_validity_seconds": 3600
+    }
+  },
+  "private_evidence": {
+    "ciphertext_bytes": 184607,
+    "ciphertext_sha256": "39dcf97dd56a34197cc349dd0cbc708894be89f9725bf818efe6002c95191081",
+    "files": 17,
+    "format": "age-v1",
+    "plaintext_bytes": 164844
+  },
+  "status": "INCOMPLETE",
+  "worker_exit": 1
+}

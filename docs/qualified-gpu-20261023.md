@@ -116,3 +116,68 @@ check at that exact receipt-bearing source. Keep that source fixed while
 starting its matching independent watcher and paid entry. The current scope
 is still unused at this qualification checkpoint. Recheck current stock and
 account before the one claim; the earlier quote does not reserve hardware.
+
+## Actual bounded attempt: model inference passed, task timed out
+
+The single authorization is now **CONSUMED**. Actual paid source
+`626e3a619a025f64e3713af11b8e4097471470ab` is fixed on both dedicated
+start/watch branches. Receipt-source Linux **39877662635** passed 333 tests
+and actual HTTP; free owner preparation **39877662657** passed. Paid run
+**39878045521**, attempt 1, made exactly one create for EU-RO-1 Pod
+`virbb2jab7fi8v`, attempt `0b4b41cdd2124237b8ad930f7c421310`.
+Independent watcher **39877985689** completed successfully.
+
+| Actual boundary | Evidence / result |
+| --- | --- |
+| Provider bootstrap | Direct SSH endpoint ready after 142 seconds |
+| Production setup | All seven stages passed, including GPU runtime, original model input integrity and activation |
+| Model inputs | 8 original files, 23297590856 bytes, all verified |
+| Hardware | A100 PCIe 81920 MiB, SM80, driver 595.91.07, cudart 12.8.90, native BF16, TP1 |
+| Model server | Healthy after 121.259 seconds; effective BF16/TP1 verified |
+| HTTP contract | `/health`, `/backtrace/runtime-config`, `/v1/models` returned 200 |
+| Actual inference | 11 recorded requests, 10 retained HTTP 200 responses; one response absent at the session cutoff |
+| Public agent task | `fastapi_11194`, 62.952 seconds, reported 10 LLM calls / 10 tools, **agent session timeout (1.0 min)** |
+| Partial artifacts | 4316-byte patch and ATIF trace recovered; patch correctness **NOT RUN** |
+| Task acceptance | Actual artifact validator correctly rejected the timed-out task; owner result INCOMPLETE |
+| Provider cleanup | Owner and watcher each confirmed deletion with two absence reads |
+
+The 1-minute session limit is the unchanged frozen driver assertion
+`(timeout_seconds, max_tool_calls, max_time_minutes, max_turns) == (60, 10, 1.0, 50)`.
+The task failed at that inner agent boundary, rather than at the allocation's
+5400/6900/7200-second limits. Increasing an outer setup deadline cannot repair
+this failure. The partial patch does not establish successful completion or
+correctness. One unmatched request at the timeout is not evidence of a separate
+model-server failure. The primary exception remained intact despite a secondary
+startup teardown diagnostic (`owned startup process group did not disappear`).
+Outer worker cleanup found no survivors and removed scratch; the provider Pod
+was independently deleted. The precise secondary teardown cause is unproven.
+
+Coarse setup heartbeats concealed individual stage progress. A separate
+read-only observation, run **39879593186** at
+`9b63b8ad6ec1998cb38ba7580fe7e0b51cb001c7`, confirmed RUNNING/direct-SSH READY
+and matching hardware/cost without any mutation. Its workflow is retained for
+review. It does not change the fixed paid/watch source. Its log signatures
+describe a bounded sample, not a complete root-cause diagnosis.
+
+At **2026-10-23 09:50:16 KST**, read-only account run **39822924063**,
+attempt 4, showed **zero Pods**, **USD 0/h** spend, auto-pay false and balance
+**USD 6.5197309961**. The observed wallet decrease is **USD 0.6599421657**,
+not a final provider invoice. No second allocation, paid rerun, top-up, setting
+change, merge, submission or recurring wait occurred. Current stock in that
+final read does not renew this consumed authorization.
+
+All 17 owner-private records were recovered and their ciphertext verified;
+all 92 renewed free-qualification records were recovered earlier. Exact public
+preparation/owner/account/observation results and hashes are retained alongside
+`qualified-gpu-paid-execution-20261023.json`. All 202 prior state blobs and 18
+historical paid/watch heads remain unchanged. Main and Issue #1 remain unchanged
+and open respectively; PR #15 remains draft. The bound authorization JSON's
+UNUSED text is its qualification-time snapshot: the immutable paid claim and
+this terminal record establish CONSUMED without rewriting any qualified bytes.
+
+The preparation was useful: installation, original model transfer, GPU serving,
+real HTTP and error-safe cleanup all worked in this actual run. Its remaining
+predictive gap is explicit: scripted CPU responses cannot establish real-model
+task completion within one minute. A future paid attempt needs a fresh owner
+scope and a deliberate decision about that scientific budget. No ready-to-retry
+or successful-task claim follows from the infrastructure passes.
