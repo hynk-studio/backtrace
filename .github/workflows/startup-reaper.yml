@@ -24,10 +24,18 @@ jobs:
           mkdir -p evidence
           python_path="$(command -v python)"
           sudo "$python_path" tests/official_startup_reaper.py --expect "$REAPER_EXPECT" | tee evidence/startup-reaper.json
+      - name: Full actual Linux regression suite for the corrected owner
+        if: github.ref_name == 'bt-001-startup-reaper-fix-20261023'
+        run: |
+          set -euo pipefail
+          python_path="$(command -v python)"
+          sudo "$python_path" -m unittest discover -s tests -v 2>&1 | tee evidence/cpu-tests.log
+          python tools/backtrace.py preflight | tee evidence/preflight.json
+          git diff --check
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
           name: startup-reaper-${{ github.run_id }}
-          path: evidence/startup-reaper.json
+          path: evidence/
           retention-days: 7
           if-no-files-found: error

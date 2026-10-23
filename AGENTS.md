@@ -510,3 +510,29 @@ model call, agent rerun or reference control is used. Strict R1 completion and
 public-test correctness are separate; rejected/incomplete artifacts remain a
 partial diagnostic and can never become a completed-task model score. Preserve
 the old hard-bound R0 follow-up module and its original receipts unchanged.
+
+Actual R1 attempt 39947273089 at 6973f96255cdecf2d02f7e1ad976522f7982699d
+is CONSUMED in EU-RO-1 Pod i3kf5oiwlg1z3r. The agent submitted a 2350-byte
+patch in 200.585s, 30 tools / 33 LLM calls, with 35 paired HTTP200 responses;
+strict R1 completion passed. The server-phase process-group teardown then
+raised RuntimeError, so overall owner status remains INCOMPLETE. Outer UID
+cleanup found no survivors; owner and watcher independently confirmed deletion.
+Free CPU evaluation 39950033316 at 92456475a47fd5003a25306db48d412d31cc6cf9
+verified the exact recovered patch: 4 public tests, 2 pass / 2 fail, unresolved.
+Do not promote agent completion to correctness or overall operational success.
+At 21:04:15 KST account read attempt9 showed zero Pods/spend, auto-pay false,
+USD5.8736758757 balance; observed wallet decrease USD0.6460551204.
+
+Free ownership probe 39951747247 at 16d1df8ea19d4e760226aad13bcd6f1e3aea8ba6
+reproduced the same stop error with a dropped-UID phase and separate outer
+subreaper. The remaining member was a dead Z process owned by the outer parent;
+that outer parent reaped it after the inner phase exited. Original GPU member
+states were not retained, so the exact original members remain unproven. The
+first probe 39951434934 failed before phase execution and is not reproduction
+evidence. The corrected server now enables local child reaping before spawning,
+restores the prior role after teardown and records PID/PPID/state on future
+cleanup failure. The new same-topology regression and full Linux suite must
+pass. Current binding grows to 96 files; the old 93-file receipt rejects this
+changed code before network. This free correction does not mint another paid
+scope or a current-source full paid-launch qualification. Preserve both actual
+new paid/watch heads at 6973f96255cdecf2d02f7e1ad976522f7982699d; no paid rerun.

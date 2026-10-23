@@ -4,7 +4,9 @@ The official start/readiness loop still runs. Its public build_cmd/is_healthy/st
 hooks add a private process group, fresh-log observation, and group cleanup.
 No thread, model import, request retry, or installed-wheel modification.
 """
+import ctypes
 import hashlib
+import json
 import math
 import os
 from pathlib import Path
@@ -136,6 +138,22 @@ class FatalTrace:
             self.pending = b'!' * (CONTEXT_LIMIT + 1)
 
 
+def child_subreaper(value=None):
+    """Keep orphaned engine workers with their actual server-phase owner."""
+    if sys.platform != 'linux':
+        return None
+    libc = ctypes.CDLL(None, use_errno=True)
+    if value is None:
+        current = ctypes.c_int()
+        if libc.prctl(37, ctypes.byref(current), 0, 0, 0) != 0:
+            raise OSError(ctypes.get_errno(), 'read local child subreaper')
+        return current.value
+    if value not in (0, 1):
+        raise ValueError('binary child subreaper state required')
+    if libc.prctl(36, value, 0, 0, 0) != 0:
+        raise OSError(ctypes.get_errno(), 'set local child subreaper')
+
+
 def group_members(pgid):
     """Only PID/group/status metadata; no command lines or other users' secrets."""
     if sys.platform == 'linux':
@@ -209,7 +227,18 @@ def stop_group(process, pgid, grace=1.0):
         except ChildProcessError:
             pass
         if time.monotonic() >= until:
-            raise RuntimeError('owned startup process group did not disappear')
+            details = []
+            for pid in group_members(pgid):
+                row = {'pid': pid}
+                if sys.platform == 'linux':
+                    try:
+                        fields = (Path('/proc') / str(pid) / 'stat').read_text().rpartition(') ')[2].split()
+                        row.update(state=fields[0], ppid=int(fields[1]), pgid=int(fields[2]))
+                    except (OSError, ValueError, IndexError) as error:
+                        row['observation_error'] = type(error).__name__
+                details.append(row)
+            raise RuntimeError('owned startup process group did not disappear; remaining='
+                               + json.dumps(details, sort_keys=True))
         time.sleep(0.02)
 
 
@@ -235,11 +264,20 @@ def guarded_server(server_type, *, total_deadline, error_type=None):
             self._offset = 0
             self._caught_up = True
             self._group = None
+            self._subreaper_previous = None
             self._closed = False
             self._observing = True
             if now >= self._deadline:
                 raise error_type('startup total deadline already expired', output='')
             try:
+                # The root driver is a separate outer subreaper. Its exec'ed,
+                # dropped-UID server phase does not inherit that role. Without
+                # a local owner, dead engine workers become outer-owned zombies
+                # that this phase cannot waitpid while the outer waits for it.
+                self._subreaper_previous = child_subreaper()
+                if self._subreaper_previous is not None:
+                    child_subreaper(1)
+                    self.startup_observation['child_subreaper_before'] = self._subreaper_previous
                 return super().start()
             except BaseException as error:
                 # Some wrapper exits call stop before raising their timeout.
@@ -352,6 +390,9 @@ def guarded_server(server_type, *, total_deadline, error_type=None):
                     return
             try:
                 super().stop(timeout=timeout)
+                if self._subreaper_previous is not None:
+                    child_subreaper(self._subreaper_previous)
+                    self.startup_observation['child_subreaper_restored'] = self._subreaper_previous
             except Exception as cleanup_error:
                 self.startup_observation['cleanup_error'] = str(cleanup_error)
                 self.startup_observation['teardown_seconds'] = time.monotonic() - before
