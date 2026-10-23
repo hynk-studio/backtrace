@@ -1,0 +1,194 @@
+{
+  "actual_gpu_teardown_with_fix": "NOT RUN",
+  "artifacts": {
+    "private": {
+      "cipher": {
+        "ciphertext_bytes": 2120456,
+        "ciphertext_sha256": "dc056ad90702bb69bd18ff31d4486453415127d4cba1b4a5f43260e6e226b629",
+        "files": 112,
+        "format": "age-v1",
+        "plaintext_bytes": 2031803
+      },
+      "id": 12501969999,
+      "zip_sha256": "313cc4a80a1cb14b6690a5f871673237c0e7abb50efa8ab4606caab2cf692c05"
+    },
+    "public": {
+      "id": 12502069413,
+      "zip_sha256": "6ffffe0cabff16ef70f198d4f5c7175b0123c7e7b53db5a88c4e82b109dbb744"
+    }
+  },
+  "bound_files": 96,
+  "connected": {
+    "host": {
+      "controls": [
+        {
+          "actual_tests": {
+            "errors": 0,
+            "failures": 2,
+            "junit_sha256": "7ac0ab0b1cb4a2664ed899af8d90f78ebcb3d3d3ed3d4cd4b431097ebaec3f64",
+            "passed": 2,
+            "skipped": 0,
+            "tests": 4
+          },
+          "control": "recovered-patch"
+        },
+        {
+          "actual_tests": {
+            "errors": 0,
+            "failures": 0,
+            "junit_sha256": "9a080d57de00062422cb3b4f22d4a04b0f5bbc9faa9f55e67009231de837afa5",
+            "passed": 4,
+            "skipped": 0,
+            "tests": 4
+          },
+          "control": "public-reference-control"
+        }
+      ],
+      "observed_task": {
+        "llm_calls": 14,
+        "patch_submitted": true,
+        "seconds": 69.20356917381287,
+        "tool_calls": 12
+      },
+      "receipt": {
+        "instance_id": "fastapi_11194",
+        "llm_calls": 14,
+        "patch_bytes": 305,
+        "patch_sha256": "7977e5980ad7a195b1912366aad9b082803516009791cb56cea0a0e561e93488",
+        "status": "PASS",
+        "tool_calls": 12,
+        "trace_sha256": "3b5cd6bd11e12ddbda5bdad45e8463da8e46ca17ef83955ed449809412678c4a",
+        "verification": "NOT RUN; task completion is not patch correctness",
+        "wire_requests": 14
+      }
+    },
+    "image": {
+      "controls": [
+        {
+          "actual_tests": {
+            "errors": 0,
+            "failures": 2,
+            "junit_sha256": "8608ef78732244c8fcc3cae30a021443fc30de35cf13f21088fa30bad096ace1",
+            "passed": 2,
+            "skipped": 0,
+            "tests": 4
+          },
+          "control": "recovered-patch"
+        },
+        {
+          "actual_tests": {
+            "errors": 0,
+            "failures": 0,
+            "junit_sha256": "13c37a845a016c5d0161377e47afdd45308a8819ca42c2be2cb7d554a76554b9",
+            "passed": 4,
+            "skipped": 0,
+            "tests": 4
+          },
+          "control": "public-reference-control"
+        }
+      ],
+      "observed_task": {
+        "llm_calls": 14,
+        "patch_submitted": true,
+        "seconds": 69.61863851547241,
+        "tool_calls": 12
+      },
+      "receipt": {
+        "instance_id": "fastapi_11194",
+        "llm_calls": 14,
+        "patch_bytes": 305,
+        "patch_sha256": "7977e5980ad7a195b1912366aad9b082803516009791cb56cea0a0e561e93488",
+        "status": "PASS",
+        "tool_calls": 12,
+        "trace_sha256": "213ef19498bdbbd0b9163b9ab693b2aaf85c0357b1797fe2b0e0850ddb932425",
+        "verification": "NOT RUN; task completion is not patch correctness",
+        "wire_requests": 14
+      }
+    }
+  },
+  "full_setup_seconds": 242.513,
+  "linux": {
+    "job_id": 120410749088,
+    "run_id": 39952681035,
+    "seconds": 30.636,
+    "status": "PASS",
+    "tests": 352
+  },
+  "paid_launch_authorization": "NONE; consumed claim preserved; historical active 93-file receipt left unchanged",
+  "private_files": 112,
+  "projection_checks": "all match",
+  "qualification_scope": "FULL_FREE_CPU",
+  "report_bytes": 69615,
+  "report_sha256": "0b7e52b5a3e5bf35f0a97d995edbd209263832b25dd9f77b2cfea38777e5b044",
+  "run_id": "39952681157",
+  "schema_version": 2,
+  "source_sha": "4dcc641cc772988d76cbd2cfa500d95c7326f3e5",
+  "ssh_cpu_log": {
+    "bytes": 2699,
+    "offset": 68207,
+    "sha256": "273f83b852cef53d20e85c781d8905f3a618b495d921f5c493f362e51e40f020"
+  },
+  "status": "PASS",
+  "subreaper_observations": [
+    {
+      "before": 0,
+      "path": "image-result/connected-task/model-error/execution.log",
+      "restored": 0,
+      "teardown_seconds": 8.515799981978489e-05
+    },
+    {
+      "before": 0,
+      "path": "image-result/connected-task/tools/execution.log",
+      "restored": 0,
+      "teardown_seconds": 8.796199995231291e-05
+    },
+    {
+      "before": 0,
+      "path": "image-result/connected-task/success/execution.log",
+      "restored": 0,
+      "teardown_seconds": 8.974499996838858e-05
+    },
+    {
+      "before": 0,
+      "path": "image-result/connected-task/missing-route/execution.log",
+      "restored": 0,
+      "teardown_seconds": 6.392500017682323e-05
+    },
+    {
+      "before": 0,
+      "path": "image-result/connected-task/search-fallback/execution.log",
+      "restored": 0,
+      "teardown_seconds": 8.89030000053026e-05
+    },
+    {
+      "before": 0,
+      "path": "connected-task/model-error/execution.log",
+      "restored": 0,
+      "teardown_seconds": 9.811800009629223e-05
+    },
+    {
+      "before": 0,
+      "path": "connected-task/tools/execution.log",
+      "restored": 0,
+      "teardown_seconds": 9.582500001670269e-05
+    },
+    {
+      "before": 0,
+      "path": "connected-task/success/execution.log",
+      "restored": 0,
+      "teardown_seconds": 9.748599995873519e-05
+    },
+    {
+      "before": 0,
+      "path": "connected-task/missing-route/execution.log",
+      "restored": 0,
+      "teardown_seconds": 7.588500000110798e-05
+    },
+    {
+      "before": 0,
+      "path": "connected-task/search-fallback/execution.log",
+      "restored": 0,
+      "teardown_seconds": 0.00010172299994337664
+    }
+  ]
+}

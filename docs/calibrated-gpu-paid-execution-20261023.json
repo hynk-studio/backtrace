@@ -1,0 +1,343 @@
+{
+  "actual_counts": {
+    "allocations": 1,
+    "model_servers": 1,
+    "public_agent_tasks": 1
+  },
+  "actual_paid_source": "6973f96255cdecf2d02f7e1ad976522f7982699d",
+  "agent_task": {
+    "completed": true,
+    "result": {
+      "agent_error": null,
+      "budget": {
+        "llm_calls": 50,
+        "session_seconds": 300,
+        "tool_calls": 30
+      },
+      "instance_id": "fastapi_11194",
+      "llm_calls": 33,
+      "patch_bytes": 2350,
+      "patch_sha256": "a5016a37f06976900f50c75b198c2dc6560371edd2f191466305c58585b4dbed",
+      "patch_submitted": true,
+      "protocol": "R1-budget5m-search-guidance-v1/A10080-TP1",
+      "seconds": 200.5847647190094,
+      "tool_calls": 30,
+      "verification": "NOT RUN; evaluator-only record not mounted"
+    },
+    "strict_receipt": {
+      "instance_id": "fastapi_11194",
+      "llm_calls": 33,
+      "patch_bytes": 2350,
+      "patch_sha256": "a5016a37f06976900f50c75b198c2dc6560371edd2f191466305c58585b4dbed",
+      "status": "PASS",
+      "tool_calls": 30,
+      "trace_sha256": "3c60afc61d9c1d8f0e1babd9e0ec7e192ee6762a96bdc60a0def291a4aa70e59",
+      "verification": "NOT RUN; task completion is not patch correctness",
+      "wire_requests": 35
+    }
+  },
+  "artifacts": {
+    "owner_private": {
+      "id": 12500252048,
+      "zip_sha256": "2b2dfdb4ae8345e54ca45ca43dafa7c37a72342acb3b80fed9d265fec5ebbe97"
+    },
+    "owner_public": {
+      "id": 12500212114,
+      "report_bytes": 5369,
+      "report_sha256": "8575a31e863f712a5f84ea0f06c2e8bbcdeee348e9e01b0ccd21b42b087b9455",
+      "zip_sha256": "13e48cf429328d1f046ac46ffe6884402583dcd5a259921b2d9fa09d42acad7d"
+    }
+  },
+  "authorization": "owner-calibrated-gpu-20261023",
+  "authorization_status": "CONSUMED; never rerun",
+  "bootstrap_ready_seconds": 95,
+  "claim": {
+    "attempt": "a90828af9e28484380c4a3fee8a2e85a",
+    "authorization": "owner-calibrated-gpu-20261023",
+    "costs": {
+      "compute_per_hour": "1.79",
+      "hourly_all_in": "1.804",
+      "initial_balance": "6.5197309961",
+      "maximum_all_in": "3.608",
+      "other_total": "0",
+      "spent_before": "3.4802690039",
+      "storage_per_hour": "0.014",
+      "tax_rate": "0"
+    },
+    "name": "backtrace-a100-a90828af9e28484380c4a3fee8a2e85a",
+    "policy": "prepaid10-actions-v1",
+    "region": "EU-RO-1",
+    "requested_at": 1792755474,
+    "run": "R1-budget5m-search-guidance-v1/A10080-TP1",
+    "run_id": "39947273089",
+    "schema_version": 1,
+    "setup_seconds": 5400,
+    "source_sha": "6973f96255cdecf2d02f7e1ad976522f7982699d",
+    "total_seconds": 7200,
+    "useful_seconds": 6900,
+    "watcher_run_id": "39947179144"
+  },
+  "cost_observation": {
+    "cumulative_observed_wallet_spend": "4.1263241243",
+    "initial_balance": "6.5197309961",
+    "latest_balance": "5.7669749701",
+    "latest_cumulative_observed_spend": "4.2330250299",
+    "latest_observed_wallet_decrease": "0.7527560260",
+    "not_final_invoice": true,
+    "observed_wallet_decrease": "0.6460551204",
+    "post_delete_balance": "5.8736758757"
+  },
+  "exclusions_performed": [],
+  "independent_post_delete": {
+    "auto_pay": false,
+    "balance": "5.8736758757",
+    "current_spend_per_hour": "0",
+    "job_id": 120403669884,
+    "observed_at": "2026-10-23T12:04:15Z",
+    "pods": 0,
+    "run_attempt": 9,
+    "run_id": 39822924063
+  },
+  "independent_watcher_cleanup": {
+    "absence_reads": 2,
+    "at": 1792757004,
+    "attempt": "a90828af9e28484380c4a3fee8a2e85a",
+    "phase": "deleted",
+    "pod_id": "i3kf5oiwlg1z3r",
+    "reason": "heartbeat_lost"
+  },
+  "latest_independent_account": {
+    "job_id": 120423352558,
+    "report": {
+      "allocation_requests": 0,
+      "availability": {
+        "account": {
+          "auto_pay": false,
+          "credit_balance": "5.7669749701",
+          "current_spend_per_hour": "0"
+        },
+        "allocation_requests": 0,
+        "observed_at": "2026-10-23T12:51:13Z",
+        "offer": null,
+        "regions": [
+          {
+            "available": false,
+            "exact_quote": {
+              "availableGpuCounts": null,
+              "minMemory": null,
+              "minVcpu": null,
+              "stockStatus": null,
+              "supportPublicIp": null,
+              "uninterruptablePrice": null
+            },
+            "id": "CA-MTL-3",
+            "stock": null
+          },
+          {
+            "available": false,
+            "exact_quote": {
+              "availableGpuCounts": null,
+              "minMemory": null,
+              "minVcpu": null,
+              "stockStatus": null,
+              "supportPublicIp": null,
+              "uninterruptablePrice": null
+            },
+            "id": "EU-RO-1",
+            "stock": null
+          },
+          {
+            "available": false,
+            "exact_quote": {
+              "availableGpuCounts": null,
+              "minMemory": null,
+              "minVcpu": null,
+              "stockStatus": null,
+              "supportPublicIp": null,
+              "uninterruptablePrice": null
+            },
+            "id": "US-KS-2",
+            "stock": null
+          },
+          {
+            "available": false,
+            "exact_quote": {
+              "availableGpuCounts": null,
+              "minMemory": null,
+              "minVcpu": null,
+              "stockStatus": null,
+              "supportPublicIp": null,
+              "uninterruptablePrice": null
+            },
+            "id": "US-MO-1",
+            "stock": null
+          }
+        ],
+        "settings_changed": false,
+        "status": "NO_QUALIFIED_REGION"
+      },
+      "pods": [],
+      "run_id": "39822924063",
+      "settings_changed": false,
+      "source_sha": "59d430b6c552b8ad3b9d7b03708df77c8e7e0b4b",
+      "status": "PASS"
+    },
+    "run_attempt": 10,
+    "run_id": 39822924063
+  },
+  "overall_outcome": "INCOMPLETE; server process-group teardown raised after agent completion",
+  "owner_cleanup": {
+    "absence_reads": 2,
+    "at": 1792756991,
+    "attempt": "a90828af9e28484380c4a3fee8a2e85a",
+    "phase": "deleted",
+    "pod_id": "i3kf5oiwlg1z3r",
+    "reason": "owner_finished"
+  },
+  "paid_job_id": 120392883099,
+  "paid_run_attempt": 1,
+  "paid_run_id": 39947273089,
+  "pod": {
+    "id": "i3kf5oiwlg1z3r",
+    "region": "EU-RO-1"
+  },
+  "prevention_assessment": {
+    "cleanup": "new deterministic ownership bug reproduced on CPU; original GPU member states not retained",
+    "method_comparison": "not a matched R0/R1 comparison and not independent held-out performance",
+    "one_minute_cutoff": "current R1 agent completed at 200.585s with explicit submission",
+    "search_fallback": "one empty graph query followed by original text-search calls",
+    "task_correctness": "not resolved; 2 of 4 public tests failed"
+  },
+  "private_evidence": {
+    "ciphertext_bytes": 328092,
+    "ciphertext_sha256": "53c31a9b208fa07adee5021d14bbc22cc69870c09eb06b8c43ff72e142fe9071",
+    "files": 17,
+    "format": "age-v1",
+    "plaintext_bytes": 304213
+  },
+  "public_correctness": {
+    "actual_tests": {
+      "errors": 0,
+      "failures": 2,
+      "junit_sha256": "ca7265773a434c1ed94bb4dbeab0d5ccfa1eea1f32dcadc497c3f00cdf1bf581",
+      "passed": 2,
+      "skipped": 0,
+      "tests": 4
+    },
+    "agent_runs": 0,
+    "completed_agent_task": true,
+    "gpu_allocations": 0,
+    "model_calls": 0,
+    "private_files": 12,
+    "receipt": {
+      "instance_id": "fastapi_11194",
+      "llm_calls": 33,
+      "patch_bytes": 2350,
+      "patch_sha256": "a5016a37f06976900f50c75b198c2dc6560371edd2f191466305c58585b4dbed",
+      "status": "PASS",
+      "tool_calls": 30,
+      "trace_sha256": "3c60afc61d9c1d8f0e1babd9e0ec7e192ee6762a96bdc60a0def291a4aa70e59",
+      "verification": "NOT RUN; task completion is not patch correctness",
+      "wire_requests": 35
+    },
+    "receipt_matches_original_paid_bytes": true,
+    "report_bytes": 4150,
+    "report_sha256": "1e355f3602813cd4926f8e9979ac99ed6ff6f0bf738b48b737f39310937b11c1",
+    "resolved": false,
+    "run_id": "39950033316",
+    "source_sha": "92456475a47fd5003a25306db48d412d31cc6cf9",
+    "status": "PASS"
+  },
+  "runtime": {
+    "effective_parallel_config": {
+      "disable_custom_all_reduce": true,
+      "distributed_executor_backend": null,
+      "event": "effective_parallel_config",
+      "tensor_parallel_size": 1,
+      "unix_seconds": 1792756750.0756457
+    },
+    "qualified_hardware": {
+      "driver": "595.91.07",
+      "event": "qualified_hardware",
+      "memory_mib": 81920,
+      "name": "NVIDIA A100 80GB PCIe",
+      "native_bf16": true,
+      "runtime": "12.8.90",
+      "runtime_evidence": {
+        "api_version": 12080,
+        "library_sha256": "c3a75b33af334a3486d197dbd1584a2985183ba4688d237a2be5f2f679329920",
+        "version": "12.8.90",
+        "version_source": "qualified wheel metadata and loaded libcudart cudaRuntimeGetVersion"
+      },
+      "sm": [
+        8,
+        0
+      ],
+      "tp": 1,
+      "unix_seconds": 1792756576.401575
+    },
+    "run_begin": {
+      "allocation_requested_at": 1792755474.0,
+      "cpu_prerequisites_only": false,
+      "event": "run_begin",
+      "provider_expiry_seconds": 7200,
+      "request_to_process_seconds": 1076.0044162273407,
+      "run_name": "R1-budget5m-search-guidance-v1/A10080-TP1",
+      "unix_seconds": 1792756550.010059,
+      "useful_deadline": 1792762374.0
+    },
+    "run_end": {
+      "event": "run_end",
+      "gpu_session_termination": "requires separate provider readback",
+      "receipt_bytes": 224082,
+      "scratch_removed": true,
+      "seconds": 414.5555217266083,
+      "unix_seconds": 1792756964.5599718,
+      "verification": "NOT RUN",
+      "worker_cleanup_confirmed": true
+    },
+    "server_healthy": {
+      "event": "server_healthy",
+      "model_ids": [
+        "/kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2"
+      ],
+      "requested_dtype": "bfloat16",
+      "resolved_dtype": "torch.bfloat16",
+      "startup_seconds": 169.31799745559692,
+      "unix_seconds": 1792756750.0757108
+    },
+    "worker_cleanup": {
+      "event": "worker_cleanup",
+      "survivors": [],
+      "unix_seconds": 1792756964.4727414
+    }
+  },
+  "schema_version": 1,
+  "search_and_submission": {
+    "empty_graph_counts": [
+      0
+    ],
+    "graph_calls": 1,
+    "last_six_tools": [
+      "run_command",
+      "read_file",
+      "run_command",
+      "read_file",
+      "edit_file",
+      "submit_patch"
+    ],
+    "model_dependent_guidance": "observed once, not a guarantee",
+    "text_search_after_empty_graph": 8,
+    "text_search_commands": 8,
+    "tool_event_counts": {
+      "edit_file": 2,
+      "read_file": 11,
+      "run_command": 14,
+      "search_similar_code": 1,
+      "submit_patch": 1,
+      "write_file": 3
+    }
+  },
+  "watcher_job_id": 120392570323,
+  "watcher_run_id": 39947179144
+}

@@ -1,0 +1,188 @@
+{
+  "allocation_requests": 1,
+  "bootstrap": {
+    "deadline_seconds": 1200,
+    "history": [
+      {
+        "direct_endpoint_present": false,
+        "direct_endpoint_valid": false,
+        "elapsed_seconds": 6,
+        "provider_status": "RUNNING",
+        "readiness": "WAIT_DIRECT_ENDPOINT",
+        "runtime_present": false,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": false,
+        "direct_endpoint_valid": false,
+        "elapsed_seconds": 28,
+        "provider_status": "RUNNING",
+        "readiness": "WAIT_DIRECT_ENDPOINT",
+        "runtime_present": false,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": false,
+        "direct_endpoint_valid": false,
+        "elapsed_seconds": 51,
+        "provider_status": "RUNNING",
+        "readiness": "WAIT_DIRECT_ENDPOINT",
+        "runtime_present": false,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": false,
+        "direct_endpoint_valid": false,
+        "elapsed_seconds": 73,
+        "provider_status": "RUNNING",
+        "readiness": "WAIT_DIRECT_ENDPOINT",
+        "runtime_present": false,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": true,
+        "direct_endpoint_valid": true,
+        "elapsed_seconds": 95,
+        "provider_status": "RUNNING",
+        "readiness": "READY",
+        "runtime_present": true,
+        "started_at_present": true
+      }
+    ],
+    "last": {
+      "direct_endpoint_present": true,
+      "direct_endpoint_valid": true,
+      "elapsed_seconds": 95,
+      "provider_status": "RUNNING",
+      "readiness": "READY",
+      "runtime_present": true,
+      "started_at_present": true
+    },
+    "polls": 5
+  },
+  "cleanup": {
+    "absence_reads": 2,
+    "at": 1792756991,
+    "attempt": "a90828af9e28484380c4a3fee8a2e85a",
+    "phase": "deleted",
+    "pod_id": "i3kf5oiwlg1z3r",
+    "reason": "owner_finished"
+  },
+  "failure": {
+    "error_type": "RuntimeError",
+    "http_status": null,
+    "stage": "worker_exit"
+  },
+  "mode": "paid",
+  "preparation": {
+    "allocation_requests": 0,
+    "availability": {
+      "account": {
+        "auto_pay": false,
+        "credit_balance": "6.5197309961",
+        "current_spend_per_hour": "0"
+      },
+      "allocation_requests": 0,
+      "costs": {
+        "compute_per_hour": "1.79",
+        "hourly_all_in": "1.804",
+        "initial_balance": "6.5197309961",
+        "maximum_all_in": "3.608",
+        "other_total": "0",
+        "spent_before": "3.4802690039",
+        "storage_per_hour": "0.014",
+        "tax_rate": "0"
+      },
+      "observed_at": "2026-10-23T11:37:52Z",
+      "offer": {
+        "authenticated": true,
+        "auto_pay": false,
+        "cloud": "SECURE",
+        "compute_per_hour": "1.79",
+        "container_disk_gb": 100,
+        "credit_balance": "6.5197309961",
+        "gpu": "NVIDIA A100 80GB PCIe",
+        "gpu_count": 1,
+        "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+        "interruptible": false,
+        "network_volume": null,
+        "observed_at": "2026-10-23T11:37:52Z",
+        "other_total": "0",
+        "ram_gb": 125,
+        "region": "EU-RO-1",
+        "region_policy": "owner-equivalent-region-20261019",
+        "stock_available": true,
+        "storage_per_hour": "0.014",
+        "tax_rate": "0",
+        "vcpus": 16,
+        "volume_gb": 0
+      },
+      "regions": [
+        {
+          "available": true,
+          "id": "CA-MTL-3",
+          "stock": "Low"
+        },
+        {
+          "available": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 125,
+            "minVcpu": 16,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 1.79
+          },
+          "id": "EU-RO-1",
+          "stock": "Low"
+        },
+        {
+          "available": true,
+          "id": "US-KS-2",
+          "stock": "Low"
+        },
+        {
+          "available": true,
+          "id": "US-MO-1",
+          "stock": "Low"
+        }
+      ],
+      "settings_changed": false,
+      "status": "QUALIFIED"
+    },
+    "cpu": {
+      "run_id": 39946790168,
+      "source_sha": "6973f96255cdecf2d02f7e1ad976522f7982699d",
+      "status": "PASS"
+    },
+    "create_body_bytes": 5578,
+    "driver_sha256": "eca5e2ee5065419272e99f8407d09e63798801640f2a8005e5189e7aba9f1b79",
+    "free_stock_wait_seconds": 0,
+    "qualification": {
+      "bound_files": 93,
+      "report_sha256": "0cc7f2abe83757dc310318eeac9e46054c5e170a8f8921a85108969e6c38429f",
+      "run_id": "39942999774",
+      "source_sha": "7f0de3ccbd8cf469d574f3fffb088126a2777f66"
+    },
+    "streams": {
+      "model": 8,
+      "task": 8,
+      "wheels": 246
+    },
+    "transport": {
+      "binary_bytes": 1400320,
+      "binary_sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a",
+      "method": "mutual-tls13-then-pinned-ssh",
+      "minimum_validity_seconds": 3600
+    }
+  },
+  "private_evidence": {
+    "ciphertext_bytes": 328092,
+    "ciphertext_sha256": "53c31a9b208fa07adee5021d14bbc22cc69870c09eb06b8c43ff72e142fe9071",
+    "files": 17,
+    "format": "age-v1",
+    "plaintext_bytes": 304213
+  },
+  "status": "INCOMPLETE",
+  "worker_exit": 1
+}

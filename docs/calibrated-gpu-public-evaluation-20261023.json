@@ -1,0 +1,131 @@
+{
+  "agent_runs": 0,
+  "binding": {
+    "attempt": "a90828af9e28484380c4a3fee8a2e85a",
+    "authorization": "owner-calibrated-gpu-20261023",
+    "pod_id": "i3kf5oiwlg1z3r",
+    "run_id": "39947273089",
+    "source_sha": "6973f96255cdecf2d02f7e1ad976522f7982699d"
+  },
+  "cleanup": {
+    "absence_reads": 2,
+    "at": 1792757004,
+    "attempt": "a90828af9e28484380c4a3fee8a2e85a",
+    "phase": "deleted",
+    "pod_id": "i3kf5oiwlg1z3r",
+    "reason": "heartbeat_lost"
+  },
+  "evaluator": {
+    "bytes": 1984455,
+    "credentials": "short-lived file URLs only",
+    "files": 1,
+    "manifest_sha256": "944a638b55ed1d14317a7684601fcb1758c7d0f8c1b61749b94f175b4ffe261e",
+    "phase": "bootstrap",
+    "schema_version": 1,
+    "transport": "direct-https",
+    "verified": true
+  },
+  "gpu_allocations": 0,
+  "handoff": {
+    "archive_sha256": "66c0d6fba4debbfe0df6946c1c97533857ec19647dcfe1c9d228c07f50bba62b",
+    "ciphertext_bytes": 26926,
+    "ciphertext_sha256": "f2af94ab71973c8c50cf99455d6ae64f6eb60d0ad118cff4c93dbb6d0d39f57f",
+    "files": 4
+  },
+  "model_calls": 0,
+  "private_evidence": {
+    "ciphertext_bytes": 256361,
+    "ciphertext_sha256": "33469141fd3febdf1eeec3bcffa5298c2503d1b3a2c9649f9a1c2ebb8b6465bb",
+    "files": 12,
+    "format": "age-v1",
+    "plaintext_bytes": 243794
+  },
+  "provider_mutations": 0,
+  "result": {
+    "completed_agent_task": true,
+    "completion": {
+      "instance_id": "fastapi_11194",
+      "llm_calls": 33,
+      "patch_bytes": 2350,
+      "patch_sha256": "a5016a37f06976900f50c75b198c2dc6560371edd2f191466305c58585b4dbed",
+      "status": "PASS",
+      "tool_calls": 30,
+      "trace_sha256": "3c60afc61d9c1d8f0e1babd9e0ec7e192ee6762a96bdc60a0def291a4aa70e59",
+      "verification": "NOT RUN; task completion is not patch correctness",
+      "wire_requests": 35
+    },
+    "completion_validation_error": null,
+    "evaluation": {
+      "completed_agent_task": "not assessed by verifier",
+      "controls": [
+        {
+          "actual_tests": {
+            "errors": 0,
+            "failures": 2,
+            "junit_sha256": "ca7265773a434c1ed94bb4dbeab0d5ccfa1eea1f32dcadc497c3f00cdf1bf581",
+            "passed": 2,
+            "skipped": 0,
+            "tests": 4
+          },
+          "control": "recovered-patch",
+          "duration_seconds": 3.8031247989999883,
+          "error_present": false,
+          "resolved": false,
+          "test_exit_code": 1,
+          "validation_error": null
+        }
+      ],
+      "evaluator_uid": 65533,
+      "gpu_allocations": 0,
+      "model_score": {
+        "resolved": false,
+        "source": "validated recovered task artifacts"
+      },
+      "partial_patch_diagnostic": null,
+      "public_spec_sha256": "e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6",
+      "reference_scope": "NOT USED",
+      "status": "PASS"
+    },
+    "original_task_result": {
+      "agent_error": null,
+      "budget": {
+        "llm_calls": 50,
+        "session_seconds": 300,
+        "tool_calls": 30
+      },
+      "instance_id": "fastapi_11194",
+      "llm_calls": 33,
+      "patch_bytes": 2350,
+      "patch_sha256": "a5016a37f06976900f50c75b198c2dc6560371edd2f191466305c58585b4dbed",
+      "patch_submitted": true,
+      "protocol": "R1-budget5m-search-guidance-v1/A10080-TP1",
+      "seconds": 200.5847647190094,
+      "tool_calls": 30,
+      "verification": "NOT RUN; evaluator-only record not mounted"
+    }
+  },
+  "run_id": "39950033316",
+  "source_sha": "92456475a47fd5003a25306db48d412d31cc6cf9",
+  "stage": "finished",
+  "status": "PASS",
+  "task": {
+    "bytes": 222386501,
+    "credentials": "short-lived file URLs only",
+    "files": 8,
+    "manifest_sha256": "7e757d6a8b6d61fc917a623509a3ed5ee13b1ed69a91d3956550d776709d2ee8",
+    "phase": "task",
+    "schema_version": 1,
+    "transport": "direct-https",
+    "verified": true
+  },
+  "wheels": {
+    "bytes": 5373545117,
+    "credentials": "short-lived file URLs only",
+    "files": 246,
+    "manifest_sha256": "054e0e813a797e1eb4d76bab563b3bfbbefe104010391cec30f24d99a48da569",
+    "phase": "bootstrap",
+    "schema_version": 1,
+    "transport": "direct-https",
+    "verified": true
+  }
+}

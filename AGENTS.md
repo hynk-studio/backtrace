@@ -536,3 +536,22 @@ pass. Current binding grows to 96 files; the old 93-file receipt rejects this
 changed code before network. This free correction does not mint another paid
 scope or a current-source full paid-launch qualification. Preserve both actual
 new paid/watch heads at 6973f96255cdecf2d02f7e1ad976522f7982699d; no paid rerun.
+
+Full post-correction free regression 39952681157 at
+`4dcc641cc772988d76cbd2cfa500d95c7326f3e5` passed all 24 stages, actual SSH
+setup/cleanup (242.513s), host and exact offline-image task/HTTP/evaluator
+controls and concurrent controllers. All 112 private records, both R1 task
+receipts, four JUnit hashes/counts, retained SSH CPU log and all 96 bindings
+were verified. Review-source Linux 39952681035 passed all 352 tests. Read the
+new calibrated GPU paid/public-evaluation/reaper-correction/postfix-free
+records. The actual paid source remains6973f96255cdecf2d02f7e1ad976522f7982699d.
+Agent completion passed but public correctness failed2/4; overall paid status
+remains INCOMPLETE from server teardown. Corrected GPU teardown NOT RUN. All
+claims remain consumed; no current paid gate was minted or actual head moved.
+
+Final independent account read39822924063 attempt10/job120423352558 at
+21:51:13KST showed zero Pods/spend and auto-pay false. Later-settled balance
+USD5.7669749701; observed decrease from the pre-run wallet USD0.7527560260,
+cumulative observed wallet spend USD4.2330250299. Preserve the earlier
+21:04 observation rather than treating its then-incomplete debit as final.
+The final stock query found no qualified region. No new claim/create follows.

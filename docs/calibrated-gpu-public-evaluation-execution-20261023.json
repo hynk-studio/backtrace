@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "completed_agent_task": true,
+  "resolved": false,
+  "actual_tests": {
+    "tests": 4,
+    "failures": 2,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 2,
+    "junit_sha256": "ca7265773a434c1ed94bb4dbeab0d5ccfa1eea1f32dcadc497c3f00cdf1bf581"
+  },
+  "receipt": {
+    "status": "PASS",
+    "instance_id": "fastapi_11194",
+    "llm_calls": 33,
+    "wire_requests": 35,
+    "tool_calls": 30,
+    "patch_bytes": 2350,
+    "patch_sha256": "a5016a37f06976900f50c75b198c2dc6560371edd2f191466305c58585b4dbed",
+    "trace_sha256": "3c60afc61d9c1d8f0e1babd9e0ec7e192ee6762a96bdc60a0def291a4aa70e59",
+    "verification": "NOT RUN; task completion is not patch correctness"
+  },
+  "report_sha256": "1e355f3602813cd4926f8e9979ac99ed6ff6f0bf738b48b737f39310937b11c1",
+  "report_bytes": 4150,
+  "source_sha": "92456475a47fd5003a25306db48d412d31cc6cf9",
+  "run_id": "39950033316",
+  "private_files": 12,
+  "receipt_matches_original_paid_bytes": true,
+  "gpu_allocations": 0,
+  "model_calls": 0,
+  "agent_runs": 0
+}
