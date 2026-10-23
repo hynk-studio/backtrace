@@ -1,0 +1,57 @@
+{
+  "allocation_requests": 0,
+  "authorization": "owner-qualified-gpu-20261023",
+  "bound_files": 87,
+  "failed_stages": [],
+  "gpu_model_server_starts": 0,
+  "gpu_model_task_executions": 0,
+  "limitations": [
+    "GPU initialization, original model-body download, model loading and real inference not run in this free qualification",
+    "CPU connected/evaluator controls use scripted model content",
+    "Five concurrent controller cases use a simulated provider",
+    "Task URL lifetime unverifiable; exact task downloads passed"
+  ],
+  "linux": {
+    "actual_minimal_http": "PASS",
+    "run_id": 39874300342,
+    "source_sha": "b75dd4566f67cc2c9bcc0517ec3afd59e56fecec",
+    "status": "PASS",
+    "tests": 333
+  },
+  "next_required": [
+    "Exact receipt-source Linux pass",
+    "Free owner preparation",
+    "Fresh matching independent watcher",
+    "Fresh exact hardware/account quote",
+    "One immutable allocation claim"
+  ],
+  "private_evidence": {
+    "actual_cpu_log_hash_verified": {
+      "bytes": 1671,
+      "file": "full-setup/ssh.log",
+      "offset": 68186
+    },
+    "artifact_id": 12468429551,
+    "artifact_zip_sha256": "29e4fb68074d8a5a0b2d473852033324b35e125f1162a91a7e751e6592a870b2",
+    "ciphertext_bytes": 1874653,
+    "ciphertext_sha256": "b2d3835bc9d1049e4a9e28a78e0107235c7e39bb2ba0663620e3c0871eeef710",
+    "files": 92,
+    "format": "age-v1",
+    "plaintext_bytes": 1804440,
+    "recovered_files": 92,
+    "setup_public_projection_equal": true
+  },
+  "public_report": {
+    "artifact_id": 12469350387,
+    "artifact_zip_sha256": "dec2817c85a90ca585149bd531b3f25957437d91f4756706e9ead96724ba5862",
+    "bytes": 50260,
+    "path": "docs/qualified-gpu-free-result-20261023.json",
+    "sha256": "c0b6b4147bf5c40950ccbd6b5019d3af411db6f7db6e668ee933f876b70a3ffb"
+  },
+  "run_attempt": 1,
+  "run_id": 39874300327,
+  "schema_version": 1,
+  "source_sha": "b75dd4566f67cc2c9bcc0517ec3afd59e56fecec",
+  "stages": 24,
+  "status": "FREE_QUALIFICATION_PASS"
+}

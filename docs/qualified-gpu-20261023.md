@@ -89,3 +89,30 @@ Historical receipts are preserved and cannot qualify the changed controller.
 Free owner preparation triggers on that new receipt; paid entry triggers only
 on its dedicated new branch. A matching independent watcher and fresh offer
 are required again immediately before the sole allocation claim.
+
+## Renewed complete qualification passed
+
+Full free run **39874300327**, attempt 1, passed all 24 stages at
+`b75dd4566f67cc2c9bcc0517ec3afd59e56fecec`; all **87 bound files** match.
+Exact-source Linux run **39874300342** passed all **333 tests** and actual
+minimal HTTP. Real pinned SSH transferred the 21-file driver, all 246 frozen
+wheels and 8 task files, installed the runtime and passed the retained CPU
+prerequisites/cleanup in **311.658 seconds**. All 8 original model URLs passed
+headers after that actual setup, with at least 258805 declared seconds left.
+The host/offline-image HTTP and scripted connected/evaluator controls and five
+concurrent simulated-provider cases passed. GPU/model inference remains unrun.
+
+The exact public report is `qualified-gpu-free-result-20261023.json`, 50260
+bytes, SHA-256 `c0b6b4147bf5c40950ccbd6b5019d3af411db6f7db6e668ee933f876b70a3ffb`.
+All 92 encrypted private records were recovered. The private setup report
+equals its public projection; the actual CPU stdout hash matches the exact
+1671-byte suffix at offset 68186 in the retained SSH log. The new standard
+schema-1 gate receipt is `qualified-gpu-actions-qualification-20261023.json`;
+historical receipts remain unchanged. Detailed artifact/cipher hashes and
+limitations are in `qualified-gpu-qualification-20261023.json`.
+
+Publishing this receipt starts free owner preparation and another full Linux
+check at that exact receipt-bearing source. Keep that source fixed while
+starting its matching independent watcher and paid entry. The current scope
+is still unused at this qualification checkpoint. Recheck current stock and
+account before the one claim; the earlier quote does not reserve hardware.

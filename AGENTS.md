@@ -367,3 +367,15 @@ schema-1 receipt without overwriting old receipts, then require matching fresh
 watcher and stock before one claim. Use new dedicated qualified-20261023
 start/watch branches. All previous paid heads/claims remain immutable; no
 automatic second allocation, top-up, recurring wait, merge or submission.
+
+Renewed complete free qualification **39874300327**, attempt 1 at
+`b75dd4566f67cc2c9bcc0517ec3afd59e56fecec`, passed all 24 stages with 87 bound
+files. Exact-source Linux **39874300342** passed 333 tests and actual minimal
+HTTP. Actual frozen SSH setup/CPU prerequisites/cleanup passed in 311.658s;
+all 8 model URLs passed after setup. All 92 private records were recovered,
+the setup projection matched and the actual CPU log hash was independently
+verified inside retained SSH output. Read the new qualified-gpu result,
+qualification proof and schema-1 actions receipt. Previous receipts are
+preserved. Before the still-unused single paid claim, require receipt-source
+Linux, free owner preparation, a fresh matching watcher and fresh exact offer.
+Keep the actual start/watch source immutable once entered; never rerun paid.
