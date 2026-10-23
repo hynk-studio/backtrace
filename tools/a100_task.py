@@ -34,8 +34,9 @@ def consume_permit(path, driver, now=None, *, policy='prepaid10-external-v2', se
     if (policy, setup_seconds) not in (('prepaid10-external-v2', 1200), ('prepaid10-actions-v1', 5400)):
         raise ValueError('unknown launch policy or setup limit')
     if expected_run != 'R0-clean-v2-one-public-task/A10080-TP1':
-        from tools.task_calibration import PROTOCOL
-        if expected_run != PROTOCOL or policy != 'prepaid10-actions-v1':
+        from tools.task_calibration import PROTOCOL as calibrated
+        from tools.task_verification import PROTOCOL as verified
+        if expected_run not in (calibrated, verified) or policy != 'prepaid10-actions-v1':
             raise ValueError('unknown calibrated permit run')
     path, driver = Path(path), Path(driver)
     if (os.getuid() != 0 or path.is_symlink() or not path.is_file()

@@ -42,3 +42,18 @@ the post-deletion verifier would reject the mismatched experiment identity.
 The first new-source free run40034617157 is superseded before any paid launch;
 its passed Linux run40034617261 (365 tests) is retained as intermediate evidence.
 A fresh full free run and Linux suite must qualify the corrected source.
+
+The deeper production permit boundary also rejected the current R1 v2 name
+with `unknown calibrated permit run`, before model start. The original full
+free setup intentionally exercised CPU prerequisites without a launch permit,
+so that boundary was missing from coverage. A root-owned temporary fixture now
+passes a real projected controller claim into the actual task permit consumer:
+the current protocol passes once, replay fails, and the previous protocol
+cannot enter the current task. The test failed before the permit allowlist fix.
+The permit consumer now explicitly accepts both known R1 protocol versions
+while retaining exact permit-to-task matching, expiry and single-use checks.
+The prepared driver and candidate prompt bytes remain unchanged; its deployed
+`a100_task.py` helper is intentionally updated and must be fully requalified.
+Run40035020575 is also superseded; its Linux366-test pass alone missed the
+consumer boundary. Preserve that intermediate evidence rather than treating it
+as final launch qualification.

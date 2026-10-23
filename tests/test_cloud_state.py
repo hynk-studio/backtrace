@@ -3,6 +3,9 @@ import copy
 import hashlib
 import io
 import json
+import os
+from pathlib import Path
+import tempfile
 import unittest
 import urllib.error
 from unittest.mock import patch
@@ -60,10 +63,32 @@ class CloudStateTests(unittest.TestCase):
         self.api.create(request)
         return claim
 
-    def test_claim_protocol_matches_the_actual_prepared_task(self):
-        from tools import cloud_task
+    def test_current_claim_reaches_the_task_permit_boundary_only_once(self):
+        from tools import a100_task, cloud_task
+        from tools.task_calibration import PROTOCOL as previous_protocol
         claim, _ = self.claim()
         self.assertEqual(claim['run'], cloud_task.RUN_NAME)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            driver = root / 'driver.py'
+            driver.write_text('test fixture; never executed')
+            path = root / 'launch-permit.json'
+            permit = {key: claim[key] for key in ('policy', 'run', 'attempt', 'requested_at')}
+            permit.update(pod_id='fixture123', driver_sha256=hashlib.sha256(driver.read_bytes()).hexdigest())
+            def enter():
+                return a100_task.consume_permit(path, driver, now=T0 + 1,
+                    policy=state.POLICY, setup_seconds=state.SETUP, expected_run=cloud_task.RUN_NAME)
+            with patch.dict(os.environ, {'BACKTRACE_ALLOCATION_REQUESTED_AT': str(T0)}):
+                path.write_text(json.dumps(permit)); path.chmod(0o600)
+                self.assertEqual(enter(), permit)
+                self.assertEqual(path.with_suffix('.consumed').read_text(), claim['attempt'] + '\n')
+                with self.assertRaises(FileExistsError): enter()
+                path = root / 'wrong-protocol.json'
+                permit['run'] = previous_protocol
+                path.write_text(json.dumps(permit)); path.chmod(0o600)
+                with self.assertRaisesRegex(ValueError, 'mismatched launch permit'): enter()
+                self.assertFalse(path.with_suffix('.consumed').exists())
+        self.assertFalse(any(c[0] == 'create' for c in self.api.calls))
 
     def test_claim_is_durable_before_caller_can_send_request(self):
         claim, request = self.claim()
