@@ -584,3 +584,17 @@ cleanup requires two successful consecutive absence reads; errors never count
 as absence. Validate actual Docker lost/false acknowledgement controls and run
 full qualification again. This concerns disposable CPU fixtures, not provider
 deletion or a newly authorized GPU scope.
+
+Corrected full free run 39967336192 at
+`25ac90454a085bd2ef14ae05be8061b1d1ec4f19` passed all 24 stages. Linux
+39967336484 passed 365 tests. Actual Docker lost/false acknowledgement
+controls distinguished removal from persistent presence; both SSH and offline-image
+containers and both controls had two successful absence reads. Setup took
+251.053s. All 104 source bindings, all 152 owner-private records,
+host/image seven-case projections, actual budget rejection and same-assertion
+controls, four JUnit hashes/counts and the SSH CPU log hash were verified. Preserve
+the first failed free run 39960937719 and its original 152 private records. Read
+the new retry-preparation free result/execution and human report. This is free
+preparation only; old paid qualification rejects the changed source before
+network, all prior claims remain consumed, no paid head moves or new paid gate.
+Revised real-model behavior and corrected GPU teardown remain NOT RUN.

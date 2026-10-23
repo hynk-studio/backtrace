@@ -1,0 +1,560 @@
+{
+  "status": "PASS",
+  "source_sha": "25ac90454a085bd2ef14ae05be8061b1d1ec4f19",
+  "run_id": "39967336192",
+  "report_sha256": "add5d0e5631af5d9998a0c4cf81ce70b47c1e9ac2e7985390653c22ff07505df",
+  "report_bytes": 89437,
+  "bound_files": 104,
+  "private_files": 152,
+  "projection_checks": "ALL MATCH",
+  "ssh_cpu_log": {
+    "bytes": 2718,
+    "sha256": "029ae45fbb41e9266fa28510f383a15696c153f3c8f5498d66f939d40e461956",
+    "offset": 68207
+  },
+  "connected": {
+    "host": {
+      "receipts": {
+        "search-fallback": {
+          "status": "PASS",
+          "instance_id": "fastapi_11194",
+          "llm_calls": 14,
+          "wire_requests": 14,
+          "tool_calls": 12,
+          "patch_bytes": 305,
+          "patch_sha256": "7977e5980ad7a195b1912366aad9b082803516009791cb56cea0a0e561e93488",
+          "trace_sha256": "e607f841cbdf62dec7f401427c287beaea298d3aec7db53a689c8d03c416c274",
+          "verification": "NOT RUN; task completion is not patch correctness",
+          "trace_review": {
+            "schema_version": 1,
+            "kind": "PROCESS_DIAGNOSTIC_NOT_CORRECTNESS",
+            "accepted_mutations": 0,
+            "rejected_mutations": 0,
+            "tool_errors": 0,
+            "budget_rejections": 0,
+            "command_observations": 10,
+            "nonzero_commands": 0,
+            "zero_exit_with_failure_text": 0,
+            "post_mutation_commands": 0,
+            "last_post_mutation_exit_code": null,
+            "last_post_mutation_failure_text": null,
+            "unrecognized_tool_observations": 0,
+            "flags": [],
+            "correctness": "NOT ESTABLISHED; independent verifier required"
+          }
+        },
+        "verification-loop": {
+          "status": "PASS",
+          "instance_id": "fastapi_11194",
+          "llm_calls": 14,
+          "wire_requests": 14,
+          "tool_calls": 11,
+          "patch_bytes": 400,
+          "patch_sha256": "fe2113dc72cae2b0af22782a16b3ff6470b2a59b4b06b4c405200fd24245bf71",
+          "trace_sha256": "6d54cd07cc267e2a13706623bdc47c9f579b3db838d0d4632e72a857f388be6f",
+          "verification": "NOT RUN; task completion is not patch correctness",
+          "trace_review": {
+            "schema_version": 1,
+            "kind": "PROCESS_DIAGNOSTIC_NOT_CORRECTNESS",
+            "accepted_mutations": 5,
+            "rejected_mutations": 0,
+            "tool_errors": 3,
+            "budget_rejections": 0,
+            "command_observations": 6,
+            "nonzero_commands": 3,
+            "zero_exit_with_failure_text": 0,
+            "post_mutation_commands": 2,
+            "last_post_mutation_exit_code": 0,
+            "last_post_mutation_failure_text": false,
+            "unrecognized_tool_observations": 0,
+            "flags": [],
+            "correctness": "NOT ESTABLISHED; independent verifier required"
+          }
+        },
+        "budget-rejection": {
+          "status": "PASS",
+          "instance_id": "fastapi_11194",
+          "llm_calls": 33,
+          "wire_requests": 33,
+          "tool_calls": 30,
+          "patch_bytes": 396,
+          "patch_sha256": "92dcbe1f5a6f794b892029c9274c7044f92b25478674081bfacd6023f90ac8a1",
+          "trace_sha256": "320dbf6905913202c927239606704933166a1164e436ee8c9662bbf3fe00d1de",
+          "verification": "NOT RUN; task completion is not patch correctness",
+          "trace_review": {
+            "schema_version": 1,
+            "kind": "PROCESS_DIAGNOSTIC_NOT_CORRECTNESS",
+            "accepted_mutations": 1,
+            "rejected_mutations": 1,
+            "tool_errors": 1,
+            "budget_rejections": 1,
+            "command_observations": 0,
+            "nonzero_commands": 0,
+            "zero_exit_with_failure_text": 0,
+            "post_mutation_commands": 0,
+            "last_post_mutation_exit_code": null,
+            "last_post_mutation_failure_text": null,
+            "unrecognized_tool_observations": 0,
+            "flags": [
+              "REJECTED_EDIT_OR_WRITE",
+              "TOOL_BUDGET_EXHAUSTED",
+              "NO_COMMAND_AFTER_LAST_ACCEPTED_MUTATION"
+            ],
+            "correctness": "NOT ESTABLISHED; independent verifier required"
+          }
+        }
+      },
+      "public_verifier_controls": [
+        {
+          "control": "recovered-patch",
+          "actual_tests": {
+            "errors": 0,
+            "failures": 2,
+            "junit_sha256": "042a2d0f4956242e7404986caf5cf6ec7005a7e467cdf0b5fbb0b7d3ffbde9f0",
+            "passed": 2,
+            "skipped": 0,
+            "tests": 4
+          }
+        },
+        {
+          "control": "public-reference-control",
+          "actual_tests": {
+            "errors": 0,
+            "failures": 0,
+            "junit_sha256": "998131431ad96502634aa54872ee017ba2d720a833341a5753b9f53980b3c25b",
+            "passed": 4,
+            "skipped": 0,
+            "tests": 4
+          }
+        }
+      ]
+    },
+    "image": {
+      "receipts": {
+        "search-fallback": {
+          "status": "PASS",
+          "instance_id": "fastapi_11194",
+          "llm_calls": 14,
+          "wire_requests": 14,
+          "tool_calls": 12,
+          "patch_bytes": 305,
+          "patch_sha256": "7977e5980ad7a195b1912366aad9b082803516009791cb56cea0a0e561e93488",
+          "trace_sha256": "441f215a16acf72aa1e998aed1e2272a276c7672d2973ac055986c81d9496eca",
+          "verification": "NOT RUN; task completion is not patch correctness",
+          "trace_review": {
+            "schema_version": 1,
+            "kind": "PROCESS_DIAGNOSTIC_NOT_CORRECTNESS",
+            "accepted_mutations": 0,
+            "rejected_mutations": 0,
+            "tool_errors": 0,
+            "budget_rejections": 0,
+            "command_observations": 10,
+            "nonzero_commands": 0,
+            "zero_exit_with_failure_text": 0,
+            "post_mutation_commands": 0,
+            "last_post_mutation_exit_code": null,
+            "last_post_mutation_failure_text": null,
+            "unrecognized_tool_observations": 0,
+            "flags": [],
+            "correctness": "NOT ESTABLISHED; independent verifier required"
+          }
+        },
+        "verification-loop": {
+          "status": "PASS",
+          "instance_id": "fastapi_11194",
+          "llm_calls": 14,
+          "wire_requests": 14,
+          "tool_calls": 11,
+          "patch_bytes": 400,
+          "patch_sha256": "fe2113dc72cae2b0af22782a16b3ff6470b2a59b4b06b4c405200fd24245bf71",
+          "trace_sha256": "5b09ae1a9f1b5a31b03b4bec5940112497557bff7dcd5c9011af2779b80e97b9",
+          "verification": "NOT RUN; task completion is not patch correctness",
+          "trace_review": {
+            "schema_version": 1,
+            "kind": "PROCESS_DIAGNOSTIC_NOT_CORRECTNESS",
+            "accepted_mutations": 5,
+            "rejected_mutations": 0,
+            "tool_errors": 3,
+            "budget_rejections": 0,
+            "command_observations": 6,
+            "nonzero_commands": 3,
+            "zero_exit_with_failure_text": 0,
+            "post_mutation_commands": 2,
+            "last_post_mutation_exit_code": 0,
+            "last_post_mutation_failure_text": false,
+            "unrecognized_tool_observations": 0,
+            "flags": [],
+            "correctness": "NOT ESTABLISHED; independent verifier required"
+          }
+        },
+        "budget-rejection": {
+          "status": "PASS",
+          "instance_id": "fastapi_11194",
+          "llm_calls": 33,
+          "wire_requests": 33,
+          "tool_calls": 30,
+          "patch_bytes": 396,
+          "patch_sha256": "92dcbe1f5a6f794b892029c9274c7044f92b25478674081bfacd6023f90ac8a1",
+          "trace_sha256": "088d037434e4359211cbcf1483405c325d08cf794b3793fbcae49f4af525a684",
+          "verification": "NOT RUN; task completion is not patch correctness",
+          "trace_review": {
+            "schema_version": 1,
+            "kind": "PROCESS_DIAGNOSTIC_NOT_CORRECTNESS",
+            "accepted_mutations": 1,
+            "rejected_mutations": 1,
+            "tool_errors": 1,
+            "budget_rejections": 1,
+            "command_observations": 0,
+            "nonzero_commands": 0,
+            "zero_exit_with_failure_text": 0,
+            "post_mutation_commands": 0,
+            "last_post_mutation_exit_code": null,
+            "last_post_mutation_failure_text": null,
+            "unrecognized_tool_observations": 0,
+            "flags": [
+              "REJECTED_EDIT_OR_WRITE",
+              "TOOL_BUDGET_EXHAUSTED",
+              "NO_COMMAND_AFTER_LAST_ACCEPTED_MUTATION"
+            ],
+            "correctness": "NOT ESTABLISHED; independent verifier required"
+          }
+        }
+      },
+      "public_verifier_controls": [
+        {
+          "control": "recovered-patch",
+          "actual_tests": {
+            "errors": 0,
+            "failures": 2,
+            "junit_sha256": "1ded281b2a582d42549297b663bc554ac31e6679f60e1ee2d9591974cd79c055",
+            "passed": 2,
+            "skipped": 0,
+            "tests": 4
+          }
+        },
+        {
+          "control": "public-reference-control",
+          "actual_tests": {
+            "errors": 0,
+            "failures": 0,
+            "junit_sha256": "028791713d617767d8bda48f4a50ed32623f4ee5fc0837b584992324ba0deb79",
+            "passed": 4,
+            "skipped": 0,
+            "tests": 4
+          }
+        }
+      ]
+    }
+  },
+  "full_setup_seconds": 251.053,
+  "container_cleanup": {
+    "setup": {
+      "absence_reads": 2,
+      "container_id": "c3dad96a1e1f2c739553a3083dc0176073384a2663e6c1e7ac993f8abc0d5c03",
+      "name": "backtrace-free-full-setup-39967336192",
+      "observations": [
+        {
+          "state": "ABSENT"
+        },
+        {
+          "state": "ABSENT"
+        }
+      ],
+      "request": {
+        "outcome": "ACKNOWLEDGED",
+        "returncode": 0
+      },
+      "seconds": 9.922,
+      "status": "PASS"
+    },
+    "image": {
+      "absence_reads": 2,
+      "container_id": null,
+      "name": "backtrace-free-image-qualification",
+      "observations": [
+        {
+          "state": "ABSENT"
+        },
+        {
+          "state": "ABSENT"
+        }
+      ],
+      "request": {
+        "outcome": "ACKNOWLEDGED",
+        "returncode": 0
+      },
+      "seconds": 1.041,
+      "status": "PASS"
+    },
+    "controls": {
+      "cases": [
+        {
+          "acknowledgement": "AUTHORED FAULT",
+          "case": "lost-ack",
+          "cleanup_evidence": {
+            "absence_reads": 2,
+            "container_id": "2ad37c4c55a99424b86cde650697f0fdc4224d4d2a2de307d0123811242fe883",
+            "name": "backtrace-free-full-setup-39967336192-lost-ack",
+            "observations": [
+              {
+                "state": "ABSENT"
+              },
+              {
+                "state": "ABSENT"
+              }
+            ],
+            "request": {
+              "outcome": "ACKNOWLEDGED",
+              "returncode": 0
+            },
+            "seconds": 1.045,
+            "status": "PASS"
+          },
+          "container_queries": "ACTUAL DOCKER",
+          "observation": {
+            "absence_reads": 2,
+            "container_id": "2ad37c4c55a99424b86cde650697f0fdc4224d4d2a2de307d0123811242fe883",
+            "name": "backtrace-free-full-setup-39967336192-lost-ack",
+            "observations": [
+              {
+                "state": "ABSENT"
+              },
+              {
+                "state": "ABSENT"
+              }
+            ],
+            "request": {
+              "error_type": "TimeoutExpired",
+              "outcome": "UNCONFIRMED"
+            },
+            "seconds": 1.081,
+            "status": "PASS"
+          },
+          "status": "PASS"
+        },
+        {
+          "acknowledgement": "AUTHORED FAULT",
+          "case": "false-ack",
+          "cleanup_evidence": {
+            "absence_reads": 2,
+            "container_id": "6fa9c4c20af37dd9e6ea97f65da9a14b2718a86357c9b0a53c3ed30fb4c3a34e",
+            "name": "backtrace-free-full-setup-39967336192-false-ack",
+            "observations": [
+              {
+                "state": "ABSENT"
+              },
+              {
+                "state": "ABSENT"
+              }
+            ],
+            "request": {
+              "outcome": "ACKNOWLEDGED",
+              "returncode": 0
+            },
+            "seconds": 1.079,
+            "status": "PASS"
+          },
+          "container_queries": "ACTUAL DOCKER",
+          "observation": {
+            "absence_reads": 0,
+            "container_id": "6fa9c4c20af37dd9e6ea97f65da9a14b2718a86357c9b0a53c3ed30fb4c3a34e",
+            "name": "backtrace-free-full-setup-39967336192-false-ack",
+            "observations": [
+              {
+                "state": "PRESENT"
+              },
+              {
+                "state": "PRESENT"
+              },
+              {
+                "state": "PRESENT"
+              }
+            ],
+            "request": {
+              "outcome": "ACKNOWLEDGED",
+              "returncode": 0
+            },
+            "seconds": 3.0,
+            "status": "FAIL"
+          },
+          "status": "PASS"
+        }
+      ],
+      "gpu_allocations": 0,
+      "provider_operations": 0,
+      "status": "PASS"
+    }
+  },
+  "paid_qualification": "NONE; human free-CPU proof only",
+  "gpu_allocations": 0,
+  "schema_version": 2,
+  "qualification_scope": "FULL_FREE_CPU",
+  "linux": {
+    "status": "PASS",
+    "run_id": 39967336484,
+    "job_id": 120460532314,
+    "source_sha": "25ac90454a085bd2ef14ae05be8061b1d1ec4f19",
+    "tests": 365,
+    "seconds": 29.64,
+    "artifact_id": 12506598803,
+    "zip_sha256": "83969d8d9f86637f39cfb36e7ae881ecca9d29b534f6f2de4c95a69f278f1e47"
+  },
+  "artifacts": {
+    "private": {
+      "id": 12509501633,
+      "zip_sha256": "1fe4f848d55bcd3fd3e8dfad8367b84f415c868e017d7f70d7c90bc4b914fd60",
+      "zip_bytes": 2776151
+    },
+    "public": {
+      "id": 12509272302,
+      "zip_sha256": "18c4b9f13b3864772ebcb62869b67aa3c5b3c08450c1930eb6f07ce4e1f4c7b2",
+      "zip_bytes": 16121
+    }
+  },
+  "first_free_failure": {
+    "status": "FAIL",
+    "run_id": 39960937719,
+    "job_id": 120438457972,
+    "source_sha": "e63306f6aa97e16426c0cbe6ee7701b3d53d4179",
+    "failed_stages": [
+      "full_setup_ssh"
+    ],
+    "host_connected": "PASS all seven cases",
+    "image_connected": "PASS",
+    "setup_seconds": 260.17,
+    "setup": "PASS all substantive stages; cleanup unconfirmed",
+    "cleanup_error": "TimeoutExpired during docker rm; original daemon/member state not retained",
+    "private_files": 152,
+    "public_artifact_id": 12506845539,
+    "private_artifact_id": 12506526490,
+    "report_sha256": "2bd6a7f26bc72676a675a58aeb49f985fa294e7263e029cf7e0f5848a4634367"
+  },
+  "account_snapshot": {
+    "status": "PASS",
+    "run_id": 39822924063,
+    "expected_run_attempt": 11,
+    "source_sha": "59d430b6c552b8ad3b9d7b03708df77c8e7e0b4b",
+    "scope": "read-only account/stock; no allocation or settings change",
+    "run_attempt": 11,
+    "job_id": 120443046256,
+    "observed_at": "2026-10-23T13:34:23Z",
+    "balance": "5.7669749701",
+    "pods": 0,
+    "spend": "0",
+    "auto_pay": false,
+    "qualified_region": "CA-MTL-3",
+    "hourly_quote": "1.804",
+    "artifact_id": 12504728743,
+    "zip_sha256": "b8940cc1c865e6803eb001b6e9090f094904aef3ea58bcaee355546d3362b028",
+    "report_sha256": "2b39970d4a1f3dd1d4834cb9aa72cd309f9e83f2c179bb222f20e4683d964804"
+  },
+  "paid_launch_authorization": "NONE; all prior claims consumed; historical paid receipt unchanged",
+  "actual_revised_model_execution": "NOT RUN",
+  "actual_corrected_gpu_teardown": "NOT RUN",
+  "boundaries": {
+    "status": "PASS",
+    "source_sha": "25ac90454a085bd2ef14ae05be8061b1d1ec4f19",
+    "old_paid_receipt_rejected": "real CPU qualification does not bind the current input/transport code",
+    "before_network_calls": 0,
+    "review_branch_paid_mode_rejected": "exact workflow context required; paid reruns are forbidden",
+    "bound_files": 104,
+    "deployed_files": 25,
+    "free_cpu_controls_and_diagnosis_not_deployed": true,
+    "driver_sha256": "0a10c8ba12d231dee861f61145d85a77dcac7cf1ce019276f6352cbfe817af06"
+  },
+  "protected_refs": {
+    "status": "PASS",
+    "protected_baseline_heads": 45,
+    "preserved_paid_watch_heads": 22,
+    "review_head": "25ac90454a085bd2ef14ae05be8061b1d1ec4f19",
+    "state_head": "781555ea90c58eaa5e92841eaa145505a9de6793",
+    "main_sha": "23616971a4ec57d32fcce769e0a2abf44faa9cfe"
+  },
+  "operational_preservation": {
+    "status": "PASS",
+    "base_source_sha": "1bf344ea98cb524d25b1de05422ebf7c7ff232a0",
+    "unchanged_operational_boundaries": [
+      {
+        "path": "tools/startup_guard.py",
+        "sha256": "13033ea60f91da4bf30d0cad0fc27fe8499c50bd0fdba7e3a550a089a1e82afc"
+      },
+      {
+        "path": "tools/task_calibration.py",
+        "sha256": "b6551c310a9bba05dafd0dcd37e5847a7d21046d3853220806b520e932f09eb7"
+      },
+      {
+        "path": "tools/task_budget.py",
+        "sha256": "8caea8e7f313e728190fadf532f743a7aaf6787c0a1a197d910d385c5298e9af"
+      },
+      {
+        "path": "docs/calibrated-gpu-actions-qualification-20261023.json",
+        "sha256": "df7cf3e04e30b872a32d8416f0a016f91c22a9e802d1720325cc86d29d950c7c"
+      },
+      {
+        "path": "docs/calibrated-gpu-authorization-20261023.json",
+        "sha256": "71916b3a1c7fc40f005f6c1ee9570bebc15a65e655fd8ab1768b4461fc109c38"
+      },
+      {
+        "path": ".github/workflows/qualified-gpu-start.yml",
+        "sha256": "b0858def0261170128917ffaf2a4d27185364228b746cff5a05ca5b7eaa3e6ee"
+      },
+      {
+        "path": ".github/workflows/a100-watch.yml",
+        "sha256": "facf08344f3dfa7b179b8d21334235cdc71a841a9243e137fe7849d82a904998"
+      },
+      {
+        "path": "tools/cloud_owner.py",
+        "sha256": "4c80dfb4c88440fff73137e3f01df5e6cc9f8e14275f5df6ec892c27f5140c23"
+      },
+      {
+        "path": "tools/cloud_watch.py",
+        "sha256": "09cd3b57f2df1432d9c750faf4c36260cf38a51cb9e579cfd022108a6e588a85"
+      },
+      {
+        "path": "tools/runpod_control.py",
+        "sha256": "79502e4b989d725557d3da2720ad7b4e5e480b9f47eec2d78f84104fc22ddc1c"
+      }
+    ],
+    "paid_operational_files_changed": false,
+    "previous_gpu_reaper_fix_preserved": true
+  },
+  "prompt_size_review": {
+    "previous_observed_prompt_tokens_max": 14991,
+    "previous_observed_completion_tokens_max": 792,
+    "server_max_model_len": 32768,
+    "root_guidance_added_bytes": 1525,
+    "analyzer_guidance_added_bytes": 352,
+    "exact_revised_tokenization": "NOT RUN; byte counts are not token counts",
+    "prediction": "no accuracy or future history-length guarantee"
+  },
+  "state_preservation": {
+    "status": "PASS",
+    "baseline_blobs": 232,
+    "preserved_blobs": 232,
+    "changed_or_missing": 0,
+    "current_state_head": "781555ea90c58eaa5e92841eaa145505a9de6793",
+    "added": [
+      {
+        "path": "a100-transfer/39960937719-e63306f6aa97e16426c0cbe6ee7701b3d53d4179/host-diagnostic.age.b64",
+        "sha": "c58ad876cf5929a23defb705debc16b799e8e687"
+      },
+      {
+        "path": "a100-transfer/39960937719-e63306f6aa97e16426c0cbe6ee7701b3d53d4179/receiver.json",
+        "sha": "6b3ab4e73777bf5e4f6e683165ac88a61fffbbe5"
+      },
+      {
+        "path": "a100-transfer/39960937719-e63306f6aa97e16426c0cbe6ee7701b3d53d4179/references.age.b64",
+        "sha": "39b6aed9d662588be6a97fa8b266c68cded8f5ab"
+      },
+      {
+        "path": "a100-transfer/39967336192-25ac90454a085bd2ef14ae05be8061b1d1ec4f19/receiver.json",
+        "sha": "20202f29b6e9ff6bfaeead0ce0828fecff83c8e0"
+      },
+      {
+        "path": "a100-transfer/39967336192-25ac90454a085bd2ef14ae05be8061b1d1ec4f19/references.age.b64",
+        "sha": "8d1849199ceb9d289359ff1775705cfee1f86810"
+      }
+    ],
+    "new_paths_are_free_handoff_or_diagnostic": true
+  }
+}

@@ -36,10 +36,32 @@ verification stays explicitly bound to its original protocol.
 | Full SSH/install/API/task/evaluator/lifecycle regression | Setup and boundary regressions from the changed source | CPU cannot qualify GPU loading or native generation |
 | Source/claim/ref preservation | Reuse of stale qualification or a consumed paid attempt | Fresh live launch identity and stock are future gates |
 
-Validation results are pending at this source checkpoint. Record the exact run,
-source, bindings, private artifact recovery and negative controls before marking
-free preparation complete. Retain any intermediate failures rather than replacing
-them with the eventual passing result.
+Free preparation passed at `25ac90454a085bd2ef14ae05be8061b1d1ec4f19` in full run
+[39967336192](https://github.com/hynk-studio/backtrace/actions/runs/39967336192).
+All 24 full qualification stages passed. The actual Linux suite
+[39967336484](https://github.com/hynk-studio/backtrace/actions/runs/39967336484)
+passed 365 tests. All 104 bound source hashes and 152
+owner-private records were verified against their original encrypted artifacts.
+The first free-run failure remains recorded separately, with its original bytes.
+
+Host and exact offline-image paths each passed seven cases. The same original-tool
+assertion produced exit codes `[1, 1, 0, 1, 0]` through wrong, corrected and stale
+edits; another control exhausted 30 charged tools, rejected its next edit and
+recovered a patch without that rejected change. These are authored HTTP replies
+through the actual tools, not Gemma reasoning or a new model score. Four independent
+JUnit hashes/counts, task receipts, report projections and the retained SSH CPU
+log hash matched. Full setup took 251.053 seconds.
+
+Actual Docker queries passed both acknowledgement controls: a removed container
+remained absent after an authored timeout, and a still-present container failed
+despite an authored successful response. Every control and both full setup/image
+containers then had two successful consecutive absence reads. Neither daemon
+query errors nor successful removal acknowledgements alone establish absence.
+
+The previous paid qualification rejects these changed files before any network
+request; the review branch is also rejected by the paid entry point. The 232
+preexisting state blobs are unchanged. Read the schema-2 free execution record
+and original full result. This is human-review evidence, not a paid-launch receipt.
 
 Another paid attempt still needs a fresh explicit scope, its own immutable state
 namespace and source qualification, current budget/stock checks and an independent
