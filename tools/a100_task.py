@@ -27,11 +27,16 @@ POD_DOCS = ('source-manifest.json', 'linux-wheel-manifest.json',
             'a100-runtime-amendment.json', 'linux-supplemental.lock')
 
 
-def consume_permit(path, driver, now=None, *, policy='prepaid10-external-v2', setup_seconds=1200):
+def consume_permit(path, driver, now=None, *, policy='prepaid10-external-v2', setup_seconds=1200,
+                   expected_run='R0-clean-v2-one-public-task/A10080-TP1'):
     """Root-only, expiring, single-use entry; no credentials or model fallback."""
     import time
     if (policy, setup_seconds) not in (('prepaid10-external-v2', 1200), ('prepaid10-actions-v1', 5400)):
         raise ValueError('unknown launch policy or setup limit')
+    if expected_run != 'R0-clean-v2-one-public-task/A10080-TP1':
+        from tools.task_calibration import PROTOCOL
+        if expected_run != PROTOCOL or policy != 'prepaid10-actions-v1':
+            raise ValueError('unknown calibrated permit run')
     path, driver = Path(path), Path(driver)
     if (os.getuid() != 0 or path.is_symlink() or not path.is_file()
             or path.stat().st_uid != 0 or path.stat().st_mode & 0o077
@@ -42,7 +47,7 @@ def consume_permit(path, driver, now=None, *, policy='prepaid10-external-v2', se
     requested = value['requested_at']
     if (set(value) != {'policy', 'run', 'attempt', 'pod_id', 'requested_at', 'driver_sha256'}
             or value['policy'] != policy
-            or value['run'] != 'R0-clean-v2-one-public-task/A10080-TP1'
+            or value['run'] != expected_run
             or not re.fullmatch(r'[0-9a-f]{32}', value['attempt'])
             or not re.fullmatch(r'[A-Za-z0-9_-]{1,128}', value['pod_id'])
             or type(requested) not in (int, float) or not 0 <= now - requested < setup_seconds

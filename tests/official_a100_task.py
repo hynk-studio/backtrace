@@ -73,6 +73,7 @@ def server_boundaries(function, namespace, vllm_server):
             if case == 'ready':
                 assert caught is None
                 task.assert_called_once()
+                assert task.call_args.kwargs['timeout'] == (330 if namespace['RUN_NAME'].startswith('R1-') else 180)
             else:
                 assert caught is not None, 'failed boundary was reported as success: ' + case
                 if case in ('agent_exit', 'agent_timeout'):
@@ -132,6 +133,9 @@ def main():
     report, files = inspect_candidate(ROOT / '.local/r0-clean/build-a.zip',
                                       expected_candidate(ROOT / '.local/official'))
     assert report['sha256'] == FROZEN_SHA256
+    if cloud:
+        from tools.task_calibration import candidate_files
+        files = candidate_files(files)
     from adk_submission import VllmServer
     import torch
     with tempfile.TemporaryDirectory(prefix='backtrace-a100-construct-') as directory:
@@ -145,6 +149,9 @@ def main():
             target = driver.WORK / 'candidate' / name
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(data)
+        from tools.official_check import check_directory
+        candidate_check = check_directory(driver.WORK / 'candidate', candidate=True)
+        assert candidate_check['official_cpu_checks'] == 'PASS'
         function = next(n for n in ast.parse((root / 'driver/one_task.py').read_text()).body
                         if isinstance(n, ast.FunctionDef) and n.name == 'server_phase')
         stop = next(i for i, n in enumerate(function.body) if isinstance(n, ast.Try))
@@ -161,7 +168,8 @@ def main():
         guard.install()
         boundaries = None
         agent_setup = None
-        with patch.dict(os.environ, dict(driver.OFFICIAL_ENV, BACKTRACE_USEFUL_DEADLINE=str(time.time() + 2700))), \
+        with patch.dict(os.environ, dict(driver.OFFICIAL_ENV, BACKTRACE_USEFUL_DEADLINE=str(time.time() + 2700),
+                                        BACKTRACE_TOTAL_DEADLINE=str(time.time() + 3000))), \
                 patch.object(torch.cuda, 'is_available', return_value=True), \
                 patch.object(torch.cuda, 'device_count', return_value=1), \
                 patch.object(torch.cuda, 'get_device_capability', return_value=(8, 0)), \
@@ -194,6 +202,7 @@ def main():
         print(json.dumps({'actual_private_driver_sha256': receipt['prepared_driver_sha256'],
                           'policy': 'prepaid10-actions-v1' if cloud else 'prepaid10-external-v2',
                           'candidate_sha256': report['sha256'], 'actual_wrapper': 'adk-submission 0.2.11',
+                          'candidate_protocol': driver.RUN_NAME, 'official_candidate_check': candidate_check,
                           'requested_dtype': server.config.dtype, 'tp': 1,
                           'argv': argv, 'guard_constructed': True,
                           'hardware': 'INJECTED', 'server_start': 'NOT RUN',

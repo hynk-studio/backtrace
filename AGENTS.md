@@ -432,3 +432,16 @@ GPU/model/agent operation occurred. All 209 prior state blobs, 20 paid/watch
 heads, PR #15 and main are preserved. Read `docs/task-followup-20261023.md`,
 its result/execution JSON and the inactive budget proposal. Draft PR #16
 contains this free follow-up; no new paid scope or launch qualification exists.
+
+The owner next instructed **직접 보완하고 확인해** after the recommendation to
+implement the five-minute/30-tool/330-second calibration and empty-search
+fallback before retrying. Work on `bt-001-task-calibration-20261023`, based on
+PR #16, with one new Draft PR. This authorizes implementation and complete free
+CPU validation, not a provider create. The changed generic guidance and counted
+search fallback are an explicit R1 calibration, not the historical R0 baseline
+or evidence of improved model performance. Preserve original input ZIPs,
+timeouts, partial results, receipts, all 20 actual paid/watch heads and consumed
+claims. Test the actual prepared driver, official parser/runner/tools, real
+wall-time beyond the old limit, counted fallback and submission validation on
+the host and exact offline image. No new paid scope, paid rerun, top-up, merge,
+submission or recurring wait follows from this correction.

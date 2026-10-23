@@ -208,7 +208,7 @@ def complete_workload(remote, prefix, value, directory, log, phase):
         receipt = retrieve(prefix, value, directory, log, useful_seconds=state.USEFUL)
         private_json(directory / 'receipt-transfer.json', receipt)
         if primary is None:
-            verified = validate_task_results(directory / 'receipts')
+            verified = validate_task_results(directory / 'receipts', protocol=cloud_task.RUN_NAME)
             private_json(directory / 'task-validation.json', verified)
     except BaseException as error:
         with contextlib.suppress(OSError):

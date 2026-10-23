@@ -1,21 +1,26 @@
 """Explicit cloud-policy preparation of the retained, private A100 driver.
 
-Only allocation-inclusive deadlines and the matching permit policy change.
-The consumed legacy driver and its default permit remain on their old limits.
+First reproduce the historical operational derivative, then apply the explicit
+five-minute/search calibration. Historical inputs and paid heads stay immutable.
 """
 import ast
 import difflib
 import hashlib
 import json
 from pathlib import Path
+import shutil
 
 from tools import a100_task as legacy
 from tools.a100_delivery import DRIVER_SHA256 as LEGACY_PREPARED_SHA256
 from tools.private_delivery import digest, parse_manifest, verify
+from tools import task_calibration
 
 POLICY = 'prepaid10-actions-v1'
 SETUP, USEFUL, TOTAL = 5400, 6900, 7200
-CLOUD_DRIVER_SHA256 = '174bd6359c3e3f53e149a2ec5210cb220ab46ec41e1e9b34b6b0c915631c55b1'
+CLOUD_DRIVER_SHA256 = '32517bf07d280fea6f7f7a226914cc4262c34de49f988a53499229ce4ce4aefd'
+RUN_NAME = task_calibration.PROTOCOL
+POD_TOOLS = legacy.POD_TOOLS + ('task_budget.py', 'task_calibration.py')
+POD_DOCS = legacy.POD_DOCS
 
 
 def preserve_finally(source, function):
@@ -113,7 +118,7 @@ def transform(data):
     if definitions(original) != definitions(result):
         raise ValueError('scientific input or driver constant changed')
     compile(result, '<private-cloud-driver>', 'exec')
-    return result
+    return task_calibration.driver_source(result)
 
 
 def prepare(source, output):
@@ -122,11 +127,16 @@ def prepare(source, output):
     if hashlib.sha256(result.encode()).hexdigest() != CLOUD_DRIVER_SHA256:
         raise ValueError('cloud driver differs from qualified bytes')
     receipt = legacy.prepare(source, output)
+    for name in set(POD_TOOLS) - set(legacy.POD_TOOLS):
+        shutil.copyfile(legacy.ROOT / 'tools' / name, output / 'tools' / name)
     (output / 'one_task.py').write_text(result)
     (output / 'driver.diff').write_text(''.join(difflib.unified_diff(
         source.read_text().splitlines(True), result.splitlines(True),
         fromfile='retained-t4/one_task.py', tofile='cloud-a100/one_task.py')))
     receipt.update(prepared_driver_sha256=CLOUD_DRIVER_SHA256, policy=POLICY,
+                   protocol=RUN_NAME, task_budget=task_calibration.BUDGET,
+                   scientific_changes=['five-minute/30-tool budget', 'generic search/completion guidance',
+                                       'normalized graph query and counted text-search fallback'],
                    setup_seconds=SETUP, useful_seconds=USEFUL, total_seconds=TOTAL,
                    server_and_agent_ast_equal_to_legacy=False,
                    operational_changes=['narrow initialized-engine metadata middleware', 'shared real HTTP contract',
@@ -145,8 +155,8 @@ def manifest(prepared):
         raise ValueError('private cloud driver changed')
     references = {'one_task.py': prepared / 'one_task.py',
                   'startup_guard.py': legacy.ROOT / 'tools/startup_guard.py'}
-    references.update({'tools/' + name: legacy.ROOT / 'tools' / name for name in legacy.POD_TOOLS})
-    references.update({'docs/' + name: legacy.ROOT / 'docs' / name for name in legacy.POD_DOCS})
+    references.update({'tools/' + name: legacy.ROOT / 'tools' / name for name in POD_TOOLS})
+    references.update({'docs/' + name: legacy.ROOT / 'docs' / name for name in POD_DOCS})
     value = {'schema_version': 1, 'phase': 'bootstrap', 'files': [
         {'path': name, 'bytes': path.stat().st_size, 'sha256': digest(path)}
         for name, path in sorted(references.items())]}

@@ -150,7 +150,19 @@ class GeneratedTokens:
         names = {row['function']['name'] for row in data.get('tools', [])}
         if self.case != 'tools' and not {'run_command', 'submit_patch'}.issubset(names):
             raise AssertionError('real official tool schemas were not sent')
-        if self.case == 'tools':
+        if self.case == 'search-fallback':
+            try:
+                message = self.fallback_message(data, number)
+            except AssertionError as error:
+                self.failure = str(error)
+                return ErrorResponse.model_validate({'error': {'message': self.failure,
+                    'type': 'BadRequestError', 'code': 400}})
+            if number == 1:
+                # Cross the historical 60-second real runner timeout, without
+                # changing clocks or skipping the actual official timeout.
+                import asyncio
+                await asyncio.sleep(65)
+        elif self.case == 'tools':
             try:
                 message = self.tools_message(data)
             except AssertionError as error:
@@ -194,6 +206,54 @@ class GeneratedTokens:
             yield 'data: [DONE]\n\n'
         return stream()
 
+    def fallback_message(self, data, number):
+        marker = 'Backtrace_CPU_text_fallback_probe'
+        if number == 1:
+            instructions = json.dumps(data['messages'])
+            if 'Search and completion budget' not in instructions:
+                raise AssertionError('calibrated prompt did not reach the actual model boundary')
+            # The fixture adds its own harmless README marker through the real
+            # tool. It cannot exist in the original precomputed code graph.
+            action = ('run_command', {'command': 'python -c "from pathlib import Path; p=Path(\'README.md\'); '
+                'p.write_text(p.read_text()+\'\\nBacktrace CPU transport probe. '
+                + marker + '\\n\')"'})
+        elif number == 2:
+            action = ('search_similar_code', {'query': 'def ' + marker, 'k': 1})
+        elif number == 3:
+            found = []
+            def collect(value):
+                if isinstance(value, str):
+                    try: collect(json.loads(value))
+                    except (ValueError, TypeError): pass
+                elif isinstance(value, dict):
+                    if 'text_search' in value: found.append(value)
+                    for item in value.values(): collect(item)
+                elif isinstance(value, list):
+                    for item in value: collect(item)
+            collect(data['messages'])
+            if (len(found) != 1 or found[0].get('query') != marker
+                    or found[0].get('count') != 0 or marker not in json.dumps(found[0]['text_search'])
+                    or found[0]['submission_reserve']['remaining_tool_calls'] != 27):
+                raise AssertionError('empty graph did not produce actual counted repository text search')
+            self.fallback_evidence = {'normalized_query': marker, 'empty_graph': True,
+                                      'counted_operations': 2, 'text_search': 'ACTUAL repository output'}
+            action = ('get_status', {})
+        elif 4 <= number <= 11:
+            action = ('get_status', {})
+        elif number == 12:
+            action = ('read_file', {'filepath': 'README.md', 'start_line': 1, 'end_line': 2})
+        elif number == 13:
+            action = ('submit_patch', {})
+        elif number == 14:
+            return {'role': 'assistant', 'content': 'CPU search fallback and expanded-budget probe completed.'}
+        else:
+            raise AssertionError('unexpected calibrated CPU probe request')
+        name, args = action
+        self.exercised_tools.append(name)
+        return {'role': 'assistant', 'content': None, 'tool_calls': [{
+            'id': 'call_calibration_' + str(number), 'type': 'function',
+            'function': {'name': name, 'arguments': json.dumps(args)}}]}
+
 
 def run_case(source, output, case):
     import uvicorn
@@ -229,6 +289,8 @@ def run_case(source, output, case):
         data = driver.input_dir()
         with zipfile.ZipFile(data / 'r0-clean.zip') as archive:
             archive.extractall(driver.WORK / 'candidate')  # Previously manifest/hash checked.
+        from tools.task_calibration import apply_candidate
+        calibration = apply_candidate(driver.WORK / 'candidate')
         for target in [driver.WORK / 'candidate', *(driver.WORK / 'candidate').rglob('*')]:
             os.chown(target, 65534, 65534)
         subprocess.run([sys.executable, '-m', 'venv', '--without-pip', str(driver.VENV)],
@@ -254,14 +316,15 @@ def run_case(source, output, case):
                     raise RuntimeError('CPU HTTP fixture did not start')
                 time.sleep(.02)
             env = driver.child_env()
-            env['BACKTRACE_USEFUL_DEADLINE'] = str(time.time() + 300)
+            env['BACKTRACE_USEFUL_DEADLINE'] = str(time.time() + 2000)
+            env['BACKTRACE_TOTAL_DEADLINE'] = str(time.time() + 2300)
             env['VLLM_SERVER_DEV_MODE'] = os.environ['VLLM_SERVER_DEV_MODE']
             with (output / 'execution.log').open('wb') as log:
                 command = ['setpriv', '--no-new-privs', '--bounding-set=-all', '--reuid=65534',
                     '--regid=65534', '--clear-groups', sys.executable, '-I',
                     str(driver.CODE / 'connected_child.py'), '--child']
                 result = subprocess.run(command, cwd=driver.WORK, env=env, stdin=subprocess.DEVNULL,
-                    stdout=log, stderr=subprocess.STDOUT, timeout=240)
+                    stdout=log, stderr=subprocess.STDOUT, timeout=400)
         finally:
             server.should_exit = True
             thread.join(timeout=10)
@@ -281,14 +344,18 @@ def run_case(source, output, case):
         else:
             if result.returncode != 0:
                 raise RuntimeError('connected driver failed; see encrypted execution log')
-            verified = validate(driver.WORK)
-            expected = 13 if case == 'tools' else 3
+            verified = validate(driver.WORK, protocol=driver.RUN_NAME)
+            expected = 13 if case == 'tools' else 14 if case == 'search-fallback' else 3
             if (verified['wire_requests'] != expected
                     or b'Backtrace CPU transport probe.' not in (driver.WORK / 'agent.patch').read_bytes()):
                 raise AssertionError('real model/tool/patch path did not complete')
             if case == 'tools' and (generated.delegate_calls != 2
                     or b'CPU_PROBE_2' not in (driver.WORK / 'agent.patch').read_bytes()):
                 raise AssertionError('actual file edit or subagent delegation did not complete')
+            if case == 'search-fallback':
+                actual = json.loads((driver.WORK / 'task-result.json').read_text())
+                if not 60 < actual['seconds'] < 300 or actual['tool_calls'] != 14:
+                    raise AssertionError('expanded actual session/tool budget was not exercised')
             rows = []
             for name in ('agent.patch', 'task-result.json', 'wire.jsonl',
                          'results/traces/trace_fastapi_11194.json'):
@@ -300,18 +367,21 @@ def run_case(source, output, case):
             emit(driver.WORK, transfer_manifest, stream)
             stream.seek(0)
             transfer = receive(output / 'retrieved', hashlib.sha256(transfer_manifest).hexdigest(), stream)
-            if validate(output / 'retrieved') != verified:
+            if validate(output / 'retrieved', protocol=driver.RUN_NAME) != verified:
                 raise AssertionError('recovered task artifacts differ')
             # A missing result after otherwise valid byte transfer must fail.
             (output / 'retrieved/task-result.json').unlink()
             try:
-                validate(output / 'retrieved')
+                validate(output / 'retrieved', protocol=driver.RUN_NAME)
             except ValueError:
                 pass
             else:
                 raise AssertionError('missing recovered result was accepted')
         return {'case': case, 'status': 'PASS', 'driver_exit': result.returncode,
                 'actual_model_http_requests': len(generated.requests), 'gpu_allocations': 0,
+                'protocol': driver.RUN_NAME, 'candidate': calibration,
+                'search_fallback': getattr(generated, 'fallback_evidence', None),
+                'crossed_original_time_and_tool_limits': case == 'search-fallback',
                 'exercised_tools': generated.exercised_tools,
                 'model_generation': 'SCRIPTED CPU CONTENT; NOT A MODEL RESULT'}
     finally:
@@ -353,10 +423,10 @@ def main(source, output, evaluator):
         '--regid=65534', '--clear-groups', sys.executable, '-I', '-c',
         'import os,sys;raise SystemExit(1 if os.access(sys.argv[1],os.R_OK) else 0)', str(evaluator)],
         env={'PATH': '/usr/bin:/bin'}, check=True, timeout=10)
-    for case in ('missing-route', 'success', 'tools', 'model-error'):
+    for case in ('missing-route', 'success', 'tools', 'search-fallback', 'model-error'):
         env = dict(os.environ, VLLM_SERVER_DEV_MODE='0')
         result = probes.run(case, lambda: subprocess.run([sys.executable, '-I', __file__, '--case',
-            str(source), str(output / case), case], env=env, check=True, stdout=subprocess.PIPE, timeout=300))
+            str(source), str(output / case), case], env=env, check=True, stdout=subprocess.PIPE, timeout=450))
         if result is not None:
             stages[case] = json.loads(result.stdout.splitlines()[-1])
     from tools.qualify_evaluation import qualify

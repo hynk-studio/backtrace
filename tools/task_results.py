@@ -1,4 +1,4 @@
-"""Validate actual R0 artifacts; process exit alone is not task completion."""
+"""Validate protocol-bound artifacts; process exit alone is not task completion."""
 import hashlib
 import json
 import math
@@ -16,20 +16,33 @@ def read(root, name, limit):
     return path.read_bytes()
 
 
-def validate(root):
+LEGACY_PROTOCOL = 'R0-clean-v2-one-public-task/A10080-TP1'
+
+
+def validate(root, *, protocol=LEGACY_PROTOCOL):
     root = Path(root).absolute()
     result = json.loads(read(root, 'task-result.json', 64 * 1024))
     patch = read(root, 'agent.patch', 64 * 1024**2)
     wire = [json.loads(line) for line in read(root, 'wire.jsonl', 16 * 1024**2).splitlines() if line]
     trace = json.loads(read(root, TRACE, 64 * 1024**2))
+    tools = 10
+    if protocol != LEGACY_PROTOCOL:
+        from tools.task_calibration import PROTOCOL
+        if (protocol != PROTOCOL or not isinstance(trace, dict) or result.get('protocol') != PROTOCOL
+                or result.get('budget') != {'session_seconds': 300, 'tool_calls': 30, 'llm_calls': 50}
+                or result.get('patch_submitted') is not True or not patch
+                or type(result.get('seconds')) not in (int, float) or not 0 <= result['seconds'] <= 330
+                or not any(_submitted(step) for step in trace.get('steps', []))):
+            raise ValueError('calibrated task requires explicit budget, trace and patch submission')
+        tools = 30
     if (result.get('instance_id') != TASK or result.get('agent_error') not in (None, '')
             or type(result.get('llm_calls')) is not int or not 0 < result['llm_calls'] <= 50
-            or type(result.get('tool_calls')) is not int or not 0 <= result['tool_calls'] <= 10
+            or type(result.get('tool_calls')) is not int or not 0 <= result['tool_calls'] <= tools
             or type(result.get('seconds')) not in (int, float)
             or not math.isfinite(result['seconds']) or result['seconds'] < 0
             or result.get('patch_bytes') != len(patch)
             or result.get('patch_sha256') != hashlib.sha256(patch).hexdigest()):
-        raise ValueError('R0 task did not complete successfully or its artifacts disagree')
+        raise ValueError('task did not complete successfully within its expected budget or its artifacts disagree')
     requests = [row for row in wire if row.get('event') == 'request']
     responses = [row for row in wire if row.get('event') == 'response']
     if (not requests or len(requests) != len(responses) or len(wire) != len(requests) * 2
@@ -45,3 +58,11 @@ def validate(root):
             'patch_bytes': len(patch), 'patch_sha256': result['patch_sha256'],
             'trace_sha256': hashlib.sha256(read(root, TRACE, 64 * 1024**2)).hexdigest(),
             'verification': 'NOT RUN; task completion is not patch correctness'}
+
+
+def _submitted(value):
+    """ATIF versions nest tool calls differently; require a named invocation."""
+    if isinstance(value, dict):
+        return ((value.get('function_name') == 'submit_patch' or value.get('name') == 'submit_patch')
+                or any(_submitted(v) for k, v in value.items() if k not in ('message', 'content')))
+    return isinstance(value, list) and any(_submitted(v) for v in value)

@@ -26,6 +26,7 @@ def qualify(root, emit):
     if shutil.disk_usage(root).free < 45 * 1024**3:
         raise ValueError('free CPU disk space below 45 GiB for host and pinned image')
     report = {'gpu_allocations': 0, 'gpu_model_server_starts': 0, 'gpu_model_task_executions': 0,
+              'experimental_protocol': cloud_task.RUN_NAME,
               'scripted_cpu_checks': 'reported separately per stage', 'stages': {},
               'source_sha': os.environ['GITHUB_SHA'], 'run_id': os.environ['GITHUB_RUN_ID'],
               'files': cloud_qualification.file_hashes(frozen.ROOT)}
