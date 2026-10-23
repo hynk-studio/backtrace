@@ -1,0 +1,62 @@
+name: R1 v2 GPU read-only live observation
+on:
+  push:
+    branches: [bt-001-verified-observe-20261024]
+    paths: ['.github/workflows/verified-gpu-observe.yml']
+permissions:
+  contents: read
+concurrency:
+  group: verified-gpu-live-observation-20261024
+  cancel-in-progress: false
+jobs:
+  observe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Read only the existing immutable qualified attempt
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
+        run: |
+          python - <<'PY'
+          import json, logging, os, time
+          from pathlib import Path
+          from tools import cloud_state as state, cloud_bootstrap as bootstrap, runpod_control as control
+          logging.disable(logging.CRITICAL)
+          report={'allocation_requests':0,'settings_changed':False,'mutations':0,'observed_at':control.utc(time.time())}
+          try:
+              store=state.GitHubState(os.environ['GITHUB_TOKEN'])
+              claim=store.read('claim')[0]; pod=store.read('pod')[0]
+              if (claim['run_id']!='40039468878' or claim['source_sha']!='e31873dab5b400a1ddc236c7ac9c2440f05fdab7'
+                  or claim['watcher_run_id']!='40039393307' or pod['pod_id']!='gvms91slerswyj'
+                  or pod['attempt']!=claim['attempt']):
+                  raise ValueError('exact immutable paid attempt required')
+              api=control.RunpodAPI(os.environ['RUNPOD_API_KEY'].strip())
+              value=api.get(pod['pod_id'])
+              expected={'request':{'name':claim['name']},'costs':claim['costs'],'region':claim['region']}
+              report.update(attempt=claim['attempt'],pod_id=pod['pod_id'],
+                  immutable_source_sha=claim['source_sha'],
+                  resource_matches=control.resource_matches(value,expected),
+                  provider=bootstrap.observe(value,time.time()-claim['requested_at']),
+                  log_sample=bootstrap.sample_logs(api,pod['pod_id']))
+              report['status']='PASS'
+          except Exception as error:
+              report.update(status='FAIL',error_type=type(error).__name__)
+          path=Path('evidence');path.mkdir(exist_ok=True)
+          (path/'verified-gpu-observe.json').write_text(json.dumps(report,sort_keys=True,indent=2)+'\n')
+          print(json.dumps(report,sort_keys=True))
+          raise SystemExit(0 if report['status']=='PASS' else 1)
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: verified-gpu-observe-${{ github.run_id }}-${{ github.run_attempt }}
+          path: evidence/verified-gpu-observe.json
+          retention-days: 7
+          if-no-files-found: error

@@ -79,3 +79,68 @@ does not establish model behavior, correctness or actual GPU teardown.
 The schema-1 receipt now binds the corrected source. At this checkpoint the
 new claim remains unused; receipt-source Linux and free owner preparation, a
 fresh matching watcher and current offer must still pass before allocation.
+
+## Actual one-attempt outcome
+
+The scope is now **CONSUMED**. Owner [40039468878](https://github.com/hynk-studio/backtrace/actions/runs/40039468878)
+and independent watcher [40039393307](https://github.com/hynk-studio/backtrace/actions/runs/40039393307)
+completed successfully from immutable source
+`e31873dab5b400a1ddc236c7ac9c2440f05fdab7`. One EU-RO-1 A100 PCIe80GB Pod
+`gvms91slerswyj` was allocated at **2026-10-24 08:25:26 KST**. The final fresh
+offer qualified EU rather than the earlier CA observation. All historical
+paid/watch heads, claims and receipts remain immutable.
+
+| Outcome | Observed result |
+| --- | --- |
+| Model/runtime | Native SM80/BF16, TP1; HTTP ready after 159.347s |
+| Agent task | Submitted in 196.630s, 27 charged tools, 29 LLM calls; strict v2 completion PASS |
+| Patch | 7,745 bytes, SHA256 `0e2e0d87cb71173732ca2e458373ad52f5d4d489e18a0131dff0cc2476dc3ab1` |
+| Public correctness | Exact recovered patch: **4 passed, 0 failed, 0 errors/skips; resolved** |
+| Server/process cleanup | `server_stop_returned`, worker exit0, no UID survivors, scratch removed |
+| Provider cleanup | Owner and watcher each confirmed two absence reads; owner status COMPLETE |
+
+The original public/private artifact ZIPs were retained and their digests
+verified. All17 private owner records, the eight-file delivery manifest,
+patch/task/wire/ATIF bindings and cleanup events were independently checked.
+Free evaluator [40041608780](https://github.com/hynk-studio/backtrace/actions/runs/40041608780)
+at `bf50a54525b8d78ebe7bb021ea517219c45d70d3` received four byte-identical
+original receipts through a fresh encrypted receiver. It required completed
+original owner plus two deletion absence reads before running the public tests.
+All12 evaluator-private records and the actual four-test JUnit hash/counts were
+checked. No model/agent rerun, provider mutation or reference control occurred.
+Its Linux suite passed366 tests in29.712s. See the paid and public-evaluation
+result/execution JSON files next to this report.
+
+## Did the preparation prevent real failures?
+
+The two paid-entry defects had deterministic failing regressions before their
+fixes, and the corrected v2 claim/permit path now reached actual model execution.
+The previous server ownership fix also completed actual GPU teardown here,
+including an empty outer cleanup and independent provider deletion. Those are
+direct execution observations beyond the earlier scripted CPU coverage.
+
+The verification prompt remains incomplete as a behavioral safeguard. There
+were no rejected edits or charged-tool exhaustion, and five reproduction
+scripts used explicit nonzero failure exits. However, after the one production
+edit the model submitted without rerunning a check, with three tools and about
+103 seconds still available. A sixth reproduction script caught and printed
+failures, but its observed execution stopped earlier on a missing pytest
+import; two further inline commands had syntax errors. The process diagnostic
+therefore correctly retains `NO_COMMAND_AFTER_LAST_ACCEPTED_MUTATION` despite
+the independently correct patch. Do not turn the public-test pass into a claim
+that same-check verification was followed or enforced.
+
+The submitted patch also contains six exploratory reproduction scripts. Public
+task correctness is established for this one recovered patch, not production
+patch cleanliness or general model competence. The task was previously inspected
+and repeated; this is not held-out performance or a matched causal comparison
+against R0/R1. A useful next free design question is a generic final-edit
+verification condition compatible with the pinned official tool contract.
+Do not add task-specific evaluator answers or silently change the experiment.
+
+At **2026-10-24 08:55:03 KST**, independent read-only account run39822924063
+attempt14/job120715833063 found **zero Pods, zero current spend/hour, auto-pay
+false**. Balance USD4.9937691886; observed decrease USD0.7732057815 from the
+pre-run wallet, cumulative observed spend USD5.0062308114. This is an observed
+wallet debit, not a final invoice; settlement may lag. No additional funding,
+settings change, second allocation, paid rerun, merge or competition submission.

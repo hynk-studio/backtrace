@@ -1,0 +1,150 @@
+{
+  "agent_runs": 0,
+  "binding": {
+    "attempt": "b5c5e85fa83e4862940350658500fd2d",
+    "authorization": "owner-verified-gpu-20261024",
+    "pod_id": "gvms91slerswyj",
+    "run_id": "40039468878",
+    "source_sha": "e31873dab5b400a1ddc236c7ac9c2440f05fdab7"
+  },
+  "cleanup": {
+    "absence_reads": 2,
+    "at": 1792799501,
+    "attempt": "b5c5e85fa83e4862940350658500fd2d",
+    "phase": "deleted",
+    "pod_id": "gvms91slerswyj",
+    "reason": "heartbeat_lost"
+  },
+  "evaluator": {
+    "bytes": 1984455,
+    "credentials": "short-lived file URLs only",
+    "files": 1,
+    "manifest_sha256": "944a638b55ed1d14317a7684601fcb1758c7d0f8c1b61749b94f175b4ffe261e",
+    "phase": "bootstrap",
+    "schema_version": 1,
+    "transport": "direct-https",
+    "verified": true
+  },
+  "gpu_allocations": 0,
+  "handoff": {
+    "archive_sha256": "595b5592654a0ac9156f793cda0c878f930049984d5512431683566df6de2d9d",
+    "ciphertext_bytes": 23678,
+    "ciphertext_sha256": "a3dd729e73031e03fafb04fe259922dab313658221e541c183c193ead2220160",
+    "files": 4
+  },
+  "model_calls": 0,
+  "private_evidence": {
+    "ciphertext_bytes": 225628,
+    "ciphertext_sha256": "ee19054adb6ef6d2fb2eddbe1a18e59c9b835927e81ec8cd9d1c1ffb3db16c83",
+    "files": 12,
+    "format": "age-v1",
+    "plaintext_bytes": 211144
+  },
+  "provider_mutations": 0,
+  "result": {
+    "completed_agent_task": true,
+    "completion": {
+      "instance_id": "fastapi_11194",
+      "llm_calls": 29,
+      "patch_bytes": 7745,
+      "patch_sha256": "0e2e0d87cb71173732ca2e458373ad52f5d4d489e18a0131dff0cc2476dc3ab1",
+      "status": "PASS",
+      "tool_calls": 27,
+      "trace_review": {
+        "accepted_mutations": 7,
+        "budget_rejections": 0,
+        "command_observations": 10,
+        "correctness": "NOT ESTABLISHED; independent verifier required",
+        "flags": [
+          "NO_COMMAND_AFTER_LAST_ACCEPTED_MUTATION"
+        ],
+        "kind": "PROCESS_DIAGNOSTIC_NOT_CORRECTNESS",
+        "last_post_mutation_exit_code": null,
+        "last_post_mutation_failure_text": null,
+        "nonzero_commands": 5,
+        "post_mutation_commands": 0,
+        "rejected_mutations": 0,
+        "schema_version": 1,
+        "tool_errors": 5,
+        "unrecognized_tool_observations": 0,
+        "zero_exit_with_failure_text": 0
+      },
+      "trace_sha256": "e79bdbad2ea2282ceb720ec4a02b060df75a9357260d06b8bd6d5fd1aafc51e8",
+      "verification": "NOT RUN; task completion is not patch correctness",
+      "wire_requests": 30
+    },
+    "completion_validation_error": null,
+    "evaluation": {
+      "completed_agent_task": "not assessed by verifier",
+      "controls": [
+        {
+          "actual_tests": {
+            "errors": 0,
+            "failures": 0,
+            "junit_sha256": "b0d8126ba24416b8ff7f8dc0e8aa73f5dd63254662c2ee84a88b5d2ec42d9a63",
+            "passed": 4,
+            "skipped": 0,
+            "tests": 4
+          },
+          "control": "recovered-patch",
+          "duration_seconds": 2.772844727000006,
+          "error_present": false,
+          "resolved": true,
+          "test_exit_code": 0,
+          "validation_error": null
+        }
+      ],
+      "evaluator_uid": 65533,
+      "gpu_allocations": 0,
+      "model_score": {
+        "resolved": true,
+        "source": "validated recovered task artifacts"
+      },
+      "partial_patch_diagnostic": null,
+      "public_spec_sha256": "e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6",
+      "reference_scope": "NOT USED",
+      "status": "PASS"
+    },
+    "original_task_result": {
+      "agent_error": null,
+      "budget": {
+        "llm_calls": 50,
+        "session_seconds": 300,
+        "tool_calls": 30
+      },
+      "instance_id": "fastapi_11194",
+      "llm_calls": 29,
+      "patch_bytes": 7745,
+      "patch_sha256": "0e2e0d87cb71173732ca2e458373ad52f5d4d489e18a0131dff0cc2476dc3ab1",
+      "patch_submitted": true,
+      "protocol": "R1-budget5m-verification-guidance-v2/A10080-TP1",
+      "seconds": 196.63037133216858,
+      "tool_calls": 27,
+      "verification": "NOT RUN; evaluator-only record not mounted"
+    }
+  },
+  "run_id": "40041608780",
+  "source_sha": "bf50a54525b8d78ebe7bb021ea517219c45d70d3",
+  "stage": "finished",
+  "status": "PASS",
+  "task": {
+    "bytes": 222386501,
+    "credentials": "short-lived file URLs only",
+    "files": 8,
+    "manifest_sha256": "7e757d6a8b6d61fc917a623509a3ed5ee13b1ed69a91d3956550d776709d2ee8",
+    "phase": "task",
+    "schema_version": 1,
+    "transport": "direct-https",
+    "verified": true
+  },
+  "wheels": {
+    "bytes": 5373545117,
+    "credentials": "short-lived file URLs only",
+    "files": 246,
+    "manifest_sha256": "054e0e813a797e1eb4d76bab563b3bfbbefe104010391cec30f24d99a48da569",
+    "phase": "bootstrap",
+    "schema_version": 1,
+    "transport": "direct-https",
+    "verified": true
+  }
+}

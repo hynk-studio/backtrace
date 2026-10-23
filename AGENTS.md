@@ -639,3 +639,28 @@ still unused at this checkpoint. Require receipt-source Linux/free owner
 preparation, fresh matching independent watcher and exact current offer before
 one create. Model compliance/correctness and corrected GPU teardown remain
 NOT RUN. No paid rerun or automatic second allocation.
+
+
+Actual verified-v2 scope is now CONSUMED in EU-RO-1 Pod gvms91slerswyj,
+attempt b5c5e85fa83e4862940350658500fd2d. Preserve both actual verified-20261024
+paid/watch heads at e31873dab5b400a1ddc236c7ac9c2440f05fdab7. Owner40039468878
+completed with worker exit0; actual server_stop_returned and empty outer cleanup
+passed. Owner and watcher40039393307 each confirmed two provider absence reads.
+The agent submitted a7745-byte patch in196.630s with27 tools/29 LLM calls.
+Strict v2 task completion passed. Free post-deletion evaluation40041608780 at
+bf50a54525b8d78ebe7bb021ea517219c45d70d3 verified the exact original patch:
+all4 public tests passed, no errors/skips, resolved. All17 owner-private records,
+all12 evaluator-private records, original receipt bindings and JUnit hash/counts
+were independently verified. Read docs/verified-gpu-20261024.md and the linked
+paid/public-evaluation/process-review result/execution JSON files.
+
+The model still submitted immediately after its production edit with no command
+recheck, despite3 tools and about103 seconds remaining. Keep the process flag
+NO_COMMAND_AFTER_LAST_ACCEPTED_MUTATION even though public correctness passed.
+This repeated inspected public task is not held-out performance or evidence of
+a causal R1 improvement. Prompt guidance did not enforce final verification.
+At08:55:03KST independent account attempt14 found zero Pods/spend, auto-pay false,
+balance USD4.9937691886; observed debit USD0.7732057815, cumulative USD5.0062308114.
+No second allocation, paid rerun, claim reset, funding/settings change, merge,
+competition submission or recurring wait. Only free follow-up remains in this
+consumed scope; the immutable qualification-time unused snapshots are historical.

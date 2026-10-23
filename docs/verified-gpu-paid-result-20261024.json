@@ -1,0 +1,183 @@
+{
+  "allocation_requests": 1,
+  "bootstrap": {
+    "deadline_seconds": 1200,
+    "history": [
+      {
+        "direct_endpoint_present": false,
+        "direct_endpoint_valid": false,
+        "elapsed_seconds": 7,
+        "provider_status": "RUNNING",
+        "readiness": "WAIT_DIRECT_ENDPOINT",
+        "runtime_present": false,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": false,
+        "direct_endpoint_valid": false,
+        "elapsed_seconds": 29,
+        "provider_status": "RUNNING",
+        "readiness": "WAIT_DIRECT_ENDPOINT",
+        "runtime_present": false,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": false,
+        "direct_endpoint_valid": false,
+        "elapsed_seconds": 51,
+        "provider_status": "RUNNING",
+        "readiness": "WAIT_DIRECT_ENDPOINT",
+        "runtime_present": false,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": false,
+        "direct_endpoint_valid": false,
+        "elapsed_seconds": 74,
+        "provider_status": "RUNNING",
+        "readiness": "WAIT_DIRECT_ENDPOINT",
+        "runtime_present": false,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": true,
+        "direct_endpoint_valid": true,
+        "elapsed_seconds": 96,
+        "provider_status": "RUNNING",
+        "readiness": "READY",
+        "runtime_present": true,
+        "started_at_present": true
+      }
+    ],
+    "last": {
+      "direct_endpoint_present": true,
+      "direct_endpoint_valid": true,
+      "elapsed_seconds": 96,
+      "provider_status": "RUNNING",
+      "readiness": "READY",
+      "runtime_present": true,
+      "started_at_present": true
+    },
+    "polls": 5
+  },
+  "cleanup": {
+    "absence_reads": 2,
+    "at": 1792799485,
+    "attempt": "b5c5e85fa83e4862940350658500fd2d",
+    "phase": "deleted",
+    "pod_id": "gvms91slerswyj",
+    "reason": "owner_finished"
+  },
+  "mode": "paid",
+  "preparation": {
+    "allocation_requests": 0,
+    "availability": {
+      "account": {
+        "auto_pay": false,
+        "credit_balance": "5.7669749701",
+        "current_spend_per_hour": "0"
+      },
+      "allocation_requests": 0,
+      "costs": {
+        "compute_per_hour": "1.79",
+        "hourly_all_in": "1.804",
+        "initial_balance": "5.7669749701",
+        "maximum_all_in": "3.608",
+        "other_total": "0",
+        "spent_before": "4.2330250299",
+        "storage_per_hour": "0.014",
+        "tax_rate": "0"
+      },
+      "observed_at": "2026-10-23T23:25:25Z",
+      "offer": {
+        "authenticated": true,
+        "auto_pay": false,
+        "cloud": "SECURE",
+        "compute_per_hour": "1.79",
+        "container_disk_gb": 100,
+        "credit_balance": "5.7669749701",
+        "gpu": "NVIDIA A100 80GB PCIe",
+        "gpu_count": 1,
+        "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+        "interruptible": false,
+        "network_volume": null,
+        "observed_at": "2026-10-23T23:25:25Z",
+        "other_total": "0",
+        "ram_gb": 125,
+        "region": "EU-RO-1",
+        "region_policy": "owner-equivalent-region-20261019",
+        "stock_available": true,
+        "storage_per_hour": "0.014",
+        "tax_rate": "0",
+        "vcpus": 16,
+        "volume_gb": 0
+      },
+      "regions": [
+        {
+          "available": true,
+          "id": "CA-MTL-3",
+          "stock": "Low"
+        },
+        {
+          "available": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 125,
+            "minVcpu": 16,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 1.79
+          },
+          "id": "EU-RO-1",
+          "stock": "Low"
+        },
+        {
+          "available": true,
+          "id": "US-KS-2",
+          "stock": "Low"
+        },
+        {
+          "available": false,
+          "id": "US-MO-1",
+          "stock": null
+        }
+      ],
+      "settings_changed": false,
+      "status": "QUALIFIED"
+    },
+    "cpu": {
+      "run_id": 40039121075,
+      "source_sha": "e31873dab5b400a1ddc236c7ac9c2440f05fdab7",
+      "status": "PASS"
+    },
+    "create_body_bytes": 5578,
+    "driver_sha256": "0a10c8ba12d231dee861f61145d85a77dcac7cf1ce019276f6352cbfe817af06",
+    "free_stock_wait_seconds": 0,
+    "qualification": {
+      "bound_files": 105,
+      "report_sha256": "012fb5ae0d9df97dde647008c272ea714a65bf97ced103e13795b40bf62d4dca",
+      "run_id": "40035577327",
+      "source_sha": "6b6929c1a6ca91f5a69778c6dc80dd282eeb07a2"
+    },
+    "streams": {
+      "model": 8,
+      "task": 8,
+      "wheels": 246
+    },
+    "transport": {
+      "binary_bytes": 1400320,
+      "binary_sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a",
+      "method": "mutual-tls13-then-pinned-ssh",
+      "minimum_validity_seconds": 3600
+    }
+  },
+  "private_evidence": {
+    "ciphertext_bytes": 297325,
+    "ciphertext_sha256": "1d378a9501b98b8265e03b55abec0f8b2614e2228918a0ca6f1e181cba33bac1",
+    "files": 17,
+    "format": "age-v1",
+    "plaintext_bytes": 274867
+  },
+  "status": "COMPLETE",
+  "worker_exit": 0
+}

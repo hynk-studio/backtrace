@@ -1,0 +1,606 @@
+{
+  "artifacts": {
+    "private": {
+      "id": 12538969533,
+      "zip_sha256": "5f094dfe6bb035483fd86da35f0a9d5a08c700df4d3caf6b279aea8137370561"
+    },
+    "public": {
+      "id": 12540080259,
+      "zip_sha256": "7990d71edccec21e1f8b805694c4122316868e116399a66308d6c612a15f4cae"
+    }
+  },
+  "authorization_status": "CONSUMED; one allocation, never rerun",
+  "claim": {
+    "attempt": "b5c5e85fa83e4862940350658500fd2d",
+    "authorization": "owner-verified-gpu-20261024",
+    "costs": {
+      "compute_per_hour": "1.79",
+      "hourly_all_in": "1.804",
+      "initial_balance": "5.7669749701",
+      "maximum_all_in": "3.608",
+      "other_total": "0",
+      "spent_before": "4.2330250299",
+      "storage_per_hour": "0.014",
+      "tax_rate": "0"
+    },
+    "name": "backtrace-a100-b5c5e85fa83e4862940350658500fd2d",
+    "policy": "prepaid10-actions-v1",
+    "region": "EU-RO-1",
+    "requested_at": 1792797926,
+    "run": "R1-budget5m-verification-guidance-v2/A10080-TP1",
+    "run_id": "40039468878",
+    "schema_version": 1,
+    "setup_seconds": 5400,
+    "source_sha": "e31873dab5b400a1ddc236c7ac9c2440f05fdab7",
+    "total_seconds": 7200,
+    "useful_seconds": 6900,
+    "watcher_run_id": "40039393307"
+  },
+  "cost_observation": {
+    "before_balance": "5.7669749701",
+    "cumulative_observed_wallet_spend": "5.0062308114",
+    "final_invoice_established": false,
+    "note": "Observed wallet debit; settlement can lag. No funding/settings changes.",
+    "observed_at": "2026-10-23T23:55:03Z",
+    "observed_balance": "4.9937691886",
+    "observed_wallet_decrease": "0.7732057815"
+  },
+  "evaluation_artifacts": {
+    "private": {
+      "id": 12539483924,
+      "zip_sha256": "5993f92550544301f81b282738e5a7134823ac0ca60ed9dd1a5cf3459a91c364"
+    },
+    "public": {
+      "id": 12539364223,
+      "zip_sha256": "469165c1253a14d1bf0fcfd02877a1c4aed966b40dd63ef44423a1fa6c0b0c59"
+    }
+  },
+  "evidence_verification": {
+    "binding": {
+      "attempt": "b5c5e85fa83e4862940350658500fd2d",
+      "authorization": "owner-verified-gpu-20261024",
+      "pod_id": "gvms91slerswyj",
+      "run_id": "40039468878",
+      "source_sha": "e31873dab5b400a1ddc236c7ac9c2440f05fdab7"
+    },
+    "cleanup": {
+      "absence_reads": 2,
+      "at": 1792799485,
+      "attempt": "b5c5e85fa83e4862940350658500fd2d",
+      "phase": "deleted",
+      "pod_id": "gvms91slerswyj",
+      "reason": "owner_finished"
+    },
+    "completion": {
+      "instance_id": "fastapi_11194",
+      "llm_calls": 29,
+      "patch_bytes": 7745,
+      "patch_sha256": "0e2e0d87cb71173732ca2e458373ad52f5d4d489e18a0131dff0cc2476dc3ab1",
+      "status": "PASS",
+      "tool_calls": 27,
+      "trace_review": {
+        "accepted_mutations": 7,
+        "budget_rejections": 0,
+        "command_observations": 10,
+        "correctness": "NOT ESTABLISHED; independent verifier required",
+        "flags": [
+          "NO_COMMAND_AFTER_LAST_ACCEPTED_MUTATION"
+        ],
+        "kind": "PROCESS_DIAGNOSTIC_NOT_CORRECTNESS",
+        "last_post_mutation_exit_code": null,
+        "last_post_mutation_failure_text": null,
+        "nonzero_commands": 5,
+        "post_mutation_commands": 0,
+        "rejected_mutations": 0,
+        "schema_version": 1,
+        "tool_errors": 5,
+        "unrecognized_tool_observations": 0,
+        "zero_exit_with_failure_text": 0
+      },
+      "trace_sha256": "e79bdbad2ea2282ceb720ec4a02b060df75a9357260d06b8bd6d5fd1aafc51e8",
+      "verification": "NOT RUN; task completion is not patch correctness",
+      "wire_requests": 30
+    },
+    "completion_error_type": null,
+    "correctness": "NOT ESTABLISHED; independent public verifier required",
+    "events": [
+      {
+        "event": "worker_exit",
+        "exit_code": 0,
+        "peak_used_mib": [
+          73633
+        ]
+      },
+      {
+        "event": "worker_cleanup",
+        "survivors": []
+      },
+      {
+        "event": "run_end",
+        "receipt_bytes": 196345,
+        "scratch_removed": true,
+        "seconds": 397.042044878006,
+        "worker_cleanup_confirmed": true
+      },
+      {
+        "driver": "595.91.07",
+        "event": "qualified_hardware",
+        "memory_mib": 81920,
+        "name": "NVIDIA A100 80GB PCIe",
+        "native_bf16": true,
+        "runtime": "12.8.90",
+        "sm": [
+          8,
+          0
+        ],
+        "tp": 1
+      },
+      {
+        "event": "server_healthy",
+        "requested_dtype": "bfloat16",
+        "resolved_dtype": "torch.bfloat16",
+        "startup_seconds": 159.34653210639954
+      },
+      {
+        "event": "agent_process_exit",
+        "exit_code": 0
+      },
+      {
+        "event": "server_stop_returned",
+        "seconds": 364.45551085472107
+      }
+    ],
+    "owner_status": "COMPLETE",
+    "private_files": 17,
+    "status": "EVIDENCE_VERIFIED",
+    "tool_counts": {
+      "edit_file": 1,
+      "get_code_neighbors": 1,
+      "read_file": 7,
+      "run_command": 10,
+      "search_similar_code": 2,
+      "submit_patch": 1,
+      "write_file": 6
+    },
+    "trace_review": {
+      "accepted_mutations": 7,
+      "budget_rejections": 0,
+      "command_observations": 10,
+      "correctness": "NOT ESTABLISHED; independent verifier required",
+      "flags": [
+        "NO_COMMAND_AFTER_LAST_ACCEPTED_MUTATION"
+      ],
+      "kind": "PROCESS_DIAGNOSTIC_NOT_CORRECTNESS",
+      "last_post_mutation_exit_code": null,
+      "last_post_mutation_failure_text": null,
+      "nonzero_commands": 5,
+      "post_mutation_commands": 0,
+      "rejected_mutations": 0,
+      "schema_version": 1,
+      "tool_errors": 5,
+      "unrecognized_tool_observations": 0,
+      "zero_exit_with_failure_text": 0
+    },
+    "transfer": {
+      "bytes": 196311,
+      "files": 8,
+      "manifest_sha256": "61415d9349f8e5107860f7c8f2e43350013005405227a4b56672fdb70870b050",
+      "phase": "task",
+      "schema_version": 1,
+      "verified": true
+    },
+    "worker_exit": 0
+  },
+  "final_account": {
+    "artifact_id": 12539124640,
+    "job_id": 120715833063,
+    "report": {
+      "allocation_requests": 0,
+      "availability": {
+        "account": {
+          "auto_pay": false,
+          "credit_balance": "4.9937691886",
+          "current_spend_per_hour": "0"
+        },
+        "allocation_requests": 0,
+        "observed_at": "2026-10-23T23:55:03Z",
+        "offer": null,
+        "regions": [
+          {
+            "available": false,
+            "exact_quote": {
+              "availableGpuCounts": null,
+              "minMemory": null,
+              "minVcpu": null,
+              "stockStatus": null,
+              "supportPublicIp": null,
+              "uninterruptablePrice": null
+            },
+            "id": "CA-MTL-3",
+            "stock": null
+          },
+          {
+            "available": false,
+            "exact_quote": {
+              "availableGpuCounts": null,
+              "minMemory": null,
+              "minVcpu": null,
+              "stockStatus": null,
+              "supportPublicIp": null,
+              "uninterruptablePrice": null
+            },
+            "id": "EU-RO-1",
+            "stock": null
+          },
+          {
+            "available": false,
+            "exact_quote": {
+              "availableGpuCounts": null,
+              "minMemory": null,
+              "minVcpu": null,
+              "stockStatus": null,
+              "supportPublicIp": null,
+              "uninterruptablePrice": null
+            },
+            "id": "US-KS-2",
+            "stock": null
+          },
+          {
+            "available": false,
+            "exact_quote": {
+              "availableGpuCounts": null,
+              "minMemory": null,
+              "minVcpu": null,
+              "stockStatus": null,
+              "supportPublicIp": null,
+              "uninterruptablePrice": null
+            },
+            "id": "US-MO-1",
+            "stock": null
+          }
+        ],
+        "settings_changed": false,
+        "status": "NO_QUALIFIED_REGION"
+      },
+      "pods": [],
+      "run_id": "39822924063",
+      "settings_changed": false,
+      "source_sha": "59d430b6c552b8ad3b9d7b03708df77c8e7e0b4b",
+      "status": "PASS"
+    },
+    "run_attempt": 14,
+    "run_id": 39822924063,
+    "zip_sha256": "6e69ca06f9806453722b1a58276a7754761e5ab96cebca409576973ae11a321a"
+  },
+  "independent_watcher_cleanup": {
+    "absence_reads": 2,
+    "at": 1792799501,
+    "attempt": "b5c5e85fa83e4862940350658500fd2d",
+    "phase": "deleted",
+    "pod_id": "gvms91slerswyj",
+    "reason": "heartbeat_lost"
+  },
+  "interpretation": "Successful single repeated public-task diagnostic; not held-out performance or a matched causal comparison.",
+  "not_performed": [
+    "second allocation",
+    "paid rerun",
+    "model retraining",
+    "matched R0/R1 comparison",
+    "held-out benchmark",
+    "merge",
+    "competition submission",
+    "funding/settings changes",
+    "recurring resumption"
+  ],
+  "paid_job_id": 120706867723,
+  "paid_run_id": 40039468878,
+  "paid_source_sha": "e31873dab5b400a1ddc236c7ac9c2440f05fdab7",
+  "pod": {
+    "attempt": "b5c5e85fa83e4862940350658500fd2d",
+    "pod_id": "gvms91slerswyj"
+  },
+  "prevention_assessment": {
+    "correctness": "Original byte-bound patch independently passed 4/4 public tests after deletion.",
+    "guidance": "Budget was not exhausted, but no command followed the production edit. Same-check verification is not enforced by the prompt.",
+    "next_work": "Free design/validation of a generic final-edit verification condition; do not change official tools or inject public evaluator answers. No new paid attempt implied.",
+    "paid_entry": "Two deterministic protocol/permit blockers reproduced and corrected before allocation; actual v2 entry passed.",
+    "server_teardown": "Prior ownership correction reached actual GPU server_stop_returned, exit0, empty survivors and independent deletion."
+  },
+  "process_review": {
+    "accepted_production_edits": 1,
+    "assessment": [
+      "No charged-tool rejection occurred, but the final production edit was submitted without rerunning any check despite remaining budget.",
+      "Five generated reproduction scripts used an explicit nonzero failure exit. A later sixth script caught and printed test failures without rethrowing; its observed execution failed earlier on a missing pytest import.",
+      "Missing pytest in one newly authored script and two invalid inline Python commands were actual command failures, not model-server failures.",
+      "This is one repeated public task. Process changes do not establish a causal improvement or held-out performance."
+    ],
+    "charged_tool_calls": 27,
+    "commands_after_production_edit": 0,
+    "production_edit_position": 28,
+    "remaining_session_seconds_at_completion": 103.36962866783142,
+    "remaining_tool_budget_at_completion": 3,
+    "reproduction_files_with_explicit_failure_exit": 5,
+    "reproduction_files_written": 6,
+    "seconds": 196.63037133216858,
+    "status": "OBSERVED_PROCESS_EVIDENCE",
+    "submitted_changed_files": 7,
+    "tool_timeline": [
+      {
+        "content_sha256": "3f34b988eada49bccd0304cdc07607765fd566ed66d4813053a5fa120c9913a2",
+        "explicit_failure_exit": true,
+        "has_assertion": true,
+        "path": "reproduce_issue.py",
+        "position": 2,
+        "status": "ok",
+        "tool": "write_file"
+      },
+      {
+        "command_sha256": "d4797460b6c60ae33985e03fe4dc1bdf5e24f7349382985fb34b1e535752a14e",
+        "errors": [],
+        "exit_code": 0,
+        "kind": "reproduction",
+        "position": 3,
+        "status": "ok",
+        "tool": "run_command"
+      },
+      {
+        "content_sha256": "082ca779a09a55b515161e2c18653d1bfec90c1cbdef07d01561cb3d1302404b",
+        "explicit_failure_exit": true,
+        "has_assertion": true,
+        "path": "reproduce_issue_2.py",
+        "position": 4,
+        "status": "ok",
+        "tool": "write_file"
+      },
+      {
+        "command_sha256": "3ac527131a14d6b5dc4ae8a48159c5e94a6a2754aa92bdd7644bf2063e7ab33b",
+        "errors": [],
+        "exit_code": 1,
+        "kind": "reproduction",
+        "position": 5,
+        "status": "error",
+        "tool": "run_command"
+      },
+      {
+        "position": 6,
+        "status": "ok",
+        "tool": "search_similar_code"
+      },
+      {
+        "command_sha256": "a3e6b55e7c2fb249ce646886263f5359b9e095c3f920e8cc6ec40d956d609550",
+        "errors": [],
+        "exit_code": 0,
+        "kind": "inline_python",
+        "position": 7,
+        "status": "ok",
+        "tool": "run_command"
+      },
+      {
+        "content_sha256": "4b7696038b9f8cff41fdbcadcafe42d545af52160cd40a8bae64fd4d5bab4775",
+        "explicit_failure_exit": true,
+        "has_assertion": true,
+        "path": "reproduce_issue_3.py",
+        "position": 8,
+        "status": "ok",
+        "tool": "write_file"
+      },
+      {
+        "command_sha256": "6b0e453c8f5867916ff12f596e3d5150a86147e8f849634db319a2d65a1e788c",
+        "errors": [],
+        "exit_code": 0,
+        "kind": "reproduction",
+        "position": 9,
+        "status": "ok",
+        "tool": "run_command"
+      },
+      {
+        "content_sha256": "b5b37b59b7388be1ceef856c2822f822e15f071ce431cdb0c1f6a06cc00492f6",
+        "explicit_failure_exit": true,
+        "has_assertion": true,
+        "path": "reproduce_issue_4.py",
+        "position": 10,
+        "status": "ok",
+        "tool": "write_file"
+      },
+      {
+        "command_sha256": "98c1c4aacaa1f3ebfc81d478a93d69ff80544ec982956edf76d87904061db501",
+        "errors": [],
+        "exit_code": 1,
+        "kind": "reproduction",
+        "position": 11,
+        "status": "error",
+        "tool": "run_command"
+      },
+      {
+        "content_sha256": "23227b183a7996b8c67e682a374ea518f05e7b13a2e3b88f17139ba09476923c",
+        "explicit_failure_exit": true,
+        "has_assertion": true,
+        "path": "reproduce_issue_5.py",
+        "position": 12,
+        "status": "ok",
+        "tool": "write_file"
+      },
+      {
+        "command_sha256": "204c64612dc318ff9fa3889d7228dc04e046632b739d0fe4690a5099540b2534",
+        "errors": [],
+        "exit_code": 0,
+        "kind": "reproduction",
+        "position": 13,
+        "status": "ok",
+        "tool": "run_command"
+      },
+      {
+        "position": 14,
+        "status": "ok",
+        "tool": "search_similar_code"
+      },
+      {
+        "command_sha256": "d487cb8817d1b7db4c21c1af50eab43650c6a370d5d4522c04006b9dff8ac979",
+        "errors": [],
+        "exit_code": 0,
+        "kind": "text_search",
+        "position": 15,
+        "status": "ok",
+        "tool": "run_command"
+      },
+      {
+        "position": 16,
+        "status": "ok",
+        "tool": "read_file"
+      },
+      {
+        "position": 17,
+        "status": "ok",
+        "tool": "read_file"
+      },
+      {
+        "position": 18,
+        "status": "ok",
+        "tool": "read_file"
+      },
+      {
+        "position": 19,
+        "status": "ok",
+        "tool": "get_code_neighbors"
+      },
+      {
+        "position": 20,
+        "status": "ok",
+        "tool": "read_file"
+      },
+      {
+        "position": 21,
+        "status": "ok",
+        "tool": "read_file"
+      },
+      {
+        "position": 22,
+        "status": "ok",
+        "tool": "read_file"
+      },
+      {
+        "position": 23,
+        "status": "ok",
+        "tool": "read_file"
+      },
+      {
+        "content_sha256": "469e6c3c959b26a19efa60693b886abe4b7c3d3ce78fdacd08cbe3b192bab8df",
+        "explicit_failure_exit": false,
+        "has_assertion": true,
+        "path": "reproduce_bug.py",
+        "position": 24,
+        "status": "ok",
+        "tool": "write_file"
+      },
+      {
+        "command_sha256": "4fad07282f9e3d50809dcbbb4e6bc7cd6a5b9925b785262513ed02867478a8d6",
+        "errors": [
+          "ModuleNotFoundError"
+        ],
+        "exit_code": 1,
+        "kind": "reproduction",
+        "position": 25,
+        "status": "error",
+        "tool": "run_command"
+      },
+      {
+        "command_sha256": "b417d31ac2826c0e7b823b4092fec890556ed13226f1a41248feb85153b4e091",
+        "errors": [
+          "SyntaxError"
+        ],
+        "exit_code": 1,
+        "kind": "inline_python",
+        "position": 26,
+        "status": "error",
+        "tool": "run_command"
+      },
+      {
+        "command_sha256": "66cae2efe3da3797dea92052a3ed3760e65f00c2140ef90661020c7940e1f941",
+        "errors": [
+          "SyntaxError"
+        ],
+        "exit_code": 1,
+        "kind": "inline_python",
+        "position": 27,
+        "status": "error",
+        "tool": "run_command"
+      },
+      {
+        "path": "fastapi/dependencies/utils.py",
+        "position": 28,
+        "status": "ok",
+        "tool": "edit_file"
+      },
+      {
+        "position": 29,
+        "status": "ok",
+        "tool": "submit_patch"
+      }
+    ],
+    "trace_sha256": "e79bdbad2ea2282ceb720ec4a02b060df75a9357260d06b8bd6d5fd1aafc51e8"
+  },
+  "public_evaluation": {
+    "actual_tests": {
+      "errors": 0,
+      "failures": 0,
+      "junit_sha256": "b0d8126ba24416b8ff7f8dc0e8aa73f5dd63254662c2ee84a88b5d2ec42d9a63",
+      "passed": 4,
+      "skipped": 0,
+      "tests": 4
+    },
+    "agent_runs": 0,
+    "binding": {
+      "attempt": "b5c5e85fa83e4862940350658500fd2d",
+      "authorization": "owner-verified-gpu-20261024",
+      "pod_id": "gvms91slerswyj",
+      "run_id": "40039468878",
+      "source_sha": "e31873dab5b400a1ddc236c7ac9c2440f05fdab7"
+    },
+    "completed_agent_task": true,
+    "gpu_allocations": 0,
+    "interpretation": "Repeated previously inspected public-task diagnostic; not held-out performance",
+    "model_calls": 0,
+    "private_files": 12,
+    "provider_mutations": 0,
+    "receipt": {
+      "instance_id": "fastapi_11194",
+      "llm_calls": 29,
+      "patch_bytes": 7745,
+      "patch_sha256": "0e2e0d87cb71173732ca2e458373ad52f5d4d489e18a0131dff0cc2476dc3ab1",
+      "status": "PASS",
+      "tool_calls": 27,
+      "trace_review": {
+        "accepted_mutations": 7,
+        "budget_rejections": 0,
+        "command_observations": 10,
+        "correctness": "NOT ESTABLISHED; independent verifier required",
+        "flags": [
+          "NO_COMMAND_AFTER_LAST_ACCEPTED_MUTATION"
+        ],
+        "kind": "PROCESS_DIAGNOSTIC_NOT_CORRECTNESS",
+        "last_post_mutation_exit_code": null,
+        "last_post_mutation_failure_text": null,
+        "nonzero_commands": 5,
+        "post_mutation_commands": 0,
+        "rejected_mutations": 0,
+        "schema_version": 1,
+        "tool_errors": 5,
+        "unrecognized_tool_observations": 0,
+        "zero_exit_with_failure_text": 0
+      },
+      "trace_sha256": "e79bdbad2ea2282ceb720ec4a02b060df75a9357260d06b8bd6d5fd1aafc51e8",
+      "verification": "NOT RUN; task completion is not patch correctness",
+      "wire_requests": 30
+    },
+    "receipt_matches_original_paid_bytes": true,
+    "report_bytes": 4832,
+    "report_sha256": "b411ec87663b5435b54ac36d0e88269b34041a054fa0f0ab952b2f7d3784b410",
+    "resolved": true,
+    "run_id": "40041608780",
+    "source_sha": "bf50a54525b8d78ebe7bb021ea517219c45d70d3",
+    "status": "EVIDENCE_VERIFIED"
+  },
+  "schema_version": 1,
+  "watcher_job_id": 120706628387,
+  "watcher_run_id": 40039393307
+}
