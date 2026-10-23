@@ -45,26 +45,49 @@ incomplete even if some public tests pass.
 
 ## Verification
 
-- Local focused checks: 53 tests passed after removing the private tool override;
-  CPU preflight and all workflow YAML parsing passed.
-- The initial implementation used an automatic host override. Linux 351 checks
-  passed in run 39921830089, but its unfinished full probe is superseded. Its
-  passing unit step does not qualify the final source. The initial YAML-only
-  failure 39921711124 had zero jobs.
-- Final exact-source Linux, host and offline-image task checks: NOT RUN at this
-  checkpoint. Original-input installation remains pinned. The dedicated free
-  mode executes all changed task/HTTP/evaluator boundaries and the exact image;
-  it marks unchanged SSH/lifecycle checks NOT RUN and cannot become paid-launch
-  qualification. This avoids repeatedly requalifying unchanged infrastructure
-  to obtain a task-path result.
-- Actual CPU case: add a harmless fixture marker using the real command tool,
-  request an empty graph search with a bare symbol, then invoke the original
-  command tool for text search. Cross the historical 60-second/ten-tool limits,
-  submit and recover the actual patch/trace. Both searches are counted.
-- Existing HTTP-error, complete-tool and public evaluator controls remain.
-  CPU chat content and the fallback decision are scripted; no Gemma reasoning,
-  compliance with guidance, GPU inference, task solution rate, submission
-  acceptance or matched research improvement is established.
+Final-source run [39926119986](https://github.com/hynk-studio/backtrace/actions/runs/39926119986),
+at `5b2f5cd11875c7eeb58c0ec906a1290b57b91237`, attempt 1, passed the actual Linux
+suite (**350 tests, 31.572 seconds**), CPU preflight, official candidate checks,
+real HTTP/runner/tools/UID/transport/evaluator paths on the host and the exact
+pinned offline image. All **91** bound source hashes match the current code.
+
+| Actual CPU environment | Task seconds | Charged tools | Chat requests | Submitted/recovered |
+| --- | ---: | ---: | ---: | --- |
+| Actions host | 71.140 | 12 | 14 | PASS |
+| Exact offline deployment image | 71.266 | 12 | 14 | PASS |
+
+The scenario really crosses the former 60-second/ten-tool limits. It adds a
+harmless README fixture marker through the original command tool, receives an
+empty original graph query, performs repository text search with the original
+command tool, executes charged read commands, submits, and recovers the actual
+305-byte patch and ATIF trace. Search decisions and chat content are scripted;
+this establishes an executable path, not Gemma compliance or patch correctness.
+The read-only analyzer's prompt is checked against its actual four declared
+tools; only the parent receives command/submission instructions. The actual
+`swegemma.context` tool factory is unchanged.
+
+Missing-route, model-error, full-tool/delegation and actual public verifier
+controls also passed in both environments. The authored neutral transport patch
+fails two of four public tests, while the evaluator-only reference passes all
+four. These are plumbing controls, not a new model score. **104** encrypted
+private records were recovered; public/private projections, both real task
+receipts, all four JUnit hashes/counts and the CPU-log hash were independently
+verified. Raw public report, normalized execution proof and effective policy are
+in the adjacent task-calibration JSON files.
+
+Local focused checks passed **54** tests. The earlier complete local suite
+retains this host's known foreign-procfs limits (349 before the last capability
+regression, 5 failures / 7 errors / 2 skips); actual target Linux passes all 350.
+The dedicated task-only mode marks unchanged SSH/full-setup/lifecycle checks
+**NOT RUN**, and cannot issue paid-launch qualification.
+
+The initial YAML failure 39921711124 had zero jobs. Free runs 39921830089,
+39924443142 and 39924951197 were superseded; their unit steps are not final-source
+qualification. The first host experiment actually completed its 69.268-second
+scripted task with four charged calls, but its oracle wrongly counted uncharged
+`get_status` calls as budget use. The final oracle uses charged command reads
+and asserts measured usage above ten. The superseded owner-encrypted diagnostic
+is retained. No GPU was used in any of these free checks.
 
 ## Paid boundary
 
@@ -72,7 +95,7 @@ All historical authorizations remain consumed. The changed source invalidates
 the old launch receipt, and the new driver expects its new protocol in a future
 single-use permit. The existing consumed controller scope still names R0, so it
 cannot silently launch the calibration. A successful free workflow is not a new
-paid-launch receipt or permission to retry. No paid/watch branch, claim, main,
+paid-launch receipt or permission to retry. All 213 previous state blobs are unchanged; only eight free receiver/cipher/diagnostic blobs were added. All 20 actual paid/watch heads are fixed. No paid/watch branch, claim, main,
 PR #16, merge, account setting or recurring wait is changed.
 
 Any future comparison must match budget, guidance, original tools and total diagnostics

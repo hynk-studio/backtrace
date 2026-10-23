@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "status": "IMPLEMENTED; FREE HOST/IMAGE TASK VALIDATION PASS",
+  "protocol": "R1-budget5m-search-guidance-v1/A10080-TP1",
+  "authority": "Owner: 직접 보완하고 확인해; free implementation/verification only",
+  "source_sha": "5b2f5cd11875c7eeb58c0ec906a1290b57b91237",
+  "prepared_driver_sha256": "eca5e2ee5065419272e99f8407d09e63798801640f2a8005e5189e7aba9f1b79",
+  "budget": {
+    "protocol": "R1-budget5m-search-guidance-v1/A10080-TP1",
+    "status": "IMPLEMENTED_FREE_CPU_ONLY",
+    "session_seconds": 300,
+    "tool_calls": 30,
+    "llm_calls": 50,
+    "command_seconds": 60,
+    "agent_child_seconds": 330,
+    "agent_teardown_seconds": 30,
+    "server_startup_seconds": 1200,
+    "retrieval_seconds": 180,
+    "provider_cleanup_seconds": 300
+  },
+  "extra_reserves": {
+    "server_stop_seconds": 30,
+    "submission_guidance_seconds": 45,
+    "submission_guidance_tools": 2
+  },
+  "windows": {
+    "server": {
+      "phase": "server",
+      "minimum_useful_seconds": 1740,
+      "minimum_total_seconds": 2040
+    },
+    "agent": {
+      "phase": "agent",
+      "minimum_useful_seconds": 540,
+      "minimum_total_seconds": 840
+    }
+  },
+  "effective_candidate_files": {
+    "agent.yaml": "de80dff58c1ab3e758a814b915c21113a16ddf632ac4d5fee238b8d6a1b6b5a8",
+    "configs/sampling.yaml": "3dab0b2506dae34ce92fef7b380d6073729104b23fe2cf66d44ac1d2f213aa6a",
+    "eval_config.yaml": "a165b7358e53b7f60e4cd3e2089725d9c0b2d361ba7a8b9afd5c31736fd893e6",
+    "prompts/analyzer.md": "c5b15ada1f0e29ce456e311bfce5ec4db197bae913ab5c1a87e6425e32e7ed30",
+    "prompts/system.md": "77f17f8a4ea13dc9fd3c69d0c9911e87f69a87e13b0b75bba570b9743ac0e3d9",
+    "sub_agents/code_analyzer.yaml": "73ff867103879db19d42ab2fd24673090793290e33170b06d2e377f3ae89b6d3"
+  },
+  "official_tools": "UNCHANGED; no host override",
+  "root_guidance": "bare graph identifier; original run_command text search after empty graph; reserve submission time",
+  "analyzer_guidance": "read-only graph/file tools; hand command/edit/submission work back to the parent",
+  "enforced": [
+    "nested entry deadlines",
+    "330-second child",
+    "explicit protocol/budget/patch submission and ATIF invocation",
+    "error-free result and matched model HTTP receipts"
+  ],
+  "model_dependent": [
+    "choice of search",
+    "avoidance of repeated empty searches",
+    "submission reserve adherence",
+    "implementation correctness"
+  ],
+  "qualification_scope": "FREE TASK/HTTP/EVALUATOR HOST AND EXACT OFFLINE IMAGE; NOT PAID LAUNCH QUALIFICATION",
+  "unchanged_infrastructure_requalified": false,
+  "paid_authorization": "NONE",
+  "model_performance": "NOT ESTABLISHED",
+  "comparison": "Future arms require matched total budgets and common operational tools/guidance; no comparison to the one-minute R0 timeout is a method improvement.",
+  "verification_run_id": 39926119986
+}

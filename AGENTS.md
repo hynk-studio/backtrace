@@ -453,3 +453,21 @@ override and unfinished free run 39921830089 are superseded, not final-source
 qualification. The task-only free mode checks changed host/offline-image task,
 HTTP and evaluator paths; unchanged SSH/lifecycle checks are explicitly NOT RUN.
 This narrower scope cannot mint a paid launch receipt or reset any claim.
+
+Final portable task calibration **39926119986**, attempt 1 at
+`5b2f5cd11875c7eeb58c0ec906a1290b57b91237`, passed **350 actual Linux tests**
+and the actual host/exact offline-image task path. Each environment executed
+about **71 seconds**, **12 charged tools** and 14 scripted chat requests, then
+submitted/recovered the patch and ATIF trace. Original tools are unchanged and
+read-only analyzer guidance matches its declared tools. The final measured
+control replaces an erroneous assumption that get_status spends tool budget;
+the superseded host diagnostic and original failures remain preserved. All
+104 owner-private records, both task receipts and four JUnit hashes/counts were
+verified. The neutral/reference controls fail 2/4 and pass 4/4 respectively;
+no new real-model score or Gemma guidance compliance is established. Unchanged
+SSH/full-setup/lifecycle checks are explicitly NOT RUN in this task-only scope.
+All 91 bound file hashes match, 213 prior state blobs and 20 actual paid/watch
+heads are unchanged, and eight free handoff/diagnostic blobs were added. Read
+`docs/task-calibration-20261023.md` and its policy/result/execution JSON. PR #17
+is draft; all paid claims remain consumed, no fresh scope or paid launch
+qualification exists, and no merge/submission/top-up/automation is authorized.
