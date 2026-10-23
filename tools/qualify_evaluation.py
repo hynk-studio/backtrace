@@ -220,14 +220,14 @@ def qualify(evaluator, task_inputs, patch, output, *, controls=True, partial=Fal
         return report
 
 
-def evaluate_receipts(evaluator, task_inputs, receipts, output):
+def evaluate_receipts(evaluator, task_inputs, receipts, output, *, protocol=None):
     """Score real recovered results on CPU after provider deletion, with no model call.
 
     Caller must first confirm provider cleanup. This function has no provider,
     inference, credential, submission, or positive-reference control operation.
     """
     from tools.task_results import validate
-    validate(receipts)
+    validate(receipts, **({'protocol': protocol} if protocol is not None else {}))
     return qualify(Path(evaluator), Path(task_inputs), Path(receipts) / 'agent.patch',
                    Path(output), controls=False)
 

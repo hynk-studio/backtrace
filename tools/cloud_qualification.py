@@ -4,11 +4,11 @@ import json
 import re
 import time
 
-from tools import a100_task, cloud_state as state
+from tools import a100_task, cloud_task, cloud_state as state
 
 PATHS = tuple(sorted(set(
-    ['tools/' + name for name in a100_task.POD_TOOLS]
-    + ['docs/' + name for name in a100_task.POD_DOCS]
+    ['tools/' + name for name in cloud_task.POD_TOOLS]
+    + ['docs/' + name for name in cloud_task.POD_DOCS]
     + ['tools/' + name + '.py' for name in (
         'a100_delivery', 'cloud_prepare', 'cloud_resolver', 'cloud_reference', 'cloud_transport',
         'cloud_task', 'cloud_worker', 'cloud_owner', 'cloud_watch', 'cloud_image', 'cloud_qualification',
@@ -32,7 +32,8 @@ PATHS = tuple(sorted(set(
        'tools/cloud_sources.py', 'tests/test_cloud_sources.py', 'tests/official_full_setup.py',
        'tests/test_pod_system.py', 'tests/test_cloud_offer.py',
        'docs/qualified-gpu-authorization-20261023.json',
-       '.github/workflows/qualified-gpu-start.yml'])))
+       '.github/workflows/qualified-gpu-start.yml',
+       'tests/test_task_calibration.py', '.github/workflows/task-calibration.yml'])))
 
 
 def file_hashes(root):

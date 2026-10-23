@@ -21,11 +21,13 @@ from tools.probe_results import ProbeResults
 from tools import qualification_evidence, cloud_qualification
 
 
-def qualify(root, emit):
+def qualify(root, emit, *, task_calibration_only=False):
     root = Path(root).absolute(); root.mkdir(mode=0o700, parents=True)
     if shutil.disk_usage(root).free < 45 * 1024**3:
         raise ValueError('free CPU disk space below 45 GiB for host and pinned image')
     report = {'gpu_allocations': 0, 'gpu_model_server_starts': 0, 'gpu_model_task_executions': 0,
+              'experimental_protocol': cloud_task.RUN_NAME,
+              'qualification_scope': 'TASK_CALIBRATION_ONLY_NOT_PAID_LAUNCH' if task_calibration_only else 'FULL_FREE_CPU',
               'scripted_cpu_checks': 'reported separately per stage', 'stages': {},
               'source_sha': os.environ['GITHUB_SHA'], 'run_id': os.environ['GITHUB_RUN_ID'],
               'files': cloud_qualification.file_hashes(frozen.ROOT)}
@@ -35,19 +37,22 @@ def qualify(root, emit):
         transfer = cloud_state.GitHubState(os.environ['GITHUB_TOKEN'])
         identity, prefix = cloud_reference.open_receiver(transfer, os.environ['GITHUB_RUN_ID'], os.environ['GITHUB_SHA'])
         emit({'stage': 'reference_receiver', 'status': 'READY', 'path': prefix})
-        stage = 'transport_build'
-        report['stages'][stage] = cloud_transport.build(root / 'transport')
-        emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
-        stage = 'transport_loopback'
-        binaries = root / 'transport/dropbear-DROPBEAR_2026.94'
-        with (root / 'transport-loopback.log').open('xb') as log:
-            result = subprocess.run(['sudo', sys.executable, '-I',
-                str(frozen.ROOT / 'tests/official_cloud_transport.py'), str(binaries / 'dropbear'),
-                str(binaries / 'dropbearkey'), 'actions-20261019'], stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
-                stderr=log, check=True, timeout=120,
-                env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
-        report['stages'][stage] = json.loads(result.stdout)
-        emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
+        if not task_calibration_only:
+            stage = 'transport_build'
+            report['stages'][stage] = cloud_transport.build(root / 'transport')
+            emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
+            stage = 'transport_loopback'
+            binaries = root / 'transport/dropbear-DROPBEAR_2026.94'
+            with (root / 'transport-loopback.log').open('xb') as log:
+                result = subprocess.run(['sudo', sys.executable, '-I',
+                    str(frozen.ROOT / 'tests/official_cloud_transport.py'), str(binaries / 'dropbear'),
+                    str(binaries / 'dropbearkey'), 'actions-20261019'], stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
+                    stderr=log, check=True, timeout=120,
+                    env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'})
+            report['stages'][stage] = json.loads(result.stdout)
+            emit({'stage': stage, 'status': 'PASS', **report['stages'][stage]})
+        else:
+            report['stages']['transport_loopback'] = {'status': 'NOT RUN', 'reason': 'unchanged transport outside task-calibration scope'}
         stage = 'private_evidence_permissions'
         import pyrage
         sites = str(Path(pyrage.__file__).resolve().parent.parent)
@@ -76,43 +81,46 @@ def qualify(root, emit):
         report['stages']['sources'] = {'wheels': len(wheel_sources), 'task': len(task_sources),
                                        'model': len(model_sources), 'urls_published': False}
         emit({'stage': 'sources', 'status': 'PASS', **report['stages']['sources']})
-        stage = 'source_lifetime_before_setup'
-        maps = {'wheels': wheel_sources, 'task': task_sources, 'model': model_sources}
-        report['stages'][stage] = cloud_sources.snapshot(maps)
-        emit({'stage': stage, **report['stages'][stage]})
-        # The same frozen manifests and production setup orchestrator now run
-        # through real pinned SSH, including installation, on a free CPU image.
-        raw_driver = root / 'ssh-retained-driver.py'
-        raw_driver.write_bytes(resolver.retained_literal(source))
-        cloud_task.prepare(raw_driver, root / 'ssh-driver')
-        streams = {}
-        for kind, sources in maps.items():
-            data = frozen.manifest(kind)
-            streams[kind] = {'manifest': data.decode(), 'sha256': hashlib.sha256(data).hexdigest(),
-                             'sources': sources}
-        private_json(root / 'full-ssh-streams.json', streams)
-        stage = 'full_setup_ssh'
-        def full_setup():
-            with (root / 'full-setup-process.log').open('xb') as log:
-                subprocess.run(['sudo', '--preserve-env=GITHUB_RUN_ID', sys.executable, '-I',
-                    str(frozen.ROOT / 'tests/official_full_setup.py'), str(root)],
-                    env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8',
-                         'GITHUB_RUN_ID':os.environ['GITHUB_RUN_ID']},
-                    stdin=subprocess.DEVNULL, stderr=log, timeout=3000)
-            return json.loads((root / 'full-setup-result.json').read_text())
-        probes.run(stage, full_setup)
-        emit({'stage': stage, **report['stages'][stage]})
-        stage = 'model_sources_after_real_setup'
-        def check_model_sources():
-            for row in json.loads(frozen.manifest('model'))['files']:
-                original = model_sources[row['path']]
-                checked = resolver.retry_read(lambda: resolver.public_source(original['url'], row))
-                if checked != original:
-                    raise ValueError('model source header/encoding changed after setup')
-            return {'status':'PASS','files':len(model_sources),'body_read':False,
-                    'declared_lifetime':cloud_sources.snapshot({'model':model_sources})}
-        probes.run(stage, check_model_sources)
-        emit({'stage': stage, **report['stages'][stage]})
+        if not task_calibration_only:
+            stage = 'source_lifetime_before_setup'
+            maps = {'wheels': wheel_sources, 'task': task_sources, 'model': model_sources}
+            report['stages'][stage] = cloud_sources.snapshot(maps)
+            emit({'stage': stage, **report['stages'][stage]})
+            # The same frozen manifests and production setup orchestrator now run
+            # through real pinned SSH, including installation, on a free CPU image.
+            raw_driver = root / 'ssh-retained-driver.py'
+            raw_driver.write_bytes(resolver.retained_literal(source))
+            cloud_task.prepare(raw_driver, root / 'ssh-driver')
+            streams = {}
+            for kind, sources in maps.items():
+                data = frozen.manifest(kind)
+                streams[kind] = {'manifest': data.decode(), 'sha256': hashlib.sha256(data).hexdigest(),
+                                 'sources': sources}
+            private_json(root / 'full-ssh-streams.json', streams)
+            stage = 'full_setup_ssh'
+            def full_setup():
+                with (root / 'full-setup-process.log').open('xb') as log:
+                    subprocess.run(['sudo', '--preserve-env=GITHUB_RUN_ID', sys.executable, '-I',
+                        str(frozen.ROOT / 'tests/official_full_setup.py'), str(root)],
+                        env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8',
+                             'GITHUB_RUN_ID':os.environ['GITHUB_RUN_ID']},
+                        stdin=subprocess.DEVNULL, stderr=log, timeout=3000)
+                return json.loads((root / 'full-setup-result.json').read_text())
+            probes.run(stage, full_setup)
+            emit({'stage': stage, **report['stages'][stage]})
+            stage = 'model_sources_after_real_setup'
+            def check_model_sources():
+                for row in json.loads(frozen.manifest('model'))['files']:
+                    original = model_sources[row['path']]
+                    checked = resolver.retry_read(lambda: resolver.public_source(original['url'], row))
+                    if checked != original:
+                        raise ValueError('model source header/encoding changed after setup')
+                return {'status':'PASS','files':len(model_sources),'body_read':False,
+                        'declared_lifetime':cloud_sources.snapshot({'model':model_sources})}
+            probes.run(stage, check_model_sources)
+            emit({'stage': stage, **report['stages'][stage]})
+        else:
+            report['stages']['full_setup_ssh'] = {'status': 'NOT RUN', 'reason': 'task-only calibration; historical setup evidence is not renewed'}
         stage = 'download_system_packages'
         system_manifest = json.loads((frozen.ROOT / 'docs/a100-system-packages.json').read_text())
         report['stages'][stage] = pod_system.download(system_manifest, root / 'system', deadline=time.time() + 180)
@@ -265,14 +273,17 @@ def qualify(root, emit):
         emit({'stage': stage, 'status': report['stages'][stage].get('status', 'PASS'),
               'image': report['stages'][stage].get('image'),
               'gpu_allocations': 0, 'gpu_model_server_starts': 0, 'gpu_model_task_executions': 0})
-        stage = 'concurrent_controller'
-        with (root / 'concurrent-controller.log').open('xb') as log:
-            result = probes.run(stage, lambda: subprocess.run(['sudo', sys.executable, '-I',
-                str(frozen.ROOT / 'tests/official_cloud_lifecycle.py')], env=env,
-                stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=log, check=True, timeout=300))
-        if result is not None:
-            report['stages'][stage] = json.loads(result.stdout)
-        emit({'stage': stage, **report['stages'][stage]})
+        if not task_calibration_only:
+            stage = 'concurrent_controller'
+            with (root / 'concurrent-controller.log').open('xb') as log:
+                result = probes.run(stage, lambda: subprocess.run(['sudo', sys.executable, '-I',
+                    str(frozen.ROOT / 'tests/official_cloud_lifecycle.py')], env=env,
+                    stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=log, check=True, timeout=300))
+            if result is not None:
+                report['stages'][stage] = json.loads(result.stdout)
+            emit({'stage': stage, **report['stages'][stage]})
+        else:
+            report['stages']['concurrent_controller'] = {'status': 'NOT RUN', 'reason': 'unchanged provider lifecycle outside task-calibration scope'}
         report['status'], report['failed_stages'] = probes.status, probes.failed
     except Exception as error:
         report.update(status='FAIL', failed_stage=stage, failure=failure(error))
@@ -299,13 +310,20 @@ def qualify(root, emit):
 
 
 def main():
+    if sys.argv[1:] not in ([], ['--task-calibration']):
+        raise ValueError('unsupported free qualification mode')
+    task_only = sys.argv[1:] == ['--task-calibration']
+    if task_only and (os.environ.get('GITHUB_REF_NAME') != 'bt-001-task-calibration-20261023'
+                      or os.environ.get('GITHUB_RUN_ATTEMPT') != '1'
+                      or 'RUNPOD_API_KEY' in os.environ):
+        raise ValueError('task-only free qualification requires its first-attempt review branch without provider credentials')
     logging.disable(logging.CRITICAL)
     os.umask(0o077)
     stream = sys.stdout
     emit = lambda value: print(json.dumps(value, sort_keys=True), file=stream, flush=True)
     with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
         try:
-            report = qualify(frozen.ROOT / '.local/cloud-free', emit)
+            report = qualify(frozen.ROOT / '.local/cloud-free', emit, task_calibration_only=task_only)
         except Exception as error:
             report = {'status': 'FAIL', 'gpu_allocations': 0, 'failure': failure(error)}
     emit(report)

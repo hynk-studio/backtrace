@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "status": "PASS; FREE TASK CALIBRATION ONLY",
+  "protocol": "R1-budget5m-search-guidance-v1/A10080-TP1",
+  "source_sha": "5b2f5cd11875c7eeb58c0ec906a1290b57b91237",
+  "branch": "bt-001-task-calibration-20261023",
+  "pr": 17,
+  "run_id": 39926119986,
+  "run_attempt": 1,
+  "job_id": 120323109880,
+  "prepared_driver_sha256": "eca5e2ee5065419272e99f8407d09e63798801640f2a8005e5189e7aba9f1b79",
+  "bound_file_count": 91,
+  "bound_files_match_current_source": true,
+  "workload_files": 23,
+  "official_tools": "UNCHANGED; actual swegemma.context factory verified",
+  "local_focused_tests": 54,
+  "actual_linux_tests": 350,
+  "actual_linux_test_seconds": 31.572,
+  "host_and_image": {
+    "host": {
+      "status": "PASS",
+      "seconds": 71.13980078697205,
+      "charged_tool_calls": 12,
+      "llm_calls": 14,
+      "patch_submitted": true,
+      "task_validation": {
+        "status": "PASS",
+        "instance_id": "fastapi_11194",
+        "llm_calls": 14,
+        "wire_requests": 14,
+        "tool_calls": 12,
+        "patch_bytes": 305,
+        "patch_sha256": "7977e5980ad7a195b1912366aad9b082803516009791cb56cea0a0e561e93488",
+        "trace_sha256": "08204fe4f5007a8959292f592fca6579a15f3d06282bfeaa7aa20db8d2ff571a",
+        "verification": "NOT RUN; task completion is not patch correctness"
+      },
+      "original_tools": true,
+      "fallback_decision": "SCRIPTED; actual original graph and command tools executed",
+      "source_projection": "MATCH"
+    },
+    "image": {
+      "status": "PASS",
+      "seconds": 71.26617407798767,
+      "charged_tool_calls": 12,
+      "llm_calls": 14,
+      "patch_submitted": true,
+      "task_validation": {
+        "status": "PASS",
+        "instance_id": "fastapi_11194",
+        "llm_calls": 14,
+        "wire_requests": 14,
+        "tool_calls": 12,
+        "patch_bytes": 305,
+        "patch_sha256": "7977e5980ad7a195b1912366aad9b082803516009791cb56cea0a0e561e93488",
+        "trace_sha256": "612e634022a54d9edd5c3887fc9e35a83538b671ca7f5a2d15f32c43a4b505c1",
+        "verification": "NOT RUN; task completion is not patch correctness"
+      },
+      "original_tools": true,
+      "fallback_decision": "SCRIPTED; actual original graph and command tools executed",
+      "source_projection": "MATCH"
+    }
+  },
+  "junit": [
+    {
+      "env": "host",
+      "control": "recovered-patch",
+      "sha256": "5ca847cc2fcd43dd948c1ef02e1d5e0a53fefff80be791f9a9101ee47df67da7",
+      "counts": {
+        "tests": 4,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "env": "host",
+      "control": "public-reference-control",
+      "sha256": "a4100c67a81bf27b6ae60e5ec24b7ec819e71ca1fb36675e66d0a5e6614e5199",
+      "counts": {
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "env": "image",
+      "control": "recovered-patch",
+      "sha256": "79cd5050b6606f131c237672a8223bb2a85fe67911755053891a6b53bae9ca90",
+      "counts": {
+        "tests": 4,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "env": "image",
+      "control": "public-reference-control",
+      "sha256": "e896f0414c11dba44335a10bd5f53a2a7567493f155e1893c51db7d779ad1c0b",
+      "counts": {
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  ],
+  "private_records_verified": 104,
+  "private_projection_match": true,
+  "cpu_log_sha_match": true,
+  "artifacts": {
+    "public": {
+      "id": 12490342091,
+      "zip_sha256": "c565f0e739a098c2e3f566008b11c94e8e21bef41d648498da9f32ea11b9973f",
+      "report_bytes": 55317,
+      "report_sha256": "7387b2c760e983cc5960e0e1c55b596e1f70fe16a701c5cb2c470f71476c5d4c"
+    },
+    "private": {
+      "id": 12490177375,
+      "zip_sha256": "9bd7a205a2102ed10e873a90f5cf468d1f9186714aa400e9c90ca488e84765f2",
+      "ciphertext_bytes": 1751805,
+      "ciphertext_sha256": "b75f4ca4e83f862650c0fff6f5cb0107862ef293c118ea916d2d888fc4b80031",
+      "files": 104,
+      "format": "age-v1",
+      "plaintext_bytes": 1671934
+    }
+  },
+  "scope": "TASK_CALIBRATION_ONLY_NOT_PAID_LAUNCH",
+  "not_requalified": [
+    "SSH transport/full setup",
+    "concurrent provider lifecycle"
+  ],
+  "original_task_correctness": "UNCHANGED; old model patch unresolved in prior CPU verification",
+  "new_real_model_performance": "NOT RUN; CPU chat and fallback decisions scripted",
+  "new_gpu_allocations": 0,
+  "new_real_model_starts": 0,
+  "paid_scope": "NONE",
+  "next_paid_readiness": "NOT QUALIFIED; fresh owner scope and source/entry qualification required",
+  "preservation": {
+    "observed_at": "2026-10-23T08:46:53.789860+00:00",
+    "state_head": "84f2e1dac0f5df67288eb0f5dd504b7af6dd3650",
+    "previous_state_blobs": 213,
+    "previous_state_changed": [],
+    "current_state_blobs": 221,
+    "new_state_blobs": 8,
+    "changed_protected_refs": [],
+    "paid_watch_heads_preserved": 20,
+    "main_preserved": true,
+    "paid_scope": "NONE",
+    "new_gpu_allocations": 0,
+    "ref_transport": "actual git ls-remote; not cached metadata",
+    "protected_refs": {
+      "refs/heads/bt-001-a100-start-20261019": "80cb0efa905ba7f068ea10e04ecf1c37c4382401",
+      "refs/heads/bt-001-a100-start-20261020b": "91788995fa6e7fd185a4a4e001a13558ce37581b",
+      "refs/heads/bt-001-a100-start-20261020c": "48dafadc25e42980e3674c247627662695891b84",
+      "refs/heads/bt-001-a100-start-20261021a": "6b7a861f286a2e68b169ccb9c4c1fb99c9ead756",
+      "refs/heads/bt-001-a100-start-20261021b": "ec58d2d6a8200a7cfb74185fce9ccc82dabaab81",
+      "refs/heads/bt-001-a100-start-20261021c": "5aea23d2456233414c74f3346f1163acd0779fa2",
+      "refs/heads/bt-001-a100-start-api-recovery": "7f53553078483cd2555f0bed0abd0410cf42f3d0",
+      "refs/heads/bt-001-a100-start-bootstrap-probe": "f7cb1164e06586486254ce193e30201e12e5c424",
+      "refs/heads/bt-001-a100-start-connected-gpu": "cdef8537994f65e6a26645ec684f5917bd126c7b",
+      "refs/heads/bt-001-a100-start-qualified-20261023": "626e3a619a025f64e3713af11b8e4097471470ab",
+      "refs/heads/bt-001-a100-watch-20261019": "80cb0efa905ba7f068ea10e04ecf1c37c4382401",
+      "refs/heads/bt-001-a100-watch-20261020b": "91788995fa6e7fd185a4a4e001a13558ce37581b",
+      "refs/heads/bt-001-a100-watch-20261020c": "48dafadc25e42980e3674c247627662695891b84",
+      "refs/heads/bt-001-a100-watch-20261021a": "6b7a861f286a2e68b169ccb9c4c1fb99c9ead756",
+      "refs/heads/bt-001-a100-watch-20261021b": "ec58d2d6a8200a7cfb74185fce9ccc82dabaab81",
+      "refs/heads/bt-001-a100-watch-20261021c": "5aea23d2456233414c74f3346f1163acd0779fa2",
+      "refs/heads/bt-001-a100-watch-api-recovery": "7f53553078483cd2555f0bed0abd0410cf42f3d0",
+      "refs/heads/bt-001-a100-watch-bootstrap-probe": "f7cb1164e06586486254ce193e30201e12e5c424",
+      "refs/heads/bt-001-a100-watch-connected-gpu": "cdef8537994f65e6a26645ec684f5917bd126c7b",
+      "refs/heads/bt-001-a100-watch-qualified-20261023": "626e3a619a025f64e3713af11b8e4097471470ab",
+      "refs/heads/bt-001-qualified-gpu-20261023": "37d6d45ab8a89dad1f7fbeedc0d3c37e037684f4",
+      "refs/heads/bt-001-task-budget-evaluation-20261023": "03c2e7cdae165fc4bf2a0ddc5a270f5769f47e37",
+      "refs/heads/main": "23616971a4ec57d32fcce769e0a2abf44faa9cfe"
+    }
+  },
+  "superseded_free_runs": [
+    39921711124,
+    39921830089,
+    39924443142,
+    39924951197
+  ],
+  "superseded_oracle_correction": "get_status is uncharged; final scenario uses actual charged command reads and asserts tool usage >10"
+}

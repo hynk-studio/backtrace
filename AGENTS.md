@@ -432,3 +432,42 @@ GPU/model/agent operation occurred. All 209 prior state blobs, 20 paid/watch
 heads, PR #15 and main are preserved. Read `docs/task-followup-20261023.md`,
 its result/execution JSON and the inactive budget proposal. Draft PR #16
 contains this free follow-up; no new paid scope or launch qualification exists.
+
+The owner next instructed **직접 보완하고 확인해** after the recommendation to
+implement the five-minute/30-tool/330-second calibration and empty-search
+fallback before retrying. Work on `bt-001-task-calibration-20261023`, based on
+PR #16, with one new Draft PR. This authorizes implementation and complete free
+CPU validation, not a provider create. The changed generic guidance and budget
+are an explicit R1 calibration using unchanged official tools, not the historical R0 baseline
+or evidence of improved model performance. Preserve original input ZIPs,
+timeouts, partial results, receipts, all 20 actual paid/watch heads and consumed
+claims. Test the actual prepared driver, official parser/runner/tools, real
+wall-time beyond the old limit, counted fallback and submission validation on
+the host and exact offline image. No new paid scope, paid rerun, top-up, merge,
+submission or recurring wait follows from this correction.
+
+The pinned primary harness contract uses closed host tool registries. The final
+calibration therefore keeps original tool factories and implementations and
+uses declarative bare-symbol/text-search guidance. The initial private automatic
+override and unfinished free run 39921830089 are superseded, not final-source
+qualification. The task-only free mode checks changed host/offline-image task,
+HTTP and evaluator paths; unchanged SSH/lifecycle checks are explicitly NOT RUN.
+This narrower scope cannot mint a paid launch receipt or reset any claim.
+
+Final portable task calibration **39926119986**, attempt 1 at
+`5b2f5cd11875c7eeb58c0ec906a1290b57b91237`, passed **350 actual Linux tests**
+and the actual host/exact offline-image task path. Each environment executed
+about **71 seconds**, **12 charged tools** and 14 scripted chat requests, then
+submitted/recovered the patch and ATIF trace. Original tools are unchanged and
+read-only analyzer guidance matches its declared tools. The final measured
+control replaces an erroneous assumption that get_status spends tool budget;
+the superseded host diagnostic and original failures remain preserved. All
+104 owner-private records, both task receipts and four JUnit hashes/counts were
+verified. The neutral/reference controls fail 2/4 and pass 4/4 respectively;
+no new real-model score or Gemma guidance compliance is established. Unchanged
+SSH/full-setup/lifecycle checks are explicitly NOT RUN in this task-only scope.
+All 91 bound file hashes match, 213 prior state blobs and 20 actual paid/watch
+heads are unchanged, and eight free handoff/diagnostic blobs were added. Read
+`docs/task-calibration-20261023.md` and its policy/result/execution JSON. PR #17
+is draft; all paid claims remain consumed, no fresh scope or paid launch
+qualification exists, and no merge/submission/top-up/automation is authorized.
