@@ -401,3 +401,15 @@ JSON's UNUSED text remains a bound qualification-time snapshot, superseded by
 the immutable consumed claim. Any later paid attempt requires a fresh scope
 and an explicit decision about the one-minute task budget. No paid rerun,
 automatic reallocation, top-up, merge, submission or recurring wait is allowed.
+
+The owner instructed **남은 과제 진행해줘** after the task-budget/verification
+status report. Complete free CPU follow-up on
+`bt-001-task-budget-evaluation-20261023`; read `docs/task-followup-20261023.md`.
+Verify the original byte-bound partial patch with isolated public tests, replay
+the empty graph queries on the pinned original tool and review nested session,
+child, retrieval and provider-cleanup budgets. Preserve the original timeout
+and all historical paid/evidence records. Partial patch verification must not
+become completed-task success. The five-minute/30-tool calibration proposal is
+review-only, not activated, and all comparison arms would need matched limits.
+This free task does not create another paid scope. No provider/model/agent
+operation, funding/settings change, merge, submission or recurring wait follows.

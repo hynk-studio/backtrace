@@ -75,7 +75,7 @@ def select(path, agent_input):
     return record
 
 
-def worker(root, task_inputs, *, controls=True):
+def worker(root, task_inputs, *, controls=True, partial=False):
     import asyncio
     from adk_submission import ModelRegistry
     from swegemma.config import EvalConfig
@@ -83,6 +83,8 @@ def worker(root, task_inputs, *, controls=True):
     from swegemma.harness.verification import verify_task
     from swegemma.sandbox import SubprocessManager
     from swegemma.deduplication import resolve_task_snapshot_paths
+    if partial and controls:
+        raise ValueError('partial diagnostics cannot use reference controls')
     if os.getuid() != 65533 or os.getgid() != 65533:
         raise ValueError('separate evaluator UID required')
     install_evaluator_dependencies(root)
@@ -161,12 +163,17 @@ def worker(root, task_inputs, *, controls=True):
     return {'status': 'PASS', 'controls': summaries, 'evaluator_uid': os.getuid(),
             'public_spec_sha256': TASKS_SHA256, 'gpu_allocations': 0,
             'reference_scope': 'evaluator-only positive control; no agent access' if controls else 'NOT USED',
-            'model_score': 'NOT RUN; scripted transport patch and public reference only' if controls else
-                           {'resolved': summaries[0]['resolved'], 'source': 'validated recovered task artifacts'}}
+            'model_score': ('NOT CLAIMED; incomplete task patch diagnostic only' if partial else
+                           'NOT RUN; scripted transport patch and public reference only' if controls else
+                           {'resolved': summaries[0]['resolved'], 'source': 'validated recovered task artifacts'}),
+            'completed_agent_task': False if partial else 'not assessed by verifier',
+            'partial_patch_diagnostic': {'resolved': summaries[0]['resolved']} if partial else None}
 
 
-def qualify(evaluator, task_inputs, patch, output, *, controls=True):
+def qualify(evaluator, task_inputs, patch, output, *, controls=True, partial=False):
     from tools.runpod_job import check_owner_host
+    if partial and controls:
+        raise ValueError('partial diagnostics cannot use reference controls')
     check_owner_host()
     select(evaluator, task_inputs / 'agent-task.json')
     # A private different UID prevents a concurrently surviving agent from
@@ -198,7 +205,7 @@ def qualify(evaluator, task_inputs, patch, output, *, controls=True):
         with (output / 'evaluator.log').open('wb') as log:
             result = subprocess.run(['setpriv', '--no-new-privs', '--bounding-set=-all', '--reuid=65533',
                 '--regid=65533', '--clear-groups', sys.executable, '-I', str(script), '--worker',
-                str(root), str(task_inputs), 'controls' if controls else 'result'], env=env, stdin=subprocess.DEVNULL,
+                str(root), str(task_inputs), 'partial' if partial else 'controls' if controls else 'result'], env=env, stdin=subprocess.DEVNULL,
                 stdout=subprocess.PIPE, stderr=log, timeout=300)
         (output / 'evaluator-stdout.log').write_bytes(result.stdout)
         for path in root.rglob('*'):
@@ -225,8 +232,26 @@ def evaluate_receipts(evaluator, task_inputs, receipts, output):
                    Path(output), controls=False)
 
 
+def diagnose_incomplete_receipts(evaluator, task_inputs, receipts, output, manifest):
+    """Test a byte-bound partial patch, retaining its original incomplete status.
+
+    This separate entry never relaxes evaluate_receipts/validate, never calls
+    a model, and never labels the result a completed-task model score.
+    """
+    from tools.recovered_task import analyze
+    evidence = analyze(receipts, manifest)
+    report = qualify(Path(evaluator), Path(task_inputs), Path(receipts) / 'agent.patch',
+                     Path(output), controls=False, partial=True)
+    if (report.get('completed_agent_task') is not False
+            or report.get('model_score') != 'NOT CLAIMED; incomplete task patch diagnostic only'):
+        raise ValueError('partial patch must not become a completed-task score')
+    report['original_task_result'] = evidence['task_result']
+    return report
+
+
 if __name__ == '__main__':
-    if sys.argv[1:2] == ['--worker'] and len(sys.argv) == 5 and sys.argv[4] in ('controls', 'result'):
-        print(json.dumps(worker(Path(sys.argv[2]), Path(sys.argv[3]), controls=sys.argv[4] == 'controls'), sort_keys=True))
+    if sys.argv[1:2] == ['--worker'] and len(sys.argv) == 5 and sys.argv[4] in ('controls', 'result', 'partial'):
+        print(json.dumps(worker(Path(sys.argv[2]), Path(sys.argv[3]), controls=sys.argv[4] == 'controls',
+                                partial=sys.argv[4] == 'partial'), sort_keys=True))
     else:
         raise ValueError('private evaluator worker entry only')
