@@ -1,1 +1,1 @@
-{"absence_reads":1,"at":1792716553,"attempt":"0b4b41cdd2124237b8ad930f7c421310","phase":"unresolved","pod_id":"virbb2jab7fi8v","reason":"heartbeat_lost"}
+{"absence_reads":2,"at":1792716575,"attempt":"0b4b41cdd2124237b8ad930f7c421310","phase":"deleted","pod_id":"virbb2jab7fi8v","reason":"heartbeat_lost"}
