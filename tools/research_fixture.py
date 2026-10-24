@@ -25,7 +25,7 @@ USAGE = {'prompt_tokens': 11, 'completion_tokens': 7, 'total_tokens': 18,
          'prompt_tokens_details': {'cached_tokens': 0}}
 
 
-def run_fixture(inputs, output, identifier, arm, wheels, control='ordinary'):
+def run_fixture(inputs, output, identifier, arm, wheels, control='ordinary', *, isolation=None):
     from swegemma.graph.graph_utils import get_graph
     import numpy as np
     task, _ = checked_slot(inputs, identifier, arm)
@@ -118,7 +118,7 @@ def run_fixture(inputs, output, identifier, arm, wheels, control='ordinary'):
     server = ThreadingHTTPServer(('127.0.0.1', 0), Endpoint)
     thread = threading.Thread(target=server.serve_forever, daemon=True); thread.start()
     try:
-        result = run_slot(inputs, output, identifier, arm, server.server_port, wheels)
+        result = run_slot(inputs, output, identifier, arm, server.server_port, wheels, isolation=isolation)
     finally:
         server.shutdown(); server.server_close(); thread.join(timeout=2)
     meter = result['accounting']
@@ -135,6 +135,9 @@ def run_fixture(inputs, output, identifier, arm, wheels, control='ordinary'):
              {'prompt_tokens': 66, 'completion_tokens': 42, 'total_tokens': 108, 'reasoning_tokens': 18, 'cached_tokens': 0}),
         'cleanup': result.get('sandbox_cleanup') and meter['closed'] and not thread.is_alive(),
         'fixture_contract': not failures}
+    if isolation is not None:
+        checks['os_cleanup'] = (result['isolation']['live_namespaces'] == 0
+                                and result['isolation']['closed_namespaces'] == 1)
     if control == 'retry':
         checks['tokens_match_fixture'] = (meter['token_accounting'] == 'INCOMPLETE'
             and all(v is None for v in meter['totals'].values())

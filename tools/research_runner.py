@@ -45,7 +45,7 @@ def checked_slot(inputs, identifier, arm):
     return task, row
 
 
-def run_slot(inputs, output, identifier, arm, upstream_port, wheels):
+def run_slot(inputs, output, identifier, arm, upstream_port, wheels, *, isolation=None):
     from adk_submission import VllmConfig, VllmServer, discover_adapters
     from google.adk.agents.context_cache_config import ContextCacheConfig
     from google.adk.apps._configs import EventsCompactionConfig
@@ -60,6 +60,7 @@ def run_slot(inputs, output, identifier, arm, upstream_port, wheels):
     inputs, output = Path(inputs).absolute(), Path(output).absolute()
     task_data, identity = checked_slot(inputs, identifier, arm)
     output.mkdir(mode=0o700)  # A new workspace is mandatory for every arm.
+    (output / 'results').mkdir(mode=0o700)
     sample = output / 'candidate'
     expected = materialize_candidate(inputs / 'candidates' / (arm + '.zip'), arm, sample)
     task_path = output / 'agent-task.json'; c._new_output(task_path, c.encoded(task_data))
@@ -73,10 +74,13 @@ def run_slot(inputs, output, identifier, arm, upstream_port, wheels):
         def start_agent_session(self):
             super().start_agent_session()
             ledger.start(self.agent_start_time)
+            if isolation is not None: isolation.begin(self.agent_start_time)
         def stop_agent_session(self):
             super().stop_agent_session()
             ledger.close()
+            if isolation is not None: isolation.finish()
     manager = SubprocessManager(timeout_seconds=60, base_dir=output / 'sandboxes')
+    if isolation is not None: isolation.attach(manager)
     server = None; begin = time.perf_counter()
     result = {'instance_id': identifier, 'arm': arm, 'candidate_sha256': expected['archive_sha256'],
               'agent_task_sha256': identity['agent_task_sha256'], 'status': 'INCOMPLETE',
@@ -120,6 +124,10 @@ def run_slot(inputs, output, identifier, arm, upstream_port, wheels):
         cleanup = time.perf_counter()
         try:
             manager.close()
+            if isolation is not None:
+                isolation.finish(); result['isolation'] = isolation.report()
+                result['os_isolation'] = 'DEDICATED_UID_PID_AND_NETWORK_NAMESPACES'
+                if isolation.expired: result['status'] = 'TIMEOUT'
             if server is not None:
                 server.stop(); Path(server.log_path).unlink(missing_ok=True)
             result['sandbox_cleanup'] = not manager.sandboxes

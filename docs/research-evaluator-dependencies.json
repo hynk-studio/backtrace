@@ -1,0 +1,241 @@
+{
+  "files": [
+    {
+      "bytes": 8458,
+      "name": "blinker",
+      "path": "blinker-1.9.0-py3-none-any.whl",
+      "sha256": "ba0efaa9080b619ff2f3459d1d500c57bddea4a6b424b60a91141db6fd2f08bc",
+      "version": "1.9.0"
+    },
+    {
+      "bytes": 1538171,
+      "name": "brotlicffi",
+      "path": "brotlicffi-1.2.1.0-cp39-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "sha256": "0a7281a39de91432e90c27ab9c4f9feb3a9cf33fda3873534c2a88270d9f60a2",
+      "version": "1.2.1.0"
+    },
+    {
+      "bytes": 261789,
+      "name": "coverage",
+      "path": "coverage-7.17.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "sha256": "85932227e9dd38e62cd29c17fefdfecfb919eead6af1e3259522d03cf85de983",
+      "version": "7.17.0"
+    },
+    {
+      "bytes": 10365,
+      "name": "decorator",
+      "path": "decorator-5.3.1-py3-none-any.whl",
+      "sha256": "f47fe6fdbd2edd623ecfe36875d37aba411624e2670dd395dddae1358689bb3c",
+      "version": "5.3.1"
+    },
+    {
+      "bytes": 5438,
+      "name": "editables",
+      "path": "editables-0.6-py3-none-any.whl",
+      "sha256": "d70e4698078a1d033e7786d9c64e5be070d058a67c21417024d38a58ac20aa43",
+      "version": "0.6"
+    },
+    {
+      "bytes": 40708,
+      "name": "execnet",
+      "path": "execnet-2.1.2-py3-none-any.whl",
+      "sha256": "67fba928dd5a544b783f6056f449e5e3931a5c378b128bc18501f7ea79e296ec",
+      "version": "2.1.2"
+    },
+    {
+      "bytes": 103424,
+      "name": "flask",
+      "path": "flask-3.1.3-py3-none-any.whl",
+      "sha256": "f4bcbefc124291925f1a26446da31a5178f9483862233b23c0c96a20701f670c",
+      "version": "3.1.3"
+    },
+    {
+      "bytes": 621404,
+      "name": "greenlet",
+      "path": "greenlet-3.5.6-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+      "sha256": "975736b002ed080d124cf81a79cb7e05cb26d6b3f5c7a7b651c0fcce70353aa1",
+      "version": "3.5.6"
+    },
+    {
+      "bytes": 78748,
+      "name": "hatchling",
+      "path": "hatchling-1.32.4-py3-none-any.whl",
+      "sha256": "08ecf7548fb48205e7f213d70c71e67b8271b7242093dc3f1da578b42c734a2c",
+      "version": "1.32.4"
+    },
+    {
+      "bytes": 100765,
+      "name": "httpbin",
+      "path": "httpbin-0.10.4-py2.py3-none-any.whl",
+      "sha256": "71862093f371c3a39cfcdcd2f073aaf610b6433f9d4c0130248e676453fca65d",
+      "version": "0.10.4"
+    },
+    {
+      "bytes": 6050,
+      "name": "iniconfig",
+      "path": "iniconfig-2.1.0-py3-none-any.whl",
+      "sha256": "9deba5723312380e77435581c6bf4935c94cbfab9b1ed33ef8d238ea168eb760",
+      "version": "2.1.0"
+    },
+    {
+      "bytes": 16234,
+      "name": "itsdangerous",
+      "path": "itsdangerous-2.2.0-py3-none-any.whl",
+      "sha256": "c6242fc49e35958c8b15141343aa660db5fc54d4f13a1db01a3f5891b98700ef",
+      "version": "2.2.0"
+    },
+    {
+      "bytes": 10692,
+      "name": "outcome",
+      "path": "outcome-1.3.0.post0-py2.py3-none-any.whl",
+      "sha256": "e771c5ce06d1415e356078d3bdd68523f284b4ce5419828922b6871e65eda82b",
+      "version": "1.3.0.post0"
+    },
+    {
+      "bytes": 57328,
+      "name": "pathspec",
+      "path": "pathspec-1.1.1-py3-none-any.whl",
+      "sha256": "a00ce642f577bf7f473932318056212bc4f8bfdf53128c78bbd5af0b9b20b189",
+      "version": "1.1.1"
+    },
+    {
+      "bytes": 20556,
+      "name": "pluggy",
+      "path": "pluggy-1.5.0-py3-none-any.whl",
+      "sha256": "44e1ad92c8ca002de6377e165f3e0f1be63266ab4d554740532335b9d75ea669",
+      "version": "1.5.0"
+    },
+    {
+      "bytes": 413562,
+      "name": "poetry-core",
+      "path": "poetry_core-2.5.0-py3-none-any.whl",
+      "sha256": "98ee465b66f7e14bb9fbe68fb5e00d0cff184f036993ec94610ae4b5612f3add",
+      "version": "2.5.0"
+    },
+    {
+      "bytes": 16725,
+      "name": "pysocks",
+      "path": "PySocks-1.7.1-py3-none-any.whl",
+      "sha256": "2725bd0a9925919b9b51739eea5f9e2bae91e83288108a9ad338b2e3a4435ee5",
+      "version": "1.7.1"
+    },
+    {
+      "bytes": 343634,
+      "name": "pytest",
+      "path": "pytest-8.3.5-py3-none-any.whl",
+      "sha256": "c69214aa47deac29fad6c2a4f590b9c4a9fdb16a403176fe154b79c0b4d4d820",
+      "version": "8.3.5"
+    },
+    {
+      "bytes": 23841,
+      "name": "pytest-cov",
+      "path": "pytest_cov-6.1.1-py3-none-any.whl",
+      "sha256": "bddf29ed2d0ab6f4df17b4c55b0a657287db8684af9c42ea546b21b1041b3dde",
+      "version": "6.1.1"
+    },
+    {
+      "bytes": 8309,
+      "name": "pytest-httpbin",
+      "path": "pytest_httpbin-2.1.0-py3-none-any.whl",
+      "sha256": "b3bf7346cc2ad231447189cd85b458e341056684a7a69d69533dd29692209cdd",
+      "version": "2.1.0"
+    },
+    {
+      "bytes": 11248,
+      "name": "pytest-mock",
+      "path": "pytest_mock-3.17.0-py3-none-any.whl",
+      "sha256": "1b82aa4b37137248bd687055e109723debeb07b489de1565297dc9589c5f2d6b",
+      "version": "3.17.0"
+    },
+    {
+      "bytes": 46396,
+      "name": "pytest-xdist",
+      "path": "pytest_xdist-3.8.0-py3-none-any.whl",
+      "sha256": "202ca578cfeb7370784a8c33d6d05bc6e13b4f25b5053c30a152269fd10f0b88",
+      "version": "3.8.0"
+    },
+    {
+      "bytes": 29575,
+      "name": "sortedcontainers",
+      "path": "sortedcontainers-2.4.0-py2.py3-none-any.whl",
+      "sha256": "a163dcaede0f1c021485e957a39245190e74249897e2ae4b2aa38595db237ee0",
+      "version": "2.4.0"
+    },
+    {
+      "bytes": 52225,
+      "name": "tomlkit",
+      "path": "tomlkit-0.15.2-py3-none-any.whl",
+      "sha256": "05562412163a3037b94497385fb7f9204c637bc605af7a48199e41cf2272f437",
+      "version": "0.15.2"
+    },
+    {
+      "bytes": 511840,
+      "name": "trio",
+      "path": "trio-0.34.0-py3-none-any.whl",
+      "sha256": "6c7c9f49917694dcdcd5f67abd168df5599eca480d61f29854d17a61a75c2f05",
+      "version": "0.34.0"
+    },
+    {
+      "bytes": 14232,
+      "name": "trove-classifiers",
+      "path": "trove_classifiers-2026.9.21.13-py3-none-any.whl",
+      "sha256": "8b1ff4f9c191b1040b71c37f1e445ab99732911e3cd91de52838453a854d7a17",
+      "version": "2026.9.21.13"
+    },
+    {
+      "bytes": 16530,
+      "name": "trustme",
+      "path": "trustme-1.2.1-py3-none-any.whl",
+      "sha256": "d768e5fc57c86dfc5ec9365102e9b092541cd6954b35d8c1eea01a84f35a762a",
+      "version": "1.2.1"
+    },
+    {
+      "bytes": 228700,
+      "name": "werkzeug",
+      "path": "werkzeug-3.1.9-py3-none-any.whl",
+      "sha256": "6392e50c78460ba618e5b21f08a71f59c99ce99cdc6cf6e3dd7e6ccca8754fab",
+      "version": "3.1.9"
+    },
+    {
+      "bytes": 33320,
+      "name": "wheel",
+      "path": "wheel-0.48.0-py3-none-any.whl",
+      "sha256": "3217dcc807155e45db462d7ef2431f5ddda0d7273b700d05a67b271ceb1287ab",
+      "version": "0.48.0"
+    }
+  ],
+  "frozen_runtime_reused": [
+    "attrs",
+    "cffi",
+    "click",
+    "cryptography",
+    "idna",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pycparser",
+    "six",
+    "sniffio"
+  ],
+  "resolved_at_utc": "2026-10-24",
+  "roots": [
+    "pytest==8.3.5",
+    "iniconfig==2.1.0",
+    "pluggy==1.5.0",
+    "pytest-httpbin==2.1.0",
+    "httpbin~=0.10.0",
+    "trustme",
+    "PySocks",
+    "pytest-mock",
+    "pytest-cov==6.1.1",
+    "pytest-xdist",
+    "trio",
+    "hatchling",
+    "poetry-core",
+    "wheel",
+    "editables==0.6"
+  ],
+  "schema_version": 1,
+  "scope": "EVALUATOR_ONLY_CPU_OVERLAY",
+  "source": "https://pypi.org/simple/"
+}
