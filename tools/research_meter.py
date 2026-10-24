@@ -10,6 +10,7 @@ import http.client
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import math
+import socket
 import threading
 import time
 
@@ -98,6 +99,14 @@ class Ledger:
                 value = parse(data)
                 if not isinstance(value, dict) or value.get('model') != self.model:
                     raise Rejected('unexpected model')
+                # Official LlmEventSummarizer omits generation config. Apply
+                # the same frozen values to those calls, never server defaults.
+                defaults = []
+                for key, expected in (('temperature', 0.2), ('top_p', 0.95)):
+                    if key not in value:
+                        value[key] = expected; defaults.append(key)
+                if 'max_tokens' not in value and 'max_completion_tokens' not in value:
+                    value['max_completion_tokens'] = 16384; defaults.append('max_completion_tokens')
                 if value.get('temperature') != 0.2 or value.get('top_p') != 0.95:
                     raise Rejected('sampling mismatch')
                 maximum = value.get('max_tokens', value.get('max_completion_tokens'))
@@ -114,6 +123,7 @@ class Ledger:
                        'forwarded_sha256': hashlib.sha256(forwarded).hexdigest(),
                        'streaming': bool(value.get('stream')), 'http_status': None,
                        'finished': False, 'elapsed_seconds': None, 'usage': None,
+                       'applied_frozen_defaults': defaults,
                        'sampling': {k: value.get(k) for k in ('temperature', 'top_p', 'max_tokens',
                                     'max_completion_tokens', 'seed', 'chat_template_kwargs')}}
                 self.rows.append(row)
@@ -178,7 +188,7 @@ def gateway(ledger, upstream_port):
         def do_POST(self):
             self.connection.settimeout(2)
             number = None; response_bytes = bytearray(); status = None; error = None
-            connection = None
+            connection = None; upstream_socket = None
             try:
                 if self.path != '/v1/chat/completions' or self.headers.get('Transfer-Encoding'):
                     raise Rejected('only bounded chat requests allowed')
@@ -190,6 +200,10 @@ def gateway(ledger, upstream_port):
                     raise Rejected('incomplete request')
                 number, data = ledger.admit(data)
                 connection = http.client.HTTPConnection('127.0.0.1', upstream_port, timeout=ledger.remaining())
+                connection.connect(); upstream_socket = connection.sock
+                with server.active_lock:
+                    ledger.remaining()
+                    server.active.add(upstream_socket)
                 connection.request('POST', self.path, body=data, headers={'Content-Type': 'application/json',
                                     'Authorization': 'Bearer EMPTY', 'Accept-Encoding': 'identity'})
                 response = connection.getresponse(); status = response.status
@@ -197,9 +211,12 @@ def gateway(ledger, upstream_port):
                 self.send_header('Content-Type', response.getheader('Content-Type', 'application/json'))
                 self.send_header('Connection', 'close'); self.end_headers()
                 while True:
+                    if response.isclosed():
+                        break
                     left = ledger.remaining()
-                    if connection.sock is not None:
-                        connection.sock.settimeout(left)
+                    # HTTPConnection drops its sock reference for a closing
+                    # response; its response file still owns this same socket.
+                    upstream_socket.settimeout(left)
                     chunk = response.read1(65536)
                     if not chunk:
                         break
@@ -217,16 +234,23 @@ def gateway(ledger, upstream_port):
             finally:
                 if connection is not None:
                     connection.close()
+                if upstream_socket is not None:
+                    with server.active_lock:
+                        server.active.discard(upstream_socket)
                 if number is not None:
                     ledger.finish(number, status, bytes(response_bytes), error)
                 self.close_connection = True
 
     server = Gateway(('127.0.0.1', 0), Handler)
+    server.active = set(); server.active_lock = threading.Lock()
     thread = threading.Thread(target=server.serve_forever, daemon=True); thread.start()
     try:
         yield server.server_port
     finally:
         ledger.close()
+        with server.active_lock:
+            for connection in server.active:
+                with contextlib.suppress(OSError): connection.shutdown(socket.SHUT_RDWR)
         server.shutdown(); server.server_close(); thread.join(timeout=2)
         if thread.is_alive():
             raise RuntimeError('accounting gateway did not stop')

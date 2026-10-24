@@ -47,6 +47,17 @@ class UsageTests(unittest.TestCase):
 
 
 class LedgerTests(unittest.TestCase):
+    def test_official_compaction_omissions_receive_frozen_sampling(self):
+        value = json.loads(request())
+        for key in ('temperature', 'top_p', 'max_tokens'): value.pop(key)
+        ledger = Ledger('frozen-model'); ledger.start()
+        _, body = ledger.admit(json.dumps(value).encode())
+        forwarded = json.loads(body)
+        self.assertEqual((forwarded['temperature'], forwarded['top_p'], forwarded['max_completion_tokens']),
+                         (.2, .95, 16384))
+        self.assertEqual(ledger.report()['requests'][0]['applied_frozen_defaults'],
+                         ['temperature', 'top_p', 'max_completion_tokens'])
+
     def test_deadline_uses_exact_official_session_start(self):
         now = [101.0]; ledger = Ledger('frozen-model', clock=lambda: now[0])
         ledger.start(100.0)
@@ -112,6 +123,31 @@ class LedgerTests(unittest.TestCase):
 
 
 class GatewayTests(unittest.TestCase):
+    def test_closing_stream_uses_remaining_deadline_after_first_chunk(self):
+        class SlowStream(BaseHTTPRequestHandler):
+            def log_message(self, *args): pass
+            def do_POST(self):
+                self.rfile.read(int(self.headers['Content-Length']))
+                self.send_response(200); self.send_header('Content-Type', 'text/event-stream')
+                self.send_header('Connection', 'close'); self.end_headers()
+                time.sleep(.12); self.wfile.write(b'data: {"choices":[]}\n\n'); self.wfile.flush()
+                time.sleep(.5)
+        server = ThreadingHTTPServer(('127.0.0.1', 0), SlowStream)
+        thread = threading.Thread(target=server.serve_forever, daemon=True); thread.start()
+        ledger = Ledger('frozen-model', seconds=.2); ledger.start()
+        try:
+            with gateway(ledger, server.server_port) as port:
+                connection = http.client.HTTPConnection('127.0.0.1', port, timeout=2)
+                connection.request('POST', '/v1/chat/completions', body=request(stream=True))
+                started = time.monotonic(); connection.getresponse().read(); elapsed = time.monotonic() - started
+                connection.close()
+            report = ledger.report()
+            self.assertLess(elapsed, .3)
+            self.assertEqual(report['requests'][0]['transport_error'], 'TimeoutError')
+            self.assertEqual(report['token_accounting'], 'INCOMPLETE')
+        finally:
+            server.shutdown(); server.server_close(); thread.join()
+
     def test_actual_http_error_retry_stream_and_hard_limit(self):
         calls = []
         class Upstream(BaseHTTPRequestHandler):

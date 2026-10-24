@@ -38,6 +38,16 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
+          name: research-public-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            evidence/*.json
+            evidence/tests.log
+            evidence/acquisition/*.json
+          retention-days: 14
+          if-no-files-found: error
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
           name: research-execution-${{ github.sha }}-${{ github.run_attempt }}
           path: evidence/
           retention-days: 14

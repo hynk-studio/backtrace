@@ -3,6 +3,7 @@
 This is compiler/runner qualification, not the full GPU deployment image. No
 version resolver is used: dependencies must fit already pinned wheel versions.
 """
+from concurrent.futures import ThreadPoolExecutor
 from email.parser import BytesParser
 import json
 import os
@@ -25,53 +26,60 @@ def prepare(root, official_wheels):
     records = {canonicalize_name(r['name']): r for r in c.parse((c.ROOT / 'docs/linux-wheel-manifest.json').read_bytes())}
     queue = [Requirement(n) for n in ('adk-eval-core', 'adk-submission', 'swegemma', 'google-adk',
                                      'google-genai', 'numpy', 'networkx', 'PyYAML', 'setuptools')]
-    extras, scanned, selected = {}, {}, {}
-    total = 0
-    omitted = []
-    while queue:
-        requirement = queue.pop(0); name = canonicalize_name(requirement.name)
-        if name not in records:
-            raise ValueError('CPU dependency absent from frozen inventory: ' + name)
-        row = records[name]
-        if not requirement.specifier.contains(row['version'], prereleases=True):
-            raise ValueError('CPU dependency contradicts frozen version: ' + name)
-        extras.setdefault(name, set()).update(requirement.extras)
-        if name in scanned and scanned[name] == extras[name]:
-            continue
+    def fetch(row):
         target = wheels / row['path']
-        if name not in selected:
-            total += row['bytes']
-            if total > 600 * 1024**2 or len(selected) >= 200:
-                raise ValueError('CPU dependency closure exceeded bounds')
-            original = official_wheels / row['path']
-            if original.exists():
-                data = c.read_file(original, 4 * 1024**2)
-                if len(data) != row['bytes'] or c.digest(data) != row['sha256']:
-                    raise ValueError('official wheel changed')
-                c._new_output(target, data)
-            else:
-                manifest = c.encoded({'schema_version': 1, 'phase': 'bootstrap', 'files': [
-                    {k: row[k] for k in ('path', 'bytes', 'sha256')}]})
-                source = resolver.retry_read(lambda: resolver.pypi_source(row))
-                destination = root / ('download-' + name)
-                pull(destination, manifest, {row['path']: source}, c.digest(manifest), 180)
-                shutil.move(destination / row['path'], target); shutil.rmtree(destination)
-            selected[name] = row
-        with zipfile.ZipFile(target) as archive:
-            meta = BytesParser().parsebytes(archive.read(next(n for n in archive.namelist() if n.endswith('.dist-info/METADATA'))))
-        for value in meta.get_all('Requires-Dist', []):
-            dependency = Requirement(value)
-            if name == 'swegemma' and canonicalize_name(dependency.name) in (
-                    'torchvision', 'transformers', 'safetensors', 'accelerate'):
-                # The pinned package declares serving dependencies eagerly but
-                # its inspected compiler/agent_runner path imports none of them.
-                # This CPU-only subset cannot qualify model loading or serving.
-                omitted.append({'package': name, 'requirement': value})
+        original = official_wheels / row['path']
+        if original.exists():
+            data = c.read_file(original, 4 * 1024**2)
+            if len(data) != row['bytes'] or c.digest(data) != row['sha256']:
+                raise ValueError('official wheel changed')
+            c._new_output(target, data)
+        else:
+            manifest = c.encoded({'schema_version': 1, 'phase': 'bootstrap', 'files': [
+                {k: row[k] for k in ('path', 'bytes', 'sha256')}]})
+            source = resolver.retry_read(lambda: resolver.pypi_source(row))
+            destination = root / ('download-' + row['name'])
+            pull(destination, manifest, {row['path']: source}, c.digest(manifest), 180)
+            shutil.move(destination / row['path'], target); shutil.rmtree(destination)
+        return target
+    extras, scanned, selected, pending = {}, {}, {}, {}
+    total = 0; omitted = []
+    # Dependencies enter this queue only after marker/version checks. Independent
+    # immutable reads overlap; parsing/install order remains deterministic.
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        while queue:
+            for required in queue:
+                name = canonicalize_name(required.name)
+                if name not in records:
+                    raise ValueError('CPU dependency absent from frozen inventory: ' + name)
+                row = records[name]
+                if not required.specifier.contains(row['version'], prereleases=True):
+                    raise ValueError('CPU dependency contradicts frozen version: ' + name)
+                if name not in pending:
+                    total += row['bytes']
+                    if total > 600 * 1024**2 or len(selected) >= 200:
+                        raise ValueError('CPU dependency closure exceeded bounds')
+                    selected[name] = row
+                    pending[name] = pool.submit(fetch, row)
+            requirement = queue.pop(0); name = canonicalize_name(requirement.name)
+            extras.setdefault(name, set()).update(requirement.extras)
+            if name in scanned and scanned[name] == extras[name]:
                 continue
-            if dependency.marker is None or any(dependency.marker.evaluate({'extra': extra})
-                                                for extra in extras[name] | {''}):
-                queue.append(dependency)
-        scanned[name] = set(extras[name])
+            target = pending[name].result()
+            with zipfile.ZipFile(target) as archive:
+                meta = BytesParser().parsebytes(archive.read(next(n for n in archive.namelist() if n.endswith('.dist-info/METADATA'))))
+            for value in meta.get_all('Requires-Dist', []):
+                dependency = Requirement(value)
+                if name == 'swegemma' and canonicalize_name(dependency.name) in (
+                        'torchvision', 'transformers', 'safetensors', 'accelerate'):
+                    # Serving imports are outside the inspected CPU path. This
+                    # subset does not qualify a complete model-serving image.
+                    omitted.append({'package': name, 'requirement': value})
+                    continue
+                if dependency.marker is None or any(dependency.marker.evaluate({'extra': extra})
+                                                    for extra in extras[name] | {''}):
+                    queue.append(dependency)
+            scanned[name] = set(extras[name])
     environment = {'PATH': os.defpath, 'LANG': 'C.UTF-8', 'HOME': str(root),
                    'OTEL_SDK_DISABLED': 'true', 'PYTHON_DOTENV_DISABLED': '1',
                    'LITELLM_LOCAL_MODEL_COST_MAP': 'True', 'HF_HUB_OFFLINE': '1',
