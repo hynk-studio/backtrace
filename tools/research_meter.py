@@ -70,11 +70,16 @@ class Ledger:
         self.rows, self.denied = [], []
         self.closed = False
 
-    def start(self):
+    def start(self, started=None):
         with self.lock:
             if self.started is not None or self.closed:
                 raise ValueError('ledger cannot be reset or reused')
-            self.started = self.clock(); self.deadline = self.started + self.seconds
+            now = self.clock()
+            if started is not None and (type(started) not in (int, float) or not math.isfinite(started)
+                                        or not now - 5 <= started <= now):
+                raise ValueError('fresh same-clock session start required')
+            self.started = now if started is None else started
+            self.deadline = self.started + self.seconds
 
     def remaining(self):
         if self.started is None or self.closed:

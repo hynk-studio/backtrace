@@ -47,6 +47,16 @@ class UsageTests(unittest.TestCase):
 
 
 class LedgerTests(unittest.TestCase):
+    def test_deadline_uses_exact_official_session_start(self):
+        now = [101.0]; ledger = Ledger('frozen-model', clock=lambda: now[0])
+        ledger.start(100.0)
+        self.assertEqual(ledger.deadline, 400.0)
+        now[0] = 400.0
+        with self.assertRaises(Rejected): ledger.admit(request())
+        for timestamp in (401.0, 300.0, float('nan')):
+            fresh = Ledger('frozen-model', clock=lambda: now[0])
+            with self.subTest(timestamp=timestamp), self.assertRaises(ValueError): fresh.start(timestamp)
+
     def test_concurrent_root_delegate_and_retry_attempts_share_fifty(self):
         ledger = Ledger('frozen-model'); ledger.start()
         def call(i):

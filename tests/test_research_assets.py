@@ -43,5 +43,17 @@ class AssetProjectionTests(unittest.TestCase):
             row = dict(self.selection['primary'][0]); row[key] = '../../outside'
             with self.subTest(key=key), self.assertRaises(ValueError): assets.asset_paths(row)
 
+    def test_reacquisition_must_match_first_asset_hashes(self):
+        lock = comparison.parse((comparison.ROOT / 'docs/research-assets-20261024.json').read_bytes())
+        acquired = copy.deepcopy(lock)
+        acquired['tasks'][0]['assets'][0]['acquired_at_utc'] = 'different acquisition time'
+        assets.verify_acquisition(acquired, lock)
+        for field, changed in (('sha256', 'f' * 64), ('bytes', 1), ('path', 'snapshots/wrong.tgz')):
+            mutated = copy.deepcopy(acquired); mutated['tasks'][0]['assets'][0][field] = changed
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                assets.verify_acquisition(mutated, lock)
+        acquired['tasks'].pop()
+        with self.assertRaises(ValueError): assets.verify_acquisition(acquired, lock)
+
 
 if __name__ == '__main__': unittest.main()

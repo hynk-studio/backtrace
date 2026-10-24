@@ -52,6 +52,18 @@ def asset_paths(task):
             'graphs/' + stem + '.json', 'embeddings/' + stem + '.npz')
 
 
+def verify_acquisition(report, lock):
+    """Subsequent reads must match the first acquired bytes, not replace them."""
+    if lock['status'] != 'PASS' or report['protocol_sha256'] != lock['protocol_sha256']:
+        raise ValueError('matching completed asset lock required')
+    def identities(rows):
+        return [{**{k: row[k] for k in ('instance_id', 'repo', 'base_commit', 'agent_task_sha256')},
+                 'assets': [{k: asset[k] for k in ('path', 'bytes', 'sha256')} for asset in row['assets']]}
+                for row in rows]
+    if identities(report['tasks']) != identities(lock['tasks']):
+        raise ValueError('acquired task bytes differ from committed lock')
+
+
 def download_new(client, name, destination):
     """Bounded first acquisition. Hashes become a lock, not a prior hash check."""
     from kagglesdk.competitions.types.competition_api_service import ApiDownloadDataFileRequest
@@ -162,6 +174,10 @@ def prepare(output):
                                                         'http_status': getattr(error, 'code', None)})
                         row['status'] = 'ACQUIRED' if not row['failures'] else 'INCOMPLETE'
             report['status'] = 'PASS' if all(t['status'] == 'ACQUIRED' for t in report['tasks']) else 'INCOMPLETE'
+            lock = ROOT / 'docs/research-assets-20261024.json'
+            if lock.exists():
+                verify_acquisition(report, c.parse(lock.read_bytes()))
+                report['asset_lock'] = 'MATCH'
             if (ROOT / 'tools/research_official.py').exists():
                 report['phase'] = 'official_cpu_qualification'
                 try:

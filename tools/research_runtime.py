@@ -24,7 +24,7 @@ def prepare(root, official_wheels):
     wheels = root / 'wheels'; wheels.mkdir(mode=0o700)
     records = {canonicalize_name(r['name']): r for r in c.parse((c.ROOT / 'docs/linux-wheel-manifest.json').read_bytes())}
     queue = [Requirement(n) for n in ('adk-eval-core', 'adk-submission', 'swegemma', 'google-adk',
-                                     'google-genai', 'numpy', 'networkx', 'PyYAML', 'pytest', 'setuptools')]
+                                     'google-genai', 'numpy', 'networkx', 'PyYAML', 'setuptools')]
     extras, scanned, selected = {}, {}, {}
     total = 0
     omitted = []
@@ -81,7 +81,8 @@ def prepare(root, official_wheels):
         subprocess.run([sys.executable, '-m', 'venv', '--without-pip', str(venv)],
                        env=environment, stdout=stream, stderr=stream, check=True, timeout=45)
         manifest = c.encoded({'schema_version': 1, 'phase': 'bootstrap', 'files': [BOOTSTRAP]})
-        pull(root / 'bootstrap', manifest, {BOOTSTRAP['path']: resolver.pypi_source(BOOTSTRAP)},
+        pip_row = dict(BOOTSTRAP, name='pip', version='25.0.1')
+        pull(root / 'bootstrap', manifest, {BOOTSTRAP['path']: resolver.pypi_source(pip_row)},
              c.digest(manifest), 180)
         subprocess.run(offline_child(venv / 'bin/python', 'bootstrap-pip', str(root / 'bootstrap' / BOOTSTRAP['path']),
             'install', '--no-index', '--no-deps', '--disable-pip-version-check',
@@ -106,6 +107,10 @@ def qualify(root, output):
     report = {'runtime': runtime, 'status': 'PASS' if completed.returncode == 0 else 'FAILED'}
     if completed.returncode == 0:
         report['compiler'] = c.parse(completed.stdout)
+        from tools.research_fixture import qualify as qualify_runner
+        report['runner'] = qualify_runner(python, root, root / 'runner-work', root / 'cpu-runtime/wheels', env)
+        if report['runner']['status'] != 'PASS':
+            report['status'] = 'FAILED'; report['stage'] = 'scripted_official_runner'
     else:
         report['stage'] = 'official_compiler'; report['exit_code'] = completed.returncode
     c._new_output(output, c.encoded(report))
