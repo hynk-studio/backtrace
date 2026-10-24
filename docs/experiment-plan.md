@@ -4,103 +4,146 @@ Question: does specialist post-training in logical/abductive inference, Bayesian
 belief revision and decision-relevant inspection improve resolved software tasks
 under a matched total inference budget?
 
-This slice has run CPU tooling tests, artifact pin checks and official CPU
-directory/model/include/schema/generation validation separately on the original
-sample and the reproducible R0-clean archive, followed by actual compiler and
-callable/schema construction with a request-denying model client and no sandbox.
-**R0, R1, R2 and R3 model/task runs:
-NOT RUN.** No synthetic teacher, inference, adapter training or Kaggle submission
-has run. A valid hosted run and evidence of improvement are separate outcomes.
+## Current evidence, 24 October 2026 KST
 
-| Stage | Intervention | Gate / comparison |
+The [real R1 v2 diagnostic](verified-gpu-20261024.md) completed model execution,
+patch submission, public verification (four tests passed) and resource cleanup.
+It reused an inspected task. The historical one-minute R0 timeout and five-minute
+R1 success have different budgets and cannot establish an R1 treatment effect.
+The successful model still omitted verification after its final production edit.
+
+The owner next authorized free CPU steps 1 and 2: freeze the successful runtime
+and prepare a fair comparison; implement a small exact teacher. Their current
+observed results are in [research-preparation-20261024.md](research-preparation-20261024.md).
+No new GPU execution, training, paid retry or competition submission is part of
+this slice. Historical receipts and consumed authorizations remain unchanged.
+
+| Stage | Intervention | Present evidence and next gate |
 | --- | --- | --- |
-| R0 | Frozen R0-clean no-LoRA derivative | Authorized two-line/four-file adapter removal only; immutable ten-file reference retained. Candidate CPU validation and real compiler/bindings pass with explicit boundaries (docs/r0.md). Single-task recipe prepared (docs/r0-smoke.md); no task run yet. |
-| R1 | Strong generic review/inspection prompt | Match R0 runtime and budget; control for the benefit of generic review rather than specialized reasoning. |
-| R2 | Bounded diagnostic prompt guidance | Compare with R1 and R0 under the same limits. No new reasoning engine. |
-| R3 | R2 runtime prompt/harness plus specialist post-trained adapter | Test learning separately from promptability; use an appropriately matched general-reasoning training control for training-specific claims. |
+| R0 | Frozen no-LoRA scaffold under the common five-minute budget | New comparison candidate assembled on CPU. Matched model run NOT RUN. |
+| R1 | R0 plus generic reproduction/review/verification guidance | New generic control assembled on CPU. Historical R1 v2 is an execution anchor, not a clean generic-review estimate. |
+| R2 | R1 plus hypotheses, forward predictions, evidence revision and useful-inspection guidance | Prompt-only candidate assembled on CPU. Model comparison NOT RUN. |
+| R3 | R2 runtime plus a specialist post-trained adapter | Exact teacher prepared; adapter training, save/reload and runtime attachment NOT RUN. |
 
-R1/R2 retain R0-clean's scaffold, tools and budgets apart from their declared
-prompt intervention. R3 adds experimental adapters to that matched scaffold;
-do not mix the official example adapters into the comparison. Their presence,
-metadata and discovery do not establish training history or usefulness.
+## 1. Matched coding pilot
 
-R2 guidance pairs inverse hypothesis formation with forward predictions. Track
-evidence identity/dependence, revise beliefs after observations, detect missing
-causes/model failure, ask whether another inspection could change the decision,
-and choose when to stop and act. Do not invent numerical posterior confidence for
-real repository diagnoses. Logical inconsistency, unknown/unproved propositions,
-and inference-tool timeouts are different states.
+Use [matched-comparison.md](matched-comparison.md) and its machine-readable
+[protocol](research-comparison-protocol.json). The runtime lock binds the actual
+successful source, exact image, checkpoint/tokenizer/template file identities,
+official harness/tools, runtime wheel closure and evaluator dependencies.
+It does not claim that those large model/runtime assets were reacquired here.
 
-Keep the verified checkpoint, harness, tools, task split and total inference limits
-matched. Diagnostic calls, retries, additional inspections, and any delegated calls
-count against the budget. Freeze prompt/harness versions and record actual token,
-call and wall-time use. Allocate runs before seeing held-out outcomes; preserve
-negative, ambiguous and null results. Do not select a stronger control only after
-seeing a favorable result.
+All new arms share factual tool-contract corrections and budget instructions.
+R0 retains the original scaffold's existing review language. R1 adds only the
+declared generic review bundle. R2 adds the bounded diagnostic bundle to R1.
+The historical prompt called R1 v2 already mentioned a leading explanation,
+an alternative and a distinguishing check. Reusing that label as a pure generic
+control would obscure the intended R2 contrast; it remains explicitly historical.
 
-R2 need not improve performance before a small, explicitly budgeted R3 feasibility
-experiment: promptability and learnability are different hypotheses. Nevertheless,
-large training is blocked until exact adapter compatibility, a tiny-batch training
-step, save/reload, and attachment to the competition checkpoint/runtime all succeed.
-An inference-quantized checkpoint is not assumed trainable, and a PEFT artifact is
-not assumed portable merely because its extension matches.
+The common allowances are 300 seconds of agent work, 30 charged tools and
+50 total model requests, including delegated work and retries. Commands have a
+60-second ceiling within remaining work time. The 330-second child ceiling
+includes teardown; it is not another 30 seconds of reasoning. Longer prompts
+are part of treatment cost. Record actual prompt/output/reasoning tokens and
+missing counters; equal time/call maxima do not prove equal realized token use.
+Global request accounting and actual runner integration must be demonstrated
+before a strict matched-inference claim. No historical receipt qualifies new
+candidates or a multi-task execution campaign.
 
-## Possible next research slice, not implemented here
+Select six primary tasks from distinct eligible repositories and six ordered
+reserves using the pinned public metadata and committed hash-ordering rule.
+Exclude the repeatedly inspected `fastapi_11194`, its repository aliases and
+base snapshot. Only ID/repository/base-commit metadata enters selection; do not
+inspect problem statements, reference patches or test labels. The source must
+match its known size/hash and 129-ID inventory. A missing source or insufficient
+eligible repositories is an explicit incomplete selection, not permission to
+invent IDs or silently shrink the design.
 
-A tiny exact CPU teacher for finite logical/probabilistic worlds may follow the
-baseline work. Specify the world generator and reference distribution before
-probability scoring. Cover duplicate evidence, dependent observations, wrong
-initial hypotheses, missing causes, ambiguous posterior states and simultaneous
-causes where applicable. Include cases where inspection changes the best action,
-where further inspection has no decision value, and where stopping is appropriate.
-Distinguish inspection value from action value; never force a unique cause where
-observations cannot identify one.
+Each primary task receives all three arms once, with the six arm permutations
+counterbalanced across tasks. Use fresh workspaces and conversations, and never
+share an earlier arm's trace, edited files or outcomes with another arm.
+Reserves cannot replace hard tasks, failures or unfavorable outcomes. A corrupt
+or unavailable input may motivate a recorded amendment only before any arm
+outcome. Six tasks and one stochastic sample per arm are a feasibility pilot,
+not a powered demonstration of general superiority.
 
-Separate agent-visible inputs from evaluator-only causes, answers, future
-observations and labels. Split by underlying world/problem family, not merely by
-paraphrase, seed or surface form. Audit leakage before training/evaluation. Do not
-use hidden competition cases or leaderboard feedback as training labels. Public
-development-task `patch`/`test_patch` fields belong to separate evaluator storage,
-not the runtime agent prompt. Local synthetic competence does not establish
-transfer to real software-engineering tasks.
+The primary endpoint is independent resolution within the common allowances.
+Keep every assigned slot in the denominator, including model/infra failures,
+timeouts, partial patches and explicit NOT RUN slots. Preserve negative/null
+results. Report paired R1–R0, R2–R0 and especially R2–R1 outcomes, without an
+effect estimate for incomplete pilots or invented statistical certainty.
+Future larger studies need predeclared repetitions and uncertainty that respects
+repository/family dependence.
 
-For training-specific comparisons, match general-reasoning control data volume,
-training token/step budget, checkpoint, optimizer, adapter capacity and evaluation
-schedule as closely as justified. Report remaining differences explicitly; neither
-mechanical adapter loading nor training-loss improvement proves diagnostic benefit.
+Track final-edit retesting independently of correctness. The existing
+`NO_COMMAND_AFTER_LAST_ACCEPTED_MUTATION` flag sees recognized edit/write tools;
+it does not prove full shell/delegate mutation coverage. A later zero-exit
+command does not prove a relevant same-check retest. Retain YES/NO/UNKNOWN plus
+mutation/check ordering and coverage evidence for that stronger metric.
 
-## Outcomes and evidence
+## 2. Small exact CPU teacher
 
-Primary competition-facing outcome: **resolved tasks under the fixed budget**.
-Secondary outcomes: total latency and compute/cost, timeouts, unnecessary edits,
-unnecessary inspections, recovery from wrong hypotheses, and basic coding/tool-use
-regressions. Record failures and budget exhaustion in denominators. Compare paired
-task outcomes with uncertainty appropriate to sample size and family dependence.
-Probability metrics apply only with a defensible reference distribution.
+The implemented [teacher](exact-teacher.md) uses finite Boolean probability
+models with rational conditional tables and complete bounded enumeration.
+Its exact labels include hypothesis posteriors, posterior-predictive and
+hypothesis-conditioned forward predictions, logical status and expected utility
+of inspection. The stated probability model is part of the question; a sampled
+true world, evaluator answer or future sampled outcome is never part of the
+agent input.
 
-Report these independently: local tooling tests; official requirements/starter
-acquired and pinned; candidate archive built/inspected; official validation;
-permitted end-to-end task; Kaggle acceptance; hosted scoring. Candidate packaging
-and the documented CPU checks pass. Compiler/callable/schema construction now
-passes in the bounded probe; tool execution and every model, submission and
-scoring stage remain NOT RUN. Do not infer usefulness, training
-compatibility, transfer or submission acceptance from an earlier stage.
+Cover duplicate/repeated evidence, dependent observations, incorrect initial
+leaders, contradictory observations, zero-support model mismatch, ambiguous
+causes and simultaneous causes. Unknown propositions, contradiction and model
+mismatch are distinct states. A bounded solver error is not a false proposition
+or a measured model failure. Do not force a unique cause when observations
+cannot identify one.
 
-## Future paid-compute proposal, not authorization
+Inspection value is the expected value of choosing the best action after an
+observation minus the value of the best action now. Subtract explicit inspection
+cost separately. A test can change beliefs while having zero decision value.
+Include useful indirect inspections, redundant tests, excessive-cost tests and
+stopping/tie cases. The implementation uses one-step observation value; it does
+not claim an optimal long-horizon experiment policy or causal intervention effect.
 
-Before any paid probe, the owner must approve a concrete capped proposal:
+The generator assigns disjoint underlying DAG families to train/evaluation,
+checks canonical structural signatures and forbids decorative independent nodes
+from manufacturing a nominal split. Splits are not based only on seeds, wording
+or renaming. The audit binds the generator and regenerates the rows/labels. This
+is an explicit small-family structural audit, not a proof against every form of
+semantic or pretraining leakage.
 
-| Field | Required proposal content / current status |
-| --- | --- |
-| Candidate GPU | Exact type/count, informed by measured memory needs. Notebook L4 x4 is an inference example, not a selected training configuration. Unselected. |
-| VRAM | Weight format, activations, sequence/batch size, optimizer and adapter memory plus headroom. Unmeasured; no numeric claim yet. |
-| Wall-time | Explicit hard ceiling, startup allowance and cancellation threshold. Not allocated. |
-| Storage | Bounded checkpoint/cache/adapter/log space and retention. Not allocated. |
-| Auto-stop/cleanup | Independent job timeout, provider stop confirmation, removal of rented storage and redacted receipts. Not configured. |
-| Compatibility | Exact checkpoint revision, tokenizer/template, quantization/training path and runtime version. Unverified. |
-| Adapter assumptions | Format, rank, target modules, registration and save/reload/attachment test. Notebook PEFT/rank hints do not establish compatibility. |
-| Cost ceiling | Provider price and maximum total charge including storage/egress, approved by owner before execution. No spend authorized. |
+Agent and evaluator JSONL files remain separate. Training may deliberately join
+training questions and labels later; evaluation labels stay out of model input
+and optimizer data. No real competition examples or leaderboard feedback become
+training labels. Exact synthetic competence and real software-engineering
+transfer are separate outcomes.
 
-Until these are resolved, use local/free CPU for source review, tooling, exact
-small teachers and tests only. This first PR does not build the teacher, a training
-pipeline, RL campaign, multi-agent hierarchy, full prover or central architecture.
+## 3. Adapter feasibility and training controls — later work
+
+R2 need not outperform R1 before a small, explicitly budgeted R3 feasibility
+experiment. Promptability and learnability are different hypotheses. First
+verify the exact trainable checkpoint, tokenizer/template and adapter target
+modules, one tiny training step, save/reload and attachment to the competition
+runtime. An inference-quantized model is not assumed directly trainable; a PEFT
+file is not assumed portable merely because its extension matches.
+
+Training-specific claims require a general-reasoning training control matched
+on data volume, tokens/steps, checkpoint, optimizer, adapter capacity and
+evaluation schedule, with remaining differences reported. Loading an adapter
+or reducing training loss does not establish useful diagnostic learning.
+Large training remains blocked until compatibility and the tiny end-to-end
+training/attachment path are actually demonstrated.
+
+## Evidence and paid-compute boundary
+
+Report independently: CPU tooling tests; input acquisition/pins; candidate
+assembly; actual official schema/compiler validation; permitted model-task
+execution; external correctness verification; resource cleanup; Kaggle
+acceptance and hosted scoring. An earlier stage does not establish a later one.
+
+Any future paid proposal must give the exact hardware and checkpoint, memory
+measurement, bounded startup/work/retrieval/cleanup time, maximum total cost,
+fresh single-use authorization and independent cleanup. Old one-task budgets
+and consumed scopes are not a multi-arm allocation permit. This preparation
+does not reset claims, alter provider settings, merge the PR, accept terms or
+submit to the competition.

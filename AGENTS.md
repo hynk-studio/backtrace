@@ -664,3 +664,18 @@ balance USD4.9937691886; observed debit USD0.7732057815, cumulative USD5.0062308
 No second allocation, paid rerun, claim reset, funding/settings change, merge,
 competition submission or recurring wait. Only free follow-up remains in this
 consumed scope; the immutable qualification-time unused snapshots are historical.
+
+The owner next provided the prior research conclusion and instructed **1/2 진행하자**
+on 2026-10-24. Work on `bt-001-research-prep-20261024`, based on the immutable
+PR #20 review head, with one new Draft PR referencing #1. This authorizes free
+CPU preparation of a budget-matched R0/R1/R2 comparison and a small finite exact
+teacher with structurally separated training/evaluation worlds. Keep successful
+runtime identities and prior records frozen; historical R1 v2 already includes
+diagnostic guidance and must not be mislabeled a pure generic control. New
+candidate assembly and synthetic labels are not model-performance evidence.
+An isolated free CPU workflow may reuse the existing Kaggle input-resolution
+credential to reacquire pinned source metadata/reference files, publish only
+IDs/hashes/types and remove raw inputs. No provider credential, model/GPU run,
+new paid scope, training, merge, issue closure or competition submission follows.
+Read `docs/research-preparation-20261024.md`, `docs/matched-comparison.md` and
+`docs/exact-teacher.md` for the current results and remaining gates.
