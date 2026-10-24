@@ -679,3 +679,14 @@ IDs/hashes/types and remove raw inputs. No provider credential, model/GPU run,
 new paid scope, training, merge, issue closure or competition submission follows.
 Read `docs/research-preparation-20261024.md`, `docs/matched-comparison.md` and
 `docs/exact-teacher.md` for the current results and remaining gates.
+
+The owner next instructed **계획대로 계속 진행하자** after PR #21. Continue
+the remaining free CPU execution preparation on
+`bt-001-research-execution-prep-20261024`, stacked on PR #21. Qualify the three
+frozen candidates through the actual official compiler, acquire/hash the six
+fixed primary task assets, and implement/qualify a shared runner and total
+request/token accounting. Preserve protocol, prompts, selected tasks and all
+historical operational files/heads/consumed claims. Reuse the existing Kaggle
+read-only input connection and owner-encrypted evidence channel. New CPU
+fixtures are plumbing evidence, not real-model results. No new paid allocation,
+merge, training or competition submission is included in this preparation.
