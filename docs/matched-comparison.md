@@ -80,8 +80,15 @@ not make stochastic model output deterministic.
 
 ## Preselection without inspecting task content
 
-**Actual v1 selection: SELECTION_SHORTFALL; v2 selection pending re-execution.**
-Free CPU run [40071820909](https://github.com/hynk-studio/backtrace/actions/runs/40071820909)
+**Actual v2 selection: SELECTED — six primary tasks, six reserves, three repository
+clusters.** Free CPU run
+[40072228708](https://github.com/hynk-studio/backtrace/actions/runs/40072228708)
+produced the committed [selection receipt](research-selection-20261024.json) and
+[verification receipt](research-preparation-cpu-20261024.json). It also downloaded
+the exact original R0 ZIP and assembled all three candidate archives successfully.
+
+The earlier free CPU run
+[40071820909](https://github.com/hynk-studio/backtrace/actions/runs/40071820909)
 acquired the original pinned JSONL and verified all 129 IDs. Its metadata showed
 that excluding the 67 FastAPI tasks leaves **62 tasks across only three
 repositories**: `psf/requests`, `textualize/rich` and `encode/httpx`. The original
@@ -97,7 +104,21 @@ reserves, traversing the same ranked repositories in round-robin order with a
 minimum of three primary repository clusters. This changes the sampling design;
 it does not retroactively convert the v1 shortfall into success. HTTPX has only
 one eligible task, so a requirement of two tasks per repository would be invalid.
-The v2 receipt must be produced by a fresh selector execution on the same source.
+The v2 receipt was produced by a fresh selector execution on the same source.
+
+| Slot | Public task ID | Repository | Arm order |
+| --- | --- | --- | --- |
+| 1 | `requests_7309` | `psf/requests` | R0, R1, R2 |
+| 2 | `rich_3486` | `textualize/rich` | R0, R2, R1 |
+| 3 | `httpx_3672` | `encode/httpx` | R1, R0, R2 |
+| 4 | `requests_7315` | `psf/requests` | R1, R2, R0 |
+| 5 | `rich_3067` | `textualize/rich` | R2, R0, R1 |
+| 6 | `requests_7502` | `psf/requests` | R2, R1, R0 |
+
+The six ordered reserves are `rich_3782`, `requests_7427`, `rich_3061`,
+`requests_6757`, `rich_4077`, and `requests_6644`. The receipt binds each task to
+its exact base commit. Eligible counts are Requests 13, Rich 48, HTTPX 1.
+The resulting 18 model runs are a plan; none has executed.
 
 The exact source identity is 1,984,455 bytes, SHA-256
 `e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6`,
@@ -186,7 +207,7 @@ stay under ignored `.local/` paths.
 python3 -m tools.research_comparison validate
 python3 -m tools.research_comparison build .local/research-inputs/r0-clean.zip .local/research-candidates-v2
 python3 -m tools.research_comparison select .local/research-inputs/tasks.jsonl .local/research-selection-v2.json
-python3 -m tools.research_comparison summarize .local/research-selection-v2.json .local/outcomes-v2.json .local/summary-v2.json
+python3 -m tools.research_comparison summarize docs/research-selection-20261024.json .local/outcomes-v2.json .local/summary-v2.json
 python3 -m unittest discover -s tests -p test_research_comparison.py -v
 ```
 
@@ -196,8 +217,8 @@ The summarize input is a JSON array of outcome records. Each identifies
 Those fields must be backed by the artifact/accounting evidence described above.
 The summarizer is bookkeeping, not a substitute for a verifier or runtime guard.
 
-Before any GPU run, execute the amended selection on the pinned metadata and
-freeze the selected IDs and task asset hashes, validate the three real candidate archives with the
+The selected IDs and base commits are now fixed. Before any GPU run, acquire and
+freeze their task asset hashes, validate the three real candidate archives with the
 official tools, implement and qualify the new task-parameterized runner and full
 request accounting, and obtain a concrete capped compute authorization. R3's
 training/save/reload/attachment feasibility work is a separate subsequent step.

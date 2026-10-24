@@ -183,6 +183,12 @@ separation, incorrect labels, incorrect family assignment and full maximum-size
 generation. The dataset was generated and then audited successfully at
 `.local/exact-teacher-release-20261024` with eight variants per family.
 
+The independent Linux CPU run
+[40072228708](https://github.com/hynk-studio/backtrace/actions/runs/40072228708)
+passed all 419 repository tests and reproduced the same 48-question dataset.
+Its [verification receipt](research-preparation-cpu-20261024.json) retains the
+complete teacher manifest; all four generated JSONL hashes match the local audit.
+
 Generator SHA-256:
 `3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314`.
 

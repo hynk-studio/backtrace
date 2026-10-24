@@ -17,7 +17,10 @@ some hypothesis guidance; the new R1 is an explicitly defined generic-review
 control. The exact teacher generates rational probability, logic and inspection
 value labels with structurally separated train/evaluation worlds. See the
 [current evidence report](docs/research-preparation-20261024.md) for actual
-selection, tests and remaining gates. No new model execution, training, paid
+selection, tests and remaining gates. The completed free CPU run passed all 419
+Linux tests, selected six primary tasks and six reserves across three repositories,
+and reproduced 24 train plus 24 evaluation questions with exact labels.
+No new model execution, training, paid
 allocation or competition submission follows from this CPU preparation.
 
 Does post-training logical/abductive inference, Bayesian belief revision, and

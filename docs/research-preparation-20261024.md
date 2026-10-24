@@ -4,6 +4,14 @@ Scope: the owner's 24 October 2026 KST request to proceed with steps 1 and 2 of
 the original research plan. This is free CPU work, stacked on Draft PR #20 at
 `04ec3016c2631a2f0c08a004a2e1ecdbdb7b4fea`, referencing open Issue #1.
 
+The preparation is delivered in [Draft PR #21](https://github.com/hynk-studio/backtrace/pull/21).
+The actual [Linux CPU run 40072228708](https://github.com/hynk-studio/backtrace/actions/runs/40072228708)
+at source `817eb5d7df921fa1d4f849da0e25f8e1f724af21` succeeded: **419 tests,
+original-input verification, six-plus-six task selection, matched candidate
+assembly and exact teacher generation all passed**. The machine-readable
+[verification receipt](research-preparation-cpu-20261024.json) binds the run,
+source tree, protocol, input/ZIP hashes, selection and teacher manifest.
+
 ## What is prepared
 
 - A [matched comparison protocol](matched-comparison.md) that preserves all 105
@@ -15,6 +23,8 @@ the original research plan. This is free CPU work, stacked on Draft PR #20 at
 - A strict, deterministic metadata-only selector for six primary tasks across
   the three available unexposed repositories and six ordered reserves, plus
   paired outcome bookkeeping. The initial six-repository shortfall is preserved.
+  The [committed selection](research-selection-20261024.json) fixes actual IDs,
+  base commits and balanced arm orders before model execution.
 - A [small exact teacher](exact-teacher.md) with rational Bayesian/logic/decision
   labels, distinct train/evaluation structures and reproducible leakage audits.
 - A separate free CPU workflow for the full Linux suite, teacher generation and
@@ -25,13 +35,45 @@ the original research plan. This is free CPU work, stacked on Draft PR #20 at
 
 ## Evidence in this preparation
 
-Local focused checks and actual candidate/teacher artifacts have been exercised.
-The restricted local suite attempted 414 tests: 23 errors and three skips
-reflected socket/process restrictions and a different bundled pip wheel, not
-new-feature failures. All 48 focused new tests passed. The actual Linux
+The completed Linux run passed **419 tests in 33.889 seconds**, with no errors,
+failures or skips. CPU preflight, all 105 historical source fingerprints and all
+six authored prompt fingerprints passed. The 53 new focused tests comprise
+26 teacher, 24 comparison and three input-preparation tests. The separately
+reviewed selector rejects underfilled studies, altered assignments, duplicate
+outcomes and malformed inventories before producing a summary.
+
+The original metadata and original 6,230-byte R0-clean archive were both
+downloaded and verified in that run. All three assembled archive hashes match
+the independent local builds; their four nonprompt files are identical.
+The actual primary tasks are `requests_7309`, `rich_3486`, `httpx_3672`,
+`requests_7315`, `rich_3067` and `requests_7502`. Six ordered reserves are fixed
+in the selection receipt. The source inventory has Requests 13, Rich 48 and
+HTTPX 1 eligible task; the primary sample therefore has three repository
+clusters, not six independent repository samples. All 18 planned model slots
+remain NOT RUN.
+
+Teacher generation and its structural audit passed for 24 training and 24
+evaluation questions from three families per partition. The Linux generator
+reproduced all four local JSONL hashes exactly. The reference manifest preserves
+posterior revision, duplicate evidence, contradiction, zero-support model
+mismatch, logical entailment/refutation/unknown states, useful inspections,
+uninformative or decision-irrelevant inspections, costs and stopping coverage.
+These are exact teacher outputs, not measured student performance.
+
+The input preparation receipt confirms zero provider operations, no model run,
+no raw competition data publication and removal of its temporary input tree.
+All 52 preexisting branch refs, including historical paid/watch/state branches,
+were unchanged when checked after the implementation push; only the new
+research branch was added. The PR remains a draft and Issue #1 remains open.
+
+## Preserved earlier failures and amendment
+
+The restricted local suite initially attempted 414 tests: 23 errors and three
+skips reflected socket/process restrictions and a different bundled pip wheel.
+All 48 focused new tests at that revision passed. The initial actual Linux
 [run 40071820909](https://github.com/hynk-studio/backtrace/actions/runs/40071820909)
-at `050091f680abc6cd4c4918661d33015c8a4166a7` then passed all **414 tests in
-30.847 seconds**, CPU preflight, source/prompt pins and teacher generation.
+at `050091f680abc6cd4c4918661d33015c8a4166a7` then passed all 414 tests in
+30.847 seconds, CPU preflight, source/prompt pins and teacher generation.
 
 Original metadata acquisition passed its 1,984,455-byte SHA-256 pin and 129-row
 inventory. It revealed only **three eligible repositories and 62 tasks** after
@@ -46,10 +88,10 @@ not claim six independent repository clusters.
 That same run separately failed while reacquiring the current competition's
 eleven reference files (`DownloadError`; exact underlying file/cause not retained).
 The original R0 ZIP had already been recovered and matched locally. The CPU
-workflow therefore now reads that same hash-pinned ZIP from the existing saved
+workflow was changed to read that same hash-pinned ZIP from the existing saved
 Kaggle input notebook version 1, avoiding an assumption that the competition's
-current reference files still reproduce the historical source. Revised actual
-selection/acquisition results will be added after the new workflow completes.
+current reference files still reproduce the historical source. That revised
+acquisition and v2 selection succeeded in run 40072228708.
 Temporary raw inputs were removed even on the failed run.
 
 An earlier run 40071765880 at `728fd3ca2ee9ab6f2c13e47f13851309a03f299c`
@@ -64,8 +106,8 @@ This check reacquired reference/candidate bytes, not the large checkpoint.
 
 Initial direct Kaggle download in this session returned HTTP 401. The local
 Browser connection was unavailable. The existing repository's authorized CPU
-input-resolution path is used next; this neither extracts its credential nor
-asks for a new account/terms acceptance.
+input-resolution path then completed the required reads without exposing its
+credential or requiring a new account/terms acceptance.
 
 ## Limits and next gate
 
