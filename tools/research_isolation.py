@@ -77,6 +77,12 @@ def write_workspace(root, path, value, uid, limit=8 * 1024**2):
 KEEPER = r'''
 import os, pathlib, signal, subprocess, sys, time
 subprocess.run([sys.argv[2], 'link', 'set', 'lo', 'up'], check=True)
+# A disconnected sink lets genuine connect-timeout tests exercise TCP timers.
+# It has no peer, bridge, host interface or external route; packets are dropped.
+subprocess.run([sys.argv[2], 'link', 'add', 'sink0', 'type', 'dummy'], check=True)
+subprocess.run([sys.argv[2], 'addr', 'add', '192.0.2.1/32', 'dev', 'sink0'], check=True)
+subprocess.run([sys.argv[2], 'link', 'set', 'sink0', 'up'], check=True)
+subprocess.run([sys.argv[2], 'route', 'add', 'default', 'dev', 'sink0'], check=True)
 def reap(*args):
     try:
         while os.waitpid(-1, os.WNOHANG)[0]: pass
@@ -175,7 +181,9 @@ class Isolation:
                     raise TimeoutError('active work deadline')
                 prefix = namespace.prefix(self.uid)
                 self.operations += 1
-            wrapped = shlex.join(prefix + ['/bin/bash', '-c', command])
+            # nsenter may restore the namespace keeper's working directory.
+            # Re-establish the official workspace after entering and dropping UID.
+            wrapped = shlex.join(prefix + ['/bin/bash', '-c', 'cd /workspace || exit\n' + command])
             return original_exec(sid, wrapped, timeout=seconds)
         def stop(sid):
             with self.lock:

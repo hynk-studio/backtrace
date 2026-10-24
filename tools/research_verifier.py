@@ -34,7 +34,7 @@ def select(inputs, identifier):
 
 
 def expected_baseline_nodes(xml, task):
-    from swegemma.harness.verification import _node_matches_requirement
+    from swegemma.harness.verification import _node_matches_requirement, _extract_test_functions_from_patch
     nodes = []
     for node in ET.fromstring(xml).findall('.//testcase'):
         name, classname = node.get('name', ''), node.get('classname', '')
@@ -45,6 +45,15 @@ def expected_baseline_nodes(xml, task):
         state = ('error' if node.find('error') is not None else 'skipped' if node.find('skipped') is not None
                  else 'failed' if node.find('failure') is not None else 'passed')
         nodes.append((names, state))
+    if not task.FAIL_TO_PASS and not task.PASS_TO_PASS:
+        required = _extract_test_functions_from_patch(task.test_patch)
+        affected_failures = sum(state == 'failed' and any(
+            _node_matches_requirement(n, req, req, req.split('[', 1)[0])
+            for n in names for req in required) for names, state in nodes)
+        if not required or not affected_failures:
+            raise ValueError('baseline must fail an original added or modified test')
+        return {'source': 'original test-patch names; no explicit F2P/P2P lists',
+                'patch_test_names': len(required), 'affected_failures': affected_failures, 'matched': True}
     for requirements, state in ((task.FAIL_TO_PASS, 'failed'), (task.PASS_TO_PASS, 'passed')):
         for required in requirements:
             short = required.split('::')[-1]; base = short.split('[', 1)[0]
@@ -132,11 +141,19 @@ def worker(inputs, output, identifier, wheels, evaluator_site):
             c._new_output(logs / 'exception.log', traceback.format_exc().encode())
         finally:
             manager.close(); isolation.finish()
-        tests = None; validation_error = None; expected_nodes = None
+        tests = None; validation_error = None; expected_nodes = None; observed_junit = None
         if result is not None:
             c._new_output(logs / 'test-output.txt', result.test_output.encode())
             if result.error_message:
                 c._new_output(logs / 'official-error.txt', result.error_message.encode())
+            if len(receipts) == 1 and len(receipts[0].encode()) <= 4 * 1024**2:
+                try:
+                    xml = ET.fromstring(receipts[0])
+                    suites = [xml] if xml.tag == 'testsuite' else xml.findall('.//testsuite')
+                    observed_junit = {k: sum(int(s.get(k, '0')) for s in suites)
+                                      for k in ('tests', 'failures', 'errors', 'skipped')}
+                    observed_junit['junit_sha256'] = c.digest(receipts[0].encode())
+                except (ValueError, ET.ParseError): pass
             try:
                 if len(receipts) != 1 or provenance != [True]:
                     raise ValueError('one executed verifier and workspace import required')
@@ -154,6 +171,7 @@ def worker(inputs, output, identifier, wheels, evaluator_site):
             'duration_seconds': result.duration_seconds if result is not None else None,
             'error_type': error_type, 'official_error_present': bool(result and result.error_message),
             'actual_tests': tests, 'validation_error': validation_error, 'expected_baseline_nodes': expected_nodes,
+            'observed_junit': observed_junit,
             'workspace_import': provenance, 'isolation': isolation.report()})
     report = {'status': 'PASS' if all(r['status'] == 'PASS' for r in summaries) else 'FAIL',
               'instance_id': identifier, 'controls': summaries, 'model_score': 'NOT RUN',

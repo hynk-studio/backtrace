@@ -1,0 +1,1053 @@
+{
+  "error_type": "ValueError",
+  "implementation": {
+    ".github/workflows/research-verifier-cpu.yml": "9d9d6cad7f5daa5a304e99056b43dc054d20bdc11f56e066df900c80a22304ee",
+    "docs/research-evaluator-dependencies.json": "e518b83c05e0dcc8ccdc41245633b09ac81a3ae4bee5510a00b308bbcc1f5061",
+    "tools/research_assets.py": "481e540c8ad77d6f9bc012ae5fd99d356dc591ff87f756448873d44d86f6ed36",
+    "tools/research_fixture.py": "47a8a2e46fed6948e8a20b4855484a0748f2ce3fadfd48fa79de5c00edf8f2ec",
+    "tools/research_isolation.py": "e55fa547a59cfda7b5095a527f60756e175b23b5809d4df50c83146b2eec5932",
+    "tools/research_isolation_probe.py": "c605227294e771ca2bbfd8aaaab5bb19d2a1fa9a6916c713830c08b94d851509",
+    "tools/research_meter.py": "4f22c9355212de588e292d2436cf4ce1a02f09a3a7dd008bef9c24dc8668a32a",
+    "tools/research_runner.py": "01303c863d3d0efb390340e68342d3429027a998f30deaeb3ca00a9ed320e660",
+    "tools/research_runtime.py": "d052d8e149f3474dbfe5dc69803a4c2525bee552d5ad31c81a81ea39ea0910db",
+    "tools/research_verifier.py": "beac455adb6640bbb3bba1a8edfe0c31813496083d5483abd2b6934523c59176",
+    "tools/research_verifier_cpu.py": "1c17b1938511205c824910ab33d7b7d97b7dad0204ce96ea8267ea994ecfbfe3"
+  },
+  "kind": "SELECTED_VERIFIER_AND_ISOLATION_CPU",
+  "provider_operations": 0,
+  "real_model_runs": 0,
+  "run_id": "40094967033",
+  "runtime": {
+    "bytes": 183621856,
+    "excluded_serving_requirements": [
+      {
+        "package": "swegemma",
+        "requirement": "torchvision"
+      },
+      {
+        "package": "swegemma",
+        "requirement": "transformers>=4.40.0"
+      },
+      {
+        "package": "swegemma",
+        "requirement": "safetensors"
+      },
+      {
+        "package": "swegemma",
+        "requirement": "accelerate"
+      }
+    ],
+    "files": [
+      {
+        "bytes": 89306,
+        "name": "adk-eval-core",
+        "path": "adk_eval_core-0.1.0-py3-none-any.whl",
+        "sha256": "b1608c4471a2739eca6469735e4e118ff33a20823ce9430719238ea843aa9d1a",
+        "version": "0.1.0"
+      },
+      {
+        "bytes": 62404,
+        "name": "adk-submission",
+        "path": "adk_submission-0.2.11-py3-none-any.whl",
+        "sha256": "d14f7d31e724f507322c763bc7c1ed56ac603085b3709afed954e50006b494a8",
+        "version": "0.2.11"
+      },
+      {
+        "bytes": 111548,
+        "name": "swegemma",
+        "path": "swegemma-0.2.7-py3-none-any.whl",
+        "sha256": "2b74d402dc95a615f3b36c56fd3f9ba11ddbfb7db8a5a32ec259369a0f559d98",
+        "version": "0.2.7"
+      },
+      {
+        "bytes": 2877731,
+        "name": "google-adk",
+        "path": "google_adk-1.36.1-py3-none-any.whl",
+        "sha256": "1a2f6868c509e3151fb0de3575a7d18b45c338be86f420924dad74e7193631a0",
+        "version": "1.36.1"
+      },
+      {
+        "bytes": 984162,
+        "name": "google-genai",
+        "path": "google_genai-2.11.0-py3-none-any.whl",
+        "sha256": "5bc8186100e1d34d691fbe0cba392b7e04e98d286ca952323a6672d054accf95",
+        "version": "2.11.0"
+      },
+      {
+        "bytes": 16527618,
+        "name": "numpy",
+        "path": "numpy-2.2.6-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "sha256": "fd83c01228a688733f1ded5201c678f0c53ecc1006ffbc404db9f7a899ac6249",
+        "version": "2.2.6"
+      },
+      {
+        "bytes": 2142205,
+        "name": "networkx",
+        "path": "networkx-3.7-py3-none-any.whl",
+        "sha256": "e3fd2c13a7814cee3746340d8d7f8598a67f16a58bf47fb7f8793fab6efca1b0",
+        "version": "3.7"
+      },
+      {
+        "bytes": 807870,
+        "name": "pyyaml",
+        "path": "pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+        "sha256": "ba1cc08a7ccde2d2ec775841541641e4548226580ab850948cbfda66a1befcdc",
+        "version": "6.0.3"
+      },
+      {
+        "bytes": 1064234,
+        "name": "setuptools",
+        "path": "setuptools-80.10.2-py3-none-any.whl",
+        "sha256": "95b30ddfb717250edb492926c92b5221f7ef3fbcc2b07579bcd4a27da21d0173",
+        "version": "80.10.2"
+      },
+      {
+        "bytes": 463580,
+        "name": "pydantic",
+        "path": "pydantic-2.12.5-py3-none-any.whl",
+        "sha256": "e561593fccf61e8a20fc46dfc2dfe075b8be7d0188df33f221ad1f0139180f9d",
+        "version": "2.12.5"
+      },
+      {
+        "bytes": 148775,
+        "name": "docker",
+        "path": "docker-7.2.0-py3-none-any.whl",
+        "sha256": "a3f45fdeb9165e2d25d9a1d02ddf3bc70fb572cf5ebbf9b58558c22caf29b71f",
+        "version": "7.2.0"
+      },
+      {
+        "bytes": 310654,
+        "name": "rich",
+        "path": "rich-15.0.0-py3-none-any.whl",
+        "sha256": "33bd4ef74232fb73fe9279a257718407f169c09b78a87ad3d296f548e27de0bb",
+        "version": "15.0.0"
+      },
+      {
+        "bytes": 17006,
+        "name": "cachetools",
+        "path": "cachetools-7.2.1-py3-none-any.whl",
+        "sha256": "63aa53dfe7473c10cccdd5a01dedf76ef2c4b73a58840d9396e7d0752cbdac3b",
+        "version": "7.2.1"
+      },
+      {
+        "bytes": 22101,
+        "name": "python-dotenv",
+        "path": "python_dotenv-1.2.2-py3-none-any.whl",
+        "sha256": "1d8214789a24de455a8b8bd8ae6fe3c6b69a5e3d64aa8a8e5d68e694bbcb285a",
+        "version": "1.2.2"
+      },
+      {
+        "bytes": 16457054,
+        "name": "litellm",
+        "path": "litellm-1.83.14-py3-none-any.whl",
+        "sha256": "92b11ba2a32cf80707ddf388d18526696c7999a21b418c5e3b6eda1243d2cfdb",
+        "version": "1.83.14"
+      },
+      {
+        "bytes": 10788193,
+        "name": "pandas",
+        "path": "pandas-3.0.6-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+        "sha256": "0704044b676496b8350e023b09f174a26772456c974a2b11c36bebb558c9490d",
+        "version": "3.0.6"
+      },
+      {
+        "bytes": 3274982,
+        "name": "tokenizers",
+        "path": "tokenizers-0.22.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "sha256": "369cc9fc8cc10cb24143873a0d95438bb8ee257bb80c71989e3ee290e8d72c67",
+        "version": "0.22.2"
+      },
+      {
+        "bytes": 17405,
+        "name": "aiosqlite",
+        "path": "aiosqlite-0.22.1-py3-none-any.whl",
+        "sha256": "21c002eb13823fad740196c5a2e9d8e62f6243bd9e7e4a1f87fb5e44ecb4fceb",
+        "version": "0.22.1"
+      },
+      {
+        "bytes": 132079,
+        "name": "anyio",
+        "path": "anyio-4.15.1-py3-none-any.whl",
+        "sha256": "6152fdbbf9a77fdec97731721bebf7c4c44f7c29b424b0065826173efc7ed101",
+        "version": "4.15.1"
+      },
+      {
+        "bytes": 266042,
+        "name": "authlib",
+        "path": "authlib-1.9.1-py2.py3-none-any.whl",
+        "sha256": "8b9be8b1e5174dcbf5520e984f1a22dc2edae5b6e40a61d4cedbf86b97e9e69b",
+        "version": "1.9.1"
+      },
+      {
+        "bytes": 98188,
+        "name": "click",
+        "path": "click-8.1.8-py3-none-any.whl",
+        "sha256": "63c132bbbed01578a06712a2d1f497bb62d9c1c0d329b7903a866228027263b2",
+        "version": "8.1.8"
+      },
+      {
+        "bytes": 117481,
+        "name": "fastapi",
+        "path": "fastapi-0.136.3-py3-none-any.whl",
+        "sha256": "3d2a69bdf04b7e9f3afa292c3bc7a98816bbfafa10bc9b45f3f3700d2f761620",
+        "version": "0.136.3"
+      },
+      {
+        "bytes": 16812656,
+        "name": "google-api-python-client",
+        "path": "google_api_python_client-2.201.0-py3-none-any.whl",
+        "sha256": "2d9bf1ba3f12eee8ed3d0f1791ce0605d163432f496baa72d3677faa2cf097d6",
+        "version": "2.201.0"
+      },
+      {
+        "bytes": 267911,
+        "name": "google-auth",
+        "path": "google_auth-2.62.0-py3-none-any.whl",
+        "sha256": "4ff4319aeb4ad128409759d397a9fcafad126d0031d241cc0dd6b9a00b43e3f3",
+        "version": "2.62.0"
+      },
+      {
+        "bytes": 9456088,
+        "name": "google-cloud-aiplatform",
+        "path": "google_cloud_aiplatform-1.165.1-py2.py3-none-any.whl",
+        "sha256": "93874bd7993d1d901291595df693a8b9d4d7c89b93d4f41f8664d73f088dec89",
+        "version": "1.165.1"
+      },
+      {
+        "bytes": 269195,
+        "name": "google-cloud-bigquery",
+        "path": "google_cloud_bigquery-3.46.2-py3-none-any.whl",
+        "sha256": "5e9a4e15f778cc00ee88167de9934a4c1bbb7fc20058e8f573f2bfdaf0d99052",
+        "version": "3.46.2"
+      },
+      {
+        "bytes": 310435,
+        "name": "google-cloud-bigquery-storage",
+        "path": "google_cloud_bigquery_storage-2.43.0-py3-none-any.whl",
+        "sha256": "52de3dafcd12cf793e4b93a3f06e84a95d24faa1add6833d043d98867f2a0d30",
+        "version": "2.43.0"
+      },
+      {
+        "bytes": 577302,
+        "name": "google-cloud-bigtable",
+        "path": "google_cloud_bigtable-2.50.1-py3-none-any.whl",
+        "sha256": "77de5d0dc58898120e4b6510eaa2989576fe9a3e533f8159cede98fffcc26cbd",
+        "version": "2.50.1"
+      },
+      {
+        "bytes": 676780,
+        "name": "google-cloud-dataplex",
+        "path": "google_cloud_dataplex-2.21.0-py3-none-any.whl",
+        "sha256": "cf49753a0270dea3b0675a3d02ab17d3859f51485e33b6f8df87c173e683eb6a",
+        "version": "2.21.0"
+      },
+      {
+        "bytes": 3337248,
+        "name": "google-cloud-discoveryengine",
+        "path": "google_cloud_discoveryengine-0.13.12-py3-none-any.whl",
+        "sha256": "295f8c6df3fb26b90fb82c2cd6fbcf4b477661addcb19a94eea16463a5c4e041",
+        "version": "0.13.12"
+      },
+      {
+        "bytes": 323338,
+        "name": "google-cloud-pubsub",
+        "path": "google_cloud_pubsub-2.43.0-py3-none-any.whl",
+        "sha256": "db5436dd2d99774171d13c1bf1fb960b6bf3aa23c15694c50090aa569316d19a",
+        "version": "2.43.0"
+      },
+      {
+        "bytes": 229970,
+        "name": "google-cloud-secret-manager",
+        "path": "google_cloud_secret_manager-2.31.0-py3-none-any.whl",
+        "sha256": "945ef53be34b09f94b86eeabca910e19460fb54680cf5e0a792a77d62355e88e",
+        "version": "2.31.0"
+      },
+      {
+        "bytes": 626703,
+        "name": "google-cloud-spanner",
+        "path": "google_cloud_spanner-3.71.0-py3-none-any.whl",
+        "sha256": "658443c774c3967a3a5773f40f42aebf7b93cf1b63d5a8cb556926ff9fc53f9d",
+        "version": "3.71.0"
+      },
+      {
+        "bytes": 343423,
+        "name": "google-cloud-speech",
+        "path": "google_cloud_speech-2.41.0-py3-none-any.whl",
+        "sha256": "a4939b5afdc9038ce8f49ffe523532057fe647280e323a2031c76043a867301a",
+        "version": "2.41.0"
+      },
+      {
+        "bytes": 345706,
+        "name": "google-cloud-storage",
+        "path": "google_cloud_storage-3.17.1-py3-none-any.whl",
+        "sha256": "287c7919d7bcda710eae6f6b60c756e89140475d9a4daec01b6174e737488ca8",
+        "version": "3.17.1"
+      },
+      {
+        "bytes": 47300,
+        "name": "graphviz",
+        "path": "graphviz-0.21-py3-none-any.whl",
+        "sha256": "54f33de9f4f911d7e84e4191749cac8cc5653f815b06738c54db9a15ab8b1e42",
+        "version": "0.21"
+      },
+      {
+        "bytes": 73517,
+        "name": "httpx",
+        "path": "httpx-0.28.1-py3-none-any.whl",
+        "sha256": "d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad",
+        "version": "0.28.1"
+      },
+      {
+        "bytes": 88462,
+        "name": "jsonschema",
+        "path": "jsonschema-4.23.0-py3-none-any.whl",
+        "sha256": "fbadb6f8b144a8f8cf9f0b89ba94501d143e50411a1278633f56a7acf7fd5566",
+        "version": "4.23.0"
+      },
+      {
+        "bytes": 234581,
+        "name": "mcp",
+        "path": "mcp-1.30.0-py3-none-any.whl",
+        "sha256": "666edb5009503e1047c9d60346a756f94b261f05cc2625f23d41c728ffc484d0",
+        "version": "1.30.0"
+      },
+      {
+        "bytes": 69007,
+        "name": "opentelemetry-api",
+        "path": "opentelemetry_api-1.41.1-py3-none-any.whl",
+        "sha256": "a22df900e75c76dc08440710e51f52f1aa6b451b429298896023e60db5b3139f",
+        "version": "1.41.1"
+      },
+      {
+        "bytes": 14207,
+        "name": "opentelemetry-exporter-gcp-logging",
+        "path": "opentelemetry_exporter_gcp_logging-1.12.0a0-py3-none-any.whl",
+        "sha256": "2aca9b01b3248c2fa95d38d01aa71aca8e22f640c44dba36ca6b883930762971",
+        "version": "1.12.0a0"
+      },
+      {
+        "bytes": 13906,
+        "name": "opentelemetry-exporter-gcp-monitoring",
+        "path": "opentelemetry_exporter_gcp_monitoring-1.15.0a0-py3-none-any.whl",
+        "sha256": "ad292b145d7b465380434660e678baa725bce47bc6519c8b32e194b8f7d5a6be",
+        "version": "1.15.0a0"
+      },
+      {
+        "bytes": 14373,
+        "name": "opentelemetry-exporter-gcp-trace",
+        "path": "opentelemetry_exporter_gcp_trace-1.15.0-py3-none-any.whl",
+        "sha256": "bab0bda41a74c9ece16611da2e1dd442d9d6f45238a734e62fee796e2c3b122c",
+        "version": "1.15.0"
+      },
+      {
+        "bytes": 22673,
+        "name": "opentelemetry-exporter-otlp-proto-http",
+        "path": "opentelemetry_exporter_otlp_proto_http-1.41.1-py3-none-any.whl",
+        "sha256": "1a21e8f49c7a946d935551e90947d6c3eb39236723c6624401da0f33d68edcb4",
+        "version": "1.41.1"
+      },
+      {
+        "bytes": 15561,
+        "name": "opentelemetry-resourcedetector-gcp",
+        "path": "opentelemetry_resourcedetector_gcp-1.14.0-py3-none-any.whl",
+        "sha256": "cc4818570933b5c651aef80fbf6e8fbe26d63fe6fbc24ce22ae37e78744d30eb",
+        "version": "1.14.0"
+      },
+      {
+        "bytes": 180213,
+        "name": "opentelemetry-sdk",
+        "path": "opentelemetry_sdk-1.41.1-py3-none-any.whl",
+        "sha256": "edee379c126c1bce952b0c812b48fe8ff35b30df0eecf17e98afa4d598b7d85d",
+        "version": "1.41.1"
+      },
+      {
+        "bytes": 53931932,
+        "name": "pyarrow",
+        "path": "pyarrow-26.0.0-cp312-cp312-manylinux_2_28_x86_64.whl",
+        "sha256": "6a628922ba20705fa964ca73e4ef959c2fb2f14b9bbec5589a6a1e68e6257c85",
+        "version": "26.0.0"
+      },
+      {
+        "bytes": 229892,
+        "name": "python-dateutil",
+        "path": "python_dateutil-2.9.0.post0-py2.py3-none-any.whl",
+        "sha256": "a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427",
+        "version": "2.9.0.post0"
+      },
+      {
+        "bytes": 73075,
+        "name": "requests",
+        "path": "requests-2.34.2-py3-none-any.whl",
+        "sha256": "2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0",
+        "version": "2.34.2"
+      },
+      {
+        "bytes": 4720857,
+        "name": "sqlalchemy",
+        "path": "sqlalchemy-2.1.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+        "sha256": "3e5045fb6aadbb0f978ab9b9d8822f7b7a97d2281814e7d13d791155664eace3",
+        "version": "2.1.4"
+      },
+      {
+        "bytes": 32177,
+        "name": "sqlalchemy-spanner",
+        "path": "sqlalchemy_spanner-1.20.1-py3-none-any.whl",
+        "sha256": "bf72778b440e74240453cf755b071469ef54c0972d4a2cc3eb6b6240b9a4a275",
+        "version": "1.20.1"
+      },
+      {
+        "bytes": 74272,
+        "name": "starlette",
+        "path": "starlette-0.52.1-py3-none-any.whl",
+        "sha256": "0029d43eb3d273bc4f83a08720b4912ea4b071087a3b48db01b7c839f7954d74",
+        "version": "0.52.1"
+      },
+      {
+        "bytes": 28926,
+        "name": "tenacity",
+        "path": "tenacity-9.1.4-py3-none-any.whl",
+        "sha256": "6095a360c919085f28c6527de529e76a06ad89b23659fa881ae0649b867a9d55",
+        "version": "9.1.4"
+      },
+      {
+        "bytes": 45571,
+        "name": "typing-extensions",
+        "path": "typing_extensions-4.16.0-py3-none-any.whl",
+        "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+        "version": "4.16.0"
+      },
+      {
+        "bytes": 18115,
+        "name": "tzlocal",
+        "path": "tzlocal-5.4.4-py3-none-any.whl",
+        "sha256": "aae09f0126a8a86fa736be266eb4a471380d26a0de3bc14844e7821fee3e2a15",
+        "version": "5.4.4"
+      },
+      {
+        "bytes": 87427,
+        "name": "uvicorn",
+        "path": "uvicorn-0.54.0-py3-none-any.whl",
+        "sha256": "505bdb0f318731d45f1f712071fc781a8981f6847a31c902c9f5e652d4f67faf",
+        "version": "0.54.0"
+      },
+      {
+        "bytes": 79078,
+        "name": "watchdog",
+        "path": "watchdog-6.0.0-py3-none-manylinux2014_x86_64.whl",
+        "sha256": "20ffe5b202af80ab4266dcd3e91aae72bf2da48c0d33bdb15c66658e685e94e2",
+        "version": "6.0.0"
+      },
+      {
+        "bytes": 182523,
+        "name": "websockets",
+        "path": "websockets-15.0.1-cp312-cp312-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "sha256": "64dee438fed052b52e4f98f76c5790513235efaa1ef7f3f2192c392cd7c91b65",
+        "version": "15.0.1"
+      },
+      {
+        "bytes": 20277,
+        "name": "distro",
+        "path": "distro-1.9.0-py3-none-any.whl",
+        "sha256": "7bffd925d65168f85027d8da9af6bddab658135b840670a223589bc0c8ef02b2",
+        "version": "1.9.0"
+      },
+      {
+        "bytes": 10235,
+        "name": "sniffio",
+        "path": "sniffio-1.3.1-py3-none-any.whl",
+        "sha256": "2f6da418d1f1e0fddd844478f41680e794e6051915791a034ff65e5f100525a2",
+        "version": "1.3.1"
+      },
+      {
+        "bytes": 13427,
+        "name": "annotated-types",
+        "path": "annotated_types-0.8.0-py3-none-any.whl",
+        "sha256": "f072f4d804ea359e4eaf198b1af7a8b0943881a87f31bb764f8bf219bb9419e0",
+        "version": "0.8.0"
+      },
+      {
+        "bytes": 2075366,
+        "name": "pydantic-core",
+        "path": "pydantic_core-2.41.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "sha256": "eceb81a8d74f9267ef4081e246ffd6d129da5d87e37a77c9bde550cb04870c1c",
+        "version": "2.41.5"
+      },
+      {
+        "bytes": 14750,
+        "name": "typing-inspection",
+        "path": "typing_inspection-0.4.4-py3-none-any.whl",
+        "sha256": "65b8397ba37ccbce054456aaccddfc91e6e3083c92824df348d96ca832f3f147",
+        "version": "0.4.4"
+      },
+      {
+        "bytes": 135717,
+        "name": "urllib3",
+        "path": "urllib3-2.8.0-py3-none-any.whl",
+        "sha256": "0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3",
+        "version": "2.8.0"
+      },
+      {
+        "bytes": 91687,
+        "name": "markdown-it-py",
+        "path": "markdown_it_py-4.2.0-py3-none-any.whl",
+        "sha256": "9f7ebbcd14fe59494226453aed97c1070d83f8d24b6fc3a3bcf9a38092641c4a",
+        "version": "4.2.0"
+      },
+      {
+        "bytes": 1250147,
+        "name": "pygments",
+        "path": "pygments-2.21.0-py3-none-any.whl",
+        "sha256": "2363c69b61c4a97c838da3b130dcd6468f4848992b21a82f2a63ec34377137d9",
+        "version": "2.21.0"
+      },
+      {
+        "bytes": 278105,
+        "name": "fastuuid",
+        "path": "fastuuid-0.14.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "sha256": "808527f2407f58a76c916d6aa15d58692a4a019fdf8d4c32ac7ff303b7d7af09",
+        "version": "0.14.0"
+      },
+      {
+        "bytes": 1120122,
+        "name": "openai",
+        "path": "openai-2.24.0-py3-none-any.whl",
+        "sha256": "fed30480d7d6c884303287bde864980a4b137b60553ffbcf9ab4a233b7a73d94",
+        "version": "2.24.0"
+      },
+      {
+        "bytes": 1152665,
+        "name": "tiktoken",
+        "path": "tiktoken-0.12.0-cp312-cp312-manylinux_2_28_x86_64.whl",
+        "sha256": "edde1ec917dfd21c1f2f8046b86348b0f54a2c0547f68149d8600859598769ad",
+        "version": "0.12.0"
+      },
+      {
+        "bytes": 26514,
+        "name": "importlib-metadata",
+        "path": "importlib_metadata-8.5.0-py3-none-any.whl",
+        "sha256": "45e54197d28b7a7f1559e60b95e7c567032b602131fbd588f1497f47880aa68b",
+        "version": "8.5.0"
+      },
+      {
+        "bytes": 134899,
+        "name": "jinja2",
+        "path": "jinja2-3.1.6-py3-none-any.whl",
+        "sha256": "85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67",
+        "version": "3.1.6"
+      },
+      {
+        "bytes": 1773938,
+        "name": "aiohttp",
+        "path": "aiohttp-3.13.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+        "sha256": "54203e10405c06f8b6020bd1e076ae0fe6c194adcee12a5a78af3ffa3c57025e",
+        "version": "3.13.4"
+      },
+      {
+        "bytes": 668176,
+        "name": "huggingface-hub",
+        "path": "huggingface_hub-1.16.1-py3-none-any.whl",
+        "sha256": "64340de934b9ce37857ef85a82de72f5629e8a270f9119eabb12bf495eb53c22",
+        "version": "1.16.1"
+      },
+      {
+        "bytes": 69583,
+        "name": "idna",
+        "path": "idna-3.20-py3-none-any.whl",
+        "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c",
+        "version": "3.20"
+      },
+      {
+        "bytes": 4752576,
+        "name": "cryptography",
+        "path": "cryptography-50.0.2-cp311-abi3-manylinux_2_34_x86_64.whl",
+        "sha256": "9dab55f57c74c3cad24c323bacbbd04be4705ba6eb0d92e920b1fc4837ed5079",
+        "version": "50.0.2"
+      },
+      {
+        "bytes": 71269,
+        "name": "joserfc",
+        "path": "joserfc-1.7.5-py3-none-any.whl",
+        "sha256": "add2c2c84e8373b084d526a8b53daba5d7a513a118cd2dcd9fc9f979d0922159",
+        "version": "1.7.5"
+      },
+      {
+        "bytes": 5302,
+        "name": "annotated-doc",
+        "path": "annotated_doc-0.0.5-py3-none-any.whl",
+        "sha256": "117bac03a25ede5df5440e855b32d556049ca169ead221505badf432fed4b101",
+        "version": "0.0.5"
+      },
+      {
+        "bytes": 93148,
+        "name": "httplib2",
+        "path": "httplib2-0.32.0-py3-none-any.whl",
+        "sha256": "dc6705cacdf3fb0a2aba7629fa33c90fd93e30035db0c157325826be177e4816",
+        "version": "0.32.0"
+      },
+      {
+        "bytes": 9542,
+        "name": "google-auth-httplib2",
+        "path": "google_auth_httplib2-0.4.4-py3-none-any.whl",
+        "sha256": "bbe5d7b2401bb3a4017f4720e1e91bd273ab9a2bb60b84e65edbc0de127852da",
+        "version": "0.4.4"
+      },
+      {
+        "bytes": 180545,
+        "name": "google-api-core",
+        "path": "google_api_core-2.34.0-py3-none-any.whl",
+        "sha256": "cdf9c67e7ca2402d86ccbfde5f2503fc83e3cc3f58cc78456ae96cad24a6d2de",
+        "version": "2.34.0"
+      },
+      {
+        "bytes": 11488,
+        "name": "uritemplate",
+        "path": "uritemplate-4.2.0-py3-none-any.whl",
+        "sha256": "962201ba1c4edcab02e60f9a0d3821e82dfc5d2d6662a21abd533879bdb8a686",
+        "version": "4.2.0"
+      },
+      {
+        "bytes": 181259,
+        "name": "pyasn1-modules",
+        "path": "pyasn1_modules-0.4.2-py3-none-any.whl",
+        "sha256": "29253a9207ce32b64c3ac6600edc75368f98473906e8fd1043bd6b5b1de2c14a",
+        "version": "0.4.2"
+      },
+      {
+        "bytes": 136983,
+        "name": "certifi",
+        "path": "certifi-2026.7.22-py3-none-any.whl",
+        "sha256": "62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775",
+        "version": "2026.7.22"
+      },
+      {
+        "bytes": 50786,
+        "name": "proto-plus",
+        "path": "proto_plus-1.29.0-py3-none-any.whl",
+        "sha256": "8acd070469a7aaf43f440b022ef9757c8cac1a9f866e933f59ae98669ddc6c8b",
+        "version": "1.29.0"
+      },
+      {
+        "bytes": 323436,
+        "name": "protobuf",
+        "path": "protobuf-6.33.6-cp39-abi3-manylinux2014_x86_64.whl",
+        "sha256": "e9db7e292e0ab79dd108d7f1a94fe31601ce1ee3f7b79e0692043423020b0593",
+        "version": "6.33.6"
+      },
+      {
+        "bytes": 129956,
+        "name": "packaging",
+        "path": "packaging-26.3-py3-none-any.whl",
+        "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c",
+        "version": "26.3"
+      },
+      {
+        "bytes": 395250,
+        "name": "google-cloud-resource-manager",
+        "path": "google_cloud_resource_manager-1.19.0-py3-none-any.whl",
+        "sha256": "74f94950288ff3d04082b4bd514af0632c74b507601e68d0399f35ae2cc8cc2e",
+        "version": "1.19.0"
+      },
+      {
+        "bytes": 22484,
+        "name": "docstring-parser",
+        "path": "docstring_parser-0.18.0-py3-none-any.whl",
+        "sha256": "b3fcbed555c47d8479be0796ef7e19c2670d428d72e96da63f3a40122860374b",
+        "version": "0.18.0"
+      },
+      {
+        "bytes": 22228,
+        "name": "cloudpickle",
+        "path": "cloudpickle-3.1.2-py3-none-any.whl",
+        "sha256": "9acb47f6afd73f60dc1df93bb801b472f05ff42fa6c84167d25cb206be1fbf4a",
+        "version": "3.1.2"
+      },
+      {
+        "bytes": 234020,
+        "name": "google-cloud-logging",
+        "path": "google_cloud_logging-3.17.0-py3-none-any.whl",
+        "sha256": "da2819da683a5135e21c2853ff2c86040786cd5521c3f71424755c110cf36fe2",
+        "version": "3.17.0"
+      },
+      {
+        "bytes": 31048,
+        "name": "google-cloud-core",
+        "path": "google_cloud_core-2.8.0-py3-none-any.whl",
+        "sha256": "e235b0952f7ffe7b9c71a4cf96b506d9cfb557e22557c412f0df9b7068b5d007",
+        "version": "2.8.0"
+      },
+      {
+        "bytes": 81515,
+        "name": "google-resumable-media",
+        "path": "google_resumable_media-2.11.0-py3-none-any.whl",
+        "sha256": "f43d15e6a7f818f762eaead0f369c551f8275a4179c9d6225d0d259f49b87b5d",
+        "version": "2.11.0"
+      },
+      {
+        "bytes": 7156115,
+        "name": "grpcio",
+        "path": "grpcio-1.84.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+        "sha256": "b44f0a0fc7bc6677d38cc80bca1a32814ce6c8f200fb8b3c1a61c9d77eaefbf3",
+        "version": "1.84.0"
+      },
+      {
+        "bytes": 384477,
+        "name": "google-cloud-monitoring",
+        "path": "google_cloud_monitoring-2.32.0-py3-none-any.whl",
+        "sha256": "b6c026a5780330aa26c6151279194daa241369b324c96fd6c52c703137bc6b5b",
+        "version": "2.32.0"
+      },
+      {
+        "bytes": 32674,
+        "name": "grpc-google-iam-v1",
+        "path": "grpc_google_iam_v1-0.14.5-py3-none-any.whl",
+        "sha256": "0f5e680b20aa0a9441e68c769da04d94d70fca4e43751a82d8abb8aa6a7181ca",
+        "version": "0.14.5"
+      },
+      {
+        "bytes": 36347,
+        "name": "google-crc32c",
+        "path": "google_crc32c-1.9.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+        "sha256": "3abb18297d9ef0ab120531838be0e6d68c9fa876570e11c229c48f2edac23ce7",
+        "version": "1.9.0"
+      },
+      {
+        "bytes": 14639,
+        "name": "grpcio-status",
+        "path": "grpcio_status-1.84.0-py3-none-any.whl",
+        "sha256": "0c182ca0d6e60acbfd0e14499cf39a155e4827a1c3fd9f7638e49af15a74c30a",
+        "version": "1.84.0"
+      },
+      {
+        "bytes": 20848,
+        "name": "grpc-interceptor",
+        "path": "grpc_interceptor-0.15.4-py3-none-any.whl",
+        "sha256": "0035f33228693ed3767ee49d937bac424318db173fef4d2d0170b3215f254d9d",
+        "version": "0.15.4"
+      },
+      {
+        "bytes": 50070,
+        "name": "sqlparse",
+        "path": "sqlparse-0.6.0-py3-none-any.whl",
+        "sha256": "b861c0288ce2fa56209a9a6412d2e066ac664b3873b89c26c9d8415e8e32996f",
+        "version": "0.6.0"
+      },
+      {
+        "bytes": 231620,
+        "name": "opentelemetry-semantic-conventions",
+        "path": "opentelemetry_semantic_conventions-0.62b1-py3-none-any.whl",
+        "sha256": "cf506938103d331fbb78eded0d9788095f7fd59016f2bda813c3324e5a74a93c",
+        "version": "0.62b1"
+      },
+      {
+        "bytes": 103108,
+        "name": "mmh3",
+        "path": "mmh3-5.3.1-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+        "sha256": "3b037280edc7a609a987fa7661a1132a3f6d721f46b299ed5f9f641b35ab415a",
+        "version": "5.3.1"
+      },
+      {
+        "bytes": 78784,
+        "name": "httpcore",
+        "path": "httpcore-1.0.9-py3-none-any.whl",
+        "sha256": "2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55",
+        "version": "1.0.9"
+      },
+      {
+        "bytes": 67548,
+        "name": "attrs",
+        "path": "attrs-26.1.0-py3-none-any.whl",
+        "sha256": "c647aa4a12dfbad9333ca4e71fe62ddc36f4e63b2d260a37a8b83d2f043ac309",
+        "version": "26.1.0"
+      },
+      {
+        "bytes": 18437,
+        "name": "jsonschema-specifications",
+        "path": "jsonschema_specifications-2025.9.1-py3-none-any.whl",
+        "sha256": "98802fee3a11ee76ecaca44429fda8a41bff98b00a0f2838151b113f210cc6fe",
+        "version": "2025.9.1"
+      },
+      {
+        "bytes": 26766,
+        "name": "referencing",
+        "path": "referencing-0.37.0-py3-none-any.whl",
+        "sha256": "381329a9f99628c9069361716891d34ad94af76e461dcb0335825aecc7692231",
+        "version": "0.37.0"
+      },
+      {
+        "bytes": 371261,
+        "name": "rpds-py",
+        "path": "rpds_py-2026.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "sha256": "addeda51556dac7c1a2f14cda62db8b621cd12afba3091d03a96c72932387eab",
+        "version": "2026.9.1"
+      },
+      {
+        "bytes": 8960,
+        "name": "httpx-sse",
+        "path": "httpx_sse-0.4.3-py3-none-any.whl",
+        "sha256": "0ac1c9fe3c0afad2e0ebb25a934a59f4c7823b60792691f779fad2c5568830fc",
+        "version": "0.4.3"
+      },
+      {
+        "bytes": 80364,
+        "name": "pydantic-settings",
+        "path": "pydantic_settings-2.16.0-py3-none-any.whl",
+        "sha256": "7e73acf7f61936a15e5a3b6eedaea29f133357faf7272f2607ba479b049dd7f2",
+        "version": "2.16.0"
+      },
+      {
+        "bytes": 33860,
+        "name": "pyjwt",
+        "path": "pyjwt-2.15.1-py3-none-any.whl",
+        "sha256": "42d59d631f7768a1028a64c7ff581a9bf7519804daf91fc5b6c56e30eec5e193",
+        "version": "2.15.1"
+      },
+      {
+        "bytes": 30042,
+        "name": "python-multipart",
+        "path": "python_multipart-0.0.32-py3-none-any.whl",
+        "sha256": "ff6d3f776f16878c894e52e107296ffc890e913c611b1a4ec6c44e2821fe2e23",
+        "version": "0.0.32"
+      },
+      {
+        "bytes": 17407,
+        "name": "sse-starlette",
+        "path": "sse_starlette-3.5.0-py3-none-any.whl",
+        "sha256": "3e6e1070df3f0f5d9cea81496de92dbb72f6721871d99748ece67441dd8b7997",
+        "version": "3.5.0"
+      },
+      {
+        "bytes": 109513,
+        "name": "google-cloud-trace",
+        "path": "google_cloud_trace-1.21.0-py3-none-any.whl",
+        "sha256": "6522ac906d6d4b84443bb9e84edc2360db2010645916e8fb778227faefa3d2c8",
+        "version": "1.21.0"
+      },
+      {
+        "bytes": 307737,
+        "name": "googleapis-common-protos",
+        "path": "googleapis_common_protos-1.75.5-py3-none-any.whl",
+        "sha256": "d7285525c23039db98f2463e6d5a4f9b958b94d497f03a844ece3259c4e72d5d",
+        "version": "1.75.5"
+      },
+      {
+        "bytes": 18366,
+        "name": "opentelemetry-exporter-otlp-proto-common",
+        "path": "opentelemetry_exporter_otlp_proto_common-1.41.1-py3-none-any.whl",
+        "sha256": "10da74dad6a49344b9b7b21b6182e3060373a235fde1528616d5f01f92e66aa9",
+        "version": "1.41.1"
+      },
+      {
+        "bytes": 72076,
+        "name": "opentelemetry-proto",
+        "path": "opentelemetry_proto-1.41.1-py3-none-any.whl",
+        "sha256": "0496713b804d127a4147e32849fbaf5683fac8ee98550e8e7679cd706c289720",
+        "version": "1.41.1"
+      },
+      {
+        "bytes": 11050,
+        "name": "six",
+        "path": "six-1.17.0-py2.py3-none-any.whl",
+        "sha256": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274",
+        "version": "1.17.0"
+      },
+      {
+        "bytes": 257601,
+        "name": "charset-normalizer",
+        "path": "charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+        "sha256": "3d31298449090ab8d47b7b1b2a555ff73cac7ed438a08b7ac160980c7ebed649",
+        "version": "3.5.2"
+      },
+      {
+        "bytes": 268719,
+        "name": "alembic",
+        "path": "alembic-1.20.0-py3-none-any.whl",
+        "sha256": "77eb101048d95f982c0353e9233404889dcd7a6fc244c107836c0e2fc9cf7d9d",
+        "version": "1.20.0"
+      },
+      {
+        "bytes": 37515,
+        "name": "h11",
+        "path": "h11-0.16.0-py3-none-any.whl",
+        "sha256": "63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86",
+        "version": "0.16.0"
+      },
+      {
+        "bytes": 9979,
+        "name": "mdurl",
+        "path": "mdurl-0.1.2-py3-none-any.whl",
+        "sha256": "84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8",
+        "version": "0.1.2"
+      },
+      {
+        "bytes": 345025,
+        "name": "jiter",
+        "path": "jiter-0.17.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "sha256": "8c21265b251d99bbb40080d178a8953e35601d3a1564e05c4de4c0d2ca616797",
+        "version": "0.17.0"
+      },
+      {
+        "bytes": 80199,
+        "name": "tqdm",
+        "path": "tqdm-4.70.1-py3-none-any.whl",
+        "sha256": "c293e525e6fef9c20e8728fd4612df02a0aa31bb5fe91ecd93e123b1b7bffa73",
+        "version": "4.70.1"
+      },
+      {
+        "bytes": 807783,
+        "name": "regex",
+        "path": "regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+        "sha256": "39ab5894d971f9ac68baa6eca5c50387db579cfcacf36ae8df3feceb1815e6d0",
+        "version": "2026.9.29"
+      },
+      {
+        "bytes": 10582,
+        "name": "zipp",
+        "path": "zipp-4.1.1-py3-none-any.whl",
+        "sha256": "8979f52d874162f485ff2981e3891f3a3317b7a3dd43ff1e1775b9304f307a9c",
+        "version": "4.1.1"
+      },
+      {
+        "bytes": 22985,
+        "name": "markupsafe",
+        "path": "markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+        "sha256": "8e124f974786f831d6043728e38296969d3579db8896fe004682f5758e613581",
+        "version": "3.0.4"
+      },
+      {
+        "bytes": 15038,
+        "name": "aiohappyeyeballs",
+        "path": "aiohappyeyeballs-2.7.1-py3-none-any.whl",
+        "sha256": "9243213661e29250eb41368e5daa826fc017156c3b8a11440826b2e3ed376472",
+        "version": "2.7.1"
+      },
+      {
+        "bytes": 7490,
+        "name": "aiosignal",
+        "path": "aiosignal-1.4.0-py3-none-any.whl",
+        "sha256": "053243f8b92b990551949e63930a839ff0cf0b0ebbe0597b0f3fb19e1a0fe82e",
+        "version": "1.4.0"
+      },
+      {
+        "bytes": 242411,
+        "name": "frozenlist",
+        "path": "frozenlist-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+        "sha256": "494a5952b1c597ba44e0e78113a7266e656b9794eec897b19ead706bd7074383",
+        "version": "1.8.0"
+      },
+      {
+        "bytes": 336881,
+        "name": "multidict",
+        "path": "multidict-6.9.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+        "sha256": "976fd7689d69ec78d67d31d38d396d8adb562f7e8368279f76aed4aa451fa06d",
+        "version": "6.9.1"
+      },
+      {
+        "bytes": 250424,
+        "name": "propcache",
+        "path": "propcache-0.5.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+        "sha256": "2814ecd8e818f487bee4b0f921bc4d1c176cc5fc71ac0f072d0fa67eda4ac14b",
+        "version": "0.5.4"
+      },
+      {
+        "bytes": 117050,
+        "name": "yarl",
+        "path": "yarl-1.25.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+        "sha256": "c6f117789d22dce188e5754e8bc65b7e6ebf8cb73963b9fa761f672a5883769d",
+        "version": "1.25.1"
+      },
+      {
+        "bytes": 135032,
+        "name": "filelock",
+        "path": "filelock-4.2.0-py3-none-any.whl",
+        "sha256": "2ff5690882e8cdb00ef31fb3d01a3094c29f30985426c59495afb1733f3b7238",
+        "version": "4.2.0"
+      },
+      {
+        "bytes": 221738,
+        "name": "fsspec",
+        "path": "fsspec-2026.9.0-py3-none-any.whl",
+        "sha256": "8dd6e646e99ea382bd85f97a45e6b526a442d79423a7dc673f1e2756d05fcb5f",
+        "version": "2026.9.0"
+      },
+      {
+        "bytes": 4212180,
+        "name": "hf-xet",
+        "path": "hf_xet-1.7.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+        "sha256": "2814a6e999d13464c4d679b788cc5d784eb5a4edfc638a31f10e9a11ab531ef8",
+        "version": "1.7.0"
+      },
+      {
+        "bytes": 123312,
+        "name": "typer",
+        "path": "typer-0.27.3-py3-none-any.whl",
+        "sha256": "e50022f28b82a86313e54501317a1db64bf8f8d036ff8cfe5ca7e47675454aff",
+        "version": "0.27.3"
+      },
+      {
+        "bytes": 221822,
+        "name": "cffi",
+        "path": "cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+        "sha256": "c1453022f490d2459a11819d83ad1d586e9ff65a12ac3e705ffebd46d3685dcf",
+        "version": "2.1.1"
+      },
+      {
+        "bytes": 126420,
+        "name": "pyparsing",
+        "path": "pyparsing-3.3.3-py3-none-any.whl",
+        "sha256": "ece8c00a69cf01b45d0b1dedabb469c90d8caf996d4fda40f147627a122849a4",
+        "version": "3.3.3"
+      },
+      {
+        "bytes": 84410,
+        "name": "pyasn1",
+        "path": "pyasn1-0.6.4-py3-none-any.whl",
+        "sha256": "deda9277cfd454080ec40b207fb6df82206a3a2688735233cdcd8d3d565f088b",
+        "version": "0.6.4"
+      },
+      {
+        "bytes": 20251,
+        "name": "google-cloud-appengine-logging",
+        "path": "google_cloud_appengine_logging-1.11.0-py3-none-any.whl",
+        "sha256": "4d70953a0f35d0295256d977e7e3962242674d64c72fcb3e48b10a1cbf4f9b54",
+        "version": "1.11.0"
+      },
+      {
+        "bytes": 40382,
+        "name": "google-cloud-audit-log",
+        "path": "google_cloud_audit_log-0.6.2-py3-none-any.whl",
+        "sha256": "1f19bdf2586cfdb72054eec769ede153a037988b73a7d3b6d266f672ab426c00",
+        "version": "0.6.2"
+      },
+      {
+        "bytes": 80164,
+        "name": "mako",
+        "path": "mako-1.4.3-py3-none-any.whl",
+        "sha256": "723296007c870bfd6b3f0c3230dba7198096e5269297ebf5e4eff9e7ffa39d4f",
+        "version": "1.4.3"
+      },
+      {
+        "bytes": 9755,
+        "name": "shellingham",
+        "path": "shellingham-1.5.4-py2.py3-none-any.whl",
+        "sha256": "7ecfff8f2fd72616f7481040475a65b2bf8af90a56c89140852d1120324e8686",
+        "version": "1.5.4"
+      },
+      {
+        "bytes": 51178,
+        "name": "pycparser",
+        "path": "pycparser-3.11-py3-none-any.whl",
+        "sha256": "51d5a8ba2be0bbe440b99d2112604c95bbbc3c2748a64260186c541e1729cd80",
+        "version": "3.11"
+      }
+    ],
+    "full_distribution_dependency_closure": false,
+    "offline_install": true,
+    "packages": 143,
+    "scope": "MINIMAL_CPU_CLOSURE_NOT_GPU_RUNTIME",
+    "status": "PASS"
+  },
+  "source_sha": "2d621d18e777440a544b95bf457f727b1ce4714f",
+  "stages": {},
+  "status": "FAIL",
+  "temporary_runtime_removed": true
+}

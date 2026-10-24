@@ -1,13 +1,6 @@
 {
   "files": [
     {
-      "bytes": 16725,
-      "name": "pysocks",
-      "path": "PySocks-1.7.1-py3-none-any.whl",
-      "sha256": "2725bd0a9925919b9b51739eea5f9e2bae91e83288108a9ad338b2e3a4435ee5",
-      "version": "1.7.1"
-    },
-    {
       "bytes": 8458,
       "name": "blinker",
       "path": "blinker-1.9.0-py3-none-any.whl",
@@ -34,6 +27,13 @@
       "path": "decorator-5.3.1-py3-none-any.whl",
       "sha256": "f47fe6fdbd2edd623ecfe36875d37aba411624e2670dd395dddae1358689bb3c",
       "version": "5.3.1"
+    },
+    {
+      "bytes": 5438,
+      "name": "editables",
+      "path": "editables-0.6-py3-none-any.whl",
+      "sha256": "d70e4698078a1d033e7786d9c64e5be070d058a67c21417024d38a58ac20aa43",
+      "version": "0.6"
     },
     {
       "bytes": 40708,
@@ -111,6 +111,13 @@
       "path": "poetry_core-2.5.0-py3-none-any.whl",
       "sha256": "98ee465b66f7e14bb9fbe68fb5e00d0cff184f036993ec94610ae4b5612f3add",
       "version": "2.5.0"
+    },
+    {
+      "bytes": 16725,
+      "name": "pysocks",
+      "path": "PySocks-1.7.1-py3-none-any.whl",
+      "sha256": "2725bd0a9925919b9b51739eea5f9e2bae91e83288108a9ad338b2e3a4435ee5",
+      "version": "1.7.1"
     },
     {
       "bytes": 343634,
@@ -225,7 +232,8 @@
     "trio",
     "hatchling",
     "poetry-core",
-    "wheel"
+    "wheel",
+    "editables==0.6"
   ],
   "schema_version": 1,
   "scope": "EVALUATOR_ONLY_CPU_OVERLAY",

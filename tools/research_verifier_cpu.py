@@ -11,6 +11,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import traceback
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -57,6 +58,7 @@ def qualify(inputs, output):
         'run_id': os.environ.get('GITHUB_RUN_ID'), 'kind': 'SELECTED_VERIFIER_AND_ISOLATION_CPU',
         'real_model_runs': 0, 'provider_operations': 0, 'stages': {}}
     retained = inputs / 'verifier-evidence'; retained.mkdir(mode=0o700)
+    deadline = time.monotonic() + 1800
     with tempfile.TemporaryDirectory(prefix='backtrace-research-', dir='/var/tmp') as temp:
         public = Path(temp); public.chmod(0o711)
         private = public / 'private'; private.mkdir(mode=0o700)
@@ -70,11 +72,18 @@ def qualify(inputs, output):
             readable_tree(public / 'runtime'); report['runtime'] = runtime
             site, dep_report = dependencies(public / 'evaluator', python, env)
             readable_tree(public / 'evaluator'); report['dependencies'] = dep_report
+            retained_wheels = retained / 'evaluator-wheels'; retained_wheels.mkdir(mode=0o700)
+            for path in (public / 'evaluator').glob('*/*.whl'):
+                shutil.copyfile(path, retained_wheels / path.name)
             selection = c.parse((c.ROOT / 'docs/research-selection-20261024.json').read_bytes())
             def execute(kind, name, args, receipt='receipt.json'):
                 destination = work / name
+                remaining = deadline - time.monotonic()
+                if remaining <= 5:
+                    return {'status': 'NOT_RUN', 'reason': 'CPU qualification total deadline', 'slot': name}
                 row = bounded_child([python, '-I', '-B', Path(__file__).resolve(), '--worker', kind,
-                    inputs, destination, public / 'runtime/wheels', site, *args], private / (name+'.log'), env)
+                    inputs, destination, public / 'runtime/wheels', site, *args], private / (name+'.log'), env,
+                    timeout=min(330, remaining))
                 path = destination / receipt
                 if path.is_file(): row['result'] = c.parse(path.read_bytes())
                 row['status'] = ('PASS' if row['exit_code']==0 and not row['child_timeout']
@@ -142,7 +151,7 @@ if __name__ == '__main__':
         print(json.dumps({'status': result['status'], 'kind': kind}))
     else:
         from tools.research_assets import prepare
-        result = prepare(Path(sys.argv[1]), qualification=qualify)
+        result = prepare(Path(sys.argv[1]), qualification=qualify, retain_inputs=False)
         print(json.dumps({'status': result['status'], 'phase': result.get('phase'),
                           'error_type': result.get('error_type')}))
     raise SystemExit(0 if result['status']=='PASS' else 1)
