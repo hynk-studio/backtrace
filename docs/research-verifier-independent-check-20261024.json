@@ -1,0 +1,13 @@
+{
+  "actual_official_timeout_verified": true,
+  "ciphertext_identity": true,
+  "dependency_wheels": 29,
+  "fixture_patches": 18,
+  "implementation_hashes": 11,
+  "junit_records": 12,
+  "private_file_count": 242,
+  "private_plaintext_bytes": 5645929,
+  "run_id": "40096931090",
+  "runtime_exactly_unchanged": 143,
+  "source_sha": "5db450a8f22a991520f8d5ca3c98bad587a4f6ba"
+}

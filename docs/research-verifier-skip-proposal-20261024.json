@@ -1,0 +1,22 @@
+{
+  "instance_id": "rich_3486",
+  "model_scores": "NOT RUN",
+  "observed_junit": {
+    "errors": 0,
+    "failures": 0,
+    "passed": 20,
+    "sha256": "de83dd2763220e4caf1adf1a9dcd40e8104eeeca2f45d3901ed77fc6ed5b8d59",
+    "skipped": 1,
+    "tests": 21
+  },
+  "observed_python": "3.12.14",
+  "original_official_resolved": false,
+  "original_pytest_exit": 0,
+  "original_test_patch_sha256": "ec56c0e601315ea5cd7c8f1302cb92216060bc3791262aa8550eaa64c95a7ec3",
+  "proposal_status": "REVIEW_ONLY_NOT_APPLIED",
+  "run_id": "40096931090",
+  "skipped_function_name_sha256": [
+    "434262b3571198deb9fb3bffd1cdba4b3237f5e1bee9efed3c6af6b0b00e2eeb"
+  ],
+  "source_sha": "5db450a8f22a991520f8d5ca3c98bad587a4f6ba"
+}

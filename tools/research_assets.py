@@ -130,7 +130,7 @@ def official_wheels(client, root):
     return pull(root, manifest, sources, c.digest(manifest), 180)
 
 
-def prepare(output):
+def prepare(output, *, qualification=None, retain_inputs=True):
     from tools.cloud_seal import seal
     output = Path(output).absolute(); output.mkdir(mode=0o700)
     protocol = c.load_protocol()
@@ -183,7 +183,7 @@ def prepare(output):
                 try:
                     from tools.research_runtime import qualify
                     with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
-                        qualified = qualify(root, output / 'official.json')
+                        qualified = (qualification or qualify)(root, output / 'official.json')
                     report['official_qualification'] = {'status': qualified['status']}
                     if qualified['status'] != 'PASS':
                         report['status'] = 'INCOMPLETE'
@@ -195,7 +195,10 @@ def prepare(output):
             # Retain artifacts for owner-side exact-byte inspection/reuse, including
             # failures, without publishing raw tasks or signed download URLs.
             files = {str(p.relative_to(root)): p for p in root.rglob('*') if p.is_file()
-                     and ('cpu-runtime' not in p.relative_to(root).parts or p.name == 'install.log')}
+                     and ('cpu-runtime' not in p.relative_to(root).parts or p.name == 'install.log')
+                     and (retain_inputs or p.relative_to(root).parts[0] == 'verifier-evidence'
+                          or p.name == 'qualification-error.log')}
+            report['sealed_scope'] = 'inputs and evidence' if retain_inputs else 'qualification evidence; original inputs already pinned and retained'
             report['sealed'] = seal(files, output / 'inputs.age')
     except Exception as error:
         report['status'] = 'FAILED'; report['error_type'] = type(error).__name__
