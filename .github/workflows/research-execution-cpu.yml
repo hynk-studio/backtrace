@@ -29,7 +29,8 @@ jobs:
           python -m tools.research_comparison validate > evidence/protocol.json
           git diff --check
       - name: Install existing read-only input SDK
-        run: python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
       - name: Acquire fixed candidates and primary task assets
         env:
           KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
