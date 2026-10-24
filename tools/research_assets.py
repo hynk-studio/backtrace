@@ -34,11 +34,10 @@ def projections(data, selection, protocol):
     for selected in selection['primary']:
         record = records[selected['instance_id']]
         task = {key: record.get(key, '') for key in FIELDS}
-        if task['hints_text'] is None:
-            task['hints_text'] = ''
         if any(not isinstance(value, str) for value in task.values()):
             raise ValueError('invalid agent task input')
-        if any(task[k] != selected[k] for k in ('instance_id', 'repo', 'base_commit')):
+        if (any(task[k] != selected[k] for k in ('instance_id', 'base_commit'))
+                or task['repo'].lower() != selected['repo']):
             raise ValueError('task identity changed')
         result[task['instance_id']] = task
     return result
