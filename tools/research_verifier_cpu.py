@@ -18,12 +18,13 @@ from tools import research_comparison as c, cloud_resolver as resolver
 from tools.direct_delivery import pull
 from tools.research_isolation import Isolation, bounded_child
 from tools.research_runtime import prepare as prepare_runtime
+from tools.linux_runtime import BOOTSTRAP, offline_child
 
 
 def dependencies(root, python, env):
     manifest_path = c.ROOT / 'docs/research-evaluator-dependencies.json'
     lock = c.parse(manifest_path.read_bytes())
-    rows = lock['files']; root.mkdir(mode=0o755)
+    rows = lock['files']; root.mkdir(mode=0o700)
     def fetch(row):
         manifest = c.encoded({'schema_version': 1, 'phase': 'bootstrap', 'files': [
             {k: row[k] for k in ('path', 'bytes', 'sha256')}]})
@@ -35,8 +36,10 @@ def dependencies(root, python, env):
         wheels = list(pool.map(fetch, rows))
     site = root / 'site-packages'
     with (root / 'install.log').open('wb') as stream:
-        subprocess.run([str(python), '-I', '-m', 'pip', 'install', '--no-index', '--no-deps',
-            '--target', str(site), *map(str, wheels)], env=env, stdout=stream, stderr=stream,
+        subprocess.run(offline_child(python, 'bootstrap-pip',
+            str(root.parent / 'runtime/bootstrap' / BOOTSTRAP['path']),
+            'install', '--no-index', '--no-deps', '--target', str(site), *map(str, wheels)),
+            env=env, stdout=stream, stderr=stream,
             check=True, timeout=60)
     return site, {'status': 'PASS', 'packages': len(rows), 'files': rows,
                   'lock_sha256': c.digest(manifest_path.read_bytes()), 'agent_runtime_modified': False}
@@ -76,6 +79,8 @@ def qualify(inputs, output):
                 if path.is_file(): row['result'] = c.parse(path.read_bytes())
                 row['status'] = ('PASS' if row['exit_code']==0 and not row['child_timeout']
                     and row.get('result', {}).get('status')=='PASS' else 'FAIL')
+                print(json.dumps({'cpu_stage': kind, 'slot': name, 'status': row['status'],
+                                  'wall_seconds': row['wall_seconds']}), file=sys.__stdout__, flush=True)
                 return row
             report['stages']['isolation'] = execute('isolation', 'isolation', [])
             # Independent tasks preserve failures; no task replacement or skipped
