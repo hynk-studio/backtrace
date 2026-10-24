@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "run_id": 40071820909,
+  "source_sha": "050091f680abc6cd4c4918661d33015c8a4166a7",
+  "run_url": "https://github.com/hynk-studio/backtrace/actions/runs/40071820909",
+  "full_linux_suite": {
+    "tests": 414,
+    "seconds": 30.847,
+    "status": "PASS",
+    "skips": 0
+  },
+  "teacher_generation": "PASS: 24 train and 24 evaluation; generator hash and corpus match local release",
+  "result": {
+    "compute_authorization": "NONE",
+    "error_type": "DownloadError",
+    "kind": "FREE_CPU_RESEARCH_PREPARATION",
+    "metadata_delivery": {
+      "bytes": 1984455,
+      "credentials": "short-lived file URLs only",
+      "files": 1,
+      "manifest_sha256": "944a638b55ed1d14317a7684601fcb1758c7d0f8c1b61749b94f175b4ffe261e",
+      "phase": "bootstrap",
+      "schema_version": 1,
+      "transport": "direct-https",
+      "verified": true
+    },
+    "metadata_schema": {
+      "fields": {
+        "base_commit": [
+          "str"
+        ],
+        "created_at": [
+          "str"
+        ],
+        "hints_text": [
+          "str"
+        ],
+        "instance_id": [
+          "str"
+        ],
+        "patch": [
+          "str"
+        ],
+        "problem_statement": [
+          "str"
+        ],
+        "repo": [
+          "str"
+        ],
+        "test_patch": [
+          "str"
+        ]
+      },
+      "rows": 129
+    },
+    "model_execution": "NOT RUN",
+    "phase": "baseline_download",
+    "protocol_sha256": "97d6f9df3eac990af5aeea6cb78db986347ff02e9d2af90854660d4604988456",
+    "provider_operations": 0,
+    "raw_competition_inputs_published": false,
+    "run_id": "40071820909",
+    "schema_version": 1,
+    "selection": {
+      "eligible_repositories": 3,
+      "eligible_tasks": 62,
+      "excluded_tasks": 67,
+      "exclusions_sha256": "a59b37419dacbd89cfc6000bef727b1f594516e1449f38ce8a1303bfc5771b3a",
+      "exposure_limit": "Uninspected by this project as recorded; public/pretraining contamination is unknown.",
+      "inventory_count": 129,
+      "metadata_projection_sha256": "c3d203c9d9ee410b648eee8b9af40c36cc9c8f390240173fab4178ccf0aa8177",
+      "model_execution": "NOT RUN",
+      "planned_model_runs": 9,
+      "primary": [
+        {
+          "arm_order": [
+            "R0",
+            "R1",
+            "R2"
+          ],
+          "base_commit": "7407309c8a8a73aa2f4337184025d440bbedab7a",
+          "instance_id": "requests_7309",
+          "repetition": 1,
+          "repo": "psf/requests",
+          "slot": 1
+        },
+        {
+          "arm_order": [
+            "R0",
+            "R2",
+            "R1"
+          ],
+          "base_commit": "d0de442c08df8793c5ff36d9ad322ca5c47fc38c",
+          "instance_id": "rich_3486",
+          "repetition": 1,
+          "repo": "textualize/rich",
+          "slot": 2
+        },
+        {
+          "arm_order": [
+            "R1",
+            "R0",
+            "R2"
+          ],
+          "base_commit": "4acf5c2c37714cc63b5cf71b3e284fca83c90311",
+          "instance_id": "httpx_3672",
+          "repetition": 1,
+          "repo": "encode/httpx",
+          "slot": 3
+        }
+      ],
+      "protocol": "R012-matched-pilot-v1",
+      "protocol_sha256": "97d6f9df3eac990af5aeea6cb78db986347ff02e9d2af90854660d4604988456",
+      "reserve_policy": "No automatic replacement; document pre-outcome infrastructure exclusion, preserve original slot and all evidence.",
+      "reserves": [
+        {
+          "base_commit": "6360477c52303c9445b45fa8744b02d05a2f0905",
+          "instance_id": "requests_7315",
+          "repo": "psf/requests",
+          "reserve_order": 1
+        },
+        {
+          "base_commit": "1ad6f73a4d1d3b40ac3f879feccfaad66412bd1d",
+          "instance_id": "rich_3067",
+          "repo": "textualize/rich",
+          "reserve_order": 2
+        },
+        {
+          "base_commit": "661970d171d9c3e12e4c789c4768db647d8c4da0",
+          "instance_id": "requests_7502",
+          "repo": "psf/requests",
+          "reserve_order": 3
+        },
+        {
+          "base_commit": "b684dcb9bbf3aa557d1238e72062c4a29737dd1c",
+          "instance_id": "requests_7427",
+          "repo": "psf/requests",
+          "reserve_order": 4
+        },
+        {
+          "base_commit": "0e322af87745eff34caffe4df68456ebc20d9068",
+          "instance_id": "requests_6757",
+          "repo": "psf/requests",
+          "reserve_order": 5
+        },
+        {
+          "base_commit": "382fc2c0c6c0ef0874bc65bc1175f97c073e5086",
+          "instance_id": "requests_6644",
+          "repo": "psf/requests",
+          "reserve_order": 6
+        }
+      ],
+      "schema_version": 1,
+      "selection_seed": "backtrace-R012-pilot-v1-20261024",
+      "shortfall": {
+        "primary_tasks": 3,
+        "reserve_tasks": 0
+      },
+      "source_bytes": 1984455,
+      "source_sha256": "e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6",
+      "status": "SELECTION_SHORTFALL",
+      "task_content_inspected_for_selection": false
+    },
+    "source_sha": "050091f680abc6cd4c4918661d33015c8a4166a7",
+    "status": "FAILED",
+    "temporary_inputs_removed": true
+  },
+  "interpretation": "Metadata read and exact pins passed. Six-distinct-repository v1 selection had a real shortfall (3 eligible repositories, 62 tasks). Separate original reference-file download failed; no deeper cause retained. Both findings are preserved before a pre-outcome v2 design amendment."
+}

@@ -1,25 +1,37 @@
 # Backtrace
 
-Current work: [free connected-path audit](docs/a100-connected-audit-20261022.md).
-The full free qualification now passes on the Actions host and exact offline
-deployment image: actual HTTP, all declared tools/delegation, patch/trace
-recovery and separate public-test controls. The neutral patch fails two of four
-tests; the evaluator-only reference passes all four in both environments.
-The [renewed receipt](docs/a100-actions-qualification.json) binds 69 files to
-successful run 39689758659, with 295 Linux tests passing separately.
-R0 remains incomplete. The latest paid run loaded the A100 model and passed
-health readiness, then stopped on a missing mandatory metadata route before
-inference or task entry. That Pod is confirmed deleted and its authorization
-consumed; see the [execution evidence](docs/a100-execution-20261022.md).
-No paid retry is authorized by the current free audit. The new work connects
-actual HTTP, official task/tool execution and recovered result validation,
-with a separate CPU evaluator and explicit negative controls. Scripted CPU
-model content is not a model result. The older experiments below are historical
-evidence, not the current approval or qualification state.
+Current work: [matched R0/R1/R2 preparation](docs/matched-comparison.md) and a
+[small exact CPU teacher](docs/exact-teacher.md), following the owner's
+2026-10-24 instruction to proceed with research steps 1 and 2.
+
+The [last real-model diagnostic](docs/verified-gpu-20261024.md) completed in
+196.630 seconds with 27 charged tools and 29 model calls. Its exact submitted
+patch passed four public tests, and server/worker/provider cleanup completed.
+The task had already been inspected, so this is an execution reference, not a
+held-out score or evidence of a causal improvement. Its missing final-edit
+recheck remains a process flag despite passing the external tests.
+
+The new comparison freezes that runtime and builds separate R0/R1/R2 candidates
+with the same five-minute/30-tool allowance. Historical R1 v2 already contained
+some hypothesis guidance; the new R1 is an explicitly defined generic-review
+control. The exact teacher generates rational probability, logic and inspection
+value labels with structurally separated train/evaluation worlds. See the
+[current evidence report](docs/research-preparation-20261024.md) for actual
+selection, tests and remaining gates. The completed free CPU run passed all 419
+Linux tests, selected six primary tasks and six reserves across three repositories,
+and reproduced 24 train plus 24 evaluation questions with exact labels.
+No new model execution, training, paid
+allocation or competition submission follows from this CPU preparation.
 
 Does post-training logical/abductive inference, Bayesian belief revision, and
 selection of useful inspections improve Gemma's software-engineering performance
 under a matched inference budget?
+
+## Historical setup milestones
+
+The following paragraphs describe earlier bounded stages. Their NOT RUN and
+approval statements are historical; use the current evidence report above for
+the present research state. Original receipts and consumed attempts are retained.
 
 Backtrace starts with [Issue #1](https://github.com/hynk-studio/backtrace/issues/1)
 and the [Gemma 4 Developer Agent competition](https://www.kaggle.com/competitions/gemma-4-developer-agent).
@@ -159,13 +171,10 @@ See [competition contract](docs/competition-contract.md),
 [source manifest](docs/source-manifest.json), [experiment plan](docs/experiment-plan.md),
 and [verification report](docs/verification.md).
 
-Non-goals: a central model, Augnes integration, full teacher, training pipeline,
-RL campaign, multi-agent hierarchy, or formal prover. The owner authorized one
-private free-quota T4 x2 attempt with the exact model mounted in Kaggle. No GPU
-rental, paid API, terms acceptance, training or competition submission occurred.
-The bounded A100 scope originated in
-[Issue #1](https://github.com/hynk-studio/backtrace/issues/1#issuecomment-5895260495).
-The current follow-up is CPU-only; the consumed create is not automatically
-retried. The human controls merges.
+Current non-goals: Augnes integration, a central model, a general formal prover,
+training pipeline, RL campaign or new agent hierarchy. The small finite teacher
+and matched-prompt preparation are now implemented; transfer and adapter learning
+remain untested. All earlier paid attempts are consumed. The human controls
+merges, new paid execution and competition submissions.
 No repository license has been selected. Third-party code, weights and data are
 not included.

@@ -1,0 +1,392 @@
+{
+  "schema_version": 1,
+  "kind": "FREE_CPU_RESEARCH_VERIFICATION",
+  "source_sha": "817eb5d7df921fa1d4f849da0e25f8e1f724af21",
+  "source_tree_sha": "fb047064fa13d40079f9a75d22e7b5063804efef",
+  "workflow_run_id": 40072228708,
+  "workflow_job_id": 120807957216,
+  "workflow_url": "https://github.com/hynk-studio/backtrace/actions/runs/40072228708",
+  "workflow_conclusion": "success",
+  "linux_tests": {
+    "status": "PASS",
+    "tests": 419,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 33.889
+  },
+  "protocol_validation": {
+    "status": "PASS",
+    "frozen_source_files": 105,
+    "prompt_files": 6,
+    "protocol_sha256": "1bd2ef8f356f8f4fbb6e7c1237e950ad14471a14e9e596d634d2e728b321b7d2"
+  },
+  "teacher_manifest": {
+    "agent_input_policy": "question/model only; labels and family metadata in evaluator files",
+    "audit": {
+      "counts": {
+        "eval": 24,
+        "train": 24
+      },
+      "coverage": {
+        "eval": {
+          "INCONSISTENT_EVIDENCE": 3,
+          "INSPECT": 9,
+          "MODEL_MISMATCH": 3,
+          "OK": 18,
+          "STOP": 9,
+          "ambiguous_propositions": 15,
+          "cost_blocks_positive_value_cases": 3,
+          "duplicate_evidence_cases": 3,
+          "informative_zero_value_cases": 6,
+          "possible_simultaneous_causes": 5,
+          "posterior_ties": 3,
+          "prior_leader_overturned": 7,
+          "query_entailed": 4,
+          "query_refuted": 4,
+          "query_unknown": 40
+        },
+        "train": {
+          "INCONSISTENT_EVIDENCE": 3,
+          "INSPECT": 7,
+          "MODEL_MISMATCH": 3,
+          "OK": 18,
+          "STOP": 11,
+          "ambiguous_propositions": 15,
+          "cost_blocks_positive_value_cases": 7,
+          "duplicate_evidence_cases": 3,
+          "informative_zero_value_cases": 4,
+          "possible_simultaneous_causes": 8,
+          "posterior_ties": 5,
+          "prior_leader_overturned": 7,
+          "query_entailed": 7,
+          "query_refuted": 7,
+          "query_unknown": 46
+        }
+      },
+      "family_assignments": {
+        "binary_sensor": "train",
+        "interacting_causes": "eval",
+        "mediated_chain": "eval",
+        "redundant_routes": "eval",
+        "shared_noise": "train",
+        "simultaneous_causes": "train"
+      },
+      "limitations": "shared Boolean primitives; small authored family set; no real-code transfer claim",
+      "method": "disjoint authored families and unlabeled effective DAGs",
+      "status": "PASS",
+      "structural_signatures": {
+        "eval": [
+          "2c7888b1bd363dcc21cd4bcff2824b678e691eda477e0dace016fb954cdf67dc",
+          "487dbb98b8b1f87849841af93bd0e1bf0475ea619f3179982fb7e0ef23988596",
+          "935bfae5f3ab8650b57cfae9d74a0a1c7c93d80f9badf1ca4da813e36e5b7b96"
+        ],
+        "train": [
+          "5f721b5510b5cd09866335ffa0cb9ae5515a2828489a3237b9d842417ba8448d",
+          "8622b7d8330cd7e3b161f4fb4eca40b06db1b68f1439ab257f39c5bf0a5ed6d0",
+          "e00c4c7ef5fba2db43bcad58a55c57f6280c4d7f75b14b6607ae610bdc261688"
+        ]
+      }
+    },
+    "files": {
+      "eval/agent.jsonl": {
+        "bytes": 22507,
+        "records": 24,
+        "sha256": "b9eb3332436031b8c13cbb4a5d5d60dc6cc8ab16cd666f0fe205bf95be2b589f"
+      },
+      "eval/evaluator.jsonl": {
+        "bytes": 55582,
+        "records": 24,
+        "sha256": "6a53e959671ac27e352b4fe71b9227ab0205e8b159c4d57e73faf4e46870ef24"
+      },
+      "train/agent.jsonl": {
+        "bytes": 22094,
+        "records": 24,
+        "sha256": "6a28f7cb1eff57121a2b1e50eff0287e01bccc2602927617048122a6cc3c2c05"
+      },
+      "train/evaluator.jsonl": {
+        "bytes": 50094,
+        "records": 24,
+        "sha256": "49ad729efdc5f266e20b5a7ee5ab261ba1ac60b51b7fac6a9fea628d375ec5f3"
+      }
+    },
+    "generator_sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+    "model_evaluation": "NOT RUN",
+    "schema_version": 1,
+    "teacher_version": "finite-dag-exact-v1",
+    "training": "NOT RUN",
+    "variants_per_family": 8
+  },
+  "research_inputs": {
+    "assembly": {
+      "arms": {
+        "R0": {
+          "archive_bytes": 7581,
+          "archive_sha256": "ed00d61301bc264867250186d884707e32f63e6cd6401a49f35fa3c9bdecc600",
+          "files": {
+            "agent.yaml": "de80dff58c1ab3e758a814b915c21113a16ddf632ac4d5fee238b8d6a1b6b5a8",
+            "configs/sampling.yaml": "3dab0b2506dae34ce92fef7b380d6073729104b23fe2cf66d44ac1d2f213aa6a",
+            "eval_config.yaml": "a165b7358e53b7f60e4cd3e2089725d9c0b2d361ba7a8b9afd5c31736fd893e6",
+            "prompts/analyzer.md": "216846540c7ef445bf7fb93aa68da06bf426ebe6b0b64d93acf03b853089fc80",
+            "prompts/system.md": "4d61c2dafc2dddaf93423b838c8a9abe6e3cdd0596499d9c83cceaeac9184948",
+            "sub_agents/code_analyzer.yaml": "73ff867103879db19d42ab2fd24673090793290e33170b06d2e377f3ae89b6d3"
+          }
+        },
+        "R1": {
+          "archive_bytes": 8927,
+          "archive_sha256": "a13b2512b3842cd92b8b5bcf2a1b0ad5c0889633be763108610ec15eb5811ff4",
+          "files": {
+            "agent.yaml": "de80dff58c1ab3e758a814b915c21113a16ddf632ac4d5fee238b8d6a1b6b5a8",
+            "configs/sampling.yaml": "3dab0b2506dae34ce92fef7b380d6073729104b23fe2cf66d44ac1d2f213aa6a",
+            "eval_config.yaml": "a165b7358e53b7f60e4cd3e2089725d9c0b2d361ba7a8b9afd5c31736fd893e6",
+            "prompts/analyzer.md": "29edf0399df7e53ce844a5b10adc0684a97ce3fcb836104ec2ad76afa7259f56",
+            "prompts/system.md": "9aa01904106119722b243ffb6f8d40bd1ea48556767fc632f5daba36275e79d3",
+            "sub_agents/code_analyzer.yaml": "73ff867103879db19d42ab2fd24673090793290e33170b06d2e377f3ae89b6d3"
+          }
+        },
+        "R2": {
+          "archive_bytes": 10601,
+          "archive_sha256": "c15601c9a6d8710cc2b6e2cf3fc20c9f053c16d981bb7e6c285c3b16ac06d1a9",
+          "files": {
+            "agent.yaml": "de80dff58c1ab3e758a814b915c21113a16ddf632ac4d5fee238b8d6a1b6b5a8",
+            "configs/sampling.yaml": "3dab0b2506dae34ce92fef7b380d6073729104b23fe2cf66d44ac1d2f213aa6a",
+            "eval_config.yaml": "a165b7358e53b7f60e4cd3e2089725d9c0b2d361ba7a8b9afd5c31736fd893e6",
+            "prompts/analyzer.md": "7597aec5bf8649590f47cc05989d3ad43b0a2c22c6c3888aaea0637b35565911",
+            "prompts/system.md": "1edbe9985fa66212f22917d998ef7d03660fa388b6f26074a174f40701f951ed",
+            "sub_agents/code_analyzer.yaml": "73ff867103879db19d42ab2fd24673090793290e33170b06d2e377f3ae89b6d3"
+          }
+        }
+      },
+      "baseline_sha256": "2e24495826cb971053439a00d9ad8350471fc0efffa41a54b82082feedaa7358",
+      "budget": {
+        "agent_child_seconds": 330,
+        "charged_tool_calls": 30,
+        "command_seconds": 60,
+        "session_seconds": 300,
+        "total_model_requests": 50
+      },
+      "model_execution": "NOT RUN",
+      "nonprompt_equality": "PASS",
+      "official_cpu_validation": "NOT RUN",
+      "protocol": "R012-matched-pilot-v2",
+      "protocol_sha256": "1bd2ef8f356f8f4fbb6e7c1237e950ad14471a14e9e596d634d2e728b321b7d2",
+      "runner_integration": "NOT RUN",
+      "schema_version": 1,
+      "token_accounting": "NOT RUN",
+      "total_model_request_accounting": "NOT RUN"
+    },
+    "baseline_delivery": {
+      "bytes": 6230,
+      "credentials": "short-lived file URLs only",
+      "files": 1,
+      "manifest_sha256": "c73d8b7990b93548d9f9b32da2838a63fdfe157fa90c50fa4a42a3f6ca69237c",
+      "phase": "bootstrap",
+      "schema_version": 1,
+      "transport": "direct-https",
+      "verified": true
+    },
+    "compute_authorization": "NONE",
+    "kind": "FREE_CPU_RESEARCH_PREPARATION",
+    "metadata_delivery": {
+      "bytes": 1984455,
+      "credentials": "short-lived file URLs only",
+      "files": 1,
+      "manifest_sha256": "944a638b55ed1d14317a7684601fcb1758c7d0f8c1b61749b94f175b4ffe261e",
+      "phase": "bootstrap",
+      "schema_version": 1,
+      "transport": "direct-https",
+      "verified": true
+    },
+    "metadata_schema": {
+      "fields": {
+        "base_commit": [
+          "str"
+        ],
+        "created_at": [
+          "str"
+        ],
+        "hints_text": [
+          "str"
+        ],
+        "instance_id": [
+          "str"
+        ],
+        "patch": [
+          "str"
+        ],
+        "problem_statement": [
+          "str"
+        ],
+        "repo": [
+          "str"
+        ],
+        "test_patch": [
+          "str"
+        ]
+      },
+      "rows": 129
+    },
+    "model_execution": "NOT RUN",
+    "phase": "complete",
+    "protocol_sha256": "1bd2ef8f356f8f4fbb6e7c1237e950ad14471a14e9e596d634d2e728b321b7d2",
+    "provider_operations": 0,
+    "raw_competition_inputs_published": false,
+    "run_id": "40072228708",
+    "schema_version": 1,
+    "selection": {
+      "eligible_repositories": 3,
+      "eligible_repository_counts": {
+        "encode/httpx": 1,
+        "psf/requests": 13,
+        "textualize/rich": 48
+      },
+      "eligible_tasks": 62,
+      "excluded_tasks": 67,
+      "exclusions_sha256": "a59b37419dacbd89cfc6000bef727b1f594516e1449f38ce8a1303bfc5771b3a",
+      "exposure_limit": "Uninspected by this project as recorded; public/pretraining contamination is unknown.",
+      "inventory_count": 129,
+      "metadata_projection_sha256": "c3d203c9d9ee410b648eee8b9af40c36cc9c8f390240173fab4178ccf0aa8177",
+      "minimum_primary_repositories": 3,
+      "model_execution": "NOT RUN",
+      "planned_model_runs": 18,
+      "primary": [
+        {
+          "arm_order": [
+            "R0",
+            "R1",
+            "R2"
+          ],
+          "base_commit": "7407309c8a8a73aa2f4337184025d440bbedab7a",
+          "instance_id": "requests_7309",
+          "repetition": 1,
+          "repo": "psf/requests",
+          "slot": 1
+        },
+        {
+          "arm_order": [
+            "R0",
+            "R2",
+            "R1"
+          ],
+          "base_commit": "d0de442c08df8793c5ff36d9ad322ca5c47fc38c",
+          "instance_id": "rich_3486",
+          "repetition": 1,
+          "repo": "textualize/rich",
+          "slot": 2
+        },
+        {
+          "arm_order": [
+            "R1",
+            "R0",
+            "R2"
+          ],
+          "base_commit": "4acf5c2c37714cc63b5cf71b3e284fca83c90311",
+          "instance_id": "httpx_3672",
+          "repetition": 1,
+          "repo": "encode/httpx",
+          "slot": 3
+        },
+        {
+          "arm_order": [
+            "R1",
+            "R2",
+            "R0"
+          ],
+          "base_commit": "6360477c52303c9445b45fa8744b02d05a2f0905",
+          "instance_id": "requests_7315",
+          "repetition": 1,
+          "repo": "psf/requests",
+          "slot": 4
+        },
+        {
+          "arm_order": [
+            "R2",
+            "R0",
+            "R1"
+          ],
+          "base_commit": "1ad6f73a4d1d3b40ac3f879feccfaad66412bd1d",
+          "instance_id": "rich_3067",
+          "repetition": 1,
+          "repo": "textualize/rich",
+          "slot": 5
+        },
+        {
+          "arm_order": [
+            "R2",
+            "R1",
+            "R0"
+          ],
+          "base_commit": "661970d171d9c3e12e4c789c4768db647d8c4da0",
+          "instance_id": "requests_7502",
+          "repetition": 1,
+          "repo": "psf/requests",
+          "slot": 6
+        }
+      ],
+      "primary_repository_clusters": 3,
+      "protocol": "R012-matched-pilot-v2",
+      "protocol_sha256": "1bd2ef8f356f8f4fbb6e7c1237e950ad14471a14e9e596d634d2e728b321b7d2",
+      "reserve_policy": "No automatic replacement; document pre-outcome infrastructure exclusion, preserve original slot and all evidence.",
+      "reserves": [
+        {
+          "base_commit": "3b70db5a2997de191f7db3e422dbe4da35ca1c95",
+          "instance_id": "rich_3782",
+          "repo": "textualize/rich",
+          "reserve_order": 1
+        },
+        {
+          "base_commit": "b684dcb9bbf3aa557d1238e72062c4a29737dd1c",
+          "instance_id": "requests_7427",
+          "repo": "psf/requests",
+          "reserve_order": 2
+        },
+        {
+          "base_commit": "aca9467ec6a482b3bed1ba7d2e3de72271c5f817",
+          "instance_id": "rich_3061",
+          "repo": "textualize/rich",
+          "reserve_order": 3
+        },
+        {
+          "base_commit": "0e322af87745eff34caffe4df68456ebc20d9068",
+          "instance_id": "requests_6757",
+          "repo": "psf/requests",
+          "reserve_order": 4
+        },
+        {
+          "base_commit": "58ac15120fe254886c10d6253667733c83604cb4",
+          "instance_id": "rich_4077",
+          "repo": "textualize/rich",
+          "reserve_order": 5
+        },
+        {
+          "base_commit": "382fc2c0c6c0ef0874bc65bc1175f97c073e5086",
+          "instance_id": "requests_6644",
+          "repo": "psf/requests",
+          "reserve_order": 6
+        }
+      ],
+      "schema_version": 1,
+      "selection_algorithm": "ranked-repository-round-robin-v2",
+      "selection_seed": "backtrace-R012-pilot-v1-20261024",
+      "shortfall": {
+        "primary_repositories": 0,
+        "primary_tasks": 0,
+        "reserve_tasks": 0
+      },
+      "source_bytes": 1984455,
+      "source_sha256": "e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6",
+      "status": "SELECTED",
+      "task_content_inspected_for_selection": false
+    },
+    "source_sha": "817eb5d7df921fa1d4f849da0e25f8e1f724af21",
+    "status": "PASS",
+    "temporary_inputs_removed": true
+  },
+  "historical_branch_audit": {
+    "preexisting_branches": 52,
+    "changed": [],
+    "new_branches": [
+      "refs/heads/bt-001-research-prep-20261024"
+    ]
+  }
+}

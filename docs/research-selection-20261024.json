@@ -1,0 +1,145 @@
+{
+  "eligible_repositories": 3,
+  "eligible_repository_counts": {
+    "encode/httpx": 1,
+    "psf/requests": 13,
+    "textualize/rich": 48
+  },
+  "eligible_tasks": 62,
+  "excluded_tasks": 67,
+  "exclusions_sha256": "a59b37419dacbd89cfc6000bef727b1f594516e1449f38ce8a1303bfc5771b3a",
+  "exposure_limit": "Uninspected by this project as recorded; public/pretraining contamination is unknown.",
+  "inventory_count": 129,
+  "metadata_projection_sha256": "c3d203c9d9ee410b648eee8b9af40c36cc9c8f390240173fab4178ccf0aa8177",
+  "minimum_primary_repositories": 3,
+  "model_execution": "NOT RUN",
+  "planned_model_runs": 18,
+  "primary": [
+    {
+      "arm_order": [
+        "R0",
+        "R1",
+        "R2"
+      ],
+      "base_commit": "7407309c8a8a73aa2f4337184025d440bbedab7a",
+      "instance_id": "requests_7309",
+      "repetition": 1,
+      "repo": "psf/requests",
+      "slot": 1
+    },
+    {
+      "arm_order": [
+        "R0",
+        "R2",
+        "R1"
+      ],
+      "base_commit": "d0de442c08df8793c5ff36d9ad322ca5c47fc38c",
+      "instance_id": "rich_3486",
+      "repetition": 1,
+      "repo": "textualize/rich",
+      "slot": 2
+    },
+    {
+      "arm_order": [
+        "R1",
+        "R0",
+        "R2"
+      ],
+      "base_commit": "4acf5c2c37714cc63b5cf71b3e284fca83c90311",
+      "instance_id": "httpx_3672",
+      "repetition": 1,
+      "repo": "encode/httpx",
+      "slot": 3
+    },
+    {
+      "arm_order": [
+        "R1",
+        "R2",
+        "R0"
+      ],
+      "base_commit": "6360477c52303c9445b45fa8744b02d05a2f0905",
+      "instance_id": "requests_7315",
+      "repetition": 1,
+      "repo": "psf/requests",
+      "slot": 4
+    },
+    {
+      "arm_order": [
+        "R2",
+        "R0",
+        "R1"
+      ],
+      "base_commit": "1ad6f73a4d1d3b40ac3f879feccfaad66412bd1d",
+      "instance_id": "rich_3067",
+      "repetition": 1,
+      "repo": "textualize/rich",
+      "slot": 5
+    },
+    {
+      "arm_order": [
+        "R2",
+        "R1",
+        "R0"
+      ],
+      "base_commit": "661970d171d9c3e12e4c789c4768db647d8c4da0",
+      "instance_id": "requests_7502",
+      "repetition": 1,
+      "repo": "psf/requests",
+      "slot": 6
+    }
+  ],
+  "primary_repository_clusters": 3,
+  "protocol": "R012-matched-pilot-v2",
+  "protocol_sha256": "1bd2ef8f356f8f4fbb6e7c1237e950ad14471a14e9e596d634d2e728b321b7d2",
+  "reserve_policy": "No automatic replacement; document pre-outcome infrastructure exclusion, preserve original slot and all evidence.",
+  "reserves": [
+    {
+      "base_commit": "3b70db5a2997de191f7db3e422dbe4da35ca1c95",
+      "instance_id": "rich_3782",
+      "repo": "textualize/rich",
+      "reserve_order": 1
+    },
+    {
+      "base_commit": "b684dcb9bbf3aa557d1238e72062c4a29737dd1c",
+      "instance_id": "requests_7427",
+      "repo": "psf/requests",
+      "reserve_order": 2
+    },
+    {
+      "base_commit": "aca9467ec6a482b3bed1ba7d2e3de72271c5f817",
+      "instance_id": "rich_3061",
+      "repo": "textualize/rich",
+      "reserve_order": 3
+    },
+    {
+      "base_commit": "0e322af87745eff34caffe4df68456ebc20d9068",
+      "instance_id": "requests_6757",
+      "repo": "psf/requests",
+      "reserve_order": 4
+    },
+    {
+      "base_commit": "58ac15120fe254886c10d6253667733c83604cb4",
+      "instance_id": "rich_4077",
+      "repo": "textualize/rich",
+      "reserve_order": 5
+    },
+    {
+      "base_commit": "382fc2c0c6c0ef0874bc65bc1175f97c073e5086",
+      "instance_id": "requests_6644",
+      "repo": "psf/requests",
+      "reserve_order": 6
+    }
+  ],
+  "schema_version": 1,
+  "selection_algorithm": "ranked-repository-round-robin-v2",
+  "selection_seed": "backtrace-R012-pilot-v1-20261024",
+  "shortfall": {
+    "primary_repositories": 0,
+    "primary_tasks": 0,
+    "reserve_tasks": 0
+  },
+  "source_bytes": 1984455,
+  "source_sha256": "e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6",
+  "status": "SELECTED",
+  "task_content_inspected_for_selection": false
+}
