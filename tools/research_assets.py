@@ -130,7 +130,7 @@ def official_wheels(client, root):
     return pull(root, manifest, sources, c.digest(manifest), 180)
 
 
-def prepare(output):
+def prepare(output, *, qualification=None):
     from tools.cloud_seal import seal
     output = Path(output).absolute(); output.mkdir(mode=0o700)
     protocol = c.load_protocol()
@@ -183,7 +183,7 @@ def prepare(output):
                 try:
                     from tools.research_runtime import qualify
                     with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
-                        qualified = qualify(root, output / 'official.json')
+                        qualified = (qualification or qualify)(root, output / 'official.json')
                     report['official_qualification'] = {'status': qualified['status']}
                     if qualified['status'] != 'PASS':
                         report['status'] = 'INCOMPLETE'

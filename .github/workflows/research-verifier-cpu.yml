@@ -1,0 +1,56 @@
+name: Selected verifier and isolation CPU qualification
+on:
+  push:
+    branches: [bt-001-research-verifier-prep-20261024]
+permissions:
+  contents: read
+concurrency:
+  group: research-verifier-cpu-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  qualify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Linux suite and immutable protocol
+        run: |
+          set -euo pipefail
+          mkdir -p evidence .local
+          chmod 700 .local
+          python_path="$(command -v python3)"
+          sudo "$python_path" -m unittest discover -s tests -v > evidence/tests.log 2>&1
+          python tools/backtrace.py preflight > evidence/preflight.json
+          python -m tools.research_comparison validate > evidence/protocol.json
+          git diff --check
+      - name: Install read-only input SDK
+        run: python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
+      - name: Actual selected verifier and isolated official runner
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        run: |
+          set -euo pipefail
+          python_path="$(command -v python3)"
+          sudo --preserve-env=KAGGLE_API_TOKEN,GITHUB_SHA,GITHUB_RUN_ID "$python_path" -m tools.research_verifier_cpu evidence/qualification
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: research-verifier-public-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            evidence/*.json
+            evidence/tests.log
+            evidence/qualification/*.json
+          retention-days: 14
+          if-no-files-found: error
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: research-verifier-private-${{ github.sha }}-${{ github.run_attempt }}
+          path: evidence/qualification/inputs.age
+          retention-days: 14
+          if-no-files-found: error

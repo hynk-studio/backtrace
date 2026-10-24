@@ -713,3 +713,14 @@ The new CPU runner has no provider launch CLI/permit. No historical paid/watch
 head, consumed claim, prompt, protocol, selected task, training, merge, issue
 closure or competition submission changed. Owner-encrypted reproducibility
 inputs and execution evidence are retained alongside the existing project files.
+
+The owner next instructed **다음 단계 진행하자** after PR #22. Continue on
+`bt-001-research-verifier-prep-20261024`, stacked on #22: free CPU independent
+verifier controls for all six selected tasks, exact evaluator dependency pins,
+dedicated agent/evaluator command UIDs, network/PID namespace isolation and
+in-flight/outer deadline controls. Root coordinators retain evaluator reference
+metadata; model-selected commands never receive it. Preserve prompts, protocol,
+selection, historical sources/heads/claims. Actual authored CPU responses and
+reference controls are not model scores. Reuse only the existing read-only
+Kaggle input connection and owner-encrypted evidence channel. No model/GPU run,
+new paid scope, training, merge, issue closure or competition submission.
