@@ -1,0 +1,315 @@
+{
+  "assembly": {
+    "arms": {
+      "R0": {
+        "archive_bytes": 7581,
+        "archive_sha256": "ed00d61301bc264867250186d884707e32f63e6cd6401a49f35fa3c9bdecc600",
+        "files": {
+          "agent.yaml": "de80dff58c1ab3e758a814b915c21113a16ddf632ac4d5fee238b8d6a1b6b5a8",
+          "configs/sampling.yaml": "3dab0b2506dae34ce92fef7b380d6073729104b23fe2cf66d44ac1d2f213aa6a",
+          "eval_config.yaml": "a165b7358e53b7f60e4cd3e2089725d9c0b2d361ba7a8b9afd5c31736fd893e6",
+          "prompts/analyzer.md": "216846540c7ef445bf7fb93aa68da06bf426ebe6b0b64d93acf03b853089fc80",
+          "prompts/system.md": "4d61c2dafc2dddaf93423b838c8a9abe6e3cdd0596499d9c83cceaeac9184948",
+          "sub_agents/code_analyzer.yaml": "73ff867103879db19d42ab2fd24673090793290e33170b06d2e377f3ae89b6d3"
+        }
+      },
+      "R1": {
+        "archive_bytes": 8927,
+        "archive_sha256": "a13b2512b3842cd92b8b5bcf2a1b0ad5c0889633be763108610ec15eb5811ff4",
+        "files": {
+          "agent.yaml": "de80dff58c1ab3e758a814b915c21113a16ddf632ac4d5fee238b8d6a1b6b5a8",
+          "configs/sampling.yaml": "3dab0b2506dae34ce92fef7b380d6073729104b23fe2cf66d44ac1d2f213aa6a",
+          "eval_config.yaml": "a165b7358e53b7f60e4cd3e2089725d9c0b2d361ba7a8b9afd5c31736fd893e6",
+          "prompts/analyzer.md": "29edf0399df7e53ce844a5b10adc0684a97ce3fcb836104ec2ad76afa7259f56",
+          "prompts/system.md": "9aa01904106119722b243ffb6f8d40bd1ea48556767fc632f5daba36275e79d3",
+          "sub_agents/code_analyzer.yaml": "73ff867103879db19d42ab2fd24673090793290e33170b06d2e377f3ae89b6d3"
+        }
+      },
+      "R2": {
+        "archive_bytes": 10601,
+        "archive_sha256": "c15601c9a6d8710cc2b6e2cf3fc20c9f053c16d981bb7e6c285c3b16ac06d1a9",
+        "files": {
+          "agent.yaml": "de80dff58c1ab3e758a814b915c21113a16ddf632ac4d5fee238b8d6a1b6b5a8",
+          "configs/sampling.yaml": "3dab0b2506dae34ce92fef7b380d6073729104b23fe2cf66d44ac1d2f213aa6a",
+          "eval_config.yaml": "a165b7358e53b7f60e4cd3e2089725d9c0b2d361ba7a8b9afd5c31736fd893e6",
+          "prompts/analyzer.md": "7597aec5bf8649590f47cc05989d3ad43b0a2c22c6c3888aaea0637b35565911",
+          "prompts/system.md": "1edbe9985fa66212f22917d998ef7d03660fa388b6f26074a174f40701f951ed",
+          "sub_agents/code_analyzer.yaml": "73ff867103879db19d42ab2fd24673090793290e33170b06d2e377f3ae89b6d3"
+        }
+      }
+    },
+    "baseline_sha256": "2e24495826cb971053439a00d9ad8350471fc0efffa41a54b82082feedaa7358",
+    "budget": {
+      "agent_child_seconds": 330,
+      "charged_tool_calls": 30,
+      "command_seconds": 60,
+      "session_seconds": 300,
+      "total_model_requests": 50
+    },
+    "model_execution": "NOT RUN",
+    "nonprompt_equality": "PASS",
+    "official_cpu_validation": "NOT RUN",
+    "protocol": "R012-matched-pilot-v2",
+    "protocol_sha256": "1bd2ef8f356f8f4fbb6e7c1237e950ad14471a14e9e596d634d2e728b321b7d2",
+    "runner_integration": "NOT RUN",
+    "schema_version": 1,
+    "token_accounting": "NOT RUN",
+    "total_model_request_accounting": "NOT RUN"
+  },
+  "compute_authorization": "NONE",
+  "kind": "MATCHED_PILOT_ASSET_ACQUISITION",
+  "model_execution": "NOT RUN",
+  "phase": "task_assets",
+  "protocol_sha256": "1bd2ef8f356f8f4fbb6e7c1237e950ad14471a14e9e596d634d2e728b321b7d2",
+  "provider_operations": 0,
+  "run_id": "40084132869",
+  "schema_version": 1,
+  "sealed": {
+    "ciphertext_bytes": 320651988,
+    "ciphertext_sha256": "2f3cd65a5e54bf359148b6cd868c8d145c3210fd5df7eac819d27bdd7fd6fb5f",
+    "files": 42,
+    "format": "age-v1",
+    "plaintext_bytes": 320534631
+  },
+  "source_sha": "67d25833000c00228143f168aea50ea3cdeaab07",
+  "stages": {
+    "baseline": {
+      "bytes": 6230,
+      "credentials": "short-lived file URLs only",
+      "files": 1,
+      "manifest_sha256": "c73d8b7990b93548d9f9b32da2838a63fdfe157fa90c50fa4a42a3f6ca69237c",
+      "phase": "bootstrap",
+      "schema_version": 1,
+      "transport": "direct-https",
+      "verified": true
+    },
+    "metadata": {
+      "bytes": 1984455,
+      "credentials": "short-lived file URLs only",
+      "files": 1,
+      "manifest_sha256": "944a638b55ed1d14317a7684601fcb1758c7d0f8c1b61749b94f175b4ffe261e",
+      "phase": "bootstrap",
+      "schema_version": 1,
+      "transport": "direct-https",
+      "verified": true
+    },
+    "official_wheels": {
+      "bytes": 4125151,
+      "credentials": "short-lived file URLs only",
+      "files": 5,
+      "manifest_sha256": "778202ec704f614feeff15d932e66c5f68a995c0fdf21b3c4f2f629e377c6c2c",
+      "phase": "bootstrap",
+      "schema_version": 1,
+      "transport": "direct-https",
+      "verified": true
+    }
+  },
+  "status": "PASS",
+  "tasks": [
+    {
+      "agent_task_sha256": "8a12a160a8a2ccc764763cb7a635e5700e79eba56198d601c2ef455b2f4d05dd",
+      "assets": [
+        {
+          "acquired_at_utc": "2026-10-24T10:00:46.679518+00:00",
+          "bytes": 37530773,
+          "path": "snapshots/requests_7309.tgz",
+          "sha256": "cf8f38184e2a3d4d4f89ef7028c27fe80b09e5ffe912f19f37585899d368c089",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+          "upstream_version": "UNSPECIFIED; exact acquired bytes pinned"
+        },
+        {
+          "acquired_at_utc": "2026-10-24T10:00:48.067526+00:00",
+          "bytes": 794300,
+          "path": "graphs/requests_7407309c8a8a73aa2f4337184025d440bbedab7a.json",
+          "sha256": "96bf1b6834765dfcf077c79f3987528ec08a9186213b2b8fb9ca601fde46dc00",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+          "upstream_version": "UNSPECIFIED; exact acquired bytes pinned"
+        },
+        {
+          "acquired_at_utc": "2026-10-24T10:00:49.183148+00:00",
+          "bytes": 914151,
+          "path": "embeddings/requests_7407309c8a8a73aa2f4337184025d440bbedab7a.npz",
+          "sha256": "b9d67b3da7fed8fd0c301f8193c792571dc2f39dda82b664eaabf3a3ef3cb6e8",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+          "upstream_version": "UNSPECIFIED; exact acquired bytes pinned"
+        }
+      ],
+      "base_commit": "7407309c8a8a73aa2f4337184025d440bbedab7a",
+      "failures": [],
+      "instance_id": "requests_7309",
+      "repo": "psf/requests",
+      "status": "ACQUIRED"
+    },
+    {
+      "agent_task_sha256": "1ecb0d9e96cda26cb374e3a059b72a699657d3015f34a8acdef6ea7af71532dc",
+      "assets": [
+        {
+          "acquired_at_utc": "2026-10-24T10:00:52.282575+00:00",
+          "bytes": 93287898,
+          "path": "snapshots/rich_3486.tgz",
+          "sha256": "a051941a18c5843335a2fe9485b8d57400a9f038c1c7b65e479a2e97cd203396",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+          "upstream_version": "UNSPECIFIED; exact acquired bytes pinned"
+        },
+        {
+          "acquired_at_utc": "2026-10-24T10:00:53.920991+00:00",
+          "bytes": 2271828,
+          "path": "graphs/rich_d0de442c08df8793c5ff36d9ad322ca5c47fc38c.json",
+          "sha256": "b30dfaf7904effb480d5f837d28cd99c286a4bc4b857b89be5cba0ab9a695b9a",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+          "upstream_version": "UNSPECIFIED; exact acquired bytes pinned"
+        },
+        {
+          "acquired_at_utc": "2026-10-24T10:00:55.012687+00:00",
+          "bytes": 2411369,
+          "path": "embeddings/rich_d0de442c08df8793c5ff36d9ad322ca5c47fc38c.npz",
+          "sha256": "e1027319cc0ce03c0182ec334bdc142f05f74b917c5c4a8f13890113bcb03a38",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+          "upstream_version": "UNSPECIFIED; exact acquired bytes pinned"
+        }
+      ],
+      "base_commit": "d0de442c08df8793c5ff36d9ad322ca5c47fc38c",
+      "failures": [],
+      "instance_id": "rich_3486",
+      "repo": "Textualize/rich",
+      "status": "ACQUIRED"
+    },
+    {
+      "agent_task_sha256": "16c1737826efb8a853359ce489685faaa501d8881c270a862ec001a8450c6023",
+      "assets": [
+        {
+          "acquired_at_utc": "2026-10-24T10:00:56.217414+00:00",
+          "bytes": 1576322,
+          "path": "snapshots/httpx_3672.tgz",
+          "sha256": "d1afdad9b9d433ebc345968ed90c4c401ed82f5fdfd27ab82eeaf92a49d9e2ed",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+          "upstream_version": "UNSPECIFIED; exact acquired bytes pinned"
+        },
+        {
+          "acquired_at_utc": "2026-10-24T10:00:57.609782+00:00",
+          "bytes": 591348,
+          "path": "graphs/httpx_4acf5c2c37714cc63b5cf71b3e284fca83c90311.json",
+          "sha256": "85e7d53e72ea73db45bef4db2941e57a798219a68b4d2015be669c8863612c5c",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+          "upstream_version": "UNSPECIFIED; exact acquired bytes pinned"
+        },
+        {
+          "acquired_at_utc": "2026-10-24T10:00:58.546901+00:00",
+          "bytes": 900710,
+          "path": "embeddings/httpx_4acf5c2c37714cc63b5cf71b3e284fca83c90311.npz",
+          "sha256": "374b4543ae7eebd322c3ab78facab817bc21de098a3594d69d78e9de630dc5d3",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+          "upstream_version": "UNSPECIFIED; exact acquired bytes pinned"
+        }
+      ],
+      "base_commit": "4acf5c2c37714cc63b5cf71b3e284fca83c90311",
+      "failures": [],
+      "instance_id": "httpx_3672",
+      "repo": "encode/httpx",
+      "status": "ACQUIRED"
+    },
+    {
+      "agent_task_sha256": "c6c6094b607d3c3a37aa73b1dbe7b56564106572346d4c5a35e1b2fdb85fdbfe",
+      "assets": [
+        {
+          "acquired_at_utc": "2026-10-24T10:01:00.361616+00:00",
+          "bytes": 37602543,
+          "path": "snapshots/requests_7315.tgz",
+          "sha256": "be20432ae7d54b96a5532c98ac545798bb76237376c7fd546e2275f7f19e93ac",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+          "upstream_version": "UNSPECIFIED; exact acquired bytes pinned"
+        },
+        {
+          "acquired_at_utc": "2026-10-24T10:01:01.757429+00:00",
+          "bytes": 794350,
+          "path": "graphs/requests_6360477c52303c9445b45fa8744b02d05a2f0905.json",
+          "sha256": "e022fa3c8b32f83e131809d37711b24b530e4369f4058e14015dbbac196ae6b0",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+          "upstream_version": "UNSPECIFIED; exact acquired bytes pinned"
+        },
+        {
+          "acquired_at_utc": "2026-10-24T10:01:02.697866+00:00",
+          "bytes": 914222,
+          "path": "embeddings/requests_6360477c52303c9445b45fa8744b02d05a2f0905.npz",
+          "sha256": "ba35443f7b68b42b0fee26fdbb0745ea404b01a6249b1809eb6d2491818a1d2c",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+          "upstream_version": "UNSPECIFIED; exact acquired bytes pinned"
+        }
+      ],
+      "base_commit": "6360477c52303c9445b45fa8744b02d05a2f0905",
+      "failures": [],
+      "instance_id": "requests_7315",
+      "repo": "psf/requests",
+      "status": "ACQUIRED"
+    },
+    {
+      "agent_task_sha256": "6e4f5bbb12e5665f1fddfe61779abcf42a57b0e19e6ea3bc29aa6f27d74fcfba",
+      "assets": [
+        {
+          "acquired_at_utc": "2026-10-24T10:01:06.033404+00:00",
+          "bytes": 90917632,
+          "path": "snapshots/rich_3067.tgz",
+          "sha256": "c0438941340c2920daf0b8f2738752b3d7bac9c70b69ec1e264b95927880f4ae",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+          "upstream_version": "UNSPECIFIED; exact acquired bytes pinned"
+        },
+        {
+          "acquired_at_utc": "2026-10-24T10:01:07.608656+00:00",
+          "bytes": 2226461,
+          "path": "graphs/rich_1ad6f73a4d1d3b40ac3f879feccfaad66412bd1d.json",
+          "sha256": "3439f50f78c9e3b576a0f6097425eb9ec69f2a42d18fc7724cdc3977e9561393",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+          "upstream_version": "UNSPECIFIED; exact acquired bytes pinned"
+        },
+        {
+          "acquired_at_utc": "2026-10-24T10:01:08.699790+00:00",
+          "bytes": 2375068,
+          "path": "embeddings/rich_1ad6f73a4d1d3b40ac3f879feccfaad66412bd1d.npz",
+          "sha256": "c2644d2bc4780888ef2882a1507298921965b395f58f664127765a3f21121db1",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+          "upstream_version": "UNSPECIFIED; exact acquired bytes pinned"
+        }
+      ],
+      "base_commit": "1ad6f73a4d1d3b40ac3f879feccfaad66412bd1d",
+      "failures": [],
+      "instance_id": "rich_3067",
+      "repo": "Textualize/rich",
+      "status": "ACQUIRED"
+    },
+    {
+      "agent_task_sha256": "901f4a618cb9e1817f6fb046225d95cf0d72d1d254bd0334812b5fe98c774d7f",
+      "assets": [
+        {
+          "acquired_at_utc": "2026-10-24T10:01:10.540768+00:00",
+          "bytes": 37463957,
+          "path": "snapshots/requests_7502.tgz",
+          "sha256": "a7da726a17f54ea4d43d1a21e3e9f3e95bfa2787a845a18e2d30a88fcc1f53fb",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+          "upstream_version": "UNSPECIFIED; exact acquired bytes pinned"
+        },
+        {
+          "acquired_at_utc": "2026-10-24T10:01:11.947050+00:00",
+          "bytes": 833151,
+          "path": "graphs/requests_661970d171d9c3e12e4c789c4768db647d8c4da0.json",
+          "sha256": "5e0de156b8933a1c72d11185c5fccbb0fd3d0bda4365529ddf8d50c33133cba5",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+          "upstream_version": "UNSPECIFIED; exact acquired bytes pinned"
+        },
+        {
+          "acquired_at_utc": "2026-10-24T10:01:13.063502+00:00",
+          "bytes": 944710,
+          "path": "embeddings/requests_661970d171d9c3e12e4c789c4768db647d8c4da0.npz",
+          "sha256": "8ed4734ec0c9ee8b1c0a26b8d5883b5b286cb1d83d3b853c123ec73578752065",
+          "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
+          "upstream_version": "UNSPECIFIED; exact acquired bytes pinned"
+        }
+      ],
+      "base_commit": "661970d171d9c3e12e4c789c4768db647d8c4da0",
+      "failures": [],
+      "instance_id": "requests_7502",
+      "repo": "psf/requests",
+      "status": "ACQUIRED"
+    }
+  ],
+  "temporary_inputs_removed": true
+}
