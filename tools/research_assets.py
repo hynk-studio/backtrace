@@ -34,6 +34,8 @@ def projections(data, selection, protocol):
     for selected in selection['primary']:
         record = records[selected['instance_id']]
         task = {key: record.get(key, '') for key in FIELDS}
+        if task['hints_text'] is None:
+            task['hints_text'] = ''
         if any(not isinstance(value, str) for value in task.values()):
             raise ValueError('invalid agent task input')
         if any(task[k] != selected[k] for k in ('instance_id', 'repo', 'base_commit')):
@@ -137,10 +139,15 @@ def prepare(output):
                 with resolver.kaggle_client() as client:
                     for kind in ('metadata', 'baseline'):
                         report['stages'][kind] = research_cpu.acquire(kind, client, root / kind)
+                    report['phase'] = 'agent_projection'
                     tasks = projections((root / 'metadata/tasks.jsonl').read_bytes(), selection, protocol)
+                    report['phase'] = 'candidate_assembly'
                     report['assembly'] = c.build(root / 'baseline/r0-clean.zip', root / 'candidates', protocol)
+                    report['phase'] = 'official_wheels'
                     report['stages']['official_wheels'] = official_wheels(client, root / 'wheels')
+                    report['phase'] = 'retained_driver'
                     c._new_output(root / 'retained-driver.py', resolver.retained_literal(resolver.get_source(client)))
+                    report['phase'] = 'task_assets'
                     for identifier, task in tasks.items():
                         path = root / 'agents' / identifier / 'agent-task.json'
                         path.parent.mkdir(mode=0o700, parents=True)
@@ -162,6 +169,9 @@ def prepare(output):
             report['sealed'] = seal(files, output / 'inputs.age')
     except Exception as error:
         report['status'] = 'FAILED'; report['error_type'] = type(error).__name__
+        if str(error) in ('source does not reproduce committed selection', 'invalid agent task input',
+                          'task identity changed', 'five pinned official wheels required'):
+            report['reason'] = str(error)
     finally:
         logging.disable(previous)
     report['temporary_inputs_removed'] = not any((ROOT / '.local').glob('research-assets-*'))
