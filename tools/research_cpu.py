@@ -27,9 +27,14 @@ def acquire(kind, client, destination):
     from tools.direct_delivery import pull
     if kind == 'metadata':
         manifest, sources = cloud_resolver.resolve_evaluator(client)
-    elif kind == 'official':
-        manifest = cloud_resolver.official_manifest()
-        sources = cloud_resolver.resolve_official(client)
+    elif kind == 'baseline':
+        from tools.a100_delivery import manifest as frozen_manifest
+        rows = json.loads(frozen_manifest('task'))['files']
+        row = next(row for row in rows if row['path'] == 'r0-clean.zip')
+        manifest = comparison.encoded({'schema_version': 1, 'phase': 'bootstrap', 'files': [row]})
+        url = cloud_resolver.notebook_output_url(client, 'backtrace-r0-selected-inputs',
+                                                'v1', row['path'])
+        sources = {row['path']: cloud_resolver.public_source(url, row)}
     else:
         raise ValueError('unknown research input kind')
     return pull(destination, manifest, sources, hashlib.sha256(manifest).hexdigest(), 180)
@@ -54,18 +59,6 @@ def source_schema(data, protocol):
                 raise ValueError('unexpected metadata field name')
             types.setdefault(key, set()).add(type(value).__name__)
     return {'rows': count, 'fields': {k: sorted(v) for k, v in sorted(types.items())}}
-
-
-def reconstruct_baseline(official, destination, protocol, root=ROOT):
-    from tools.r0 import expected_candidate
-    rows = json.loads((root / 'docs/source-manifest.json').read_text())['official_artifacts']
-    rows = [row for row in rows if not row['local_path'].startswith('wheels/')]
-    files = expected_candidate(official, rows)
-    data = comparison.archive_bytes(files)
-    if (len(data) != protocol['baseline']['archive_bytes']
-            or comparison.digest(data) != protocol['baseline']['archive_sha256']):
-        raise ValueError('reconstructed baseline differs from original bytes')
-    comparison._new_output(destination, data)
 
 
 def prepare(output, *, root=ROOT, client_factory=None, acquire_inputs=acquire):
@@ -110,10 +103,9 @@ def prepare(output, *, root=ROOT, client_factory=None, acquire_inputs=acquire):
                     report['phase'] = 'blind_selection'
                     report['selection'] = comparison.select_tasks(metadata, protocol)
                     report['phase'] = 'baseline_download'
-                    report['reference_delivery'] = acquire_inputs('official', client, scratch / 'official')
+                    report['baseline_delivery'] = acquire_inputs('baseline', client, scratch / 'baseline')
                     report['phase'] = 'candidate_assembly'
-                    baseline = scratch / 'r0-clean.zip'
-                    reconstruct_baseline(scratch / 'official', baseline, protocol, root)
+                    baseline = scratch / 'baseline/r0-clean.zip'
                     report['assembly'] = comparison.build(baseline, scratch / 'candidates', protocol, root)
                     report['status'] = ('PASS' if report['selection']['status'] == 'SELECTED'
                                         else 'SELECTION_SHORTFALL')
@@ -121,6 +113,11 @@ def prepare(output, *, root=ROOT, client_factory=None, acquire_inputs=acquire):
     except Exception as error:
         report['status'] = 'FAILED'
         report['error_type'] = type(error).__name__
+        # A fixed manifest member is useful diagnosis; arbitrary exception text
+        # can contain signed URLs and remains private.
+        path = getattr(error, 'input_path', None)
+        if path in ('tasks.jsonl', 'r0-clean.zip'):
+            report['input_path'] = path
     finally:
         logging.disable(previous_logging)
         report['temporary_inputs_removed'] = scratch is None or not scratch.exists()

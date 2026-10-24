@@ -50,8 +50,12 @@ Global request accounting and actual runner integration must be demonstrated
 before a strict matched-inference claim. No historical receipt qualifies new
 candidates or a multi-task execution campaign.
 
-Select six primary tasks from distinct eligible repositories and six ordered
-reserves using the pinned public metadata and committed hash-ordering rule.
+Select six primary tasks by deterministic round-robin across at least three
+eligible repositories, plus six ordered reserves, using the pinned public
+metadata and committed hash-ordering rule. The initial six-distinct-repository
+proposal encountered a real metadata-only shortfall: excluding FastAPI leaves
+62 tasks in three repositories. Preserve that v1 receipt and the explicit v2
+amendment; the revised sample still has only three repository clusters.
 Exclude the repeatedly inspected `fastapi_11194`, its repository aliases and
 base snapshot. Only ID/repository/base-commit metadata enters selection; do not
 inspect problem statements, reference patches or test labels. The source must
@@ -64,7 +68,7 @@ counterbalanced across tasks. Use fresh workspaces and conversations, and never
 share an earlier arm's trace, edited files or outcomes with another arm.
 Reserves cannot replace hard tasks, failures or unfavorable outcomes. A corrupt
 or unavailable input may motivate a recorded amendment only before any arm
-outcome. Six tasks and one stochastic sample per arm are a feasibility pilot,
+outcome. Six tasks from three repositories and one stochastic sample per arm are a feasibility pilot,
 not a powered demonstration of general superiority.
 
 The primary endpoint is independent resolution within the common allowances.

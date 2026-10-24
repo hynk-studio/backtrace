@@ -36,18 +36,14 @@ class ResearchInputTests(unittest.TestCase):
             if kind == 'metadata':
                 (destination / 'tasks.jsonl').write_bytes(data)
             else:
-                (destination / 'reference').write_text('PRIVATE_REFERENCE_SENTINEL')
+                (destination / 'r0-clean.zip').write_bytes(b'fixture baseline')
             print('SDK_SIGNED_URL_SENTINEL')
             return {'verified': True, 'files': 1}
-
-        def baseline(official, destination, protocol, root):
-            destination.write_bytes(b'fixture baseline')
 
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             output = root / 'receipt.json'
             with patch.object(comparison, 'load_protocol', return_value=protocol), \
-                    patch.object(research_cpu, 'reconstruct_baseline', side_effect=baseline), \
                     patch.object(comparison, 'build', return_value={'nonprompt_equality': 'PASS'}):
                 captured = io.StringIO()
                 with contextlib.redirect_stdout(captured):

@@ -81,7 +81,7 @@ def _source(root, name):
 def load_protocol(path=PROTOCOL_PATH, root=ROOT):
     protocol = parse(read_file(path, 512 * 1024))
     if (protocol.get('schema_version') != 1
-            or protocol.get('protocol') != 'R012-matched-pilot-v1'
+            or protocol.get('protocol') != 'R012-matched-pilot-v2'
             or protocol.get('arms') != list(ARMS)
             or protocol.get('budget') != BUDGET
             or protocol.get('repetitions') != 1
@@ -96,6 +96,8 @@ def load_protocol(path=PROTOCOL_PATH, root=ROOT):
             raise ValueError('historical runtime source changed')
     selection = protocol['selection']
     if (selection['primary_tasks'] != 6 or selection['reserve_tasks'] != 6
+            or selection.get('minimum_primary_repositories') != 3
+            or selection.get('algorithm') != 'ranked-repository-round-robin-v2'
             or selection['excluded_instance_ids'] != ['fastapi_11194']
             or not {'fastapi/fastapi', 'tiangolo/fastapi'} <= set(selection['excluded_repositories'])
             or selection['metadata_sha256'] != 'e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6'
@@ -278,45 +280,65 @@ def select_tasks(data, protocol):
     repos = sorted(grouped, key=lambda name: (rank('repository', name), name))
     for repo in repos:
         grouped[repo].sort(key=lambda row: (rank('task', row['instance_id']), row['instance_id']))
-    primary = [grouped[repo][0] for repo in repos[:policy['primary_tasks']]]
-    used = {row['instance_id'] for row in primary}
-    # Ordered reserves prefer one per selected repository; remaining candidates
-    # follow the same repository/task ordering. Activation is never automatic.
-    reserve_candidates = [grouped[r][1] for r in repos[:policy['primary_tasks']] if len(grouped[r]) > 1]
-    reserve_candidates += [row for repo in repos for row in grouped[repo]
-                           if row['instance_id'] not in used
-                           and row not in reserve_candidates]
-    reserves = reserve_candidates[:policy['reserve_tasks']]
+    # The v2 amendment changes only the traversal, never the original rank/seed.
+    # A repository with one task contributes once; other repositories continue.
+    ordered = [grouped[repo][index]
+               for index in range(max((len(grouped[r]) for r in repos), default=0))
+               for repo in repos if index < len(grouped[repo])]
+    primary = ordered[:policy['primary_tasks']]
+    reserves = ordered[policy['primary_tasks']:policy['primary_tasks'] + policy['reserve_tasks']]
     orders = list(itertools.permutations(ARMS))
     primary = [dict(row, slot=index + 1, repetition=1, arm_order=list(orders[index]))
                for index, row in enumerate(primary)]
     reserves = [dict(row, reserve_order=index + 1) for index, row in enumerate(reserves)]
     shortfalls = {'primary_tasks': policy['primary_tasks'] - len(primary),
-                  'reserve_tasks': policy['reserve_tasks'] - len(reserves)}
+                  'reserve_tasks': policy['reserve_tasks'] - len(reserves),
+                  'primary_repositories': max(0, policy['minimum_primary_repositories']
+                                               - len({r['repo'] for r in primary}))}
     return {'schema_version': 1, 'protocol': protocol['protocol'],
         'protocol_sha256': digest(encoded(protocol)),
         'status': 'SELECTED' if not any(shortfalls.values()) else 'SELECTION_SHORTFALL',
         'source_sha256': digest(data), 'source_bytes': len(data),
         'inventory_count': len(records), 'eligible_tasks': len(eligible),
-        'eligible_repositories': len(repos), 'excluded_tasks': len(records) - len(eligible),
+        'eligible_repositories': len(repos),
+        'eligible_repository_counts': {repo: len(grouped[repo]) for repo in repos},
+        'primary_repository_clusters': len({r['repo'] for r in primary}),
+        'excluded_tasks': len(records) - len(eligible),
         'metadata_projection_sha256': digest(encoded(sorted(records.values(), key=lambda r: r['instance_id']))),
         'exclusions_sha256': digest(encoded({k: policy[k] for k in (
             'excluded_instance_ids', 'excluded_repositories', 'excluded_base_commits')})),
-        'selection_seed': seed, 'primary': primary, 'reserves': reserves,
+        'selection_seed': seed, 'selection_algorithm': policy['algorithm'],
+        'minimum_primary_repositories': policy['minimum_primary_repositories'],
+        'primary': primary, 'reserves': reserves,
         'shortfall': shortfalls, 'planned_model_runs': len(primary) * len(ARMS),
         'model_execution': 'NOT RUN', 'task_content_inspected_for_selection': False,
         'exposure_limit': 'Uninspected by this project as recorded; public/pretraining contamination is unknown.',
         'reserve_policy': 'No automatic replacement; document pre-outcome infrastructure exclusion, preserve original slot and all evidence.'}
 
 
-def validate_selection(selection):
+def validate_selection(selection, protocol=None):
     """A shortfall or altered layout cannot quietly become a smaller study."""
     if not isinstance(selection, dict) or selection.get('status') != 'SELECTED':
-        raise ValueError('complete six-repository selection required; shortfall needs an amendment')
+        raise ValueError('complete six-task selection required; shortfall needs an amendment')
+    protocol = load_protocol() if protocol is None else protocol
+    policy = protocol['selection']
+    if (selection.get('protocol') != protocol['protocol']
+            or selection.get('protocol_sha256') != digest(encoded(protocol))
+            or selection.get('source_sha256') != policy['metadata_sha256']
+            or selection.get('source_bytes') != policy['metadata_bytes']
+            or selection.get('inventory_count') != policy['distinct_ids']
+            or selection.get('selection_seed') != policy['selection_seed']
+            or selection.get('selection_algorithm') != 'ranked-repository-round-robin-v2'
+            or selection.get('minimum_primary_repositories') != 3
+            or policy.get('minimum_primary_repositories') != 3
+            or selection.get('exclusions_sha256') != digest(encoded({k: policy[k] for k in (
+                'excluded_instance_ids', 'excluded_repositories', 'excluded_base_commits')}))):
+        raise ValueError('selection source, protocol or exclusion identity changed')
     primary, reserves = selection.get('primary'), selection.get('reserves')
     if (not isinstance(primary, list) or len(primary) != 6
             or not isinstance(reserves, list) or len(reserves) != 6
-            or selection.get('shortfall') != {'primary_tasks': 0, 'reserve_tasks': 0}
+            or selection.get('shortfall') != {'primary_tasks': 0, 'reserve_tasks': 0,
+                                              'primary_repositories': 0}
             or selection.get('planned_model_runs') != 18):
         raise ValueError('selection sample or reserve size changed')
     orders = list(itertools.permutations(ARMS))
@@ -327,10 +349,12 @@ def validate_selection(selection):
                 or not isinstance(row.get('instance_id'), str) or not ID.fullmatch(row['instance_id'])
                 or not isinstance(row.get('repo'), str) or not REPO.fullmatch(row['repo'])
                 or not isinstance(row.get('base_commit'), str) or not SHA1.fullmatch(row['base_commit'])
-                or row['instance_id'] in identifiers or row['repo'].lower() in repos):
+                or row['instance_id'] in identifiers):
             raise ValueError('selection identities, repository diversity or balanced orders changed')
         identifiers.add(row['instance_id'])
         repos.add(row['repo'].lower())
+    if len(repos) < 3 or selection.get('primary_repository_clusters') != len(repos):
+        raise ValueError('primary repository diversity or cluster count changed')
     for index, row in enumerate(reserves):
         if (not isinstance(row, dict) or row.get('reserve_order') != index + 1
                 or not isinstance(row.get('instance_id'), str) or not ID.fullmatch(row['instance_id'])
@@ -339,11 +363,41 @@ def validate_selection(selection):
                 or row['instance_id'] in identifiers):
             raise ValueError('invalid or overlapping reserve task')
         identifiers.add(row['instance_id'])
+    counts = selection.get('eligible_repository_counts')
+    if (not isinstance(counts, dict)
+            or any(not isinstance(k, str) or not REPO.fullmatch(k)
+                   or type(v) is not int or not 1 <= v <= policy['distinct_ids']
+                   for k, v in counts.items())
+            or sum(counts.values()) > policy['distinct_ids']
+            or selection.get('eligible_repositories') != len(counts)
+            or selection.get('eligible_tasks') != sum(counts.values())
+            or type(selection.get('excluded_tasks')) is not int
+            or selection['excluded_tasks'] < 0
+            or selection.get('excluded_tasks') != policy['distinct_ids'] - sum(counts.values())):
+        raise ValueError('eligible repository inventory changed')
+    seed = policy['selection_seed']
+    ranked_repos = sorted(counts, key=lambda name: (
+        digest((seed + '\0repository\0' + name).encode()), name))
+    expected_repos = [repo for index in range(max(counts.values(), default=0))
+                      for repo in ranked_repos if index < counts[repo]][:12]
+    selected = primary + reserves
+    if [row['repo'] for row in selected] != expected_repos:
+        raise ValueError('selection no longer follows frozen round-robin repository order')
+    for row in selected:
+        if (row['instance_id'] in policy['excluded_instance_ids']
+                or row['repo'] in policy['excluded_repositories']
+                or row['base_commit'] in policy['excluded_base_commits']):
+            raise ValueError('selection includes an excluded identity')
+    for repo in counts:
+        ids = [row['instance_id'] for row in selected if row['repo'] == repo]
+        ranked = sorted(ids, key=lambda name: (digest((seed + '\0task\0' + name).encode()), name))
+        if ids != ranked:
+            raise ValueError('within-repository task rank changed')
 
 
-def summarize_outcomes(selection, rows):
+def summarize_outcomes(selection, rows, protocol=None):
     """Keep every assigned primary slot; incomplete pilots have no effect estimate."""
-    validate_selection(selection)
+    validate_selection(selection, protocol)
     if not isinstance(rows, list) or any(not isinstance(row, dict) for row in rows):
         raise ValueError('outcome rows must be a JSON array of objects')
     planned = {(r['instance_id'], arm) for r in selection['primary'] for arm in ARMS}
@@ -373,10 +427,14 @@ def summarize_outcomes(selection, rows):
             'paired_task_count': len(table),
             'wins': wins if complete else None, 'losses': losses if complete else None,
             'resolved_rate_difference': (wins - losses) / len(table) if complete else None,
-            'inference': 'DESCRIPTIVE_PILOT_ONLY; one sample per arm and six repository clusters at most'}
+            'repository_clusters': selection['primary_repository_clusters'],
+            'inference': ('DESCRIPTIVE_PILOT_ONLY; one sample per arm across '
+                          + str(selection['primary_repository_clusters'])
+                          + ' actual repository clusters; no widened generality claim')}
     return {'schema_version': 1, 'status': 'COMPLETE_DESCRIPTIVE_PILOT' if complete else 'INCOMPLETE_NO_EFFECT_ESTIMATE',
         'planned_runs': len(planned), 'reported_rows': len(observed),
-        'denominator_per_arm': len(selection['primary']), 'counts': counts,
+        'denominator_per_arm': len(selection['primary']),
+        'repository_clusters': selection['primary_repository_clusters'], 'counts': counts,
         'paired_outcomes': table, 'contrasts': contrasts,
         'failure_policy': 'Timeouts, model/infra failures and missing artifacts remain in assigned denominators; NOT_RUN stays explicit.'}
 
@@ -413,7 +471,7 @@ def main(argv=None):
             selection = parse(read_file(args.selection, 1024**2))
             if selection.get('protocol_sha256') != digest(encoded(protocol)):
                 raise ValueError('selection belongs to a different frozen protocol')
-            result = summarize_outcomes(selection, parse(read_file(args.outcomes, 1024**2)))
+            result = summarize_outcomes(selection, parse(read_file(args.outcomes, 1024**2)), protocol)
             _new_output(args.output, encoded(result))
     except (OSError, ValueError, KeyError, TypeError) as error:
         # Fixed validation messages contain no private source content or OS paths.

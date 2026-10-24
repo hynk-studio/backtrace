@@ -1,4 +1,23 @@
 {
+  "amendment": {
+    "basis": "Pre-outcome metadata inspection only: exact129-task source contains62eligible tasks in3repositories after67FastAPI exclusions; v1 required6repositories and returnedSELECTION_SHORTFALL.",
+    "change": "Keep six primary tasks and six ordered reserves; use original repository/task ranks in round-robin order with at least three primary repositories.",
+    "evidence_run_id": "40071820909",
+    "evidence_source": "050091f",
+    "interpretation": "Six-task feasibility pilot across three repository clusters, not six independent repository samples; no widened generality claim.",
+    "prior_protocol": "R012-matched-pilot-v1",
+    "prior_protocol_path": "docs/research-comparison-protocol-v1.json",
+    "prior_protocol_sha256": "97d6f9df3eac990af5aeea6cb78db986347ff02e9d2af90854660d4604988456",
+    "task_content_or_outcome_inspected": false,
+    "unchanged": [
+      "selection_seed",
+      "repository_and_task_ranking",
+      "exclusions",
+      "prompts",
+      "budgets",
+      "runtime_and_model_pins"
+    ]
+  },
   "arms": [
     "R0",
     "R1",
@@ -268,7 +287,7 @@
       "INVALID_ARTIFACT",
       "NOT_RUN"
     ],
-    "uncertainty": "Six tasks across at most six repositories and one stochastic repetition is a feasibility pilot. No significance/power or learned-transfer claim.",
+    "uncertainty": "Six tasks from the actual three eligible repository clusters and one stochastic repetition is a feasibility pilot. Repository dependence remains; no significance/power or learned-transfer claim.",
     "verification_process": [
       "NO_COMMAND_AFTER_LAST_ACCEPTED_MUTATION flag",
       "post_mutation_command_count",
@@ -287,7 +306,7 @@
     "research/prompts/r2-analyzer.md": "e69dacd964ff4132fcd12916cf1061100c78b2278c47605c136f0115cf06739d",
     "research/prompts/r2-system.md": "08f1245f4ce7bc2bcd235a058479d51c9d42d8b9bebf2ba4ff02fe6e2f8142ea"
   },
-  "protocol": "R012-matched-pilot-v1",
+  "protocol": "R012-matched-pilot-v2",
   "purpose": "CPU research preparation; causal claims require future budget-matched runs and independent evaluation.",
   "repetitions": 1,
   "runtime_anchor": {
@@ -313,6 +332,7 @@
   },
   "schema_version": 1,
   "selection": {
+    "algorithm": "ranked-repository-round-robin-v2",
     "allowed_fields": [
       "instance_id",
       "repo",
@@ -341,9 +361,10 @@
     "exposure_limit": "Project-level recorded exposure only; public tasks may have appeared in pretraining. Repositories are a conservative family proxy, not proof of semantic independence.",
     "metadata_bytes": 1984455,
     "metadata_sha256": "e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6",
+    "minimum_primary_repositories": 3,
     "order_rule": "Each of six primary tasks receives one lexicographically ordered permutation of R0,R1,R2; fresh context/workspace, no cross-arm memory.",
     "ordering": "SHA256(seed NUL repository NUL repo), then SHA256(seed NUL task NUL instance_id), tie by literal identity.",
-    "primary_rule": "First task from each of the first six distinct eligible repositories.",
+    "primary_rule": "Traverse original ranked repositories round-robin, taking each repository's next ranked task while available; first six tasks are primary. At least three distinct primary repositories required.",
     "primary_tasks": 6,
     "projection_fields": [
       "instance_id",
@@ -359,10 +380,10 @@
       "patch",
       "test_patch"
     ],
-    "reserve_rule": "First remaining task from each selected repository when present; fill in repository/task order; record six ordered reserves.",
+    "reserve_rule": "Continue the same round-robin traversal after the six primaries; next six unused task IDs are ordered reserves.",
     "reserve_tasks": 6,
     "selection_seed": "backtrace-R012-pilot-v1-20261024",
-    "shortfall_rule": "Explicit SELECTION_SHORTFALL; do not silently reduce sample or relax exclusions.",
+    "shortfall_rule": "ExplicitSELECTION_SHORTFALL if fewer than three primary repositories or fewer than six primary plus six reserve tasks; never silently reduce the sample or relax exclusions.",
     "source": "https://www.kaggle.com/competitions/gemma-4-developer-agent/data",
     "source_path": "tasks.jsonl"
   }

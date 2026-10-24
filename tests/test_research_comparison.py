@@ -88,6 +88,18 @@ class FrozenProtocolTests(unittest.TestCase):
             for phrase in ('leading explanation', 'hypothes', 'posterior', 'discriminating', 'dependen'):
                 self.assertNotIn(phrase, text)
 
+    def test_v2_preserves_exact_v1_and_changes_only_preoutcome_sampling_policy(self):
+        old_bytes = (research.ROOT / 'docs/research-comparison-protocol-v1.json').read_bytes()
+        old = research.parse(old_bytes)
+        self.assertEqual(research.digest(old_bytes), self.protocol['amendment']['prior_protocol_sha256'])
+        self.assertEqual(old['protocol'], 'R012-matched-pilot-v1')
+        self.assertEqual(self.protocol['protocol'], 'R012-matched-pilot-v2')
+        for key in ('budget', 'prompt_files', 'frozen_source_files', 'model', 'environment', 'sampling', 'baseline'):
+            self.assertEqual(old[key], self.protocol[key])
+        for key in ('selection_seed', 'excluded_instance_ids', 'excluded_repositories',
+                    'excluded_base_commits', 'ordering', 'metadata_sha256', 'metadata_bytes'):
+            self.assertEqual(old['selection'][key], self.protocol['selection'][key])
+
 
 class CandidateAssemblyTests(unittest.TestCase):
     @classmethod
@@ -172,7 +184,7 @@ class PreselectionTests(unittest.TestCase):
         self.assertEqual(len(selected['reserves']), 6)
         for sentinel in ('SENTINEL', 'problem_statement', 'patch', 'hints_text', 'fastapi_12000'):
             self.assertNotIn(sentinel, json.dumps(selected))
-        research.validate_selection(selected)
+        research.validate_selection(selected, protocol)
         for position in range(3):
             for arm in research.ARMS:
                 self.assertEqual(sum(r['arm_order'][position] == arm for r in selected['primary']), 2)
@@ -195,11 +207,36 @@ class PreselectionTests(unittest.TestCase):
         data, protocol = metadata_fixture(self.protocol, repository_count=3)
         result = research.select_tasks(data, protocol)
         self.assertEqual(result['status'], 'SELECTION_SHORTFALL')
-        self.assertEqual(result['shortfall'], {'primary_tasks': 3, 'reserve_tasks': 3})
-        self.assertEqual(result['planned_model_runs'], 9)
+        self.assertEqual(result['shortfall'], {'primary_tasks': 0, 'reserve_tasks': 6, 'primary_repositories': 0})
+        self.assertEqual(result['planned_model_runs'], 18)
         data, protocol = metadata_fixture(self.protocol, tasks_per_repo=1)
         result = research.select_tasks(data, protocol)
-        self.assertEqual(result['shortfall'], {'primary_tasks': 0, 'reserve_tasks': 6})
+        self.assertEqual(result['shortfall'], {'primary_tasks': 0, 'reserve_tasks': 6, 'primary_repositories': 0})
+
+    def test_three_repo_round_robin_keeps_single_task_repo_without_two_each_rule(self):
+        data, protocol = metadata_fixture(self.protocol, repository_count=3, tasks_per_repo=6)
+        rows = [json.loads(line) for line in data.splitlines()]
+        rows = [r for r in rows if r['repo'] != 'example/project2' or r['instance_id'] == 'project2_0']
+        data, protocol = pinned_metadata(protocol, rows)
+        result = research.select_tasks(data, protocol)
+        self.assertEqual(result['status'], 'SELECTED')
+        self.assertEqual(result['primary_repository_clusters'], 3)
+        self.assertEqual(result['eligible_repository_counts']['example/project2'], 1)
+        self.assertEqual(sum(r['repo'] == 'example/project2' for r in result['primary']), 1)
+        self.assertEqual(len(result['primary']), 6)
+        self.assertEqual(len(result['reserves']), 6)
+        research.validate_selection(result, protocol)
+        summary = research.summarize_outcomes(result, [], protocol)
+        self.assertEqual(summary['repository_clusters'], 3)
+        self.assertIn('3 actual repository clusters', summary['contrasts']['R2-R1']['inference'])
+
+    def test_enough_tasks_in_two_repos_cannot_satisfy_minimum_diversity(self):
+        data, protocol = metadata_fixture(self.protocol, repository_count=2, tasks_per_repo=8)
+        result = research.select_tasks(data, protocol)
+        self.assertEqual(result['status'], 'SELECTION_SHORTFALL')
+        self.assertEqual(result['shortfall'], {'primary_tasks': 0, 'reserve_tasks': 0, 'primary_repositories': 1})
+        with self.assertRaisesRegex(ValueError, 'shortfall'):
+            research.validate_selection(result, protocol)
 
     def test_duplicate_id_even_identical_and_unknown_schema_are_rejected(self):
         data, protocol = metadata_fixture(self.protocol)
@@ -258,6 +295,7 @@ class PreselectionTests(unittest.TestCase):
 class OutcomeBookkeepingTests(unittest.TestCase):
     def setUp(self):
         data, protocol = metadata_fixture(research.load_protocol())
+        self.protocol = protocol
         self.selection = research.select_tasks(data, protocol)
 
     def rows(self):
@@ -267,7 +305,7 @@ class OutcomeBookkeepingTests(unittest.TestCase):
                 for task in self.selection['primary'] for arm in research.ARMS]
 
     def test_missing_runs_remain_in_denominator_and_have_no_effect_estimate(self):
-        result = research.summarize_outcomes(self.selection, self.rows()[:3])
+        result = research.summarize_outcomes(self.selection, self.rows()[:3], self.protocol)
         self.assertEqual(result['denominator_per_arm'], 6)
         self.assertEqual(result['planned_runs'], 18)
         self.assertEqual(result['counts']['R0']['NOT_RUN'], 5)
@@ -278,7 +316,7 @@ class OutcomeBookkeepingTests(unittest.TestCase):
     def test_complete_rows_produce_descriptive_paired_counts_only(self):
         rows = self.rows()
         rows[0]['outcome'] = 'INFRA_FAILURE'
-        result = research.summarize_outcomes(self.selection, rows)
+        result = research.summarize_outcomes(self.selection, rows, self.protocol)
         self.assertEqual(result['status'], 'COMPLETE_DESCRIPTIVE_PILOT')
         self.assertEqual(result['counts']['R0']['INFRA_FAILURE'], 1)
         self.assertEqual(result['contrasts']['R2-R1']['wins'], 6)
@@ -292,21 +330,48 @@ class OutcomeBookkeepingTests(unittest.TestCase):
         false[2]['within_matched_budget'] = False
         for variant in (false, rows + [rows[0]], [dict(rows[0], arm='R3')]):
             with self.assertRaises(ValueError):
-                research.summarize_outcomes(self.selection, variant)
+                research.summarize_outcomes(self.selection, variant, self.protocol)
 
     def test_shortfall_or_duplicate_primary_cannot_become_complete_study(self):
         data, protocol = metadata_fixture(research.load_protocol(), repository_count=3)
         short = research.select_tasks(data, protocol)
         with self.assertRaisesRegex(ValueError, 'shortfall'):
-            research.summarize_outcomes(short, [])
+            research.summarize_outcomes(short, [], protocol)
+        underfilled = copy.deepcopy(self.selection)
+        underfilled['primary'].pop()
+        with self.assertRaisesRegex(ValueError, 'sample'):
+            research.summarize_outcomes(underfilled, [], self.protocol)
         duplicate = copy.deepcopy(self.selection)
         duplicate['primary'][1]['instance_id'] = duplicate['primary'][0]['instance_id']
         with self.assertRaisesRegex(ValueError, 'identities'):
-            research.summarize_outcomes(duplicate, [])
+            research.summarize_outcomes(duplicate, [], self.protocol)
         duplicate = copy.deepcopy(self.selection)
-        duplicate['primary'][1]['repo'] = duplicate['primary'][0]['repo']
-        with self.assertRaisesRegex(ValueError, 'diversity'):
-            research.summarize_outcomes(duplicate, [])
+        duplicate['primary'][1]['arm_order'] = duplicate['primary'][0]['arm_order']
+        with self.assertRaisesRegex(ValueError, 'balanced orders'):
+            research.summarize_outcomes(duplicate, [], self.protocol)
+
+    def test_selection_source_protocol_and_rank_cannot_be_relabelled(self):
+        for key in ('protocol_sha256', 'source_sha256', 'exclusions_sha256'):
+            changed = copy.deepcopy(self.selection)
+            changed[key] = '0' * 64
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, 'identity'):
+                research.summarize_outcomes(changed, [], self.protocol)
+        changed = copy.deepcopy(self.selection)
+        for key in ('instance_id', 'repo', 'base_commit'):
+            changed['primary'][0][key], changed['primary'][1][key] = (
+                changed['primary'][1][key], changed['primary'][0][key])
+        with self.assertRaisesRegex(ValueError, 'round-robin'):
+            research.summarize_outcomes(changed, [], self.protocol)
+
+    def test_huge_or_overfull_repository_counts_fail_before_traversal(self):
+        for count in (10**100, self.protocol['selection']['distinct_ids']):
+            changed = copy.deepcopy(self.selection)
+            counts = changed['eligible_repository_counts']
+            counts[next(iter(counts))] = count
+            changed['eligible_tasks'] = sum(counts.values())
+            changed['excluded_tasks'] = self.protocol['selection']['distinct_ids'] - sum(counts.values())
+            with self.subTest(count=count), self.assertRaisesRegex(ValueError, 'inventory'):
+                research.summarize_outcomes(changed, [], self.protocol)
 
 
 if __name__ == '__main__':

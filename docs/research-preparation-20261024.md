@@ -12,22 +12,49 @@ the original research plan. This is free CPU work, stacked on Draft PR #20 at
 - Actual R0/R1/R2 candidate assembly from the recovered original six-file
   no-LoRA baseline. Two builds are byte-identical; four nonprompt files are
   identical across arms. Original third-party inputs/archives stay private.
-- A strict, deterministic metadata-only selector for six distinct-repository
-  primary tasks and six ordered reserves, plus paired outcome bookkeeping.
+- A strict, deterministic metadata-only selector for six primary tasks across
+  the three available unexposed repositories and six ordered reserves, plus
+  paired outcome bookkeeping. The initial six-repository shortfall is preserved.
 - A [small exact teacher](exact-teacher.md) with rational Bayesian/logic/decision
   labels, distinct train/evaluation structures and reproducible leakage audits.
 - A separate free CPU workflow for the full Linux suite, teacher generation and
   authenticated original-input acquisition. It has read-only repository access,
-  uses the existing Kaggle credential only for input reads, has no RunPod secret
-  and publishes only public receipts. Raw downloaded inputs are removed.
+  uses the existing Kaggle credential only to read the original metadata and
+  saved R0-clean ZIP, has no RunPod secret and publishes only public receipts.
+  Raw downloaded inputs are removed.
 
 ## Evidence in this preparation
 
 Local focused checks and actual candidate/teacher artifacts have been exercised.
-The complete source-matched Linux workflow and original task selection are
-pending at this checkpoint. Final observed counts, source/run identifiers and
-metadata-only selection will be appended after that workflow completes; a fixture
-test is never substituted for successful original-input acquisition.
+The restricted local suite attempted 414 tests: 23 errors and three skips
+reflected socket/process restrictions and a different bundled pip wheel, not
+new-feature failures. All 48 focused new tests passed. The actual Linux
+[run 40071820909](https://github.com/hynk-studio/backtrace/actions/runs/40071820909)
+at `050091f680abc6cd4c4918661d33015c8a4166a7` then passed all **414 tests in
+30.847 seconds**, CPU preflight, source/prompt pins and teacher generation.
+
+Original metadata acquisition passed its 1,984,455-byte SHA-256 pin and 129-row
+inventory. It revealed only **three eligible repositories and 62 tasks** after
+67 FastAPI tasks were excluded. The v1 selector correctly returned
+`SELECTION_SHORTFALL`, not a completed six-task pilot. The
+[initial receipt](research-preparation-initial-cpu-20261024.json) is preserved.
+Before any task content or model outcome was inspected, v2 explicitly amended
+selection to six tasks taken round-robin across the three eligible repositories.
+It retains the original seed, ranking, exclusions, prompts and budgets; it does
+not claim six independent repository clusters.
+
+That same run separately failed while reacquiring the current competition's
+eleven reference files (`DownloadError`; exact underlying file/cause not retained).
+The original R0 ZIP had already been recovered and matched locally. The CPU
+workflow therefore now reads that same hash-pinned ZIP from the existing saved
+Kaggle input notebook version 1, avoiding an assumption that the competition's
+current reference files still reproduce the historical source. Revised actual
+selection/acquisition results will be added after the new workflow completes.
+Temporary raw inputs were removed even on the failed run.
+
+An earlier run 40071765880 at `728fd3ca2ee9ab6f2c13e47f13851309a03f299c`
+failed YAML parsing before any job ran. The pip command containing a colon was
+changed to a block scalar and parsed locally before the successful Linux run.
 
 The original reference bundle was recovered and all 11 files matched the
 existing recorded hashes. Reconstructing the R0-clean derivative reproduced

@@ -1,7 +1,7 @@
 # A matched R0/R1/R2 pilot prepared on CPU
 
 Status: **CPU research preparation, no model run or paid authorization.**
-The protocol is `R012-matched-pilot-v1` in
+The protocol is `R012-matched-pilot-v2` in
 [research-comparison-protocol.json](research-comparison-protocol.json). It freezes
 the successful runtime separately from the new scientific prompt comparison.
 This is a six-task feasibility pilot, with one stochastic run per arm and task.
@@ -80,16 +80,30 @@ not make stochastic model output deterministic.
 
 ## Preselection without inspecting task content
 
-**Actual selection: PENDING_PINNED_TASK_METADATA_ACQUISITION.** The source JSONL was
-retained privately in earlier work and is not present in this checkout. A separate
-free CPU workflow can reacquire it using the existing authorized Kaggle connection,
-run this selector, publish only the safe metadata receipt, and delete raw data.
-Until that workflow returns the pinned bytes and a selection receipt, no actual
-task selection is claimed. The source's exact
-identity is known: 1,984,455 bytes, SHA-256
+**Actual v1 selection: SELECTION_SHORTFALL; v2 selection pending re-execution.**
+Free CPU run [40071820909](https://github.com/hynk-studio/backtrace/actions/runs/40071820909)
+acquired the original pinned JSONL and verified all 129 IDs. Its metadata showed
+that excluding the 67 FastAPI tasks leaves **62 tasks across only three
+repositories**: `psf/requests`, `textualize/rich` and `encode/httpx`. The original
+six-repository requirement could not be satisfied. The initial receipt is retained
+in [research-preparation-initial-cpu-20261024.json](research-preparation-initial-cpu-20261024.json),
+and the exact v1 protocol bytes are retained in
+[research-comparison-protocol-v1.json](research-comparison-protocol-v1.json).
+
+The explicit v2 amendment uses this metadata fact before any problem content or
+model outcome was inspected. It preserves the original seed, hash ranks,
+exclusions, prompt bytes and all budgets. It keeps six primary tasks and six
+reserves, traversing the same ranked repositories in round-robin order with a
+minimum of three primary repository clusters. This changes the sampling design;
+it does not retroactively convert the v1 shortfall into success. HTTPX has only
+one eligible task, so a requirement of two tasks per repository would be invalid.
+The v2 receipt must be produced by a fresh selector execution on the same source.
+
+The exact source identity is 1,984,455 bytes, SHA-256
 `e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6`,
-129 distinct public IDs. No unseen task ID is invented, and fixture-selection
-tests do not count as real task selection.
+129 distinct public IDs. The free workflow emits only a safe metadata receipt and
+deletes the raw JSONL on exit. No unseen task ID is invented, and fixture-selection
+tests do not count as execution of the v2 selection.
 
 The ready selector first checks that byte identity, then parses a conservative
 schema. Duplicate IDs (including identical duplicates), ambiguous JSON keys,
@@ -110,13 +124,17 @@ Selection is fixed before outcome inspection:
    commit `a7f2dbe976bf72703376f0cd04487bfc4a849f83`.
 2. Rank repository names by SHA-256 of the committed seed and repository identity;
    rank task IDs independently within each repository. Literal identity breaks a
-   hash tie. Take one task from each of the first six eligible repositories.
-3. Prepare six ordered reserves, preferring one remaining task from each chosen
-   repository, then filling from the same fixed repository/task ordering.
+   hash tie. Traverse repositories in that fixed order, taking each repository's
+   next ranked task per round while it has one. The first six are primary tasks;
+   they must cover at least three repositories.
+3. Continue the same traversal for the next six unused tasks as ordered reserves.
+   A repository with only one task is exhausted after its first contribution.
 4. Assign the six permutations of R0/R1/R2 to the six primary tasks. Every arm
    appears twice in each order position. Each task receives all three arms once.
-5. Report `SELECTION_SHORTFALL` if six distinct eligible repositories or six reserves
-   are unavailable. Do not silently relax exclusions or call a smaller pilot complete.
+5. Report `SELECTION_SHORTFALL` if there are fewer than three primary repository
+   clusters, six primary tasks or six reserves. Emit eligible counts per repository
+   and the actual primary cluster count. Do not silently relax exclusions or call
+   a smaller pilot complete.
 
 Reserves are not automatic replacements. Only a documented unavailable or corrupt
 input discovered before any arm outcome can motivate a selection amendment.
@@ -144,7 +162,8 @@ table has one row per task and one outcome per arm. Report R1–R0 and R2–R0 a
 with the principal incremental R2–R1 contrast. The summary produces only paired
 win/loss counts and resolved-rate differences when all planned outcomes exist.
 It does not fabricate a confidence interval or claim statistical significance.
-Six tasks, six repository clusters at most and one stochastic repetition cannot
+The actual source supports three repository clusters. Six tasks from these three
+clusters and one stochastic repetition cannot
 support a confident general improvement claim; a later study needs a larger,
 predeclared sample/repetition plan and uncertainty that respects repository
 clustering. Do not extend or stop the study based on a favorable interim score.
@@ -165,9 +184,9 @@ stay under ignored `.local/` paths.
 
 ```sh
 python3 -m tools.research_comparison validate
-python3 -m tools.research_comparison build .local/research-inputs/r0-clean.zip .local/research-candidates-v1
-python3 -m tools.research_comparison select .local/research-inputs/tasks.jsonl .local/research-selection-v1.json
-python3 -m tools.research_comparison summarize .local/research-selection-v1.json .local/outcomes-v1.json .local/summary-v1.json
+python3 -m tools.research_comparison build .local/research-inputs/r0-clean.zip .local/research-candidates-v2
+python3 -m tools.research_comparison select .local/research-inputs/tasks.jsonl .local/research-selection-v2.json
+python3 -m tools.research_comparison summarize .local/research-selection-v2.json .local/outcomes-v2.json .local/summary-v2.json
 python3 -m unittest discover -s tests -p test_research_comparison.py -v
 ```
 
@@ -177,8 +196,8 @@ The summarize input is a JSON array of outcome records. Each identifies
 Those fields must be backed by the artifact/accounting evidence described above.
 The summarizer is bookkeeping, not a substitute for a verifier or runtime guard.
 
-Before any GPU run, acquire the missing pinned metadata, freeze actual selected
-IDs and task asset hashes, validate the three real candidate archives with the
+Before any GPU run, execute the amended selection on the pinned metadata and
+freeze the selected IDs and task asset hashes, validate the three real candidate archives with the
 official tools, implement and qualify the new task-parameterized runner and full
 request accounting, and obtain a concrete capped compute authorization. R3's
 training/save/reload/attachment feasibility work is a separate subsequent step.
