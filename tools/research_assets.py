@@ -162,9 +162,24 @@ def prepare(output):
                                                         'http_status': getattr(error, 'code', None)})
                         row['status'] = 'ACQUIRED' if not row['failures'] else 'INCOMPLETE'
             report['status'] = 'PASS' if all(t['status'] == 'ACQUIRED' for t in report['tasks']) else 'INCOMPLETE'
+            if (ROOT / 'tools/research_official.py').exists():
+                report['phase'] = 'official_cpu_qualification'
+                try:
+                    from tools.research_runtime import qualify
+                    with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+                        qualified = qualify(root, output / 'official.json')
+                    report['official_qualification'] = {'status': qualified['status']}
+                    if qualified['status'] != 'PASS':
+                        report['status'] = 'INCOMPLETE'
+                except Exception as error:
+                    import traceback
+                    (root / 'qualification-error.log').write_text(traceback.format_exc())
+                    report['official_qualification'] = {'status': 'FAILED', 'error_type': type(error).__name__}
+                    report['status'] = 'INCOMPLETE'
             # Retain artifacts for owner-side exact-byte inspection/reuse, including
             # failures, without publishing raw tasks or signed download URLs.
-            files = {str(p.relative_to(root)): p for p in root.rglob('*') if p.is_file()}
+            files = {str(p.relative_to(root)): p for p in root.rglob('*') if p.is_file()
+                     and ('cpu-runtime' not in p.relative_to(root).parts or p.name == 'install.log')}
             report['sealed'] = seal(files, output / 'inputs.age')
     except Exception as error:
         report['status'] = 'FAILED'; report['error_type'] = type(error).__name__
