@@ -34,7 +34,6 @@ def select(inputs, identifier):
 
 
 def expected_baseline_nodes(xml, task):
-    from swegemma.harness.verification import _node_matches_requirement, _extract_test_functions_from_patch
     nodes = []
     for node in ET.fromstring(xml).findall('.//testcase'):
         name, classname = node.get('name', ''), node.get('classname', '')
@@ -46,14 +45,16 @@ def expected_baseline_nodes(xml, task):
                  else 'failed' if node.find('failure') is not None else 'passed')
         nodes.append((names, state))
     if not task.FAIL_TO_PASS and not task.PASS_TO_PASS:
-        required = _extract_test_functions_from_patch(task.test_patch)
-        affected_failures = sum(state == 'failed' and any(
-            _node_matches_requirement(n, req, req, req.split('[', 1)[0])
-            for n in names for req in required) for names, state in nodes)
-        if not required or not affected_failures:
-            raise ValueError('baseline must fail an original added or modified test')
-        return {'source': 'original test-patch names; no explicit F2P/P2P lists',
-                'patch_test_names': len(required), 'affected_failures': affected_failures, 'matched': True}
+        # A diff can add parameter rows to an existing test without containing
+        # its function name. Do not manufacture F2P labels with a def-name regex.
+        # The paired control requires actual failure here and all applicable
+        # official test-file targets to pass with the reference patch below.
+        failures = sum(state == 'failed' for _, state in nodes)
+        if not failures:
+            raise ValueError('unmodified baseline must contain an executed failing test')
+        return {'source': 'original official test-file contrast', 'explicit_node_states': 'NOT PROVIDED',
+                'failed_test_cases': failures, 'matched': True}
+    from swegemma.harness.verification import _node_matches_requirement
     for requirements, state in ((task.FAIL_TO_PASS, 'failed'), (task.PASS_TO_PASS, 'passed')):
         for required in requirements:
             short = required.split('::')[-1]; base = short.split('[', 1)[0]
