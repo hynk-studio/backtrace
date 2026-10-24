@@ -724,3 +724,22 @@ selection, historical sources/heads/claims. Actual authored CPU responses and
 reference controls are not model scores. Reuse only the existing read-only
 Kaggle input connection and owner-encrypted evidence channel. No model/GPU run,
 new paid scope, training, merge, issue closure or competition submission.
+
+
+Draft PR #23 now records actual selected-verifier/isolation qualification
+40096931090 at 5db450a8f22a991520f8d5ca3c98bad587a4f6ba. Linux 443 tests,
+18 isolated authored-response runs and all 18 mechanism controls passed; all 242
+private records, 12 JUnit receipts, 18 patch identities, 29 evaluator wheels and 11
+operational hashes were independently checked. The 143-package runtime is exact
+PR #22 inventory. All six baseline/reference pairs executed; five qualify.
+The full gate and workflow remain FAIL: rich_3486's original test patch contains
+complementary Python-version skips, but the official checker requires both test
+names to pass. Actual pytest 20-pass/1-skip exits 0; official resolved stays false.
+Read docs/research-verifier-preparation-20261024.md and its final/initial receipts.
+Do not weaken the checker, replace a selected task, or call this a model failure.
+The hash-bound version-skip proposal is review-only, not an active amendment.
+All 18 real-model slots remain NOT_RUN. Preserve the protocol, prompts, prior
+heads and consumed paid scopes; GPU image/model/cache identity and finite cost/
+lifecycle preparation remain gates. Submitted patches survive namespace stop;
+unsubmitted fallback diffs are not qualified by these completed-slot fixtures.
+No GPU/model/training/merge/submission/issue closure occurred in this CPU work.
