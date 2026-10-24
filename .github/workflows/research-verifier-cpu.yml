@@ -38,6 +38,9 @@ jobs:
           set -euo pipefail
           python_path="$(command -v python3)"
           sudo --preserve-env=KAGGLE_API_TOKEN,GITHUB_SHA,GITHUB_RUN_ID "$python_path" -m tools.research_verifier_cpu evidence/qualification
+      - name: Hand public receipts and ciphertext to artifact uploader
+        if: always()
+        run: sudo chown -R "$(id -u):$(id -g)" evidence
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:

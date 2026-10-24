@@ -77,7 +77,7 @@ print(json.dumps(result))'''.replace('FILES', repr([str(owner), str(reference)])
         isolation.begin(context.agent_start_time, seconds=.5)
         late = workspace / 'late-write'
         child = "import pathlib,time; time.sleep(1.5); pathlib.Path('late-write').write_text('escaped')"
-        command = ('python3 -c ' + shlex.quote('import subprocess,time; subprocess.Popen(["python3","-c",'
+        command = ('python3 -c ' + shlex.quote('import pathlib,subprocess,time; pathlib.Path("entered").write_text("yes"); subprocess.Popen(["python3","-c",'
             + repr(child) + '],start_new_session=True); time.sleep(30)'))
         started = time.perf_counter()
         try: result = run_command(context, command=command)
@@ -85,6 +85,7 @@ print(json.dumps(result))'''.replace('FILES', repr([str(owner), str(reference)])
         observations['inflight_elapsed_seconds'] = time.perf_counter()-started
         c._new_output(private / 'deadline-tool.json', str(result).encode())
         time.sleep(1.6)
+        checks['official_command_entered'] = (workspace / 'entered').is_file()
         checks['inflight_command_stopped'] = observations['inflight_elapsed_seconds'] < 2
         checks['detached_descendant_stopped'] = not late.exists()
         checks['deadline_recorded'] = isolation.expired
@@ -94,12 +95,14 @@ print(json.dumps(result))'''.replace('FILES', repr([str(owner), str(reference)])
         manager.close(); isolation.finish()
     # Independently exercise the outer 330-second envelope at a scaled 0.5 s.
     marker = private / 'outer-late'
+    entered = private / 'outer-entered'
     child = 'import pathlib,time; time.sleep(1.5); pathlib.Path('+repr(str(marker))+').write_text("late")'
-    code = 'import subprocess,time; subprocess.Popen(['+repr(sys.executable)+',"-c",'+repr(child)+'],start_new_session=True); time.sleep(30)'
+    code = ('import pathlib,subprocess,time; pathlib.Path('+repr(str(entered))+').write_text("yes"); '
+            'subprocess.Popen(['+repr(sys.executable)+',"-c",'+repr(child)+'],start_new_session=True); time.sleep(30)')
     outer = bounded_child([sys.executable, '-I', '-c', code], private/'outer.log',
                           {'PATH': '/usr/bin:/bin'}, timeout=.5)
     time.sleep(1.6)
-    checks['outer_deadline_tree_killed'] = outer['child_timeout'] and not marker.exists() and outer['wall_seconds']<2
+    checks['outer_deadline_tree_killed'] = entered.is_file() and outer['child_timeout'] and not marker.exists() and outer['wall_seconds']<2
     checks['workspace_cleanup'] = not manager.sandboxes
     report = {'status': 'PASS' if all(checks.values()) else 'FAIL', 'checks': checks,
               'observations': observations, 'outer_child': outer, 'isolation': isolation.report(),

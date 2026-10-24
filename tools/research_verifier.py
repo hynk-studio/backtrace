@@ -8,6 +8,7 @@ from pathlib import Path
 import re
 import shlex
 import time
+import xml.etree.ElementTree as ET
 
 from tools import research_comparison as c
 from tools.qualify_evaluation import verified_tests
@@ -30,6 +31,28 @@ def select(inputs, identifier):
     if len(selected) != 1 or visible != {k: selected[0].get(k, '') for k in FIELDS}:
         raise ValueError('agent and evaluator task identity mismatch')
     return selected[0]
+
+
+def expected_baseline_nodes(xml, task):
+    from swegemma.harness.verification import _node_matches_requirement
+    nodes = []
+    for node in ET.fromstring(xml).findall('.//testcase'):
+        name, classname = node.get('name', ''), node.get('classname', '')
+        names = {name, name.split('[', 1)[0]}
+        if classname:
+            names.update((classname+'::'+name, classname+'.'+name,
+                          classname.replace('.', '/')+'.py::'+name))
+        state = ('error' if node.find('error') is not None else 'skipped' if node.find('skipped') is not None
+                 else 'failed' if node.find('failure') is not None else 'passed')
+        nodes.append((names, state))
+    for requirements, state in ((task.FAIL_TO_PASS, 'failed'), (task.PASS_TO_PASS, 'passed')):
+        for required in requirements:
+            short = required.split('::')[-1]; base = short.split('[', 1)[0]
+            matches = [actual for names, actual in nodes if any(
+                _node_matches_requirement(n, required, short, base) for n in names)]
+            if not matches or any(actual != state for actual in matches):
+                raise ValueError('baseline required test states do not match public specification')
+    return {'fail_to_pass': len(task.FAIL_TO_PASS), 'pass_to_pass': len(task.PASS_TO_PASS), 'matched': True}
 
 
 def worker(inputs, output, identifier, wheels, evaluator_site):
@@ -81,7 +104,7 @@ def worker(inputs, output, identifier, wheels, evaluator_site):
                 if installed.exit_code != 0:
                     raise ValueError('offline workspace editable installation failed')
                 module = task.repo.split('/')[-1].lower()
-                code = ('import importlib,pathlib; p=pathlib.Path(importlib.import_module('
+                code = ('import importlib,os,pathlib; assert os.getuid()==65533; p=pathlib.Path(importlib.import_module('
                         + repr(module) + ').__file__).resolve(); '
                         + "assert p.is_relative_to(pathlib.Path('/workspace').resolve()); print('WORKSPACE_IMPORT')")
                 imported = actual_exec(sid, 'python3 -s -c ' + shlex.quote(code), timeout=10)
@@ -109,7 +132,7 @@ def worker(inputs, output, identifier, wheels, evaluator_site):
             c._new_output(logs / 'exception.log', traceback.format_exc().encode())
         finally:
             manager.close(); isolation.finish()
-        tests = None; validation_error = None
+        tests = None; validation_error = None; expected_nodes = None
         if result is not None:
             c._new_output(logs / 'test-output.txt', result.test_output.encode())
             if result.error_message:
@@ -118,6 +141,7 @@ def worker(inputs, output, identifier, wheels, evaluator_site):
                 if len(receipts) != 1 or provenance != [True]:
                     raise ValueError('one executed verifier and workspace import required')
                 tests = verified_tests(receipts[0], result.test_exit_code, result.resolved, bool(result.error_message))
+                if name == 'unmodified-baseline': expected_nodes = expected_baseline_nodes(receipts[0], task)
             except ValueError as error:
                 validation_error = str(error)
         expected = name == 'public-reference-control'
@@ -129,7 +153,7 @@ def worker(inputs, output, identifier, wheels, evaluator_site):
             'test_exit_code': result.test_exit_code if result is not None else None,
             'duration_seconds': result.duration_seconds if result is not None else None,
             'error_type': error_type, 'official_error_present': bool(result and result.error_message),
-            'actual_tests': tests, 'validation_error': validation_error,
+            'actual_tests': tests, 'validation_error': validation_error, 'expected_baseline_nodes': expected_nodes,
             'workspace_import': provenance, 'isolation': isolation.report()})
     report = {'status': 'PASS' if all(r['status'] == 'PASS' for r in summaries) else 'FAIL',
               'instance_id': identifier, 'controls': summaries, 'model_score': 'NOT RUN',
