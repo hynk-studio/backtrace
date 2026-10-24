@@ -1,0 +1,2601 @@
+{
+  "asset_lock_sha256": "94a191a2ee8d28cb8a35901fb29bafb5d505af315c7fb013dd80b1884ff5a056",
+  "compute_authorization": "NONE",
+  "evidence_scope": "Public summary; full original reports and owner-encrypted logs retained separately",
+  "executed_implementation_files": {
+    ".github/workflows/research-execution-cpu.yml": "9d161ce447fdb2af03fe0292155d02d0164651c14edc4170e5feeaad48fd4bb5",
+    "tests/test_research_assets.py": "b191e140725a8d649aa6657f338b15ad02c40748d03a4488010b35e486e8b574",
+    "tests/test_research_meter.py": "f83a6871c2e9326f03a374232fb9a15461f4878e5907939541e1dc3bf49ce38a",
+    "tools/research_assets.py": "603ebd113266f6bb24a527befa6a94bdc5ce0480391e764de31c5368d4fff454",
+    "tools/research_fixture.py": "7954c91903d435fa900979ddaca2feed3ea2b171443d8eaba7a683ed5414755e",
+    "tools/research_meter.py": "4f22c9355212de588e292d2436cf4ce1a02f09a3a7dd008bef9c24dc8668a32a",
+    "tools/research_official.py": "5199693c8cdafc54e34ca74389c541b35a158bb0e5dadc5d16889586ee23967f",
+    "tools/research_runner.py": "b5a92c8b7dc1d0498965fcca368a08819411bd760bba138a38e014d289dd001e",
+    "tools/research_runtime.py": "d052d8e149f3474dbfe5dc69803a4c2525bee552d5ad31c81a81ea39ea0910db"
+  },
+  "input_receipt": {
+    "asset_lock": "MATCH",
+    "compute_authorization": "NONE",
+    "kind": "MATCHED_PILOT_ASSET_ACQUISITION",
+    "model_execution": "NOT RUN",
+    "official_qualification": {
+      "status": "PASS"
+    },
+    "phase": "official_cpu_qualification",
+    "protocol_sha256": "1bd2ef8f356f8f4fbb6e7c1237e950ad14471a14e9e596d634d2e728b321b7d2",
+    "provider_operations": 0,
+    "run_id": "40085977708",
+    "schema_version": 1,
+    "sealed": {
+      "ciphertext_bytes": 321850323,
+      "ciphertext_sha256": "6708d992fb44047357467418f5fb04f2b29a5812925006b9b22d4ac313e3dbc6",
+      "files": 322,
+      "format": "age-v1",
+      "plaintext_bytes": 321521552
+    },
+    "source_sha": "bdce00d83b49af3acd1df2c49bf0f27b94193ee1",
+    "stages": {
+      "baseline": {
+        "bytes": 6230,
+        "credentials": "short-lived file URLs only",
+        "files": 1,
+        "manifest_sha256": "c73d8b7990b93548d9f9b32da2838a63fdfe157fa90c50fa4a42a3f6ca69237c",
+        "phase": "bootstrap",
+        "schema_version": 1,
+        "transport": "direct-https",
+        "verified": true
+      },
+      "metadata": {
+        "bytes": 1984455,
+        "credentials": "short-lived file URLs only",
+        "files": 1,
+        "manifest_sha256": "944a638b55ed1d14317a7684601fcb1758c7d0f8c1b61749b94f175b4ffe261e",
+        "phase": "bootstrap",
+        "schema_version": 1,
+        "transport": "direct-https",
+        "verified": true
+      },
+      "official_wheels": {
+        "bytes": 4125151,
+        "credentials": "short-lived file URLs only",
+        "files": 5,
+        "manifest_sha256": "778202ec704f614feeff15d932e66c5f68a995c0fdf21b3c4f2f629e377c6c2c",
+        "phase": "bootstrap",
+        "schema_version": 1,
+        "transport": "direct-https",
+        "verified": true
+      }
+    },
+    "status": "PASS",
+    "temporary_inputs_removed": true
+  },
+  "kind": "MATCHED_PILOT_CPU_EXECUTION_QUALIFICATION",
+  "limits": [
+    "Authored response counters are not measured model inference tokens",
+    "Independent six-task evaluator/dependency readiness NOT RUN",
+    "Agent/evaluator OS separation and upstream bypass prevention NOT QUALIFIED",
+    "In-flight official-command deadline termination NOT QUALIFIED",
+    "Full GPU image/model load and prefix-cache behavior NOT RUN"
+  ],
+  "original_reports": {
+    "assets.json": "3ff2af481cb2fcc5eb1d2a001c18dd91ed1dc70fd7d2b088129906fe005924be",
+    "official.json": "214ef6e1c46dfef4521e5f546fbaccb25ee40f10a343f79df37d3e42b5b4fc7b"
+  },
+  "protocol_validation": {
+    "budget": {
+      "agent_child_seconds": 330,
+      "charged_tool_calls": 30,
+      "command_seconds": 60,
+      "session_seconds": 300,
+      "total_model_requests": 50
+    },
+    "compute_authorization": "NONE",
+    "frozen_source_files": 105,
+    "model_execution": "NOT RUN",
+    "prompt_files": 6,
+    "protocol": "R012-matched-pilot-v2",
+    "protocol_sha256": "1bd2ef8f356f8f4fbb6e7c1237e950ad14471a14e9e596d634d2e728b321b7d2",
+    "status": "PASS"
+  },
+  "qualification": {
+    "compiler": {
+      "arms": {
+        "R0": {
+          "archive_sha256": "ed00d61301bc264867250186d884707e32f63e6cd6401a49f35fa3c9bdecc600",
+          "compiler": {
+            "agents": [
+              {
+                "instruction_sha256": "4d61c2dafc2dddaf93423b838c8a9abe6e3cdd0596499d9c83cceaeac9184948",
+                "name": "swe_baseline_agent",
+                "sampling": {
+                  "max_output_tokens": 16384,
+                  "temperature": 0.2,
+                  "thinking_config": {
+                    "include_thoughts": true,
+                    "thinking_budget": 4096
+                  },
+                  "top_p": 0.95
+                },
+                "tools": [
+                  "run_command",
+                  "read_file",
+                  "edit_file",
+                  "write_file",
+                  "get_status",
+                  "submit_patch",
+                  "get_code_neighbors",
+                  "search_similar_code",
+                  "get_code_subgraph",
+                  "code_analyzer_agent"
+                ]
+              },
+              {
+                "instruction_sha256": "216846540c7ef445bf7fb93aa68da06bf426ebe6b0b64d93acf03b853089fc80",
+                "name": "code_analyzer_agent",
+                "sampling": {
+                  "max_output_tokens": 16384,
+                  "temperature": 0.2,
+                  "thinking_config": {
+                    "include_thoughts": true,
+                    "thinking_budget": 4096
+                  },
+                  "top_p": 0.95
+                },
+                "tools": [
+                  "read_file",
+                  "search_similar_code",
+                  "get_code_neighbors",
+                  "get_code_subgraph"
+                ]
+              }
+            ],
+            "budget": {
+              "max_time_minutes": 5,
+              "max_tool_calls": 30,
+              "max_turns": 50,
+              "timeout_seconds": 60
+            },
+            "forbidden_attempts": 0,
+            "original_tools": [
+              "edit_file",
+              "get_code_neighbors",
+              "get_code_subgraph",
+              "get_status",
+              "read_file",
+              "run_command",
+              "search_similar_code",
+              "submit_patch",
+              "write_file"
+            ],
+            "shared_root_delegate_client": true,
+            "status": "PASS"
+          },
+          "schema": {
+            "adapters": [],
+            "agent_schemas": [
+              {
+                "adapter": null,
+                "path": "agent.yaml"
+              },
+              {
+                "adapter": null,
+                "path": "sub_agents/code_analyzer.yaml"
+              }
+            ],
+            "checks": [
+              "competition directory limits",
+              "single declared model",
+              "include loading",
+              "agent schemas",
+              "generation constraints",
+              "adapter discovery"
+            ],
+            "compile_and_tool_binding": "NOT RUN",
+            "directory_files": 6,
+            "hosted_scoring": "NOT RUN",
+            "model_execution": "NOT RUN",
+            "official_cpu_checks": "PASS",
+            "single_model": "gemma-4-31b-it-qat-w4a16-ct",
+            "submission": "NOT RUN"
+          }
+        },
+        "R1": {
+          "archive_sha256": "a13b2512b3842cd92b8b5bcf2a1b0ad5c0889633be763108610ec15eb5811ff4",
+          "compiler": {
+            "agents": [
+              {
+                "instruction_sha256": "9aa01904106119722b243ffb6f8d40bd1ea48556767fc632f5daba36275e79d3",
+                "name": "swe_baseline_agent",
+                "sampling": {
+                  "max_output_tokens": 16384,
+                  "temperature": 0.2,
+                  "thinking_config": {
+                    "include_thoughts": true,
+                    "thinking_budget": 4096
+                  },
+                  "top_p": 0.95
+                },
+                "tools": [
+                  "run_command",
+                  "read_file",
+                  "edit_file",
+                  "write_file",
+                  "get_status",
+                  "submit_patch",
+                  "get_code_neighbors",
+                  "search_similar_code",
+                  "get_code_subgraph",
+                  "code_analyzer_agent"
+                ]
+              },
+              {
+                "instruction_sha256": "29edf0399df7e53ce844a5b10adc0684a97ce3fcb836104ec2ad76afa7259f56",
+                "name": "code_analyzer_agent",
+                "sampling": {
+                  "max_output_tokens": 16384,
+                  "temperature": 0.2,
+                  "thinking_config": {
+                    "include_thoughts": true,
+                    "thinking_budget": 4096
+                  },
+                  "top_p": 0.95
+                },
+                "tools": [
+                  "read_file",
+                  "search_similar_code",
+                  "get_code_neighbors",
+                  "get_code_subgraph"
+                ]
+              }
+            ],
+            "budget": {
+              "max_time_minutes": 5,
+              "max_tool_calls": 30,
+              "max_turns": 50,
+              "timeout_seconds": 60
+            },
+            "forbidden_attempts": 0,
+            "original_tools": [
+              "edit_file",
+              "get_code_neighbors",
+              "get_code_subgraph",
+              "get_status",
+              "read_file",
+              "run_command",
+              "search_similar_code",
+              "submit_patch",
+              "write_file"
+            ],
+            "shared_root_delegate_client": true,
+            "status": "PASS"
+          },
+          "schema": {
+            "adapters": [],
+            "agent_schemas": [
+              {
+                "adapter": null,
+                "path": "agent.yaml"
+              },
+              {
+                "adapter": null,
+                "path": "sub_agents/code_analyzer.yaml"
+              }
+            ],
+            "checks": [
+              "competition directory limits",
+              "single declared model",
+              "include loading",
+              "agent schemas",
+              "generation constraints",
+              "adapter discovery"
+            ],
+            "compile_and_tool_binding": "NOT RUN",
+            "directory_files": 6,
+            "hosted_scoring": "NOT RUN",
+            "model_execution": "NOT RUN",
+            "official_cpu_checks": "PASS",
+            "single_model": "gemma-4-31b-it-qat-w4a16-ct",
+            "submission": "NOT RUN"
+          }
+        },
+        "R2": {
+          "archive_sha256": "c15601c9a6d8710cc2b6e2cf3fc20c9f053c16d981bb7e6c285c3b16ac06d1a9",
+          "compiler": {
+            "agents": [
+              {
+                "instruction_sha256": "1edbe9985fa66212f22917d998ef7d03660fa388b6f26074a174f40701f951ed",
+                "name": "swe_baseline_agent",
+                "sampling": {
+                  "max_output_tokens": 16384,
+                  "temperature": 0.2,
+                  "thinking_config": {
+                    "include_thoughts": true,
+                    "thinking_budget": 4096
+                  },
+                  "top_p": 0.95
+                },
+                "tools": [
+                  "run_command",
+                  "read_file",
+                  "edit_file",
+                  "write_file",
+                  "get_status",
+                  "submit_patch",
+                  "get_code_neighbors",
+                  "search_similar_code",
+                  "get_code_subgraph",
+                  "code_analyzer_agent"
+                ]
+              },
+              {
+                "instruction_sha256": "7597aec5bf8649590f47cc05989d3ad43b0a2c22c6c3888aaea0637b35565911",
+                "name": "code_analyzer_agent",
+                "sampling": {
+                  "max_output_tokens": 16384,
+                  "temperature": 0.2,
+                  "thinking_config": {
+                    "include_thoughts": true,
+                    "thinking_budget": 4096
+                  },
+                  "top_p": 0.95
+                },
+                "tools": [
+                  "read_file",
+                  "search_similar_code",
+                  "get_code_neighbors",
+                  "get_code_subgraph"
+                ]
+              }
+            ],
+            "budget": {
+              "max_time_minutes": 5,
+              "max_tool_calls": 30,
+              "max_turns": 50,
+              "timeout_seconds": 60
+            },
+            "forbidden_attempts": 0,
+            "original_tools": [
+              "edit_file",
+              "get_code_neighbors",
+              "get_code_subgraph",
+              "get_status",
+              "read_file",
+              "run_command",
+              "search_similar_code",
+              "submit_patch",
+              "write_file"
+            ],
+            "shared_root_delegate_client": true,
+            "status": "PASS"
+          },
+          "schema": {
+            "adapters": [],
+            "agent_schemas": [
+              {
+                "adapter": null,
+                "path": "agent.yaml"
+              },
+              {
+                "adapter": null,
+                "path": "sub_agents/code_analyzer.yaml"
+              }
+            ],
+            "checks": [
+              "competition directory limits",
+              "single declared model",
+              "include loading",
+              "agent schemas",
+              "generation constraints",
+              "adapter discovery"
+            ],
+            "compile_and_tool_binding": "NOT RUN",
+            "directory_files": 6,
+            "hosted_scoring": "NOT RUN",
+            "model_execution": "NOT RUN",
+            "official_cpu_checks": "PASS",
+            "single_model": "gemma-4-31b-it-qat-w4a16-ct",
+            "submission": "NOT RUN"
+          }
+        }
+      },
+      "model_execution": "NOT RUN",
+      "official_wheels": [
+        {
+          "name": "adk-eval-core",
+          "sha256": "b1608c4471a2739eca6469735e4e118ff33a20823ce9430719238ea843aa9d1a",
+          "version": "0.1.0"
+        },
+        {
+          "name": "adk-submission",
+          "sha256": "d14f7d31e724f507322c763bc7c1ed56ac603085b3709afed954e50006b494a8",
+          "version": "0.2.11"
+        },
+        {
+          "name": "swegemma",
+          "sha256": "2b74d402dc95a615f3b36c56fd3f9ba11ddbfb7db8a5a32ec259369a0f559d98",
+          "version": "0.2.7"
+        },
+        {
+          "name": "google-adk",
+          "sha256": "1a2f6868c509e3151fb0de3575a7d18b45c338be86f420924dad74e7193631a0",
+          "version": "1.36.1"
+        },
+        {
+          "name": "google-genai",
+          "sha256": "5bc8186100e1d34d691fbe0cba392b7e04e98d286ca952323a6672d054accf95",
+          "version": "2.11.0"
+        }
+      ],
+      "status": "PASS"
+    },
+    "runner": {
+      "additional_transport_controls": [
+        {
+          "arm": "R0",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 1828,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 733,
+              "nodes": 733
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "retry",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "failed_attempt",
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 7,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "5c07c8447f00432b279af28387da2965c021024dac001743bd305bc2826abc78",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "INCOMPLETE",
+                "totals": {
+                  "cached_tokens": null,
+                  "completion_tokens": null,
+                  "prompt_tokens": null,
+                  "reasoning_tokens": null,
+                  "total_tokens": null
+                },
+                "upstream_statuses": [
+                  500,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "8a12a160a8a2ccc764763cb7a635e5700e79eba56198d601c2ef455b2f4d05dd",
+              "agent_work_seconds": 0.6584178919999886,
+              "arm": "R0",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "ed00d61301bc264867250186d884707e32f63e6cd6401a49f35fa3c9bdecc600",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.0002652000000011867,
+              "instance_id": "requests_7309",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 222,
+              "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 3.3764795159999608,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "requests_7309",
+          "status": "PASS",
+          "wall_seconds": 8.835537288000012
+        },
+        {
+          "arm": "R0",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 1828,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 733,
+              "nodes": 733
+            },
+            "checks": {
+              "cleanup": true,
+              "compaction_in_same_allowance": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "compaction",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "compaction",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 7,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "d0db594fd7f33eb42bbbe642cca0303fa2d570e42a3559a9e5b49470f0c8c626",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [
+                    "temperature",
+                    "top_p",
+                    "max_completion_tokens"
+                  ],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 49,
+                  "prompt_tokens": 15066,
+                  "reasoning_tokens": 21,
+                  "total_tokens": 15115
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "8a12a160a8a2ccc764763cb7a635e5700e79eba56198d601c2ef455b2f4d05dd",
+              "agent_work_seconds": 0.2706330899999898,
+              "arm": "R0",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "ed00d61301bc264867250186d884707e32f63e6cd6401a49f35fa3c9bdecc600",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.0003017739999791047,
+              "instance_id": "requests_7309",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 222,
+              "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 2.9578084329999683,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "requests_7309",
+          "status": "PASS",
+          "wall_seconds": 8.384976844999983
+        }
+      ],
+      "completed_slots": 18,
+      "planned_slots": 18,
+      "real_model_runs": 0,
+      "scope": "OFFICIAL_RUNNER_SCRIPTED_CPU_TRANSPORT",
+      "slots": [
+        {
+          "arm": "R0",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 1828,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 733,
+              "nodes": 733
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "ordinary",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 6,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "d01faf77aab26f839a3ff4362b9d7e706bec973c01988a1853be04d57541d7ef",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 42,
+                  "prompt_tokens": 66,
+                  "reasoning_tokens": 18,
+                  "total_tokens": 108
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "8a12a160a8a2ccc764763cb7a635e5700e79eba56198d601c2ef455b2f4d05dd",
+              "agent_work_seconds": 0.2732998299999849,
+              "arm": "R0",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "ed00d61301bc264867250186d884707e32f63e6cd6401a49f35fa3c9bdecc600",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.00027467499995736944,
+              "instance_id": "requests_7309",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 222,
+              "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 3.0046077889999765,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "requests_7309",
+          "status": "PASS",
+          "wall_seconds": 8.48445638000004
+        },
+        {
+          "arm": "R1",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 1828,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 733,
+              "nodes": 733
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "ordinary",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 6,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "a10ef03dc0ad1d09602a69c0ee7eb8774cd032c5c4f822baae4cd6c422d237aa",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 42,
+                  "prompt_tokens": 66,
+                  "reasoning_tokens": 18,
+                  "total_tokens": 108
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "8a12a160a8a2ccc764763cb7a635e5700e79eba56198d601c2ef455b2f4d05dd",
+              "agent_work_seconds": 0.27006471800001464,
+              "arm": "R1",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "a13b2512b3842cd92b8b5bcf2a1b0ad5c0889633be763108610ec15eb5811ff4",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.0002454720000173438,
+              "instance_id": "requests_7309",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 222,
+              "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 2.9903323260000434,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "requests_7309",
+          "status": "PASS",
+          "wall_seconds": 8.483450035000033
+        },
+        {
+          "arm": "R2",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 1828,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 733,
+              "nodes": 733
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "ordinary",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 6,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "fbec105bdf4e70268a111366a6e4faf74f80eae7679748578b7d2eda7e61d9c3",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 42,
+                  "prompt_tokens": 66,
+                  "reasoning_tokens": 18,
+                  "total_tokens": 108
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "8a12a160a8a2ccc764763cb7a635e5700e79eba56198d601c2ef455b2f4d05dd",
+              "agent_work_seconds": 0.26909094400002687,
+              "arm": "R2",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "c15601c9a6d8710cc2b6e2cf3fc20c9f053c16d981bb7e6c285c3b16ac06d1a9",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.0002566470000147092,
+              "instance_id": "requests_7309",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 222,
+              "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 2.9676440009999965,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "requests_7309",
+          "status": "PASS",
+          "wall_seconds": 8.483157443999971
+        },
+        {
+          "arm": "R0",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 5594,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 1962,
+              "nodes": 1962
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "ordinary",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 6,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "c89ba10a06c27ffc9a058cd21c919ea733a846f2417549ba4c0f8e89c7dbcd0a",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 42,
+                  "prompt_tokens": 66,
+                  "reasoning_tokens": 18,
+                  "total_tokens": 108
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "1ecb0d9e96cda26cb374e3a059b72a699657d3015f34a8acdef6ea7af71532dc",
+              "agent_work_seconds": 0.30033022399999254,
+              "arm": "R0",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "ed00d61301bc264867250186d884707e32f63e6cd6401a49f35fa3c9bdecc600",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.00027058900002430164,
+              "instance_id": "rich_3486",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 222,
+              "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 3.2298915739999643,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "rich_3486",
+          "status": "PASS",
+          "wall_seconds": 9.136443462999978
+        },
+        {
+          "arm": "R2",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 5594,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 1962,
+              "nodes": 1962
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "ordinary",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 6,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "7e42112aa05095bdecbdcb6853ba64704455887c939b5aa1b4fc7e54834f16a1",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 42,
+                  "prompt_tokens": 66,
+                  "reasoning_tokens": 18,
+                  "total_tokens": 108
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "1ecb0d9e96cda26cb374e3a059b72a699657d3015f34a8acdef6ea7af71532dc",
+              "agent_work_seconds": 0.2752427670000088,
+              "arm": "R2",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "c15601c9a6d8710cc2b6e2cf3fc20c9f053c16d981bb7e6c285c3b16ac06d1a9",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.00026233599999159196,
+              "instance_id": "rich_3486",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 222,
+              "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 3.1327286789999675,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "rich_3486",
+          "status": "PASS",
+          "wall_seconds": 9.236981307999997
+        },
+        {
+          "arm": "R1",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 5594,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 1962,
+              "nodes": 1962
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "ordinary",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 6,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "38e7b50bff05384e817f361d86c7c431ae08cf22eed606b2ba853353d04e3623",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 42,
+                  "prompt_tokens": 66,
+                  "reasoning_tokens": 18,
+                  "total_tokens": 108
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "1ecb0d9e96cda26cb374e3a059b72a699657d3015f34a8acdef6ea7af71532dc",
+              "agent_work_seconds": 0.27502565600002526,
+              "arm": "R1",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "a13b2512b3842cd92b8b5bcf2a1b0ad5c0889633be763108610ec15eb5811ff4",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.0002347459999896273,
+              "instance_id": "rich_3486",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 222,
+              "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 3.142632462999984,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "rich_3486",
+          "status": "PASS",
+          "wall_seconds": 8.884595595999997
+        },
+        {
+          "arm": "R1",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 1618,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 740,
+              "nodes": 740
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "ordinary",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 6,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "3d5b007555593e0993d773afe2181b18d5037a9eed3a8c583292a7c4c72d0e33",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 42,
+                  "prompt_tokens": 66,
+                  "reasoning_tokens": 18,
+                  "total_tokens": 108
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "16c1737826efb8a853359ce489685faaa501d8881c270a862ec001a8450c6023",
+              "agent_work_seconds": 0.2673776699999735,
+              "arm": "R1",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "a13b2512b3842cd92b8b5bcf2a1b0ad5c0889633be763108610ec15eb5811ff4",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.00026243600001407685,
+              "instance_id": "httpx_3672",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 220,
+              "patch_sha256": "0392eb9bc8abba1c115c3f8047e5379a478357fe741c2d720e8305f4e5e46173",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 2.9164137590000223,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "httpx_3672",
+          "status": "PASS",
+          "wall_seconds": 8.383045439
+        },
+        {
+          "arm": "R0",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 1618,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 740,
+              "nodes": 740
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "ordinary",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 6,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "a89181d8f2ceefc542538d0ad859e017c5aae8a941f3329d3b2f7bc14f2cee96",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 42,
+                  "prompt_tokens": 66,
+                  "reasoning_tokens": 18,
+                  "total_tokens": 108
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "16c1737826efb8a853359ce489685faaa501d8881c270a862ec001a8450c6023",
+              "agent_work_seconds": 0.28977641900002027,
+              "arm": "R0",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "ed00d61301bc264867250186d884707e32f63e6cd6401a49f35fa3c9bdecc600",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.00029556499998761865,
+              "instance_id": "httpx_3672",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 220,
+              "patch_sha256": "0392eb9bc8abba1c115c3f8047e5379a478357fe741c2d720e8305f4e5e46173",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 2.898253526000019,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "httpx_3672",
+          "status": "PASS",
+          "wall_seconds": 8.233093284000006
+        },
+        {
+          "arm": "R2",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 1618,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 740,
+              "nodes": 740
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "ordinary",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 6,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "75fdd2437552050eeba115606e766ea18d107d465d3c717c3512e9a6c23e736b",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 42,
+                  "prompt_tokens": 66,
+                  "reasoning_tokens": 18,
+                  "total_tokens": 108
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "16c1737826efb8a853359ce489685faaa501d8881c270a862ec001a8450c6023",
+              "agent_work_seconds": 0.2646565169999917,
+              "arm": "R2",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "c15601c9a6d8710cc2b6e2cf3fc20c9f053c16d981bb7e6c285c3b16ac06d1a9",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.0002844990000312464,
+              "instance_id": "httpx_3672",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 220,
+              "patch_sha256": "0392eb9bc8abba1c115c3f8047e5379a478357fe741c2d720e8305f4e5e46173",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 2.867394618999981,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "httpx_3672",
+          "status": "PASS",
+          "wall_seconds": 8.233108173000005
+        },
+        {
+          "arm": "R1",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 1828,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 733,
+              "nodes": 733
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "ordinary",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 6,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "6aa8dee6a0de3d674367ccfd26e659e09ad169d6e489b63889e89edac8055c9f",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 42,
+                  "prompt_tokens": 66,
+                  "reasoning_tokens": 18,
+                  "total_tokens": 108
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "c6c6094b607d3c3a37aa73b1dbe7b56564106572346d4c5a35e1b2fdb85fdbfe",
+              "agent_work_seconds": 0.2657689139999775,
+              "arm": "R1",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "a13b2512b3842cd92b8b5bcf2a1b0ad5c0889633be763108610ec15eb5811ff4",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.0002848600000220358,
+              "instance_id": "requests_7315",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 222,
+              "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 2.964474337000013,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "requests_7315",
+          "status": "PASS",
+          "wall_seconds": 8.332532265999987
+        },
+        {
+          "arm": "R2",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 1828,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 733,
+              "nodes": 733
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "ordinary",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 6,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "951691f6343215ea2a7141aea1078b53101730ea65e580e2f2193c30c83b3813",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 42,
+                  "prompt_tokens": 66,
+                  "reasoning_tokens": 18,
+                  "total_tokens": 108
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "c6c6094b607d3c3a37aa73b1dbe7b56564106572346d4c5a35e1b2fdb85fdbfe",
+              "agent_work_seconds": 0.3145930059999955,
+              "arm": "R2",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "c15601c9a6d8710cc2b6e2cf3fc20c9f053c16d981bb7e6c285c3b16ac06d1a9",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.0002490269999952943,
+              "instance_id": "requests_7315",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 222,
+              "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 3.0664508939999564,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "requests_7315",
+          "status": "PASS",
+          "wall_seconds": 8.383120609999992
+        },
+        {
+          "arm": "R0",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 1828,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 733,
+              "nodes": 733
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "ordinary",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 6,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "4bd0fd89c3be183a7d47a85587322dd43a81b842ed493e1a9bceabe83423198d",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 42,
+                  "prompt_tokens": 66,
+                  "reasoning_tokens": 18,
+                  "total_tokens": 108
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "c6c6094b607d3c3a37aa73b1dbe7b56564106572346d4c5a35e1b2fdb85fdbfe",
+              "agent_work_seconds": 0.2705515439999999,
+              "arm": "R0",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "ed00d61301bc264867250186d884707e32f63e6cd6401a49f35fa3c9bdecc600",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.0002464830000121765,
+              "instance_id": "requests_7315",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 222,
+              "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 2.9722645359999547,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "requests_7315",
+          "status": "PASS",
+          "wall_seconds": 8.43420723600002
+        },
+        {
+          "arm": "R2",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 5504,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 1933,
+              "nodes": 1933
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "ordinary",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 6,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "c6aa3c188d8b8450226cb045f1d2056e326b29d380dbc50d308c2caac68e37ee",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 42,
+                  "prompt_tokens": 66,
+                  "reasoning_tokens": 18,
+                  "total_tokens": 108
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "6e4f5bbb12e5665f1fddfe61779abcf42a57b0e19e6ea3bc29aa6f27d74fcfba",
+              "agent_work_seconds": 0.2671129899999869,
+              "arm": "R2",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "c15601c9a6d8710cc2b6e2cf3fc20c9f053c16d981bb7e6c285c3b16ac06d1a9",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.00025375400002758397,
+              "instance_id": "rich_3067",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 222,
+              "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 3.169009165000034,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "rich_3067",
+          "status": "PASS",
+          "wall_seconds": 8.785049502999982
+        },
+        {
+          "arm": "R0",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 5504,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 1933,
+              "nodes": 1933
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "ordinary",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 6,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "9404a7a8d206993974ba210f9df1f7ebc66e9e6279476bff560cae110e8e08b0",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 42,
+                  "prompt_tokens": 66,
+                  "reasoning_tokens": 18,
+                  "total_tokens": 108
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "6e4f5bbb12e5665f1fddfe61779abcf42a57b0e19e6ea3bc29aa6f27d74fcfba",
+              "agent_work_seconds": 0.5091257470000414,
+              "arm": "R0",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "ed00d61301bc264867250186d884707e32f63e6cd6401a49f35fa3c9bdecc600",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.00028345800001261523,
+              "instance_id": "rich_3067",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 222,
+              "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 3.837621421999984,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "rich_3067",
+          "status": "PASS",
+          "wall_seconds": 9.489177622
+        },
+        {
+          "arm": "R1",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 5504,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 1933,
+              "nodes": 1933
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "ordinary",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 6,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "822ff978a9f389efce7e40ba5e7b0334d1e70b01bc7d3be64e9dbf254f83c9e3",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 42,
+                  "prompt_tokens": 66,
+                  "reasoning_tokens": 18,
+                  "total_tokens": 108
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "6e4f5bbb12e5665f1fddfe61779abcf42a57b0e19e6ea3bc29aa6f27d74fcfba",
+              "agent_work_seconds": 0.2660972159999915,
+              "arm": "R1",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "a13b2512b3842cd92b8b5bcf2a1b0ad5c0889633be763108610ec15eb5811ff4",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.000280844000030811,
+              "instance_id": "rich_3067",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 222,
+              "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 3.12159916600001,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "rich_3067",
+          "status": "PASS",
+          "wall_seconds": 8.784140825999998
+        },
+        {
+          "arm": "R2",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 1884,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 758,
+              "nodes": 758
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "ordinary",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 6,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "29b47a80cc23d621b07b045f6fb9678425317572c1eac0ab95b12c5532a11213",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 42,
+                  "prompt_tokens": 66,
+                  "reasoning_tokens": 18,
+                  "total_tokens": 108
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "901f4a618cb9e1817f6fb046225d95cf0d72d1d254bd0334812b5fe98c774d7f",
+              "agent_work_seconds": 0.269564857999967,
+              "arm": "R2",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "c15601c9a6d8710cc2b6e2cf3fc20c9f053c16d981bb7e6c285c3b16ac06d1a9",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.0002507189999505499,
+              "instance_id": "requests_7502",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 222,
+              "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 2.9658822320000127,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "requests_7502",
+          "status": "PASS",
+          "wall_seconds": 8.383534714000007
+        },
+        {
+          "arm": "R1",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 1884,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 758,
+              "nodes": 758
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "ordinary",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 6,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "eaf3cfe514b77775fda5741b9009f85a4c1f2c1c40baa7525071c5ea12e23ba2",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 42,
+                  "prompt_tokens": 66,
+                  "reasoning_tokens": 18,
+                  "total_tokens": 108
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "901f4a618cb9e1817f6fb046225d95cf0d72d1d254bd0334812b5fe98c774d7f",
+              "agent_work_seconds": 0.26869540199999165,
+              "arm": "R1",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "a13b2512b3842cd92b8b5bcf2a1b0ad5c0889633be763108610ec15eb5811ff4",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.0002638490000208549,
+              "instance_id": "requests_7502",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 222,
+              "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 2.9822981059999734,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "requests_7502",
+          "status": "PASS",
+          "wall_seconds": 8.535005283000032
+        },
+        {
+          "arm": "R0",
+          "child_timeout": false,
+          "exit_code": 0,
+          "fixture": {
+            "asset_readiness": {
+              "edges": 1884,
+              "embedding_dimensions": [
+                256
+              ],
+              "finite_embeddings": 758,
+              "nodes": 758
+            },
+            "checks": {
+              "cleanup": true,
+              "fixture_contract": true,
+              "fresh_workspace_patch": true,
+              "official_completed": true,
+              "official_graph_and_embeddings": true,
+              "root_delegate_http_counts": true,
+              "sampling_accepted": true,
+              "tokens_match_fixture": true,
+              "two_charged_original_tools": true
+            },
+            "control": "ordinary",
+            "fixture_errors": [],
+            "model_execution": "AUTHORED_CPU_HTTP_ONLY",
+            "real_model_runs": 0,
+            "request_roles": [
+              "root",
+              "root",
+              "delegate",
+              "delegate",
+              "root",
+              "root"
+            ],
+            "slot": {
+              "accounting": {
+                "admitted_requests": 6,
+                "boundary": "ALL HTTP attempts at this gateway; OS bypass protection required",
+                "closed": true,
+                "reasoning_tokens_are_subset_of_completion": true,
+                "rejected_requests": 0,
+                "rejections": [],
+                "request_limit": 50,
+                "request_records_sha256": "2208498096d2d326383d8ac9ef82172be7b42885dcee753a33c0f65facd7391a",
+                "sampling_defaults_by_request": [
+                  [],
+                  [],
+                  [],
+                  [],
+                  [],
+                  []
+                ],
+                "schema_version": 1,
+                "session_seconds": 300,
+                "token_accounting": "COMPLETE",
+                "totals": {
+                  "cached_tokens": 0,
+                  "completion_tokens": 42,
+                  "prompt_tokens": 66,
+                  "reasoning_tokens": 18,
+                  "total_tokens": 108
+                },
+                "upstream_statuses": [
+                  200,
+                  200,
+                  200,
+                  200,
+                  200,
+                  200
+                ]
+              },
+              "agent_error_type": null,
+              "agent_task_sha256": "901f4a618cb9e1817f6fb046225d95cf0d72d1d254bd0334812b5fe98c774d7f",
+              "agent_work_seconds": 0.270206112999972,
+              "arm": "R0",
+              "cache": {
+                "compaction_interval": 15,
+                "context_cache_intervals": 10,
+                "context_min_tokens": 2048,
+                "context_ttl_seconds": 1800,
+                "server_prefix_cache": "NOT MEASURED ON CPU FIXTURE"
+              },
+              "candidate_sha256": "ed00d61301bc264867250186d884707e32f63e6cd6401a49f35fa3c9bdecc600",
+              "charged_tool_calls": 2,
+              "cleanup_seconds": 0.0002634780000221326,
+              "instance_id": "requests_7502",
+              "official_llm_events": 6,
+              "os_isolation": "NOT QUALIFIED; CPU fixture only",
+              "patch_bytes": 222,
+              "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+              "patch_submitted": true,
+              "sandbox_cleanup": true,
+              "status": "COMPLETED",
+              "total_wall_seconds": 3.0689088210000364,
+              "upstream": "CALLER_PROVIDED_LOOPBACK",
+              "verification": "NOT RUN"
+            },
+            "status": "PASS"
+          },
+          "instance_id": "requests_7502",
+          "status": "PASS",
+          "wall_seconds": 8.535345804999963
+        }
+      ],
+      "status": "PASS"
+    },
+    "runtime": {
+      "bytes": 183621856,
+      "excluded_serving_requirements": [
+        {
+          "package": "swegemma",
+          "requirement": "torchvision"
+        },
+        {
+          "package": "swegemma",
+          "requirement": "transformers>=4.40.0"
+        },
+        {
+          "package": "swegemma",
+          "requirement": "safetensors"
+        },
+        {
+          "package": "swegemma",
+          "requirement": "accelerate"
+        }
+      ],
+      "full_distribution_dependency_closure": false,
+      "offline_install": true,
+      "packages": 143,
+      "scope": "MINIMAL_CPU_CLOSURE_NOT_GPU_RUNTIME",
+      "selected_wheel_inventory_sha256": "8437c151118531af646a74221a7e10f1e07ff270aeb718cf1cf35859e6315a5b",
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  "real_model_slots": {
+    "assigned": 18,
+    "outcome": "NOT_RUN",
+    "run": 0
+  },
+  "run_id": 40085977708,
+  "run_url": "https://github.com/hynk-studio/backtrace/actions/runs/40085977708",
+  "schema_version": 1,
+  "source_sha": "bdce00d83b49af3acd1df2c49bf0f27b94193ee1",
+  "status": "PASS",
+  "tests": {
+    "count": 438,
+    "errors": 0,
+    "failures": 0,
+    "log_sha256": "7e6a2f528cf3f227ac0d497a6d767b49a66fb9a1502e2691224a973dad45eab2",
+    "seconds": 35.787,
+    "skips": 0,
+    "status": "PASS"
+  }
+}

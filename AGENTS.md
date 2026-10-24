@@ -690,3 +690,26 @@ historical operational files/heads/consumed claims. Reuse the existing Kaggle
 read-only input connection and owner-encrypted evidence channel. New CPU
 fixtures are plumbing evidence, not real-model results. No new paid allocation,
 merge, training or competition submission is included in this preparation.
+
+
+Execution preparation is delivered in Draft PR #22, stacked on #21. Read
+`docs/research-execution-preparation-20261024.md` and the final CPU receipt.
+Final implementation source bdce00d83b49af3acd1df2c49bf0f27b94193ee1 passed
+Linux40085977708:438 tests, three exact official candidate compilations,18
+fresh task/arm authored-response runs and two actual-client transport controls.
+All18 selected assets are hash-locked; every selected graph/embedding loads.
+The122 HTTP attempts include a real client retry of an authored500 and actual
+ADK token-threshold compaction. Missing usage stays unknown. Compactor omissions
+receive the same fixed sampling defaults. These are CPU plumbing tests, not
+model task outcomes or measured inference tokens. Preserve initial436-test run
+40085220130 and earlier acquisition/projection/install failures. Final docs-only
+commits preserve every executed implementation hash in the final receipt.
+
+All18 real-model slots remain NOT_RUN. Before proposing paid execution, qualify
+selected-task independent verifier/dependencies, OS agent/evaluator separation,
+gateway bypass prevention, in-flight official-command deadline termination,
+full GPU image/model/cache identity and the finite18-run lifecycle/cost cap.
+The new CPU runner has no provider launch CLI/permit. No historical paid/watch
+head, consumed claim, prompt, protocol, selected task, training, merge, issue
+closure or competition submission changed. Owner-encrypted reproducibility
+inputs and execution evidence are retained alongside the existing project files.
