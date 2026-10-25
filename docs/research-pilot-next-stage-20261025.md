@@ -4,6 +4,13 @@ Status: concrete planning envelope, **not authorized or launchable**. The
 [machine-readable proposal](research-pilot-compute-proposal-20261025.json)
 keeps six tasks and three arms and introduces no provider operation.
 
+The first free exact-image probe (40156890457) pulled the correct digest but
+stopped in the probe's tag-bearing RepoDigest comparison before container entry;
+its cleanup helper also rejected the new name outside the existing owned-name
+allowlist. Neither failure establishes a provider capability limitation. The
+corrected probe uses the existing digest comparison and owned CPU-container name
+contract; a new actual execution is required. The original failure is retained.
+
 ## Proposed resource and cost envelope
 
 Use one non-interruptible A100 PCIe 80GB, one model server, 100 GB ephemeral disk,

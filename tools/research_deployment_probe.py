@@ -34,7 +34,7 @@ def run(output):
         'source_sha': os.environ.get('GITHUB_SHA'), 'run_id': os.environ.get('GITHUB_RUN_ID'),
         'image': image, 'model_files_transferred': 0, 'gpu_allocations': 0,
         'provider_configuration': 'NOT OBSERVED; default OCI replica only'}
-    name = 'backtrace-research-deployment-' + str(os.getpid())
+    name = 'backtrace-free-full-setup-' + str(os.getpid()) + '-research-probe'
     try:
         host = subprocess.run(['unshare','--net','--pid','--fork','--mount-proc','true'],
                               capture_output=True,text=True,timeout=10)
@@ -43,7 +43,7 @@ def run(output):
             subprocess.run(['docker','pull',image],stdout=stream,stderr=stream,check=True,timeout=900)
         details = json.loads(subprocess.check_output(['docker','image','inspect',image],timeout=30))
         if (len(details)!=1 or details[0]['Architecture']!='amd64' or details[0]['Os']!='linux'
-                or image not in details[0]['RepoDigests']):
+                or not any(d.endswith('@'+image.split('@')[1]) for d in details[0]['RepoDigests'])):
             raise ValueError('exact image identity mismatch')
         report['image_id'] = details[0]['Id']
         child = subprocess.run(['docker','run','--rm','--name',name,'--network','none',
