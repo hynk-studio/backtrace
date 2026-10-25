@@ -12,10 +12,14 @@ preserves the v2 design and original official verdicts. Final run 40157211207
 passed all six research-verifier control pairs, 18 isolated authored slots and
 453 Linux tests. Exact function identity avoids the official version-branch
 prefix collision; the original Rich official rejection remains recorded.
-The [next deployment stage](research-pilot-next-stage-20261025.md) is blocked by
-the exact image's default-container namespace prerequisites; a split CPU-tool /
-GPU-inference deployment needs implementation and qualification. No matched
-model slot or new paid scope exists yet.
+The [split implementation](research-split-runtime-20261025.md) now keeps tools
+on native isolated CPU and forwards inference through mutually pinned TLS in the
+exact image. Final free run 40163153274 passed 467 Linux tests, 18 authored slots,
+136 reconciled requests and full-runner deadline/outer-kill controls. It recovered
+an actual post-submit error-path artifact loss while preserving TIMEOUT status.
+The [next deployment stage](research-pilot-next-stage-20261025.md) is new immutable
+server-only delivery and owner/watcher lifecycle integration. GPU cache/model
+readiness, matched model slots and a new paid authorization remain NOT_RUN.
 
 The [real R1 v2 diagnostic](verified-gpu-20261024.md) completed model execution,
 patch submission, public verification (four tests passed) and resource cleanup.

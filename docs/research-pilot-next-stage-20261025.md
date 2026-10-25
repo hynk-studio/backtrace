@@ -25,10 +25,15 @@ already tested. Run only the inference server in the frozen GPU image. Connect
 the root-owned local request ledger to that server through authenticated pinned
 transport; selected commands must never reach this endpoint directly. This
 avoids depending on nested namespace privileges in the provider container.
-The bridge, server-only lifecycle, cache configuration and failure receipts still
-need implementation and free end-to-end qualification before a paid proposal is
-ready for approval. Do not weaken isolation or install arbitrary GPU packages
-as a response to this prerequisite failure.
+The [bridge and failure-artifact implementation](research-split-runtime-20261025.md)
+is now CPU-qualified at source `0a8332282d7fc79768e055f2637c26273dc8f5b6` in run 40163153274: 467 Linux tests,
+18 normal authored slots, 136 transported attempts, retry/compaction, pre/post
+submit work deadlines and an outer kill. This uses an exact-image TLS forwarder
+with a native authored upstream and host networking; it does not establish
+provider NAT or a running model. The pinned cache argument slice and official
+server command are verified; initialized GPU cache state remains NOT_RUN.
+The server-only delivery/start and provider lifecycle still need integration
+before a paid proposal is ready for approval.
 
 ## Proposed resource and cost envelope
 
@@ -40,16 +45,18 @@ weights; this is not an adapter-training proposal.
 
 | Allocation-inclusive phase | Maximum |
 | --- | ---: |
-| Boot, transfer/install and model readiness | 70 minutes |
-| 18 fresh task children, each at most 330 seconds | 99 minutes |
+| Boot, transfer/install and model readiness | 67 minutes |
+| 18 children (330 seconds) plus parent teardown (10 seconds) | 102 minutes |
 | Encrypted result export | 6 minutes |
 | Provider deletion and independent absence checks | 5 minutes |
 | Total | 180 minutes |
 
 Each task still receives 300 seconds of work, 30 charged tools and 50 total
 model requests. The child's remaining 30 seconds is setup/teardown allowance,
-not extra model reasoning. Do not start a slot without enough time for its full
-child envelope and the reserved export/deletion window. Keep any remaining slots
+not extra model reasoning. Reserve another 10 seconds for parent namespace
+reaping and workspace deletion after each child. Do not start a slot without
+enough time for its full child/parent envelope and the export/deletion window.
+Keep any remaining slots
 as NOT_RUN in the 18-slot denominator. A partial pilot cannot establish an effect.
 
 Proposed additional spend cap: USD6, at a fresh all-in quote of at most USD2/hour.
@@ -62,24 +69,19 @@ No fresh balance or stock read was performed for this document.
 
 ## Work required before an approval-ready launch
 
-1. Implement and qualify the split deployment above. The exact-image probe now
-   demonstrates why copying the host runner directly into a default provider-like
-   container is not qualified. Verify original tools on the CPU host and the
-   pinned full serving runtime in the GPU image, plus authenticated transport.
-2. Qualify cache fairness using the pinned server implementation. The proposed
-   setting disables cross-slot prefix caching while retaining a fresh task-local
-   ADK conversation/cache. A command-line flag or reset endpoint is not assumed
-   supported without inspecting and executing that version's path.
-3. Exercise full-runner timeout both before and after actual submit_patch, plus
-   outer-child termination. Preserve submitted patches and traces if available;
-   explicitly report unavailable unsubmitted diffs. Current completed fixtures
-   do not establish these failure outcomes.
-4. Integrate 18 sequential children, accounting, encrypted export and independent
-   cleanup with one new immutable authorization namespace. Reuse no paid claim
-   or historical start/watch branch. Evaluate patches on CPU after GPU deletion.
-5. Qualify that exact source for free, then obtain a fresh quote/account read and
-   present the final bounded proposal for approval. Recompute usable budget from
-   the account and cumulative stop; this document cannot mint a launch permit.
+1. Package and authenticate the new inference-only serving entrypoint. Rehearse
+   its actual delivery/start/stop on free CPU using the frozen image and 246-wheel
+   closure. Keep native tools/evaluator outside that payload; preserve the already
+   qualified TLS endpoint and read-only initialized-cache metadata contract.
+2. Integrate the 18-slot controller, encrypted export and independent provider
+   cleanup/watch state under one new immutable, unconsumed namespace. Exercise
+   network loss, failed readiness, parent death and exhausted remaining time on
+   free replicas. Preserve NOT_RUN slots and reclaim killed workspaces before UID
+   reuse; evaluate patches on CPU only after GPU deletion.
+3. Qualify that exact source for free, then prepare a fresh quote/account read and
+   a concrete capped execution proposal. No old branch, claim or paid permit can
+   authorize this pilot. Actual GPU/model/cache readiness remains a gate within
+   the proposed bounded allocation after explicit approval.
 
 The R3 teacher/adapter track remains separate. A positive R2 prompt result is not
 a prerequisite for a tiny training-compatibility experiment; neither this pilot
