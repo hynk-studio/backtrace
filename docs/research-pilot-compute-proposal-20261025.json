@@ -21,7 +21,13 @@
     "agent_and_evaluator": "Qualified native Linux CPU host with dedicated UIDs and PID/network namespaces; separate fresh processes and workspaces.",
     "evidence": "Free exact-image/default-OCI run 40157265702 is BLOCKED: namespace entry exit1, ip missing. Actual provider capabilities remain unobserved.",
     "gpu_allocation": "Inference server only in the frozen image; no selected shell commands or reference tests in the provider container.",
-    "transport": "Root-owned mutually pinned TLS1.3 and local request ledger qualified on free CPU with the exact-image forwarder/native authored upstream. Provider network and serving lifecycle NOT_RUN."
+    "transport": "Mutually pinned TLS1.3, actual pinned SSH server-only delivery, full 246-wheel serving installation and Docker bridge publication qualified on CPU. Provider network and actual GPU/model initialization NOT_RUN."
+  },
+  "free_serving_qualification": {
+    "receipt": "docs/research-serving-results-20261025.json",
+    "run_id": "40206021955",
+    "source_sha": "eb1941aee4aaed081133ed19fc3c67efa6865af0",
+    "status": "PASS_AUTHORED_CPU_AND_LOCAL_LIFECYCLE_ONLY"
   },
   "free_split_qualification": {
     "receipt": "docs/research-split-results-20261025.json",
@@ -47,9 +53,9 @@
   ],
   "protocol": "R012-matched-pilot-v3-version-skip",
   "remaining_free_gates": [
-    "Package/authenticate and rehearse actual new inference-only delivery/start/stop with the frozen image and full 246-wheel closure; no tool/evaluator inputs in GPU payload.",
-    "New immutable single-create owner/watcher namespace integrates 18 children, encrypted export, deadline reserves and independent deletion. Rehearse readiness failure, disconnect and parent death; do not move consumed claims.",
-    "Exact-source full free qualification and final human-reviewable capped proposal. Actual initialized GPU cache/model readiness stays a bounded post-approval gate."
+    "Connect the qualified serving/18-slot/export path to a new distributed GitHub/Runpod owner/watch entry; bind fresh immutable namespace, exact source/endpoints, one-create semantics and cost/time reserves.",
+    "Qualify that actual distributed entry against provider/state replicas, including ambiguous operations, stale state, readiness/connection/parent failures and incomplete slots. Local Docker/journal rehearsals are already qualified, not provider evidence.",
+    "Exact-source free qualification and final human-reviewable capped proposal with fresh account/quote. Actual GPU/model/cache readiness stays bounded after explicit approval."
   ],
   "result_policy": "All six tasks and 18 slots remain assigned. Preserve failure, timeout, partial/no patch, infra failure and NOT_RUN. Export and delete GPU before independent CPU evaluation. No incomplete-pilot effect estimate.",
   "runtime_identity": {
@@ -68,7 +74,7 @@
   },
   "schema_version": 1,
   "slots": 18,
-  "status": "PROPOSAL_BLOCKED_BY_DEPLOYMENT_INTEGRATION",
+  "status": "PROPOSAL_BLOCKED_BY_DISTRIBUTED_ENTRY_INTEGRATION",
   "storage": {
     "cleanup": "Delete the allocation and temporary disk; two independent successful absence reads by owner and watcher.",
     "container_disk_gb": 100,

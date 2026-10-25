@@ -32,8 +32,12 @@ submit work deadlines and an outer kill. This uses an exact-image TLS forwarder
 with a native authored upstream and host networking; it does not establish
 provider NAT or a running model. The pinned cache argument slice and official
 server command are verified; initialized GPU cache state remains NOT_RUN.
-The server-only delivery/start and provider lifecycle still need integration
-before a paid proposal is ready for approval.
+The [server-only delivery/start/stop rehearsal](research-serving-lifecycle-20261025.md)
+is now qualified in run 40206021955, including the full 246-wheel serving
+closure, Docker bridge publication, all 18 authored slots and independent local
+owner/watcher cleanup. This does not qualify a distributed provider entry.
+GitHub/Runpod state, fresh one-create identity and paid lifetime/cost integration
+still need free qualification before a paid proposal is ready for approval.
 
 ## Proposed resource and cost envelope
 
@@ -69,19 +73,20 @@ No fresh balance or stock read was performed for this document.
 
 ## Work required before an approval-ready launch
 
-1. Package and authenticate the new inference-only serving entrypoint. Rehearse
-   its actual delivery/start/stop on free CPU using the frozen image and 246-wheel
-   closure. Keep native tools/evaluator outside that payload; preserve the already
-   qualified TLS endpoint and read-only initialized-cache metadata contract.
-2. Integrate the 18-slot controller, encrypted export and independent provider
-   cleanup/watch state under one new immutable, unconsumed namespace. Exercise
-   network loss, failed readiness, parent death and exhausted remaining time on
-   free replicas. Preserve NOT_RUN slots and reclaim killed workspaces before UID
-   reuse; evaluate patches on CPU only after GPU deletion.
-3. Qualify that exact source for free, then prepare a fresh quote/account read and
-   a concrete capped execution proposal. No old branch, claim or paid permit can
-   authorize this pilot. Actual GPU/model/cache readiness remains a gate within
-   the proposed bounded allocation after explicit approval.
+1. Wire the qualified serving payload and native 18-slot coordinator into a
+   new distributed GitHub/Runpod owner/watch entry, with one immutable fresh
+   namespace and no reuse of prior claims. Bind source, endpoints, one-create
+   semantics, provider identity, cost/time reserves and independent job liveness.
+2. Rehearse that actual entry against state/provider replicas, including
+   ambiguous create/delete replies, stale/unavailable state, failed readiness,
+   connection loss, parent death and exhausted remaining time. Preserve every
+   NOT_RUN slot and require deletion evidence before independent CPU evaluation.
+   Local Docker/journal controls have passed; they do not establish provider
+   adapter or distributed-state behavior.
+3. Qualify the exact new entry source for free, then prepare a fresh quote/account
+   read and concrete capped execution proposal. No old branch, claim or paid
+   permit authorizes this pilot. Actual GPU/model/cache readiness remains a
+   bounded post-approval gate within the proposed allocation.
 
 The R3 teacher/adapter track remains separate. A positive R2 prompt result is not
 a prerequisite for a tiny training-compatibility experiment; neither this pilot

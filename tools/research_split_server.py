@@ -3,7 +3,9 @@
 No paid launch entrypoint: provisioning/authorization and real GPU readiness are
 separate stages. This module never imports task archives or evaluator labels.
 """
-from tools.research_official import MODEL_PATH
+# Kept equal to the frozen official compiler identity by the deployment tests.
+# Serving must not import the compiler, task assets, or evaluator modules.
+MODEL_PATH='/kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2'
 
 PATH='/backtrace/split-runtime-config'
 MIDDLEWARE='tools.research_split_server.RuntimeConfigMiddleware'
