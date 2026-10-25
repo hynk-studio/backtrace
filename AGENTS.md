@@ -845,3 +845,25 @@ this local Docker/journal proof is not paid-provider qualification. All18 real
 model slots remain NOT_RUN. No paid allocation, model transfer, training,
 merge, issue closure or competition submission. Do not request paid approval
 before the remaining concrete distributed-entry implementation is qualified.
+
+## BT-001 preparation through the paid boundary (2026-10-26 KST)
+
+The owner instructed **유료 전까지 진행해줘**. Complete the remaining free
+distributed-entry implementation and qualification on
+`bt-001-research-prepaid-entry-20261026`, stacked on Draft #26, with one new
+Draft PR. This explicitly excludes paid resource creation, a live paid watcher,
+model transfer/inference/training, top-ups, merges and submission. Preserve all
+59 baseline branch heads, historical state and consumed claims. New free CPU
+replica namespaces and a separate `bt-001-research-state-20261026` branch may
+record free GitHub handshake metadata only. Do not write a paid authorization
+record or create the new dedicated start/watch branches in this scope.
+
+Bind a new immutable single-use owner permit to the exact successful free
+qualification source and contract; the current permit is absent. Complete the
+actual serving/18-slot/encrypted-export path through the new wire adapters,
+independent watcher and cost/time reserves. Test ambiguous create/deletion,
+unavailable/stale state and process/liveness failures. A live free GitHub state
+handshake is separate from a CPU Runpod API replica and from actual provider
+network/GPU initialization. Read fresh account/stock/quotes without changing
+settings or allocating. Retain failures and unknowns; stop at a concrete capped
+proposal, not at an assumed paid permission. All real-model slots remain NOT_RUN.
