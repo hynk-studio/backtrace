@@ -45,6 +45,19 @@ while time.monotonic()<end:
 
 
 class ContractTests(unittest.TestCase):
+    def test_low_response_header_quota_blocks_before_claim_or_provider_create(self):
+        with tempfile.TemporaryDirectory() as temporary,Replica(SOURCE,faults=('github_low_quota',)) as replica:
+            root=Path(temporary);store,api=clients(replica.port,'free-quota-guard')
+            store.write('watcher',{'namespace':store.namespace,'source_sha':SOURCE,'run_id':'22','at':time.time()})
+            worker=mock.Mock()
+            result=entry.execute(store,api,authorization(SOURCE),offer(),None,
+                {'output':str(root/'out'),'authored_cpu':True},root,SOURCE,'11',replica=True,
+                limits=limits(),spawn_worker=worker)
+            self.assertEqual(result['failure']['stage'],'github_budget')
+            self.assertEqual(result['provider_create_requests'],0)
+            self.assertEqual(replica.create_count,0)
+            self.assertIsNone(store.read('claim'));worker.assert_not_called()
+
     def test_heartbeat_published_during_read_uses_post_read_clock(self):
         clock=[100.0];state=mock.Mock();state.namespace='free-read-race'
         def read(_):

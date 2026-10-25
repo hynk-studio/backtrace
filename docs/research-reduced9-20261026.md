@@ -47,3 +47,23 @@ Implementation and verification are in progress. All real-model slots are NOT_RU
 The new state namespace and paid start/watch branches are not created until their
 corresponding free preparation or qualified launch gates are satisfied. R3 training
 remains separate; merge, Issue #1 closure and competition submission are excluded.
+
+## Long-run GitHub API allowance
+
+Primary documentation read 2026-10-25T19:42Z:
+https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api
+The documented GITHUB_TOKEN base allowance is1,000 REST calls per hour per
+repository; response headers are the authoritative current observation.
+A short replica run does not establish a two-hour quota allowance.
+
+The owner/watch steady-state loops require about14 requests per combined cycle.
+Their production cadence is90 seconds (nominal560/hour), with20/cycle reserved
+for bounded conflicts (800/hour) and100 extra calls for arming/cleanup. Before
+writing the claim, require fresh core-bucket response headers and enough remaining
+calls through the observed reset. Low or absent quota causes zero claim/create.
+Unclaimed watch polls at most every15 seconds, arming at most every1 second;
+these bounded start phases do not inherit the slower steady-state cadence.
+A240-second heartbeat accommodates the slower loop, with the unchanged300-second
+cleanup reserve and allocation-inclusive deadline. Allow210 seconds after the
+owner's deletion receipt for the independent watcher's second absence read;
+this wait and subsequent CPU evaluation occur after resource deletion.

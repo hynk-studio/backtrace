@@ -92,6 +92,11 @@ class Replica:
                         self.close_connection=True;return
                     data=c.encoded(result)
                     self.send_response(code);self.send_header('Content-Type','application/json')
+                    if self.path.startswith('/repos/'):
+                        self.send_header('x-ratelimit-limit','1000')
+                        self.send_header('x-ratelimit-remaining','100' if 'github_low_quota' in owner.faults else '999')
+                        self.send_header('x-ratelimit-reset',str(int(time.time())+3600))
+                        self.send_header('x-ratelimit-resource','core')
                     self.send_header('Content-Length',str(len(data)));self.end_headers();self.wfile.write(data)
                 except (BrokenPipeError,ConnectionResetError):pass
                 except Exception:

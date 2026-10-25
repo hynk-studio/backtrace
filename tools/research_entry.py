@@ -22,7 +22,7 @@ from tools.research_entry_state import StateError
 
 def defaults():
     return dict(total_seconds=7740,setup_seconds=4020,cleanup_seconds=300,
-        heartbeat_seconds=60,poll_seconds=10,unclaimed_seconds=600,unknown_create_seconds=90)
+        heartbeat_seconds=240,poll_seconds=90,unclaimed_seconds=600,unknown_create_seconds=90)
 
 
 def progress(event, **fields):
@@ -131,7 +131,7 @@ def watch(store, api, source, run_id, *, limits=None, wall=time.time, sleep=time
             except Exception:reason='ARMED_WRITE_FAILED'
         elif wall()-started>=limits['unclaimed_seconds']:
             return {'status':'NO_CLAIM','provider_create_requests':0}
-        else:sleep(limits['poll_seconds'])
+        else:sleep(min(limits['poll_seconds'],15))
     last=wall();monotonic_end=time.monotonic()+max(0,claim['requested_at']+claim['total_seconds']-wall())
     while reason is None:
         try:
@@ -206,6 +206,7 @@ def execute(store, api, authorization, offer, initializer, configuration, direct
         if watcher==str(run_id):raise ValueError('separate workflow required')
         if any(p.get('name','').startswith('backtrace-') for p in api.list()):raise StateError('prior resource requires reconciliation')
         price=c.costs(offer,authorization,wall())
+        stage='github_budget';result['github_budget']=c.github_budget(store.last_rate,wall())
         attempt=uuid.uuid4().hex
         request=control.make_request(attempt,wall(),initializer,region=offer['region'],transport_profile='actions-20261019')
         request['ports']=['22/tcp','8443/tcp']
@@ -222,7 +223,7 @@ def execute(store, api, authorization, offer, initializer, configuration, direct
             armed=store.read('armed')
             if armed and armed[0]['claim_sha256']==binding(claim) and armed[0]['run_id']==watcher:break
             if wall()>=end:raise StateError('watcher did not cache claim before create')
-            sleep(limits['poll_seconds'])
+            sleep(min(limits['poll_seconds'],1))
         require_watcher(store,source,wall,limits,expected=watcher)
         c.require_run(store.run(run_id),run_id,source,c.OWNER,path='.github/workflows/research-entry-start.yml')
         c.permit(authorization,source,wall(),replica=replica);c.costs(offer,authorization,wall())

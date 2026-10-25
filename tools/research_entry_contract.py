@@ -24,6 +24,8 @@ CONTRACT = {'schema': 1, 'pilot': 'R012-reduced9-v1',
     'maximum_approved_cumulative': '9.50', 'top_up_allowed': False, 'credit_reserve': '0.50',
     'amendment_sha256': hashlib.sha256((ROOT/'docs/research-reduced9-amendment-20261026.json').read_bytes()).hexdigest(),
     'hardware': control.GPU, 'image': control.BASE, 'disk_gb': 100,
+    'controller_poll_seconds':90,'controller_heartbeat_seconds':240,
+    'github_requests_per_cycle_budget':20,'github_startup_cleanup_request_reserve':100,
     'transport': 'pinned SSH22 delivery plus provider-mapped mutually pinned TLS8443'}
 
 
@@ -110,6 +112,22 @@ def costs(offer, authorization, now, *, seconds=7740):
         'tax_rate':str(tax),'other_total':'0','spent_before':str(spent),
         'initial_balance':str(balance),'funded_total':str(funded), 'additional_cap':authorization['additional_cap'],
         'cumulative_cap':authorization['cumulative_cap']}
+
+
+def github_budget(rate, now):
+    """Bound both controllers against authoritative response-header quota."""
+    if (not isinstance(rate,dict) or rate.get('resource')!='core'
+            or any(type(rate.get(k)) is not int for k in ('limit','remaining','reset'))
+            or rate['limit']<1000 or not 0<=rate['remaining']<=rate['limit']
+            or not 0<=now-number(rate.get('observed_at'))<=30
+            or not 0<rate['reset']-now<=3660):
+        raise ValueError('fresh GitHub response-header quota required')
+    cycles=math.ceil((rate['reset']-now)/CONTRACT['controller_poll_seconds'])
+    required=cycles*CONTRACT['github_requests_per_cycle_budget']+CONTRACT['github_startup_cleanup_request_reserve']
+    if rate['remaining']<required:raise ValueError('insufficient shared GitHub request headroom')
+    return dict(rate,required_until_reset=required,
+        nominal_combined_requests_per_hour=14*3600//CONTRACT['controller_poll_seconds'],
+        reserved_combined_requests_per_hour=20*3600//CONTRACT['controller_poll_seconds'])
 
 
 def require_run(value, run_id, source, branch, *, path=None):

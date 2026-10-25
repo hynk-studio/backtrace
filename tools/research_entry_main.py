@@ -52,7 +52,7 @@ def main(role):
             from tools.research_reduced_evaluation import evaluate,retain
             # Allocation cleanup has finished. Allow the independent watcher to
             # publish its matching deletion proof before free CPU evaluation.
-            end=time.monotonic()+60;watch=None
+            end=time.monotonic()+2*entry.defaults()['poll_seconds']+30;watch=None
             while time.monotonic()<end:
                 try:record=state.read('watcher-cleanup')
                 except Exception:record=None

@@ -52,6 +52,17 @@ class ReducedTests(unittest.TestCase):
         with self.assertRaises(ValueError):c.costs(observed,permit,time.time(),seconds=7741)
         with self.assertRaises(ValueError):c.costs(dict(observed,credit_balance='4.79'),permit,time.time())
 
+    def test_shared_github_quota_includes_both_controllers_and_retry_reserve(self):
+        rate={'limit':1000,'remaining':950,'reset':4600,'observed_at':1000,'resource':'core'}
+        budget=c.github_budget(rate,1000)
+        self.assertEqual(budget['required_until_reset'],900)
+        self.assertEqual(budget['nominal_combined_requests_per_hour'],560)
+        self.assertEqual(budget['reserved_combined_requests_per_hour'],800)
+        for change in ({'remaining':899},{'observed_at':900},{'resource':'search'},
+                       {'reset':999},{'limit':60}):
+            with self.assertRaises(ValueError):c.github_budget(dict(rate,**change),1000)
+        with self.assertRaises(ValueError):c.github_budget(None,1000)
+
     def test_evaluation_requires_two_matching_deletions_not_one(self):
         claim={'fixture':'single-claim'}
         cleanup={'status':'DELETED','absence_reads':2,'claim_sha256':binding(claim),'pod_id':'fixture','completed_at':100}
