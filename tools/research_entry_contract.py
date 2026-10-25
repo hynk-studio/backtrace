@@ -1,4 +1,4 @@
-"""One proposed 18-slot scope. A proposal is never a paid authorization."""
+"""One owner-approved reduced nine-slot scope; launch still needs exact qualification."""
 from decimal import Decimal
 import hashlib
 import json
@@ -11,17 +11,18 @@ from tools import runpod_control as control
 
 ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY = 'hynk-studio/backtrace'
-REVIEW = 'bt-001-research-prepaid-entry-20261026'
-OWNER = 'bt-001-research-start-20261026'
-WATCH = 'bt-001-research-watch-20261026'
-STATE = 'bt-001-research-state-20261026'
-PAID_NAMESPACE = 'pilot-20261026'
-CONTRACT = {'schema': 1, 'pilot': 'R012-matched-pilot-v3-version-skip',
-    'slots': 18, 'allocations': 1, 'servers': 1, 'automatic_retry': False,
-    'total_seconds': 10800, 'setup_seconds': 4020, 'export_seconds': 360,
+REVIEW = 'bt-001-research-reduced9-20261026'
+OWNER = 'bt-001-research-reduced9-start-20261026'
+WATCH = 'bt-001-research-reduced9-watch-20261026'
+STATE = 'bt-001-research-reduced9-state-20261026'
+PAID_NAMESPACE = 'reduced9-20261026'
+CONTRACT = {'schema': 1, 'pilot': 'R012-reduced9-v1',
+    'slots': 9, 'allocations': 1, 'servers': 1, 'automatic_retry': False,
+    'total_seconds': 7740, 'setup_seconds': 4020, 'export_seconds': 360,
     'cleanup_seconds': 300, 'child_seconds': 330, 'parent_seconds': 10,
-    'maximum_additional_spend': '6.00', 'maximum_hourly': '2.00',
-    'maximum_proposed_cumulative': '12.00', 'credit_reserve': '0.50',
+    'maximum_additional_spend': '4.30', 'maximum_hourly': '2.00',
+    'maximum_approved_cumulative': '9.50', 'top_up_allowed': False, 'credit_reserve': '0.50',
+    'amendment_sha256': hashlib.sha256((ROOT/'docs/research-reduced9-amendment-20261026.json').read_bytes()).hexdigest(),
     'hardware': control.GPU, 'image': control.BASE, 'disk_gb': 100,
     'transport': 'pinned SSH22 delivery plus provider-mapped mutually pinned TLS8443'}
 
@@ -50,7 +51,8 @@ def source_files():
     paths += list((ROOT/'.github/workflows').glob('research-entry*.yml'))
     paths += [ROOT/'docs'/n for n in ('research-comparison-protocol.json',
         'research-selection-20261024.json', 'research-assets-20261024.json',
-        'research-verifier-amendment-20261025.json', 'linux-wheel-manifest.json')]
+        'research-verifier-amendment-20261025.json', 'linux-wheel-manifest.json',
+        'research-reduced9-amendment-20261026.json', 'research-evaluator-dependencies.json')]
     return {p.relative_to(ROOT).as_posix(): digest(p.read_bytes()) for p in sorted(paths)}
 
 
@@ -68,15 +70,15 @@ def permit(value, source_sha, now, *, replica=False):
             or not number(value['approved_at']) <= now < number(value['expires_at'])
             or value['expires_at']-value['approved_at'] > 86400):
         raise ValueError('authorization source, mode or validity mismatch')
-    if not (0 < control.money(value['additional_cap']) <= Decimal('6')
-            and 0 < control.money(value['cumulative_cap']) <= Decimal('12')
-            and Decimal('10') <= control.money(value['account_funded_total']) <= Decimal('16.50')
+    if not (0 < control.money(value['additional_cap']) <= Decimal('4.30')
+            and 0 < control.money(value['cumulative_cap']) <= Decimal('9.50')
+            and control.money(value['account_funded_total']) == Decimal('10')
             and control.money(value['prior_spend_floor'])<=control.money(value['account_funded_total'])):
         raise ValueError('explicit finite spend limits required')
     return value
 
 
-def costs(offer, authorization, now, *, seconds=10800):
+def costs(offer, authorization, now, *, seconds=7740):
     exact = {'gpu': control.GPU, 'gpu_count': 1, 'cloud': 'SECURE',
         'image': control.BASE, 'container_disk_gb': 100, 'volume_gb': 0,
         'network_volume': None, 'interruptible': False, 'stock_available': True,
@@ -95,8 +97,8 @@ def costs(offer, authorization, now, *, seconds=10800):
     # top-up must never make historical spending disappear from the calculation.
     funded=control.money(authorization['account_funded_total'])
     spent=funded-balance
-    if (balance>funded or spent<control.money(authorization['prior_spend_floor'])
-            or fixed != 0 or not 0 < hourly <= 2 or not 0 < seconds <= 10800):
+    if (funded != Decimal('10') or balance>funded or spent<control.money(authorization['prior_spend_floor'])
+            or fixed != 0 or not 0 < hourly <= 2 or not 0 < seconds <= 7740):
         raise ValueError('unreviewed charges, account basis or hourly limit')
     maximum = hourly*Decimal(str(seconds))/3600
     if (maximum > control.money(authorization['additional_cap'])

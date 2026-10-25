@@ -49,7 +49,30 @@ def main(role):
             if reviewed is None:raise ValueError('no fresh affordable exact offer; zero create')
             result.update(entry.execute(state,api,permit,reviewed,initializer,config,config['directory'],source,run_id))
             result['preparation']=prepared
+            from tools.research_reduced_evaluation import evaluate,retain
+            # Allocation cleanup has finished. Allow the independent watcher to
+            # publish its matching deletion proof before free CPU evaluation.
+            end=time.monotonic()+60;watch=None
+            while time.monotonic()<end:
+                try:record=state.read('watcher-cleanup')
+                except Exception:record=None
+                if record:watch=record[0];break
+                time.sleep(2)
+            result['watcher_cleanup']=watch
+            try:
+                result['independent_evaluation']=evaluate(Path(inputs),config,result,watch or {},authored_cpu=False)
+            except Exception as error:
+                result['independent_evaluation']={'status':'BLOCKED','error_type':type(error).__name__}
+            if result['independent_evaluation']['status']!='PASS' and result['status']=='PASS':
+                result['status']='INCOMPLETE'
+            # This is an independent complete provider list and balance read,
+            # after deletion, never another allocation or account-setting write.
+            try:
+                result['account_after']=inspect()
+                result['pods_after']=[{k:p.get(k) for k in ('id','name','status')} for p in api.list()]
+            except Exception as error:result['account_after_error']=type(error).__name__
             retained=Path(inputs)/'verifier-evidence';retained.mkdir(mode=0o700,exist_ok=True)
+            retain(config,retained)
             for path in Path(config['directory']).rglob('*'):
                 if (path.is_file() and not path.is_symlink() and path.suffix in ('.log','.json','.patch','.txt')
                         and 'sandboxes' not in path.parts and path.name not in ('worker-plan.json','endpoint.json')):

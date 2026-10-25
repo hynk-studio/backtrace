@@ -60,12 +60,17 @@ def qualify(inputs,output):
                         attempted=[request for row in slots for request in row.get('result',{}).get('accounting',{}).get('requests',[])]
                         report['checks']={'owner':owner['status']=='PASS','watcher':watch['status']=='DELETED',
                             'single_create':replica.create_count==1,'no_remaining_resource':not replica.pods,
-                            'eighteen_slots':len(slots)==18 and all(r['status']=='COMPLETED' for r in slots),
-                            'exact_108_attempts':len(attempted)==108,
+                            'nine_slots':len(slots)==9 and all(r['status']=='COMPLETED' for r in slots),
+                            'exact_54_attempts':len(attempted)==54,
                             'exact_request_order':[r['forwarded_sha256'] for r in attempted]==[r['sha256'] for r in stop.get('transport',{}).get('attempts',[])],
                             'server_cleanup':stop.get('process_cleanup')=='PASS',
                             'export_before_owner_cleanup':worker.get('export',{}).get('completed_at',float('inf'))<=owner.get('cleanup',{}).get('started_at',0),
                             'export_before_watcher_cleanup':worker.get('export',{}).get('completed_at',float('inf'))<=watch.get('started_at',0)}
+                        if all(report['checks'].values()):
+                            from tools.research_reduced_evaluation import evaluate,retain
+                            report['independent_evaluation']=evaluate(Path(inputs),configuration,owner,watch,authored_cpu=True)
+                            retain(configuration,retained)
+                            report['checks']['independent_evaluation']=report['independent_evaluation']['status']=='PASS'
                         report['status']='PASS' if all(report['checks'].values()) else 'FAIL'
                     finally:
                         if watcher.poll() is None:watcher.kill();watcher.wait(timeout=5)

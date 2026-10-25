@@ -886,3 +886,30 @@ is authorized. Any later explicit decision must bind the executed source/run,
 credited funding and prior-spend floor, then refresh account/stock/quote and
 watcher. Actual provider network/CUDA/model/cache initialization and all18 real
 model slots are NOT_RUN. R3 remains separate and does not require positive R2.
+
+## BT-001 owner-approved reduced nine-slot pilot (2026-10-26 KST)
+
+The owner instructed **축소안으로 진행하자**, accepting the proposed three-task,
+three-arm pilot using only the existing USD4.9937691886 observed balance.
+Work on `bt-001-research-reduced9-20261026`, stacked on Draft #27, with one new
+Draft PR. This supersedes the previous free-only stopping point for this new
+single-use scope. One allocation after successful exact-source free qualification
+and a fresh affordable exact offer is authorized; do not ask for the same approval
+again. No top-up. Maximum all-in USD2/hour, additional USD4.30, cumulative USD9.50,
+USD0.50 reserve and 7,740 seconds including setup, nine children, export and deletion.
+Credited funding remains USD10; retain prior-spend floor USD5.0062308114.
+
+Follow `docs/research-reduced9-amendment-20261026.json`: select the first original
+primary task per repository, cyclically balance R0/R1/R2 positions, preserve all
+original six-task/scientific files. Keep all nine denominators; no outcome-based
+replacement, retry or inference from authored CPU responses. Original raw runner
+v3 identity remains historical; the new outer scope explicitly binds nine slots.
+Only independently evaluate submitted patches after both deletion receipts.
+
+Preserve all61 baseline branch heads, state bytes and consumed claims. Use only
+new `bt-001-research-reduced9-{state,start,watch}-20261026` branches and the new
+`reduced9-20261026` namespace. A permit must bind the exact successful qualification
+source/run and amended contract; start watch before owner and require its fresh
+armed acknowledgement before the only create. No automatic second paid allocation,
+merge, issue closure, competition submission or training. If qualifying stock is
+absent, report the exact blocker and keep the allocation unconsumed.

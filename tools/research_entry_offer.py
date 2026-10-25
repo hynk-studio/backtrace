@@ -42,9 +42,9 @@ def inspect(*,read=query,now=time.time):
             'ram_gb':price['minMemory'],'compute_per_hour':str(price['uninterruptablePrice']),
             'storage_per_hour':'0.014','tax_rate':'0','other_total':'0','credit_balance':str(balance)}
         hourly=control.money(offer['compute_per_hour'])+Decimal('.014')
-        report['offers'].append({'offer':offer,'projected_three_hour_spend':str(hourly*3),
-            'historical_usd8_headroom':str(balance-Decimal(2)),
-            'credit_after_three_hours':str(balance-hourly*3),
+        report['offers'].append({'offer':offer,'allocation_seconds':7740,'projected_maximum_spend':str(hourly*Decimal('2.15')),
+            'approved_usd9_50_headroom':str(balance-Decimal('.50')),
+            'credit_after_maximum_window':str(balance-hourly*Decimal('2.15')),
             'pricing_basis':'fresh compute quote + retained observed 100GB disk ceiling USD0.014/h; live Pod cost must not exceed this bound'})
     report['status']='READ_ONLY_COMPLETE'
     report['account_idle']=control.money(report['account']['current_spend_per_hour'])==0 and account['isAutoPayEnabled'] is False

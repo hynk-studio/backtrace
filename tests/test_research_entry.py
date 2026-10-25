@@ -81,10 +81,10 @@ class ContractTests(unittest.TestCase):
 
     def test_allocation_inclusive_cost_and_reserve(self):
         a=authorization(SOURCE);o=offer();value=c.costs(o,a,time.time())
-        self.assertEqual(value['maximum_all_in'],'2.442')
-        for key,bad in [('credit_balance','2.9'),('other_total','.1'),('compute_per_hour','2.1'),('auto_pay',True)]:
+        self.assertEqual(value['maximum_all_in'],'1.7501')
+        for key,bad in [('credit_balance','2.2'),('other_total','.1'),('compute_per_hour','2.1'),('auto_pay',True)]:
             with self.subTest(key=key),self.assertRaises(ValueError):c.costs(dict(o,**{key:bad}),a,time.time())
-        with self.assertRaises(ValueError):c.costs(o,dict(a,cumulative_cap='5'),time.time())
+        with self.assertRaises(ValueError):c.costs(o,dict(a,cumulative_cap='4.7'),time.time())
 
     def test_endpoint_mapping_must_match_ssh(self):
         pod={'ssh':{'direct':{'host':'127.0.0.1','port':22001,'username':'root'}},'runtime':{'ports':[
@@ -100,7 +100,8 @@ class ContractTests(unittest.TestCase):
         a=authorization(SOURCE);o=dict(offer(),credit_balance='8.5')
         with self.assertRaises(ValueError):c.costs(o,a,time.time())
         funded=dict(a,account_funded_total='11.5')
-        self.assertEqual(c.costs(o,funded,time.time())['spent_before'],'3.0')
+        with self.assertRaises(ValueError):c.costs(o,funded,time.time())
+        with self.assertRaises(ValueError):c.permit(funded,SOURCE,time.time(),replica=True)
 
     @unittest.skipUnless(os.geteuid()==0 and sys.platform=='linux','actual dropped UID traversal')
     def test_private_umask_does_not_block_agent_workspace_or_expose_credentials(self):

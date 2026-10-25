@@ -1,0 +1,67 @@
+{
+  "R3": "separate; no dependency on a positive R2 result",
+  "allocations": 1,
+  "arm_order_rule": "cyclic Latin order; each arm occurs once in each position",
+  "automatic_paid_retry": false,
+  "carryover_pair_balance": false,
+  "child_seconds": 330,
+  "cleanup_seconds": 300,
+  "credit_reserve": "0.50",
+  "credited_funding": "10.00",
+  "evaluation_order": "independent CPU evaluation only after both owner and watcher confirm deletion",
+  "evaluator": "unchanged v3 version-skip rules, reported separately from original official verdict",
+  "export_seconds": 360,
+  "inherited_source_sha256": {
+    "research-assets-20261024.json": "94a191a2ee8d28cb8a35901fb29bafb5d505af315c7fb013dd80b1884ff5a056",
+    "research-comparison-protocol.json": "1bd2ef8f356f8f4fbb6e7c1237e950ad14471a14e9e596d634d2e728b321b7d2",
+    "research-selection-20261024.json": "3635497c6a3ef54d43ed841f692cd7ce14a215539a236dfc38271a33d4e78598",
+    "research-verifier-amendment-20261025.json": "13062d551131a9f936936137233632c2283978ff21df575cbfc8e31cf66b9e4c"
+  },
+  "maximum_additional_spend": "4.30",
+  "maximum_cumulative_spend": "9.50",
+  "maximum_hourly_all_in": "2.00",
+  "missing_results": "retain all nine denominators; no effect estimate when incomplete",
+  "parent_seconds": 10,
+  "pilot": "R012-reduced9-v1",
+  "planned_slots": 9,
+  "primary": [
+    {
+      "arm_order": [
+        "R0",
+        "R1",
+        "R2"
+      ],
+      "base_commit": "7407309c8a8a73aa2f4337184025d440bbedab7a",
+      "instance_id": "requests_7309",
+      "repo": "psf/requests"
+    },
+    {
+      "arm_order": [
+        "R1",
+        "R2",
+        "R0"
+      ],
+      "base_commit": "d0de442c08df8793c5ff36d9ad322ca5c47fc38c",
+      "instance_id": "rich_3486",
+      "repo": "textualize/rich"
+    },
+    {
+      "arm_order": [
+        "R2",
+        "R0",
+        "R1"
+      ],
+      "base_commit": "4acf5c2c37714cc63b5cf71b3e284fca83c90311",
+      "instance_id": "httpx_3672",
+      "repo": "encode/httpx"
+    }
+  ],
+  "prior_spend_floor": "5.0062308114",
+  "schema": 1,
+  "selection_rule": "first original primary task per distinct repository, preserving repository order",
+  "selection_uses_model_outcomes": false,
+  "setup_seconds": 4020,
+  "task_replacement": false,
+  "top_up_allowed": false,
+  "total_seconds": 7740
+}

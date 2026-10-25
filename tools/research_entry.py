@@ -21,7 +21,7 @@ from tools.research_entry_state import StateError
 
 
 def defaults():
-    return dict(total_seconds=10800,setup_seconds=4020,cleanup_seconds=300,
+    return dict(total_seconds=7740,setup_seconds=4020,cleanup_seconds=300,
         heartbeat_seconds=60,poll_seconds=10,unclaimed_seconds=600,unknown_create_seconds=90)
 
 

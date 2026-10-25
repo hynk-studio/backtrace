@@ -1,17 +1,17 @@
 name: Research pilot owner requires fresh owner authorization
 on:
   push:
-    branches: [bt-001-research-start-20261026]
+    branches: [bt-001-research-reduced9-start-20261026]
 permissions:
   contents: write
   actions: read
 concurrency:
-  group: research-pilot-owner-20261026
+  group: research-reduced9-owner-20261026
   cancel-in-progress: false
 jobs:
   owner:
     runs-on: ubuntu-24.04
-    timeout-minutes: 220
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
