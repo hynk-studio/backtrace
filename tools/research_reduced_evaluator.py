@@ -59,7 +59,11 @@ def worker(inputs, output, identifier, wheels, evaluator_site, jobs):
             sid = isolated_start()
             site = next(manager.sandboxes[sid]['venv'].glob('lib/python*/site-packages'))
             # Only evaluator task interpreters receive this separate overlay.
-            (site / '_evaluator.pth').write_text(str(evaluator_site) + '\n')
+            overlay=site / '_evaluator.pth'
+            overlay.write_text(str(evaluator_site) + '\n')
+            # The coordinator uses umask077. This public path-only overlay must
+            # remain readable after the test process drops to evaluator UID65533.
+            overlay.chmod(0o644)
             return sid
         manager.start = start
         def observed_exec(sid, command, *, timeout=None):
