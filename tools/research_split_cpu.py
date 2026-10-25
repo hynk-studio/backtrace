@@ -141,6 +141,21 @@ def qualify(inputs,output):
             # Outer kill does not finalize its ledger; only its retained partial
             # checkpoint and server count are available, never token totals.
             report['transport']['completed_children_requests']=expected
+            attempts=report['transport']['requests']['attempts']
+            metered=[r for slot in slots['slots']+controls if 'result' in slot
+                for r in slot['result']['slot']['accounting']['requests']]
+            partial=(saved['accounting']['requests'] if checkpoint.is_file() else [])
+            checks={'metered_order_and_body_hashes':[a['sha256'] for a in attempts[:len(metered)]]
+                    ==[r['forwarded_sha256'] for r in metered],
+                'outer_checkpoint_order_and_hashes':[a['sha256'] for a in attempts[len(metered):len(metered)+len(partial)]]
+                    ==[r['forwarded_sha256'] for r in partial],
+                'outer_inflight_request_observed':len(attempts)==len(metered)+len(partial)+1,
+                'all_transport_requests_closed':report['transport']['requests']['active']==0
+                    and report['transport']['requests']['finished']==len(attempts),
+                'forwarder_stopped':report['transport']['closed']}
+            report['stages']['transport_reconciliation']={'status':'PASS' if all(checks.values()) else 'FAIL',
+                'checks':checks,'completed_child_requests':len(metered),
+                'outer_checkpoint_requests':len(partial),'observed_transport_requests':len(attempts)}
             report['status']='PASS' if all(r['status']=='PASS' for r in report['stages'].values()) else 'FAIL'
         except Exception as error:
             report.update(status='FAIL',error_type=type(error).__name__)

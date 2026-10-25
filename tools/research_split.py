@@ -61,8 +61,12 @@ class PinnedConnection(http.client.HTTPSConnection):
         super().__init__(endpoint.host, endpoint.port, timeout=timeout, context=endpoint.context())
 
     def connect(self):
+        deadline=time.monotonic()+self.timeout
         raw = socket.create_connection((self.host, self.port), self.timeout)
         try:
+            left=deadline-time.monotonic()
+            if left<=0: raise TimeoutError('inference TLS deadline')
+            raw.settimeout(left)
             self.sock = self._context.wrap_socket(raw, server_hostname=SERVER_NAME)
             if hashlib.sha256(self.sock.getpeercert(binary_form=True)).hexdigest() != self.endpoint.server_sha256:
                 raise ssl.SSLError('inference server identity mismatch')
@@ -107,6 +111,20 @@ class TLSService(ThreadingHTTPServer):
     daemon_threads = False
     block_on_close = True
 
+    def process_request_thread(self, request, client_address):
+        # Headers/body have an absolute admission deadline as well as socket
+        # timeouts. A slow trickle cannot extend shutdown or request admission.
+        timer=threading.Timer(2,self.close_connection_socket,args=(request,))
+        timer.daemon=True
+        with self.active_lock:
+            self.admission_timers[request]=timer;self.connections.add(request)
+        timer.start()
+        try: super().process_request_thread(request,client_address)
+        finally:
+            timer.cancel()
+            with self.active_lock:
+                self.admission_timers.pop(request,None);self.connections.discard(request)
+
     def get_request(self):
         raw, address = super().get_request()
         raw.settimeout(2)
@@ -138,7 +156,7 @@ def inference_proxy(material, upstream_port, *, host='127.0.0.1', port=0, lifeti
     context.verify_mode = ssl.CERT_REQUIRED
     client_pin = fingerprint(material/'client.crt')
     end = time.monotonic()+lifetime
-    state = {'requests': 0, 'finished': 0, 'active': 0, 'cancelled': 0, 'errors': 0}
+    state = {'requests': 0, 'finished': 0, 'active': 0, 'cancelled': 0, 'errors': 0, 'attempts': []}
     lock = threading.Lock(); connections = set(); stopping = threading.Event()
 
     def close(sock):
@@ -165,9 +183,12 @@ def inference_proxy(material, upstream_port, *, host='127.0.0.1', port=0, lifeti
                 data = self.rfile.read(int(lengths[0]))
                 if len(data)!=int(lengths[0]): raise ValueError('truncated request')
                 with lock:
-                    if stopping.is_set() or state['active'] >= 8:
+                    server.admission_timers[self.connection].cancel()
+                    if stopping.is_set() or state['active'] >= 8 or state['requests']>=1500:
                         raise ValueError('inference unavailable')
                     state['requests'] += 1; state['active'] += 1; admitted = True
+                    attempt={'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data),'http_status':None}
+                    state['attempts'].append(attempt)
                     connections.add(self.connection)
                 upstream = http.client.HTTPConnection('127.0.0.1', upstream_port,
                     timeout=max(.001, deadline-time.monotonic()))
@@ -192,6 +213,7 @@ def inference_proxy(material, upstream_port, *, host='127.0.0.1', port=0, lifeti
                     'Content-Type': 'application/json', 'Authorization': 'Bearer EMPTY',
                     'Accept-Encoding': 'identity', 'Connection': 'close'})
                 response = upstream.getresponse()
+                with lock:attempt['http_status']=response.status
                 self.send_response(response.status)
                 self.send_header('Content-Type', response.getheader('Content-Type', 'application/json'))
                 self.send_header('Connection', 'close'); self.end_headers()
@@ -220,6 +242,8 @@ def inference_proxy(material, upstream_port, *, host='127.0.0.1', port=0, lifeti
 
     server = TLSService((host, port), Handler)
     server.context = context; server.client_sha256 = client_pin
+    server.active_lock=lock;server.connections=connections
+    server.admission_timers={};server.close_connection_socket=close
     thread = threading.Thread(target=server.serve_forever, daemon=True); thread.start()
 
     def stop():

@@ -134,6 +134,18 @@ class SplitTests(unittest.TestCase):
             time.sleep(.25)
         with self.assertRaises(OSError): socket.create_connection(('127.0.0.1',port),timeout=.2)
 
+    def test_shutdown_interrupts_an_authenticated_incomplete_body(self):
+        with authored() as (origin,rows):
+            began=time.monotonic()
+            with inference_proxy(self.material,origin,lifetime=.4) as (port,state):
+                connection=self.endpoint(port).connection(2);connection.connect()
+                connection.sock.sendall(b'POST /v1/chat/completions HTTP/1.1\r\nHost: fixture\r\n'
+                    b'Content-Length: 100\r\nX-Backtrace-Seconds: 300\r\n\r\nx')
+                time.sleep(.1)
+            connection.close()
+            self.assertLess(time.monotonic()-began,2)
+            self.assertEqual(rows,[])
+
 
 class SequenceTests(unittest.TestCase):
     def test_exact_order_denominator_and_remaining_time_reserve(self):
