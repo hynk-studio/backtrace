@@ -829,3 +829,19 @@ Preserve all historical scientific/operational sources, prior branches and
 consumed claims. Do not create a provider resource, launch a paid watcher,
 merge, close #1 or submit. The distributed provider entry and fresh finite
 paid proposal remain separate gates after this free implementation.
+
+Draft #26 final free serving qualification: run 40206021955 at eb1941aee4aaed081133ed19fc3c67efa6865af0.
+479 Linux tests, full frozen-image 246-wheel offline install, authenticated
+server-only TLS/SSH delivery, official command/CUDA environment, all required
+readiness routes, 18 isolated authored slots and 108 matched requests passed.
+Normal process-group stop, failed readiness, actual parent kill, observed bridge
+connection loss/owner exit2 and all18 NOT_RUN reserve handling passed. Four new
+CPU namespaces are replicas only. Both cleanup processes independently observed
+two absence reads after encrypted export. Owner verification checked
+214 private and 295 export records and 18 implementation hashes.
+Read docs/research-serving-lifecycle-20261025.md and its results. The next free
+step is distributed GitHub/Runpod owner/watch entry and cost/claim integration;
+this local Docker/journal proof is not paid-provider qualification. All18 real
+model slots remain NOT_RUN. No paid allocation, model transfer, training,
+merge, issue closure or competition submission. Do not request paid approval
+before the remaining concrete distributed-entry implementation is qualified.

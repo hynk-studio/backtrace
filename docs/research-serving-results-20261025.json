@@ -1,0 +1,652 @@
+{
+  "authored_slots": 18,
+  "cleanup": {
+    "owner_cleanup": {
+      "absence_reads": 2,
+      "completed_at": 1792942111.9252038,
+      "observations": [
+        {
+          "at": 1792942102.4912162,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "at": 1792942111.81125,
+          "identity": null,
+          "state": "ABSENT"
+        },
+        {
+          "at": 1792942111.925201,
+          "identity": null,
+          "state": "ABSENT"
+        }
+      ],
+      "started_at": 1792942102.4615638,
+      "status": "PASS"
+    },
+    "watcher_cleanup": {
+      "absence_reads": 2,
+      "claim_sha256": "fc8adc52cd39541ccf7e055a4f9dbec29dc46adb2237a2c9539757252c20209f",
+      "completed_at": 1792942111.8637178,
+      "independent_pid": 7121,
+      "observations": [
+        {
+          "at": 1792942102.8233933,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942103.000538,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942103.1797838,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942103.364203,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942103.554326,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942103.7386372,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942103.9225097,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942104.105483,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942104.288334,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942104.4773202,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942104.656523,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942104.8347528,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942105.012021,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942105.185075,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942105.3629787,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942105.5422144,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942105.7256198,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942105.907077,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942106.0874956,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942106.269775,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942106.4527893,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942106.634213,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942106.8186145,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942106.999727,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942107.1827738,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942107.3681676,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942107.5507014,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942107.7357976,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942107.9175298,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942108.097339,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942108.281023,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942108.4648325,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942108.6473777,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942108.8340497,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942109.015428,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942109.196733,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942109.3804014,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942109.5639474,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942109.745334,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942109.9235287,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942110.1108017,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942110.3014586,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942110.4857361,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942110.6681948,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942110.852738,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942111.0366447,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942111.2164478,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942111.400726,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942111.5855694,
+          "identity": "dd6c8bd5ab8cbcd64e3015aa43f10a8d63c25d2686e90caf3852447cee1617a0",
+          "state": "PRESENT"
+        },
+        {
+          "delete_error": "CalledProcessError"
+        },
+        {
+          "at": 1792942111.7503252,
+          "identity": null,
+          "state": "ABSENT"
+        },
+        {
+          "at": 1792942111.8637154,
+          "identity": null,
+          "state": "ABSENT"
+        }
+      ],
+      "reason": "OWNER_DONE",
+      "started_at": 1792942102.5620275,
+      "status": "PASS"
+    }
+  },
+  "compute_authorization": "NONE",
+  "cpu_packages": 143,
+  "encrypted_export": {
+    "ciphertext_bytes": 1249835,
+    "ciphertext_sha256": "58c7d2468b516beba42ed28d199ccb76f71542e85313251077a9e177452706a6",
+    "completed_at": 1792942102.4581375,
+    "files": 295,
+    "format": "age-v1",
+    "plaintext_bytes": 1013251,
+    "status": "PASS"
+  },
+  "failed_readiness": {
+    "result": {
+      "command_sha256": "cd1cb45880a51caf7c161cbe8af3fb55bb3c8fc446f731211bf241bf0dcdd315",
+      "error_type": "TimeoutError",
+      "kind": "AUTHORED_CPU",
+      "process_absence_reads": [
+        [],
+        []
+      ],
+      "process_cleanup": "PASS",
+      "process_group": 42,
+      "ready": false,
+      "status": "FAIL",
+      "wall_seconds": 2.0964386059999924
+    },
+    "status": "PASS"
+  },
+  "faults": {
+    "insufficient_time": {
+      "claim_sha256": "41a207c51992d782f72f860a38712c3e2c4c1f6c5eff0cc0fa09f33cf3456d53",
+      "containers_created": 0,
+      "namespace": "research-split-20261025-6f6fdaacf52e4d6ab9f4c5507335a19a",
+      "status": "PASS",
+      "watcher": {
+        "absence_reads": 2,
+        "claim_sha256": "41a207c51992d782f72f860a38712c3e2c4c1f6c5eff0cc0fa09f33cf3456d53",
+        "completed_at": 1792942124.1333284,
+        "independent_pid": 12342,
+        "observations": [
+          {
+            "at": 1792942124.0183904,
+            "identity": null,
+            "state": "ABSENT"
+          },
+          {
+            "at": 1792942124.1333268,
+            "identity": null,
+            "state": "ABSENT"
+          }
+        ],
+        "reason": "OWNER_DONE",
+        "started_at": 1792942124.0039854,
+        "status": "PASS"
+      }
+    },
+    "network_loss": {
+      "claim_sha256": "ec3eb79d686fd5ce19f013c5142b6fbc5172ba32ac48f91c1a58cc5da43fc4d3",
+      "containers_created": 1,
+      "namespace": "research-split-20261025-dd686925a10b4affb82324de3114b29e",
+      "status": "PASS",
+      "watcher": {
+        "absence_reads": 2,
+        "claim_sha256": "ec3eb79d686fd5ce19f013c5142b6fbc5172ba32ac48f91c1a58cc5da43fc4d3",
+        "completed_at": 1792942123.6047688,
+        "independent_pid": 12091,
+        "observations": [
+          {
+            "at": 1792942123.2891228,
+            "identity": "203b491d444f5e2d9ff59c3031129f045c6fdd374528e8499c82d2088d7f0934",
+            "state": "PRESENT"
+          },
+          {
+            "at": 1792942123.490615,
+            "identity": null,
+            "state": "ABSENT"
+          },
+          {
+            "at": 1792942123.604766,
+            "identity": null,
+            "state": "ABSENT"
+          }
+        ],
+        "reason": "OWNER_LOST",
+        "started_at": 1792942123.2600152,
+        "status": "PASS"
+      }
+    },
+    "parent_death": {
+      "claim_sha256": "1b5413d558c765aa8b6fd7f5dcb7314da3f1e1f0c6bb92d2c7f8b32b3e1a5ba3",
+      "containers_created": 1,
+      "namespace": "research-split-20261025-c6c72bf57c8d43a09b18fff032c4a224",
+      "status": "PASS",
+      "watcher": {
+        "absence_reads": 2,
+        "claim_sha256": "1b5413d558c765aa8b6fd7f5dcb7314da3f1e1f0c6bb92d2c7f8b32b3e1a5ba3",
+        "completed_at": 1792942117.6293952,
+        "independent_pid": 11851,
+        "observations": [
+          {
+            "at": 1792942117.2165523,
+            "identity": "50c3e723100e35b773324e5344ea8745b6609e19c6975668143c97ebb1262299",
+            "state": "PRESENT"
+          },
+          {
+            "at": 1792942117.515259,
+            "identity": null,
+            "state": "ABSENT"
+          },
+          {
+            "at": 1792942117.6293929,
+            "identity": null,
+            "state": "ABSENT"
+          }
+        ],
+        "reason": "OWNER_LOST",
+        "started_at": 1792942117.1874876,
+        "status": "PASS"
+      }
+    }
+  },
+  "history": [
+    {
+      "result": "YAML_ERROR_BEFORE_JOB",
+      "run_id": "40205242621",
+      "source_sha": "1c5383e3984b6f43606bb687b84940362c379fd2"
+    },
+    {
+      "result": "PASS_EARLIER_CPU_SOURCE",
+      "run_id": "40205315207",
+      "source_sha": "88026950fc84e3d8f053de1a141cd51640855463"
+    },
+    {
+      "result": "SUPERSEDED_WHILE_PENDING",
+      "run_id": "40205662449",
+      "source_sha": "59f608a1976d07d15006184b3c612a208607ce52"
+    },
+    {
+      "result": "SUPERSEDED_WHILE_PENDING",
+      "run_id": "40205872227",
+      "source_sha": "b2db5037c63597f3417ec284e42f225d16386a70"
+    }
+  ],
+  "image": {
+    "image_id": "sha256:4638f27bc2a17c4487d2dcb57e0dca10c9cf6601ee6bf849162b58f1d8b1ee8e",
+    "reference": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca"
+  },
+  "implementation": {
+    ".github/workflows/research-serving-cpu.yml": "4be426283043ebfa1df64ea2a1fe030a714d64a9f0e800c6eb4c87ab07da0841",
+    "docs/linux-wheel-manifest.json": "72ec973f6e5cf390b891cf8f6354f0c5a95be5e6252c90976afad7ccf27be488",
+    "tests/research_serving_fixture.py": "3c69f0011d0b077c949e60fccfa4adbbf056accfc28ce658df60b00ba298b2ab",
+    "tools/direct_delivery.py": "035c734aed206b6734737b102a202cb70810dd595444c3da242f133b9aa77ed4",
+    "tools/private_delivery.py": "f010c41715e2548b86a4b3dfc009e22e57fcbf5a52429e4f7f1165632f1a4a40",
+    "tools/research_isolation.py": "6384bb16956724e36b985b3c6e8eb531180d44a6a18669b0e2d24c061e36e44a",
+    "tools/research_lifecycle.py": "96043226159f220b1bd614ce1c5a5a62e4849f57ec275f9fa0bbc796f3a04e62",
+    "tools/research_meter.py": "909338ca9690847f5dcef2256cd61be98925873e4cdb54df36e3e9d8964eef0d",
+    "tools/research_runner.py": "723b892584898ecc74fd966d6bceb0eb994d6056fd7bc34792097ce9c96b0d79",
+    "tools/research_serving.py": "7ffde8cfc271851bc6eae954729583919ad11ba4a41f6a5a2628e15aa2f7960e",
+    "tools/research_serving_cpu.py": "dd4fbc2ac01ed0ce4a43528203720031a58081f792134ba05c2242ac11a1468b",
+    "tools/research_serving_delivery.py": "7359a8e31c59b02c447cb6a6afdcd227eb56f40a3c48242295df5216c0821d0d",
+    "tools/research_serving_install.py": "d36949d500e6ed02c20cc7232ef98d6e8e1d43b2818b4ed98b28c55b2180fe84",
+    "tools/research_split.py": "e06629d9132ed6e00f188dbd0821661fc5caab38169a1f3f7dab265ef0b5d521",
+    "tools/research_split_cpu.py": "6e76e1951c9b6b73a14a3dab449b01f838b94d9fd78e14963ced19029470eaea",
+    "tools/research_split_sequence.py": "201c5383834f68170bb9a4cc456d6f76ad71c8386054dce1522b752451bc5498",
+    "tools/research_split_server.py": "6cab96d7e6a524dc5ab5d54d0fce8927125ebdda7a60702f5e8c5cc313f749b4",
+    "tools/startup_guard.py": "13033ea60f91da4bf30d0cad0fc27fe8499c50bd0fdba7e3a550a089a1e82afc"
+  },
+  "independent_check": {
+    "cpu_packages": 143,
+    "export_records": 295,
+    "faults": [
+      "insufficient_time",
+      "network_loss",
+      "parent_death"
+    ],
+    "http_attempts": 108,
+    "implementation_files": 18,
+    "independent_export_before_cleanup": true,
+    "installed_serving_packages": 246,
+    "model_runs": 0,
+    "namespace_count": 4,
+    "private_records": 214,
+    "provider_operations": 0,
+    "run_id": "40206021955",
+    "source_sha": "eb1941aee4aaed081133ed19fc3c67efa6865af0",
+    "status": "PASS"
+  },
+  "linux_tests": 479,
+  "local_validation": {
+    "focused_tests": 26,
+    "full_suite": {
+      "errors": 10,
+      "failures": 5,
+      "reason": "Known scratch procfs PID namespace and ensurepip wheel identity differ from the pinned native Linux environment. No historical test/source was weakened.",
+      "skipped": 3,
+      "tests": 479
+    }
+  },
+  "model_execution": "NOT_RUN",
+  "network": "DOCKER_BRIDGE_PUBLISHED_PORT; provider network NOT_RUN",
+  "provider_operations": 0,
+  "remaining_gate": "New distributed GitHub/Runpod entry, immutable fresh paid authorization, live account/quote and actual GPU/model/cache readiness.",
+  "run_id": "40206021955",
+  "run_url": "https://github.com/hynk-studio/backtrace/actions/runs/40206021955",
+  "schema_version": 1,
+  "serving_packages": 246,
+  "setup_seconds": 198.926135497,
+  "source_sha": "eb1941aee4aaed081133ed19fc3c67efa6865af0",
+  "status": "PASS_FREE_SERVING_AND_LOCAL_LIFECYCLE_ONLY",
+  "task_or_evaluator_mounts": 0,
+  "transported_requests": 108
+}
