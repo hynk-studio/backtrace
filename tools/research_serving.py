@@ -45,6 +45,25 @@ def official_command(port):
         server.stop();Path(server.log_path).unlink(missing_ok=True)
 
 
+def official_environment(port):
+    """Keep the original CUDA search paths without inheriting service credentials."""
+    from adk_submission import VllmServer
+    import torch
+    server=VllmServer(server_configuration(port))
+    try:
+        built=server.build_env()
+        allowed={str(Path(torch.__file__).parent/'lib'),'/usr/local/nvidia/lib64'}
+        environment=dict(CLEAN,PYTHONPATH=str(Path(__file__).resolve().parents[1]))
+        for key in ('LD_LIBRARY_PATH','LIBRARY_PATH'):
+            paths=[p for p in built.get(key,'').split(':') if p in allowed and Path(p).is_dir()]
+            if paths:environment[key]=':'.join(dict.fromkeys(paths))
+        if str(Path(torch.__file__).parent/'lib') not in environment.get('LD_LIBRARY_PATH','').split(':'):
+            raise ValueError('official torch library search path unavailable')
+        return environment
+    finally:
+        server.stop();Path(server.log_path).unlink(missing_ok=True)
+
+
 def model_ready(manifest):
     from tools.private_delivery import verify
     expected=Path(manifest).read_bytes()
@@ -60,25 +79,41 @@ def model_ready(manifest):
 
 
 def readiness(port,*,authored=False,timeout=1):
-    connection=http.client.HTTPConnection('127.0.0.1',port,timeout=timeout)
-    try:
-        connection.request('GET',PATH,headers={'Connection':'close'})
-        response=connection.getresponse();raw=response.read(65537)
-        if response.status!=200 or len(raw)>65536:return None
-        value=json.loads(raw)
-        if authored:
-            if value!={'status':'AUTHORED_CPU','model_execution':False}:return None
-        else:
-            expected={'model':MODEL_PATH,'max_model_len':32768,'tensor_parallel_size':1,
-                      'disable_custom_all_reduce':True,'enable_prefix_caching':False}
-            observed=value.get('observed',{})
-            if (value.get('status')!='PASS' or any(observed.get(k)!=v for k,v in expected.items())
-                    or observed.get('dtype') not in ('bfloat16','torch.bfloat16')):return None
-        return value
-    finally:connection.close()
+    end=time.monotonic()+timeout
+    def fetch(path):
+        left=end-time.monotonic()
+        if left<=0:raise TimeoutError('readiness request deadline')
+        connection=http.client.HTTPConnection('127.0.0.1',port,timeout=left)
+        try:
+            connection.request('GET',path,headers={'Connection':'close'});wire=connection.sock
+            response=connection.getresponse();raw=bytearray()
+            while not response.isclosed():
+                left=end-time.monotonic()
+                if left<=0:raise TimeoutError('readiness response deadline')
+                wire.settimeout(left);part=response.read1(4096)
+                if not part:break
+                raw.extend(part)
+                if len(raw)>65536:raise ValueError('readiness response size')
+            return response.status,json.loads(raw or b'{}')
+        finally:connection.close()
+    status,value=fetch(PATH)
+    if status!=200:return None
+    if authored:
+        if value!={'status':'AUTHORED_CPU','model_execution':False}:return None
+    else:
+        expected={'model':MODEL_PATH,'max_model_len':32768,'tensor_parallel_size':1,
+                  'disable_custom_all_reduce':True,'enable_prefix_caching':False}
+        observed=value.get('observed',{})
+        if (value.get('status')!='PASS' or any(observed.get(k)!=v for k,v in expected.items())
+                or observed.get('dtype') not in ('bfloat16','torch.bfloat16')):return None
+    status,_=fetch('/health')
+    if status!=200:return None
+    status,models=fetch('/v1/models')
+    if status!=200 or MODEL_PATH not in [row.get('id') for row in models.get('data',[])]:return None
+    return value
 
 
-def supervise(command,material,output,*,upstream_port,tls_port,lifetime,ready_seconds,authored=False):
+def supervise(command,material,output,*,upstream_port,tls_port,lifetime,ready_seconds,authored=False,environment=None):
     if (not all(type(v) in (int,float) and math.isfinite(v) and 0<v<=10800
                 for v in (lifetime,ready_seconds)) or ready_seconds>=lifetime
             or upstream_port==tls_port):raise ValueError('distinct ports and bounded deadlines required')
@@ -93,7 +128,7 @@ def supervise(command,material,output,*,upstream_port,tls_port,lifetime,ready_se
     try:
         child_subreaper(1)
         with (output/'server.log').open('xb') as log:
-            process=subprocess.Popen(command,env=dict(CLEAN,PYTHONPATH=str(Path(__file__).resolve().parents[1])),stdin=subprocess.DEVNULL,stdout=log,
+            process=subprocess.Popen(command,env=environment or dict(CLEAN,PYTHONPATH=str(Path(__file__).resolve().parents[1])),stdin=subprocess.DEVNULL,stdout=log,
                 stderr=log,start_new_session=True)
             group=process.pid
             report['process_group']=group
@@ -159,9 +194,10 @@ def main():
     else:
         if not args.model_manifest or args.failed_readiness:parser.error('exact model manifest required')
         model_ready(args.model_manifest);command=official_command(args.upstream_port)
+    environment=official_environment(args.upstream_port)
     result=supervise(command,args.material,args.output,upstream_port=args.upstream_port,
         tls_port=args.tls_port,lifetime=args.lifetime,ready_seconds=args.ready_seconds,
-        authored=bool(args.authored_cpu))
+        authored=bool(args.authored_cpu),environment=environment)
     return 0 if result['status']=='PASS' else 1
 
 

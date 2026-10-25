@@ -199,10 +199,11 @@ def qualify(inputs,output):
                     REMOTE+'/docs/linux-wheel-manifest.json','/root/backtrace/runtime','1200'],seconds=1250)
                 report['stages']['runtime']=json.loads(result.stdout.splitlines()[-1])
                 report['setup_seconds']=time.monotonic()-begun
-                code="import sys,json;sys.path.insert(0,"+repr(REMOTE)+");from tools.research_serving import official_command;print(json.dumps(official_command(8000)))"
-                command_value=json.loads(remote([PYTHON,'-I','-c',code]).stdout.splitlines()[-1])
+                code="import sys,json;sys.path.insert(0,"+repr(REMOTE)+");from tools.research_serving import official_command,official_environment;print(json.dumps({'command':official_command(8000),'environment':official_environment(8000)}))"
+                prepared=json.loads(remote([PYTHON,'-I','-c',code]).stdout.splitlines()[-1]);command_value=prepared['command']
                 assert '--no-enable-prefix-caching' in command_value and '--enable-prefix-caching' not in command_value
-                report['stages']['official_command']={'status':'PASS','command':command_value,'gpu_initialization':'NOT_RUN'}
+                assert prepared['environment']['PYTHONPATH']==REMOTE and 'LD_LIBRARY_PATH' in prepared['environment']
+                report['stages']['official_command']={'status':'PASS',**prepared,'gpu_initialization':'NOT_RUN'}
                 phase[0]='failed_readiness';emit(phase[0],'STARTED')
                 base=[PYTHON,'-I','-B',REMOTE+'/tools/research_serving.py',REMOTE+'/transport']
                 fixture=['--authored-cpu',REMOTE+'/tests/research_serving_fixture.py']

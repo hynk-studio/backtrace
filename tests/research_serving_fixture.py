@@ -13,6 +13,8 @@ class Handler(BaseHTTPRequestHandler):
         self.send_response(code);self.send_header('Content-Type','application/json')
         self.send_header('Content-Length',str(len(data)));self.end_headers();self.wfile.write(data)
     def do_GET(self):
+        if self.path=='/health':return self.reply(200,{})
+        if self.path=='/v1/models':return self.reply(200,{'data':[{'id':'/kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2'}]})
         if self.path!='/backtrace/split-runtime-config':return self.reply(404,{})
         self.reply(503 if '--failed-readiness' in sys.argv else 200,
                    {'status':'AUTHORED_CPU','model_execution':False})

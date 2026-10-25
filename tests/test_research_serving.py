@@ -110,7 +110,8 @@ class ServingTests(unittest.TestCase):
         class Handler(BaseHTTPRequestHandler):
             def log_message(self,*args):pass
             def do_GET(self):
-                data=b'{"status":"AUTHORED_CPU","model_execution":false}'
+                data=(json.dumps({'data':[{'id':MODEL_PATH}]}).encode() if self.path=='/v1/models'
+                      else b'{}' if self.path=='/health' else b'{"status":"AUTHORED_CPU","model_execution":false}')
                 self.send_response(200);self.send_header('Content-Length',str(len(data)))
                 self.end_headers();self.wfile.write(data)
         server=ThreadingHTTPServer(('127.0.0.1',0),Handler)

@@ -77,6 +77,7 @@ class Journal:
         value={'claim_sha256':self.binding(),'at':time.time(),'phase':phase}
         temporary=self.root/('heartbeat-'+uuid.uuid4().hex+'.partial')
         with temporary.open('xb') as stream:
+            os.fchmod(stream.fileno(),0o600)
             stream.write(encoded(value));stream.flush();os.fsync(stream.fileno())
         os.replace(temporary,self.root/'heartbeat.json')
 
