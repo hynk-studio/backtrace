@@ -36,7 +36,7 @@ def qualify(inputs,output):
         'run_id':os.environ.get('GITHUB_RUN_ID'),'kind':'SPLIT_INFERENCE_AUTHORED_CPU',
         'real_model_runs':0,'provider_operations':0,'stages':{}}
     retained=inputs/'verifier-evidence'; retained.mkdir(mode=0o700)
-    deadline=time.monotonic()+2400
+    deadline=time.monotonic()+1800
     name='backtrace-free-full-setup-'+str(os.getpid())+'-split'
     image=c.load_protocol()['environment']['image']
     with tempfile.TemporaryDirectory(prefix='backtrace-split-',dir='/var/tmp') as temporary:
@@ -91,9 +91,12 @@ def qualify(inputs,output):
 
             def execute(kind,name_,args,*,timeout=330,receipt='receipt.json'):
                 destination=work/name_
+                remaining=deadline-time.monotonic()
+                if remaining<=5:
+                    return {'status':'NOT_RUN','reason':'free qualification total deadline'}
                 row=bounded_child([python,'-I','-B',Path(__file__).resolve(),'--worker',kind,
                     inputs,destination,public/'runtime/wheels',private/'endpoint.json',*args],
-                    private/(name_+'.log'),env,timeout=timeout)
+                    private/(name_+'.log'),env,timeout=min(timeout,remaining))
                 path=destination/receipt
                 if path.is_file():row['result']=c.parse(path.read_bytes())
                 row['status']=('PASS' if row['exit_code']==0 and not row['child_timeout']
@@ -161,6 +164,9 @@ def qualify(inputs,output):
             report.update(status='FAIL',error_type=type(error).__name__)
             c._new_output(private/'controller-error.log',traceback.format_exc().encode())
         finally:
+            with (private/'container.log').open('wb') as log:
+                with contextlib.suppress(Exception):
+                    subprocess.run(['docker','logs',name],stdout=log,stderr=log,timeout=10)
             try: report['cleanup']=remove(name)
             except Exception as error:report['cleanup']={'status':'FAIL','error_type':type(error).__name__}
             if report['cleanup']['status']!='PASS':report['status']='FAIL'
