@@ -15,6 +15,7 @@ from tools.qualify_evaluation import verified_tests
 from tools.research_assets import FIELDS
 from tools.research_isolation import Isolation
 from tools.research_runner import checked_slot
+from tools.research_verifier_policy import identity, mutation_controls, score
 
 
 def select(inputs, identifier):
@@ -95,7 +96,7 @@ def worker(inputs, output, identifier, wheels, evaluator_site):
         manager = SubprocessManager(timeout_seconds=60, base_dir=destination / 'sandboxes')
         isolation = Isolation(logs / 'isolation', 65533); isolation.attach(manager)
         isolated_start, actual_exec = manager.start, manager.exec
-        receipts, provenance = [], []
+        receipts, provenance, interpreter_versions = [], [], []
         def start():
             sid = isolated_start()
             site = next(manager.sandboxes[sid]['venv'].glob('lib/python*/site-packages'))
@@ -114,11 +115,13 @@ def worker(inputs, output, identifier, wheels, evaluator_site):
                 if installed.exit_code != 0:
                     raise ValueError('offline workspace editable installation failed')
                 module = task.repo.split('/')[-1].lower()
-                code = ('import importlib,os,pathlib; assert os.getuid()==65533; p=pathlib.Path(importlib.import_module('
+                code = ('import importlib,os,pathlib,platform; assert os.getuid()==65533; p=pathlib.Path(importlib.import_module('
                         + repr(module) + ').__file__).resolve(); '
-                        + "assert p.is_relative_to(pathlib.Path('/workspace').resolve()); print('WORKSPACE_IMPORT')")
+                        + "assert p.is_relative_to(pathlib.Path('/workspace').resolve()); print('WORKSPACE_IMPORT', platform.python_version())")
                 imported = actual_exec(sid, 'python3 -s -c ' + shlex.quote(code), timeout=10)
-                provenance.append(imported.exit_code == 0 and imported.stdout.strip() == 'WORKSPACE_IMPORT')
+                fields = imported.stdout.strip().split()
+                provenance.append(imported.exit_code == 0 and len(fields) == 2 and fields[0] == 'WORKSPACE_IMPORT')
+                interpreter_versions.append(fields[1] if provenance[-1] else None)
                 if not provenance[-1]:
                     c._new_output(logs / 'import-error.log', (imported.stdout + imported.stderr).encode())
                     raise ValueError('verifier imported a package outside its workspace')
@@ -143,6 +146,7 @@ def worker(inputs, output, identifier, wheels, evaluator_site):
         finally:
             manager.close(); isolation.finish()
         tests = None; validation_error = None; expected_nodes = None; observed_junit = None
+        research = None; controls = None; official_validation_error = None
         if result is not None:
             c._new_output(logs / 'test-output.txt', result.test_output.encode())
             if result.error_message:
@@ -158,13 +162,21 @@ def worker(inputs, output, identifier, wheels, evaluator_site):
             try:
                 if len(receipts) != 1 or provenance != [True]:
                     raise ValueError('one executed verifier and workspace import required')
-                tests = verified_tests(receipts[0], result.test_exit_code, result.resolved, bool(result.error_message))
+                try:
+                    verified_tests(receipts[0], result.test_exit_code, result.resolved, bool(result.error_message))
+                except ValueError as error:
+                    official_validation_error = str(error)
+                research = score(receipts[0], task, result, interpreter_versions[0])
+                tests = research['actual_tests']
                 if name == 'unmodified-baseline': expected_nodes = expected_baseline_nodes(receipts[0], task)
+                if research['exception_applied']:
+                    controls = mutation_controls(receipts[0], task, result, interpreter_versions[0])
             except ValueError as error:
                 validation_error = str(error)
         expected = name == 'public-reference-control'
         passed = (result is not None and error_type is None and validation_error is None
-                  and result.resolved == expected and result.test_exit_code == (0 if expected else 1)
+                  and research is not None and research['research_resolved'] == expected
+                  and result.test_exit_code == (0 if expected else 1)
                   and isolation.report()['live_namespaces'] == 0 and not manager.sandboxes)
         summaries.append({'control': name, 'status': 'PASS' if passed else 'FAIL',
             'resolved': result.resolved if result is not None else None,
@@ -172,10 +184,13 @@ def worker(inputs, output, identifier, wheels, evaluator_site):
             'duration_seconds': result.duration_seconds if result is not None else None,
             'error_type': error_type, 'official_error_present': bool(result and result.error_message),
             'actual_tests': tests, 'validation_error': validation_error, 'expected_baseline_nodes': expected_nodes,
+            'research_verdict': research, 'official_validation_error': official_validation_error,
+            'amendment_negative_controls': controls, 'evaluator_python_versions': interpreter_versions,
             'observed_junit': observed_junit,
             'workspace_import': provenance, 'isolation': isolation.report()})
     report = {'status': 'PASS' if all(r['status'] == 'PASS' for r in summaries) else 'FAIL',
               'instance_id': identifier, 'controls': summaries, 'model_score': 'NOT RUN',
+              'evaluation_protocol': identity(),
               'reference_scope': 'root coordinator and positive-control sandbox only',
               'test_scope': 'original official verification command and test-file targets'}
     c._new_output(output / 'receipt.json', c.encoded(report))

@@ -1,7 +1,7 @@
 name: Selected verifier and isolation CPU qualification
 on:
   push:
-    branches: [bt-001-research-verifier-prep-20261024]
+    branches: [bt-001-research-verifier-prep-20261024, bt-001-research-verifier-amendment-20261025]
 permissions:
   contents: read
 concurrency:

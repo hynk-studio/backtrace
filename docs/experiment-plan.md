@@ -6,6 +6,11 @@ under a matched total inference budget?
 
 ## Current evidence, 24 October 2026 KST
 
+25 October continuation: the owner requested the next steps in order. The
+[explicit research-verifier amendment](research-verifier-amendment-20261025.md)
+preserves the v2 design and original official verdicts while qualifying the one
+hash-bound version skip. No matched model slot or new paid scope exists yet.
+
 The [real R1 v2 diagnostic](verified-gpu-20261024.md) completed model execution,
 patch submission, public verification (four tests passed) and resource cleanup.
 It reused an inspected task. The historical one-minute R0 timeout and five-minute

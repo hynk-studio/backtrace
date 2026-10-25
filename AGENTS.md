@@ -743,3 +743,15 @@ heads and consumed paid scopes; GPU image/model/cache identity and finite cost/
 lifecycle preparation remain gates. Submitted patches survive namespace stop;
 unsubmitted fallback diffs are not qualified by these completed-slot fixtures.
 No GPU/model/training/merge/submission/issue closure occurred in this CPU work.
+
+The owner next instructed **단계별로 진행해줘** on 2026-10-25 after a status
+report naming the verifier amendment as the first step and a finite GPU proposal
+as the second. Continue on `bt-001-research-verifier-amendment-20261025`, stacked
+on #23. Apply the previously reviewed narrow version-skip research policy, retain
+the original official verdict, qualify all six control pairs and all 18 authored
+slots, and prepare remaining deployment/lifecycle/cost conditions. The explicit
+v3 overlay binds the unchanged v2 protocol, task selection and assets. No prompt,
+budget, task denominator or source test changes. This instruction authorizes
+free implementation and qualification; no finite paid proposal has yet been
+approved. Preserve every prior branch, receipt and consumed claim. No provider
+create, paid watcher, training, merge, submission or issue closure.

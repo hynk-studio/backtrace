@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "protocol": "R012-matched-pilot-v3-version-skip",
+  "status": "ACTIVE_FOR_CPU_QUALIFICATION",
+  "owner_instruction": "단계별로 진행해줘",
+  "instruction_context": "After the status report naming the narrow verifier amendment as the first remaining step; no paid authorization.",
+  "compute_authorization": "NONE",
+  "applies_to_arms": ["R0", "R1", "R2"],
+  "planned_tasks": 6,
+  "planned_slots": 18,
+  "bindings": {
+    "docs/research-comparison-protocol.json": "1bd2ef8f356f8f4fbb6e7c1237e950ad14471a14e9e596d634d2e728b321b7d2",
+    "docs/research-selection-20261024.json": "3635497c6a3ef54d43ed841f692cd7ce14a215539a236dfc38271a33d4e78598",
+    "docs/research-assets-20261024.json": "94a191a2ee8d28cb8a35901fb29bafb5d505af315c7fb013dd80b1884ff5a056"
+  },
+  "exception": {
+    "instance_id": "rich_3486",
+    "python_version": "3.12.14",
+    "test_patch_sha256": "ec56c0e601315ea5cd7c8f1302cb92216060bc3791262aa8550eaa64c95a7ec3",
+    "skipped_function_name_sha256": "434262b3571198deb9fb3bffd1cdba4b3237f5e1bee9efed3c6af6b0b00e2eeb",
+    "official_verification_source_sha256": "5602f33acb49062de8e99073199745679d86445297be9dd075ccec60c41b60dd"
+  },
+  "rule": "Keep original tests, JUnit and official verdict unchanged. Only the single original version-inapplicable required function may be skipped. All remaining original required nodes must execute and pass; additional skips, errors, failures, missing nodes, duplicate cases, inconsistent counts and mismatched identities are rejected.",
+  "reporting": "Retain official_resolved and research_resolved separately. This research-only amendment does not predict hosted Kaggle acceptance. No real-model result exists at activation."
+}
