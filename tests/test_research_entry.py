@@ -45,6 +45,17 @@ while time.monotonic()<end:
 
 
 class ContractTests(unittest.TestCase):
+    def test_heartbeat_published_during_read_uses_post_read_clock(self):
+        clock=[100.0];state=mock.Mock();state.namespace='free-read-race'
+        def read(_):
+            clock[0]=100.25
+            return ({'source_sha':SOURCE,'namespace':state.namespace,'at':100.125,'run_id':'22'},'blob')
+        state.read.side_effect=read
+        state.run.return_value={'id':22,'head_sha':SOURCE,'head_branch':c.WATCH,'run_attempt':1,
+            'status':'in_progress','event':'push','path':'.github/workflows/research-entry-watch.yml'}
+        self.assertEqual(entry.require_watcher(state,SOURCE,lambda:clock[0],entry.defaults()),'22')
+        with self.assertRaises(StateError):entry.require_watcher(state,SOURCE,lambda:99.0,entry.defaults())
+
     def test_paid_entry_missing_permit_never_constructs_provider_client(self):
         from tools import research_entry_main
         environment={'GITHUB_REPOSITORY':c.REPOSITORY,'GITHUB_REF_NAME':c.OWNER,
@@ -157,6 +168,18 @@ class WireLifecycleTests(unittest.TestCase):
         self.assertLessEqual(exported,result['cleanup']['started_at'])
         self.assertLessEqual(exported,watch['started_at'])
 
+    def test_controller_failure_keeps_completed_worker_receipt(self):
+        def finished_then_invalid(directory,configuration,claim,endpoint):
+            p=fake_worker(directory,configuration,claim,endpoint);p.wait(timeout=5)
+            (Path(directory)/'worker-status.json').write_text(json.dumps({
+                'claim_sha256':entry.binding(claim),'phase':'invalid','at':time.time()}))
+            return subprocess.Popen([sys.executable,'-I','-c','import time;time.sleep(30)'],start_new_session=True)
+        result,watch,creates,_=self.run_case(worker=finished_then_invalid)
+        self.assertEqual(result['status'],'INCOMPLETE');self.assertEqual(creates,1)
+        self.assertEqual(result['failure']['detail'],'worker phase invalid')
+        self.assertEqual(result['worker']['kind'],'CONTROLLER_FIXTURE_ONLY')
+        self.assertLessEqual(result['worker']['export']['completed_at'],result['cleanup']['started_at'])
+
     def test_ambiguous_create_never_retries_and_finds_exact_name(self):
         for fault in ('create_ack_lost','create_500'):
             with self.subTest(fault=fault):
@@ -195,6 +218,13 @@ class WireLifecycleTests(unittest.TestCase):
             with self.assertRaises(StateError):store.write('claim',{'id':'two'})
             self.assertEqual(store.read('claim')[0],{'id':'one'})
             with self.assertRaises(ValueError):store.write('authorization',{'mode':'paid'})
+
+    def test_provider_delay_does_not_block_independent_state_service(self):
+        with Replica(SOURCE) as replica:
+            state,_=clients(replica.port,'free-independent-services')
+            with replica.lock:
+                state.write('probe-owner',{'mode':'FREE_GITHUB_HANDSHAKE'})
+                self.assertEqual(state.read('probe-owner')[0],{'mode':'FREE_GITHUB_HANDSHAKE'})
 
     def test_watcher_process_death_stops_owner(self):
         result,_,count,_=self.run_case(worker=slow_worker,watcher_failure=True)

@@ -56,3 +56,16 @@ Actual qualification runs, source hashes, failure retention and the fresh
 read-only account observation will be recorded after execution. Authored CPU
 responses, local provider replicas and live GitHub state checks are distinct
 evidence levels. GPU/model/provider-network initialization remains NOT_RUN.
+
+Free runs 40211991201 and 40213108303 are retained as failures. The first exposed
+private-umask directory traversal before the first task; explicit permissions
+and a native dropped-UID regression correct it. The second completed all 18
+authored slots, but the owner raised StateError during final retrieval; the
+original specific state error was not retained. A deterministic reproduction
+shows that sampling the lease clock before GET incorrectly rejects a heartbeat
+published during that GET. The correction samples after reading, preserves
+bounded local StateError diagnostics, and keeps actual partial worker receipts
+after a controller failure. The original run's cause is not asserted beyond
+that retained evidence. The replica also separates GitHub and provider locks,
+so a slow local Docker DELETE cannot falsely stall the independent state service.
+The changed source still requires a new complete free qualification.

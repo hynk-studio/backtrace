@@ -68,7 +68,8 @@ def limits():
 class Replica:
     def __init__(self, source, *, faults=(), docker=False, run_id='1'):
         self.source=source;self.faults=set(faults);self.docker=docker;self.run_id=str(run_id)
-        self.files={};self.pods={};self.lock=threading.RLock();self.requests=[];self.used=set()
+        self.files={};self.pods={};self.lock=threading.RLock();self.state_lock=threading.RLock()
+        self.requests=[];self.used=set()
         self.create_count=0;self.delete_count=0;self.resource=None;self.created_at=None
         self.owner_status='in_progress';self.watcher_status='in_progress'
         owner=self
@@ -83,7 +84,10 @@ class Replica:
                     length=int(self.headers.get('Content-Length','0'))
                     if length>102400:raise ValueError('body too large')
                     body=json.loads(self.rfile.read(length)) if length else None
-                    with owner.lock:code,result=owner.route(self.command,self.path,body)
+                    # The actual GitHub and provider services are independent;
+                    # a slow Docker DELETE must not block GitHub heartbeats.
+                    lock=owner.state_lock if self.path.startswith('/repos/') else owner.lock
+                    with lock:code,result=owner.route(self.command,self.path,body)
                     if code==0:
                         self.close_connection=True;return
                     data=c.encoded(result)

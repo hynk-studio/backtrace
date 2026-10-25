@@ -39,6 +39,7 @@ jobs:
           python_path="$(command -v python3)"
           sudo --preserve-env=KAGGLE_API_TOKEN,GITHUB_SHA,GITHUB_RUN_ID "$python_path" -m tools.research_entry_cpu evidence/qualification
       - name: Verify two independent live GitHub state probe workflows
+        if: always()
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python -m tools.research_entry_probe verify

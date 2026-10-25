@@ -54,10 +54,10 @@ def check_claim(claim, source, namespace):
     return claim
 
 
-def require_watcher(store, source, now, limits, *, expected=None):
+def require_watcher(store, source, wall, limits, *, expected=None):
     row=store.read('watcher')
     if not row:raise StateError('watcher missing')
-    value=row[0]
+    value=row[0];now=wall()  # A writer may publish during the GET itself.
     if (value['source_sha']!=source or value['namespace']!=store.namespace
             or not 0<=now-value['at']<=limits['heartbeat_seconds']
             or (expected and value['run_id']!=expected)):
@@ -202,7 +202,7 @@ def execute(store, api, authorization, offer, initializer, configuration, direct
         c.qualification(store,authorization)
         if store.read('claim'):raise StateError('single-use scope already consumed')
         c.require_run(store.run(run_id),run_id,source,c.OWNER,path='.github/workflows/research-entry-start.yml')
-        watcher=require_watcher(store,source,wall(),limits)
+        watcher=require_watcher(store,source,wall,limits)
         if watcher==str(run_id):raise ValueError('separate workflow required')
         if any(p.get('name','').startswith('backtrace-') for p in api.list()):raise StateError('prior resource requires reconciliation')
         price=c.costs(offer,authorization,wall())
@@ -223,7 +223,7 @@ def execute(store, api, authorization, offer, initializer, configuration, direct
             if armed and armed[0]['claim_sha256']==binding(claim) and armed[0]['run_id']==watcher:break
             if wall()>=end:raise StateError('watcher did not cache claim before create')
             sleep(limits['poll_seconds'])
-        require_watcher(store,source,wall(),limits,expected=watcher)
+        require_watcher(store,source,wall,limits,expected=watcher)
         c.require_run(store.run(run_id),run_id,source,c.OWNER,path='.github/workflows/research-entry-start.yml')
         c.permit(authorization,source,wall(),replica=replica);c.costs(offer,authorization,wall())
         if wall()-claim['requested_at']>=30:raise StateError('claim/create deadline')
@@ -236,7 +236,7 @@ def execute(store, api, authorization, offer, initializer, configuration, direct
         stage='bootstrap';first_worker=None;endpoint_identity=None
         monotonic_start=time.monotonic();last_wall=wall();last_detail=None
         while True:
-            require_watcher(store,source,wall(),limits,expected=watcher)
+            require_watcher(store,source,wall,limits,expected=watcher)
             c.require_run(store.run(run_id),run_id,source,c.OWNER,path='.github/workflows/research-entry-start.yml')
             phase='setup'
             if process:
@@ -291,9 +291,27 @@ def execute(store, api, authorization, offer, initializer, configuration, direct
         result['status']='WORK_COMPLETE'
     except Exception as error:
         result['failure']={'stage':stage,'type':type(error).__name__}
+        # StateError strings are fixed local diagnostics or numeric HTTP codes,
+        # never provider bodies, credentials or signed download URLs.
+        if isinstance(error,StateError):result['failure']['detail']=str(error)[:200]
         progress('owner_failure',**result['failure'])
     finally:
         stop(process)
+        # A controller failure may interrupt the worker's final receipt read.
+        # Retain the worker's actual partial export after bounded termination,
+        # without promoting the primary failure or repeating an immutable write.
+        if process and 'worker' not in result:
+            result['worker_exit']=process.returncode
+            try:
+                receipt=json.loads((directory/'worker-result.json').read_bytes())
+                result['worker']=receipt
+                export=receipt.get('export')
+                if export:
+                    cipher=Path(configuration['output'])/'results.age'
+                    if not cipher.is_file() or c.digest(cipher.read_bytes())!=export['ciphertext_sha256']:
+                        raise ValueError('partial encrypted export bytes mismatch')
+                    store.write('export',{'claim_sha256':binding(claim),**export})
+            except Exception as error:result['worker_receipt_error']=type(error).__name__
         if claim:
             with contextlib.suppress(Exception):store.write('owner-done',{'claim_sha256':binding(claim),'at':wall(),
                 'provider_create_requests':result['provider_create_requests']})
