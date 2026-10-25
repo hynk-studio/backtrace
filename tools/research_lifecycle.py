@@ -119,20 +119,22 @@ class DockerResource:
 
 
 def cleanup(resource,*,seconds=30):
-    end=time.monotonic()+seconds;observations=[];absent=0
+    started=time.time();end=time.monotonic()+seconds;observations=[];absent=0
     while time.monotonic()<end:
         try:
             identity=resource.observe()
-            observations.append({'state':'ABSENT' if identity is None else 'PRESENT','identity':identity})
+            observations.append({'state':'ABSENT' if identity is None else 'PRESENT','identity':identity,'at':time.time()})
             absent=absent+1 if identity is None else 0
-            if absent==2:return {'status':'PASS','absence_reads':2,'observations':observations}
+            if absent==2:return {'status':'PASS','absence_reads':2,'observations':observations,
+                                 'started_at':started,'completed_at':time.time()}
             if identity is not None:
                 try:resource.delete(identity)
                 except Exception as error:observations.append({'delete_error':type(error).__name__})
         except Exception as error:
             absent=0;observations.append({'state':'UNKNOWN','error_type':type(error).__name__})
         time.sleep(.1)
-    return {'status':'FAIL','absence_reads':absent,'observations':observations}
+    return {'status':'FAIL','absence_reads':absent,'observations':observations,
+            'started_at':started,'completed_at':time.time()}
 
 
 def watch(journal,resource,*,interval=.2):

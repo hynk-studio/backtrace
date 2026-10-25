@@ -282,13 +282,15 @@ def qualify(inputs,output):
                 from tools.cloud_seal import seal
                 files={str(p.relative_to(work)):p for p in work.rglob('*') if p.is_file() and not p.is_symlink() and 'sandboxes' not in p.parts}
                 files.update({'remote/'+str(p.relative_to(private/'remote')):p for p in (private/'remote').rglob('*') if p.is_file()})
-                report['stages']['encrypted_export']=dict(seal(files,Path(output).parent/'serving-results.age'),status='PASS')
+                report['stages']['encrypted_export']=dict(seal(files,Path(output).parent/'serving-results.age'),status='PASS',completed_at=time.time())
                 journal.write('export',report['stages']['encrypted_export'])
-                journal.write('owner-done',{'reason':'export_complete'})
+                journal.write('owner-done',{'reason':'export_complete','at':time.time()})
                 report['stages']['owner_cleanup']=cleanup(resource)
                 journal.write('owner-cleanup',report['stages']['owner_cleanup'])
                 watcher.wait(timeout=40);report['stages']['watcher_cleanup']=journal.read('watcher-cleanup')
-                assert watcher.returncode==0
+                assert watcher.returncode==0 and report['stages']['watcher_cleanup']['reason']=='OWNER_DONE'
+                assert all(report['stages']['encrypted_export']['completed_at']<=report['stages'][k]['started_at']
+                           for k in ('owner_cleanup','watcher_cleanup'))
                 report['namespace']={'name':journal.root.name,'claim_sha256':journal.binding(),'mode':'FREE_CPU_REHEARSAL'}
                 report['stages']['faults']={'status':'PASS','cases':fault_cases(private,image,source,run_id)}
                 report['status']='PASS' if all(v['status']=='PASS' for v in report['stages'].values()) else 'FAIL'
