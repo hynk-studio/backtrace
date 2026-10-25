@@ -796,3 +796,20 @@ slice evidence is not initialized GPU cache evidence. A host-networked container
 forwarder/native authored upstream is not a claim about provider network/NAT or
 real model readiness. Free source read run 40160733853 acquired v25 vLLM bytes;
 40160571189 failed YAML parsing before any job and is retained as a workflow error.
+
+Final Draft #25 free qualification: run 40163153274, executed source 0a8332282d7fc79768e055f2637c26273dc8f5b6.
+467 Linux tests, 18 normal authored slots/108 requests, retry/compaction,
+12-second pre/post-submit deadlines, 25-second outer kill, 136 reconciled remote
+requests, zero active requests and two container absence reads passed. Owner
+verification checked 239 private records, 18 exact patches/traces/projections,
+143 unchanged CPU packages and 12 implementation hashes. The original runner
+can return empty on an API error after submission; recover only the atomic
+original-tool checkpoint bound to context/candidate/task/arm, retaining TIMEOUT.
+Never derive a late unsubmitted diff. Parent reclamation removes sandboxes after
+outer kill before reusing UID65532. Final trace/token totals may be unavailable.
+The exact image used host networking for a native authored responder and no task
+or evaluator mounts; actual provider network/model/cache readiness is NOT_RUN.
+Next free work is a new immutable inference-only delivery/start and owner/watcher/
+export/deletion lifecycle, with the pinned full serving closure. Do not treat
+this bridge test or the old USD6/3h proposal as a paid authorization. All 18 real
+model slots remain NOT_RUN; R3 training remains separate and need not await R2.

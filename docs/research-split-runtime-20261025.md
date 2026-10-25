@@ -52,11 +52,12 @@ API-error path in the original runner skipped its final patch assignment and
 returned an empty string, despite a valid acknowledged 222-byte submission.
 The exact submission checkpoint is now checked against context, candidate and
 slot identity before recovering that artifact. The TIMEOUT/error status remains;
-no workspace command or model call occurs after the deadline. Requalification
-is required. Run 40161499824 was superseded while pending, with no executed job.
+no workspace command or model call occurs after the deadline. The final
+qualification below includes this correction. Run 40161499824 was superseded
+while pending, with no executed job.
 
 Recovery run 40161907609 passed the post-submit deadline and all 18 normal slots,
-but one immediate outer-kill namespace scan still saw a terminating descendant.
+but one immediate outer-kill namespace scan still observed a process in that namespace.
 Its overall FAIL is retained. Parent cleanup now waits for two bounded successful
 absence reads instead of treating asynchronous kernel reaping as instantaneous.
 
@@ -71,6 +72,34 @@ The suite also runs retry/compaction, real original submit_patch before/after
 scaled work deadline, outer-child kill, isolation controls, wrong/no certificate,
 stream/JSON request counting and cleanup. Private patches, traces and logs are
 owner-encrypted. Public receipts contain identities, counts, states and hashes.
+
+## Final observed qualification
+
+[Run 40163153274](https://github.com/hynk-studio/backtrace/actions/runs/40163153274) executed source `0a8332282d7fc79768e055f2637c26273dc8f5b6` and passed
+467 Linux tests, the immutable v2 protocol/preflight, 18 fixed normal slots,
+retry and compaction, both 12-second scaled work-deadline controls, and the
+25-second outer kill. The parent removed each sandbox before dedicated-UID reuse.
+The outer-kill checkpoint survives while final trace/token totals remain unknown.
+
+One container TLS forwarder handled **136** requests: 108 normal,
+22 additional completed-child attempts and 6 in the outer-kill control. The last
+outer request has no finalized CPU ledger entry; the checkpoint contains five.
+Request order/body hashes reconcile exactly. All 136 remote requests closed;
+zero remain active. Two successful absence reads confirm container removal.
+
+Owner-side decryption independently checked 239 private records, all 18
+agent-only projections, patch/checkpoint/trace identities and original tool order,
+the unchanged 143-package CPU runtime, 12 implementation hashes and
+post-submit recovery without changing TIMEOUT into success. The public
+[summary](research-split-results-20261025.json) binds this evidence. The local
+focused suite passed 28 tests. The full local attempt did not produce a completed
+suite result; full-suite validation uses the native Linux run.
+
+Source-read, pre-recovery failures, the namespace-scan failure and the successful
+intermediate reclamation run are
+retained with the final public receipts and owner-encrypted evidence. Final
+report-only commits do not change executed Python/workflow/test bytes. All 57
+pre-existing branch heads remain unchanged; no historical paid scope was reused.
 
 ## Remaining gate
 

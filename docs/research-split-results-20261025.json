@@ -1,0 +1,145 @@
+{
+  "additional_controls": 4,
+  "artifact_digests": {
+    "private": {
+      "bytes": 1445559,
+      "sha256": "0da6bf96aa4760fb392dde574f5992176b5d9f4c01f85551566d3f42d9558d92"
+    },
+    "public": {
+      "bytes": 53792,
+      "sha256": "e8a30c79c40667863fba3cc5e2acde66af599f0154fe83450c474866cc60aaea"
+    }
+  },
+  "base_sha": "dd75363ba3979a13753a3ffc099fe56d3e9b5224",
+  "cache": {
+    "flag": "--no-enable-prefix-caching",
+    "initialized_gpu_cache": "NOT_RUN",
+    "official_command_builder": "PASS",
+    "pinned_argparse_slice": "PASS",
+    "wheel_sha256": "6b29fdc200966eda4d0cc4d10b8c338ec32620bb069ad3629d8a78e3b35fd3fa"
+  },
+  "cleanup": {
+    "absence_reads": 2,
+    "container_id": null,
+    "name": "backtrace-free-full-setup-3350-split",
+    "observations": [
+      {
+        "state": "ABSENT"
+      },
+      {
+        "state": "ABSENT"
+      }
+    ],
+    "request": {
+      "outcome": "ACKNOWLEDGED",
+      "returncode": 0
+    },
+    "seconds": 1.039,
+    "status": "PASS"
+  },
+  "deployment": {
+    "capabilities": "ALL_DROPPED",
+    "client_private_key_in_container": false,
+    "evaluator_mounts": 0,
+    "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+    "image_id": "sha256:4638f27bc2a17c4487d2dcb57e0dca10c9cf6601ee6bf849162b58f1d8b1ee8e",
+    "network": "HOST_FOR_NATIVE_AUTHORED_UPSTREAM",
+    "task_mounts": 0,
+    "transport": {
+      "client_sha256": "cc31faf536323e1abaf51b1ad78007e52f66f3067d5e0fd1bdba0a3eaa2b8404",
+      "route": "/v1/chat/completions",
+      "server_sha256": "bc8d83fdbe607421c8c515f5f3634af4d2595793650acda8822166bbfc818bb2",
+      "transport": "TLS1.3_MUTUAL_LEAF_PINS"
+    }
+  },
+  "failure_artifacts": {
+    "outer_kill": "submitted checkpoint retained; final trace/accounting unavailable; namespace absent; parent sandbox reclaimed",
+    "work_deadline_after_submit": "TIMEOUT retained; exact original submission recovered without extra workspace/model work",
+    "work_deadline_before_submit": "TIMEOUT; empty patch; unsubmitted diff unavailable"
+  },
+  "frozen_protocol_sha256": "1bd2ef8f356f8f4fbb6e7c1237e950ad14471a14e9e596d634d2e728b321b7d2",
+  "implementation": {
+    ".github/workflows/research-split-cpu.yml": "d95ef8845802de667b242eceeee33c29d5695232b7c164724ae839856008050e",
+    "tools/research_fixture.py": "7e988c6aa49c0a437d5ff940a8af5fc87766269eb8a124e5f3762198c4862c8b",
+    "tools/research_isolation.py": "6384bb16956724e36b985b3c6e8eb531180d44a6a18669b0e2d24c061e36e44a",
+    "tools/research_meter.py": "909338ca9690847f5dcef2256cd61be98925873e4cdb54df36e3e9d8964eef0d",
+    "tools/research_runner.py": "723b892584898ecc74fd966d6bceb0eb994d6056fd7bc34792097ce9c96b0d79",
+    "tools/research_runtime.py": "d052d8e149f3474dbfe5dc69803a4c2525bee552d5ad31c81a81ea39ea0910db",
+    "tools/research_split.py": "e06629d9132ed6e00f188dbd0821661fc5caab38169a1f3f7dab265ef0b5d521",
+    "tools/research_split_cache.py": "0e86241a25c87097bb4bfe89953ad4e3a5249ce57e5f69efd2b563847585e0a9",
+    "tools/research_split_cpu.py": "6e76e1951c9b6b73a14a3dab449b01f838b94d9fd78e14963ced19029470eaea",
+    "tools/research_split_host.py": "bb9883c6fa3b6f8f8720660fa034cd5e72395fc047e37baca16bb15989b2fcd5",
+    "tools/research_split_sequence.py": "201c5383834f68170bb9a4cc456d6f76ad71c8386054dce1522b752451bc5498",
+    "tools/research_split_server.py": "d0934c4f088e71ecf447d4241feaae90840c98438b73a1c0bf39814c0c62ef28"
+  },
+  "independent_check_sha256": "2d4dc54dd705f7187494760259562f47dc30f7c69cbc6aaa4288f533c0c4d147",
+  "independently_checked_private_records": 239,
+  "isolation_checks": 18,
+  "linux_tests": 467,
+  "local_focused_tests": 28,
+  "normal_requests": 108,
+  "normal_slots": 18,
+  "outer_kill_controls": 1,
+  "paid_authorization": "NONE",
+  "parent_teardown_reserve_seconds": 10,
+  "preserved_preexisting_branches": 57,
+  "prior_runs": [
+    {
+      "id": "40160571189",
+      "reason": "YAML scalar syntax",
+      "status": "FAIL_BEFORE_JOB"
+    },
+    {
+      "id": "40160733853",
+      "scope": "exact v25 serving wheel source acquisition",
+      "status": "PASS"
+    },
+    {
+      "id": "40161191638",
+      "reason": "post-submit API-error path returned empty; original 222-byte checkpoint survived",
+      "status": "FAIL"
+    },
+    {
+      "id": "40161499824",
+      "status": "CANCELLED_WHILE_PENDING"
+    },
+    {
+      "id": "40161687658",
+      "reason": "same pending patch-recovery defect; 136-request reconciliation passed",
+      "status": "FAIL"
+    },
+    {
+      "id": "40161907609",
+      "reason": "post-submit recovery passed; single immediate namespace-absence scan failed",
+      "status": "FAIL"
+    },
+    {
+      "id": "40162261038",
+      "scope": "parent workspace reclamation before bounded double-absence reaping was added",
+      "status": "PASS"
+    }
+  ],
+  "provider_operations": 0,
+  "real_model_slots": "18 NOT_RUN",
+  "remaining_free_gate": "new immutable inference-only delivery/start and owner/watcher/export/deletion lifecycle; offline serving closure and network fault rehearsal",
+  "remaining_paid_gate": "fresh explicit finite authorization, account/quote, actual GPU/model/cache readiness; no consumed scope reuse",
+  "run_id": "40163153274",
+  "schema_version": 1,
+  "scope": "AUTHORED_CPU_SPLIT_TRANSPORT_NOT_MODEL_BENCHMARK",
+  "source_sha": "0a8332282d7fc79768e055f2637c26273dc8f5b6",
+  "status": "PASS",
+  "transport_reconciliation": {
+    "checks": {
+      "all_transport_requests_closed": true,
+      "forwarder_stopped": true,
+      "metered_order_and_body_hashes": true,
+      "outer_checkpoint_order_and_hashes": true,
+      "outer_inflight_request_observed": true
+    },
+    "completed_child_requests": 130,
+    "observed_transport_requests": 136,
+    "outer_checkpoint_requests": 5,
+    "status": "PASS"
+  },
+  "unchanged_cpu_packages": 143
+}
