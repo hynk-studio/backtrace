@@ -17,6 +17,7 @@ from tests.test_research_meter import request, response
 from tools.research_split_sequence import sequence
 from tools.research_split_server import observed_configuration, MODEL_PATH
 from tools.research_runner import recover_submission
+from tools.research_split_cpu import reclaim_slot
 from tools import research_comparison as comparison
 
 
@@ -198,6 +199,20 @@ class SubmissionRecoveryTests(unittest.TestCase):
             for key,value in (('arm','R1'),('candidate_sha256','b'*64),('sha256','0'*64),('patch',patch+'extra')):
                 path.write_bytes(comparison.encoded({**saved,key:value}))
                 with self.assertRaises(ValueError):recover_submission('',patch,path,'fixture_1','R0','a'*64)
+
+    def test_parent_reclaims_outer_kill_workspace_before_uid_reuse(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);destination=root/'slot';destination.mkdir()
+            sandbox=destination/'sandboxes';sandbox.mkdir()
+            canary=root/'owner-canary';canary.write_text('retain')
+            (sandbox/'link').symlink_to(canary)
+            checkpoint=destination/'submitted-checkpoint.json';checkpoint.write_text('{}')
+            result=reclaim_slot(destination)
+            self.assertTrue(result['sandbox_directory_absent'])
+            self.assertTrue(result['checkpoint_preserved'])
+            self.assertEqual(canary.read_text(),'retain')
+            sandbox.symlink_to(root)
+            with self.assertRaises(ValueError):reclaim_slot(destination)
 
 
 if __name__=='__main__': unittest.main()

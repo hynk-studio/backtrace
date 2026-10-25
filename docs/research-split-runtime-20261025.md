@@ -25,6 +25,8 @@ consumed. This code cannot allocate a provider instance or mint a launch permit.
   patch. After a work deadline the submitted artifact survives. An outer kill may
   leave only that checkpoint and partial accounting; no final trace or token
   totals are invented. An unsubmitted diff after isolation stops is unavailable.
+  The parent removes the sandbox directory before reusing the dedicated UID for
+  another slot, including when an outer kill prevented the child's finalizers.
 - The official server command builder receives --no-enable-prefix-caching. A new
   loopback metadata middleware requires the initialized engine's prefix cache to
   be exactly False along with the frozen dtype/context/parallel settings.

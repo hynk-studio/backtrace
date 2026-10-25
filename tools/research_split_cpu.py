@@ -30,6 +30,18 @@ def unused_port():
         sock.bind(('127.0.0.1',0)); return sock.getsockname()[1]
 
 
+def reclaim_slot(destination):
+    """Outer-killed children cannot run manager.close; reclaim before the next UID reuse."""
+    sandbox=Path(destination)/'sandboxes'
+    if sandbox.is_symlink(): raise ValueError('unexpected sandbox root symlink')
+    if sandbox.exists():
+        if not shutil.rmtree.avoids_symlink_attacks:
+            raise RuntimeError('descriptor-safe parent cleanup required')
+        shutil.rmtree(sandbox)
+    return {'status':'PASS','sandbox_directory_absent':not sandbox.exists(),
+            'checkpoint_preserved':(Path(destination)/'submitted-checkpoint.json').is_file()}
+
+
 def qualify(inputs,output):
     if os.geteuid()!=0: raise ValueError('root native CPU coordinator required')
     report={'status':'INCOMPLETE','source_sha':os.environ.get('GITHUB_SHA'),
@@ -97,6 +109,7 @@ def qualify(inputs,output):
                 row=bounded_child([python,'-I','-B',Path(__file__).resolve(),'--worker',kind,
                     inputs,destination,public/'runtime/wheels',private/'endpoint.json',*args],
                     private/(name_+'.log'),env,timeout=min(timeout,remaining))
+                if kind=='fixture':row['parent_cleanup']=reclaim_slot(destination)
                 path=destination/receipt
                 if path.is_file():row['result']=c.parse(path.read_bytes())
                 row['status']=('PASS' if row['exit_code']==0 and not row['child_timeout']
@@ -132,6 +145,8 @@ def qualify(inputs,output):
                     'original_submission_checkpoint':saved['source']=='ORIGINAL_SUBMIT_PATCH'
                         and len(data)==saved['bytes'] and c.digest(data)==saved['sha256'] and len(data)>0,
                     'agent_namespace_absent':bool(saved['namespace_ids']) and not living,
+                    'parent_removed_workspace':outer['parent_cleanup']['sandbox_directory_absent']
+                        and outer['parent_cleanup']['checkpoint_preserved'],
                     'no_false_completed_receipt':not (work/'control-outer/slot-receipt.json').exists()}
                 outer.update(status='PASS' if all(checks.values()) else 'FAIL',checks=checks,
                     artifact_status='SUBMITTED_CHECKPOINT_ONLY; final trace/accounting unavailable',
