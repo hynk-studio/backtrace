@@ -1,6 +1,8 @@
 # Next stage: one bounded 18-slot pilot
 
-Status: concrete planning envelope, **not authorized or launchable**. The
+Status updated 26 October KST: free implementation and qualification complete;
+**not authorized or funded for launch; no exact stock at the latest read**.
+See [entry results](research-prepaid-entry-20261026.md). The
 [machine-readable proposal](research-pilot-compute-proposal-20261025.json)
 keeps six tasks and three arms and introduces no provider operation.
 
@@ -35,9 +37,10 @@ server command are verified; initialized GPU cache state remains NOT_RUN.
 The [server-only delivery/start/stop rehearsal](research-serving-lifecycle-20261025.md)
 is now qualified in run 40206021955, including the full 246-wheel serving
 closure, Docker bridge publication, all 18 authored slots and independent local
-owner/watcher cleanup. This does not qualify a distributed provider entry.
-GitHub/Runpod state, fresh one-create identity and paid lifetime/cost integration
-still need free qualification before a paid proposal is ready for approval.
+owner/watcher cleanup. That local rehearsal alone did not qualify distributed
+entry. The new [entry qualification](research-prepaid-entry-20261026.md) now passes
+the actual owner/watch code through HTTP replicas, plus two real GitHub state
+workflows. Actual provider network/GPU/model behavior remains NOT_RUN.
 
 ## Proposed resource and cost envelope
 
@@ -65,28 +68,30 @@ as NOT_RUN in the 18-slot denominator. A partial pilot cannot establish an effec
 
 Proposed additional spend cap: USD6, at a fresh all-in quote of at most USD2/hour.
 This is a decision ceiling, not a current price. Reject fixed/unknown additional
-charges; require at least USD6.50 available credit and the approved cumulative
-limit. A USD12 project cumulative stop would further reduce the usable budget
+charges; require the fresh full-window quoted usage plus USD0.50 reserve and
+the approved cumulative limit. USD6.50 funds the maximum USD2/hour ceiling.
+A USD12 project cumulative stop would further reduce the usable budget
 when previous settled spend exceeds USD6. The old USD8 stop remains active until
 an explicit new decision. Do not top up or change account settings automatically.
-No fresh balance or stock read was performed for this document.
+A fresh complete read-only observation is now recorded in the
+[26 October entry results](research-prepaid-entry-20261026.md): no current exact
+stock; current balance and the old cumulative headroom are insufficient for the
+full fixed envelope. The last quote is an expired scenario only. No top-up or
+limit change was performed.
 
-## Work required before an approval-ready launch
+## Completed preparation and remaining decisions
 
-1. Wire the qualified serving payload and native 18-slot coordinator into a
-   new distributed GitHub/Runpod owner/watch entry, with one immutable fresh
-   namespace and no reuse of prior claims. Bind source, endpoints, one-create
-   semantics, provider identity, cost/time reserves and independent job liveness.
-2. Rehearse that actual entry against state/provider replicas, including
-   ambiguous create/delete replies, stale/unavailable state, failed readiness,
-   connection loss, parent death and exhausted remaining time. Preserve every
-   NOT_RUN slot and require deletion evidence before independent CPU evaluation.
-   Local Docker/journal controls have passed; they do not establish provider
-   adapter or distributed-state behavior.
-3. Qualify the exact new entry source for free, then prepare a fresh quote/account
-   read and concrete capped execution proposal. No old branch, claim or paid
-   permit authorizes this pilot. Actual GPU/model/cache readiness remains a
-   bounded post-approval gate within the proposed allocation.
+The new distributed entry, one-create claim/independent arm, endpoint/cost/time
+bindings, full serving/18-slot/export path and failure controls are now freely
+qualified. The exact source, retained failures and independent evidence audit
+are recorded in [the final entry report](research-prepaid-entry-20261026.md).
+
+The remaining gate is the owner's explicit funding, budget and one-use execution
+decision. Fresh account/stock/price and watcher checks still run immediately
+before any approved create. Actual provider port mapping, CUDA/VRAM, model and
+cache readiness must pass inside the bounded paid window before model slots.
+All18 real-model slots remain NOT_RUN. Export and confirmed resource deletion
+precede independent CPU evaluation; incomplete pilots have no effect estimate.
 
 The R3 teacher/adapter track remains separate. A positive R2 prompt result is not
 a prerequisite for a tiny training-compatibility experiment; neither this pilot

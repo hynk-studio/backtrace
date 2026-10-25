@@ -1,0 +1,25 @@
+name: Research free GitHub watch probe
+on:
+  push:
+    branches: [bt-001-research-prepaid-entry-20261026]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Free independent workflow state handshake
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -m tools.research_entry_probe watch
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: research-github-watch-${{ github.sha }}
+          path: evidence/*.json
+          retention-days: 14

@@ -845,3 +845,44 @@ this local Docker/journal proof is not paid-provider qualification. All18 real
 model slots remain NOT_RUN. No paid allocation, model transfer, training,
 merge, issue closure or competition submission. Do not request paid approval
 before the remaining concrete distributed-entry implementation is qualified.
+
+## BT-001 preparation through the paid boundary (2026-10-26 KST)
+
+The owner instructed **유료 전까지 진행해줘**. Complete the remaining free
+distributed-entry implementation and qualification on
+`bt-001-research-prepaid-entry-20261026`, stacked on Draft #26, with one new
+Draft PR. This explicitly excludes paid resource creation, a live paid watcher,
+model transfer/inference/training, top-ups, merges and submission. Preserve all
+59 baseline branch heads, historical state and consumed claims. New free CPU
+replica namespaces and a separate `bt-001-research-state-20261026` branch may
+record free GitHub handshake metadata only. Do not write a paid authorization
+record or create the new dedicated start/watch branches in this scope.
+
+Bind a new immutable single-use owner permit to the exact successful free
+qualification source and contract; the current permit is absent. Complete the
+actual serving/18-slot/encrypted-export path through the new wire adapters,
+independent watcher and cost/time reserves. Test ambiguous create/deletion,
+unavailable/stale state and process/liveness failures. A live free GitHub state
+handshake is separate from a CPU Runpod API replica and from actual provider
+network/GPU initialization. Read fresh account/stock/quotes without changing
+settings or allocating. Retain failures and unknowns; stop at a concrete capped
+proposal, not at an assumed paid permission. All real-model slots remain NOT_RUN.
+
+Final Draft #27 free entry qualification: run 40214244082 at 3632000d2d6f470a01f640ead7f4e2c8044805c6.
+502 native Linux tests, full 246-wheel serving install, unchanged143-package
+CPU closure,18 authored slots/108 reconciled requests, one CPU-replica create,
+independent armed watcher, encrypted export before both two-read deletion
+checks, and separate live GitHub probe runs 40214243989/40214244019 passed.
+Owner verification checked 177 private/315 export records and 176 source hashes.
+Retain failed runs40211991201 and40213108303; the latter's specific StateError
+was not retained, so the independently reproduced pre-read clock race must not
+be asserted as its conclusive cause. Read docs/research-prepaid-entry-20261026.md.
+All59 baseline heads/consumed claims remain unchanged. No paid branches or permit
+were created. Free preparation stops here: the observed balance and historical
+USD8 cumulative ceiling do not fund the complete fixed pilot; the latest read
+found no exact stock. Retained pricing is an expired scenario only. USD6 additional,
+USD2/hour and USD12 cumulative are proposals only. No top-up or new paid action
+is authorized. Any later explicit decision must bind the executed source/run,
+credited funding and prior-spend floor, then refresh account/stock/quote and
+watcher. Actual provider network/CUDA/model/cache initialization and all18 real
+model slots are NOT_RUN. R3 remains separate and does not require positive R2.

@@ -9,19 +9,25 @@
   "compute_authorization": "NONE",
   "cost_proposal": {
     "currency": "USD",
-    "fresh_account_and_exact_quote": "NOT READ IN THIS FREE STEP",
+    "fresh_account_and_exact_quote": "Read-only account/stock complete at 2026-10-25T17:11:00Z; no current exact available offer. Prior 2026-10-25T16:54:51Z quote is retained only as an expired cost scenario.",
     "historical_limits": "The old USD8 cumulative ceiling and every one-task claim remain unchanged. Any new ceiling requires explicit approval; never infer it from this proposal.",
     "maximum_additional_spend": "6.00",
     "maximum_hourly_all_in": "2.00",
     "new_project_cumulative_stop_proposal": "12.00",
-    "required_available_credit_including_reserve": "6.50",
-    "scope": "A ceiling, not a current price or forecast. Reject nonzero fixed charges, unbounded taxes or unpriced storage/network charges. No top-up or settings changes."
+    "required_available_credit_including_reserve": "Fresh complete 10800-second quoted usage plus USD0.50; USD6.50 is the target at the maximum USD2/hour ceiling.",
+    "scope": "Usage-credit ceilings; fresh quote, total lifetime and credit reserve are enforced. Credit purchase and checkout tax need a separate owner decision. No top-up or account-setting change was made."
   },
   "deployment_architecture_proposal": {
     "agent_and_evaluator": "Qualified native Linux CPU host with dedicated UIDs and PID/network namespaces; separate fresh processes and workspaces.",
     "evidence": "Free exact-image/default-OCI run 40157265702 is BLOCKED: namespace entry exit1, ip missing. Actual provider capabilities remain unobserved.",
     "gpu_allocation": "Inference server only in the frozen image; no selected shell commands or reference tests in the provider container.",
     "transport": "Mutually pinned TLS1.3, actual pinned SSH server-only delivery, full 246-wheel serving installation and Docker bridge publication qualified on CPU. Provider network and actual GPU/model initialization NOT_RUN."
+  },
+  "free_entry_qualification": {
+    "receipt": "docs/research-prepaid-entry-results-20261026.json",
+    "run_id": "40214244082",
+    "source_sha": "3632000d2d6f470a01f640ead7f4e2c8044805c6",
+    "status": "PASS_CPU_REPLICA_AND_LIVE_GITHUB_STATE_ONLY"
   },
   "free_serving_qualification": {
     "receipt": "docs/research-serving-results-20261025.json",
@@ -34,6 +40,40 @@
     "run_id": "40163153274",
     "source_sha": "0a8332282d7fc79768e055f2637c26273dc8f5b6",
     "status": "PASS_AUTHORED_CPU_ONLY"
+  },
+  "fresh_cost_decision": {
+    "additional_credited_funding_for_full_ceiling": "1.5062308114",
+    "authorization": "NONE",
+    "available_regions_at_observation": [],
+    "credit_balance": "4.9937691886",
+    "credit_purchase_checkout_amount_and_tax": "NOT DETERMINED OR AUTHORIZED; credit shortfall is not a checkout quote",
+    "credit_reserve": "0.50",
+    "cumulative_usage_after_modeled_three_hours": "10.4182308114",
+    "currency": "USD usage credits",
+    "future_price_or_stock_guaranteed": false,
+    "historical_cumulative_ceiling": "8",
+    "historical_cumulative_headroom": "2.9937691886",
+    "last_observed_compute_per_hour": [
+      "1.79"
+    ],
+    "last_priced_regions": [
+      "CA-MTL-3",
+      "US-MO-1"
+    ],
+    "minimum_additional_credited_funding_for_observed_quote": "0.9182308114",
+    "minimum_credit_for_observed_quote_plus_reserve": "5.912",
+    "modeled_maximum_three_hour_usage": "5.412",
+    "observed_at": "2026-10-25T17:11:00Z",
+    "observed_prior_usage_spend": "5.0062308114",
+    "prior_credited_funding_basis": "10",
+    "proposed_additional_usage_cap": "6.00",
+    "proposed_cumulative_usage_cap": "12.00",
+    "proposed_full_ceiling_credit_target": "6.50",
+    "proposed_hourly_usage_cap": "2.00",
+    "quote_observed_at": "2026-10-25T16:54:51Z",
+    "quote_status": "HISTORICAL_SCENARIO_ONLY_NO_CURRENT_AVAILABLE_OFFER",
+    "retained_100GB_disk_hourly_bound": "0.014",
+    "top_up_performed": false
   },
   "hardware": "one NVIDIA A100 PCIe 80GB",
   "max_allocations": 1,
@@ -52,11 +92,14 @@
     "No continuation if remaining total time cannot cover the next full child plus export and cleanup reserves."
   ],
   "protocol": "R012-matched-pilot-v3-version-skip",
-  "remaining_free_gates": [
-    "Connect the qualified serving/18-slot/export path to a new distributed GitHub/Runpod owner/watch entry; bind fresh immutable namespace, exact source/endpoints, one-create semantics and cost/time reserves.",
-    "Qualify that actual distributed entry against provider/state replicas, including ambiguous operations, stale state, readiness/connection/parent failures and incomplete slots. Local Docker/journal rehearsals are already qualified, not provider evidence.",
-    "Exact-source free qualification and final human-reviewable capped proposal with fresh account/quote. Actual GPU/model/cache readiness stays bounded after explicit approval."
+  "remaining_decisions_and_postapproval_gates": [
+    "Explicit owner decision on credited funding, additional USD6/hourly USD2/cumulative USD12 proposed usage limits and one new allocation; old cumulative USD8 remains unchanged.",
+    "Source-bound single-use permit with reviewed credited funding and prior-spend floor; bind executed source 3632000d2d6f470a01f640ead7f4e2c8044805c6 and successful run 40214244082.",
+    "Fresh idle-account/stock/quote and matching independent watcher before the sole create.",
+    "Actual provider mappings, CUDA/VRAM, exact model/startup/cache metadata and 18 model slots inside the fixed lifetime; these are NOT_RUN.",
+    "Encrypted export and independently confirmed deletion before separate CPU evaluation; preserve incomplete and negative results."
   ],
+  "remaining_free_gates": [],
   "result_policy": "All six tasks and 18 slots remain assigned. Preserve failure, timeout, partial/no patch, infra failure and NOT_RUN. Export and delete GPU before independent CPU evaluation. No incomplete-pilot effect estimate.",
   "runtime_identity": {
     "adapters": [],
@@ -74,7 +117,7 @@
   },
   "schema_version": 1,
   "slots": 18,
-  "status": "PROPOSAL_BLOCKED_BY_DISTRIBUTED_ENTRY_INTEGRATION",
+  "status": "FREE_PREPARATION_QUALIFIED_BLOCKED_BY_FUNDING_STOCK_AND_EXPLICIT_AUTHORIZATION",
   "storage": {
     "cleanup": "Delete the allocation and temporary disk; two independent successful absence reads by owner and watcher.",
     "container_disk_gb": 100,
