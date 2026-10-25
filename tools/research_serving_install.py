@@ -58,7 +58,11 @@ def install(wheels,inventory,output,seconds=1800):
     run([str(python),'-I','-c',OFFLINE,str(wheels/pip['path']),'install','--no-index','--no-deps',
          '--require-hashes','--only-binary=:all:','--find-links='+str(wheels),'-r',str(lock)])
     run([str(python),'-I','-c',OFFLINE,str(wheels/pip['path']),'check'])
-    program="""import importlib.metadata as m,json
+    program="""import importlib.metadata as m,json,sys
+def audit(event,args):
+ if event in ('socket.connect','socket.getaddrinfo','socket.sendto','socket.sendmsg'):
+  raise RuntimeError('offline serving imports forbid networking')
+sys.addaudithook(audit)
 import torch,vllm,compressed_tensors,transformers,adk_submission
 print(json.dumps(sorted([{'name':d.metadata['Name'],'version':d.version} for d in m.distributions()],key=lambda r:r['name'].lower())))
 """

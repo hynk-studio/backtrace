@@ -61,9 +61,17 @@ def fault_cases(parent,image,source,run_id):
         resource=DockerResource(journal.claim());watcher=None;owner=None
         with (journal.root/'private.log').open('wb') as log:
             try:
-                program=("import sys,time;from pathlib import Path;sys.path.insert(0,sys.argv[1]);"
+                program=("import sys,time,http.client;from pathlib import Path;sys.path.insert(0,sys.argv[1]);"
                          "from tools.research_lifecycle import Journal;j=Journal(sys.argv[2]);\n"
-                         "while True:j.heartbeat('fixture-owner');time.sleep(.1)\n")
+                         "while True:\n"
+                         " endpoint=j.read('endpoint')\n"
+                         " if endpoint:\n"
+                         "  conn=http.client.HTTPConnection('127.0.0.1',endpoint['port'],timeout=.5)\n"
+                         "  try:conn.request('GET','/');assert conn.getresponse().status==200\n"
+                         "  except (OSError,http.client.HTTPException) as error:\n"
+                         "   j.write('owner-network-failure',{'error_type':type(error).__name__});sys.exit(2)\n"
+                         "  finally:conn.close()\n"
+                         " j.heartbeat('fixture-owner');time.sleep(.1)\n")
                 owner=subprocess.Popen([sys.executable,'-I','-c',program,str(c.ROOT),str(journal.root)],
                     env=CLEAN,stdout=log,stderr=log,start_new_session=True)
                 watcher=start_watch(journal,log);name=journal.claim()['container_name']
@@ -92,6 +100,7 @@ def fault_cases(parent,image,source,run_id):
                                 if time.monotonic()>end:raise
                                 time.sleep(.1)
                             finally:conn.close()
+                        journal.write('endpoint',{'port':port})
                         subprocess.run(['docker','network','disconnect','bridge',identity],stdout=log,stderr=log,
                                        check=True,timeout=5)
                         conn=http.client.HTTPConnection('127.0.0.1',port,timeout=.5)
@@ -99,7 +108,11 @@ def fault_cases(parent,image,source,run_id):
                             conn.request('GET','/');conn.getresponse();raise AssertionError('network remained available')
                         except OSError:report['network_loss_observed']=True
                         finally:conn.close()
-                    owner.kill();owner.wait(timeout=5)
+                        owner.wait(timeout=5)
+                        assert owner.returncode==2 and journal.read('owner-network-failure')
+                        report['owner_observation']=journal.read('owner-network-failure')
+                    else:
+                        owner.kill();owner.wait(timeout=5)
                     report['owner_exit_code']=owner.returncode
                 watcher.wait(timeout=20)
                 result=journal.read('watcher-cleanup')
