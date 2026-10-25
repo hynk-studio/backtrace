@@ -913,3 +913,24 @@ source/run and amended contract; start watch before owner and require its fresh
 armed acknowledgement before the only create. No automatic second paid allocation,
 merge, issue closure, competition submission or training. If qualifying stock is
 absent, report the exact blocker and keep the allocation unconsumed.
+
+
+Final Draft #28 free qualification: run40227646365 at
+a8ae2765e9b57a408be3e3930b3a69a977601535, contract
+93e17e7c04b9907ef44bb0b961af15596a91dc80d332a767e4923964a05b957a.
+All511 native Linux tests, nine authored slots/54 requests, full246-wheel serving
+install, unchanged143 CPU packages, independent export/deletion and post-deletion
+CPU evaluation passed. Owner audit checked270 private/162 export records,
+182 source hashes and15 actual JUnit files. Retain failed40225335406 and the
+intermediate successful40226183282; the final quota guard is prospective, not
+an attributed cause of those outcomes. Read docs/research-reduced9-20261026.md.
+The latest read at2026-10-26 05:01:17 KST found USD4.9937691886, zero spend/Pods,
+autopay off and no exact stock in any of the four queried regions. No provider
+allocation, top-up, paid permit or paid start/watch branch occurred. All61 baseline
+heads are unchanged; new state contains12 free metadata blobs only. The owner's
+accepted single allocation remains unconsumed. Continue the same accepted scope
+without asking again once fresh account/stock/quota gates pass; never reuse stale
+quotes, reset a consumed claim, automatically repeat a paid allocation, merge,
+close #1, submit or train. All nine actual model slots are NOT_RUN. No stock polling
+automation was created. Preserve the qualified182 operational bytes if adding
+result documentation; operational changes need renewed exact-source qualification.

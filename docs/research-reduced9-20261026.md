@@ -43,10 +43,42 @@ an agent sandbox. Completed negative evaluations are retained as negative result
 missing or timed-out patches keep their denominator. Authored CPU qualification
 uses harmless fixture patches and never constitutes real model evidence.
 
-Implementation and verification are in progress. All real-model slots are NOT_RUN.
-The new state namespace and paid start/watch branches are not created until their
-corresponding free preparation or qualified launch gates are satisfied. R3 training
-remains separate; merge, Issue #1 closure and competition submission are excluded.
+Final free qualification passed at `a8ae2765e9b57a408be3e3930b3a69a977601535`,
+run [40227646365](https://github.com/hynk-studio/backtrace/actions/runs/40227646365).
+All511 native Linux tests, the frozen246-wheel serving install and unchanged143
+CPU packages, nine authored slots/54 matched requests, encrypted export and both
+independent two-read deletion proofs passed. Post-deletion evaluation passed three
+baseline/reference pairs and nine deliberately incorrect fixture patches. These
+negative fixture outcomes demonstrate evaluation; they are not real model scores.
+Independent inspection checked270 private records,162 export records,182 exact
+source hashes and15 actual JUnit files. Both live GitHub probes passed.
+
+The final read-only observation at **2026-10-26 05:01:17 KST** showed balance
+**USD4.9937691886**, current spend0, autopay off and zero Pods. No exact stock was
+available in EU-RO-1, CA-MTL-3, US-KS-2 or US-MO-1. The available EU/Canada quotes
+at19:28:51Z disappeared by19:41:42Z; they must not be reused as current stock.
+The reduced budget fits the observed credit, but execution is blocked on fresh
+stock. No provider allocation or top-up occurred; all nine real-model slots remain
+NOT_RUN and there is no effect estimate.
+
+The accepted single-use authorization remains **unconsumed**. No source-bound
+paid permit or new paid start/watch branch was written. The new state branch
+contains only12 free handshake metadata blobs in three separate namespaces.
+All61 pre-task branch heads are unchanged. A later continuation of this same
+accepted scope does not require repeated owner approval; it does require a fresh
+account/offer, exact-source permit, current quota headroom and independent armed
+watcher. No automatic stock monitor or paid retry was scheduled.
+R3 training stays separate; merge, Issue #1 closure and submission are excluded.
+
+Retain failed run40225335406: the serving/execution/deletion path passed, but the
+private coordinator umask made the evaluator path-only overlay unreadable to
+UID65533. Logs showed missing pytest and poetry/hatchling build backends. Explicit
+read permission fixed that file; full run40226183282 then passed. A separate
+prospective review of long-running API volume led to the final quota guard below.
+The local509-test run had12 procfs/PID-namespace failures/errors, three frozen-pip
+byte errors and four skips; it is not represented as a local pass. The authoritative
+native Linux run passed all511 tests. See the adjacent results JSON for identities.
+
 
 ## Long-run GitHub API allowance
 
@@ -67,3 +99,9 @@ A240-second heartbeat accommodates the slower loop, with the unchanged300-second
 cleanup reserve and allocation-inclusive deadline. Allow210 seconds after the
 owner's deletion receipt for the independent watcher's second absence read;
 this wait and subsequent CPU evaluation occur after resource deletion.
+
+The production API cadence is conservative: the final live probes actually
+observed a5,000-call core limit, with4,958/4,959 remaining. These are historical
+observations, not a reusable allowance. Launch reads authoritative fresh headers.
+The scheduled ceilings are enforced by the controllers, not a provider-native
+hard dollar stop; any actual attempt must retain final account and deletion proof.
