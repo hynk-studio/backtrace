@@ -1,0 +1,57 @@
+{
+  "checks": {
+    "host_namespace_reference": true,
+    "image_namespace_entry": false,
+    "required_tools": false,
+    "root_image_entry": true
+  },
+  "cleanup": {
+    "absence_reads": 2,
+    "container_id": null,
+    "name": "backtrace-free-full-setup-2758-research-probe",
+    "observations": [
+      {
+        "state": "ABSENT"
+      },
+      {
+        "state": "ABSENT"
+      }
+    ],
+    "request": {
+      "outcome": "ACKNOWLEDGED",
+      "returncode": 0
+    },
+    "seconds": 1.044,
+    "status": "PASS"
+  },
+  "gpu_allocations": 0,
+  "host_namespace_entry": {
+    "exit_code": 0,
+    "stderr": ""
+  },
+  "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+  "image_id": "sha256:4638f27bc2a17c4487d2dcb57e0dca10c9cf6601ee6bf849162b58f1d8b1ee8e",
+  "model_files_transferred": 0,
+  "observed": {
+    "effective_capabilities": "00000000a80425fb",
+    "namespace_entry": {
+      "exit_code": 1,
+      "stderr": "unshare: unshare failed: Operation not permitted\n"
+    },
+    "no_new_privileges": "1",
+    "python": "3.12.3",
+    "tools": {
+      "ip": null,
+      "nsenter": "/usr/bin/nsenter",
+      "setpriv": "/usr/bin/setpriv",
+      "unshare": "/usr/bin/unshare"
+    },
+    "uid": 0
+  },
+  "provider_configuration": "NOT OBSERVED; default OCI replica only",
+  "run_id": "40157265702",
+  "scope": "FREE_EXACT_IMAGE_DEFAULT_OCI_PREREQUISITES",
+  "source_sha": "3af0362065f88076c0f3e65d57ffdfeac4220e27",
+  "source_sha256": "43ddfc38f826c2f40fdb9225d9edb669422a6dfdf3cb340e9a0d5d2ff19c8284",
+  "status": "BLOCKED"
+}

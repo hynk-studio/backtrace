@@ -743,3 +743,39 @@ heads and consumed paid scopes; GPU image/model/cache identity and finite cost/
 lifecycle preparation remain gates. Submitted patches survive namespace stop;
 unsubmitted fallback diffs are not qualified by these completed-slot fixtures.
 No GPU/model/training/merge/submission/issue closure occurred in this CPU work.
+
+The owner next instructed **단계별로 진행해줘** on 2026-10-25 after a status
+report naming the verifier amendment as the first step and a finite GPU proposal
+as the second. Continue on `bt-001-research-verifier-amendment-20261025`, stacked
+on #23. Apply the previously reviewed narrow version-skip research policy, retain
+the original official verdict, qualify all six control pairs and all 18 authored
+slots, and prepare remaining deployment/lifecycle/cost conditions. The explicit
+v3 overlay binds the unchanged v2 protocol, task selection and assets. No prompt,
+budget, task denominator or source test changes. This instruction authorizes
+free implementation and qualification; no finite paid proposal has yet been
+approved. Preserve every prior branch, receipt and consumed claim. No provider
+create, paid watcher, training, merge, submission or issue closure.
+
+Draft #24 completes the narrow research-verifier qualification in run
+40157211207 at e6dae18ca7d1a5d28baaa0f17b7b844d3fdeed7c: 453 Linux tests,
+six baseline/reference pairs, 18 isolated authored slots, 18 isolation controls
+and 11 amendment rejection controls passed. The first run 40156487747 is retained:
+the official underscore-prefix alias conflated the skipped and passing sibling.
+The corrected research policy checks exact function/module identities, retaining
+original JUnit and official verdicts. All 242 private records, 12 JUnit counts/
+hashes, 18 patches, 29 wheels and 13 operational hashes were independently checked.
+
+Free exact-image probe 40157265702 at 3af0362065f88076c0f3e65d57ffdfeac4220e27
+entered the frozen image under default OCI capabilities and observed namespace
+entry denied, `ip` missing and Python3.12.3. Host namespace entry and two-read
+container cleanup passed. This is BLOCKED deployment evidence, not an observed
+Runpod capability profile. Preserve first probe 40156890457 (digest/name check
+failure before container entry). Read docs/research-pilot-next-stage-20261025.md.
+The next free implementation is native-CPU isolated tools/evaluation plus a
+GPU-only inference server through authenticated transport; bridge/cache/lifecycle
+and full-runner timeout controls remain unqualified. The three-hour/USD6 pilot
+proposal is not authorized or launchable; do not request paid approval before
+those concrete implementation conditions are resolved. All18 real-model slots
+remain NOT_RUN, all55 prior branches/claims are unchanged, and no GPU/model/
+training/merge/submission occurred. Preserve all executed operational hashes in
+docs-only result updates; historical workflow failures must not be rewritten.

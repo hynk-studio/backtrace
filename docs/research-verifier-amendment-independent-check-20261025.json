@@ -1,0 +1,188 @@
+{
+  "ciphertext_identity": true,
+  "controls": [
+    {
+      "control": "unmodified-baseline",
+      "counts": {
+        "errors": 0,
+        "failures": 5,
+        "skipped": 13,
+        "tests": 220
+      },
+      "junit_sha256": "74f28ecd3a0ef34987255c4ce96f8e76a3e27dc879dbcfc0c52107aeb3384685",
+      "official_resolved": false,
+      "research_resolved": false,
+      "status": "PASS",
+      "task": "requests_7309"
+    },
+    {
+      "control": "public-reference-control",
+      "counts": {
+        "errors": 0,
+        "failures": 0,
+        "skipped": 13,
+        "tests": 220
+      },
+      "junit_sha256": "8a68aada70346db875656d1bfc738565b5015232c1038add6ad34afef4af2bb2",
+      "official_resolved": true,
+      "research_resolved": true,
+      "status": "PASS",
+      "task": "requests_7309"
+    },
+    {
+      "control": "unmodified-baseline",
+      "counts": {
+        "errors": 0,
+        "failures": 1,
+        "skipped": 1,
+        "tests": 21
+      },
+      "junit_sha256": "0e1e9b1398c10c34c876bb802e7ce3eb62dd8226588cdd3e6126922d7d7d3019",
+      "official_resolved": false,
+      "research_resolved": false,
+      "status": "PASS",
+      "task": "rich_3486"
+    },
+    {
+      "control": "public-reference-control",
+      "counts": {
+        "errors": 0,
+        "failures": 0,
+        "skipped": 1,
+        "tests": 21
+      },
+      "junit_sha256": "bc51d62d6781e7a4dc70a88e4e0656dd606284d73ede180aabaec46a70ee8997",
+      "official_resolved": false,
+      "research_resolved": true,
+      "status": "PASS",
+      "task": "rich_3486"
+    },
+    {
+      "control": "unmodified-baseline",
+      "counts": {
+        "errors": 0,
+        "failures": 5,
+        "skipped": 0,
+        "tests": 24
+      },
+      "junit_sha256": "b24cb7cee3b4a15dfc7b5b6de7aab5e770b3006928c5af252a93423b5bbd3294",
+      "official_resolved": false,
+      "research_resolved": false,
+      "status": "PASS",
+      "task": "httpx_3672"
+    },
+    {
+      "control": "public-reference-control",
+      "counts": {
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0,
+        "tests": 24
+      },
+      "junit_sha256": "9809a7528e3b2e2f3cc66256560f6e70a31541244d51452669d066bac81d5e76",
+      "official_resolved": true,
+      "research_resolved": true,
+      "status": "PASS",
+      "task": "httpx_3672"
+    },
+    {
+      "control": "unmodified-baseline",
+      "counts": {
+        "errors": 0,
+        "failures": 1,
+        "skipped": 0,
+        "tests": 1
+      },
+      "junit_sha256": "0e573e5b03cbcb4af775e147c9bfb36f241c3f4df58b73337dea44a1a3245b5c",
+      "official_resolved": false,
+      "research_resolved": false,
+      "status": "PASS",
+      "task": "requests_7315"
+    },
+    {
+      "control": "public-reference-control",
+      "counts": {
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0,
+        "tests": 1
+      },
+      "junit_sha256": "7e028363bc4871824b3bc39028acf2de0bb86ab89ca512ca3501798d2274581c",
+      "official_resolved": true,
+      "research_resolved": true,
+      "status": "PASS",
+      "task": "requests_7315"
+    },
+    {
+      "control": "unmodified-baseline",
+      "counts": {
+        "errors": 0,
+        "failures": 1,
+        "skipped": 0,
+        "tests": 82
+      },
+      "junit_sha256": "af6de193b288375178ffdce34a840bca60bc47dfbcbc311fd0395be4c27c748a",
+      "official_resolved": false,
+      "research_resolved": false,
+      "status": "PASS",
+      "task": "rich_3067"
+    },
+    {
+      "control": "public-reference-control",
+      "counts": {
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0,
+        "tests": 82
+      },
+      "junit_sha256": "3e12dfb371656db9e183ba8dbb219af1004857957583ee0c11cab8d4102a4ee5",
+      "official_resolved": true,
+      "research_resolved": true,
+      "status": "PASS",
+      "task": "rich_3067"
+    },
+    {
+      "control": "unmodified-baseline",
+      "counts": {
+        "errors": 0,
+        "failures": 1,
+        "skipped": 2,
+        "tests": 340
+      },
+      "junit_sha256": "0aded1aa416c73ea0a491387742ad48cf72346af95e390471f10182417db5587",
+      "official_resolved": false,
+      "research_resolved": false,
+      "status": "PASS",
+      "task": "requests_7502"
+    },
+    {
+      "control": "public-reference-control",
+      "counts": {
+        "errors": 0,
+        "failures": 0,
+        "skipped": 2,
+        "tests": 340
+      },
+      "junit_sha256": "91488819a3e077f3b50a396c88a92fe2450f25b51d7f3f37475440637a323561",
+      "official_resolved": true,
+      "research_resolved": true,
+      "status": "PASS",
+      "task": "requests_7502"
+    }
+  ],
+  "dependency_wheels": 29,
+  "fixture_patches": 18,
+  "http_attempts": 108,
+  "implementation_hashes": 13,
+  "junit_records": 12,
+  "private_file_count": 242,
+  "private_plaintext_bytes": 5668277,
+  "provider_operations": 0,
+  "qualification_status": "PASS",
+  "real_model_runs": 0,
+  "rich_applicable_regression_failed_before_passed_after": true,
+  "run_id": "40157211207",
+  "runtime_exactly_unchanged": 143,
+  "source_sha": "e6dae18ca7d1a5d28baaa0f17b7b844d3fdeed7c",
+  "status": "PASS"
+}

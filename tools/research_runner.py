@@ -86,6 +86,8 @@ def run_slot(inputs, output, identifier, arm, upstream_port, wheels, *, isolatio
               'agent_task_sha256': identity['agent_task_sha256'], 'status': 'INCOMPLETE',
               'verification': 'NOT RUN', 'upstream': 'CALLER_PROVIDED_LOOPBACK',
               'os_isolation': 'NOT QUALIFIED; CPU fixture only'}
+    from tools.research_verifier_policy import identity as evaluation_identity
+    result['evaluation_protocol'] = evaluation_identity()
     try:
         with gateway(ledger, upstream_port) as port:
             adapters = discover_adapters(sample)

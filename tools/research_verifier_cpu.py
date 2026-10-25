@@ -20,6 +20,7 @@ from tools.direct_delivery import pull
 from tools.research_isolation import Isolation, bounded_child
 from tools.research_runtime import prepare as prepare_runtime
 from tools.linux_runtime import BOOTSTRAP, offline_child
+from tools.research_verifier_policy import identity
 
 
 def dependencies(root, python, env):
@@ -56,7 +57,8 @@ def qualify(inputs, output):
     if os.getuid() != 0: raise ValueError('root coordinator required')
     report = {'status': 'INCOMPLETE', 'source_sha': os.environ.get('GITHUB_SHA'),
         'run_id': os.environ.get('GITHUB_RUN_ID'), 'kind': 'SELECTED_VERIFIER_AND_ISOLATION_CPU',
-        'real_model_runs': 0, 'provider_operations': 0, 'stages': {}}
+        'real_model_runs': 0, 'provider_operations': 0, 'stages': {},
+        'evaluation_protocol': identity()}
     retained = inputs / 'verifier-evidence'; retained.mkdir(mode=0o700)
     deadline = time.monotonic() + 1800
     with tempfile.TemporaryDirectory(prefix='backtrace-research-', dir='/var/tmp') as temp:
@@ -127,7 +129,8 @@ def qualify(inputs, output):
     sources = ['tools/research_isolation.py', 'tools/research_isolation_probe.py', 'tools/research_verifier.py',
         'tools/research_verifier_cpu.py', 'tools/research_fixture.py', 'tools/research_runner.py',
         'tools/research_assets.py', 'tools/research_runtime.py', 'tools/research_meter.py',
-        'docs/research-evaluator-dependencies.json', '.github/workflows/research-verifier-cpu.yml']
+        'docs/research-evaluator-dependencies.json', '.github/workflows/research-verifier-cpu.yml',
+        'tools/research_verifier_policy.py', 'docs/research-verifier-amendment-20261025.json']
     report['implementation'] = {p: c.digest((c.ROOT/p).read_bytes()) for p in sources}
     c._new_output(output, c.encoded(report))
     return report

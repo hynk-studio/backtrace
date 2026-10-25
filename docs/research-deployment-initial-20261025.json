@@ -1,0 +1,20 @@
+{
+  "cleanup": {
+    "error_type": "ValueError",
+    "status": "FAIL"
+  },
+  "error_type": "ValueError",
+  "gpu_allocations": 0,
+  "host_namespace_entry": {
+    "exit_code": 0,
+    "stderr": ""
+  },
+  "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+  "model_files_transferred": 0,
+  "provider_configuration": "NOT OBSERVED; default OCI replica only",
+  "run_id": "40156890457",
+  "scope": "FREE_EXACT_IMAGE_DEFAULT_OCI_PREREQUISITES",
+  "source_sha": "28fe04126bbd8c8e3fae9d7aac6b91e52d2805da",
+  "source_sha256": "96657d39ba0bfd539924b27a85266d05e36e96228db029590c50f42be467e4d0",
+  "status": "FAIL"
+}
