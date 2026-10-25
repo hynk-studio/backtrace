@@ -813,3 +813,19 @@ Next free work is a new immutable inference-only delivery/start and owner/watche
 export/deletion lifecycle, with the pinned full serving closure. Do not treat
 this bridge test or the old USD6/3h proposal as a paid authorization. All 18 real
 model slots remain NOT_RUN; R3 training remains separate and need not await R2.
+
+## BT-001 inference-only serving lifecycle (2026-10-25 KST)
+
+The owner instructed **계속 진행해** after the Draft #25 status report.
+Continue free serving delivery/start/stop and cleanup integration on
+`bt-001-research-serving-lifecycle-20261025`, stacked on #25, with one new
+Draft PR. Rehearse the full 246-wheel serving closure in the frozen image,
+authenticated transfer, the existing 18-slot native CPU runner, encrypted
+export and an independent cleanup process. Keep task/evaluator inputs and
+the TLS client private key outside the serving payload. Free authored HTTP
+responses and Docker bridge publication cannot qualify GPU/model/provider
+network behavior. New CPU rehearsal namespaces are not paid authorization.
+Preserve all historical scientific/operational sources, prior branches and
+consumed claims. Do not create a provider resource, launch a paid watcher,
+merge, close #1 or submit. The distributed provider entry and fresh finite
+paid proposal remain separate gates after this free implementation.
