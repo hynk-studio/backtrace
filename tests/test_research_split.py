@@ -16,6 +16,8 @@ from tools.research_split import Endpoint, credentials, fingerprint, inference_p
 from tests.test_research_meter import request, response
 from tools.research_split_sequence import sequence
 from tools.research_split_server import observed_configuration, MODEL_PATH
+from tools.research_runner import recover_submission
+from tools import research_comparison as comparison
 
 
 @contextlib.contextmanager
@@ -177,6 +179,25 @@ class SequenceTests(unittest.TestCase):
         for value in (True,None,0):
             config.cache_config.enable_prefix_caching=value
             with self.assertRaises(ValueError):observed_configuration(config)
+
+
+class SubmissionRecoveryTests(unittest.TestCase):
+    def test_api_error_empty_return_recovers_exact_acknowledged_submission(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            path=Path(temporary)/'checkpoint.json';patch='diff --git a/marker b/marker\n+fixture\n'
+            saved={'source':'ORIGINAL_SUBMIT_PATCH','instance_id':'fixture_1','arm':'R0',
+                'candidate_sha256':'a'*64,'patch':patch,'bytes':len(patch.encode()),
+                'sha256':comparison.digest(patch.encode())}
+            path.write_bytes(comparison.encoded(saved))
+            result,receipt=recover_submission('',patch,path,'fixture_1','R0','a'*64)
+            self.assertEqual(result,patch)
+            self.assertEqual(receipt['source'],'ORIGINAL_SUBMIT_CHECKPOINT')
+            self.assertEqual(receipt['after_deadline_workspace_commands'],0)
+            _,receipt=recover_submission(patch,patch,path,'fixture_1','R0','a'*64)
+            self.assertEqual(receipt['source'],'OFFICIAL_RETURN')
+            for key,value in (('arm','R1'),('candidate_sha256','b'*64),('sha256','0'*64),('patch',patch+'extra')):
+                path.write_bytes(comparison.encoded({**saved,key:value}))
+                with self.assertRaises(ValueError):recover_submission('',patch,path,'fixture_1','R0','a'*64)
 
 
 if __name__=='__main__': unittest.main()

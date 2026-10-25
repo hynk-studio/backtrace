@@ -39,7 +39,18 @@ None/True/False. The narrow pinned parser slice is executed independently; no
 claim is made that a GPU engine was initialized. Run 40160571189 failed YAML
 parsing before any job and was corrected without a paid operation.
 
-Full free qualification is pending. Its topology is native isolated official
+Initial integrated run [40161191638](https://github.com/hynk-studio/backtrace/actions/runs/40161191638)
+at c198bc2ec0271d81e9ed2f481d103fd8adc4b871 passed 463 Linux tests, all 18 normal
+slots, retry/compaction, pre-submit deadline, isolation, official server command
+and outer-kill checkpoint checks. It intentionally remains FAIL: the post-submit
+API-error path in the original runner skipped its final patch assignment and
+returned an empty string, despite a valid acknowledged 222-byte submission.
+The exact submission checkpoint is now checked against context, candidate and
+slot identity before recovering that artifact. The TIMEOUT/error status remains;
+no workspace command or model call occurs after the deadline. Requalification
+is required. Run 40161499824 was superseded while pending, with no executed job.
+
+The qualification topology is native isolated official
 runner -> TLS forwarder in the exact image -> native authored HTTP responder.
 The container uses host networking to reach that test responder, drops every
 capability, has a read-only root and no task/evaluator mount or client private key.

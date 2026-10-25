@@ -16,6 +16,24 @@ from tools.research_meter import Ledger, gateway
 from tools.research_official import MODEL, MODEL_PATH, materialize_candidate
 
 
+def recover_submission(returned, submitted, checkpoint, identifier, arm, candidate_sha256):
+    """Recover only an acknowledged original-tool submission, never a late diff.
+
+    The retained runner's outer API-error path can skip its submitted-patch
+    assignment and return ''. Validate the atomic checkpoint against context and
+    slot identity while preserving the failure status and original return hash.
+    """
+    saved=c.parse(c.read_file(Path(checkpoint),32*1024**2))
+    if (saved.get('source')!='ORIGINAL_SUBMIT_PATCH' or saved.get('instance_id')!=identifier
+            or saved.get('arm')!=arm or saved.get('candidate_sha256')!=candidate_sha256
+            or not isinstance(submitted,str) or saved.get('patch')!=submitted
+            or saved.get('bytes')!=len(submitted.encode()) or saved.get('sha256')!=c.digest(submitted.encode())):
+        raise ValueError('original submission checkpoint identity mismatch')
+    return submitted, {'source':'ORIGINAL_SUBMIT_CHECKPOINT' if returned!=submitted else 'OFFICIAL_RETURN',
+        'official_return_sha256':c.digest(returned.encode()),'checkpoint_sha256':saved['sha256'],
+        'after_deadline_workspace_commands':0}
+
+
 def checked_slot(inputs, identifier, arm):
     protocol = c.load_protocol()
     selection = c.parse((c.ROOT / 'docs/research-selection-20261024.json').read_bytes())
@@ -84,6 +102,7 @@ def run_slot(inputs, output, identifier, arm, upstream_port, wheels, *, isolatio
                 # acknowledgement; an outer kill may prevent runner finalizers.
                 patch = self.submitted_patch.encode()
                 checkpoint = {'instance_id': identifier, 'arm': arm,
+                    'candidate_sha256': expected['archive_sha256'],
                     'source': 'ORIGINAL_SUBMIT_PATCH', 'patch': self.submitted_patch,
                     'bytes': len(patch), 'sha256': c.digest(patch), 'accounting': ledger.report(),
                     'namespace_ids': [] if isolation is None else
@@ -139,6 +158,9 @@ def run_slot(inputs, output, identifier, arm, upstream_port, wheels, *, isolatio
             snapshot, base, reconstruction = resolve_task_snapshot_paths(config.snapshots_dir, identifier, task.repo)
             patch, error, trace = asyncio.run(run_agent_sandbox(manager, config, task, snapshot,
                 base_snapshot_path=base, patch_path=reconstruction, task_index=1, total_tasks=1, context=context))
+            if context.patch_submitted:
+                patch,result['patch_recovery']=recover_submission(patch,context.submitted_patch,
+                    output/'submitted-checkpoint.json',identifier,arm,expected['archive_sha256'])
             c._new_output(output / 'agent.patch', patch.encode())
             save_trace_artifact(trace, config.results_dir, identifier)
             result.update(status='COMPLETED' if not error and context.patch_submitted else 'INCOMPLETE',
