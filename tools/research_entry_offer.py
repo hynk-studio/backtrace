@@ -58,7 +58,7 @@ if __name__=='__main__':
             'allocation_requests':0,'settings_changed':False}
     try:
         result['availability']=inspect()
-        result['pods']=[{k:p.get(k) for k in ('id','name','status')} for p in control.RunpodAPI(os.environ['RUNPOD_API_KEY']).list()]
+        result['pods']=[{k:p.get(k) for k in ('id','name','status')} for p in control.RunpodAPI(os.environ['RUNPOD_API_KEY'].strip()).list()]
         result['status']='PASS'
     except Exception as error:result.update(status='UNAVAILABLE',error_type=type(error).__name__)
     destination.write_text(json.dumps(result,sort_keys=True,indent=2)+'\n')

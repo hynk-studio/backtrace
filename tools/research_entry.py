@@ -13,6 +13,7 @@ import subprocess
 import sys
 import time
 import uuid
+import re
 
 from tools import research_entry_contract as c, runpod_control as control
 from tools.cloud_bootstrap import observe
@@ -24,15 +25,32 @@ def defaults():
         heartbeat_seconds=60,poll_seconds=10,unclaimed_seconds=600,unknown_create_seconds=90)
 
 
+def progress(event, **fields):
+    print(json.dumps({'research_entry':event,**fields},sort_keys=True),file=sys.__stdout__,flush=True)
+
+
 def binding(claim):return c.digest(claim)
 
 
 def check_claim(claim, source, namespace):
-    if (claim['source_sha']!=source or claim['namespace']!=namespace
+    fields={'namespace','source_sha','contract_sha256','authorization_id','owner_run_id',
+        'watcher_run_id','requested_at','attempt','name','region','request_sha256','costs',*defaults()}
+    if (not isinstance(claim,dict) or set(claim)!=fields
+            or claim['source_sha']!=source or claim['namespace']!=namespace
             or claim['contract_sha256']!=c.digest(c.CONTRACT)
             or claim['name']!='backtrace-a100-'+claim['attempt']
-            or len(claim['attempt'])!=32 or claim['owner_run_id']==claim['watcher_run_id']):
+            or not re.fullmatch('[0-9a-f]{32}',claim['attempt'])
+            or not re.fullmatch('[0-9a-f]{64}',claim['request_sha256'])
+            or claim['owner_run_id']==claim['watcher_run_id']):
         raise StateError('claim identity mismatch')
+    for key in defaults():
+        if not 0<c.number(claim[key])<=defaults()[key]:raise StateError('claim bounds invalid')
+    if not (claim['setup_seconds']<claim['total_seconds'] and claim['cleanup_seconds']<claim['total_seconds']
+            and c.number(claim['requested_at'])>0):raise StateError('claim deadline invalid')
+    if namespace==c.PAID_NAMESPACE and any(claim[k]!=v for k,v in defaults().items()):
+        raise StateError('paid lifetime contract changed')
+    for value in claim['costs'].values():control.money(value)
+    control.validate_region(claim['region'])
     return claim
 
 
@@ -53,8 +71,9 @@ def reconcile(api, claim, pod_id, *, wall=time.time, sleep=time.sleep, possible_
     """Two complete observations. Failed GET/list/delete never proves absence."""
     begun=wall();total_end=claim['requested_at']+claim['total_seconds']
     end=min(begun+claim['cleanup_seconds'],total_end) if pod_id or not possible_create else total_end
+    monotonic_end=time.monotonic()+min(claim['total_seconds'],max(0,end-begun))
     count=0;history=[];identity=pod_id
-    while wall()<end:
+    while wall()<end and time.monotonic()<monotonic_end:
         try:
             listed=api.list();matches=[p for p in listed if p.get('name')==claim['name']]
             if len(matches)>1:raise StateError('multiple exact-name resources')
@@ -113,7 +132,7 @@ def watch(store, api, source, run_id, *, limits=None, wall=time.time, sleep=time
         elif wall()-started>=limits['unclaimed_seconds']:
             return {'status':'NO_CLAIM','provider_create_requests':0}
         else:sleep(limits['poll_seconds'])
-    last=wall()
+    last=wall();monotonic_end=time.monotonic()+max(0,claim['requested_at']+claim['total_seconds']-wall())
     while reason is None:
         try:
             lease_sha=store.write('watcher',{'namespace':store.namespace,'source_sha':source,
@@ -135,9 +154,11 @@ def watch(store, api, source, run_id, *, limits=None, wall=time.time, sleep=time
                 pod_id=row[0]['pod_id']
             beat=store.read('heartbeat');now=wall()
             if now<last:reason='CLOCK_REVERSED'
+            elif time.monotonic()>=monotonic_end-claim['cleanup_seconds']:reason='MONOTONIC_DEADLINE'
             elif store.read('owner-done'):reason='OWNER_DONE'
             elif (not beat or beat[0]['claim_sha256']!=binding(claim)
                     or not 0<=now-beat[0]['at']<=claim['heartbeat_seconds']):reason='HEARTBEAT_LOST'
+            elif beat[0]['phase'] not in ('setup','workload','export'):reason='INVALID_PHASE'
             else:reason=c.budget_reason(claim,beat[0]['phase'],now)
             if reason is None and pod_id:
                 if not c.resource_matches(api.get(pod_id),claim):reason='PROVIDER_CHANGED'
@@ -194,6 +215,7 @@ def execute(store, api, authorization, offer, initializer, configuration, direct
             'requested_at':wall(),'attempt':attempt,'name':request['name'],'region':offer['region'],
             'request_sha256':c.digest(request),'costs':price,**limits}
         stage='claim';store.write('claim',claim)
+        progress('claimed',mode='CPU_REPLICA' if replica else 'PAID',source_sha=source)
         beat_sha=store.write('heartbeat',{'claim_sha256':binding(claim),'at':wall(),'phase':'setup'})
         stage='independent_arm';end=wall()+min(30,limits['heartbeat_seconds'])
         while True:
@@ -206,11 +228,13 @@ def execute(store, api, authorization, offer, initializer, configuration, direct
         c.permit(authorization,source,wall(),replica=replica);c.costs(offer,authorization,wall())
         if wall()-claim['requested_at']>=30:raise StateError('claim/create deadline')
         stage='create';result['provider_create_requests']=1
+        progress('single_create',mode='CPU_REPLICA' if replica else 'PAID')
         created=api.create(request)  # The only POST /pods; never retry.
         control.RunpodAPI.valid_id(created.get('id'))
         if created.get('name')!=claim['name']:raise StateError('create identity mismatch')
         pod_id=created['id'];store.write('pod',{'claim_sha256':binding(claim),'pod_id':pod_id})
-        stage='bootstrap';first_worker=None
+        stage='bootstrap';first_worker=None;endpoint_identity=None
+        monotonic_start=time.monotonic();last_wall=wall();last_detail=None
         while True:
             require_watcher(store,source,wall(),limits,expected=watcher)
             c.require_run(store.run(run_id),run_id,source,c.OWNER,path='.github/workflows/research-entry-start.yml')
@@ -223,13 +247,26 @@ def execute(store, api, authorization, offer, initializer, configuration, direct
                     if state['claim_sha256']!=binding(claim) or not 0<=wall()-state['at']<=limits['heartbeat_seconds']:
                         raise StateError('worker heartbeat stale')
                     phase=state['phase']
+                    if phase not in ('setup','workload','export'):raise StateError('worker phase invalid')
+                    detail=state.get('detail',phase)
+                    if not isinstance(detail,str) or not re.fullmatch('[A-Za-z0-9_.-]{1,100}',detail):
+                        raise StateError('worker detail invalid')
+                    if detail!=last_detail:
+                        progress(detail,phase=phase,elapsed_seconds=int(wall()-claim['requested_at']));last_detail=detail
                 elif wall()-first_worker>=limits['heartbeat_seconds']:raise StateError('worker heartbeat missing')
             reason=c.budget_reason(claim,phase,wall())
+            if wall()<last_wall:reason='CLOCK_REVERSED'
+            last_wall=wall()
+            if time.monotonic()-monotonic_start>=limits['total_seconds']-limits['cleanup_seconds']:
+                reason='MONOTONIC_DEADLINE'
             if reason:raise StateError(reason)
             pod=api.get(pod_id)
             if not c.resource_matches(pod,claim):
                 raise StateError('assigned resource changed')
+            if endpoint_identity and c.digest(c.endpoints(pod))!=endpoint_identity:
+                raise StateError('provider endpoint changed during execution')
             if process is None:
+                if wall()-claim['requested_at']>=min(1200,limits['setup_seconds']):raise TimeoutError('bootstrap deadline')
                 observation=observe(pod,wall()-claim['requested_at'])
                 result['bootstrap']=observation
                 if observation['readiness']=='READY':
@@ -237,8 +274,8 @@ def execute(store, api, authorization, offer, initializer, configuration, direct
                     except (ValueError,KeyError,TypeError):endpoint=None
                     if endpoint:
                         stage='worker';first_worker=wall()
+                        endpoint_identity=c.digest(endpoint)
                         process=spawn_worker(directory,configuration,claim,endpoint)
-                elif wall()-claim['requested_at']>=min(1200,limits['setup_seconds']):raise TimeoutError('bootstrap deadline')
             beat_sha=store.write('heartbeat',{'claim_sha256':binding(claim),'at':wall(),'phase':phase},beat_sha)
             sleep(limits['poll_seconds'])
         result['worker_exit']=process.returncode
@@ -254,6 +291,7 @@ def execute(store, api, authorization, offer, initializer, configuration, direct
         result['status']='WORK_COMPLETE'
     except Exception as error:
         result['failure']={'stage':stage,'type':type(error).__name__}
+        progress('owner_failure',**result['failure'])
     finally:
         stop(process)
         if claim:
@@ -261,6 +299,7 @@ def execute(store, api, authorization, offer, initializer, configuration, direct
                 'provider_create_requests':result['provider_create_requests']})
             result['cleanup']=reconcile(api,claim,pod_id,wall=wall,sleep=sleep,
                 possible_create=result['provider_create_requests']!=0)
+            progress('owner_cleanup',status=result['cleanup']['status'])
             with contextlib.suppress(Exception):store.write('owner-cleanup',result['cleanup'])
             if result['status']=='WORK_COMPLETE' and result['cleanup']['status']=='DELETED':result['status']='PASS'
             else:result['status']='INCOMPLETE'

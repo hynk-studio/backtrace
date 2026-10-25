@@ -33,19 +33,22 @@ def write(path,value):
 
 
 def worker(plan):
-    root=Path(plan['directory']);work=root/'work';work.mkdir(mode=0o711)
+    root=Path(plan['directory']);work=c.traversable_directory(root/'work')
     output=Path(plan['output']);output.mkdir(mode=0o700,parents=True,exist_ok=True)
-    claim=plan['claim'];phase=['setup'];done=threading.Event();serving=None;prefix=None
+    claim=plan['claim'];phase=['setup'];detail=['ssh'];done=threading.Event();serving=None;prefix=None
     report={'status':'FAIL','authored_cpu':plan['authored_cpu'],'stages':{},'slots':None}
     until=claim['requested_at']+claim['total_seconds']
     setup_until=min(until-660,claim['requested_at']+claim['setup_seconds'])
+    monotonic_until=time.monotonic()+max(0,until-time.time())
+    monotonic_setup=time.monotonic()+max(0,setup_until-time.time())
     def beat():
         while not done.is_set():
-            write(root/'worker-status.json',{'claim_sha256':binding(claim),'phase':phase[0],'at':time.time()})
+            write(root/'worker-status.json',{'claim_sha256':binding(claim),'phase':phase[0],'detail':detail[0],'at':time.time()})
             done.wait(min(3,claim['heartbeat_seconds']/4))
     thread=threading.Thread(target=beat,daemon=True);thread.start()
     def remaining(cap, *, setup=True):
-        left=(setup_until if setup else until-claim['cleanup_seconds'])-time.time()
+        left=min((setup_until if setup else until-claim['cleanup_seconds'])-time.time(),
+            (monotonic_setup if setup else monotonic_until-claim['cleanup_seconds'])-time.monotonic())
         if left<=0:raise TimeoutError('phase reserve exhausted')
         return min(cap,left)
     previous={}
@@ -68,6 +71,7 @@ def worker(plan):
             manifest=Path(plan['payload_manifest'])
             command=ssh_command(endpoint['host'],endpoint['port'],material/'owner-key',known,REMOTE,c.digest(manifest.read_bytes()))
             prefix=command[:-1];ssh.wait_for_command(prefix,['true'],remaining(60),log=log)
+            detail[0]='source_delivery'
             report['stages']['delivery']=push(plan['payload'],manifest,command,remaining(120))
             needed=sum(row['bytes'] for stream in plan['streams'].values() for row in json.loads(stream['manifest'])['files'])+16*1024**3
             base=("import os,sys,shutil,json;from pathlib import Path;"
@@ -78,6 +82,7 @@ def worker(plan):
             report['stages']['base']=json.loads(program(base).stdout)
             for kind in ('wheels','model'):
                 if kind=='model':
+                    detail[0]='runtime_install'
                     result=remote(['python3','-I',REMOTE+'/tools/research_serving_install.py',
                         '/root/backtrace/wheels',REMOTE+'/docs/linux-wheel-manifest.json',
                         '/root/backtrace/runtime',str(remaining(1200))],seconds=1250)
@@ -90,6 +95,7 @@ def worker(plan):
                         "x=torch.ones(1,device='cuda');assert x.item()==1;print(json.dumps({'cuda':'PASS'}))")
                     report['stages']['hardware']=json.loads(remote([PYTHON,'-I','-c',code]).stdout)
                 row=plan['streams'][kind]
+                detail[0]=kind+'_transfer'
                 code=("import sys,json;sys.path.insert(0,"+repr(REMOTE)+");from tools.direct_delivery import pull;"
                     "v=json.load(sys.stdin);print(json.dumps(pull('/root/backtrace/"+kind+"',"
                     "v['manifest'].encode(),v['sources'],v['sha256'],v['seconds'])))")
@@ -103,6 +109,7 @@ def worker(plan):
             else:base+=['--model-manifest',REMOTE+'/docs/research-entry-model-manifest.json']
             serving=subprocess.Popen(prefix+[shlex.join(base)],env=CLEAN,stdin=subprocess.DEVNULL,
                 stdout=log,stderr=log,start_new_session=True)
+            detail[0]='readiness'
             while True:
                 value=json.loads(program("from pathlib import Path;p=Path('/root/backtrace/run/ready.json');print(p.read_text() if p.is_file() else '{}')").stdout)
                 if value:break
@@ -118,6 +125,7 @@ def worker(plan):
             report['stages']['ready']={'status':'PASS','result':value,'endpoint_sha256':c.digest(plan['endpoint'])}
             phase[0]='workload'
             def slot(identifier,arm,seconds):
+                detail[0]=identifier+'-'+arm
                 destination=work/(identifier+'-'+arm)
                 row=bounded_child([plan['cpu_python'],'-I','-B',Path(__file__).resolve(),'--slot',
                     plan['inputs'],destination,plan['cpu_wheels'],root/'endpoint.json',identifier,arm],
@@ -135,12 +143,14 @@ def worker(plan):
             # Convert the allocation-inclusive wall deadline once to the runner's
             # monotonic clock. Sequence owns all 18 denominators and reserves.
             report['slots']=sequence(slot,deadline=time.monotonic()+max(0,until-time.time()))
-            report['status']='PASS' if report['slots']['all_slots_attempted'] else 'PARTIAL'
+            report['status']='PASS' if (report['slots']['all_slots_attempted'] and
+                all(row['status']!='INFRASTRUCTURE_FAILURE' for row in report['slots']['slots'])) else 'PARTIAL'
         except BaseException as error:
             report['failure']={'type':type(error).__name__,'phase':phase[0]}
             (root/'worker-error.log').write_text(traceback.format_exc())
         finally:
             phase[0]='export'
+            detail[0]='stop_export'
             # Preserve partial/no-result slots even after failed readiness.
             if report['slots'] is None:
                 report['slots']=sequence(lambda *_:None,deadline=time.monotonic())

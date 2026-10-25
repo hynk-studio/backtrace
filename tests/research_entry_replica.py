@@ -47,7 +47,8 @@ def authorization(source):
     now=time.time()
     return {'id':'cpu-replica-'+str(time.time_ns()),'source_sha':source,'contract_sha256':c.digest(c.CONTRACT),
         'qualification_run_id':'99','approved_at':now-1,'expires_at':now+3600,
-        'additional_cap':'6','cumulative_cap':'12','single_use':True,'mode':'CPU_REPLICA'}
+        'additional_cap':'6','cumulative_cap':'12','account_funded_total':'10','prior_spend_floor':'3',
+        'single_use':True,'mode':'CPU_REPLICA'}
 
 
 def offer():

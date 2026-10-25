@@ -40,6 +40,11 @@ def number(value):
     return value
 
 
+def traversable_directory(path):
+    """Permit path traversal under a private umask; files keep their own modes."""
+    path=Path(path);path.mkdir(mode=0o711);path.chmod(0o711);return path
+
+
 def source_files():
     paths = list(ROOT.glob('tools/*.py')) + list(ROOT.glob('tests/*.py'))
     paths += list((ROOT/'.github/workflows').glob('research-entry*.yml'))
@@ -52,7 +57,7 @@ def source_files():
 def permit(value, source_sha, now, *, replica=False):
     if not isinstance(value, dict) or set(value) != {'id', 'source_sha', 'contract_sha256',
             'qualification_run_id', 'approved_at', 'expires_at', 'additional_cap',
-            'cumulative_cap', 'single_use', 'mode'}:
+            'cumulative_cap', 'account_funded_total', 'prior_spend_floor', 'single_use', 'mode'}:
         raise ValueError('fresh explicit authorization required')
     if (value['mode'] != ('CPU_REPLICA' if replica else 'OWNER_APPROVED_PAID')
             or value['single_use'] is not True or value['source_sha'] != source_sha
@@ -64,7 +69,9 @@ def permit(value, source_sha, now, *, replica=False):
             or value['expires_at']-value['approved_at'] > 86400):
         raise ValueError('authorization source, mode or validity mismatch')
     if not (0 < control.money(value['additional_cap']) <= Decimal('6')
-            and 0 < control.money(value['cumulative_cap']) <= Decimal('12')):
+            and 0 < control.money(value['cumulative_cap']) <= Decimal('12')
+            and Decimal('10') <= control.money(value['account_funded_total']) <= Decimal('16.50')
+            and control.money(value['prior_spend_floor'])<=control.money(value['account_funded_total'])):
         raise ValueError('explicit finite spend limits required')
     return value
 
@@ -84,12 +91,14 @@ def costs(offer, authorization, now, *, seconds=10800):
     compute, storage, tax, fixed, balance = [control.money(offer[k]) for k in
         ('compute_per_hour','storage_per_hour','tax_rate','other_total','credit_balance')]
     hourly = (compute+storage)*(1+tax)
-    # Existing account was funded once with USD10. Do not infer spending after
-    # an unreviewed top-up, refund, or a changed account's accounting basis.
-    if balance > 10 or fixed != 0 or not 0 < hourly <= 2 or not 0 < seconds <= 10800:
+    # Funding and previously observed spend must be explicitly reviewed. A
+    # top-up must never make historical spending disappear from the calculation.
+    funded=control.money(authorization['account_funded_total'])
+    spent=funded-balance
+    if (balance>funded or spent<control.money(authorization['prior_spend_floor'])
+            or fixed != 0 or not 0 < hourly <= 2 or not 0 < seconds <= 10800):
         raise ValueError('unreviewed charges, account basis or hourly limit')
     maximum = hourly*Decimal(str(seconds))/3600
-    spent = Decimal(10)-balance
     if (maximum > control.money(authorization['additional_cap'])
             or maximum+spent > control.money(authorization['cumulative_cap'])
             or maximum+Decimal('.50') > balance):
@@ -97,7 +106,7 @@ def costs(offer, authorization, now, *, seconds=10800):
     return {'hourly_all_in':str(hourly),'maximum_all_in':str(maximum),
         'compute_per_hour':str(compute),'storage_per_hour':str(storage),
         'tax_rate':str(tax),'other_total':'0','spent_before':str(spent),
-        'initial_balance':str(balance), 'additional_cap':authorization['additional_cap'],
+        'initial_balance':str(balance),'funded_total':str(funded), 'additional_cap':authorization['additional_cap'],
         'cumulative_cap':authorization['cumulative_cap']}
 
 

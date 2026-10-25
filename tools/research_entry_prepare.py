@@ -13,7 +13,9 @@ from tools.research_verifier_cpu import readable_tree
 
 
 def prepare(root,inputs,output,*,authored_cpu):
-    root=Path(root);root.mkdir(mode=0o711)
+    from tools.research_entry import progress
+    progress('prepare_transport')
+    root=c.traversable_directory(root)
     private=root/'private';private.mkdir(mode=0o700)
     built=build(private/'transport')
     if not built['matches_prior_transport']:raise ValueError('transport pin changed')
@@ -26,12 +28,14 @@ def prepare(root,inputs,output,*,authored_cpu):
     rows['files'].append({'path':name,'bytes':len(model),'sha256':c.digest(model)})
     payload_manifest=private/'payload-manifest.json';payload_manifest.write_bytes(c.encoded(rows));payload_manifest.chmod(0o600)
     with resolver.kaggle_client() as client:
+        progress('resolve_serving_sources')
         streams={'wheels':{'manifest':manifest('wheels').decode(),'sha256':c.digest(manifest('wheels')),
                            'sources':resolver.resolve_wheels(client)}}
         if not authored_cpu:
             streams['model']={'manifest':model.decode(),'sha256':c.digest(model),'sources':resolver.resolve_model(client)}
+    progress('prepare_native_cpu_runtime')
     python,runtime=cpu_runtime(root/'cpu-runtime',Path(inputs)/'wheels');readable_tree(root/'cpu-runtime')
-    directory=root/'execution';directory.mkdir(mode=0o711)
+    directory=c.traversable_directory(root/'execution')
     # Worker credentials/logs stay in the private directory; tool subprocesses
     # traverse only the separate public work/runtime ancestors.
     configuration={'directory':str(directory),'inputs':str(inputs),'output':str(output),
