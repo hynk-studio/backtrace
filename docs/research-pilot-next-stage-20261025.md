@@ -11,6 +11,25 @@ allowlist. Neither failure establishes a provider capability limitation. The
 corrected probe uses the existing digest comparison and owned CPU-container name
 contract; a new actual execution is required. The original failure is retained.
 
+The corrected [actual probe 40157265702](https://github.com/hynk-studio/backtrace/actions/runs/40157265702)
+entered the exact image and observed **BLOCKED**, before model/runtime transfer.
+Native Linux namespace entry passed; default-OCI image entry as root failed with
+`Operation not permitted`. The image lacks `ip`, and reports Python 3.12.3
+(the independently qualified CPU evaluator is 3.12.14). Container cleanup passed
+two absence reads. The run's Linux suite passed 453 tests. This is an actual
+default-container replica result, not an observation of Runpod's capability profile.
+
+**Next implementation decision:** retain original agent tools and evaluator in
+the qualified native Linux CPU host, with the dedicated UIDs and namespaces
+already tested. Run only the inference server in the frozen GPU image. Connect
+the root-owned local request ledger to that server through authenticated pinned
+transport; selected commands must never reach this endpoint directly. This
+avoids depending on nested namespace privileges in the provider container.
+The bridge, server-only lifecycle, cache configuration and failure receipts still
+need implementation and free end-to-end qualification before a paid proposal is
+ready for approval. Do not weaken isolation or install arbitrary GPU packages
+as a response to this prerequisite failure.
+
 ## Proposed resource and cost envelope
 
 Use one non-interruptible A100 PCIe 80GB, one model server, 100 GB ephemeral disk,
@@ -43,10 +62,10 @@ No fresh balance or stock read was performed for this document.
 
 ## Work required before an approval-ready launch
 
-1. Run the new runner and isolation prerequisites in the exact GPU image. In
-   particular, native GitHub Linux PID/network namespace success does not prove
-   those capabilities exist in a provider container. Determine deployment
-   feasibility before a model transfer; do not silently remove isolation.
+1. Implement and qualify the split deployment above. The exact-image probe now
+   demonstrates why copying the host runner directly into a default provider-like
+   container is not qualified. Verify original tools on the CPU host and the
+   pinned full serving runtime in the GPU image, plus authenticated transport.
 2. Qualify cache fairness using the pinned server implementation. The proposed
    setting disables cross-slot prefix caching while retaining a fresh task-local
    ADK conversation/cache. A command-line flag or reset endpoint is not assumed

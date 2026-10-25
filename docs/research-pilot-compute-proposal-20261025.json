@@ -1,70 +1,76 @@
 {
-  "schema_version": 1,
-  "status": "PROPOSAL_NOT_AUTHORIZED_OR_LAUNCHABLE",
+  "allocation_inclusive_seconds": 10800,
+  "automatic_paid_retry": false,
+  "cache_policy_proposal": {
+    "agent_context": "Fresh child process, workspace, conversation and task-local context/compaction cache for every assigned slot.",
+    "cross_arm_data": "Never copy traces, results or workspaces into a later arm. Keep predetermined balanced order.",
+    "server_prefix_cache": "Disable across all arms, verify support against pinned vLLM source and record effective configuration before launch. Not yet implemented or qualified."
+  },
   "compute_authorization": "NONE",
-  "protocol": "R012-matched-pilot-v3-version-skip",
+  "cost_proposal": {
+    "currency": "USD",
+    "fresh_account_and_exact_quote": "NOT READ IN THIS FREE STEP",
+    "historical_limits": "The old USD8 cumulative ceiling and every one-task claim remain unchanged. Any new ceiling requires explicit approval; never infer it from this proposal.",
+    "maximum_additional_spend": "6.00",
+    "maximum_hourly_all_in": "2.00",
+    "new_project_cumulative_stop_proposal": "12.00",
+    "required_available_credit_including_reserve": "6.50",
+    "scope": "A ceiling, not a current price or forecast. Reject nonzero fixed charges, unbounded taxes or unpriced storage/network charges. No top-up or settings changes."
+  },
+  "deployment_architecture_proposal": {
+    "agent_and_evaluator": "Qualified native Linux CPU host with dedicated UIDs and PID/network namespaces; separate fresh processes and workspaces.",
+    "evidence": "Free exact-image/default-OCI run 40157265702 is BLOCKED: namespace entry exit1, ip missing. Actual provider capabilities remain unobserved.",
+    "gpu_allocation": "Inference server only in the frozen image; no selected shell commands or reference tests in the provider container.",
+    "transport": "Root-owned authenticated pinned transport to a loopback upstream; total request ledger remains the only agent client path. Full bridge integration NOT RUN."
+  },
   "hardware": "one NVIDIA A100 PCIe 80GB",
   "max_allocations": 1,
   "max_model_servers": 1,
-  "slots": 18,
-  "automatic_paid_retry": false,
-  "task_work_seconds": 300,
-  "task_child_seconds": 330,
-  "allocation_inclusive_seconds": 10800,
   "phase_caps_seconds": {
     "boot_install_model_readiness": 4200,
     "eighteen_task_children": 5940,
     "encrypted_export": 360,
     "provider_cleanup_and_absence_checks": 300
   },
-  "cost_proposal": {
-    "currency": "USD",
-    "maximum_hourly_all_in": "2.00",
-    "maximum_additional_spend": "6.00",
-    "required_available_credit_including_reserve": "6.50",
-    "new_project_cumulative_stop_proposal": "12.00",
-    "fresh_account_and_exact_quote": "NOT READ IN THIS FREE STEP",
-    "scope": "A ceiling, not a current price or forecast. Reject nonzero fixed charges, unbounded taxes or unpriced storage/network charges. No top-up or settings changes.",
-    "historical_limits": "The old USD8 cumulative ceiling and every one-task claim remain unchanged. Any new ceiling requires explicit approval; never infer it from this proposal."
-  },
-  "storage": {
-    "container_disk_gb": 100,
-    "persistent_volume_gb": 0,
-    "network_volume": null,
-    "cleanup": "Delete the allocation and temporary disk; two independent successful absence reads by owner and watcher."
-  },
-  "runtime_identity": {
-    "base_protocol": "docs/research-comparison-protocol.json",
-    "base_protocol_sha256": "1bd2ef8f356f8f4fbb6e7c1237e950ad14471a14e9e596d634d2e728b321b7d2",
-    "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
-    "full_runtime_packages": 246,
-    "model_asset": "google/gemma-4/Other/gemma-4-31b-it-qat-w4a16-ct/2",
-    "model_files": 8,
-    "weights_bytes": 23265352448,
-    "dtype": "bfloat16",
-    "tensor_parallel_size": 1,
-    "max_model_len": 32768,
-    "adapters": [],
-    "vram_requirement": "Observe 81920 MiB-class A100 and record real server memory use; no new-run measurement is claimed."
-  },
-  "cache_policy_proposal": {
-    "agent_context": "Fresh child process, workspace, conversation and task-local context/compaction cache for every assigned slot.",
-    "server_prefix_cache": "Disable across all arms, verify support against pinned vLLM source and record effective configuration before launch. Not yet implemented or qualified.",
-    "cross_arm_data": "Never copy traces, results or workspaces into a later arm. Keep predetermined balanced order."
-  },
-  "remaining_free_gates": [
-    "Exact GPU image: qualify required PID/network namespace capabilities, UID separation and offline full runtime; host-only tests are insufficient.",
-    "New multi-slot integration with existing one-create lifecycle and independent watcher, without moving any consumed branch or claim.",
-    "Actual pinned vLLM cache configuration and request routing; shared model lifecycle with fresh agent children.",
-    "Qualify timeout before/after submit_patch through the full runner. Submitted bytes are retained; no unsubmitted fallback after namespace destruction is promised.",
-    "Failure and outer-kill receipts must keep all 18 assignments, observed accounting and NOT_RUN slots without fabricated artifacts.",
-    "Exact-source full free qualification and final human-reviewable capped execution proposal."
-  ],
   "precreate_gates": [
     "Fresh explicit single-use authorization of exact qualified source and the new pilot/cost scope.",
     "Fresh account/stock/quote with available credit and cumulative spend satisfying the approved limits.",
     "Independent watcher already matching the new immutable one-create namespace.",
     "No continuation if remaining total time cannot cover the next full child plus export and cleanup reserves."
   ],
-  "result_policy": "All six tasks and 18 slots remain assigned. Preserve failure, timeout, partial/no patch, infra failure and NOT_RUN. Export and delete GPU before independent CPU evaluation. No incomplete-pilot effect estimate."
+  "protocol": "R012-matched-pilot-v3-version-skip",
+  "remaining_free_gates": [
+    "Qualify the proposed split deployment: original isolated tools on native Linux CPU host, inference only on GPU image; exact authenticated bridge and offline serving runtime. Do not assume provider SYS_ADMIN/NET_ADMIN.",
+    "New multi-slot integration with existing one-create lifecycle and independent watcher, without moving any consumed branch or claim.",
+    "Actual pinned vLLM cache configuration and request routing; shared model lifecycle with fresh agent children.",
+    "Qualify timeout before/after submit_patch through the full runner. Submitted bytes are retained; no unsubmitted fallback after namespace destruction is promised.",
+    "Failure and outer-kill receipts must keep all 18 assignments, observed accounting and NOT_RUN slots without fabricated artifacts.",
+    "Exact-source full free qualification and final human-reviewable capped execution proposal."
+  ],
+  "result_policy": "All six tasks and 18 slots remain assigned. Preserve failure, timeout, partial/no patch, infra failure and NOT_RUN. Export and delete GPU before independent CPU evaluation. No incomplete-pilot effect estimate.",
+  "runtime_identity": {
+    "adapters": [],
+    "base_protocol": "docs/research-comparison-protocol.json",
+    "base_protocol_sha256": "1bd2ef8f356f8f4fbb6e7c1237e950ad14471a14e9e596d634d2e728b321b7d2",
+    "dtype": "bfloat16",
+    "full_runtime_packages": 246,
+    "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+    "max_model_len": 32768,
+    "model_asset": "google/gemma-4/Other/gemma-4-31b-it-qat-w4a16-ct/2",
+    "model_files": 8,
+    "tensor_parallel_size": 1,
+    "vram_requirement": "Observe 81920 MiB-class A100 and record real server memory use; no new-run measurement is claimed.",
+    "weights_bytes": 23265352448
+  },
+  "schema_version": 1,
+  "slots": 18,
+  "status": "PROPOSAL_BLOCKED_BY_DEPLOYMENT_INTEGRATION",
+  "storage": {
+    "cleanup": "Delete the allocation and temporary disk; two independent successful absence reads by owner and watcher.",
+    "container_disk_gb": 100,
+    "network_volume": null,
+    "persistent_volume_gb": 0
+  },
+  "task_child_seconds": 330,
+  "task_work_seconds": 300
 }
