@@ -19,7 +19,8 @@ jobs:
         with:
           python-version: '3.12.14'
       - name: Install read-only input SDK
-        run: python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
       - name: Linux suite and immutable protocol
         run: |
           set -euo pipefail
