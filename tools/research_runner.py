@@ -6,6 +6,7 @@ limit; the CPU harness invokes this same function in a bounded child process.
 """
 import asyncio
 import json
+import os
 from pathlib import Path
 import time
 
@@ -45,7 +46,8 @@ def checked_slot(inputs, identifier, arm):
     return task, row
 
 
-def run_slot(inputs, output, identifier, arm, upstream_port, wheels, *, isolation=None):
+def run_slot(inputs, output, identifier, arm, upstream_port, wheels, *, isolation=None, upstream=None,
+             qualification_seconds=None):
     from adk_submission import VllmConfig, VllmServer, discover_adapters
     from google.adk.agents.context_cache_config import ContextCacheConfig
     from google.adk.apps._configs import EventsCompactionConfig
@@ -69,12 +71,35 @@ def run_slot(inputs, output, identifier, arm, upstream_port, wheels, *, isolatio
         raise ValueError('evaluator fields entered the agent')
     # Official perf_counter session boundary, including setup exclusion and the
     # exact start timestamp. No second timer begins at the first HTTP request.
-    ledger = Ledger(MODEL_PATH, clock=time.perf_counter)
+    seconds = 300 if qualification_seconds is None else qualification_seconds
+    if qualification_seconds is not None and (upstream is None or not 0 < seconds < 300):
+        raise ValueError('scaled deadline is only for isolated authored split qualification')
+    ledger = Ledger(MODEL_PATH, seconds=seconds, clock=time.perf_counter)
     class MeasuredContext(SwegemmaContext):
+        def __setattr__(self, name, value):
+            super().__setattr__(name, value)
+            if name == 'patch_submitted' and value is True:
+                # The original submit_patch first writes submitted_patch, then
+                # this flag. Persist that exact artifact atomically before its
+                # acknowledgement; an outer kill may prevent runner finalizers.
+                patch = self.submitted_patch.encode()
+                checkpoint = {'instance_id': identifier, 'arm': arm,
+                    'source': 'ORIGINAL_SUBMIT_PATCH', 'patch': self.submitted_patch,
+                    'bytes': len(patch), 'sha256': c.digest(patch), 'accounting': ledger.report(),
+                    'namespace_ids': [] if isolation is None else
+                        [n.namespace_id for n in isolation.namespaces.values()]}
+                temporary = output/'submitted-checkpoint.partial'
+                with temporary.open('wb') as stream:
+                    os.fchmod(stream.fileno(), 0o600); stream.write(c.encoded(checkpoint))
+                    stream.flush(); os.fsync(stream.fileno())
+                os.replace(temporary, output/'submitted-checkpoint.json')
+                descriptor = os.open(output, os.O_DIRECTORY)
+                try: os.fsync(descriptor)
+                finally: os.close(descriptor)
         def start_agent_session(self):
             super().start_agent_session()
             ledger.start(self.agent_start_time)
-            if isolation is not None: isolation.begin(self.agent_start_time)
+            if isolation is not None: isolation.begin(self.agent_start_time, seconds)
         def stop_agent_session(self):
             super().stop_agent_session()
             ledger.close()
@@ -88,8 +113,11 @@ def run_slot(inputs, output, identifier, arm, upstream_port, wheels, *, isolatio
               'os_isolation': 'NOT QUALIFIED; CPU fixture only'}
     from tools.research_verifier_policy import identity as evaluation_identity
     result['evaluation_protocol'] = evaluation_identity()
+    if upstream is not None:
+        if isolation is None: raise ValueError('remote inference requires native CPU isolation')
+        result['upstream'] = upstream.identity()
     try:
-        with gateway(ledger, upstream_port) as port:
+        with gateway(ledger, upstream_port, upstream=upstream) as port:
             adapters = discover_adapters(sample)
             server = VllmServer(VllmConfig(model=MODEL_PATH, port=port, tool_call_parser='gemma4',
                 reasoning_parser='gemma4', default_chat_template_kwargs={'enable_thinking': True}),
@@ -120,6 +148,9 @@ def run_slot(inputs, output, identifier, arm, upstream_port, wheels, *, isolatio
                 official_llm_events=context.llm_calls_used, agent_work_seconds=context.agent_elapsed_seconds,
                 cache={'context_min_tokens': 2048, 'context_ttl_seconds': 1800, 'context_cache_intervals': 10,
                        'compaction_interval': 15, 'server_prefix_cache': 'NOT MEASURED ON CPU FIXTURE'})
+            result['unsubmitted_diff'] = ('NOT_APPLICABLE_SUBMITTED' if context.patch_submitted
+                else 'UNAVAILABLE_AFTER_ISOLATION_STOP' if isolation is not None else 'OFFICIAL_FALLBACK')
+            result['qualification_seconds'] = qualification_seconds
             if error:
                 c._new_output(output / 'agent-error.txt', str(error).encode())
     finally:

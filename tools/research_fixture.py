@@ -25,7 +25,8 @@ USAGE = {'prompt_tokens': 11, 'completion_tokens': 7, 'total_tokens': 18,
          'prompt_tokens_details': {'cached_tokens': 0}}
 
 
-def run_fixture(inputs, output, identifier, arm, wheels, control='ordinary', *, isolation=None):
+def run_fixture(inputs, output, identifier, arm, wheels, control='ordinary', *, isolation=None,
+                upstream=None, fixture_port=0, qualification_seconds=None):
     from swegemma.graph.graph_utils import get_graph
     import numpy as np
     task, _ = checked_slot(inputs, identifier, arm)
@@ -51,6 +52,14 @@ def run_fixture(inputs, output, identifier, arm, wheels, control='ordinary', *, 
                 names = {t['function']['name'] for t in body.get('tools', [])}
                 role = 'compaction' if not names else 'root' if 'submit_patch' in names else 'delegate'
                 counts[role] += 1; step = counts[role]; roles.append(role)
+                if ((control == 'deadline_before_submit' and role == 'root' and step == 2)
+                        or (control in ('deadline_after_submit', 'outer_after_submit')
+                            and role == 'root' and step == 4)):
+                    # The actual original tool has already run. Wait for the
+                    # transport to close, not an arbitrary wall-clock sleep.
+                    self.connection.settimeout(45)
+                    self.connection.recv(1)
+                    return
                 # Inspect only fixture tool acknowledgements, never task labels.
                 if step > 1 and role != 'compaction':
                     acknowledgements = [m for m in body['messages'] if m['role'] == 'tool']
@@ -115,10 +124,11 @@ def run_fixture(inputs, output, identifier, arm, wheels, control='ordinary', *, 
                 data = b'{"error":{"message":"authored fixture mismatch","type":"BadRequestError"}}'
                 self.send_response(400); self.send_header('Content-Type', 'application/json')
             self.send_header('Content-Length', str(len(data))); self.end_headers(); self.wfile.write(data)
-    server = ThreadingHTTPServer(('127.0.0.1', 0), Endpoint)
+    server = ThreadingHTTPServer(('127.0.0.1', fixture_port), Endpoint)
     thread = threading.Thread(target=server.serve_forever, daemon=True); thread.start()
     try:
-        result = run_slot(inputs, output, identifier, arm, server.server_port, wheels, isolation=isolation)
+        result = run_slot(inputs, output, identifier, arm, None if upstream else server.server_port,
+            wheels, isolation=isolation, upstream=upstream, qualification_seconds=qualification_seconds)
     finally:
         server.shutdown(); server.server_close(); thread.join(timeout=2)
     meter = result['accounting']
@@ -146,6 +156,18 @@ def run_fixture(inputs, output, identifier, arm, wheels, control='ordinary', *, 
     if control == 'compaction':
         checks['compaction_in_same_allowance'] = (roles.count('compaction') == 1
             and any(r['applied_frozen_defaults'] for r in meter['requests']))
+    if control in ('deadline_before_submit', 'deadline_after_submit'):
+        submitted = control == 'deadline_after_submit'
+        checks = {'actual_work_deadline': result['status']=='TIMEOUT' and result['isolation']['deadline_expired'],
+            'submitted_patch_preserved': bool(result.get('patch_submitted')) == submitted
+                and (result.get('patch_bytes', 0)>0) == submitted,
+            'unsubmitted_diff_explicit': submitted or result.get('unsubmitted_diff')=='UNAVAILABLE_AFTER_ISOLATION_STOP',
+            'accounting_not_fabricated': meter['token_accounting']=='INCOMPLETE'
+                and all(v is None for v in meter['totals'].values()),
+            'closed_and_cleaned': result['sandbox_cleanup'] and meter['closed']
+                and result['isolation']['live_namespaces']==0 and not thread.is_alive(),
+            'retained_trace': bool(list((output/'results').glob('*'))),
+            'fixture_contract': not failures}
     report = {'status': 'PASS' if all(checks.values()) else 'FAIL', 'checks': checks,
               'model_execution': 'AUTHORED_CPU_HTTP_ONLY', 'real_model_runs': 0,
               'control': control, 'request_roles': roles, 'fixture_errors': failures, 'asset_readiness': asset_check, 'slot': result}

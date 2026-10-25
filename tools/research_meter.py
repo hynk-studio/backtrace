@@ -171,8 +171,12 @@ class Gateway(ThreadingHTTPServer):
 
 
 @contextlib.contextmanager
-def gateway(ledger, upstream_port):
-    if type(upstream_port) is not int or not 1 <= upstream_port <= 65535:
+def gateway(ledger, upstream_port=None, *, upstream=None):
+    if upstream is not None:
+        from tools.research_split import Endpoint
+        if type(upstream) is not Endpoint or upstream_port is not None:
+            raise ValueError('one pinned remote inference endpoint required')
+    elif type(upstream_port) is not int or not 1 <= upstream_port <= 65535:
         raise ValueError('loopback upstream port required')
 
     class Handler(BaseHTTPRequestHandler):
@@ -199,13 +203,15 @@ def gateway(ledger, upstream_port):
                 if len(data) != int(lengths[0]):
                     raise Rejected('incomplete request')
                 number, data = ledger.admit(data)
-                connection = http.client.HTTPConnection('127.0.0.1', upstream_port, timeout=ledger.remaining())
+                connection = (upstream.connection(ledger.remaining()) if upstream is not None else
+                    http.client.HTTPConnection('127.0.0.1', upstream_port, timeout=ledger.remaining()))
                 connection.connect(); upstream_socket = connection.sock
                 with server.active_lock:
                     ledger.remaining()
                     server.active.add(upstream_socket)
                 connection.request('POST', self.path, body=data, headers={'Content-Type': 'application/json',
-                                    'Authorization': 'Bearer EMPTY', 'Accept-Encoding': 'identity'})
+                                    'Authorization': 'Bearer EMPTY', 'Accept-Encoding': 'identity',
+                                    'X-Backtrace-Seconds': str(ledger.remaining())})
                 response = connection.getresponse(); status = response.status
                 self.send_response(status)
                 self.send_header('Content-Type', response.getheader('Content-Type', 'application/json'))
@@ -226,7 +232,8 @@ def gateway(ledger, upstream_port):
                     self.connection.settimeout(min(2, ledger.remaining()))
                     self.wfile.write(chunk); self.wfile.flush()
             except Rejected as exc:
-                error = 'BUDGET_OR_PROTOCOL'
+                error = ('TimeoutError' if str(exc) == 'task work deadline exhausted'
+                         else 'BUDGET_OR_PROTOCOL')
                 if number is None:
                     with contextlib.suppress(OSError): self.reject(str(exc))
             except Exception as exc:

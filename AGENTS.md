@@ -779,3 +779,20 @@ those concrete implementation conditions are resolved. All18 real-model slots
 remain NOT_RUN, all55 prior branches/claims are unchanged, and no GPU/model/
 training/merge/submission occurred. Preserve all executed operational hashes in
 docs-only result updates; historical workflow failures must not be rewritten.
+
+## BT-001 split inference preparation (2026-10-25 KST, Draft #25)
+
+The next authorized scope is free CPU implementation/qualification of native
+isolated tools plus authenticated inference-only transport, stacked on #24.
+Do not reuse historical paid claims, branches, or permits. All 18 real-model
+slots remain NOT_RUN. A new paid authorization namespace and provider lifecycle
+integration are not granted by this work. Preserve v2 selection/model/prompts/
+300s-30-tool-50-request limits and v3 evaluator overlay. Scaled timeout controls
+are authored CPU fixtures and must be labelled as such. Submit checkpoints may
+preserve the original tool's exact patch under an outer kill; incomplete final
+trace/token accounting must never be synthesized. Unsubmitted timeout diffs
+remain explicitly unavailable after isolation stops. Exact-wheel cache parser
+slice evidence is not initialized GPU cache evidence. A host-networked container
+forwarder/native authored upstream is not a claim about provider network/NAT or
+real model readiness. Free source read run 40160733853 acquired v25 vLLM bytes;
+40160571189 failed YAML parsing before any job and is retained as a workflow error.
