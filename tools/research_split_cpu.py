@@ -7,6 +7,7 @@ import contextlib
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import socket
 import subprocess
@@ -34,12 +35,44 @@ def reclaim_slot(destination):
     """Outer-killed children cannot run manager.close; reclaim before the next UID reuse."""
     sandbox=Path(destination)/'sandboxes'
     if sandbox.is_symlink(): raise ValueError('unexpected sandbox root symlink')
+    began=time.monotonic()
     if sandbox.exists():
         if not shutil.rmtree.avoids_symlink_attacks:
             raise RuntimeError('descriptor-safe parent cleanup required')
-        shutil.rmtree(sandbox)
+        subprocess.run([sys.executable,'-I','-c',
+            'import shutil,sys; assert shutil.rmtree.avoids_symlink_attacks; shutil.rmtree(sys.argv[1])',
+            str(sandbox)],env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8'},stdin=subprocess.DEVNULL,
+            stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=True,timeout=5)
+    if sandbox.exists():raise RuntimeError('sandbox still present after parent cleanup')
     return {'status':'PASS','sandbox_directory_absent':not sandbox.exists(),
-            'checkpoint_preserved':(Path(destination)/'submitted-checkpoint.json').is_file()}
+            'checkpoint_preserved':(Path(destination)/'submitted-checkpoint.json').is_file(),
+            'wall_seconds':time.monotonic()-began,'limit_seconds':5}
+
+
+def matching_namespaces(identities):
+    living=[]
+    for path in Path('/proc').glob('[0-9]*/ns/pid'):
+        try:
+            if os.readlink(path) in identities:
+                living.append(int(path.parts[2]))
+        except (FileNotFoundError,ProcessLookupError):pass
+    return sorted(living)
+
+
+def wait_namespace_absence(identities,*,timeout=5):
+    if not identities or any(not isinstance(i,str) or not re.fullmatch(r'pid:\[[0-9]+\]',i) for i in identities):
+        raise ValueError('observed task PID namespace identities required')
+    began=time.monotonic();observations=[];absent=0
+    while time.monotonic()-began < timeout:
+        try: living=matching_namespaces(set(identities))
+        except OSError as error:
+            return {'status':'FAIL','error_type':type(error).__name__,'observations':observations}
+        observations.append({'matching_pids':living,'elapsed_seconds':time.monotonic()-began})
+        absent=absent+1 if not living else 0
+        if absent==2:
+            return {'status':'PASS','absence_reads':2,'observations':observations}
+        time.sleep(.05)
+    return {'status':'FAIL','absence_reads':absent,'observations':observations,'reason':'namespace reap deadline'}
 
 
 def qualify(inputs,output):
@@ -101,19 +134,34 @@ def qualify(inputs,output):
                     'task_mounts':0,'evaluator_mounts':0,'client_private_key_in_container':False,
                     'transport':endpoint.identity()}
 
+            unsafe_cleanup=False
             def execute(kind,name_,args,*,timeout=330,receipt='receipt.json'):
+                nonlocal unsafe_cleanup
                 destination=work/name_
+                if unsafe_cleanup:
+                    return {'status':'NOT_RUN','reason':'preceding namespace cleanup unqualified; UID not reused'}
                 remaining=deadline-time.monotonic()
                 if remaining<=5:
                     return {'status':'NOT_RUN','reason':'free qualification total deadline'}
                 row=bounded_child([python,'-I','-B',Path(__file__).resolve(),'--worker',kind,
                     inputs,destination,public/'runtime/wheels',private/'endpoint.json',*args],
                     private/(name_+'.log'),env,timeout=min(timeout,remaining))
-                if kind=='fixture':row['parent_cleanup']=reclaim_slot(destination)
+                if kind=='fixture':
+                    unsafe_cleanup=True
+                    session=destination/'session-checkpoint.json'
+                    if session.is_file():
+                        observed=c.parse(session.read_bytes())
+                        row['namespace_cleanup']=wait_namespace_absence(observed['namespace_ids'])
+                    else:
+                        row['namespace_cleanup']={'status':'FAIL','reason':'session namespace identity unavailable'}
+                    row['parent_cleanup']={'status':'FAIL','reason':'namespace absence not confirmed'}
+                    if row['namespace_cleanup']['status']=='PASS':
+                        row['parent_cleanup']=reclaim_slot(destination)
+                        unsafe_cleanup=False
                 path=destination/receipt
                 if path.is_file():row['result']=c.parse(path.read_bytes())
                 row['status']=('PASS' if row['exit_code']==0 and not row['child_timeout']
-                    and row.get('result',{}).get('status')=='PASS' else 'FAIL')
+                    and not unsafe_cleanup and row.get('result',{}).get('status')=='PASS' else 'FAIL')
                 print(json.dumps({'split_stage':kind,'slot':name_,'status':row['status'],
                                   'wall_seconds':row['wall_seconds']}),file=sys.__stdout__,flush=True)
                 return row
@@ -136,17 +184,13 @@ def qualify(inputs,output):
             checkpoint=work/'control-outer/submitted-checkpoint.json'
             if checkpoint.is_file():
                 saved=c.parse(checkpoint.read_bytes()); data=saved['patch'].encode()
-                living=[]
-                for path in Path('/proc').glob('[0-9]*/ns/pid'):
-                    try:
-                        if os.readlink(path) in saved['namespace_ids']:living.append(str(path))
-                    except OSError:pass
                 checks={'outer_deadline':outer['child_timeout'],
                     'original_submission_checkpoint':saved['source']=='ORIGINAL_SUBMIT_PATCH'
                         and len(data)==saved['bytes'] and c.digest(data)==saved['sha256'] and len(data)>0,
-                    'agent_namespace_absent':bool(saved['namespace_ids']) and not living,
-                    'parent_removed_workspace':outer['parent_cleanup']['sandbox_directory_absent']
-                        and outer['parent_cleanup']['checkpoint_preserved'],
+                    'agent_namespace_absent':outer['namespace_cleanup']['status']=='PASS'
+                        and outer['namespace_cleanup'].get('absence_reads')==2,
+                    'parent_removed_workspace':outer['parent_cleanup'].get('sandbox_directory_absent',False)
+                        and outer['parent_cleanup'].get('checkpoint_preserved',False),
                     'no_false_completed_receipt':not (work/'control-outer/slot-receipt.json').exists()}
                 outer.update(status='PASS' if all(checks.values()) else 'FAIL',checks=checks,
                     artifact_status='SUBMITTED_CHECKPOINT_ONLY; final trace/accounting unavailable',

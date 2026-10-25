@@ -10,6 +10,7 @@ import threading
 import time
 from types import SimpleNamespace
 import unittest
+from unittest.mock import patch as mock_patch
 
 from tools.research_meter import Ledger, gateway
 from tools.research_split import Endpoint, credentials, fingerprint, inference_proxy
@@ -17,7 +18,7 @@ from tests.test_research_meter import request, response
 from tools.research_split_sequence import sequence
 from tools.research_split_server import observed_configuration, MODEL_PATH
 from tools.research_runner import recover_submission
-from tools.research_split_cpu import reclaim_slot
+from tools.research_split_cpu import reclaim_slot, wait_namespace_absence
 from tools import research_comparison as comparison
 
 
@@ -160,7 +161,7 @@ class SequenceTests(unittest.TestCase):
         self.assertEqual(len({(a,b) for a,b,_ in calls}),18)
         self.assertTrue(all(s==330 for _,_,s in calls))
         calls.clear();now[0]=0
-        result=sequence(execute,deadline=1320,clock=lambda:now[0])
+        result=sequence(execute,deadline=1330,clock=lambda:now[0])
         self.assertEqual(len(calls),2)
         self.assertEqual([r['status'] for r in result['slots']].count('NOT_RUN'),16)
         self.assertFalse(result['all_slots_attempted'])
@@ -183,6 +184,17 @@ class SequenceTests(unittest.TestCase):
 
 
 class SubmissionRecoveryTests(unittest.TestCase):
+    def test_parent_waits_for_reap_and_requires_two_successful_absence_reads(self):
+        with mock_patch('tools.research_split_cpu.matching_namespaces',side_effect=[[123],[],[]]):
+            result=wait_namespace_absence(['pid:[42]'],timeout=1)
+        self.assertEqual(result['status'],'PASS')
+        self.assertEqual(result['absence_reads'],2)
+        self.assertEqual(len(result['observations']),3)
+        with mock_patch('tools.research_split_cpu.matching_namespaces',return_value=[123]):
+            self.assertEqual(wait_namespace_absence(['pid:[42]'],timeout=.1)['status'],'FAIL')
+        with mock_patch('tools.research_split_cpu.matching_namespaces',side_effect=PermissionError):
+            self.assertEqual(wait_namespace_absence(['pid:[42]'],timeout=.1)['status'],'FAIL')
+
     def test_api_error_empty_return_recovers_exact_acknowledged_submission(self):
         with tempfile.TemporaryDirectory() as temporary:
             path=Path(temporary)/'checkpoint.json';patch='diff --git a/marker b/marker\n+fixture\n'

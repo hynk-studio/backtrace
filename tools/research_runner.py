@@ -119,6 +119,9 @@ def run_slot(inputs, output, identifier, arm, upstream_port, wheels, *, isolatio
             super().start_agent_session()
             ledger.start(self.agent_start_time)
             if isolation is not None: isolation.begin(self.agent_start_time, seconds)
+            c._new_output(output/'session-checkpoint.json',c.encoded({
+                'instance_id':identifier,'arm':arm,'work_seconds':seconds,
+                'namespace_ids':[] if isolation is None else [n.namespace_id for n in isolation.namespaces.values()]}))
         def stop_agent_session(self):
             super().stop_agent_session()
             ledger.close()

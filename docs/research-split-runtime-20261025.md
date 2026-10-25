@@ -19,14 +19,17 @@ consumed. This code cannot allocate a provider instance or mint a launch permit.
   bounds body/response/remaining time, cancels a stalled upstream on disconnect,
   and has a finite lifetime. The model HTTP listener remains loopback-only.
 - Each slot gets a new official context/cache, candidate and workspace. The fixed
-  sequence reserves a full 330-second child plus 360 seconds export and 300 seconds
-  cleanup before admission; remaining slots stay NOT_RUN if admission fails.
+  sequence reserves a full 330-second child, 10 seconds of parent teardown,
+  360 seconds export and 300 seconds cleanup before admission; remaining slots
+  stay NOT_RUN if admission fails.
 - The original submit_patch acknowledgement atomically checkpoints its exact
   patch. After a work deadline the submitted artifact survives. An outer kill may
   leave only that checkpoint and partial accounting; no final trace or token
   totals are invented. An unsubmitted diff after isolation stops is unavailable.
   The parent removes the sandbox directory before reusing the dedicated UID for
   another slot, including when an outer kill prevented the child's finalizers.
+  It first requires two successful namespace-absence reads within five seconds,
+  then bounds workspace deletion to five seconds; failed cleanup blocks UID reuse.
 - The official server command builder receives --no-enable-prefix-caching. A new
   loopback metadata middleware requires the initialized engine's prefix cache to
   be exactly False along with the frozen dtype/context/parallel settings.
@@ -51,6 +54,11 @@ The exact submission checkpoint is now checked against context, candidate and
 slot identity before recovering that artifact. The TIMEOUT/error status remains;
 no workspace command or model call occurs after the deadline. Requalification
 is required. Run 40161499824 was superseded while pending, with no executed job.
+
+Recovery run 40161907609 passed the post-submit deadline and all 18 normal slots,
+but one immediate outer-kill namespace scan still saw a terminating descendant.
+Its overall FAIL is retained. Parent cleanup now waits for two bounded successful
+absence reads instead of treating asynchronous kernel reaping as instantaneous.
 
 The qualification topology is native isolated official
 runner -> TLS forwarder in the exact image -> native authored HTTP responder.

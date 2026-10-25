@@ -11,8 +11,8 @@ def sequence(execute, *, deadline, clock=time.monotonic):
         for arm in task['arm_order']:
             row={'instance_id':task['instance_id'],'arm':arm,'status':'NOT_RUN'}
             # 330 includes setup/cleanup. Agent work remains exactly 300.
-            if blocked or deadline-clock() < 330+360+300:
-                row['reason']='remaining full child plus export/deletion reserve unavailable'
+            if blocked or deadline-clock() < 330+10+360+300:
+                row['reason']='remaining full child, parent teardown and export/deletion reserve unavailable'
                 blocked=True
             else:
                 try: row.update(execute(task['instance_id'],arm,330))
@@ -21,4 +21,5 @@ def sequence(execute, *, deadline, clock=time.monotonic):
                     blocked=True
             rows.append(row)
     return {'planned_slots':18,'slots':rows,'all_slots_attempted':all(r['status']!='NOT_RUN' for r in rows),
-            'effect_estimate':'NOT_COMPUTED','reserved_export_seconds':360,'reserved_cleanup_seconds':300}
+            'effect_estimate':'NOT_COMPUTED','reserved_parent_teardown_seconds':10,
+            'reserved_export_seconds':360,'reserved_cleanup_seconds':300}
