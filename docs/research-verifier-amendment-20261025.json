@@ -18,8 +18,9 @@
     "python_version": "3.12.14",
     "test_patch_sha256": "ec56c0e601315ea5cd7c8f1302cb92216060bc3791262aa8550eaa64c95a7ec3",
     "skipped_function_name_sha256": "434262b3571198deb9fb3bffd1cdba4b3237f5e1bee9efed3c6af6b0b00e2eeb",
+    "required_classname_sha256": "b30d66e5b1b65036740d6ca7a39eb072397ea7e85dbe724721403f0c66dfae34",
     "official_verification_source_sha256": "5602f33acb49062de8e99073199745679d86445297be9dd075ccec60c41b60dd"
   },
-  "rule": "Keep original tests, JUnit and official verdict unchanged. Only the single original version-inapplicable required function may be skipped. All remaining original required nodes must execute and pass; additional skips, errors, failures, missing nodes, duplicate cases, inconsistent counts and mismatched identities are rejected.",
+  "rule": "Keep original tests, JUnit and official verdict unchanged. Only the single original version-inapplicable required function may be skipped. Check original JUnit totals with the original validator, then require exact function/parameter-base identity in the pinned test module for every remaining original required node. Do not use the original underscore-prefix alias that conflates the two version branches. Additional skips, errors, failures, missing nodes, duplicate cases, inconsistent counts and mismatched identities are rejected.",
   "reporting": "Retain official_resolved and research_resolved separately. This research-only amendment does not predict hosted Kaggle acceptance. No real-model result exists at activation."
 }

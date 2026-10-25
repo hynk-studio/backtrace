@@ -12,7 +12,8 @@ class VersionSkipPolicyTests(unittest.TestCase):
         self.task = SimpleNamespace(instance_id='authored_task', test_patch='authored original tests')
         self.rule = {'instance_id': self.task.instance_id, 'python_version': '3.12.14',
                      'test_patch_sha256': c.digest(self.task.test_patch.encode()),
-                     'skipped_function_name_sha256': c.digest(b'test_old_python')}
+                     'skipped_function_name_sha256': c.digest(b'test_old_python'),
+                     'required_classname_sha256': c.digest(b'test_module')}
         self.xml = ('<testsuites><testsuite tests="3" failures="0" errors="0" skipped="1">'
                     '<testcase classname="test_module" name="test_old_python"><skipped/></testcase>'
                     '<testcase classname="test_module" name="test_current_python"/>'
@@ -27,7 +28,7 @@ class VersionSkipPolicyTests(unittest.TestCase):
 
     def test_excludes_only_pinned_requirement_and_preserves_original_xml(self):
         self.assertEqual(self.check(), 'test_old_python')
-        self.validate.assert_called_once_with(self.xml, fail_to_pass=('test_current_python',))
+        self.validate.assert_called_once_with(self.xml)
 
     def test_rejects_other_python_or_test_patch(self):
         for version, task in [('3.13.0', self.task), ('3.12.14',
@@ -46,10 +47,24 @@ class VersionSkipPolicyTests(unittest.TestCase):
             with self.subTest(required=required), self.assertRaises(ValueError):
                 self.check(required=required)
 
-    def test_remaining_requirements_still_use_original_validator(self):
+    def test_global_junit_still_uses_original_validator(self):
         self.validate.return_value = (False, 'required node absent')
-        with self.assertRaisesRegex(ValueError, 'remaining original'):
+        with self.assertRaisesRegex(ValueError, 'original global'):
             self.check()
+
+    def test_version_sibling_prefix_does_not_alias_exact_required_function(self):
+        self.rule['skipped_function_name_sha256'] = c.digest(b'test_current_python_missing')
+        xml = self.xml.replace('test_old_python', 'test_current_python_missing')
+        self.assertEqual(self.check(xml, required=['test_current_python_missing', 'test_current_python']),
+                         'test_current_python_missing')
+
+    def test_missing_or_foreign_module_required_function_is_rejected(self):
+        for replacement in ('test_different', 'test_current_python_extra'):
+            with self.subTest(replacement=replacement), self.assertRaisesRegex(ValueError, 'remaining exact'):
+                self.check(self.xml.replace('name="test_current_python"', 'name="'+replacement+'"'))
+        foreign=self.xml.replace('classname="test_module" name="test_current_python"',
+                                 'classname="other_module" name="test_current_python"')
+        with self.assertRaisesRegex(ValueError, 'remaining exact'): self.check(foreign)
 
     def test_extra_skip_failure_or_error_rejected_even_with_consistent_counts(self):
         for tag, count in [('skipped', 'skipped'), ('failure', 'failures'), ('error', 'errors')]:

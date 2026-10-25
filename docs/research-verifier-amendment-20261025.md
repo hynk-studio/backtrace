@@ -17,7 +17,10 @@ Only `rich_3486`'s exact original test patch under observed evaluator Python
 3.12.14 may use the exception. The original official validator must reject only
 the hash-bound version-inapplicable required function. The unchanged JUnit must
 contain exactly that one skip, internally consistent counts and unique testcases;
-all remaining original required tests must pass the actual original validator.
+the original validator still checks global JUnit validity. Every remaining
+original required function must then pass under exact function/parameter-base
+identity in the hash-bound test module. This avoids the original underscore-
+prefix alias, which incorrectly matches the skipped sibling to the passing one.
 The evaluator verifies the installed official verification source hash. No XML,
 test patch, candidate prompt or installed official code is rewritten.
 
@@ -34,13 +37,20 @@ evaluator checks, not model outcomes. Raw tests and reference data remain privat
 
 ## Observed checks so far
 
-Local focused research suite: 59 tests passed. CPU preflight, frozen v2 protocol
+Initial local focused research suite: 59 tests passed. CPU preflight, frozen v2 protocol
 validation and diff whitespace check passed. Local full suite ran 451 tests with
 5 failures, 10 errors and 3 skips: the already documented host pip-wheel and
 procfs PID-namespace constraints remain. Native Linux execution is required for
 the full-suite verdict; this local run is not reported as a pass.
 
-Actual final-source native Linux / selected-pair qualification: pending.
+Initial actual run 40156487747 passed all 451 Linux tests, all 18 isolated
+authored slots and all isolation controls, but retained the failing sixth pair.
+The skipped and applicable functions share a prefix; the official validator's
+underscore alias therefore also rejects the applicable function when merely
+removing the skipped requirement. The corrected exact-identity research check
+keeps raw XML and official rejection untouched. Two new regressions cover this
+collision and missing/foreign-module applicable tests. The first failed report
+and all 242 private records are retained. Final requalification is pending.
 Real model runs: 0/18. GPU operations, training and submission: NOT RUN.
 
 ## Following stage

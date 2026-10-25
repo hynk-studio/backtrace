@@ -6,6 +6,7 @@ is one hash-bound original version skip, before any matched model outcome.
 from pathlib import Path
 from types import SimpleNamespace
 import xml.etree.ElementTree as ET
+import re
 
 from tools import research_comparison as c
 from tools.qualify_evaluation import verified_tests
@@ -70,15 +71,26 @@ def check_exception(xml, task, python_version, rule, required, validate):
     counts, nodes = inspect_xml(xml)
     skipped = [n for n in nodes if n.find('skipped') is not None]
     if (counts['errors'] or counts['failures'] or counts['skipped'] != 1
-            or c.digest(skipped[0].get('name', '').encode()) != rule['skipped_function_name_sha256']):
+            or c.digest(skipped[0].get('name', '').encode()) != rule['skipped_function_name_sha256']
+            or c.digest(skipped[0].get('classname', '').encode()) != rule['required_classname_sha256']):
         raise ValueError('only the one original version skip is permitted')
     name = skipped[0].get('name')
     if required.count(name) != 1 or len(required) < 2:
         raise ValueError('original skipped and applicable required nodes must both exist')
     remaining = [r for r in required if r != name]
-    valid, _ = validate(xml, fail_to_pass=tuple(remaining))
+    # The official underscore-prefix alias also matches the excluded function
+    # against its applicable sibling. Preserve its original verdict, validate
+    # global JUnit with that same implementation, then require exact identities.
+    valid, _ = validate(xml)
     if not valid:
-        raise ValueError('remaining original required tests did not all pass')
+        raise ValueError('original global JUnit validation failed')
+    for required_name in remaining:
+        if not re.fullmatch(r'test_[A-Za-z0-9_]+', required_name):
+            raise ValueError('unexpected required function identity')
+        matches = [n for n in nodes if n.get('name', '').split('[', 1)[0] == required_name
+                   and c.digest(n.get('classname', '').encode()) == rule['required_classname_sha256']]
+        if not matches or any(n.find(k) is not None for n in matches for k in ('failure', 'error', 'skipped')):
+            raise ValueError('remaining exact original required tests did not all pass')
     return name
 
 
@@ -105,7 +117,6 @@ def score(xml, task, result, python_version):
         raise ValueError('official rejection is not solely the pinned version skip')
     # Do not hide setup/agent errors or a no-tests stdout behind this exception.
     stdout = result.test_output.split('STDERR:', 1)[0].lower()
-    import re
     if ('passed' not in stdout or 'no tests ran' in stdout or 'collected 0 items' in stdout
             or re.search(r'\b0 passed\b', stdout)):
         raise ValueError('actual pytest passing summary required')
