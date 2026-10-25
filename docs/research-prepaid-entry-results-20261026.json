@@ -1,0 +1,725 @@
+{
+  "artifacts": {
+    "40211991201": [
+      {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12606555148/zip",
+        "created_at": "2026-10-25T16:38:43Z",
+        "digest": "sha256:1c53f545f58d90141f33e7dc92f4cbfca11f9019386d3295aa76194a98d6a102",
+        "expired": false,
+        "expires_at": "2026-11-08T16:38:43Z",
+        "id": 12606555148,
+        "name": "research-entry-public-25a53ede98d7226283d923bd635854d4ea730e0a-1",
+        "size_in_bytes": 72898,
+        "updated_at": "2026-10-25T16:38:43Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12606555148",
+        "workflow_run": {
+          "head_branch": "bt-001-research-prepaid-entry-20261026",
+          "head_repository_id": 1393671873,
+          "head_sha": "25a53ede98d7226283d923bd635854d4ea730e0a",
+          "id": 40211991201,
+          "repository_id": 1393671873
+        }
+      },
+      {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12605589806/zip",
+        "created_at": "2026-10-25T16:38:44Z",
+        "digest": "sha256:4f1cef6a7d9a0c4e6a0fccb821d079f3cc8755f87485df78db9b046519cbee6b",
+        "expired": false,
+        "expires_at": "2026-11-08T16:38:44Z",
+        "id": 12605589806,
+        "name": "research-entry-private-25a53ede98d7226283d923bd635854d4ea730e0a-1",
+        "size_in_bytes": 236521,
+        "updated_at": "2026-10-25T16:38:44Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12605589806",
+        "workflow_run": {
+          "head_branch": "bt-001-research-prepaid-entry-20261026",
+          "head_repository_id": 1393671873,
+          "head_sha": "25a53ede98d7226283d923bd635854d4ea730e0a",
+          "id": 40211991201,
+          "repository_id": 1393671873
+        }
+      }
+    ],
+    "40213108303": [
+      {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12607150695/zip",
+        "created_at": "2026-10-25T16:54:54Z",
+        "digest": "sha256:fc351c834cdb914540079c33d4b736e8540057c97049bc228b2831c284042849",
+        "expired": false,
+        "expires_at": "2026-11-08T16:54:54Z",
+        "id": 12607150695,
+        "name": "research-entry-private-a5652cba02c0357f24fbcdc6aca1eaf3a5516891-1",
+        "size_in_bytes": 2931161,
+        "updated_at": "2026-10-25T16:54:54Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12607150695",
+        "workflow_run": {
+          "head_branch": "bt-001-research-prepaid-entry-20261026",
+          "head_repository_id": 1393671873,
+          "head_sha": "a5652cba02c0357f24fbcdc6aca1eaf3a5516891",
+          "id": 40213108303,
+          "repository_id": 1393671873
+        }
+      },
+      {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12606732168/zip",
+        "created_at": "2026-10-25T16:54:53Z",
+        "digest": "sha256:2351cc3505c03badf80cb44e48dd12004b91b1fe401ba1af60a6d9fd75dd72fe",
+        "expired": false,
+        "expires_at": "2026-11-08T16:54:52Z",
+        "id": 12606732168,
+        "name": "research-entry-public-a5652cba02c0357f24fbcdc6aca1eaf3a5516891-1",
+        "size_in_bytes": 85562,
+        "updated_at": "2026-10-25T16:54:53Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12606732168",
+        "workflow_run": {
+          "head_branch": "bt-001-research-prepaid-entry-20261026",
+          "head_repository_id": 1393671873,
+          "head_sha": "a5652cba02c0357f24fbcdc6aca1eaf3a5516891",
+          "id": 40213108303,
+          "repository_id": 1393671873
+        }
+      }
+    ],
+    "40214244082": [
+      {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12607615411/zip",
+        "created_at": "2026-10-25T17:11:02Z",
+        "digest": "sha256:07928aae4dd798d9ff0c139cf7bf9aea32cdf202827e84cb04255463cd9d55c5",
+        "expired": false,
+        "expires_at": "2026-11-08T17:11:01Z",
+        "id": 12607615411,
+        "name": "research-entry-public-3632000d2d6f470a01f640ead7f4e2c8044805c6-1",
+        "size_in_bytes": 108484,
+        "updated_at": "2026-10-25T17:11:02Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12607615411",
+        "workflow_run": {
+          "head_branch": "bt-001-research-prepaid-entry-20261026",
+          "head_repository_id": 1393671873,
+          "head_sha": "3632000d2d6f470a01f640ead7f4e2c8044805c6",
+          "id": 40214244082,
+          "repository_id": 1393671873
+        }
+      },
+      {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12607525669/zip",
+        "created_at": "2026-10-25T17:11:03Z",
+        "digest": "sha256:54dcd9b14579d0d1b298177857f44abe332bbc7070b1a75cc9884b8dc9b69dcf",
+        "expired": false,
+        "expires_at": "2026-11-08T17:11:02Z",
+        "id": 12607525669,
+        "name": "research-entry-private-3632000d2d6f470a01f640ead7f4e2c8044805c6-1",
+        "size_in_bytes": 3228266,
+        "updated_at": "2026-10-25T17:11:03Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12607525669",
+        "workflow_run": {
+          "head_branch": "bt-001-research-prepaid-entry-20261026",
+          "head_repository_id": 1393671873,
+          "head_sha": "3632000d2d6f470a01f640ead7f4e2c8044805c6",
+          "id": 40214244082,
+          "repository_id": 1393671873
+        }
+      }
+    ]
+  },
+  "base_source_sha": "f7698ad6654c26bebaeb29d2e137d478d47ae55a",
+  "checks": {
+    "eighteen_slots": true,
+    "exact_108_attempts": true,
+    "exact_request_order": true,
+    "export_before_owner_cleanup": true,
+    "export_before_watcher_cleanup": true,
+    "no_remaining_resource": true,
+    "owner": true,
+    "server_cleanup": true,
+    "single_create": true,
+    "watcher": true
+  },
+  "contract": {
+    "allocations": 1,
+    "automatic_retry": false,
+    "child_seconds": 330,
+    "cleanup_seconds": 300,
+    "credit_reserve": "0.50",
+    "disk_gb": 100,
+    "export_seconds": 360,
+    "hardware": "NVIDIA A100 80GB PCIe",
+    "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+    "maximum_additional_spend": "6.00",
+    "maximum_hourly": "2.00",
+    "maximum_proposed_cumulative": "12.00",
+    "parent_seconds": 10,
+    "pilot": "R012-matched-pilot-v3-version-skip",
+    "schema": 1,
+    "servers": 1,
+    "setup_seconds": 4020,
+    "slots": 18,
+    "total_seconds": 10800,
+    "transport": "pinned SSH22 delivery plus provider-mapped mutually pinned TLS8443"
+  },
+  "contract_sha256": "9799b00288a6208c31c97e0cdc2e018d79a85b78c4e16837a5b83b7c65f6b56d",
+  "cost_decision": {
+    "additional_credited_funding_for_full_ceiling": "1.5062308114",
+    "authorization": "NONE",
+    "available_regions_at_observation": [],
+    "credit_balance": "4.9937691886",
+    "credit_purchase_checkout_amount_and_tax": "NOT DETERMINED OR AUTHORIZED; credit shortfall is not a checkout quote",
+    "credit_reserve": "0.50",
+    "cumulative_usage_after_modeled_three_hours": "10.4182308114",
+    "currency": "USD usage credits",
+    "future_price_or_stock_guaranteed": false,
+    "historical_cumulative_ceiling": "8",
+    "historical_cumulative_headroom": "2.9937691886",
+    "last_observed_compute_per_hour": [
+      "1.79"
+    ],
+    "last_priced_regions": [
+      "CA-MTL-3",
+      "US-MO-1"
+    ],
+    "minimum_additional_credited_funding_for_observed_quote": "0.9182308114",
+    "minimum_credit_for_observed_quote_plus_reserve": "5.912",
+    "modeled_maximum_three_hour_usage": "5.412",
+    "observed_at": "2026-10-25T17:11:00Z",
+    "observed_prior_usage_spend": "5.0062308114",
+    "prior_credited_funding_basis": "10",
+    "proposed_additional_usage_cap": "6.00",
+    "proposed_cumulative_usage_cap": "12.00",
+    "proposed_full_ceiling_credit_target": "6.50",
+    "proposed_hourly_usage_cap": "2.00",
+    "quote_observed_at": "2026-10-25T16:54:51Z",
+    "quote_status": "HISTORICAL_SCENARIO_ONLY_NO_CURRENT_AVAILABLE_OFFER",
+    "retained_100GB_disk_hourly_bound": "0.014",
+    "top_up_performed": false
+  },
+  "evidence_limits": [
+    "The 18 successful slots use authored CPU responses, not actual model generation.",
+    "Provider create/read/stop/delete qualification uses a local HTTP replica and owned CPU Docker container.",
+    "Separate real GitHub workflows qualify state contents/CAS and reciprocal liveness only.",
+    "Fresh real provider operations are read-only account, stock, price and complete Pod listing.",
+    "Actual provider port mapping, CUDA/VRAM, model transfer/startup and initialized cache metadata remain post-approval gates.",
+    "Controller deadlines and two observers are not a provider-native dollar spending limit."
+  ],
+  "executed_source_sha": "3632000d2d6f470a01f640ead7f4e2c8044805c6",
+  "executed_tree_sha": "a845d648b6d8a14db11a35127d86d155a96ae623",
+  "fresh_account": {
+    "allocation_requests": 0,
+    "availability": {
+      "account": {
+        "auto_pay": false,
+        "credit_balance": "4.9937691886",
+        "current_spend_per_hour": "0"
+      },
+      "account_idle": true,
+      "allocation_requests": 0,
+      "observed_at": "2026-10-25T17:11:00Z",
+      "offers": [],
+      "regions": [
+        {
+          "available": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "id": "EU-RO-1",
+          "summary_stock": null
+        },
+        {
+          "available": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "id": "CA-MTL-3",
+          "summary_stock": null
+        },
+        {
+          "available": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "id": "US-KS-2",
+          "summary_stock": null
+        },
+        {
+          "available": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "id": "US-MO-1",
+          "summary_stock": null
+        }
+      ],
+      "settings_changed": false,
+      "status": "READ_ONLY_COMPLETE"
+    },
+    "pods": [],
+    "run_id": "40214244082",
+    "settings_changed": false,
+    "source_sha": "3632000d2d6f470a01f640ead7f4e2c8044805c6",
+    "status": "PASS"
+  },
+  "implementation": {
+    ".github/workflows/research-entry-cpu.yml": "ec3fcd3153511b616be218d78ee600931290f103f34ed292262f2da997c77b76",
+    ".github/workflows/research-entry-probe-owner.yml": "649546d8f300ecaa6d858015eee35ed43420da81d8a792ccbea87345d725bd7f",
+    ".github/workflows/research-entry-probe-watch.yml": "7c3e9cad697817bb7c9ebec9d2d325ede5c81f68724f25eaa1eb8c886c0f79e9",
+    ".github/workflows/research-entry-start.yml": "aa2def4934b022894705556adf24d802389d2b4e882771bbd8f97f68571f14a9",
+    ".github/workflows/research-entry-watch.yml": "5219010ca7ca15e47a7d590e6bef7c24878f5e12cf7263a286ae3df396a746c5",
+    "docs/linux-wheel-manifest.json": "72ec973f6e5cf390b891cf8f6354f0c5a95be5e6252c90976afad7ccf27be488",
+    "docs/research-assets-20261024.json": "94a191a2ee8d28cb8a35901fb29bafb5d505af315c7fb013dd80b1884ff5a056",
+    "docs/research-comparison-protocol.json": "1bd2ef8f356f8f4fbb6e7c1237e950ad14471a14e9e596d634d2e728b321b7d2",
+    "docs/research-selection-20261024.json": "3635497c6a3ef54d43ed841f692cd7ce14a215539a236dfc38271a33d4e78598",
+    "docs/research-verifier-amendment-20261025.json": "13062d551131a9f936936137233632c2283978ff21df575cbfc8e31cf66b9e4c",
+    "tests/official_a100_task.py": "c4f2aa30ba0b1c89d67073c3da5046f6e533b5117b51a7a7446c6e5955a8c29c",
+    "tests/official_binding.py": "34b0ac886301fe2833b95fad5c2cce076720e6926f115d72d3b2cf09aa3096fc",
+    "tests/official_cloud_image.py": "2d71f65f0921459e8c4c616b8277cf34b25df4aa9c70be5ccaf78edeec169dbc",
+    "tests/official_cloud_lifecycle.py": "b8955be36ae970ddae95202ad2ff0f59a239645c06214a70dc952a8168eac6a9",
+    "tests/official_cloud_prerequisites.py": "5965dfcf3cff6d75027a0b3cd41940c60a1533aa928536822e6d75a962474b39",
+    "tests/official_cloud_transport.py": "add4388cf0db14eefa15343c864b01f76eafeb6389b906e89f56824697c658d6",
+    "tests/official_connected_task.py": "2c7ee27d9e7a23386c1da96b242d75963993e1b817fadc3749f8058ad07866f3",
+    "tests/official_container_cleanup.py": "97fc4b9c9a06f4e81566401347a50358f96aa5175e2c230648f8c54853a1b9b6",
+    "tests/official_full_path_parity.py": "363c3e141d632aaed8348718b792452f71a46a6cdb639528eb67f258e3bdf028",
+    "tests/official_full_setup.py": "395eaf3218c30fef309a50e47da28016dff1e216dff3ebd11cbbe6172897e5fe",
+    "tests/official_private_evidence.py": "575dce6979acf804f7837a8b2d30368cdcc58e132c42d9018e47303bcdd54740",
+    "tests/official_server_command.py": "c71be871eacdef4141a1567aaa90350bcd8713df561b36641d8be7851ce27a32",
+    "tests/official_startup_guard.py": "567352bfc0c3fb551b932e20402efce2f466fbefb5bda6d2b63c4e03c7dd60f4",
+    "tests/official_startup_reaper.py": "57ed968b1459906636854014b443be8e31ae0df601bb33edc6914bdbef2c54e4",
+    "tests/official_task_followup.py": "faab08c46dad712099bdae2658e377af60c3d1003e4b998f280d2aa3bf77556a",
+    "tests/research_entry_replica.py": "67f96efcea035e8508c8c70479da47dcca11c509715601e3d0e41e60df786a88",
+    "tests/research_serving_fixture.py": "3c69f0011d0b077c949e60fccfa4adbbf056accfc28ce658df60b00ba298b2ab",
+    "tests/startup_fixture.py": "06f3f344f4b552e9eefce969c08da4f7269f312eb93fd47c80606db70fdb4a43",
+    "tests/test_a100_delivery.py": "136e212f0845b6b3a614069b4a103a45a1c21b02d9b6a8e9c8ca6e9dad8cee53",
+    "tests/test_a100_driver.py": "4a5ea48bf97a23114cfdb829e31537febe520dada425ec816064ee2e29770510",
+    "tests/test_a100_task.py": "875eb0a5811a5b8cd92a59ad7b2872bf61196df52f2b3a42d4c60a9604984b13",
+    "tests/test_api_readiness.py": "d0feb0f3d9f0b6982158ef91264fe54e30e1c6461e608254a9f6169fa926b510",
+    "tests/test_artifacts.py": "cc73f6154095a59a843ac2e504ae68638824d1e734f3d1c48e8286813cfd824f",
+    "tests/test_backtrace.py": "f257dc266acdf86b59e5368e5a1b3162692f5106825787d139da875fe3e33a3f",
+    "tests/test_bootstrap_probe.py": "ea0bcdca7741d994b3bb52456cb42c100f9faf9d9ba395c1a63518fef20bf3bd",
+    "tests/test_cloud_bootstrap.py": "33edd30b026f51b727d79ac5bbba32cfa7b53b9dfe5ca0c88a09c146e5b3cabd",
+    "tests/test_cloud_launch.py": "f97b549dc1d4dc6c66ee6674a7cbe131c8087b2cc765b2a7129666c0d13972d3",
+    "tests/test_cloud_offer.py": "19f1898bef46159275568e247312b8e9438fb0c007abbb8cd70e2f713df4f396",
+    "tests/test_cloud_owner.py": "eff3df0bf7f9c284c4596906743503171b63c1dc85f05e3c2d5bb8e2419d65e9",
+    "tests/test_cloud_preflight.py": "c4dd5df96b4f49803f56a8951ba182d8e50b8d52cc04e3ead6b995c28278cbd3",
+    "tests/test_cloud_probe.py": "05237ccb285bb7f05ce5f31322eb1ea60e2949be19543e111efcffc5881e1235",
+    "tests/test_cloud_qualification.py": "d21466d67bb70bb1bb9ebed3dc962c4805809757c4ee138fd262f02c0ab54b7c",
+    "tests/test_cloud_reference.py": "f76b7b0887fff94598d2e478d43c2a5372b9c7a2322efe928557acb0b75b4ad4",
+    "tests/test_cloud_resolver.py": "c54292811820f0e801733fb2dcfb88749a12a07f928a234241fd7e47c6472096",
+    "tests/test_cloud_sources.py": "0b2f536f83a964b071f9748b4f4f5ba396d58fc0d64d46e9853ed74c8686c029",
+    "tests/test_cloud_state.py": "bbf86bde237dffd91a118b0795361c4af152d4146f1caf79ac19588e7ced83c5",
+    "tests/test_cloud_worker_permissions.py": "b70099751fcc0022e71e410eb5bac34ed9e91a63de4fb349c9390f65e3e86834",
+    "tests/test_compile_probe.py": "15fb08fc63f09baa5bf1aac937c48cdebaec5b8972099ff796703a4b0e45b726",
+    "tests/test_direct_delivery.py": "ad4f3b86fc9a4df3d7ec1697d9631bb7823776df0f53b269ad23a7eac13d93bc",
+    "tests/test_evaluation.py": "eb1192642afb517dee2de2fcdfd8c9c9355e705b638889af8ebf9b24ffd06117",
+    "tests/test_exact_teacher.py": "665a129028d24fcdcfbf54826cf5e93ff1516b14e55ebd6160dad9f794910cb3",
+    "tests/test_free_container_cleanup.py": "3ec4cb4866bb965bff613d110be9b4755faa04a7f0a706ce6606103d1bef26f9",
+    "tests/test_full_path_parity.py": "ed7c8dd2ae3f55e76b51599dd1452d9b95aa66e1b64beff597e3fe41c1b8cdc2",
+    "tests/test_guard_driver.py": "38fc2d162ba0d1fc72638d88f1d9aeb33c0e1a8583a6f50feae73bca4026c9cc",
+    "tests/test_linux_runtime.py": "6568337389b519436beb1211bddc23f1ccd5748f369c3cab1989d61656fa565d",
+    "tests/test_native_dtype.py": "f7c71bbba4e131bc2752036d08d980eb052b70ecc42139eb5c0708b166c1f473",
+    "tests/test_pod_system.py": "a71dca143b1e06bafc8efdf73c165d6dd2acd2c7dab653411a84ec3afe94f97e",
+    "tests/test_prepayment_job.py": "5e73269a61537ec1ca264a0c5501e9408b253681e8e225cdea3399c5344ba31d",
+    "tests/test_private_delivery.py": "9d716ae24821bfeb69c9c0a51bc8f2b5cf074ef0e7325701cadd34e84c23f5de",
+    "tests/test_r0.py": "07db71f53d86d0926ae2723f04da8bdeb3c11023d9ff14a90e789d6a766baded",
+    "tests/test_research_assets.py": "b191e140725a8d649aa6657f338b15ad02c40748d03a4488010b35e486e8b574",
+    "tests/test_research_comparison.py": "ece1e380c0d39b14965096684289f921ff2c3984e8bdff21cb93d2429b20dfa1",
+    "tests/test_research_cpu.py": "39536a9d4a065075e528c2dcc9a73394d44837c425916aa52fbe5e4b2f660d96",
+    "tests/test_research_entry.py": "50aa9ca70aeae2a7fb5f6eac8e84837dca405e9006995221bd544d8b03c4ed60",
+    "tests/test_research_isolation.py": "e004818324a947283376109fd911a00ceb40df61fd2d0baa55bfb0dcf407ef7d",
+    "tests/test_research_meter.py": "f83a6871c2e9326f03a374232fb9a15461f4878e5907939541e1dc3bf49ce38a",
+    "tests/test_research_serving.py": "cb79d478f8d6058477ce59db317244bce6df59e680a60332f25d785328c786b9",
+    "tests/test_research_split.py": "e4ca555e5475797a0040a2bc5e0394ede8c58c8d0b0972a180e57ef1c57a44e0",
+    "tests/test_research_verifier.py": "cafc78a1532739e43d6cff6448fe22abfe7dd5483a2bd896986c6b44347c112d",
+    "tests/test_research_verifier_policy.py": "f0e0a2ce09d3027ce2f9f9d5662b934e9bd0b2c7e7fc4296e2874f7c8bbd8357",
+    "tests/test_runpod_control.py": "fc08f6558fb11f4f489d560f1fb1dcf2f71fdac0d3ada73ed7b3babdd250ac8b",
+    "tests/test_select_smoke_task.py": "31ad9efc490d37953617b67bb7dbb888e25860478b3221cbeffb36c851d988b1",
+    "tests/test_ssh_bootstrap.py": "bf20d657d9b3243c842178aa8549db15926e571972570048d6e60926fc9100bb",
+    "tests/test_startup_guard.py": "44a5c86fa15321f51a94e9696bd478d4d6095d54b1de466351774475f04106fd",
+    "tests/test_startup_subreaper.py": "0ba5b4fdb2baf83e408e924013a6c6ab24c8b49f59f5dad79e16eba30879fe44",
+    "tests/test_task_calibration.py": "8e6fac5b21039928eb18ad1c4045cadcc2ab8415e38ba4b15bc02e45fae95cf7",
+    "tests/test_task_followup.py": "349cd0cb9c7e43d7c4e6dcf80e7e9c9969859ae1afb1c0c2f31f12b68c395539",
+    "tests/test_task_results.py": "4e1195a3f994c40e566803d4cee8490e6bad6b87fc59b9970ceeeaf365c3a8fa",
+    "tests/test_task_verification.py": "09a40558baf20988e5717910e5b376a58e91c3183491b301907ad19f9ac81cb0",
+    "tests/verification_fixture.py": "472ac348dd0d8f609b14d0942755c995939381c1eaa60246903ff842b9deaef5",
+    "tools/a100_delivery.py": "d3c2630cb0e4fe5ddf20ead30fb2c74064e7b2622b0db02d843878d2f77bc430",
+    "tools/a100_driver.py": "7659dbe437028fc22918a0ae3e4647f5bb1d9dbfa4a05bc79420fb6d7afdfa87",
+    "tools/a100_task.py": "bc98ef0835c8d727303fce4d68e737bc810e4a8b14929fb0cc30782d2d68be74",
+    "tools/api_probe.py": "86ec3e1d079210daa005acb46959e8bd16f9378eb088e19804e7d6265699714c",
+    "tools/artifacts.py": "69e2bcd31bfb6b00dc0bb730eeae1e03681830f8e97594cbaf27cde36db58b8c",
+    "tools/backtrace.py": "10fa8d46788703bdf1eb9052edcb9d0159cb782a015a5fa6f74196b1bc23c58f",
+    "tools/bootstrap_probe.py": "a21b35e9f607ba07b97a26d2dd1f3c95173ef7aa1c99565fb43fbaa8b12c61dd",
+    "tools/calibrated_evaluation.py": "e4fd28e72d4553d60da3cb7d4b648df5b8c553c461b4a1d1dd2e08e967118c2f",
+    "tools/cloud_bootstrap.py": "b032f0d92bb042cb3388699fe230084c077fb78a59b4df86184f12feb6610487",
+    "tools/cloud_image.py": "f8977b2256e61e4e2d9f0f6f0373b3a54e41ef347c9deb9e04a32ff498684d5c",
+    "tools/cloud_inventory.py": "f4865ae92c7f41375a15ecf917e932562cca608ca7a1607d18d1b370bd0932ff",
+    "tools/cloud_launch.py": "e04bf87af750d2c41e978d1096fc97595a43fb4e88d558eb6e8e922aaea23a97",
+    "tools/cloud_offer.py": "9387b91be560cf80a85a5bae8166acb7c35f7a61135042971d21cafdb76c3df5",
+    "tools/cloud_owner.py": "4c80dfb4c88440fff73137e3f01df5e6cc9f8e14275f5df6ec892c27f5140c23",
+    "tools/cloud_prepare.py": "8c62d9c733fdf3b5b6eb60fb2076f78a75d35b5518545838e5c3daa3e84dfeb3",
+    "tools/cloud_probe.py": "bb89c097e7fe0c6bc56771e87695056d60c11f510502173105a102a25d48e22f",
+    "tools/cloud_qualification.py": "03f9146e75ea0c375c04495b0a57cc918561a7094fe98dd33bf488694176537c",
+    "tools/cloud_reference.py": "960f02a9f97d1d448e406b5610214899b9ed4b2ef106d38019c5979ef9452caf",
+    "tools/cloud_resolver.py": "0b2f7a2f46d932683d6b0ab8148a3411eeecbda690b1e3d715922d330f313745",
+    "tools/cloud_seal.py": "f336eb14cc722ecd9155c70cc61ca0eaee9c184c6e76a0ceda36cd065145cd0a",
+    "tools/cloud_sources.py": "ab05f7708a522fa295d97274d5babeb2091ceb40a65b3f18af840a017acdec2e",
+    "tools/cloud_state.py": "cafdf4e42edb344150d881862072c9d8c432b4f859e903300d65733277b3b3e1",
+    "tools/cloud_system_inventory.py": "49ecc3ec9613ad48dd91d6805964f9dd17c0b94a1c15e89242a2f81e9a657288",
+    "tools/cloud_task.py": "0f8b1924f55c55f4dc338156030d7060c3d4dad3abc0f282c83abd556b73aed4",
+    "tools/cloud_transport.py": "013d93fc8c1548bc7eaf4cf9a4f5a49608b7e16d537b192accf053151fbf5902",
+    "tools/cloud_watch.py": "09cd3b57f2df1432d9c750faf4c36260cf38a51cb9e579cfd022108a6e588a85",
+    "tools/cloud_worker.py": "17e6fde54db942c7acf04b28173001f453e6a808bf3942835093d1f5aa6b3067",
+    "tools/compile_probe.py": "a5248fb9ed8fb59dc3d9bd84081d5d02b71012cd360211dc1e3002a60c2d5f59",
+    "tools/direct_delivery.py": "035c734aed206b6734737b102a202cb70810dd595444c3da242f133b9aa77ed4",
+    "tools/errors.py": "eb5a7c91f7d540aa417065d528e49b5926a9c6dbef772a303ff80ad3902ec470",
+    "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+    "tools/free_audit_sources.py": "39774f5796fc07bdfa3eb077a5df50117288ba3393a6d3c31a9a92bd8c9759a2",
+    "tools/free_container_cleanup.py": "3dc64f6fa013e992e8c02fa702330a14003cb2e7ab0d536e3dc0da80ce3e9466",
+    "tools/guard_driver.py": "52da5a42a2ae89973cfee7437ced9602f331143154ec538bfc2a2b854e8c38ca",
+    "tools/linux_runtime.py": "feffd81c92cd91679c174d9824c91628e2d2a41426a437e6783438570eaf7574",
+    "tools/native_dtype.py": "d6d03561491155f470dba1ea1b36790821363416e29f9493581ac43fc039cc60",
+    "tools/official_check.py": "c6ad5915d671a68377f383d90abcd30ec1e05a39b2bed541ebe18c5ebb39ef7b",
+    "tools/pod_bootstrap.py": "389302013e7ca0ae3d7c36611be2937978c41a40e5de11531be76c870cd9b27e",
+    "tools/pod_preflight.py": "4fa8d34e85337b54eb92006b8fff6018c3e15376d13253c5af02b4ec0715ee50",
+    "tools/pod_system.py": "ccfbcf80182aabe94f618d884418d9de32cc1d64f272cda25d7d397c3a9bd8fb",
+    "tools/private_delivery.py": "f010c41715e2548b86a4b3dfc009e22e57fcbf5a52429e4f7f1165632f1a4a40",
+    "tools/probe_results.py": "2824cf1f71a1973af011ca337b6ce552c82fcfa526534209d079cadc09b30478",
+    "tools/qualification_evidence.py": "2b3378f6e88947ac3b6f256d320791a7454b3add968dd9660dc134fea05906ba",
+    "tools/qualify_api.py": "fc7a6bf96858938886df50732e58bf994201d412814809d69c4679f1fd1e4261",
+    "tools/qualify_evaluation.py": "b16aa1b2cb397eeb022f35e6c9028690ca838aa2ddd7e8f1c07cd3e2ddfc96ac",
+    "tools/qualify_ssh_transport.py": "f54a6fcdfa1d47bf51f9ce90e2717888dfc4c349e4929c8cdc74cd824b902c6e",
+    "tools/r0.py": "cf84b6378edc1ffbcee0ec99e6d39b44216ed0c6737e1ed50771b4216f318411",
+    "tools/recovered_task.py": "5c783390a2e81e13c00a29ce208be1b9224eb54ff6de8e5e417a482a7a81ebab",
+    "tools/research_assets.py": "448ee8f672ccce3553e30fc105e946acd2479fd7d5fbdf9b5cef455595c765c6",
+    "tools/research_comparison.py": "58a1bbc41d68b29b7a0628e5d182febbae8775b242228e8506b2040abe6ccc3b",
+    "tools/research_cpu.py": "b4dd3171c7e83f1e2d6b6a17f4d1bfe06e378a85cbd30f21390686ad7cb252f3",
+    "tools/research_deployment_probe.py": "43ddfc38f826c2f40fdb9225d9edb669422a6dfdf3cb340e9a0d5d2ff19c8284",
+    "tools/research_entry.py": "e56fb4d0b8fd5fd974de4f04b7496c4894424398b3c02ef208ab295bce0bca8d",
+    "tools/research_entry_contract.py": "297238e7f106a4034f20575644fc298add3ab1d83c7b4a7977fb71be6aafa58b",
+    "tools/research_entry_cpu.py": "8a19c3ac17ea9c55f674bc48c88ed60f75dc0f3483ae28585a563b7f66b13a61",
+    "tools/research_entry_main.py": "9f9772e51df55ce7a05ae710fb497301192d7dc12aa7a1f80d923eb8528b5be7",
+    "tools/research_entry_offer.py": "caae96a617e1f336c81885697e4d5124a150a30b9020b2bd6969f0d1988c684e",
+    "tools/research_entry_prepare.py": "7b4600fa72ba870155ef1559a9db38349d3ded641974599cb9b11173f7ac74e7",
+    "tools/research_entry_probe.py": "2081355b177344f41a7f9d514442f1c2e08f82e82d1f22b40c78571533e88e5c",
+    "tools/research_entry_state.py": "28a938ac1ab88bf2db6e3491787c2f056df74bbbca8a54130d6010804eb10d06",
+    "tools/research_entry_worker.py": "a9846aca19e4a4105fc6142a761699e692d328336181b77895d5770d97b15055",
+    "tools/research_fixture.py": "7e988c6aa49c0a437d5ff940a8af5fc87766269eb8a124e5f3762198c4862c8b",
+    "tools/research_isolation.py": "6384bb16956724e36b985b3c6e8eb531180d44a6a18669b0e2d24c061e36e44a",
+    "tools/research_isolation_probe.py": "c605227294e771ca2bbfd8aaaab5bb19d2a1fa9a6916c713830c08b94d851509",
+    "tools/research_lifecycle.py": "96043226159f220b1bd614ce1c5a5a62e4849f57ec275f9fa0bbc796f3a04e62",
+    "tools/research_meter.py": "909338ca9690847f5dcef2256cd61be98925873e4cdb54df36e3e9d8964eef0d",
+    "tools/research_official.py": "5199693c8cdafc54e34ca74389c541b35a158bb0e5dadc5d16889586ee23967f",
+    "tools/research_runner.py": "723b892584898ecc74fd966d6bceb0eb994d6056fd7bc34792097ce9c96b0d79",
+    "tools/research_runtime.py": "d052d8e149f3474dbfe5dc69803a4c2525bee552d5ad31c81a81ea39ea0910db",
+    "tools/research_serving.py": "7ffde8cfc271851bc6eae954729583919ad11ba4a41f6a5a2628e15aa2f7960e",
+    "tools/research_serving_cpu.py": "dd4fbc2ac01ed0ce4a43528203720031a58081f792134ba05c2242ac11a1468b",
+    "tools/research_serving_delivery.py": "7359a8e31c59b02c447cb6a6afdcd227eb56f40a3c48242295df5216c0821d0d",
+    "tools/research_serving_install.py": "d36949d500e6ed02c20cc7232ef98d6e8e1d43b2818b4ed98b28c55b2180fe84",
+    "tools/research_split.py": "e06629d9132ed6e00f188dbd0821661fc5caab38169a1f3f7dab265ef0b5d521",
+    "tools/research_split_cache.py": "0e86241a25c87097bb4bfe89953ad4e3a5249ce57e5f69efd2b563847585e0a9",
+    "tools/research_split_cpu.py": "6e76e1951c9b6b73a14a3dab449b01f838b94d9fd78e14963ced19029470eaea",
+    "tools/research_split_host.py": "bb9883c6fa3b6f8f8720660fa034cd5e72395fc047e37baca16bb15989b2fcd5",
+    "tools/research_split_sequence.py": "201c5383834f68170bb9a4cc456d6f76ad71c8386054dce1522b752451bc5498",
+    "tools/research_split_server.py": "6cab96d7e6a524dc5ab5d54d0fce8927125ebdda7a60702f5e8c5cc313f749b4",
+    "tools/research_verifier.py": "e6665c39bc0d3e62e479c04a194c59cd3a856ab987a8658faad5b73378bfad50",
+    "tools/research_verifier_cpu.py": "834f7031e4ebd598a89dcbbd87c7705785ba55ca3803b1e66e4e9e2d3eaf4d0d",
+    "tools/research_verifier_policy.py": "912fed29e3deeb3a92a4609b56a0da61629678b574febaf3e9ffed0792c1bc6c",
+    "tools/runpod_control.py": "09219477947e39b2c7c58b6e7e44f385bd5d1140cbdb7a47cddef3ab7f6cf400",
+    "tools/runpod_job.py": "2035ce64ddc333cb1fdd43dc3348f56a429cfbe96dda44b0cbb09f5ce27a50e5",
+    "tools/runtime_config.py": "fdc19f3b70e5a5c55e0754497195284cfabd42fa368f5d41d878b177157d9ba9",
+    "tools/select_smoke_task.py": "f0057ed055fe95aeec54a36b08e96f21fc907e656f41e3e7d62f8f71618a03f2",
+    "tools/serving_contract.py": "65c9ed260bd97cfe15c791b96cdff970c7433136ade110f4d0a56f2157cc8cb2",
+    "tools/ssh_bootstrap.py": "b657ddd6f145f66f4e15f2d30a23d8870ae56aa7f60d396ae1f41de485916839",
+    "tools/startup_guard.py": "13033ea60f91da4bf30d0cad0fc27fe8499c50bd0fdba7e3a550a089a1e82afc",
+    "tools/task_budget.py": "8caea8e7f313e728190fadf532f743a7aaf6787c0a1a197d910d385c5298e9af",
+    "tools/task_calibration.py": "b6551c310a9bba05dafd0dcd37e5847a7d21046d3853220806b520e932f09eb7",
+    "tools/task_followup.py": "13c973afeddd9c34d90c560a829e7beff8de9d80edea66166ab5cfe7d475e87c",
+    "tools/task_results.py": "b479719d12051bfe77b9821aa18bd7aa08a785460136436bc74d9013e70597a2",
+    "tools/task_trace_review.py": "00f77cceb535f9829095438ddd64886a096cedf5f07b91b1504fe33c7f1af57f",
+    "tools/task_verification.py": "7ccfabcb71d920d2159a70d357d32137bbfd8d33af5ca733adaf31558b49fe21",
+    "tools/verified_evaluation.py": "9846fa1cb9ad0bec6e670d266408bbfc5ddc99fb158b02dd5e09b6d5cb08e7ad"
+  },
+  "independent_check": {
+    "account_idle_and_zero_pods": true,
+    "cpu_packages": 143,
+    "export_records": 315,
+    "http_attempts": 108,
+    "implementation_files": 176,
+    "independent_export_before_cleanup": true,
+    "installed_serving_packages": 246,
+    "live_github_probes": {
+      "namespace": "free-github-3632000d2d6f470a01f640ead7f4e2c8044805c6",
+      "provider_calls": 0,
+      "runs": {
+        "owner": {
+          "run_id": "40214243989",
+          "status": "success"
+        },
+        "watch": {
+          "run_id": "40214244019",
+          "status": "success"
+        }
+      },
+      "source_sha": "3632000d2d6f470a01f640ead7f4e2c8044805c6",
+      "status": "PASS"
+    },
+    "native_linux_tests": 502,
+    "native_uid_regression": "EXECUTED_PASS",
+    "private_records": 177,
+    "provider_create_requests": 0,
+    "real_model_runs": 0,
+    "run_id": "40214244082",
+    "single_replica_create": true,
+    "slots_verified": [
+      {
+        "agent_input_sha256": "8a12a160a8a2ccc764763cb7a635e5700e79eba56198d601c2ef455b2f4d05dd",
+        "arm": "R0",
+        "instance_id": "requests_7309",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "21627c3d88d8768d2f5bfbbb1cc24632cb6143e8b33c8b53bf771a3276746c99"
+      },
+      {
+        "agent_input_sha256": "8a12a160a8a2ccc764763cb7a635e5700e79eba56198d601c2ef455b2f4d05dd",
+        "arm": "R1",
+        "instance_id": "requests_7309",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "515638896aac79e70b7a6678827c673b23120244656e73dd38c1ef9ee3697ac9"
+      },
+      {
+        "agent_input_sha256": "8a12a160a8a2ccc764763cb7a635e5700e79eba56198d601c2ef455b2f4d05dd",
+        "arm": "R2",
+        "instance_id": "requests_7309",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "b7e161e93b1e556c6c4e8d779256c780743ea381df442c68eb86eaf12f2fc2cc"
+      },
+      {
+        "agent_input_sha256": "1ecb0d9e96cda26cb374e3a059b72a699657d3015f34a8acdef6ea7af71532dc",
+        "arm": "R0",
+        "instance_id": "rich_3486",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "1907f8d83b10b22a9c6aabab5b25aa35e3f63c9d68a0a53a3dd44e2e97e2b7bb"
+      },
+      {
+        "agent_input_sha256": "1ecb0d9e96cda26cb374e3a059b72a699657d3015f34a8acdef6ea7af71532dc",
+        "arm": "R2",
+        "instance_id": "rich_3486",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "aa74e0471ec6a23b475dad2e07e1e43ef52a8ad3ea1486ff79184d5412f12e8f"
+      },
+      {
+        "agent_input_sha256": "1ecb0d9e96cda26cb374e3a059b72a699657d3015f34a8acdef6ea7af71532dc",
+        "arm": "R1",
+        "instance_id": "rich_3486",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "cde5f83c592b59fe3197291e20833687f527300b875504df580457de630a62f6"
+      },
+      {
+        "agent_input_sha256": "16c1737826efb8a853359ce489685faaa501d8881c270a862ec001a8450c6023",
+        "arm": "R1",
+        "instance_id": "httpx_3672",
+        "patch_sha256": "0392eb9bc8abba1c115c3f8047e5379a478357fe741c2d720e8305f4e5e46173",
+        "trace_sha256": "6f05338bfb60d1e30ce9ee22bcf6b9c519d6537a7388978aa7db4c43609f5b86"
+      },
+      {
+        "agent_input_sha256": "16c1737826efb8a853359ce489685faaa501d8881c270a862ec001a8450c6023",
+        "arm": "R0",
+        "instance_id": "httpx_3672",
+        "patch_sha256": "0392eb9bc8abba1c115c3f8047e5379a478357fe741c2d720e8305f4e5e46173",
+        "trace_sha256": "dcb4b197d81dce2496793ef7c304b41de34573596af3f343d72413aa0724d220"
+      },
+      {
+        "agent_input_sha256": "16c1737826efb8a853359ce489685faaa501d8881c270a862ec001a8450c6023",
+        "arm": "R2",
+        "instance_id": "httpx_3672",
+        "patch_sha256": "0392eb9bc8abba1c115c3f8047e5379a478357fe741c2d720e8305f4e5e46173",
+        "trace_sha256": "f120d30075c838743b3e0f6ac3df1d6b00833ba3b7c17862212217b17e3413c6"
+      },
+      {
+        "agent_input_sha256": "c6c6094b607d3c3a37aa73b1dbe7b56564106572346d4c5a35e1b2fdb85fdbfe",
+        "arm": "R1",
+        "instance_id": "requests_7315",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "5926dc959dff20535425a4f2f05352322cb8a470d1bfd4ea25d089b88842e77e"
+      },
+      {
+        "agent_input_sha256": "c6c6094b607d3c3a37aa73b1dbe7b56564106572346d4c5a35e1b2fdb85fdbfe",
+        "arm": "R2",
+        "instance_id": "requests_7315",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "9485a2a727b051dff59e21621c12943515c29916cb0b15f0bbb795b2274ddc9c"
+      },
+      {
+        "agent_input_sha256": "c6c6094b607d3c3a37aa73b1dbe7b56564106572346d4c5a35e1b2fdb85fdbfe",
+        "arm": "R0",
+        "instance_id": "requests_7315",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "89aa1d6f7a0d3bfc3459a9f986d69e23a97da50866ff2f2ce453a6e0c604e12e"
+      },
+      {
+        "agent_input_sha256": "6e4f5bbb12e5665f1fddfe61779abcf42a57b0e19e6ea3bc29aa6f27d74fcfba",
+        "arm": "R2",
+        "instance_id": "rich_3067",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "295b361aa2db65aca3850461fb94b7905fe4476df6819194d8e3b56eeae66b9f"
+      },
+      {
+        "agent_input_sha256": "6e4f5bbb12e5665f1fddfe61779abcf42a57b0e19e6ea3bc29aa6f27d74fcfba",
+        "arm": "R0",
+        "instance_id": "rich_3067",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "a6d1f384cbff3e64b056ba5ad13c5ae94b39010d3f1f1209ac9a01e418bbc7d0"
+      },
+      {
+        "agent_input_sha256": "6e4f5bbb12e5665f1fddfe61779abcf42a57b0e19e6ea3bc29aa6f27d74fcfba",
+        "arm": "R1",
+        "instance_id": "rich_3067",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "6b1ef562aa75440d5fe9db1e6f66c434119cfa7e255298b6d157cda6fb00b27e"
+      },
+      {
+        "agent_input_sha256": "901f4a618cb9e1817f6fb046225d95cf0d72d1d254bd0334812b5fe98c774d7f",
+        "arm": "R2",
+        "instance_id": "requests_7502",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "856711140caa8b9ea056be52571ffbf55893e4687e3a4d94ff27ae2b0b8127d6"
+      },
+      {
+        "agent_input_sha256": "901f4a618cb9e1817f6fb046225d95cf0d72d1d254bd0334812b5fe98c774d7f",
+        "arm": "R1",
+        "instance_id": "requests_7502",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "f7d9501654e268a6ea9ca0d8f30e8f77b145f64510bcb8217f02ed95fb68944e"
+      },
+      {
+        "agent_input_sha256": "901f4a618cb9e1817f6fb046225d95cf0d72d1d254bd0334812b5fe98c774d7f",
+        "arm": "R0",
+        "instance_id": "requests_7502",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "4dccf26cafc0a8ca4042f852356b629f915467a980af85d8f87e07bdbf8147f5"
+      }
+    ],
+    "source_sha": "3632000d2d6f470a01f640ead7f4e2c8044805c6",
+    "status": "PASS",
+    "watcher_cleanup_reason": "OWNER_DONE"
+  },
+  "no_new_paid_authorization": true,
+  "paid_entry_branches_created": false,
+  "provider_create_requests": 0,
+  "qualification_run_id": "40214244082",
+  "qualification_url": "https://github.com/hynk-studio/backtrace/actions/runs/40214244082",
+  "real_model_slots": [
+    {
+      "arm": "R0",
+      "instance_id": "requests_7309",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "R1",
+      "instance_id": "requests_7309",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "R2",
+      "instance_id": "requests_7309",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "R0",
+      "instance_id": "rich_3486",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "R2",
+      "instance_id": "rich_3486",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "R1",
+      "instance_id": "rich_3486",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "R1",
+      "instance_id": "httpx_3672",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "R0",
+      "instance_id": "httpx_3672",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "R2",
+      "instance_id": "httpx_3672",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "R1",
+      "instance_id": "requests_7315",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "R2",
+      "instance_id": "requests_7315",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "R0",
+      "instance_id": "requests_7315",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "R2",
+      "instance_id": "rich_3067",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "R0",
+      "instance_id": "rich_3067",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "R1",
+      "instance_id": "rich_3067",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "R2",
+      "instance_id": "requests_7502",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "R1",
+      "instance_id": "requests_7502",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "R0",
+      "instance_id": "requests_7502",
+      "status": "NOT_RUN"
+    }
+  ],
+  "retained_failed_runs": [
+    "40211991201",
+    "40213108303"
+  ],
+  "review_branch": "bt-001-research-prepaid-entry-20261026",
+  "review_pr": 27,
+  "schema_version": 1,
+  "status": "FREE_PREPARATION_QUALIFIED_PAID_EXECUTION_BLOCKED"
+}

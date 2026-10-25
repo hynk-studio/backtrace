@@ -4,7 +4,7 @@ Question: does specialist post-training in logical/abductive inference, Bayesian
 belief revision and decision-relevant inspection improve resolved software tasks
 under a matched total inference budget?
 
-## Current evidence, 25 October 2026 KST
+## Current evidence, 26 October 2026 KST
 
 25 October continuation: the owner requested the next steps in order. The
 [explicit research-verifier amendment](research-verifier-amendment-20261025.md)
@@ -22,10 +22,18 @@ passed run 40206021955: 479 Linux tests, full 246-wheel offline serving runtime,
 authenticated server-only delivery/start/stop, 18 isolated authored slots and
 108 matched requests through Docker bridge ports. Encrypted export precedes
 independent owner/watcher cleanup; readiness, parent-loss, network-loss and
-time-reserve controls passed. The [next deployment stage](research-pilot-next-stage-20261025.md)
-is the new distributed GitHub/Runpod owner/watch entry and its bounded cost/claim
-integration. GPU cache/model readiness, matched model slots and a new paid
-authorization remain NOT_RUN.
+time-reserve controls passed. The [new distributed entry](research-prepaid-entry-20261026.md) now passed
+run 40214244082: 502 Linux tests, the full serving/18-slot/108-request path
+through real wire adapters against local HTTP replicas, encrypted export before
+independent deletion checks, and two separate real GitHub state workflows.
+The initial permission failure and later state/retrieval failure are retained.
+Free prepayment preparation is complete at source `3632000d2d6f470a01f640ead7f4e2c8044805c6`.
+The fresh USD4.9937691886 balance and old USD8 cumulative ceiling cannot fund
+the full proposed three-hour envelope. The next decision is explicit funding,
+budget and a fresh one-use permit; the latest read also found no exact stock.
+No top-up, permit or paid branch was created.
+Actual provider-network/GPU/cache/model readiness and all18 matched model slots
+remain NOT_RUN; independent evaluation follows confirmed deletion.
 
 The [real R1 v2 diagnostic](verified-gpu-20261024.md) completed model execution,
 patch submission, public verification (four tests passed) and resource cleanup.
