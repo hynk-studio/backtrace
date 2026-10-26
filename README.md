@@ -46,8 +46,13 @@ checkpoint from the unchanged full-model baseline. Native run 40349526548 passed
 620 tests and 14 operational cases, including the actual interrupted collector.
 All eleven CPU export archives were independently verified. The
 [receipt](docs/small-model-precheck-cpu-20261026.json) preserves two earlier native
-failures and local environment failures. Actual provider bootstrap/remote
-watcher deployment and physical GPU checks remain pending; paid launch is disabled.
+failures and local environment failures. The
+[provider follow-up](docs/small-model-provider-20261027.md) now verifies live
+authenticated account/quotes, exact-image delivery of the new payload and a
+bounded remote observer on an independent runner. The default container fails
+the current native namespace/cgroup prerequisites. The observer terminated after
+its liveness check; no paid cleanup target is armed. Native-compatible execution,
+distributed resource cleanup and physical GPU checks remain pending; paid launch is disabled.
 Training, adapter save/reload and Augnes integration are **NOT RUN**.
 
 The [latest coding pilot](docs/research-reduced9-execution-20261026.md) attempted

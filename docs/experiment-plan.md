@@ -18,6 +18,14 @@ new held-out families, repeated seeds and a separate Augnes transfer assessment.
 | A4 | Augnes time-cutoff replay, prospective shadow cases and device validation | NOT RUN |
 | A5 | Independent adoption and Kaggle-submission decisions | NOT DECIDED |
 
+Provider follow-up on 2026-10-27 verified authenticated live reads, current
+balance/filtered quotes, byte-bound exact-image payload delivery and a bounded
+independent remote observer. The tested default container denies the current
+namespace/cgroup prerequisites. Resolve the execution topology and qualify an
+independent resource-bound cleanup controller before the GPU minimum; the observer
+is terminated and unarmed. See [actual evidence](small-model-provider-20261027.md).
+No GPU/model/training result is added by this connection work.
+
 The historical 24 training plus 24 evaluation examples are development fixtures,
 not sufficient confirmatory evidence. They supply the model and hypotheses and
 do not yet test open hypothesis construction. Small-model training, deployment

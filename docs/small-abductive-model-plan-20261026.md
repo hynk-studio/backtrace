@@ -12,6 +12,14 @@ unqualified; no consumed permit is reused.
 
 ## Objective and priority
 
+The 2026-10-27 [provider follow-up](small-model-provider-20261027.md) passed
+live account/quote access, exact-image new-payload delivery and bounded independent
+remote observation. It also established a blocker: the tested ordinary container
+does not satisfy the prepared native namespace/cgroup prerequisites. The observer
+has terminated without a paid target. Resolve this topology and qualify remote
+resource cleanup before the hardware minimum; available credit/stock alone does
+not establish execution readiness. No scientific protocol or prior input changed.
+
 The owner clarified that speed is not the objective. The first objective is to
 establish whether a small specialist model learns useful abductive inference,
 with possible Augnes use considered from the outset. E2B and E4B are candidates;
