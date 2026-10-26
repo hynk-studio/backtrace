@@ -6,9 +6,11 @@ Base: Draft #34, `6a0afa9a7ab88a1d77edc808bb78575b96b0ae17`.
 
 This stage prepares and qualifies free execution-management mechanisms. It does
 not run the GPU minimum, allocate hardware, download full checkpoints, perform
-pretrained inference or train. Every prior scientific/runtime/collector source,
+pretrained inference or train. All prior scientific/runtime/collector sources,
 the original 36-assignment baseline plan, historical receipt and consumed paid
-claim remains unchanged.
+claim remain unchanged. The old CPU boundary probe now compares process namespace
+identity instead of assuming PID numbers are globally unique. The actual collector,
+worker, GPU implementation and all 13 scientific/runtime sources are unchanged.
 
 ## Concrete checkpoints
 
@@ -113,6 +115,19 @@ reduced its link count to zero. The mutable-heartbeat reader now accepts that
 complete old inode while retaining no-follow, private-owner and size checks;
 immutable records retain the stricter rule. Exception frame locations are now
 retained and deadline controls require the actual TimeoutError, not any failure.
+
+The second native run, 40347570258 at
+`b4b0f4312208faf03ffb899600346dd93235515f`, passed all 620 tests and all twelve
+standalone lifecycle cases. The connected original pipeline then exposed a
+nested-namespace failure: both original boundary modes stopped descendants but
+failed the visibility/namespace-removal assertions. The previous outer command
+ran the application as namespace PID 1 without an orphan reaper, and the old
+probe treated a reused numeric PID as the outer coordinator. A separate minimal
+PID-1 wait loop now reaps adopted children, and the probe compares namespace
+identity while retaining every file/network/UID/capability check. Both the
+original outer-host probe and the nested connected path must pass again. The
+second failed artifact digest is
+`49be9c1bb3d7c71d48c62d8dcc2215821e84b0e3b1854994f0bea687c79fc253`.
 
 The final focused local 16 tests pass. Full local runs and exact-source native
 qualification are recorded separately in the final receipt. The failed native

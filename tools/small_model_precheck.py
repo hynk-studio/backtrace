@@ -16,7 +16,8 @@ from tools import small_model_lifecycle as life
 
 FILES = ('tools/small_model_resources.py', 'tools/small_model_lifecycle.py',
          'tools/small_model_precheck.py', 'tools/small_model_lifecycle_probe.py',
-         'tests/test_small_model_precheck.py', '.github/workflows/small-model-precheck-cpu.yml')
+         'tests/test_small_model_precheck.py', '.github/workflows/small-model-precheck-cpu.yml',
+         'tools/small_model_runner_probe.py', 'tools/runpod_control.py')
 
 
 def sources():

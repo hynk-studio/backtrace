@@ -80,6 +80,16 @@ jobs:
               if p.is_symlink() or any(x in ('random-models','private') for x in p.relative_to(root).parts):continue
               if p.is_file() and (p.name in leaves or p.parent==root) and p.stat().st_size<=16*1024*1024:
                   shutil.copyfile(p,Path('evidence')/('precheck-'+str(p.relative_to(root)).replace('/','-')))
+          # These archives contain only the authored/random CPU qualification
+          # outputs. Real hardware/model evidence is never auto-uploaded here.
+          import hashlib,json
+          for p in root.glob('*/work.tar'):
+              manifest=p.with_suffix('.export.json')
+              if not manifest.is_file():continue
+              row=json.loads(manifest.read_bytes())
+              if p.is_symlink() or p.stat().st_size>65*1024*1024:raise ValueError('CPU archive bounds')
+              if hashlib.sha256(p.read_bytes()).hexdigest()!=row['sha256']:raise ValueError('CPU archive changed')
+              shutil.copyfile(p,Path('evidence')/('cpu-export-'+p.parent.name+'.tar'))
           for p in Path('evidence').iterdir():p.chmod(0o644)
           PYCODE
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

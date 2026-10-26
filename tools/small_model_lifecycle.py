@@ -228,6 +228,18 @@ def watch(journal, resource, *, interval=.2):
     return result
 
 
+INIT = '''import os,subprocess,sys
+main=subprocess.Popen(sys.argv[1:])
+# Namespace PID 1 reaps adopted children after a nested coordinator dies.
+while True:
+    try: pid,status=os.waitpid(-1,0)
+    except InterruptedError: continue
+    if pid==main.pid:
+        code=os.waitstatus_to_exitcode(status)
+        sys.exit(code if code>=0 else 128-code)
+'''
+
+
 def namespace_command(command):
     if sys.platform != 'linux' or os.geteuid() != 0:
         raise RuntimeError('native root Linux required')
@@ -235,7 +247,7 @@ def namespace_command(command):
     # descendants. This trusted coordinator retains host access; model workers
     # still use the separately qualified input-only bwrap jail.
     return ['/usr/bin/setpriv', '--pdeathsig', 'KILL', '/usr/bin/unshare', '--pid',
-            '--fork', '--mount-proc', '--kill-child=KILL', *map(str, command)]
+            '--fork', '--mount-proc', '--kill-child=KILL', sys.executable, '-I', '-c', INIT, *map(str, command)]
 
 
 def stop(process):
