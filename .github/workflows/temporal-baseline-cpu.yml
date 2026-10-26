@@ -1,0 +1,87 @@
+name: Temporal evaluation and baseline preparation CPU checks
+
+on:
+  push:
+    branches: [bt-001-temporal-baseline-20261026]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: temporal-cpu-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  cpu:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Full native Linux suite and CPU preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p evidence .local
+          python_path="$(command -v python3)"
+          sudo "$python_path" -m unittest discover -s tests -v 2>&1 | tee evidence/cpu-tests.log
+          "$python_path" tools/backtrace.py preflight | tee evidence/preflight.json
+          git diff --check
+      - name: Complete data audit, authored controls, and development prompt preparation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from tools import abductive_benchmark as base, abductive_scoring as original
+          from tools import temporal_benchmark as temporal, temporal_scoring as scoring
+          from tools import abductive_baseline as prompts
+          def record(name, value):
+              Path('evidence', name + '.json').write_text(json.dumps(value, sort_keys=True, indent=2) + '\n')
+          views = []
+          for name, module in [('static', base), ('temporal', temporal)]:
+              root = Path('.local') / name
+              manifest = module.write_dataset(root, 20)
+              record(name + '-generation', manifest)
+              record(name + '-audit', module.audit_dataset(root))
+              view = Path('.local') / (name + '-development')
+              views.append(view)
+              record(name + '-input-export', module.export_view(root, view, split='development'))
+              if name == 'temporal':
+                  record('temporal-training-export', module.export_view(root, Path('.local/temporal-training'), training=True))
+              controls = {}
+              for split in base.SPLITS:
+                  agents, labels = [base.read_rows(root, f'{split}/{kind}.jsonl', manifest) for kind in ('agent', 'evaluator')]
+                  predictions = [{'id': a['id'], 'response': original.optimal_response(
+                      temporal.as_revision(a['input']) if name == 'temporal' else a['input'], l['reference'])}
+                      for a, l in zip(agents, labels)]
+                  scorer = scoring if name == 'temporal' else original
+                  oracle = scorer.score_records(agents, labels, predictions)
+                  missing = scorer.score_records(agents, labels, [])
+                  assert all(c['response_status'] == 'VALID' and not any(c['losses'].values()) for c in oracle['cases'])
+                  assert all(c['response_status'] == 'MISSING' and all(v == 1 for v in c['losses'].values()) for c in missing['cases'])
+                  if name == 'temporal':
+                      assert all(not any(c['losses'].values()) for c in oracle['pairs'])
+                      assert all(all(v == 1 for v in c['losses'].values()) for c in missing['pairs'])
+                  else:
+                      assert all(v['error_rate'] in (0, None) for v in oracle['revision_pairs'].values())
+                  controls[split] = {'assigned': len(agents), 'oracle': 'PASS', 'missing': 'PASS', 'model_result': False}
+              record(name + '-controls', controls)
+          manifest = prompts.prepare(views, Path('.local/baseline-packets'))
+          assert manifest['assigned_cases_per_packet'] == 1440
+          assert len(manifest['files']) == 4
+          assert all(value['records'] == 1440 for value in manifest['files'].values())
+          assert manifest['model_evaluation'] == manifest['tokenization'] == 'NOT_RUN'
+          record('baseline-preparation', manifest)
+          PY
+      - name: Preserve CPU summaries only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: temporal-cpu-${{ github.sha }}-${{ github.run_attempt }}
+          path: evidence/
+          retention-days: 14
+          if-no-files-found: error

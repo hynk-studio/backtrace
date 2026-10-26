@@ -1,0 +1,17 @@
+{
+  "version": "abductive-baseline-preparation-v1",
+  "status": "PREPARED_NOT_EXECUTABLE",
+  "split": "development",
+  "backbones": ["E2B", "E4B"],
+  "arms": ["B0", "B1"],
+  "renderings": ["json", "controlled_text"],
+  "training_comparison_runtime_prompt": "B1 for B2 and S within each backbone",
+  "proposed_limits": {"max_input_tokens": 12288, "max_output_tokens": 4096, "do_sample": false, "responses_per_input": 1, "retries": 0, "tools": false},
+  "overflow_policy": "fail the preparation check for the entire matched comparison; never silently truncate or drop assigned cases",
+  "raw_response_policy": "retain exact output, token usage, finish reason and latency; no extraction, repair or retry; truncation/schema failure stays in the assigned denominator",
+  "comparisons": "within backbone, paired by case; B0 vs B1 within rendering; JSON vs controlled text within arm; no pooling rendered copies as independent cases",
+  "required_before_execution": ["exact model and tokenizer revisions", "chat-template identity and supported role mapping", "precision and dependency pins", "real tokenizer counts for every packet", "bounded runtime and compute scope", "isolated inputs-only runtime", "measured hardware feasibility"],
+  "model_evaluation": "NOT_RUN",
+  "confirmatory_ready": false,
+  "capability_promotion": "DISABLED"
+}

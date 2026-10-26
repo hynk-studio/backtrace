@@ -18,8 +18,13 @@ hypotheses; these are development fixtures, not evidence of learned abduction.
 The [new evaluation implementation](docs/abductive-evaluation-20261026.md) adds
 40 disjoint graph families, 4,000 candidate records, train-only exports, bounded
 hypothesis construction, timed evidence revision and exact scoring. These are
-CPU instruments and controls, not model-performance results. A1 remains partial
-pending model baselines, broader E2/E3 tasks and final test sealing.
+CPU instruments and controls, not model-performance results. The
+[temporal extension](docs/temporal-baseline-20261026.md) adds 3,200 changing-state
+snapshots and paired JSON/controlled-English B0/B1 development prompts. It reuses
+the same 800 episodes and 40 families, rather than adding independent cases.
+A1 remains partial pending model baselines, missing-model construction, real
+language transfer, power analysis and final test sealing. Model identities,
+tokenization, runtime and execution limits still need qualification.
 Training, adapter save/reload and Augnes integration are **NOT RUN**.
 
 The [latest coding pilot](docs/research-reduced9-execution-20261026.md) attempted

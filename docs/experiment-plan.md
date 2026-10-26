@@ -12,7 +12,7 @@ new held-out families, repeated seeds and a separate Augnes transfer assessment.
 | Stage | Next result | Status |
 | --- | --- | --- |
 | A0 | Goal and input/output contract | Documented; no capability result |
-| A1 | Expanded teacher, frozen evaluation/rubrics and development baselines | CPU data/scorer implemented; baselines, broader E2/E3 tasks, power analysis and final sealing pending |
+| A1 | Expanded teacher, frozen evaluation/rubrics and development baselines | Static/changing-state CPU evaluators and paired prompt preparation implemented; model baselines, broader E2/real-language transfer, power analysis and final sealing pending |
 | A2 | Actual tiny update, save/reload, resource measurements | NOT RUN |
 | A3 | Controlled E2B/E4B training and confirmatory evaluation | NOT RUN |
 | A4 | Augnes time-cutoff replay, prospective shadow cases and device validation | NOT RUN |
@@ -25,6 +25,13 @@ and transfer remain unmeasured. The
 [new CPU evaluator](abductive-evaluation-20261026.md) now provides 4,000 candidate
 records across 40 graph families, exact scoring and separate data views; it does
 not establish model performance or complete the broader E2/E3 requirements.
+The [next CPU extension](temporal-baseline-20261026.md) adds actual state
+transitions, delayed old evidence, corrections and controlled English renderings.
+Its 3,200 additional snapshots retain the original family/episode identities.
+The four B0/B1 × rendering packets use development inputs only and remain
+PREPARED_NOT_EXECUTABLE until model/runtime pins, tokenization and a bounded
+execution scope are ready. Preparing 5,760 requests per backbone is not running
+them or authorizing that entire candidate grid.
 Kaggle is optional, and extending the historical coding campaign is deferred.
 The new training path does not depend on positive R2 results or Kaggle attachment.
 
