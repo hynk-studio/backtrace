@@ -27,10 +27,33 @@ jobs:
         run: |
           python -m tools.research_entry_offer evidence/account-quote.json
           python -c "import json; r=json.load(open('evidence/account-quote.json')); assert r['status']=='PASS' and r['allocation_requests']==0 and r['settings_changed'] is False"
+      - name: Read allowlisted live provider readiness without changes
+        env:
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
+        run: |
+          python - <<'PY'
+          import json,os,time
+          from pathlib import Path
+          from tools.runpod_control import RunpodAPI
+          from tools.cloud_bootstrap import observe,sample_logs
+          from tools import research_entry_contract as c
+          claim=json.loads("{\"attempt\":\"2d987dffb06f4446819c0c6feaafd432\",\"authorization_id\":\"owner-reduced9-20261026-0914\",\"cleanup_seconds\":300,\"contract_sha256\":\"93e17e7c04b9907ef44bb0b961af15596a91dc80d332a767e4923964a05b957a\",\"costs\":{\"additional_cap\":\"4.30\",\"compute_per_hour\":\"1.79\",\"cumulative_cap\":\"9.50\",\"funded_total\":\"10\",\"hourly_all_in\":\"1.804\",\"initial_balance\":\"4.9937691886\",\"maximum_all_in\":\"3.8786\",\"other_total\":\"0\",\"spent_before\":\"5.0062308114\",\"storage_per_hour\":\"0.014\",\"tax_rate\":\"0\"},\"heartbeat_seconds\":240,\"name\":\"backtrace-a100-2d987dffb06f4446819c0c6feaafd432\",\"namespace\":\"reduced9-20261026\",\"owner_run_id\":\"40248465278\",\"poll_seconds\":90,\"region\":\"EU-RO-1\",\"request_sha256\":\"68ae55e02dd23bc80a3f2c6c139a8be9ebdaabe8991ac5ff7d387b7bd0b14150\",\"requested_at\":1792973869.6946013,\"setup_seconds\":4020,\"source_sha\":\"a8ae2765e9b57a408be3e3930b3a69a977601535\",\"total_seconds\":7740,\"unclaimed_seconds\":600,\"unknown_create_seconds\":90,\"watcher_run_id\":\"40248422989\"}")
+          pod_id="0a5nl1huxm2vmz"
+          api=RunpodAPI(os.environ['RUNPOD_API_KEY'].strip())
+          pod=api.get(pod_id)
+          row={'observed_at':time.time(),'pod_id':pod_id,'allocation_requests':0,'settings_changed':False,'bootstrap':observe(pod,time.time()-claim['requested_at']),'resource_matches':c.resource_matches(pod,claim)}
+          try:
+              c.endpoints(pod);row['required_mappings_valid']=True
+          except (KeyError,TypeError,ValueError) as error:
+              row['required_mappings_valid']=False;row['mapping_error_type']=type(error).__name__
+          row['provider_log_summary']=sample_logs(api,pod_id)
+          Path('evidence/provider-observation.json').write_text(json.dumps(row,sort_keys=True,indent=2)+chr(10))
+          print(json.dumps(row,sort_keys=True))
+          PY
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
           name: reduced9-observation-${{ github.run_id }}
-          path: evidence/account-quote.json
+          path: evidence/*.json
           retention-days: 14
           if-no-files-found: error
