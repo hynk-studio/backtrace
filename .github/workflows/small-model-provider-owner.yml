@@ -17,7 +17,8 @@ jobs:
         with:
           python-version: '3.12.14'
       - name: Install pinned owner libraries
-        run: python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
       - name: Qualify source-bound independent remote observation
         env:
           GITHUB_TOKEN: ${{ github.token }}
