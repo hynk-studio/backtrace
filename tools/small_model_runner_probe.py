@@ -115,7 +115,8 @@ def boundary_probe(python,sources,models,output):
                 while not (probe/'entered').exists() and process.poll() is None and time.monotonic()<until:
                     time.sleep(.02)
                 if not (probe/'entered').exists():
-                    raise RuntimeError('boundary worker did not enter')
+                    detail=(output/(variant+'.log')).read_text(errors='replace')[-2000:]
+                    raise RuntimeError('boundary worker did not enter: '+detail)
                 os.killpg(process.pid,signal.SIGKILL);process.wait(timeout=5)
                 time.sleep(2.2)
                 facts=base.strict_json((probe/'facts.json').read_bytes())
@@ -172,7 +173,9 @@ r.collect(schedule,output/'parent-loss',worker,tokenizers,mode='scripted_control
                     last=base.strict_json(lines[-1]);entered=last['event']=='STARTED' and last['index']==1
                     if entered:break
             time.sleep(.02)
-        if not entered:raise RuntimeError('coordinator never reached second request')
+        if not entered:
+            detail=(output/'parent-loss-coordinator.log').read_text(errors='replace')[-2000:]
+            raise RuntimeError('coordinator never reached second request: '+detail)
         os.killpg(process.pid,signal.SIGKILL);process.wait(timeout=5)
         time.sleep(.3)
         recovered=runner.recover(output/'parent-loss')
