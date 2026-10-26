@@ -15,6 +15,16 @@ PREPARED_NOT_EXECUTABLE: pin model/tokenizer/template/runtime and count actual
 tokens before any bounded execution. No model, paid launch or Augnes write.
 Retain initial local qualification failures and report native Linux separately.
 
+Native CPU run40290483458 at714e09aac73cd817834916744073d1414cae1df0
+passed all554 tests without skips, preflight, both complete datasets and all
+authored oracle/missing-response controls. The12-member artifact digest and
+nine scientific source hashes were verified; local/native data, export, prompt
+and control summaries are byte-identical. Read
+`docs/temporal-baseline-cpu-20261026.json`. Final local21 focused tests passed;
+the earlier553-test local environment failures remain recorded. A1 is still
+partial; exact model/runtime pins, tokenization and actual model measurements,
+broader E2/real-language transfer, power analysis and final sealing remain open.
+
 ### Previous A1 implementation
 
 The owner next instructed **다음 단계 진행하자**. The current implementation

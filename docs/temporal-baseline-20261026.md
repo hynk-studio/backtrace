@@ -123,9 +123,18 @@ zero support, retraction, real decision regret, and deliberately wrong
 fixed-world answers. Generated controls cover all 40 graph families and all
 five transition modes. CPU preflight reports READY.
 
-Full-suite and complete-data native Linux qualification is recorded separately
-before this change is called qualified. No model result is implied by authored
-oracle or missing-response controls.
+Final focused qualification passed **21 tests in 24.796 seconds**. Native Linux
+[run 40290483458](https://github.com/hynk-studio/backtrace/actions/runs/40290483458),
+attempt 1 at source `714e09aac73cd817834916744073d1414cae1df0` (tree
+`4eabd39823432884231635af60553e0723ef0c65`), passed **554 tests with no failures,
+errors or skips** in 138.903 seconds, CPU preflight, both complete datasets,
+exports, all-partition oracle/missing-response controls and all four development
+prompt packets. The [CPU receipt](temporal-baseline-cpu-20261026.json) records the
+executed source, data/exports/prompts and initial failures. The downloaded
+artifact matched GitHub's digest; all 12 members and nine scientific source
+hashes were verified. Local and native data, export, prompt and control summaries
+were byte-identical. The follow-up commit changes documentation only. No model
+result is implied by authored oracle or missing-response controls.
 
 The initial local full suite ran 553 tests in 107.888 seconds and failed with
 5 failures, 10 errors and 4 skips. The new 20 tests passed; failures/errors were
