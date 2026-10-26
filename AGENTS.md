@@ -2,6 +2,26 @@
 
 ## Current research priority (2026-10-26)
 
+The owner next instructed **다음 단계 진행하자**. The current implementation
+branch is `bt-001-abductive-evaluation-20261026`, stacked on Draft #29, for free
+CPU A1 data/scoring preparation and one new Draft PR. Read
+`docs/abductive-evaluation-20261026.md`. Existing teacher bytes are preserved.
+The 4,000 records cover 40 graph families and 800 episodes, not 4,000 independent
+cases. Bounded root-assignment generation and fixed-world retractions do not
+establish open hypothesis/model discovery or full temporal transfer. Candidate
+reserved data is not yet a powered/sealed confirmatory test. Keep model/training
+results NOT RUN and capability promotion disabled. Run full Linux tests and
+preflight, retaining initial local environment failures and the corrected
+undefined-state duplicate-invariance bug. No paid allocation or Augnes write.
+
+Final A1 CPU run40281911634 at4063ce3d4b811d27e10218241871ccb55e76ad8d passed
+533 Linux tests without skips, preflight, all4,000 candidate records, train/input
+exports and authored oracle/missing-response controls. Read the byte-verified
+receipt `docs/abductive-evaluation-cpu-20261026.json`. Original local532-test
+environment failures and the first oracle-control bug remain recorded. This
+qualifies the CPU instrument only; baseline/power analysis, broader E2/E3 tasks,
+model/training/save-reload and Augnes transfer remain incomplete or NOT RUN.
+
 The owner clarified that reliable evaluation of a small abductive specialist,
 with potential Augnes use, takes priority over a quick training demo. Follow
 `docs/small-abductive-model-plan-20261026.md` and the current section of
