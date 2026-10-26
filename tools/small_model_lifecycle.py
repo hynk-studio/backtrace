@@ -55,11 +55,11 @@ def write(path, value):
 
 class Deadline:
     """The remaining monotonic allowance begins at the allocation request, not load."""
-    def __init__(self, requested_at, total=TOTAL, *, wall=time.time, mono=time.monotonic):
+    def __init__(self, requested_at, total=TOTAL, *, wall=time.time, mono=time.monotonic, allow_expired=False):
         self.wall, self.mono = wall, mono
         self.requested_at = finite(requested_at); self.total = finite(total)
         now = finite(wall()); elapsed = now-requested_at
-        if not 0 < total <= TOTAL or not 0 <= elapsed < total:
+        if not 0 < total <= TOTAL or elapsed < 0 or (elapsed >= total and not allow_expired):
             raise ValueError('allocation timestamp is future or already expired')
         self.last_wall = now
         self.end = mono()+total-elapsed
@@ -115,6 +115,20 @@ class Journal:
         path = self.path(name)
         if not path.exists():
             return None
+        if name in ('owner-heartbeat', 'watcher-heartbeat'):
+            # An atomic replacement can unlink the already opened old inode.
+            # Its complete bytes are still valid; nlink==0 is not a hard link.
+            # Immutable records keep runner.regular's stricter nlink==1 rule.
+            fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+            with os.fdopen(fd, 'rb') as stream:
+                info = os.fstat(stream.fileno())
+                if (not stat.S_ISREG(info.st_mode) or info.st_nlink > 1 or info.st_size > 1024**2
+                        or info.st_uid != os.geteuid() or info.st_mode & 0o077):
+                    raise ValueError('invalid private atomic heartbeat')
+                raw = stream.read(1024**2+1)
+                if len(raw) > 1024**2:
+                    raise ValueError('heartbeat grew beyond limit')
+                return json.loads(raw)
         return json.loads(runner.regular(path, 1024**2))
 
     def put(self, name, value):
@@ -174,9 +188,16 @@ def cleanup(resource, seconds, *, interval=.2):
             'completed_at': time.time(), 'history': history[-64:]}
 
 
+def cleanup_allowance(clock, claim):
+    # Never abandon a known owned resource merely because the normal budget
+    # has expired. Late cleanup is an explicit overrun, not a new work window.
+    remaining = clock.end-time.monotonic()
+    return min(claim['cleanup_seconds'], remaining) if remaining > 0 else claim['cleanup_seconds']
+
+
 def watch(journal, resource, *, interval=.2):
     claim = journal.read('claim'); binding = journal.binding()
-    clock = Deadline(claim['requested_at'], claim['total_seconds'])
+    clock = Deadline(claim['requested_at'], claim['total_seconds'], allow_expired=True)
     journal.put('watcher-armed', {'claim_sha256': binding, 'pid': os.getpid(), 'at': time.time()})
     # Cache the exact resource and deadline before publishing liveness. Losing
     # the state path later must not disable cleanup of that cached resource.
@@ -199,9 +220,9 @@ def watch(journal, resource, *, interval=.2):
         if reason is None:
             time.sleep(interval)
     # The monotonic budget survives clock/state failure.
-    remaining = max(0, clock.end-time.monotonic())
-    result = dict(cleanup(resource, min(claim['cleanup_seconds'], remaining), interval=interval),
-                  reason=reason, claim_sha256=binding, independent_pid=os.getpid())
+    late = time.monotonic() >= clock.end
+    result = dict(cleanup(resource, cleanup_allowance(clock, claim), interval=interval),
+                  reason=reason, claim_sha256=binding, independent_pid=os.getpid(), late_cleanup=late)
     with contextlib.suppress(Exception):
         journal.put('watcher-cleanup', result)
     return result
@@ -278,6 +299,19 @@ def recover(root):
             if (directory/'ledger.jsonl').exists():
                 value = runner.recover(directory)
                 reports.append({'path': str(directory.relative_to(root)), 'coverage': value['coverage']})
+                # These owner-written paths identify only disposable worker
+                # copies. Work has already stopped in the outer namespace.
+                import shutil
+                assignment_value = json.loads(runner.regular(assignment, 16*1024**2))
+                for item in assignment_value.get('disposable_worker_assets', []):
+                    path = Path(item)
+                    if (path.parent != Path('/tmp') or not path.name.startswith('backtrace-model-worker-')
+                            or path.is_symlink()):
+                        raise ValueError('unexpected disposable worker path')
+                    if path.exists():
+                        if path.stat().st_uid != os.geteuid():
+                            raise ValueError('disposable worker owner changed')
+                        shutil.rmtree(path)
     return reports
 
 
@@ -288,7 +322,7 @@ def supervise(journal, resource, command, output, *, interval=.2, recover_result
     provision one. The independently started watcher must be armed and fresh.
     """
     claim = journal.read('claim'); binding = journal.binding()
-    clock = Deadline(claim['requested_at'], claim['total_seconds'])
+    clock = Deadline(claim['requested_at'], claim['total_seconds'], allow_expired=True)
     output = Path(output); output.mkdir(mode=0o700, exist_ok=False)
     process = None; result = {'status': 'INCOMPLETE', 'allocation_requests': 0,
                              'source_sha': claim['source_sha'], 'claim_sha256': binding}
@@ -325,7 +359,10 @@ def supervise(journal, resource, command, output, *, interval=.2, recover_result
                 raise RuntimeError('worker failed; automatic retry forbidden')
             result['status'] = 'WORK_COMPLETE'
     except Exception as error:
-        result['failure'] = {'type': type(error).__name__}
+        import traceback
+        result['failure'] = {'type': type(error).__name__, 'frames': [
+            {'file': Path(f.filename).name, 'function': f.name, 'line': f.lineno}
+            for f in traceback.extract_tb(error.__traceback__)[-4:]]}
     finally:
         try:
             stop(process)
@@ -364,7 +401,8 @@ def supervise(journal, resource, command, output, *, interval=.2, recover_result
             result['export_error'] = type(error).__name__
         with contextlib.suppress(Exception):
             journal.put('owner-done', {'claim_sha256': binding, 'at': time.time()})
-        result['cleanup'] = cleanup(resource, min(claim['cleanup_seconds'], max(0, clock.end-time.monotonic())), interval=interval)
+        result['late_cleanup'] = time.monotonic() >= clock.end
+        result['cleanup'] = cleanup(resource, cleanup_allowance(clock, claim), interval=interval)
         result['status'] = ('PASS_LOCAL_SUPERVISION' if result['status'] == 'WORK_COMPLETE'
                             and result.get('export') and result['cleanup']['status'] == 'DELETED' else 'INCOMPLETE')
         with contextlib.suppress(Exception):

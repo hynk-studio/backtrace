@@ -31,6 +31,12 @@ class ClockTests(unittest.TestCase):
             with self.subTest(start=start, total=total), self.assertRaises(ValueError):
                 life.Deadline(start, total, wall=lambda: 100, mono=lambda: 0)
 
+    def test_expired_resource_gets_cleanup_only_allowance(self):
+        clock = life.Deadline(80, 10, wall=lambda: 100, mono=lambda: 0, allow_expired=True)
+        self.assertLess(clock.remaining(3), 0)
+        with patch.object(life.time, 'monotonic', return_value=0):
+            self.assertEqual(life.cleanup_allowance(clock, {'cleanup_seconds': 3}), 3)
+
 
 class MemoryTests(unittest.TestCase):
     def test_ancestor_headroom_and_high_limits_override_host_ram(self):
@@ -98,6 +104,20 @@ class ExportTests(unittest.TestCase):
 
 
 class ResourceTests(unittest.TestCase):
+    def test_atomic_heartbeat_replacement_retains_opened_complete_inode(self):
+        with tempfile.TemporaryDirectory() as name:
+            root = Path(name); root.chmod(0o700); journal = life.Journal(root)
+            p = journal.path('owner-heartbeat'); replacement = root/'replacement'
+            life.write(p, {'at': 1}); life.write(replacement, {'at': 2})
+            original = os.open
+            def opened(path, *args, **kwargs):
+                fd = original(path, *args, **kwargs)
+                if Path(path) == p: os.replace(replacement, p)
+                return fd
+            with patch.object(os, 'open', side_effect=opened):
+                self.assertEqual(journal.read('owner-heartbeat'), {'at': 1})
+            self.assertEqual(journal.read('owner-heartbeat'), {'at': 2})
+
     def test_failed_get_or_mismatched_list_never_proves_absence(self):
         identity = {'id': 'owned', 'name': 'backtrace-small-'+'a'*32}
         class API:

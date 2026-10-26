@@ -64,6 +64,9 @@ subsequent independent observations must establish absence. Failed or conflictin
 reads remain UNKNOWN/UNRESOLVED. Other resource IDs are not deleted. Provider
 outages and bounded in-flight requests can still prevent cleanup by the proposed
 deadline; no financial hard cap or guaranteed provider availability is claimed.
+An already expired window refuses all work but still attempts bounded emergency
+cleanup. That attempt is explicitly marked late; elapsed time never grants a new
+work window and never excuses leaving an owned resource running.
 
 The journal is local, and the watcher is a separate process on the same host.
 This does **not** establish resilience to loss of that entire host. Deployment of
@@ -92,15 +95,30 @@ The new native workflow runs the complete repository suite, preflight and the
 same pinned CPU runtime/input reconstruction. It then exercises real processes
 and the real cleanup wire client against a loopback provider replica. Cases
 cover success, worker failure, deadline, owner death, watcher death, journal loss,
-failed export, false/lost DELETE acknowledgement, insufficient remaining time and
+failed export, false/lost DELETE acknowledgement, insufficient/expired time and
 failed provider reads. A further connected case places the unchanged actual
 tokenizer/random-model/oracle/failure-recovery pipeline under the new outer
-supervisor. Replica observations are not actual Runpod results.
+supervisor. An outer-timeout case interrupts that real collector after its first
+response and checks recovery of one received, one interrupted and 34 unrun
+assignments, with disposable asset cleanup. Replica observations are not actual Runpod results.
 
-Native results are pending at this implementation checkpoint. The focused local
-14 tests passed; the required full local suite and exact-source native run are
-recorded separately in the final evidence receipt. No native or GPU success is
-inferred from unit-test counts.
+The first native run, 40345716399 at
+`d5e69339be192f2d972133d93d8a59b6a9e00e1c`, passed all 618 tests and preparation,
+then failed a lifecycle assertion in the lost-DELETE-acknowledgement case. The
+owner had already stopped with ValueError; both cleanup observations still
+proved deletion. The first report did not retain its exception frames, so its
+exact throw site is not claimed retrospectively. An independently reproduced
+reader defect rejected a valid opened heartbeat inode when atomic replacement
+reduced its link count to zero. The mutable-heartbeat reader now accepts that
+complete old inode while retaining no-follow, private-owner and size checks;
+immutable records retain the stricter rule. Exception frame locations are now
+retained and deadline controls require the actual TimeoutError, not any failure.
+
+The final focused local 16 tests pass. Full local runs and exact-source native
+qualification are recorded separately in the final receipt. The failed native
+archive is retained with digest
+`f268eb8bffa270afe4a5d45696d8fb83ca6c64afcf7eeecfbf60ecf6d23a5251`.
+No native or GPU success is inferred from unit-test counts.
 
 Before an actual allocation, select a suitable native/privileged environment,
 qualify the new payload's bootstrap/remote transport and independent remote

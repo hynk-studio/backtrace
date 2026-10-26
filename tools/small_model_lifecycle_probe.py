@@ -113,12 +113,16 @@ def actor(config, role):
 
 
 def scenario(name, root, source, *, command=None):
-    root.mkdir(mode=0o700); api = Replica(name); owner = watcher = None; logs = []
+    root.mkdir(mode=0o700); api = Replica(name); owner = watcher = None; logs = []; case_result = None
     try:
-        total, export, cleanup = (600, 30, 30) if command else (10, 2, 3)
-        requested = time.time()-(total-export-cleanup+.1 if name == 'insufficient_window' else 0)
+        total, export, cleanup = ((35, 5, 5) if name == 'collector_interruption' else
+                                  (5, 1, 2) if name == 'expired_entry' else
+                                  (600, 30, 30) if command else (10, 2, 3))
+        requested = time.time()-(4 if name == 'expired_entry' else
+                                total-export-cleanup+.1 if name == 'insufficient_window' else 0)
         journal = life.Journal.create(root, source, api.identity, requested, total=total,
             export_seconds=export, cleanup_seconds=cleanup, stale_seconds=1, replica=True)
+        if name == 'expired_entry': time.sleep(1.2)
         journal.heartbeat('owner-heartbeat', 'starting')
         output = root/'work'
         config = {'journal': str(journal.root), 'port': api.port, 'identity': api.identity,
@@ -155,7 +159,11 @@ def scenario(name, root, source, *, command=None):
         elif owner_result:
             assert owner_result['status'] == 'INCOMPLETE', owner_result
         if name == 'insufficient_window': assert not (output/'entered').exists()
+        if name == 'expired_entry':
+            assert not (output/'entered').exists() and owner_result['late_cleanup'] and watch_result['late_cleanup']
         if name == 'export_failure': assert 'export_error' in owner_result
+        if name in ('deadline', 'insufficient_window', 'expired_entry', 'collector_interruption'):
+            assert owner_result['failure']['type'] == 'TimeoutError', owner_result
         if name == 'false_delete_ack': assert api.deletes >= 2
         # Wait past the detached child's authored write time; no process should
         # survive normal PID-1 exit, timeout, or death of the supervisor itself.
@@ -165,15 +173,18 @@ def scenario(name, root, source, *, command=None):
             while time.time() < end: time.sleep(.05)
             assert not (output/'late-child').exists(), 'detached descendant escaped teardown'
         assert not any(r['method'] == 'POST' for r in api.requests)
-        return {'scenario': name, 'status': 'PASS', 'owner': owner_result, 'watcher': watch_result,
+        case_result = {'scenario': name, 'status': 'PASS', 'owner': owner_result, 'watcher': watch_result,
                 'wire_requests': len(api.requests), 'deletes': api.deletes, 'provider_create_requests': 0,
                 'actual_cpu_resource_reaped': api.process.poll() is not None,
                 'provider_absence': 'UNRESOLVED_EXPECTED' if unresolved else 'TWO_READS_PER_SURVIVING_CONTROLLER',
                 'detached_late_write': False, 'replica': True}
+        return case_result
     finally:
         life.stop(owner); life.stop(watcher)
         for log in logs: log.close()
         api.close()
+        if case_result is not None:
+            case_result['fixture_final_cpu_teardown'] = api.process.poll() is not None
 
 
 def qualify(output, *, connected=None):
@@ -189,7 +200,7 @@ def qualify(output, *, connected=None):
         except ValueError as error: result['memory_observation'] = {'status': 'UNQUALIFIED', 'reason': str(error)}
         for name in ('normal', 'worker_failure', 'deadline', 'owner_loss', 'watcher_loss',
                      'state_loss', 'export_failure', 'false_delete_ack', 'lost_delete_ack',
-                     'insufficient_window', 'provider_reads_fail'):
+                     'insufficient_window', 'expired_entry', 'provider_reads_fail'):
             row = scenario(name, output/name, source); result['cases'].append(row)
             life.write(output/(name+'.json'), row)
         if connected:
@@ -203,6 +214,28 @@ def qualify(output, *, connected=None):
             assert receipt['status'] == 'PASS_CPU_PIPELINE_ONLY' and all(receipt['checks'].values())
             row['pipeline'] = {k: receipt[k] for k in ('status', 'checks', 'source_hashes', 'scope_sha256', 'runs')}
             result['cases'].append(row); life.write(output/'connected.json', row)
+            code = '''import json,sys
+from pathlib import Path
+sys.path.insert(0,sys.argv[1])
+from tools import small_model_runner as r,small_model_runner_probe as p
+from transformers import AutoTokenizer
+sources,models,packets,tokens,scope,output,ids=map(Path,sys.argv[2:])
+plan,schedule,_=r.load_scope(scope,packets,tokens)
+tokenizers={n:AutoTokenizer.from_pretrained(sources/n,local_files_only=True,trust_remote_code=False) for n in r.ready.MODELS}
+worker=p.factory(Path(sys.executable),sources,models,output/'jobs','scripted_control',4096,fault='hang')
+r.collect(schedule,output/'collection',worker,tokenizers,mode='scripted_control',max_new_tokens=4096,total_seconds=120,startup_seconds=30,request_seconds=60,fixture_ids=json.loads(ids.read_bytes()))
+'''
+            run = output/'connected/work/runner'
+            command = [str(python), '-I', '-c', code, str(exact.ROOT), *map(str, (sources, run/'random-models',
+                packets, tokens, scope, output/'collector_interruption/work', run/'parent-loss-authored-ids.json'))]
+            row = scenario('collector_interruption', output/'collector_interruption', source, command=command)
+            recovered = json.loads((output/'collector_interruption/work/collection/recovery.json').read_bytes())
+            assert recovered['coverage'] == {'OK': 1, 'INTERRUPTED': 1, 'NOT_RUN': 34}, recovered['coverage']
+            assert row['owner']['export']['recovered'][0]['coverage'] == recovered['coverage']
+            assignment = json.loads((output/'collector_interruption/work/collection/assignment.json').read_bytes())
+            assert all(not Path(p).exists() for p in assignment['disposable_worker_assets'])
+            row['recovered_coverage'] = recovered['coverage']; row['disposable_assets_removed'] = True
+            result['cases'].append(row); life.write(output/'collector_interruption.json', row)
         pre.prepare(output/'prepared.json')
         result['status'] = 'PASS_CPU_PRECHECK_PREPARATION_ONLY'
         return result
