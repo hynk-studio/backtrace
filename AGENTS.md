@@ -14,6 +14,21 @@ No GPU is currently exposed to this Work environment. Do not allocate paid
 hardware, run a pretrained model, train, merge, close #1 or modify Augnes.
 Complete exact-source native Linux qualification and retain failed attempts.
 
+Native run 40335270281 at `2ea31a8b5f17684a6c82f2452cf3072d42f8329a`
+passed all 604 tests without failures/errors/skips, the complete CPU collector
+controls, all 56 CUDA wheels (3,606,157,908 bytes), fresh offline CUDA installation
+and native-library resolution. The CUDA build then passed CPU oracle/random
+controls, a real character-device bind, namespace/parent-loss checks and actual
+missing-GPU worker rejection. CPU/CUDA builds used identical tiny random
+checkpoint bytes and produced identical CPU raw outputs. Read
+`docs/small-model-gpu-cpu-20261026.json`: all 109 archive members, 74 inner run
+files and 21 source hashes were checked. The generated baseline plan matches
+native bytes. Local full-suite failure remains recorded separately. Draft #34
+remains unmerged. Actual NVIDIA devices/kernels, full pretrained weights and
+performance, GPU-context interruption, training and Augnes transfer are NOT RUN.
+The outer provider lifecycle, fresh resource/quote/balance and hardware
+qualification remain prerequisites for a separately authorized paid attempt.
+
 ### Previous isolated CPU collector
 
 The owner next instructed **다음 단계 진행하자**. Work on

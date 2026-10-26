@@ -58,6 +58,9 @@ The [CUDA preparation](small-model-gpu-20261026.md) now implements the package,
 device and measurement path for the original smoke. Physical GPU qualification,
 pretrained performance and the allocation-inclusive provider lifecycle remain
 separate gates; the free package/CPU controls cannot satisfy them.
+Native run 40335270281 passed 604 tests and the exact 56-package CUDA installation
+plus CPU/control checks. Its [receipt](small-model-gpu-cpu-20261026.json) leaves
+physical GPU and pretrained performance explicitly NOT RUN.
 
 ## Intended Augnes role and input/output contract
 
@@ -227,7 +230,7 @@ Do not claim counterfactual task resolution from an unexecuted recommendation.
 | Stage | Deliverable | Current status |
 | --- | --- | --- |
 | A0: goal and capability contract | This plan; E2B/E4B candidates; Kaggle optional | Documented in this change; no model result |
-| A1: evaluation before training | Expanded teacher, E2/E3 rubric, leakage checks, frozen data/metrics; development baselines and sample-size calculation | PARTIAL: CPU instruments, fixed prompts/runtime and isolated collector implemented; pretrained baselines, GPU connection, broader E2/real-language transfer, power analysis and final test sealing pending |
+| A1: evaluation before training | Expanded teacher, E2/E3 rubric, leakage checks, frozen data/metrics; development baselines and sample-size calculation | PARTIAL: CPU instruments and CUDA-package CPU compatibility qualified; pretrained baselines, physical GPU/outer lifecycle, broader E2/real-language transfer, power analysis and final test sealing pending |
 | A2: training feasibility | Pinned training environment; tiny update/save/reload; actual memory/throughput and bounded training proposal | NOT RUN |
 | A3: controlled training and confirmation | B0/B1/B2/S evidence within each size; three-seed confirmation; untouched evaluation and negative results | NOT RUN |
 | A4: Augnes candidate assessment | Time-cutoff case replay, fresh shadow cases, quantized artifact and device measurements | NOT RUN |
