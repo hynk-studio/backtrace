@@ -2,6 +2,31 @@
 
 ## Current research priority (2026-10-26)
 
+The owner again instructed **다음 단계 진행하자**. Current work is
+`bt-001-temporal-baseline-20261026`, stacked on Draft #30 at
+`31d02bb9826889deb8f188fa0e0e1562d436295f`, for a new Draft PR. Read
+`docs/temporal-baseline-20261026.md`. Add changing-state exact evaluation and
+paired development prompt preparation without modifying the qualified v1
+teacher/generator/scorer/protocol. The temporal views reuse the same families
+and episodes; 7,200 static/temporal rows are only 800 episodes. Controlled English
+does not establish real language transfer, and the supplied state model does
+not establish missing-cause/model discovery. Baseline packets are explicitly
+PREPARED_NOT_EXECUTABLE: pin model/tokenizer/template/runtime and count actual
+tokens before any bounded execution. No model, paid launch or Augnes write.
+Retain initial local qualification failures and report native Linux separately.
+
+Native CPU run40290483458 at714e09aac73cd817834916744073d1414cae1df0
+passed all554 tests without skips, preflight, both complete datasets and all
+authored oracle/missing-response controls. The12-member artifact digest and
+nine scientific source hashes were verified; local/native data, export, prompt
+and control summaries are byte-identical. Read
+`docs/temporal-baseline-cpu-20261026.json`. Final local21 focused tests passed;
+the earlier553-test local environment failures remain recorded. A1 is still
+partial; exact model/runtime pins, tokenization and actual model measurements,
+broader E2/real-language transfer, power analysis and final sealing remain open.
+
+### Previous A1 implementation
+
 The owner next instructed **다음 단계 진행하자**. The current implementation
 branch is `bt-001-abductive-evaluation-20261026`, stacked on Draft #29, for free
 CPU A1 data/scoring preparation and one new Draft PR. Read

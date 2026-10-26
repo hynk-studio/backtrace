@@ -1,0 +1,20 @@
+{
+  "version": "temporal-evaluation-v1",
+  "status": "CPU_PREPARATION_NOT_CONFIRMATORY",
+  "task": "temporal_revision",
+  "family_partition": "reuse abductive-evaluation-v1 graph families and split membership; all temporal and static views stay together",
+  "snapshots": [2, 3, 4, 5],
+  "state_horizon": [0, 1, 2],
+  "events": "time-indexed Boolean variables; observation time must equal event time; availability controls access",
+  "evidence_sequence": "old signal, duplicate, delayed old cause plus current signal, current-signal retraction and correction",
+  "reference": "exact enumeration of a supplied eight-variable unrolled state model",
+  "decision_horizon": "one check of a time-2 variable followed by one action about the time-2 cause; no multi-step planning claim",
+  "primary_metrics": ["current_posterior_mae", "change_posterior_mae", "normalized_decision_regret"],
+  "secondary_metrics": ["past_posterior_mae", "posterior_mae", "status_error", "evidence_selection_error", "duplicate_invariance_error", "update_direction_error", "correction_direction_error"],
+  "undefined_policy": "only reference status excludes undefined numerical endpoints; wrong abstention, missing and invalid responses retain maximum applicable loss",
+  "aggregation": "case and equal-weight original graph-family means; snapshots and renderings are paired repeated measures",
+  "text_scope": "controlled English rendering of exactly the same supplied model and records; not real-world language transfer",
+  "model_evaluation": "NOT_RUN",
+  "power_analysis": "PENDING_DEVELOPMENT_BASELINES",
+  "capability_promotion": "DISABLED"
+}

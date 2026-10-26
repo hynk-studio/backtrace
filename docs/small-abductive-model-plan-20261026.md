@@ -38,7 +38,10 @@ The completed coding pilot does not estimate a training effect.
 The [first A1 implementation](abductive-evaluation-20261026.md) now adds a new
 candidate dataset, exact scoring and train/input exports. Its E2 task constructs
 root assignments under a supplied model; E3 covers fixed-world evidence updates.
-Broader hypothesis/model construction and temporal/textual transfer remain open.
+The [temporal extension](temporal-baseline-20261026.md) adds a supplied unrolled
+state model, delayed old evidence, changing-state posteriors, and paired
+JSON/controlled-English development prompts. Broader hypothesis/model
+construction and real-world temporal/textual transfer remain open.
 
 ## Intended Augnes role and input/output contract
 
@@ -208,7 +211,7 @@ Do not claim counterfactual task resolution from an unexecuted recommendation.
 | Stage | Deliverable | Current status |
 | --- | --- | --- |
 | A0: goal and capability contract | This plan; E2B/E4B candidates; Kaggle optional | Documented in this change; no model result |
-| A1: evaluation before training | Expanded teacher, E2/E3 rubric, leakage checks, frozen data/metrics; development baselines and sample-size calculation | PARTIAL: CPU instruments implemented; broader E2/E3, baseline/power analysis and final test sealing pending |
+| A1: evaluation before training | Expanded teacher, E2/E3 rubric, leakage checks, frozen data/metrics; development baselines and sample-size calculation | PARTIAL: static/changing-state CPU instruments and paired prompts implemented; broader E2/real-language transfer, model baseline/power analysis and final test sealing pending |
 | A2: training feasibility | Pinned training environment; tiny update/save/reload; actual memory/throughput and bounded training proposal | NOT RUN |
 | A3: controlled training and confirmation | B0/B1/B2/S evidence within each size; three-seed confirmation; untouched evaluation and negative results | NOT RUN |
 | A4: Augnes candidate assessment | Time-cutoff case replay, fresh shadow cases, quantized artifact and device measurements | NOT RUN |
@@ -251,7 +254,8 @@ and no webpage SHA-256 is claimed:
   [pilot evidence](research-reduced9-execution-20261026.md) and
   [teacher evidence](exact-teacher.md) remain unchanged.
 
-This change updates research documents only. It does not execute a model,
+The original plan update changed research documents only. Subsequent A1 CPU
+implementations are linked above with their own scope and validation. Neither executes a model,
 authorize paid training, publish private Augnes cases or change another repo.
 Any paid run needs a concrete qualified, affordable, bounded scope; previous
 permits stay consumed. Current credit is not a demonstration that this full

@@ -1,0 +1,744 @@
+{
+  "base_sha": "31d02bb9826889deb8f188fa0e0e1562d436295f",
+  "capability_claim": "NOT_ESTABLISHED",
+  "confirmatory_ready": false,
+  "limitations": [
+    "Supplied finite transition model",
+    "Controlled English only",
+    "No new independent families or episodes",
+    "Broader E2 construction and real transfer pending",
+    "Model/runtime pins, tokenization, power analysis and final sealing pending"
+  ],
+  "local": {
+    "complete_dataset_controls": "PASS",
+    "final_focused": {
+      "errors": 0,
+      "failures": 0,
+      "seconds": 24.796,
+      "tests": 21
+    },
+    "focused_after_fixture_fix": {
+      "errors": 0,
+      "failures": 0,
+      "seconds": 26.006,
+      "tests": 20
+    },
+    "initial_focused": {
+      "errors": 0,
+      "failures": 1,
+      "reason": "Negative-control oracle posterior aliased the test reference; fixed by copying the perturbed response, not relaxing scoring.",
+      "seconds": 24.425,
+      "tests": 20
+    },
+    "initial_full": {
+      "errors": 10,
+      "failures": 5,
+      "reason": "Existing frozen pip bootstrap fixture mismatch and procfs/PID namespace cleanup checks; new 20 tests passed. Family-weight witness added afterward.",
+      "seconds": 107.888,
+      "skips": 4,
+      "status": "FAIL",
+      "tests": 553
+    },
+    "logs": {
+      "temporal-focused-final.log": {
+        "bytes": 3403,
+        "sha256": "d4cb80e9cd86eea3a30c2d68e515f87ae37388cc3279a58297278da1f44321ef"
+      },
+      "temporal-focused-initial.log": {
+        "bytes": 4041,
+        "sha256": "75a256ded6526c9cd0ea4dd8574d21471987c22e8f91a856d67d2691ef9d6995"
+      },
+      "temporal-focused-qualification.log": {
+        "bytes": 3539,
+        "sha256": "aa352e39d4d2ff76a4b73f27ff1ba2388a433f080914406ead79dab6085ccf39"
+      },
+      "temporal-full-tests.log": {
+        "bytes": 108754,
+        "sha256": "f7f248b783199e960502d3fb0b38ffb8fd95167c58979092bc69134636cc1337"
+      }
+    },
+    "static_audit": {
+      "confirmatory_ready": false,
+      "counts": {
+        "development": 800,
+        "reserved": 2000,
+        "train": 1200
+      },
+      "coverage": {
+        "development": {
+          "abduction/INCONSISTENT_EVIDENCE": 24,
+          "abduction/MODEL_MISMATCH": 28,
+          "abduction/OK": 108,
+          "inference/INCONSISTENT_EVIDENCE": 24,
+          "inference/MODEL_MISMATCH": 28,
+          "inference/OK": 108,
+          "revision/MODEL_MISMATCH": 8,
+          "revision/OK": 472
+        },
+        "reserved": {
+          "abduction/INCONSISTENT_EVIDENCE": 60,
+          "abduction/MODEL_MISMATCH": 80,
+          "abduction/OK": 260,
+          "inference/INCONSISTENT_EVIDENCE": 60,
+          "inference/MODEL_MISMATCH": 80,
+          "inference/OK": 260,
+          "revision/MODEL_MISMATCH": 40,
+          "revision/OK": 1160
+        },
+        "train": {
+          "abduction/INCONSISTENT_EVIDENCE": 36,
+          "abduction/MODEL_MISMATCH": 44,
+          "abduction/OK": 160,
+          "inference/INCONSISTENT_EVIDENCE": 36,
+          "inference/MODEL_MISMATCH": 44,
+          "inference/OK": 160,
+          "revision/MODEL_MISMATCH": 16,
+          "revision/OK": 704
+        }
+      },
+      "episode_counts": {
+        "development": 160,
+        "reserved": 400,
+        "train": 240
+      },
+      "family_counts": {
+        "development": 8,
+        "reserved": 20,
+        "train": 12
+      },
+      "model_evaluation": "NOT_RUN",
+      "status": "PASS"
+    },
+    "static_controls": {
+      "development": {
+        "assigned": 800,
+        "missing": "PASS",
+        "model_result": false,
+        "oracle": "PASS"
+      },
+      "reserved": {
+        "assigned": 2000,
+        "missing": "PASS",
+        "model_result": false,
+        "oracle": "PASS"
+      },
+      "train": {
+        "assigned": 1200,
+        "missing": "PASS",
+        "model_result": false,
+        "oracle": "PASS"
+      }
+    },
+    "temporal_audit": {
+      "confirmatory_ready": false,
+      "counts": {
+        "development": 640,
+        "reserved": 1600,
+        "train": 960
+      },
+      "coverage": {
+        "development": {
+          "MODEL_MISMATCH": 72,
+          "OK": 568
+        },
+        "reserved": {
+          "MODEL_MISMATCH": 178,
+          "OK": 1422
+        },
+        "train": {
+          "MODEL_MISMATCH": 94,
+          "OK": 866
+        }
+      },
+      "episode_counts": {
+        "development": 160,
+        "reserved": 400,
+        "train": 240
+      },
+      "family_counts": {
+        "development": 8,
+        "reserved": 20,
+        "train": 12
+      },
+      "model_evaluation": "NOT_RUN",
+      "status": "PASS"
+    },
+    "temporal_controls": {
+      "development": {
+        "assigned": 640,
+        "missing": "PASS",
+        "model_result": false,
+        "oracle": "PASS"
+      },
+      "reserved": {
+        "assigned": 1600,
+        "missing": "PASS",
+        "model_result": false,
+        "oracle": "PASS"
+      },
+      "train": {
+        "assigned": 960,
+        "missing": "PASS",
+        "model_result": false,
+        "oracle": "PASS"
+      }
+    }
+  },
+  "model_evaluation": "NOT_RUN",
+  "native_linux": {
+    "artifact": {
+      "bytes": 23954,
+      "github_digest_matched": true,
+      "id": 12636381561,
+      "members": {
+        "baseline-preparation.json": {
+          "bytes": 4625,
+          "sha256": "f160c5fc717313e80872b4bd9b02f2978d031f93fb5d04128a9f9e0749237c22"
+        },
+        "cpu-tests.log": {
+          "bytes": 94547,
+          "sha256": "a081cc087970502a57581fbf2dea7bc1086807159a978e675b83fedf7a8aaf21"
+        },
+        "preflight.json": {
+          "bytes": 167,
+          "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+        },
+        "static-audit.json": {
+          "bytes": 1284,
+          "sha256": "e6d87544d36a68f36e259f76699a2f9f279cbaeafefafb34c0924d4876f932a5"
+        },
+        "static-controls.json": {
+          "bytes": 344,
+          "sha256": "10f0168d59d70126f431f7a810f627107fba431385065667ce56010311ca5ba2"
+        },
+        "static-generation.json": {
+          "bytes": 2981,
+          "sha256": "fe36225ef52b76afcbf05c6566c2611b6d98e791ad931e694b073ea138ac6623"
+        },
+        "static-input-export.json": {
+          "bytes": 341,
+          "sha256": "f1619279447dfcb642cecd85ef52438f02a1ccf2eaa14d8c0c8b5445a3345cc7"
+        },
+        "temporal-audit.json": {
+          "bytes": 571,
+          "sha256": "16341d531e20d2db836f66063785c84e4e2d20acd4e8fa0f3be39f87ab34b0c0"
+        },
+        "temporal-controls.json": {
+          "bytes": 343,
+          "sha256": "3d68718d796a576481c82a5d60d776fb0e0a984d607b63cc7e375358683b257f"
+        },
+        "temporal-generation.json": {
+          "bytes": 2550,
+          "sha256": "9ca8f1ee01952379e0740065dbbce0f385f7653ed72fdcd8fb13ad9f7f67a2c6"
+        },
+        "temporal-input-export.json": {
+          "bytes": 342,
+          "sha256": "b2c3e4aa7d133d12a18cdaac30e10f5495557f45f41516de57bf3bb759e05a79"
+        },
+        "temporal-training-export.json": {
+          "bytes": 333,
+          "sha256": "8da82b6ba3c42573874ccbe5ca188a9ad94c20ff341d44d85b2a84a93b1db22c"
+        }
+      },
+      "name": "temporal-cpu-714e09aac73cd817834916744073d1414cae1df0-1",
+      "sha256": "f8da937790061bc8ad05c6defa9f04756fb16de9f273012f3728d50ab783daae"
+    },
+    "baseline_preparation": {
+      "assigned_cases_per_packet": 1440,
+      "files": {
+        "B0-controlled_text.jsonl": {
+          "arm": "B0",
+          "bytes": 5931560,
+          "records": 1440,
+          "rendering": "controlled_text",
+          "sha256": "7efef2f231a0e90b56cbbf2a95670d52380f28024e68ce785ba384d636b92991"
+        },
+        "B0-json.jsonl": {
+          "arm": "B0",
+          "bytes": 6220226,
+          "records": 1440,
+          "rendering": "json",
+          "sha256": "e4d8884f44cc1b89b89468a0ca9b821453c432387a2af89c908b385054704abb"
+        },
+        "B1-controlled_text.jsonl": {
+          "arm": "B1",
+          "bytes": 6797000,
+          "records": 1440,
+          "rendering": "controlled_text",
+          "sha256": "0f0186aca3918d58dce1d3835fa15d656b68c4c148782cab4ba22469e0d9a9ef"
+        },
+        "B1-json.jsonl": {
+          "arm": "B1",
+          "bytes": 7085666,
+          "records": 1440,
+          "rendering": "json",
+          "sha256": "e7cd34a08c962aeace86ffb1295cacb377e813ae796aecea948f7a1d688405f0"
+        }
+      },
+      "input_receipts": [
+        {
+          "file": {
+            "bytes": 909926,
+            "records": 800,
+            "sha256": "0dd5abfd742d8112d3dfbe0672338773c74cec011d4300693526bc6ac432df0f"
+          },
+          "kind": "inputs_only",
+          "runtime_isolation": "NOT_PROVEN_BY_FILE_EXPORT",
+          "source_manifest_sha256": "acefa4d565377fad628f164fef15f8dda712d4e81d7397424e55748a4012073a",
+          "split": "development"
+        },
+        {
+          "file": {
+            "bytes": 1122592,
+            "records": 640,
+            "sha256": "f73de84e4165fc921c8744f4d251da97c8740945d24769cf3a64ba643bfe3748"
+          },
+          "kind": "inputs_only",
+          "runtime_isolation": "NOT_PROVEN_BY_FILE_EXPORT",
+          "source_manifest_sha256": "5fcdc002ab253a9b54a6fa612d70a09b7b2f633ad298092871979cf12bafc9dc",
+          "split": "development"
+        }
+      ],
+      "model_evaluation": "NOT_RUN",
+      "model_pins": {
+        "E2B": null,
+        "E4B": null
+      },
+      "prompt_hashes": {
+        "B0": "9db9fb4083c7ad6d87912be74c54ad79164fecaed718a9f64509d6c132a706d2",
+        "B1": "989dafc573d67999fca36db9333c1f52475058b1e1980ce1cd9112c3e59bb591"
+      },
+      "protocol": {
+        "arms": [
+          "B0",
+          "B1"
+        ],
+        "backbones": [
+          "E2B",
+          "E4B"
+        ],
+        "capability_promotion": "DISABLED",
+        "comparisons": "within backbone, paired by case; B0 vs B1 within rendering; JSON vs controlled text within arm; no pooling rendered copies as independent cases",
+        "confirmatory_ready": false,
+        "model_evaluation": "NOT_RUN",
+        "overflow_policy": "fail the preparation check for the entire matched comparison; never silently truncate or drop assigned cases",
+        "proposed_limits": {
+          "do_sample": false,
+          "max_input_tokens": 12288,
+          "max_output_tokens": 4096,
+          "responses_per_input": 1,
+          "retries": 0,
+          "tools": false
+        },
+        "raw_response_policy": "retain exact output, token usage, finish reason and latency; no extraction, repair or retry; truncation/schema failure stays in the assigned denominator",
+        "renderings": [
+          "json",
+          "controlled_text"
+        ],
+        "required_before_execution": [
+          "exact model and tokenizer revisions",
+          "chat-template identity and supported role mapping",
+          "precision and dependency pins",
+          "real tokenizer counts for every packet",
+          "bounded runtime and compute scope",
+          "isolated inputs-only runtime",
+          "measured hardware feasibility"
+        ],
+        "split": "development",
+        "status": "PREPARED_NOT_EXECUTABLE",
+        "training_comparison_runtime_prompt": "B1 for B2 and S within each backbone",
+        "version": "abductive-baseline-preparation-v1"
+      },
+      "requests_per_backbone_if_all_packets_run": 5760,
+      "source_hashes": {
+        "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+        "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+        "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+        "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+        "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+        "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+        "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+        "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+        "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+      },
+      "status": "PREPARED_NOT_EXECUTABLE",
+      "tokenization": "NOT_RUN"
+    },
+    "conclusion": "success",
+    "exports": {
+      "static-input-export.json": {
+        "file": {
+          "bytes": 909926,
+          "records": 800,
+          "sha256": "0dd5abfd742d8112d3dfbe0672338773c74cec011d4300693526bc6ac432df0f"
+        },
+        "kind": "inputs_only",
+        "runtime_isolation": "NOT_PROVEN_BY_FILE_EXPORT",
+        "source_manifest_sha256": "acefa4d565377fad628f164fef15f8dda712d4e81d7397424e55748a4012073a",
+        "split": "development"
+      },
+      "temporal-input-export.json": {
+        "file": {
+          "bytes": 1122592,
+          "records": 640,
+          "sha256": "f73de84e4165fc921c8744f4d251da97c8740945d24769cf3a64ba643bfe3748"
+        },
+        "kind": "inputs_only",
+        "runtime_isolation": "NOT_PROVEN_BY_FILE_EXPORT",
+        "source_manifest_sha256": "5fcdc002ab253a9b54a6fa612d70a09b7b2f633ad298092871979cf12bafc9dc",
+        "split": "development"
+      },
+      "temporal-training-export.json": {
+        "file": {
+          "bytes": 2324257,
+          "records": 960,
+          "sha256": "140a9741e6c4b1826e4b3d205778bec1d225c9a8583c1672a943ee5907d8d790"
+        },
+        "kind": "training",
+        "runtime_isolation": "NOT_PROVEN_BY_FILE_EXPORT",
+        "source_manifest_sha256": "5fcdc002ab253a9b54a6fa612d70a09b7b2f633ad298092871979cf12bafc9dc",
+        "split": "train"
+      }
+    },
+    "head_sha": "714e09aac73cd817834916744073d1414cae1df0",
+    "job_id": 121464107508,
+    "local_native_data_export_prompt_control_summaries_byte_equivalent": true,
+    "preflight": {
+      "dependencies": "standard library only",
+      "local_tooling": "READY",
+      "official_validator": "NOT RUN",
+      "python": "3.12.14",
+      "r0_clean_packaging": "NOT RUN"
+    },
+    "run_attempt": 1,
+    "run_id": 40290483458,
+    "run_updated_at": "2026-10-26T08:16:18Z",
+    "static_audit": {
+      "confirmatory_ready": false,
+      "counts": {
+        "development": 800,
+        "reserved": 2000,
+        "train": 1200
+      },
+      "coverage": {
+        "development": {
+          "abduction/INCONSISTENT_EVIDENCE": 24,
+          "abduction/MODEL_MISMATCH": 28,
+          "abduction/OK": 108,
+          "inference/INCONSISTENT_EVIDENCE": 24,
+          "inference/MODEL_MISMATCH": 28,
+          "inference/OK": 108,
+          "revision/MODEL_MISMATCH": 8,
+          "revision/OK": 472
+        },
+        "reserved": {
+          "abduction/INCONSISTENT_EVIDENCE": 60,
+          "abduction/MODEL_MISMATCH": 80,
+          "abduction/OK": 260,
+          "inference/INCONSISTENT_EVIDENCE": 60,
+          "inference/MODEL_MISMATCH": 80,
+          "inference/OK": 260,
+          "revision/MODEL_MISMATCH": 40,
+          "revision/OK": 1160
+        },
+        "train": {
+          "abduction/INCONSISTENT_EVIDENCE": 36,
+          "abduction/MODEL_MISMATCH": 44,
+          "abduction/OK": 160,
+          "inference/INCONSISTENT_EVIDENCE": 36,
+          "inference/MODEL_MISMATCH": 44,
+          "inference/OK": 160,
+          "revision/MODEL_MISMATCH": 16,
+          "revision/OK": 704
+        }
+      },
+      "episode_counts": {
+        "development": 160,
+        "reserved": 400,
+        "train": 240
+      },
+      "family_counts": {
+        "development": 8,
+        "reserved": 20,
+        "train": 12
+      },
+      "model_evaluation": "NOT_RUN",
+      "status": "PASS"
+    },
+    "static_controls": {
+      "development": {
+        "assigned": 800,
+        "missing": "PASS",
+        "model_result": false,
+        "oracle": "PASS"
+      },
+      "reserved": {
+        "assigned": 2000,
+        "missing": "PASS",
+        "model_result": false,
+        "oracle": "PASS"
+      },
+      "train": {
+        "assigned": 1200,
+        "missing": "PASS",
+        "model_result": false,
+        "oracle": "PASS"
+      }
+    },
+    "static_generation": {
+      "audit": {
+        "confirmatory_ready": false,
+        "counts": {
+          "development": 800,
+          "reserved": 2000,
+          "train": 1200
+        },
+        "coverage": {
+          "development": {
+            "abduction/INCONSISTENT_EVIDENCE": 24,
+            "abduction/MODEL_MISMATCH": 28,
+            "abduction/OK": 108,
+            "inference/INCONSISTENT_EVIDENCE": 24,
+            "inference/MODEL_MISMATCH": 28,
+            "inference/OK": 108,
+            "revision/MODEL_MISMATCH": 8,
+            "revision/OK": 472
+          },
+          "reserved": {
+            "abduction/INCONSISTENT_EVIDENCE": 60,
+            "abduction/MODEL_MISMATCH": 80,
+            "abduction/OK": 260,
+            "inference/INCONSISTENT_EVIDENCE": 60,
+            "inference/MODEL_MISMATCH": 80,
+            "inference/OK": 260,
+            "revision/MODEL_MISMATCH": 40,
+            "revision/OK": 1160
+          },
+          "train": {
+            "abduction/INCONSISTENT_EVIDENCE": 36,
+            "abduction/MODEL_MISMATCH": 44,
+            "abduction/OK": 160,
+            "inference/INCONSISTENT_EVIDENCE": 36,
+            "inference/MODEL_MISMATCH": 44,
+            "inference/OK": 160,
+            "revision/MODEL_MISMATCH": 16,
+            "revision/OK": 704
+          }
+        },
+        "episode_counts": {
+          "development": 160,
+          "reserved": 400,
+          "train": 240
+        },
+        "family_counts": {
+          "development": 8,
+          "reserved": 20,
+          "train": 12
+        },
+        "model_evaluation": "NOT_RUN",
+        "status": "PASS"
+      },
+      "files": {
+        "development/agent.jsonl": {
+          "bytes": 909926,
+          "records": 800,
+          "sha256": "0dd5abfd742d8112d3dfbe0672338773c74cec011d4300693526bc6ac432df0f"
+        },
+        "development/evaluator.jsonl": {
+          "bytes": 876357,
+          "records": 800,
+          "sha256": "9f1cf96080452dedde072ab7db6fc27f2491de87223aea75d7f290cd896f75c7"
+        },
+        "reserved/agent.jsonl": {
+          "bytes": 2302048,
+          "records": 2000,
+          "sha256": "ebf414d69e5ba356d272d9f854fbdb49886b42fa238a4960db43c17709c05697"
+        },
+        "reserved/evaluator.jsonl": {
+          "bytes": 2201024,
+          "records": 2000,
+          "sha256": "14c1ba97f29f5c16f2a55430eeb41dc253bc14c8d63907178ce8bfd2748e5850"
+        },
+        "train/agent.jsonl": {
+          "bytes": 1397721,
+          "records": 1200,
+          "sha256": "f39ab4f9554ecb5bfe645622c6334bdd6786f84ad4d9be106d2fb2f7d33eab55"
+        },
+        "train/evaluator.jsonl": {
+          "bytes": 1329632,
+          "records": 1200,
+          "sha256": "37ba0e24111fd2cf4b6fb428ffa4c48466c64944c1bc46f956c596d0c9da5b2a"
+        }
+      },
+      "source_hashes": {
+        "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+        "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+        "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+        "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+      },
+      "status": "CPU_PREPARATION_NOT_CONFIRMATORY",
+      "variants": 20,
+      "version": "abductive-evaluation-v1"
+    },
+    "temporal_audit": {
+      "confirmatory_ready": false,
+      "counts": {
+        "development": 640,
+        "reserved": 1600,
+        "train": 960
+      },
+      "coverage": {
+        "development": {
+          "MODEL_MISMATCH": 72,
+          "OK": 568
+        },
+        "reserved": {
+          "MODEL_MISMATCH": 178,
+          "OK": 1422
+        },
+        "train": {
+          "MODEL_MISMATCH": 94,
+          "OK": 866
+        }
+      },
+      "episode_counts": {
+        "development": 160,
+        "reserved": 400,
+        "train": 240
+      },
+      "family_counts": {
+        "development": 8,
+        "reserved": 20,
+        "train": 12
+      },
+      "model_evaluation": "NOT_RUN",
+      "status": "PASS"
+    },
+    "temporal_controls": {
+      "development": {
+        "assigned": 640,
+        "missing": "PASS",
+        "model_result": false,
+        "oracle": "PASS"
+      },
+      "reserved": {
+        "assigned": 1600,
+        "missing": "PASS",
+        "model_result": false,
+        "oracle": "PASS"
+      },
+      "train": {
+        "assigned": 960,
+        "missing": "PASS",
+        "model_result": false,
+        "oracle": "PASS"
+      }
+    },
+    "temporal_generation": {
+      "audit": {
+        "confirmatory_ready": false,
+        "counts": {
+          "development": 640,
+          "reserved": 1600,
+          "train": 960
+        },
+        "coverage": {
+          "development": {
+            "MODEL_MISMATCH": 72,
+            "OK": 568
+          },
+          "reserved": {
+            "MODEL_MISMATCH": 178,
+            "OK": 1422
+          },
+          "train": {
+            "MODEL_MISMATCH": 94,
+            "OK": 866
+          }
+        },
+        "episode_counts": {
+          "development": 160,
+          "reserved": 400,
+          "train": 240
+        },
+        "family_counts": {
+          "development": 8,
+          "reserved": 20,
+          "train": 12
+        },
+        "model_evaluation": "NOT_RUN",
+        "status": "PASS"
+      },
+      "files": {
+        "development/agent.jsonl": {
+          "bytes": 1122592,
+          "records": 640,
+          "sha256": "f73de84e4165fc921c8744f4d251da97c8740945d24769cf3a64ba643bfe3748"
+        },
+        "development/evaluator.jsonl": {
+          "bytes": 498638,
+          "records": 640,
+          "sha256": "2fadda74f70cd50801bd0b8beb79c0c67ff3deea63e26344d2f7ce46d1fe7093"
+        },
+        "reserved/agent.jsonl": {
+          "bytes": 2794464,
+          "records": 1600,
+          "sha256": "db1277f94dfbf23df195ce75b8f29b35923c0d9098c783a530ada26fe6ee459c"
+        },
+        "reserved/evaluator.jsonl": {
+          "bytes": 1251662,
+          "records": 1600,
+          "sha256": "8fda0efafaf06557e391d8c129673e194e0455736732c51e26117874adfbce56"
+        },
+        "train/agent.jsonl": {
+          "bytes": 1684120,
+          "records": 960,
+          "sha256": "20f02e9e17dcbcd79792acf33420f0aaadc97dd380626ea80292f1ece075289a"
+        },
+        "train/evaluator.jsonl": {
+          "bytes": 756010,
+          "records": 960,
+          "sha256": "78ad92eb7cebb0a8d1db4d3a29bfd7d6ff8761e333f2723c1568ab75f00a355c"
+        }
+      },
+      "source_hashes": {
+        "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+        "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+        "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+        "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+        "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+        "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+        "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+      },
+      "status": "CPU_PREPARATION_NOT_CONFIRMATORY",
+      "variants": 20,
+      "version": "temporal-evaluation-v1"
+    },
+    "tests": {
+      "errors": 0,
+      "failures": 0,
+      "seconds": 138.903,
+      "skips": 0,
+      "tests": 554
+    },
+    "url": "https://github.com/hynk-studio/backtrace/actions/runs/40290483458"
+  },
+  "pr": "https://github.com/hynk-studio/backtrace/pull/31",
+  "source_hashes": {
+    "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+    "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+    "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+    "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+    "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+    "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+    "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+    "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+    "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+  },
+  "source_sha": "714e09aac73cd817834916744073d1414cae1df0",
+  "source_tree": "4eabd39823432884231635af60553e0723ef0c65",
+  "status": "PASS_CPU_INSTRUMENT_ONLY",
+  "tokenization": "NOT_RUN",
+  "training": "NOT_RUN",
+  "version": "temporal-baseline-cpu-v1"
+}
