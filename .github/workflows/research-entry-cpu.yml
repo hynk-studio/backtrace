@@ -1,7 +1,7 @@
 name: Research entry full free qualification
 on:
   push:
-    branches: [bt-001-research-prepaid-entry-20261026]
+    branches: [bt-001-research-reduced9-20261026]
 permissions:
   contents: read
   actions: read

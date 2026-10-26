@@ -20,7 +20,7 @@ from tools.research_serving_cpu import CLEAN, REMOTE, PYTHON
 from tools.private_delivery import push, ssh_command
 from tools.research_split import Endpoint
 from tools.research_split_server import MODEL_PATH
-from tools.research_split_sequence import sequence
+from tools.research_reduced import sequence, identity as reduced_identity
 from tools.research_isolation import bounded_child, Isolation
 from tools.research_split_cpu import wait_namespace_absence, reclaim_slot
 
@@ -36,7 +36,7 @@ def worker(plan):
     root=Path(plan['directory']);work=c.traversable_directory(root/'work')
     output=Path(plan['output']);output.mkdir(mode=0o700,parents=True,exist_ok=True)
     claim=plan['claim'];phase=['setup'];detail=['ssh'];done=threading.Event();serving=None;prefix=None
-    report={'status':'FAIL','authored_cpu':plan['authored_cpu'],'stages':{},'slots':None}
+    report={'status':'FAIL','authored_cpu':plan['authored_cpu'],'pilot_scope':reduced_identity(),'stages':{},'slots':None}
     until=claim['requested_at']+claim['total_seconds']
     setup_until=min(until-660,claim['requested_at']+claim['setup_seconds'])
     monotonic_until=time.monotonic()+max(0,until-time.time())
@@ -104,7 +104,7 @@ def worker(plan):
                 program("from pathlib import Path;p=Path("+repr(MODEL_PATH)+");p.parent.mkdir(parents=True,exist_ok=True);"
                         "assert not p.exists();Path('/root/backtrace/model').rename(p)")
             base=[PYTHON,'-I','-B',REMOTE+'/tools/research_serving.py',REMOTE+'/transport','/root/backtrace/run',
-                '--lifetime',str(remaining(10800,setup=False)), '--ready-seconds',str(remaining(1200))]
+                '--lifetime',str(remaining(7740,setup=False)), '--ready-seconds',str(remaining(1200))]
             if plan['authored_cpu']:base+=['--authored-cpu',REMOTE+'/tests/research_serving_fixture.py']
             else:base+=['--model-manifest',REMOTE+'/docs/research-entry-model-manifest.json']
             serving=subprocess.Popen(prefix+[shlex.join(base)],env=CLEAN,stdin=subprocess.DEVNULL,
@@ -141,7 +141,7 @@ def worker(plan):
                 if row['exit_code']!=0:raise RuntimeError('isolated child failed')
                 return row
             # Convert the allocation-inclusive wall deadline once to the runner's
-            # monotonic clock. Sequence owns all 18 denominators and reserves.
+            # monotonic clock. Sequence owns all nine denominators and reserves.
             report['slots']=sequence(slot,deadline=time.monotonic()+max(0,until-time.time()))
             report['status']='PASS' if (report['slots']['all_slots_attempted'] and
                 all(row['status']!='INFRASTRUCTURE_FAILURE' for row in report['slots']['slots'])) else 'PARTIAL'

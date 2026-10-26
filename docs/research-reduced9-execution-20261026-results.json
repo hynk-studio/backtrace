@@ -1,0 +1,483 @@
+{
+  "audit": {
+    "account_idle_and_zero_pods": true,
+    "actual_model_readiness": {
+      "kind": "MODEL_INFERENCE",
+      "metadata": {
+        "observed": {
+          "disable_custom_all_reduce": true,
+          "dtype": "torch.bfloat16",
+          "enable_prefix_caching": false,
+          "max_model_len": 32768,
+          "model": "/kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2",
+          "tensor_parallel_size": 1
+        },
+        "status": "PASS"
+      },
+      "port": 8443,
+      "process_group": 297,
+      "ready_seconds": 121.31003092601895
+    },
+    "additional_spend": "1.9142661298",
+    "agent_error_records": [
+      {
+        "bytes": 38,
+        "contains_timeout": true,
+        "sha256": "9c4fff878da8c6a4e814463696e5368e52e247b80d411fcd95e410a4dedb7925",
+        "slot": "requests_7309-R0"
+      },
+      {
+        "bytes": 38,
+        "contains_timeout": true,
+        "sha256": "9c4fff878da8c6a4e814463696e5368e52e247b80d411fcd95e410a4dedb7925",
+        "slot": "requests_7309-R2"
+      },
+      {
+        "bytes": 38,
+        "contains_timeout": true,
+        "sha256": "9c4fff878da8c6a4e814463696e5368e52e247b80d411fcd95e410a4dedb7925",
+        "slot": "rich_3486-R1"
+      },
+      {
+        "bytes": 38,
+        "contains_timeout": true,
+        "sha256": "9c4fff878da8c6a4e814463696e5368e52e247b80d411fcd95e410a4dedb7925",
+        "slot": "rich_3486-R2"
+      },
+      {
+        "bytes": 38,
+        "contains_timeout": true,
+        "sha256": "9c4fff878da8c6a4e814463696e5368e52e247b80d411fcd95e410a4dedb7925",
+        "slot": "rich_3486-R0"
+      },
+      {
+        "bytes": 38,
+        "contains_timeout": true,
+        "sha256": "9c4fff878da8c6a4e814463696e5368e52e247b80d411fcd95e410a4dedb7925",
+        "slot": "httpx_3672-R2"
+      },
+      {
+        "bytes": 38,
+        "contains_timeout": true,
+        "sha256": "9c4fff878da8c6a4e814463696e5368e52e247b80d411fcd95e410a4dedb7925",
+        "slot": "httpx_3672-R0"
+      },
+      {
+        "bytes": 38,
+        "contains_timeout": true,
+        "sha256": "9c4fff878da8c6a4e814463696e5368e52e247b80d411fcd95e410a4dedb7925",
+        "slot": "httpx_3672-R1"
+      }
+    ],
+    "aggregate_token_total": "UNKNOWN; eight slot ledgers are incomplete",
+    "audit_status": "PASS",
+    "automatic_paid_retry": false,
+    "balance_after": "3.0795030588",
+    "balance_before": "4.9937691886",
+    "both_deleted": true,
+    "claim_sha256": "96658117e8ee3cef72fbe2d002c661704dbd35e490109a499bb00c91b93e113e",
+    "cpu_packages": 143,
+    "cumulative_spend": "6.9204969412",
+    "effect_estimate": "NOT_COMPUTED",
+    "encrypted_export_before_both_cleanups": true,
+    "export_records": 163,
+    "http_attempts": 189,
+    "implementation_files": 182,
+    "independent_evaluation_after_both_cleanups": true,
+    "native_qualification_tests": 511,
+    "not_evaluated": 7,
+    "owner_cleanup": {
+      "absence_reads": 2,
+      "claim_sha256": "96658117e8ee3cef72fbe2d002c661704dbd35e490109a499bb00c91b93e113e",
+      "completed_at": 1792977888.7199097,
+      "history": [
+        {
+          "at": 1792977707.1257982,
+          "id": "0a5nl1huxm2vmz",
+          "state": "DELETE_SENT"
+        },
+        {
+          "at": 1792977797.8894668,
+          "id": "0a5nl1huxm2vmz",
+          "state": "ABSENT"
+        },
+        {
+          "at": 1792977888.7199073,
+          "id": "0a5nl1huxm2vmz",
+          "state": "ABSENT"
+        }
+      ],
+      "pod_id": "0a5nl1huxm2vmz",
+      "started_at": 1792977704.962387,
+      "status": "DELETED"
+    },
+    "owner_run_id": "40248465278",
+    "pilot_status": "INCOMPLETE",
+    "private_records": 152,
+    "provider_create_requests": 1,
+    "real_model_slots_attempted": 9,
+    "request_usage_status_counts": {
+      "COMPLETE": 181,
+      "MISSING_OR_INVALID": 8
+    },
+    "resolved": 1,
+    "server_transport": {
+      "active": 0,
+      "cancelled": 4,
+      "errors": 8,
+      "finished": 189,
+      "requests": 189
+    },
+    "serving_packages": 246,
+    "slot_status_counts": {
+      "COMPLETED": 1,
+      "INCOMPLETE": 1,
+      "TIMEOUT": 7
+    },
+    "slots": [
+      {
+        "agent_status": "TIMEOUT",
+        "arm": "R0",
+        "child_wall_seconds": 306.9531943999998,
+        "evaluation_status": "NOT_EVALUATED",
+        "http_attempts": 25,
+        "instance_id": "requests_7309",
+        "official_resolved": null,
+        "patch_bytes": 0,
+        "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "patch_submitted": false,
+        "research_resolved": null,
+        "task_sha256": "8a12a160a8a2ccc764763cb7a635e5700e79eba56198d601c2ef455b2f4d05dd",
+        "token_accounting": "INCOMPLETE",
+        "total_tokens": null,
+        "trace_sha256": "806fac2c63bb8324c7b1a2bd9d50664066367b527b0601f6d1eb07aaf0dddf95"
+      },
+      {
+        "agent_status": "COMPLETED",
+        "arm": "R1",
+        "child_wall_seconds": 253.20312391900006,
+        "evaluation_status": "EVALUATED",
+        "http_attempts": 31,
+        "instance_id": "requests_7309",
+        "observed_tests": {
+          "errors": 0,
+          "failures": 8,
+          "junit_sha256": "cdb7e9e637c31fedca80a6d0144f7f35611fde97565bcdeecbab6ab607262516",
+          "skipped": 13,
+          "tests": 220
+        },
+        "official_resolved": false,
+        "patch_bytes": 692,
+        "patch_sha256": "85d999101667ffac055a55e8db4ed99a6d9c2e1e81f8d70bdbb21a0255552f60",
+        "patch_submitted": true,
+        "research_resolved": false,
+        "submitted_checkpoint_last_request_seconds": 237.76795154799993,
+        "task_sha256": "8a12a160a8a2ccc764763cb7a635e5700e79eba56198d601c2ef455b2f4d05dd",
+        "token_accounting": "COMPLETE",
+        "total_tokens": 284889,
+        "trace_sha256": "e3b5bd2fb9a88e9898e57b1329c17b06cb677b137b2f0c334beb66b73f11a93e"
+      },
+      {
+        "agent_status": "TIMEOUT",
+        "arm": "R2",
+        "child_wall_seconds": 306.5634682970001,
+        "evaluation_status": "EVALUATED",
+        "http_attempts": 31,
+        "instance_id": "requests_7309",
+        "observed_tests": {
+          "errors": 0,
+          "failures": 0,
+          "junit_sha256": "f615ca0d46da512de24751bc316ae39bbb212e2d18b3e44bc8aae943aac8677d",
+          "skipped": 13,
+          "tests": 220
+        },
+        "official_resolved": true,
+        "patch_bytes": 1180,
+        "patch_sha256": "c84d488554937e6e1072d51b63ef193bc4592ba97177def0b5a788ac5deb0201",
+        "patch_submitted": true,
+        "research_resolved": true,
+        "submitted_checkpoint_last_request_seconds": 290.2653040370003,
+        "task_sha256": "8a12a160a8a2ccc764763cb7a635e5700e79eba56198d601c2ef455b2f4d05dd",
+        "token_accounting": "INCOMPLETE",
+        "total_tokens": null,
+        "trace_sha256": "d62b9d17eb5ab623eccf14eb683a9847ed615e3603f541549e1aa5990b6458f3"
+      },
+      {
+        "agent_status": "TIMEOUT",
+        "arm": "R1",
+        "child_wall_seconds": 307.00360317800005,
+        "evaluation_status": "NOT_EVALUATED",
+        "http_attempts": 18,
+        "instance_id": "rich_3486",
+        "official_resolved": null,
+        "patch_bytes": 0,
+        "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "patch_submitted": false,
+        "research_resolved": null,
+        "task_sha256": "1ecb0d9e96cda26cb374e3a059b72a699657d3015f34a8acdef6ea7af71532dc",
+        "token_accounting": "INCOMPLETE",
+        "total_tokens": null,
+        "trace_sha256": "0e8467f86c77b018fda043f19389e377248854c65f8f5db82d6bc8773a7c6739"
+      },
+      {
+        "agent_status": "TIMEOUT",
+        "arm": "R2",
+        "child_wall_seconds": 307.21433408400026,
+        "evaluation_status": "NOT_EVALUATED",
+        "http_attempts": 20,
+        "instance_id": "rich_3486",
+        "official_resolved": null,
+        "patch_bytes": 0,
+        "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "patch_submitted": false,
+        "research_resolved": null,
+        "task_sha256": "1ecb0d9e96cda26cb374e3a059b72a699657d3015f34a8acdef6ea7af71532dc",
+        "token_accounting": "INCOMPLETE",
+        "total_tokens": null,
+        "trace_sha256": "601c0ecfce7be6d773ac29e195754cb0ec686eb5cd78fd0c34b3987287b789b1"
+      },
+      {
+        "agent_status": "INCOMPLETE",
+        "arm": "R0",
+        "child_wall_seconds": 307.31778928799986,
+        "evaluation_status": "NOT_EVALUATED",
+        "http_attempts": 23,
+        "instance_id": "rich_3486",
+        "official_resolved": null,
+        "patch_bytes": 0,
+        "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "patch_submitted": false,
+        "research_resolved": null,
+        "task_sha256": "1ecb0d9e96cda26cb374e3a059b72a699657d3015f34a8acdef6ea7af71532dc",
+        "token_accounting": "INCOMPLETE",
+        "total_tokens": null,
+        "trace_sha256": "f2567654bcb454472772e8931f00401f050cdaaaeae30df27eab4e6a47120840"
+      },
+      {
+        "agent_status": "TIMEOUT",
+        "arm": "R2",
+        "child_wall_seconds": 306.42820668999957,
+        "evaluation_status": "NOT_EVALUATED",
+        "http_attempts": 16,
+        "instance_id": "httpx_3672",
+        "official_resolved": null,
+        "patch_bytes": 0,
+        "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "patch_submitted": false,
+        "research_resolved": null,
+        "task_sha256": "16c1737826efb8a853359ce489685faaa501d8881c270a862ec001a8450c6023",
+        "token_accounting": "INCOMPLETE",
+        "total_tokens": null,
+        "trace_sha256": "5e66c361f7070b2d84f489e6ab3e862375c0605625558d44d1f57f71870a8a1f"
+      },
+      {
+        "agent_status": "TIMEOUT",
+        "arm": "R0",
+        "child_wall_seconds": 306.2494632310004,
+        "evaluation_status": "NOT_EVALUATED",
+        "http_attempts": 13,
+        "instance_id": "httpx_3672",
+        "official_resolved": null,
+        "patch_bytes": 0,
+        "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "patch_submitted": false,
+        "research_resolved": null,
+        "task_sha256": "16c1737826efb8a853359ce489685faaa501d8881c270a862ec001a8450c6023",
+        "token_accounting": "INCOMPLETE",
+        "total_tokens": null,
+        "trace_sha256": "335b1961a48ad5bba012807594d5bc024c52c3d392218637679e70e372f95e54"
+      },
+      {
+        "agent_status": "TIMEOUT",
+        "arm": "R1",
+        "child_wall_seconds": 306.37586241300005,
+        "evaluation_status": "NOT_EVALUATED",
+        "http_attempts": 12,
+        "instance_id": "httpx_3672",
+        "official_resolved": null,
+        "patch_bytes": 0,
+        "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "patch_submitted": false,
+        "research_resolved": null,
+        "task_sha256": "16c1737826efb8a853359ce489685faaa501d8881c270a862ec001a8450c6023",
+        "token_accounting": "INCOMPLETE",
+        "total_tokens": null,
+        "trace_sha256": "d48c8c819c68538970ad8655a7dcd0a294ead19b3cbd371732500004d95a1ffd"
+      }
+    ],
+    "slots_evaluated": 2,
+    "source_sha": "a8ae2765e9b57a408be3e3930b3a69a977601535",
+    "watcher_cleanup": {
+      "absence_reads": 2,
+      "claim_sha256": "96658117e8ee3cef72fbe2d002c661704dbd35e490109a499bb00c91b93e113e",
+      "completed_at": 1792977888.484725,
+      "history": [
+        {
+          "at": 1792977797.717673,
+          "id": "0a5nl1huxm2vmz",
+          "state": "ABSENT"
+        },
+        {
+          "at": 1792977888.4847224,
+          "id": "0a5nl1huxm2vmz",
+          "state": "ABSENT"
+        }
+      ],
+      "pod_id": "0a5nl1huxm2vmz",
+      "reason": "OWNER_DONE",
+      "started_at": 1792977796.7628803,
+      "status": "DELETED",
+      "watcher_run_id": "40248422989"
+    },
+    "watcher_run_id": "40248422989",
+    "xml_checks": [
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 5,
+          "skipped": 13,
+          "tests": 220
+        },
+        "job": "unmodified-baseline",
+        "official_resolved": false,
+        "research_resolved": false,
+        "sha256": "65ec782fe7fde8abb79b818ac781b1501c1bb81d5db5df5b3370252a3c978abf",
+        "task": "requests_7309"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 0,
+          "skipped": 13,
+          "tests": 220
+        },
+        "job": "public-reference-control",
+        "official_resolved": true,
+        "research_resolved": true,
+        "sha256": "3534e21c3bf0666d4fba2926ddc3c19c25dceb1bf2ca6f8a4ea817e4524ddede",
+        "task": "requests_7309"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 1,
+          "skipped": 1,
+          "tests": 21
+        },
+        "job": "unmodified-baseline",
+        "official_resolved": false,
+        "research_resolved": false,
+        "sha256": "3cfe594674a12ab2bdcba2613306ab012b8e25eae463b57069caa0a87201934f",
+        "task": "rich_3486"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 0,
+          "skipped": 1,
+          "tests": 21
+        },
+        "job": "public-reference-control",
+        "official_resolved": false,
+        "research_resolved": true,
+        "sha256": "8232696ccd2e25dcf625dc5b52bffb3b3ce7bedd09f0e4b41697644d36b3ef88",
+        "task": "rich_3486"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 5,
+          "skipped": 0,
+          "tests": 24
+        },
+        "job": "unmodified-baseline",
+        "official_resolved": false,
+        "research_resolved": false,
+        "sha256": "44ad1a10b3ac80e45b8a3687ab70cb03685661d525063c471d631a7924d18c94",
+        "task": "httpx_3672"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 0,
+          "skipped": 0,
+          "tests": 24
+        },
+        "job": "public-reference-control",
+        "official_resolved": true,
+        "research_resolved": true,
+        "sha256": "a59e7f0c9d81fff9191e397103cfe83fdf14efd5b11f67144736662054017d25",
+        "task": "httpx_3672"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 8,
+          "skipped": 13,
+          "tests": 220
+        },
+        "job": "R1",
+        "official_resolved": false,
+        "research_resolved": false,
+        "sha256": "cdb7e9e637c31fedca80a6d0144f7f35611fde97565bcdeecbab6ab607262516",
+        "task": "requests_7309"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 0,
+          "skipped": 13,
+          "tests": 220
+        },
+        "job": "R2",
+        "official_resolved": true,
+        "research_resolved": true,
+        "sha256": "f615ca0d46da512de24751bc316ae39bbb212e2d18b3e44bc8aae943aac8677d",
+        "task": "requests_7309"
+      }
+    ]
+  },
+  "authorization_consumed": true,
+  "authorization_id": "owner-reduced9-20261026-0914",
+  "automatic_paid_retry": false,
+  "evaluation": {
+    "began_at": 1792977891.8486762,
+    "completed_at": 1792977949.3572822,
+    "controls_passed": 3,
+    "effect_estimate": "NOT_COMPUTED",
+    "evaluated_patches": 2,
+    "kind": "REAL_MODEL_PATCHES",
+    "not_evaluated": 7,
+    "status": "INCOMPLETE"
+  },
+  "final_account": {
+    "auto_pay": false,
+    "credit_balance": "3.0795030588",
+    "current_spend_per_hour": "0"
+  },
+  "interpretation": "One verified R2 patch does not establish general superiority; all nine denominators and seven unevaluated missing submissions are retained.",
+  "limits": {
+    "additional": "4.30",
+    "cumulative": "9.50",
+    "hourly": "2.00",
+    "reserve": "0.50",
+    "top_up": false,
+    "total_seconds": 7740
+  },
+  "owner_instruction": "진행하자",
+  "owner_run_id": "40248465278",
+  "pods_after": [],
+  "qualification_run_id": "40227646365",
+  "qualified_source": "a8ae2765e9b57a408be3e3930b3a69a977601535",
+  "record_date_kst": "2026-10-26",
+  "schema": 1,
+  "scope_exclusions": [
+    "automatic second allocation",
+    "merge",
+    "issue closure",
+    "competition submission",
+    "R3 training"
+  ],
+  "status": "INCOMPLETE",
+  "watcher_run_id": "40248422989"
+}

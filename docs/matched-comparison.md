@@ -1,6 +1,17 @@
 # A matched R0/R1/R2 pilot prepared on CPU
 
-Status: **CPU research preparation, no model run or paid authorization.**
+Status update, 26 October 2026 KST: the separately amended
+[reduced nine-slot pilot](research-reduced9-execution-20261026.md) attempted the
+first selected task from each of the three repositories under all three arms.
+Two original patches were submitted and independently evaluated; seven were
+not submitted. The reduced pilot is INCOMPLETE and its one-use paid authorization
+is consumed. The six-task/18-slot campaign described below has not run as a
+complete campaign; statements of no model run or no paid authorization below
+describe the earlier CPU-preparation checkpoint. See the
+[trace follow-up](research-reduced9-timeout-analysis-20261026.md) for the
+prospective procedure.
+
+At preparation time: **CPU research preparation, no model run or paid authorization.**
 The protocol is `R012-matched-pilot-v2` in
 [research-comparison-protocol.json](research-comparison-protocol.json). It freezes
 the successful runtime separately from the new scientific prompt comparison.
@@ -118,7 +129,9 @@ The v2 receipt was produced by a fresh selector execution on the same source.
 The six ordered reserves are `rich_3782`, `requests_7427`, `rich_3061`,
 `requests_6757`, `rich_4077`, and `requests_6644`. The receipt binds each task to
 its exact base commit. Eligible counts are Requests 13, Rich 48, HTTPX 1.
-The resulting 18 model runs are a plan; none has executed.
+The resulting 18 task-arm assignments are the original plan. Nine combinations
+were subsequently attempted under the separate reduced amendment; the other
+nine have not run. This original 18-slot sequence has not run as a campaign.
 
 The exact source identity is 1,984,455 bytes, SHA-256
 `e4b3fd60f69dbc2b9213e54eeb9636db78aefe92c1d06269d73d9f5f8f3c8ad6`,

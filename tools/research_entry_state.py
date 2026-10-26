@@ -23,6 +23,7 @@ class State:
         if not token or '\n' in token or not re.fullmatch('[a-z0-9-]{5,100}', namespace):
             raise ValueError('token and new scoped namespace required')
         self.token, self.namespace = token, namespace
+        self.last_rate=None
         self.open = opener or urllib.request.build_opener(NoRedirect()).open
 
     def request(self, method, path, body=None, *, missing=False):
@@ -32,6 +33,11 @@ class State:
                 'X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'})
         try:
             with self.open(req, timeout=10) as response:
+                headers=getattr(response,'headers',{})
+                try:
+                    self.last_rate={k:int(headers['x-ratelimit-'+k]) for k in ('limit','remaining','reset')}
+                    self.last_rate.update(resource=headers['x-ratelimit-resource'],observed_at=time.time())
+                except (KeyError,TypeError,ValueError):self.last_rate=None
                 data=response.read(1024**2+1)
                 if not 200 <= response.status < 300 or len(data)>1024**2: raise StateError('state response')
                 return json.loads(data)

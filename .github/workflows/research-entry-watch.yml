@@ -1,17 +1,17 @@
 name: Research pilot watch requires fresh owner authorization
 on:
   push:
-    branches: [bt-001-research-watch-20261026]
+    branches: [bt-001-research-reduced9-watch-20261026]
 permissions:
   contents: write
   actions: read
 concurrency:
-  group: research-pilot-watch-20261026
+  group: research-reduced9-watch-20261026
   cancel-in-progress: false
 jobs:
   watch:
     runs-on: ubuntu-24.04
-    timeout-minutes: 205
+    timeout-minutes: 160
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:

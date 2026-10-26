@@ -1,0 +1,510 @@
+{
+  "account_and_stock_observation": {
+    "allocation_requests": 0,
+    "availability": {
+      "account": {
+        "auto_pay": false,
+        "credit_balance": "4.9937691886",
+        "current_spend_per_hour": "0"
+      },
+      "account_idle": true,
+      "allocation_requests": 0,
+      "observed_at": "2026-10-25T20:01:17Z",
+      "offers": [],
+      "regions": [
+        {
+          "available": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "id": "EU-RO-1",
+          "summary_stock": null
+        },
+        {
+          "available": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "id": "CA-MTL-3",
+          "summary_stock": null
+        },
+        {
+          "available": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "id": "US-KS-2",
+          "summary_stock": null
+        },
+        {
+          "available": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "id": "US-MO-1",
+          "summary_stock": null
+        }
+      ],
+      "settings_changed": false,
+      "status": "READ_ONLY_COMPLETE"
+    },
+    "pods": [],
+    "run_id": "40227646365",
+    "settings_changed": false,
+    "source_sha": "a8ae2765e9b57a408be3e3930b3a69a977601535",
+    "status": "PASS"
+  },
+  "contract": {
+    "allocations": 1,
+    "amendment_sha256": "ba9b235c84db383f2413bc7adeb03888de9fd0fc571e8e67cc8ae4f9057563c7",
+    "automatic_retry": false,
+    "child_seconds": 330,
+    "cleanup_seconds": 300,
+    "controller_heartbeat_seconds": 240,
+    "controller_poll_seconds": 90,
+    "credit_reserve": "0.50",
+    "disk_gb": 100,
+    "export_seconds": 360,
+    "github_requests_per_cycle_budget": 20,
+    "github_startup_cleanup_request_reserve": 100,
+    "hardware": "NVIDIA A100 80GB PCIe",
+    "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+    "maximum_additional_spend": "4.30",
+    "maximum_approved_cumulative": "9.50",
+    "maximum_hourly": "2.00",
+    "parent_seconds": 10,
+    "pilot": "R012-reduced9-v1",
+    "schema": 1,
+    "servers": 1,
+    "setup_seconds": 4020,
+    "slots": 9,
+    "top_up_allowed": false,
+    "total_seconds": 7740,
+    "transport": "pinned SSH22 delivery plus provider-mapped mutually pinned TLS8443"
+  },
+  "contract_sha256": "93e17e7c04b9907ef44bb0b961af15596a91dc80d332a767e4923964a05b957a",
+  "free_history": [
+    {
+      "completed": "nine authored slots,54 requests, encrypted export, both deletion proofs",
+      "correction": "readable evaluator-only path overlay under private coordinator umask",
+      "observed_errors": [
+        "pytest unavailable",
+        "poetry/hatchling build backends unavailable"
+      ],
+      "run_id": "40225335406",
+      "source": "a0f76beacd5ff4a624b5c2b1a12a69c3564027b4",
+      "status": "FAILED_EVALUATOR_CONTROLS"
+    },
+    {
+      "qualification": "509 native tests; complete serving/evaluation path;270 private and162 export records;15 JUnit files",
+      "run_id": "40226183282",
+      "source": "8668f819543cf4890500b67034b5c23d06256ad8",
+      "status": "PASS",
+      "superseded_by": "long-run request quota budgeting, not a failure of this run"
+    },
+    {
+      "native_tests": 511,
+      "qualification": "complete serving/evaluation path and new quota guard",
+      "run_id": "40227646365",
+      "source": "a8ae2765e9b57a408be3e3930b3a69a977601535",
+      "status": "PASS"
+    }
+  ],
+  "funding": {
+    "additional_this_task": "0",
+    "balance_after_conservative_maximum": "0.6937691886",
+    "conservative_maximum_next_allocation": "4.30",
+    "credited_total": "10.00",
+    "observed_balance": "4.9937691886",
+    "prior_spend_floor": "5.0062308114",
+    "projected_cumulative_at_hourly_ceiling": "9.3062308114",
+    "reserve": "0.50",
+    "top_up_this_task": "0"
+  },
+  "independent_verification": {
+    "account_idle_and_zero_pods": true,
+    "cpu_packages": 143,
+    "export_records": 162,
+    "http_attempts": 54,
+    "implementation_files": 182,
+    "independent_evaluator_xml": [
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 5,
+          "skipped": 13,
+          "tests": 220
+        },
+        "job": "unmodified-baseline",
+        "task": "requests_7309",
+        "xml_sha256": "ca05d2ed483bfbf9599586ed4e5792ccb179fa4d0a74947848b51f586d49ccb1"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 0,
+          "skipped": 13,
+          "tests": 220
+        },
+        "job": "public-reference-control",
+        "task": "requests_7309",
+        "xml_sha256": "a9bbf5895c4345fea0b56ebc4578f82971e21dc7bf0050bb7f1f4846054ad78c"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 1,
+          "skipped": 1,
+          "tests": 21
+        },
+        "job": "unmodified-baseline",
+        "task": "rich_3486",
+        "xml_sha256": "a10e43e2eaa5124e4ad8b83a3049624a0addb78454b07fa4e69308b1309e6d2b"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 0,
+          "skipped": 1,
+          "tests": 21
+        },
+        "job": "public-reference-control",
+        "task": "rich_3486",
+        "xml_sha256": "3811bf856de18bb30c2f41d4b3a1b31b26e8f1425a12c83d751863dea2ba290e"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 5,
+          "skipped": 0,
+          "tests": 24
+        },
+        "job": "unmodified-baseline",
+        "task": "httpx_3672",
+        "xml_sha256": "472ff200bb453818216a21cfcdfd877b14af20394788dc01067518da53f79008"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 0,
+          "skipped": 0,
+          "tests": 24
+        },
+        "job": "public-reference-control",
+        "task": "httpx_3672",
+        "xml_sha256": "9df6a499df0f8fb7d24e610d5b3b7be76e54b1c0b06f2896d14ef4dcb06c720c"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 5,
+          "skipped": 13,
+          "tests": 220
+        },
+        "job": "R0",
+        "task": "requests_7309",
+        "xml_sha256": "1e9f5044e9228047763557e59f0fdcf302688b34c566001f02ec129e9cc7807e"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 5,
+          "skipped": 13,
+          "tests": 220
+        },
+        "job": "R1",
+        "task": "requests_7309",
+        "xml_sha256": "6b100eb8f893aac42fe33be74dabe9da19ecea52257e2e5cd0a32cef622d0217"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 5,
+          "skipped": 13,
+          "tests": 220
+        },
+        "job": "R2",
+        "task": "requests_7309",
+        "xml_sha256": "b1805f178db5ed58c0f6a5d42863fe1a16491f07bc5e5c5243598f05462c27b3"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 1,
+          "skipped": 1,
+          "tests": 21
+        },
+        "job": "R1",
+        "task": "rich_3486",
+        "xml_sha256": "59e32ef4101a511c860406aa2c1dd2ed0edbd3836b4e4c80a6f40fa01efc9ddc"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 1,
+          "skipped": 1,
+          "tests": 21
+        },
+        "job": "R2",
+        "task": "rich_3486",
+        "xml_sha256": "5508bf0e983b517100fad1282ce282a99b0670566fde1ff0a35427c7335581e6"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 1,
+          "skipped": 1,
+          "tests": 21
+        },
+        "job": "R0",
+        "task": "rich_3486",
+        "xml_sha256": "f8bf213a1e926960483d6df6bd86a0ee8858ce1de126ffcaef5491f86acacacf"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 5,
+          "skipped": 0,
+          "tests": 24
+        },
+        "job": "R2",
+        "task": "httpx_3672",
+        "xml_sha256": "53188bba786c2045a7a776f4676e0521b5490fe05c79272aa65bc210f60170b3"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 5,
+          "skipped": 0,
+          "tests": 24
+        },
+        "job": "R0",
+        "task": "httpx_3672",
+        "xml_sha256": "13a70d73c311b6581b94ee4caa0cdad307697dff4881e931e1055c3dd1227b07"
+      },
+      {
+        "counts": {
+          "errors": 0,
+          "failures": 5,
+          "skipped": 0,
+          "tests": 24
+        },
+        "job": "R1",
+        "task": "httpx_3672",
+        "xml_sha256": "11483bc7b1e91a350ef259fbefd6894a8b54b5e11466b416191ead89f11bb253"
+      }
+    ],
+    "independent_export_before_cleanup": true,
+    "installed_serving_packages": 246,
+    "live_github_probes": {
+      "namespace": "free-github-a8ae2765e9b57a408be3e3930b3a69a977601535",
+      "provider_calls": 0,
+      "runs": {
+        "owner": {
+          "run_id": "40227646174",
+          "status": "success"
+        },
+        "watch": {
+          "run_id": "40227646204",
+          "status": "success"
+        }
+      },
+      "source_sha": "a8ae2765e9b57a408be3e3930b3a69a977601535",
+      "status": "PASS"
+    },
+    "native_linux_tests": 511,
+    "native_uid_regression": "EXECUTED_PASS",
+    "post_deletion_cpu_evaluation": true,
+    "private_records": 270,
+    "provider_create_requests": 0,
+    "real_model_runs": 0,
+    "run_id": "40227646365",
+    "single_replica_create": true,
+    "slots_verified": [
+      {
+        "agent_input_sha256": "8a12a160a8a2ccc764763cb7a635e5700e79eba56198d601c2ef455b2f4d05dd",
+        "arm": "R0",
+        "instance_id": "requests_7309",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "e38aa41b4694faa7409d9acbddbaee4d6c620af13fb9aa978d70684b0c723788"
+      },
+      {
+        "agent_input_sha256": "8a12a160a8a2ccc764763cb7a635e5700e79eba56198d601c2ef455b2f4d05dd",
+        "arm": "R1",
+        "instance_id": "requests_7309",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "88b3e58c0446acb2eededa55232574e11986bd2d511fa057369f37e8c48f7cd5"
+      },
+      {
+        "agent_input_sha256": "8a12a160a8a2ccc764763cb7a635e5700e79eba56198d601c2ef455b2f4d05dd",
+        "arm": "R2",
+        "instance_id": "requests_7309",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "47816ea7f5b8361f8c65702b868f8af3c1b5ef1a7a83f6508db7dc0cc39ec776"
+      },
+      {
+        "agent_input_sha256": "1ecb0d9e96cda26cb374e3a059b72a699657d3015f34a8acdef6ea7af71532dc",
+        "arm": "R1",
+        "instance_id": "rich_3486",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "11d361bd73b667d91c163296ceba276ff609fea153668d08356fdfb92371a1fb"
+      },
+      {
+        "agent_input_sha256": "1ecb0d9e96cda26cb374e3a059b72a699657d3015f34a8acdef6ea7af71532dc",
+        "arm": "R2",
+        "instance_id": "rich_3486",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "1ca221953e001f3d86d48d9e7a5c280c8d4963dc2d72006032a33e92d140bb96"
+      },
+      {
+        "agent_input_sha256": "1ecb0d9e96cda26cb374e3a059b72a699657d3015f34a8acdef6ea7af71532dc",
+        "arm": "R0",
+        "instance_id": "rich_3486",
+        "patch_sha256": "89d85cabfe3bf18619f019a47cc1c1eda09c2619765f985b8df772eb885bb301",
+        "trace_sha256": "b02b72257f9346480a7fa95a35b918b6054cf667e284f9299b57ba8360da5f62"
+      },
+      {
+        "agent_input_sha256": "16c1737826efb8a853359ce489685faaa501d8881c270a862ec001a8450c6023",
+        "arm": "R2",
+        "instance_id": "httpx_3672",
+        "patch_sha256": "0392eb9bc8abba1c115c3f8047e5379a478357fe741c2d720e8305f4e5e46173",
+        "trace_sha256": "cac48df8b1316ada52140645ec736fbb913d921fbeccaf3c3c8af292050c4412"
+      },
+      {
+        "agent_input_sha256": "16c1737826efb8a853359ce489685faaa501d8881c270a862ec001a8450c6023",
+        "arm": "R0",
+        "instance_id": "httpx_3672",
+        "patch_sha256": "0392eb9bc8abba1c115c3f8047e5379a478357fe741c2d720e8305f4e5e46173",
+        "trace_sha256": "aea1a3c711734da706c3a9fab5f46cb54e73a0b198b124ded9cc62c8b2f375ba"
+      },
+      {
+        "agent_input_sha256": "16c1737826efb8a853359ce489685faaa501d8881c270a862ec001a8450c6023",
+        "arm": "R1",
+        "instance_id": "httpx_3672",
+        "patch_sha256": "0392eb9bc8abba1c115c3f8047e5379a478357fe741c2d720e8305f4e5e46173",
+        "trace_sha256": "d1902231723b8ac818fdfd406e377c3facd54640715b68923caaa6942725c289"
+      }
+    ],
+    "source_sha": "a8ae2765e9b57a408be3e3930b3a69a977601535",
+    "status": "PASS",
+    "watcher_cleanup_reason": "OWNER_DONE"
+  },
+  "local_validation": {
+    "errors": 10,
+    "failures": 5,
+    "limitations": "12 procfs/PID-namespace failures or errors and three supplied frozen-pip byte errors; retained separately from successful native CI",
+    "skipped": 4,
+    "tests": 509
+  },
+  "next_authorized_step": "fresh idle account and affordable exact stock, exact-source one-use permit, separate armed watcher, then one owner allocation",
+  "observation_kst": "2026-10-26T05:01:17+09:00",
+  "owner_authorization": {
+    "accepted_scope": "one reduced nine-slot attempt under the fixed caps",
+    "automatic_paid_retry": false,
+    "consumed": false,
+    "instruction": "\ucd95\uc18c\uc548\uc73c\ub85c \uc9c4\ud589\ud558\uc790",
+    "new_paid_start_watch_branches_created": false,
+    "repeat_owner_approval_required_for_same_scope": false,
+    "source_bound_permit_written": false
+  },
+  "pilot_scope": {
+    "amendment_sha256": "ba9b235c84db383f2413bc7adeb03888de9fd0fc571e8e67cc8ae4f9057563c7",
+    "pilot": "R012-reduced9-v1",
+    "planned_slots": 9,
+    "raw_runner_identity": "inherited original v3 rules; its 18-slot metadata is historical"
+  },
+  "qualification_run_id": "40227646365",
+  "qualification_url": "https://github.com/hynk-studio/backtrace/actions/runs/40227646365",
+  "qualified_source": "a8ae2765e9b57a408be3e3930b3a69a977601535",
+  "qualified_tree": "469eb0851c5096d3793ef69845a76d5c7e4e8956",
+  "real_model": {
+    "actual_runs": 0,
+    "effect_estimate": "NOT_COMPUTED",
+    "planned_slots": 9,
+    "slots": [
+      {
+        "arm": "R0",
+        "instance_id": "requests_7309",
+        "status": "NOT_RUN"
+      },
+      {
+        "arm": "R1",
+        "instance_id": "requests_7309",
+        "status": "NOT_RUN"
+      },
+      {
+        "arm": "R2",
+        "instance_id": "requests_7309",
+        "status": "NOT_RUN"
+      },
+      {
+        "arm": "R1",
+        "instance_id": "rich_3486",
+        "status": "NOT_RUN"
+      },
+      {
+        "arm": "R2",
+        "instance_id": "rich_3486",
+        "status": "NOT_RUN"
+      },
+      {
+        "arm": "R0",
+        "instance_id": "rich_3486",
+        "status": "NOT_RUN"
+      },
+      {
+        "arm": "R2",
+        "instance_id": "httpx_3672",
+        "status": "NOT_RUN"
+      },
+      {
+        "arm": "R0",
+        "instance_id": "httpx_3672",
+        "status": "NOT_RUN"
+      },
+      {
+        "arm": "R1",
+        "instance_id": "httpx_3672",
+        "status": "NOT_RUN"
+      }
+    ]
+  },
+  "repository_preservation": {
+    "baseline_branch_heads_unchanged": 61,
+    "free_state_blobs": 12,
+    "issue_1": "OPEN",
+    "merged": false,
+    "new_branches": [
+      "bt-001-research-reduced9-20261026",
+      "bt-001-research-reduced9-state-20261026"
+    ],
+    "new_state_head": "1003fc2b0c24e45cfe81a954a3a4e37695492b7a",
+    "paid_namespace_absent": true,
+    "submission": "NOT_RUN",
+    "training": "NOT_RUN"
+  },
+  "review_pr": "https://github.com/hynk-studio/backtrace/pull/28",
+  "schema": 1,
+  "status": "FREE_QUALIFIED_WAITING_STOCK",
+  "stock_polling_automation_created": false
+}

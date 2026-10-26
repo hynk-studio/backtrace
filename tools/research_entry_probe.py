@@ -48,7 +48,7 @@ def probe(role):
     if observed[0]['other_run_id']!=rid:raise ValueError('handshake counterpart changed')
     return {'status':'PASS','kind':'LIVE_GITHUB_TWO_WORKFLOW_HANDSHAKE','source_sha':source,
         'run_id':rid,'counterpart_run_id':other['run_id'],'namespace':state.namespace,
-        'create_only_and_mutable_cas':True,'provider_calls':0,'authorization_created':False}
+        'create_only_and_mutable_cas':True,'github_response_quota':state.last_rate,'provider_calls':0,'authorization_created':False}
 
 
 def verify():

@@ -886,3 +886,98 @@ is authorized. Any later explicit decision must bind the executed source/run,
 credited funding and prior-spend floor, then refresh account/stock/quote and
 watcher. Actual provider network/CUDA/model/cache initialization and all18 real
 model slots are NOT_RUN. R3 remains separate and does not require positive R2.
+
+## BT-001 owner-approved reduced nine-slot pilot (2026-10-26 KST)
+
+The owner instructed **축소안으로 진행하자**, accepting the proposed three-task,
+three-arm pilot using only the existing USD4.9937691886 observed balance.
+Work on `bt-001-research-reduced9-20261026`, stacked on Draft #27, with one new
+Draft PR. This supersedes the previous free-only stopping point for this new
+single-use scope. One allocation after successful exact-source free qualification
+and a fresh affordable exact offer is authorized; do not ask for the same approval
+again. No top-up. Maximum all-in USD2/hour, additional USD4.30, cumulative USD9.50,
+USD0.50 reserve and 7,740 seconds including setup, nine children, export and deletion.
+Credited funding remains USD10; retain prior-spend floor USD5.0062308114.
+
+Follow `docs/research-reduced9-amendment-20261026.json`: select the first original
+primary task per repository, cyclically balance R0/R1/R2 positions, preserve all
+original six-task/scientific files. Keep all nine denominators; no outcome-based
+replacement, retry or inference from authored CPU responses. Original raw runner
+v3 identity remains historical; the new outer scope explicitly binds nine slots.
+Only independently evaluate submitted patches after both deletion receipts.
+
+Preserve all61 baseline branch heads, state bytes and consumed claims. Use only
+new `bt-001-research-reduced9-{state,start,watch}-20261026` branches and the new
+`reduced9-20261026` namespace. A permit must bind the exact successful qualification
+source/run and amended contract; start watch before owner and require its fresh
+armed acknowledgement before the only create. No automatic second paid allocation,
+merge, issue closure, competition submission or training. If qualifying stock is
+absent, report the exact blocker and keep the allocation unconsumed.
+
+
+Final Draft #28 free qualification: run40227646365 at
+a8ae2765e9b57a408be3e3930b3a69a977601535, contract
+93e17e7c04b9907ef44bb0b961af15596a91dc80d332a767e4923964a05b957a.
+All511 native Linux tests, nine authored slots/54 requests, full246-wheel serving
+install, unchanged143 CPU packages, independent export/deletion and post-deletion
+CPU evaluation passed. Owner audit checked270 private/162 export records,
+182 source hashes and15 actual JUnit files. Retain failed40225335406 and the
+intermediate successful40226183282; the final quota guard is prospective, not
+an attributed cause of those outcomes. Read docs/research-reduced9-20261026.md.
+The latest read at2026-10-26 05:01:17 KST found USD4.9937691886, zero spend/Pods,
+autopay off and no exact stock in any of the four queried regions. No provider
+allocation, top-up, paid permit or paid start/watch branch occurred. All61 baseline
+heads are unchanged; new state contains12 free metadata blobs only. The owner's
+accepted single allocation remains unconsumed. Continue the same accepted scope
+without asking again once fresh account/stock/quota gates pass; never reuse stale
+quotes, reset a consumed claim, automatically repeat a paid allocation, merge,
+close #1, submit or train. All nine actual model slots are NOT_RUN. No stock polling
+automation was created. Preserve the qualified182 operational bytes if adding
+result documentation; operational changes need renewed exact-source qualification.
+
+The owner then instructed **진행하자**. The accepted reduced-nine scope is now
+consumed in attempt `2d987dffb06f4446819c0c6feaafd432`, EU-RO-1 Pod
+`0a5nl1huxm2vmz`, owner40248465278 and watcher40248422989, both at qualified
+sourcea8ae2765e9b57a408be3e3930b3a69a977601535. Read
+docs/research-reduced9-execution-20261026.md. The 09:43 KST checkpoint is actual
+workload RUNNING, with outcomes and deletion still unverified. Continue this exact
+pair to export, both independent deletion receipts, free CPU evaluation and final
+account evidence. Do not create another allocation, reset the claim or rerun paid
+workflows. The previous unconsumed/no-stock checkpoint no longer describes this
+scope. All existing budget/scientific limits and protected history remain in force.
+
+
+Final reduced-nine actual execution: owner40248465278 is INCOMPLETE, watcher
+40248422989 succeeded, and both independently proved deletion of0a5nl1huxm2vmz.
+All nine real-model slots were attempted;189 forwarded HTTP requests reconciled.
+Two original submitted patches were evaluated after both deletions: requests R1
+failed8 tests; requests R2 passed207 with13 inherited skips. R2's original patch
+was submitted before the300-second limit and preserved despite a later timeout.
+Seven slots had no submission and remain NOT_EVALUATED. Preserve raw statuses
+7 TIMEOUT/1 COMPLETED/1 INCOMPLETE; all eight non-completed sessions retain the
+five-minute timeout error. Do not relabel missing patches as failed tests or infer
+general R2 superiority. No effect estimate was computed.
+Owner audit verified152 retained/163 exported records,182 source hashes and8
+actual JUnit files. Both deletion receipts precede CPU evaluation. Independent
+final account observation40254160991 found zero Pods/spend, autopay off and
+USD3.0795030588; additional costUSD1.9142661298, cumulativeUSD6.9204969412.
+All61 protected heads and12 old free-state blobs remain unchanged. Read the final
+execution record and results JSON. This authorization is consumed; remaining
+credit does not grant another paid allocation. No automatic retry, training,
+merge, issue closure or submission. Free trace analysis/prospective design may
+continue while preserving these outcomes; changed operational sources require
+renewed qualification, and a new paid attempt requires new owner authorization.
+
+The unpaid follow-up is in
+`docs/research-reduced9-timeout-analysis-20261026.md`, with the synchronized
+status in `docs/experiment-plan.md`. It inspects retained traces without
+another model or provider run. The proposed shared 210/270-second checkpoint and
+90-second finalization reserve are a future versioned candidate only; original
+nine outcomes, prompt archives, allowances, qualified operational source and
+consumed permit stay fixed. Do not
+select only the seven missing slots for a retrospective rescue or assume a
+five-minute timeout was caused solely by API latency. The original conservative
+nine-slot USD4.30 ceiling is no longer funded by the observed USD3.0795030588
+balance while retaining the USD0.50 reserve. Future changed operational bytes
+need new complete free qualification; another paid allocation needs a newly
+bounded affordable scope and separate owner authorization.

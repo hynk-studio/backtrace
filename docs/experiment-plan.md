@@ -6,7 +6,31 @@ under a matched total inference budget?
 
 ## Current evidence, 26 October 2026 KST
 
-25 October continuation: the owner requested the next steps in order. The
+The [reduced nine-slot execution](research-reduced9-execution-20261026.md) used
+one qualified A100 allocation at source `a8ae2765e9b57a408be3e3930b3a69a977601535`.
+All three selected tasks received R0/R1/R2, but only two original patches were
+submitted, both on `requests_7309`. Independent tests found R1 unresolved and
+R2 resolved; R2's submission preceded its later session TIMEOUT. The other
+seven slots have no submitted patch and remain NOT_EVALUATED. Raw agent statuses
+are seven TIMEOUT, one COMPLETED and one INCOMPLETE; all eight non-completed
+sessions retained the five-minute timeout error. Confirmed resolutions over the
+fixed reduced denominator are R0 0/3, R1 0/3 and R2 1/3. This is an incomplete
+pilot with no paired effect estimate or general superiority claim.
+
+The original six-task/18-slot campaign was not executed as planned: the nine
+selected task-arm combinations above were observed under a separate reduced
+amendment, and the other nine combinations remain unrun. Its selection and
+scientific protocol are preserved, not reinterpreted as completed evidence.
+Both deletion proofs preceded CPU evaluation. The one-use permit is consumed;
+the 10:25:56 KST account read showed no Pods, zero current spend and a balance
+of USD3.0795030588. The [trace follow-up](research-reduced9-timeout-analysis-20261026.md)
+sets out the next free analysis and prospective common-arm procedure. Further
+paid execution requires a new decision, fresh qualification and an affordable
+bounded scope; this balance alone is not authorization.
+
+### Earlier free-preparation checkpoint (before the reduced execution)
+
+On 25 October, the owner requested the next steps in order. The
 [explicit research-verifier amendment](research-verifier-amendment-20261025.md)
 preserves the v2 design and original official verdicts. Final run 40157211207
 passed all six research-verifier control pairs, 18 isolated authored slots and
@@ -28,12 +52,12 @@ through real wire adapters against local HTTP replicas, encrypted export before
 independent deletion checks, and two separate real GitHub state workflows.
 The initial permission failure and later state/retrieval failure are retained.
 Free prepayment preparation is complete at source `3632000d2d6f470a01f640ead7f4e2c8044805c6`.
-The fresh USD4.9937691886 balance and old USD8 cumulative ceiling cannot fund
-the full proposed three-hour envelope. The next decision is explicit funding,
-budget and a fresh one-use permit; the latest read also found no exact stock.
-No top-up, permit or paid branch was created.
-Actual provider-network/GPU/cache/model readiness and all18 matched model slots
-remain NOT_RUN; independent evaluation follows confirmed deletion.
+At that checkpoint the USD4.9937691886 balance and old USD8 cumulative ceiling
+could not fund the full proposed three-hour envelope. The then-next decision was
+explicit funding, budget and a fresh one-use permit; that read also found no exact
+stock. No top-up, permit or paid branch existed at this earlier checkpoint. The
+later reduced amendment and execution above supersede its pre-execution status.
+The full 18-slot campaign is still unrun.
 
 The [real R1 v2 diagnostic](verified-gpu-20261024.md) completed model execution,
 patch submission, public verification (four tests passed) and resource cleanup.
@@ -49,9 +73,9 @@ this slice. Historical receipts and consumed authorizations remain unchanged.
 
 | Stage | Intervention | Present evidence and next gate |
 | --- | --- | --- |
-| R0 | Frozen no-LoRA scaffold under the common five-minute budget | New comparison candidate assembled on CPU. Matched model run NOT RUN. |
-| R1 | R0 plus generic reproduction/review/verification guidance | New generic control assembled on CPU. Historical R1 v2 is an execution anchor, not a clean generic-review estimate. |
-| R2 | R1 plus hypotheses, forward predictions, evidence revision and useful-inspection guidance | Prompt-only candidate assembled on CPU. Model comparison NOT RUN. |
+| R0 | Frozen no-LoRA scaffold under the common five-minute budget | Reduced pilot: 3 attempted, no submissions, 0 confirmed resolutions; original full campaign unrun. |
+| R1 | R0 plus generic reproduction/review/verification guidance | Reduced pilot: 3 attempted, 1 submitted unresolved patch, 0 confirmed resolutions. Historical R1 v2 is a separate execution anchor. |
+| R2 | R1 plus hypotheses, forward predictions, evidence revision and useful-inspection guidance | Reduced pilot: 3 attempted, 1 pre-timeout submitted resolved patch, 1 confirmed resolution; no treatment effect estimate. |
 | R3 | R2 runtime plus a specialist post-trained adapter | Exact teacher prepared; adapter training, save/reload and runtime attachment NOT RUN. |
 
 ## 1. Matched coding pilot
@@ -75,9 +99,10 @@ The common allowances are 300 seconds of agent work, 30 charged tools and
 includes teardown; it is not another 30 seconds of reasoning. Longer prompts
 are part of treatment cost. Record actual prompt/output/reasoning tokens and
 missing counters; equal time/call maxima do not prove equal realized token use.
-Global request accounting and actual runner integration must be demonstrated
-before a strict matched-inference claim. No historical receipt qualifies new
-candidates or a multi-task execution campaign.
+The reduced actual runner reconciled 189 gateway HTTP attempts, with eight
+missing/invalid usage records. Its aggregate token total is unknown, so a strict
+matched-inference claim is unavailable. Any changed candidates or procedure need
+new source-bound qualification; historical receipts do not qualify them.
 
 The completed free CPU selection fixes six primary tasks by deterministic
 round-robin across three eligible repositories, plus six ordered reserves, using
