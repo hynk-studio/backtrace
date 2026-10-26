@@ -37,7 +37,11 @@ both models. The [CPU collector](small-model-runner-20261026.md) now connects
 isolated generation, raw output preservation and evaluation with authored and
 tiny random controls. Native run 40328552441 passed 592 tests, both 36-request
 controls and actual timeout/crash/coordinator-death recovery; all random fixture
-responses were INVALID_OUTPUT, not evidence of task competence. Actual pretrained loading and GPU isolation/measurements
+responses were INVALID_OUTPUT, not evidence of task competence. The
+[CUDA preparation](small-model-gpu-20261026.md) adds package-install verification,
+explicit device checks/resource measurement and a fixed original-smoke baseline
+plan. Free CPU compatibility of CUDA packages does not qualify physical hardware.
+Actual pretrained loading and GPU isolation/measurements
 remain required. Preparing or tokenizing
 5,760 requests per backbone is not running them or authorizing that grid.
 Kaggle is optional, and extending the historical coding campaign is deferred.

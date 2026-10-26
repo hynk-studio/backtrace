@@ -90,7 +90,7 @@ time.sleep(60)
 '''
 
 
-def boundary_probe(python,sources,models,output):
+def boundary_probe(python,sources,models,output,*,command_factory=runner.jail_command):
     output.mkdir(mode=0o700)
     script=output/'probe.py';script.write_text(BOUNDARY_SCRIPT)
     canary=output/'private-labels';canary.write_text('evaluator-only');canary.chmod(0o600)
@@ -103,7 +103,7 @@ def boundary_probe(python,sources,models,output):
     try:
         for variant in ('deadline','parent_loss'):
             saved=output/variant;saved.mkdir(mode=0o700)
-            command=runner.jail_command(python,models/'E2B',sources/'E2B',job,script=script,probe=saved)
+            command=command_factory(python,models/'E2B',sources/'E2B',job,script=script,probe=saved)
             probe=command.probe_path
             log=open(output/(variant+'.log'),'wb')
             started=time.monotonic()

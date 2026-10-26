@@ -33,6 +33,10 @@ connects isolated raw-token generation, durable output collection and the exact
 evaluators. Its [native qualification](docs/small-model-runner-cpu-20261026.json)
 passed 592 tests and explicit random/authored/failure-recovery controls. Actual pretrained loading,
 GPU isolation/installation and memory/throughput measurements remain unqualified.
+The [CUDA preparation](docs/small-model-gpu-20261026.md) now adds explicit device
+checks, no-fallback CUDA execution and a fixed baseline plan. Its free CUDA-build
+installation/CPU compatibility qualification is separate from physical GPU
+kernel/driver and pretrained measurements.
 Training, adapter save/reload and Augnes integration are **NOT RUN**.
 
 The [latest coding pilot](docs/research-reduced9-execution-20261026.md) attempted

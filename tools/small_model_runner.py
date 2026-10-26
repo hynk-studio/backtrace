@@ -31,7 +31,7 @@ WORKER = exact.ROOT / 'tools/small_model_worker.py'
 
 def source_hashes():
     return dict(ready.source_hashes(), **{p: exact.sha((exact.ROOT/p).read_bytes()) for p in (
-        'tools/small_model_runner.py', 'tools/small_model_worker.py')})
+        'tools/small_model_runner.py', 'tools/small_model_worker.py','tools/small_model_gpu.py')})
 
 
 def load_scope(directory, packets_path, report_path):
@@ -202,7 +202,7 @@ def require_worker_traversal(directory):
             raise ValueError('runtime bind source is not traversable by worker: '+str(path))
 
 
-def jail_command(python, model, tokenizer, job, *, script=WORKER, probe=None):
+def jail_command(python, model, tokenizer, job, *, script=WORKER, probe=None, metadata_only=False):
     """Empty mount tree, explicit read-only assets, private PID/network/user namespaces."""
     if sys.platform != 'linux' or os.geteuid() != 0 or not shutil.which('bwrap'):
         raise RuntimeError('native root Linux with bubblewrap required; no fallback')
@@ -221,7 +221,7 @@ def jail_command(python, model, tokenizer, job, *, script=WORKER, probe=None):
         '--ro-bind',str(runtime),str(runtime)]
     if not Path(prefix).is_relative_to('/usr') and Path(prefix) != runtime:
         command += ['--ro-bind',prefix,prefix]
-    staging=snapshot_assets(model,tokenizer,job,script,probe=probe is not None)
+    staging=snapshot_assets(model,tokenizer,job,script,probe=probe is not None or metadata_only)
     for host,guest in [('model','/model'),('tokenizer','/tokenizer'),('job.json','/job.json'),('worker.py','/worker.py')]:
         command += ['--ro-bind',str(staging/host),guest]
     if probe is not None:
@@ -297,7 +297,16 @@ class Channel:
 
 
 def response_record(frame, request, tokenizer, max_new_tokens):
-    exact._keys(frame, {'id','input_tokens','input_ids_sha256','output_ids','raw_text','elapsed_seconds'})
+    fields={'id','input_tokens','input_ids_sha256','output_ids','raw_text','elapsed_seconds'}
+    if 'cuda_metrics' in frame:fields.add('cuda_metrics')
+    exact._keys(frame, fields)
+    if 'cuda_metrics' in frame:
+        metrics=frame['cuda_metrics']
+        exact._keys(metrics,{'peak_allocated_bytes','peak_reserved_bytes','post_free_bytes','total_bytes'})
+        if (any(type(v) is not int or v<0 for v in metrics.values())
+                or not 0<metrics['peak_allocated_bytes']<=metrics['peak_reserved_bytes']<=metrics['total_bytes']
+                or metrics['post_free_bytes']>metrics['total_bytes']):
+            raise ValueError('invalid CUDA memory metrics')
     if any(frame[k] != request[k] for k in ('id','input_tokens','input_ids_sha256')):
         raise ValueError('response identity/tokenization mismatch')
     ids = frame['output_ids']
@@ -321,13 +330,14 @@ def response_record(frame, request, tokenizer, max_new_tokens):
         invalid = True
     return {'status':'INVALID_OUTPUT' if invalid else 'OK', 'finish_reason':reason,
             'raw_output_ids':ids, 'raw_text':decoded, 'answer_text':answer,
-            'generated_tokens':len(ids),'worker_seconds':seconds}
+            'generated_tokens':len(ids),'worker_seconds':seconds,
+            **({'cuda_metrics':frame['cuda_metrics']} if 'cuda_metrics' in frame else {})}
 
 
 def collect(schedule, output, worker_factory, tokenizers, *, mode, max_new_tokens,
             total_seconds, startup_seconds=30, request_seconds=30, fixture_ids=None):
     """One deadline includes startup; original assignments are always retained."""
-    if mode not in ('random_fixture','scripted_control','pretrained_cpu'):
+    if mode not in ('random_fixture','scripted_control','pretrained_cpu','pretrained_cuda','random_cuda_fixture'):
         raise ValueError('invalid execution evidence mode')
     if fixture_ids is not None and mode != 'scripted_control':
         raise ValueError('authored responses cannot enter a model worker')
@@ -367,6 +377,10 @@ def collect(schedule, output, worker_factory, tokenizers, *, mode, max_new_token
                             or hello.get('pid_namespace') == os.readlink('/proc/self/ns/pid')
                             or hello.get('net_namespace') == os.readlink('/proc/self/ns/net')):
                         raise ValueError('worker isolation/mode handshake failed')
+                    if mode in ('pretrained_cuda','random_cuda_fixture') and (
+                            hello.get('cuda',{}).get('uuid')!=getattr(worker_factory,'gpu_uuid',None)
+                            or hello.get('cuda',{}).get('no_cpu_fallback') is not True):
+                        raise ValueError('CUDA identity/placement handshake failed')
                     hellos[model]=hello
                     base.private_write(output/(model+'-ready.json'),exact.canonical(hello))
                 except (OSError,ValueError,TimeoutError,EOFError) as exc:
@@ -380,6 +394,8 @@ def collect(schedule, output, worker_factory, tokenizers, *, mode, max_new_token
                 frame=channel.exchange(wire,min(deadline,time.monotonic()+request_seconds))
                 # Preserve the entire received bounded frame before interpreting it.
                 base.private_write(output/f'wire-{index:04d}.json',channel.partial)
+                if mode in ('pretrained_cuda','random_cuda_fixture') and 'cuda_metrics' not in frame:
+                    raise ValueError('CUDA response omitted resource measurements')
                 records[index].update(response_record(frame,wire,tokenizers[model],max_new_tokens))
             except (OSError,ValueError,TypeError,KeyError,TimeoutError,EOFError,RecursionError) as exc:
                 records[index]['status']='TIMEOUT' if isinstance(exc,TimeoutError) else 'WORKER_ERROR'
@@ -402,7 +418,9 @@ def collect(schedule, output, worker_factory, tokenizers, *, mode, max_new_token
             'assigned':len(records),'coverage':dict(Counter(r['status'] for r in records)),
             'records':records,'worker_handshakes':hellos,'worker_exit_codes':exits,
             'wall_seconds':time.monotonic()-started,'source_hashes':source_hashes(),
-            'pretrained_capability_claim':'NOT_ESTABLISHED','gpu_run':False,'training':False}
+            'pretrained_capability_claim':'NOT_ESTABLISHED',
+            'gpu_requested':mode in ('pretrained_cuda','random_cuda_fixture'),
+            'gpu_run':any('cuda' in hello for hello in hellos.values()),'training':False}
         base.private_write(output/'collection.json',exact.canonical(report))
     return report
 

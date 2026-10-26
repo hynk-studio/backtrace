@@ -54,6 +54,10 @@ not learned capability or actual pretrained baselines. Native run 40328552441
 passed 592 tests and the complete instrument controls, including both random
 fixtures and actual process-loss recovery; see the
 [source-bound receipt](small-model-runner-cpu-20261026.json). A1 remains partial.
+The [CUDA preparation](small-model-gpu-20261026.md) now implements the package,
+device and measurement path for the original smoke. Physical GPU qualification,
+pretrained performance and the allocation-inclusive provider lifecycle remain
+separate gates; the free package/CPU controls cannot satisfy them.
 
 ## Intended Augnes role and input/output contract
 
