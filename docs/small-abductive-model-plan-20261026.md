@@ -47,6 +47,13 @@ E2B/E4B revisions and a CPU dependency closure, verifies actual token counts and
 prepares bounded development inputs. Tiny random CPU layout probes establish
 checkpoint mapping only. Pretrained inference, tiny updates and trained-adapter
 save/reload are still NOT RUN; the CUDA dependency set is resolved only.
+The [isolated CPU collector](small-model-runner-20261026.md) adds bounded raw
+output collection, evaluator connection and interrupted-run recovery. Its
+authored controls and tiny random model outputs are instrument qualification,
+not learned capability or actual pretrained baselines. Native run 40328552441
+passed 592 tests and the complete instrument controls, including both random
+fixtures and actual process-loss recovery; see the
+[source-bound receipt](small-model-runner-cpu-20261026.json). A1 remains partial.
 
 ## Intended Augnes role and input/output contract
 
@@ -216,7 +223,7 @@ Do not claim counterfactual task resolution from an unexecuted recommendation.
 | Stage | Deliverable | Current status |
 | --- | --- | --- |
 | A0: goal and capability contract | This plan; E2B/E4B candidates; Kaggle optional | Documented in this change; no model result |
-| A1: evaluation before training | Expanded teacher, E2/E3 rubric, leakage checks, frozen data/metrics; development baselines and sample-size calculation | PARTIAL: CPU instruments, paired prompts, fixed model/runtime identities and token counts implemented; isolated runner, pretrained baselines, broader E2/real-language transfer, power analysis and final test sealing pending |
+| A1: evaluation before training | Expanded teacher, E2/E3 rubric, leakage checks, frozen data/metrics; development baselines and sample-size calculation | PARTIAL: CPU instruments, fixed prompts/runtime and isolated collector implemented; pretrained baselines, GPU connection, broader E2/real-language transfer, power analysis and final test sealing pending |
 | A2: training feasibility | Pinned training environment; tiny update/save/reload; actual memory/throughput and bounded training proposal | NOT RUN |
 | A3: controlled training and confirmation | B0/B1/B2/S evidence within each size; three-seed confirmation; untouched evaluation and negative results | NOT RUN |
 | A4: Augnes candidate assessment | Time-cutoff case replay, fresh shadow cases, quantized artifact and device measurements | NOT RUN |
