@@ -50,7 +50,10 @@ save/reload are still NOT RUN; the CUDA dependency set is resolved only.
 The [isolated CPU collector](small-model-runner-20261026.md) adds bounded raw
 output collection, evaluator connection and interrupted-run recovery. Its
 authored controls and tiny random model outputs are instrument qualification,
-not learned capability or actual pretrained baselines.
+not learned capability or actual pretrained baselines. Native run 40328552441
+passed 592 tests and the complete instrument controls, including both random
+fixtures and actual process-loss recovery; see the
+[source-bound receipt](small-model-runner-cpu-20261026.json). A1 remains partial.
 
 ## Intended Augnes role and input/output contract
 

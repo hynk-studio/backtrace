@@ -30,7 +30,8 @@ tokenization assignments, and prepares 36-request smoke / 288-request screening
 scopes across both models. Explicit checkpoint key mapping passes tiny random
 CPU loading probes. The [CPU collector](docs/small-model-runner-20261026.md)
 connects isolated raw-token generation, durable output collection and the exact
-evaluators, with explicit random/authored controls. Actual pretrained loading,
+evaluators. Its [native qualification](docs/small-model-runner-cpu-20261026.json)
+passed 592 tests and explicit random/authored/failure-recovery controls. Actual pretrained loading,
 GPU isolation/installation and memory/throughput measurements remain unqualified.
 Training, adapter save/reload and Augnes integration are **NOT RUN**.
 

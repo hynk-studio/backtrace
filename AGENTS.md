@@ -16,6 +16,22 @@ remains unexecuted. GPU device passthrough, hardware measurements, pretrained
 baselines, training and Augnes transfer remain NOT RUN. No paid allocation,
 merge, issue closure or Augnes write. Earlier permits stay consumed.
 
+Final native CPU run 40328552441 at
+`94d407c851d03dfbff95d20fb6407d5d08238fa9` passed all 592 tests without skips,
+offline runtime/preparation, both namespace probes and ten actual pipeline
+checks. The authored oracle and two-layer random fixtures each covered the
+original 36 assignments; all random outputs were retained as INVALID_OUTPUT.
+Timeout/crash/protocol/startup controls and actual coordinator-death recovery
+passed. Read `docs/small-model-runner-cpu-20261026.json`: the artifact digest,
+75 members and 18 source hashes were verified. Initial local failures and three
+failed native attempts remain recorded; private ancestor access was corrected by
+allowlisted asset staging and a dedicated traversable runtime, not permission
+changes to research inputs. Draft #33 remains unmerged. A1 is partial and A2 is
+NOT RUN. Next free work is CUDA runtime/device-isolation qualification and a
+concrete bounded pretrained-baseline procedure; actual hardware allocation
+still needs its own current affordable scope and authorization. Do not reuse
+historical permits or label random/authored controls as model capability.
+
 ### Previous model and tokenizer readiness
 
 The owner instructed **계속해서 진행해**. Current work is

@@ -124,7 +124,8 @@ next local attempt stopped at namespace setup (a required procfs namespace path
 was absent); a direct shell probe also reported NETLINK_ROUTE permission denied.
 Neither ran isolated inference. The initial local focused suite passed 15 tests;
 the final focused suite, including asset exclusion and runtime-ancestor permission
-regressions, is checked separately. The local full suite attempted 590 tests with 5 failures,
+regressions, passed 17 tests in 27.680 seconds. The local full suite attempted
+590 tests with 5 failures,
 10 errors and 4 skips in existing pip-fixture/startup/procfs checks; it remains
 a failed local result.
 
@@ -140,10 +141,43 @@ but the real runtime beneath private `.local` failed with the same permission
 class. The runtime is now installed outside that private tree, with an explicit
 early traversal check and same-runtime boundary probe. These failed runs do not
 establish a completed inference path.
-Local full-suite and exact-source native results are recorded separately in the
-final evidence receipt; native qualification is pending at this implementation
-commit. These failures are not replaced with a claim that the Work environment
-qualified isolation.
+Final native run [40328552441](https://github.com/hynk-studio/backtrace/actions/runs/40328552441)
+at `94d407c851d03dfbff95d20fb6407d5d08238fa9` passed all **592 tests** in 204.820
+seconds, with zero failures/errors/skips, preflight, offline runtime installation,
+original input reconstruction and all 11,520 tokenization assignments. Its
+same-runtime early and actual model-stage isolation probes both passed. All ten
+pipeline checks passed; the outcomes retain the original 36 assignments:
+
+| Control | Observed result |
+| --- | --- |
+| Authored oracle | 36 valid responses; all exact per-case and paired losses zero |
+| Tool token boundary | 36 INVALID_OUTPUT; original token 50 retained |
+| Response timeout | 1 OK, 1 TIMEOUT, 34 NOT_RUN; prior raw response retained |
+| Worker crash | 1 OK, 1 WORKER_ERROR, 34 NOT_RUN |
+| Wrong ID or oversized output | Each: 1 WORKER_ERROR, 35 NOT_RUN |
+| Startup hang | 36 NOT_RUN; INCOMPLETE after 2.011 seconds including cleanup |
+| Actual coordinator SIGKILL | 1 OK, 1 INTERRUPTED, 34 NOT_RUN recovered; worker namespace gone |
+| Both two-layer random fixtures | 36 generated responses, 18 per configuration; all INVALID_OUTPUT under the two-token fixture limit |
+
+Random outputs establish exercised loading/generation/transport, not answer
+quality. The recovery supervisor also removed the registered disposable assets.
+Host file/network/procfs access, read-only mounts, privilege boundaries and
+detached-child termination passed under Bubblewrap 0.9.0; its executable hash is
+retained. No pretrained model, GPU or training was used.
+
+The [evidence receipt](small-model-runner-cpu-20261026.json) binds the source
+commit/tree, 18 source files, run, artifact and all 75 archive members. The ZIP
+SHA-256 is `71f02eb5975fbcff922c3dbf4217804bffb7a0cd4f6a1c68c66e3687e7da4771`.
+All 50 exported scenario files match the inner receipt. Five preparation
+artifacts are byte-identical to the previous qualified stage, and its 13 source
+hashes are unchanged. All three failed native attempts and failed local outcomes
+remain recorded separately. Native success does not relabel the local isolation
+failure as a pass.
+
+The export contains collection/recovery/evaluation, ledgers and diagnostics.
+Assignment/job/wire files are hashed in the inner receipt but are not exported
+separately. Recovery was qualified for coordinator process loss on the same
+host; this does not establish recovery after losing the host or power.
 
 ## Remaining research work
 
