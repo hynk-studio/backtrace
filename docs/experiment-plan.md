@@ -12,7 +12,7 @@ new held-out families, repeated seeds and a separate Augnes transfer assessment.
 | Stage | Next result | Status |
 | --- | --- | --- |
 | A0 | Goal and input/output contract | Documented; no capability result |
-| A1 | Expanded teacher, frozen evaluation/rubrics and development baselines | CPU instruments and CUDA-package CPU compatibility qualified; pretrained baselines, physical GPU/outer lifecycle, broader E2/real-language transfer, power analysis and final sealing pending |
+| A1 | Expanded teacher, frozen evaluation/rubrics and development baselines | CPU instruments and CUDA-package CPU compatibility qualified; pretrained baselines, physical GPU/remote provider lifecycle, broader E2/real-language transfer, power analysis and final sealing pending |
 | A2 | Actual tiny update, save/reload, resource measurements | NOT RUN |
 | A3 | Controlled E2B/E4B training and confirmatory evaluation | NOT RUN |
 | A4 | Augnes time-cutoff replay, prospective shadow cases and device validation | NOT RUN |
@@ -44,6 +44,14 @@ plan. Native run 40335270281 passed 604 tests, all 56 CUDA-wheel/install checks,
 CPU oracle/random controls and missing-GPU rejection. Free CPU compatibility of
 CUDA packages does not qualify physical hardware or an allocation-inclusive
 provider lifecycle.
+The [pre-minimum preparation](small-model-precheck-20261026.md) adds an outer
+allocation-clock mechanism, bounded recovery/export and a cleanup-only adapter,
+with a local separate-process watcher and cgroup headroom checks. Native run
+40349526548 passed 620 tests and all 14 operational cases. All 11 exported CPU
+archives and their 220 members were independently verified. Free replicas
+cannot qualify new provider bootstrap/transport or an independent remote watcher;
+the hardware-only minimum and full baseline remain distinct blocked execution
+checkpoints.
 Actual pretrained loading and GPU isolation/measurements
 remain required. Preparing or tokenizing
 5,760 requests per backbone is not running them or authorizing that grid.

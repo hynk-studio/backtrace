@@ -71,6 +71,9 @@ facts['hidden']=[]
 for path in job['deny']:
  try: pathlib.Path(path).read_bytes(); facts['hidden'].append(False)
  except (FileNotFoundError,PermissionError): facts['hidden'].append(True)
+# PID numbers can coincide across nested PID namespaces. Compare identity.
+try: facts['coordinator_hidden']=os.readlink('/proc/'+str(job['coordinator_pid'])+'/ns/pid')!=job['coordinator_pid_namespace']
+except OSError: facts['coordinator_hidden']=True
 try:
  pathlib.Path('/job.json').write_text('overwrite'); facts['readonly']=False
 except OSError: facts['readonly']=True
@@ -97,7 +100,8 @@ def boundary_probe(python,sources,models,output,*,command_factory=runner.jail_co
     sock=socket.socket();sock.bind(('127.0.0.1',0));sock.listen()
     job=output/'job.json'
     job.write_bytes(exact.canonical({'deny':[str(canary),str(exact.ROOT/'tools/exact_teacher.py'),
-        str(exact.ROOT/'docs/temporal-baseline-cpu-20261026.json'),f'/proc/{os.getpid()}/cmdline'],
+        str(exact.ROOT/'docs/temporal-baseline-cpu-20261026.json')],
+        'coordinator_pid':os.getpid(),'coordinator_pid_namespace':os.readlink('/proc/self/ns/pid'),
         'port':sock.getsockname()[1]}))
     observations={}; checks={}
     try:
@@ -129,7 +133,7 @@ def boundary_probe(python,sources,models,output,*,command_factory=runner.jail_co
                 checks[variant+'_descendant_stopped']=not (probe/'late').exists()
                 checks[variant+'_bounded']=time.monotonic()-started<15
                 checks[variant+'_boundaries']=(facts['uid']==65532 and facts['caps']==0 and facts['nnp']=='1'
-                    and all(facts['hidden']) and all(facts[k] for k in ('readonly','cannot_become_root',
+                    and all(facts['hidden']) and facts['coordinator_hidden'] and all(facts[k] for k in ('readonly','cannot_become_root',
                         'host_port_blocked','nested_userns_blocked','secret_env_absent'))
                     and facts['pid_ns']!=os.readlink('/proc/self/ns/pid')
                     and facts['net_ns']!=os.readlink('/proc/self/ns/net'))

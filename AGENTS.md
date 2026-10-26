@@ -1,5 +1,41 @@
 # Backtrace working agreement
 
+## Current preparation scope (2026-10-26)
+
+The owner requested **최소검증 전까지 진행해**. Work on
+`bt-001-small-model-precheck-20261026`, stacked on Draft #34 at
+`6a0afa9a7ab88a1d77edc808bb78575b96b0ae17`, with one new Draft PR.
+Read `docs/small-model-precheck-20261026.md`. Prepare effective cgroup memory
+checks, allocation-clock supervision, bounded recovery/export and cleanup-only
+observation. Qualify real CPU process teardown and the connected original
+collector through a loopback provider replica. Preserve scientific inputs, runtime locks, baseline bytes, receipts and consumed
+claims. The earlier CPU boundary probe needs a namespace-identity correction for
+nested PID reuse; requalify its direct and nested paths without relaxing isolation.
+Stop before the actual GPU minimum: no hardware allocation, GPU probe,
+pretrained inference, training, paid API, Augnes write, merge or issue closure.
+A local watcher process is not an independent remote deployment. Provider
+bootstrap/transport and distributed cleanup remain launch prerequisites; keep
+paid launch disabled and do not rebrand CPU controls as physical GPU evidence.
+Retain the required full local run and exact-source native qualification,
+including any failed attempts. No current paid permission exists.
+
+Native run 40349526548 at `68f649b259e3da639f687a34e16d238e78c77d9a`
+passed all 620 tests (205.724 s; no failures/errors/skips), direct and nested
+boundaries, twelve standalone lifecycle controls, the complete original CPU
+pipeline and actual outer-deadline collector recovery. Interrupted coverage is
+one received, one interrupted and 34 NOT_RUN, without retries. Independently
+verified 242 archive members, 24 source hashes and all 220 members inside eleven
+CPU result archives. Read `docs/small-model-precheck-cpu-20261026.json`.
+The first two failed native runs and all local full-suite environment failures
+remain retained. The corrected earlier boundary probe is the only changed file
+among the prior 21 source hashes; 20 remain identical, as do all 13 scientific/
+runtime sources, five preparation artifacts and all 36 tiny-random CPU outputs.
+The local watcher and loopback provider establish no remote/provider resilience.
+Draft #35 remains unmerged. Actual GPU minimum, full pretrained inference,
+training and Augnes transfer are NOT RUN. Remote watcher deployment, new payload
+provider bootstrap/transport and fresh resource/quote/balance plus authorization
+remain paid-launch gates. No paid allocation or old-permit reuse occurred.
+
 ## Current research priority (2026-10-26)
 
 The owner explicitly requested **GPU 실행 환경 검증과 실제 모델 기준 성능 측정 준비**.
