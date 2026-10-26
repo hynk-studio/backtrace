@@ -37,6 +37,102 @@ Primary documentation inspected for this stage:
 - https://graphql-spec.runpod.io/
 - https://docs.runpod.io/pods/pricing
 
-Results will be recorded only after exact-source native execution and independent
-artifact verification. Preserve failed attempts. The earlier plan and all paid
-claims remain unchanged; no merge, training, Augnes modification or submission.
+## Actual results and limits
+
+The final operational source is `5aadac4d20ed14d4900f44124ece021e890ba08b`.
+The [machine-readable evidence](small-model-provider-evidence-20261027.json)
+retains archive/member hashes, source/payload bindings, exact native/local test
+outcomes, actual quotes, independent state blobs and earlier failed attempts.
+
+| Check | Observation |
+| --- | --- |
+| Final native qualification | [40359142948](https://github.com/hynk-studio/backtrace/actions/runs/40359142948): 632 tests in 151.543s, zero failures/errors/skips; CPU preflight passed |
+| Live authenticated provider access | Passed; complete Pod inventory read by both independent runners |
+| Remote observer deployment | Separate owner [40359142960](https://github.com/hynk-studio/backtrace/actions/runs/40359142960) and watcher [40359143080](https://github.com/hynk-studio/backtrace/actions/runs/40359143080), matching source and different kernel boot identities |
+| Actual heartbeat cessation | Detected at age 36.645 seconds; owner acknowledged the remote observation |
+| Remote state | Seven final-source canonical blob hashes verified; fifteen new free-state blobs across all attempts |
+| New payload transport | Fresh mutual TLS, pinned SSH, wrong-host rejection and all 25 files / 369,631 bytes verified |
+| Remote preparation | Reproduced the original precheck plan SHA-256 `eee72721e08b336492aeb661e607991e39173eb685e2be62d7ec8a3c89885009` |
+| Execution environment | **BLOCKED** under the tested default unprivileged OCI configuration |
+| Historical preservation | All 24 previous qualified source files and all 73 pre-existing branch heads unchanged |
+| Independent artifact verification | Seven ZIP digests, all 17 members, 41 source hashes, 25 payload files and seven final-source state blob hashes |
+| Provider allocation / mutation | Zero; GPU minimum, pretrained inference and training NOT RUN |
+
+The observer ran on a separate native GitHub runner, read actual Runpod inventory,
+detected cessation and **terminated after the bounded check**. It is not left
+running continuously, and it cannot delete a resource. There was no current
+resource to bind or clean up. A source/resource-bound independent cleanup
+controller and its distributed loss/deletion qualification remain unfinished;
+the earlier local watcher tests do not establish that missing property.
+
+The exact-image CPU transport probe confirms code delivery/start, not a live
+Runpod Pod's NAT, SSH endpoint or capability configuration. It observed:
+
+- `unshare --net --pid --fork --mount-proc true` refused with Operation not permitted.
+- The cgroup namespace hid ancestor memory limits; the original memory reader refused it.
+- `bwrap` was absent.
+- System Python was 3.12.3, while the prepared runtime requires 3.12.14.
+
+The first two are structural prerequisites for the current native-host design.
+Installing Python or bubblewrap alone does not demonstrate that they are fixed.
+No privilege override, host-cgroup mount or weakening of the old checks was used.
+The temporary CPU container was removed and two absence observations confirmed it.
+The currently documented Runpod create schema has no listed privileged/capability
+field; this is a documentation observation, not proof of all possible provider
+configurations: https://docs.runpod.io/api-reference-v2/pods/create-a-pod .
+
+## Fresh account and price observation
+
+Account observation: **2026-10-27 01:27:56 KST**. Quotes were read through
+01:28:06 KST. Balance **USD3.0795030588**, spend/hour **USD0**, auto-pay **off**,
+and **zero Pods**. This matches the previous observed balance; no new provider
+resource charge was incurred by these read-only operations.
+
+The bounded query covered 32 GPU/region pairs across eight catalog types;
+seven additional pairs were not queried. Nineteen exact responses had null
+compute prices and were preserved as unavailable, never converted to free stock.
+The following were actual filtered stock observations, not catalog-only prices:
+
+| GPU | Region | GPU GB | Quoted host RAM / vCPU | Compute USD/h | Proposed 50-min compute + temporary storage |
+| --- | --- | --- | --- | --- | --- |
+| A40 | EU-SE-1 | 48 | 50GB / 9 | 0.59 | about USD0.5042 |
+| RTX A6000 | EU-SE-1 | 48 | 50GB / 9 | 0.59 | about USD0.5042 |
+| RTX 4090 | EU-CZ-1 | 24 | 143GB / 36 | 0.89 | about USD0.7542 |
+| L4 | EUR-IS-1 | 24 | 55GB / 14 | 0.59 | about USD0.5042 |
+| L4 | EUR-IS-2 | 24 | 100GB / 12 | 0.59 | about USD0.5042 |
+
+The existing USD1.00 proposal plus USD0.50 reserve is funded by the observed
+balance. That does not qualify these machines for the current execution design.
+Stock is not reserved; nullable public-IP/count summaries remain nullable after
+the exact query required one GPU and public IP. Measured available RAM, GPU BF16/
+exclusivity and tax/other charges remain unknown. L40S USD1.09/h observations
+exceed the separately proposed USD0.90 compute ceiling over 3,000 seconds, even
+though their compute+storage projection is below USD1 total; no cap was relaxed.
+
+## Retained corrections and next work
+
+Initial source `62762cb1dd778f4db912459d802b8d8005c3c0ad` had an unquoted colon-space
+in two workflow shell scalars. CPU run 40358353499 and owner 40358351590 failed
+workflow parsing before job entry; watcher 40358356284 ended at its bounded wait.
+Corrected source `a8affa02f945d7816e84020f8790aab7ab82fe81` passed 630 native tests
+in 196.629s, exact-image transport and the live owner/watch handshake. Its quote
+stage raised InvalidOperation. The original throw location was not retained,
+so the nullable-price defect is an independently demonstrated correction rather
+than a conclusively attributed original stack trace. The final source retains
+partial account evidence and exception frames and treats null prices as unavailable.
+
+Final local focused checks: 12 passed. The full local 632-test run retained five
+failures, ten errors and four skips from the existing environment-sensitive
+runtime/procfs tests. The full native 632-test run passed in 151.543 seconds,
+with no failures/errors/skips; these environments are reported separately.
+The earlier local 630-test attempt and all failed workflow artifacts are retained.
+
+The next preparation must resolve the execution topology before spending credit:
+either validate a native GPU environment that supports the current boundaries,
+or implement and qualify a container-compatible GPU-only worker with the trusted
+CPU coordinator/evaluator outside it. Preserve input/evaluator separation and
+equivalent deadline/context cleanup evidence. Then bind an independent cleanup
+controller to that exact source/resource, qualify its distributed failure cases,
+and refresh account/quote/stock for a separately authorized hardware-only attempt.
+The original precheck plan remains intentionally disabled and unchanged.
+No merge, Augnes modification, training, submission or paid-claim reset occurred.

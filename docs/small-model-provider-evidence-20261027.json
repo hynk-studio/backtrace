@@ -1,0 +1,1854 @@
+{
+  "account_and_quotes": {
+    "allocation_requests": 0,
+    "observation": {
+      "account": {
+        "auto_pay": false,
+        "credit_balance_usd": "3.0795030588",
+        "observed_at": "2026-10-26T16:27:56Z",
+        "spend_per_hour_usd": "0"
+      },
+      "account_idle": true,
+      "allocation_requests": 0,
+      "candidate_gpus": [
+        {
+          "id": "NVIDIA RTX A5000",
+          "memoryInGb": 24,
+          "secureCloud": true,
+          "securePrice": 0.27
+        },
+        {
+          "id": "NVIDIA GeForce RTX 3090",
+          "memoryInGb": 24,
+          "secureCloud": true,
+          "securePrice": 0.5
+        },
+        {
+          "id": "NVIDIA A40",
+          "memoryInGb": 48,
+          "secureCloud": true,
+          "securePrice": 0.59
+        },
+        {
+          "id": "NVIDIA L4",
+          "memoryInGb": 24,
+          "secureCloud": true,
+          "securePrice": 0.59
+        },
+        {
+          "id": "NVIDIA RTX A6000",
+          "memoryInGb": 48,
+          "secureCloud": true,
+          "securePrice": 0.59
+        },
+        {
+          "id": "NVIDIA L40",
+          "memoryInGb": 48,
+          "secureCloud": true,
+          "securePrice": 0.82
+        },
+        {
+          "id": "NVIDIA GeForce RTX 4090",
+          "memoryInGb": 24,
+          "secureCloud": true,
+          "securePrice": 0.89
+        },
+        {
+          "id": "NVIDIA L40S",
+          "memoryInGb": 48,
+          "secureCloud": true,
+          "securePrice": 1.09
+        }
+      ],
+      "excluded_or_unqueried_pairs": 7,
+      "hardware_capabilities": "NOT_OBSERVED",
+      "inventory": {
+        "complete_paginated_list": true,
+        "observed_at": "2026-10-26T16:28:06Z",
+        "pod_count": 0,
+        "resource_mutations": 0
+      },
+      "launch_enabled": false,
+      "maximum_pairs": 32,
+      "offers": [
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.59",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 50,
+            "minVcpu": 9,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.59
+          },
+          "gpu": "NVIDIA A40",
+          "observed_at": "2026-10-26T16:27:57Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+          "region": "EU-SE-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA L4",
+          "observed_at": "2026-10-26T16:27:57Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "EU-RO-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.59",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 50,
+            "minVcpu": 9,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.59
+          },
+          "gpu": "NVIDIA RTX A6000",
+          "observed_at": "2026-10-26T16:27:58Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+          "region": "EU-SE-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.89",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 143,
+            "minVcpu": 36,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.89
+          },
+          "gpu": "NVIDIA GeForce RTX 4090",
+          "observed_at": "2026-10-26T16:27:58Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.7416666666666666666666666667",
+          "region": "EU-CZ-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "1.09",
+          "compute_within_proposal": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 117,
+            "minVcpu": 32,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 1.09
+          },
+          "gpu": "NVIDIA L40S",
+          "observed_at": "2026-10-26T16:27:58Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333",
+          "proposed_3000s_compute_usd": "0.9083333333333333333333333333",
+          "region": "EU-NL-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA RTX A5000",
+          "observed_at": "2026-10-26T16:27:59Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "EU-SE-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "observed_at": "2026-10-26T16:27:59Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "EU-CZ-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA RTX A6000",
+          "observed_at": "2026-10-26T16:27:59Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "EU-RO-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA GeForce RTX 4090",
+          "observed_at": "2026-10-26T16:28:00Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "EU-RO-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.59",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 50,
+            "minVcpu": 9,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.59
+          },
+          "gpu": "NVIDIA A40",
+          "observed_at": "2026-10-26T16:28:00Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+          "region": "CA-MTL-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.59",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 55,
+            "minVcpu": 14,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.59
+          },
+          "gpu": "NVIDIA L4",
+          "observed_at": "2026-10-26T16:28:00Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+          "region": "EUR-IS-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.59",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 100,
+            "minVcpu": 12,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.59
+          },
+          "gpu": "NVIDIA L4",
+          "observed_at": "2026-10-26T16:28:00Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+          "region": "EUR-IS-2",
+          "reported_gpu_gb": 24,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA L4",
+          "observed_at": "2026-10-26T16:28:01Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "US-GA-2",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "1.09",
+          "compute_within_proposal": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 94,
+            "minVcpu": 16,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 1.09
+          },
+          "gpu": "NVIDIA L40S",
+          "observed_at": "2026-10-26T16:28:01Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333",
+          "proposed_3000s_compute_usd": "0.9083333333333333333333333333",
+          "region": "OC-AU-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "1.09",
+          "compute_within_proposal": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 125,
+            "minVcpu": 21,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 1.09
+          },
+          "gpu": "NVIDIA L40S",
+          "observed_at": "2026-10-26T16:28:01Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333",
+          "proposed_3000s_compute_usd": "0.9083333333333333333333333333",
+          "region": "US-IL-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "1.09",
+          "compute_within_proposal": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 125,
+            "minVcpu": 32,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 1.09
+          },
+          "gpu": "NVIDIA L40S",
+          "observed_at": "2026-10-26T16:28:02Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333",
+          "proposed_3000s_compute_usd": "0.9083333333333333333333333333",
+          "region": "US-MO-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "1.09",
+          "compute_within_proposal": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 62,
+            "minVcpu": 16,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 1.09
+          },
+          "gpu": "NVIDIA L40S",
+          "observed_at": "2026-10-26T16:28:02Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333",
+          "proposed_3000s_compute_usd": "0.9083333333333333333333333333",
+          "region": "US-TX-3",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "1.09",
+          "compute_within_proposal": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 188,
+            "minVcpu": 16,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 1.09
+          },
+          "gpu": "NVIDIA L40S",
+          "observed_at": "2026-10-26T16:28:02Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333",
+          "proposed_3000s_compute_usd": "0.9083333333333333333333333333",
+          "region": "US-TX-4",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA RTX A5000",
+          "observed_at": "2026-10-26T16:28:02Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "CA-MTL-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA RTX A5000",
+          "observed_at": "2026-10-26T16:28:03Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "US-CA-2",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA RTX A5000",
+          "observed_at": "2026-10-26T16:28:03Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "US-IL-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "observed_at": "2026-10-26T16:28:03Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "EUR-IS-2",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA A40",
+          "observed_at": "2026-10-26T16:28:04Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "US-MO-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA L4",
+          "observed_at": "2026-10-26T16:28:04Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "US-MO-2",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA RTX A6000",
+          "observed_at": "2026-10-26T16:28:04Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "CA-MTL-3",
+          "reported_gpu_gb": 48,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA RTX A6000",
+          "observed_at": "2026-10-26T16:28:05Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "US-KS-2",
+          "reported_gpu_gb": 48,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA RTX A6000",
+          "observed_at": "2026-10-26T16:28:05Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "US-TX-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA L40",
+          "observed_at": "2026-10-26T16:28:05Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "EUR-IS-2",
+          "reported_gpu_gb": 48,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA L40",
+          "observed_at": "2026-10-26T16:28:05Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "US-KS-2",
+          "reported_gpu_gb": 48,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA GeForce RTX 4090",
+          "observed_at": "2026-10-26T16:28:06Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "CA-MTL-3",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA GeForce RTX 4090",
+          "observed_at": "2026-10-26T16:28:06Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "EUR-IS-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "compute_usd_per_hour": "0.89",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 100,
+            "minVcpu": 12,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.89
+          },
+          "gpu": "NVIDIA GeForce RTX 4090",
+          "observed_at": "2026-10-26T16:28:06Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.7416666666666666666666666667",
+          "region": "EUR-IS-2",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false,
+          "storage_projection_usd_per_hour": "0.015"
+        }
+      ],
+      "proposal_funded": true,
+      "quote_constraints": {
+        "container_disk_gb": 100,
+        "gpu_count": 1,
+        "minimum_cuda": "12.8",
+        "minimum_gpu_gb": 24,
+        "minimum_ram_gb": 32,
+        "minimum_vcpu": 8,
+        "public_ip": true,
+        "secure_cloud": true,
+        "volume_gb": 0
+      },
+      "schema": "small-model-provider-read-v1",
+      "settings_changed": false,
+      "stage": "COMPLETE",
+      "status": "PASS_READ_ONLY",
+      "storage_basis": "Published USD0.10/GB/month; USD0.015/hour for 100GB rounds up a 28-day month. Projection, not a provider quote; taxes/other charges not established."
+    },
+    "resource_mutations": 0,
+    "run_id": "40359142960",
+    "source_sha": "5aadac4d20ed14d4900f44124ece021e890ba08b",
+    "status": "PASS"
+  },
+  "account_settings_changed": false,
+  "allocation_requests": 0,
+  "artifacts": [
+    {
+      "artifact": {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12667517130/zip",
+        "created_at": "2026-10-26T16:26:01Z",
+        "digest": "sha256:777837c1072744a1cbed2afb9a7c05b4cd95c1f6ae60fe3772e63fae6f9e6710",
+        "expired": false,
+        "expires_at": "2026-11-09T16:26:00Z",
+        "id": 12667517130,
+        "name": "small-provider-watch-62762cb1dd778f4db912459d802b8d8005c3c0ad-1",
+        "size_in_bytes": 278,
+        "updated_at": "2026-10-26T16:26:01Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12667517130",
+        "workflow_run": {
+          "head_branch": "bt-001-small-model-provider-20261027",
+          "head_repository_id": 1393671873,
+          "head_sha": "62762cb1dd778f4db912459d802b8d8005c3c0ad",
+          "id": 40358356284,
+          "repository_id": 1393671873
+        }
+      },
+      "members": [
+        {
+          "bytes": 148,
+          "path": "remote-watch.json",
+          "sha256": "7f10bc54fbb572080211b905b119c89bd968f47a8f838991d5be9b9fbdd68a75"
+        }
+      ]
+    },
+    {
+      "artifact": {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12667366843/zip",
+        "created_at": "2026-10-26T16:24:31Z",
+        "digest": "sha256:0f593a77aec2bd6f1d8a83a13735b229b1f78adc48c38417441c59617c85c1f8",
+        "expired": false,
+        "expires_at": "2026-11-09T16:24:30Z",
+        "id": 12667366843,
+        "name": "small-provider-watch-a8affa02f945d7816e84020f8790aab7ab82fe81-1",
+        "size_in_bytes": 652,
+        "updated_at": "2026-10-26T16:24:31Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12667366843",
+        "workflow_run": {
+          "head_branch": "bt-001-small-model-provider-20261027",
+          "head_repository_id": 1393671873,
+          "head_sha": "a8affa02f945d7816e84020f8790aab7ab82fe81",
+          "id": 40358593064,
+          "repository_id": 1393671873
+        }
+      },
+      "members": [
+        {
+          "bytes": 978,
+          "path": "remote-watch.json",
+          "sha256": "8835c68aa7a5c6f83848d115c09a115f9f055d633e39485ac2d4749d976a1481"
+        }
+      ]
+    },
+    {
+      "artifact": {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12667292162/zip",
+        "created_at": "2026-10-26T16:24:32Z",
+        "digest": "sha256:7b38011f973bc6b404a51277e9f0f40b1bef38d732b1fc9741e4b7011abbfce4",
+        "expired": false,
+        "expires_at": "2026-11-09T16:24:31Z",
+        "id": 12667292162,
+        "name": "small-provider-owner-a8affa02f945d7816e84020f8790aab7ab82fe81-1",
+        "size_in_bytes": 945,
+        "updated_at": "2026-10-26T16:24:32Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12667292162",
+        "workflow_run": {
+          "head_branch": "bt-001-small-model-provider-20261027",
+          "head_repository_id": 1393671873,
+          "head_sha": "a8affa02f945d7816e84020f8790aab7ab82fe81",
+          "id": 40358593088,
+          "repository_id": 1393671873
+        }
+      },
+      "members": [
+        {
+          "bytes": 201,
+          "path": "account-quotes.json",
+          "sha256": "8bfa1d0ad9f403825a51122c0bc732ee6e196c8c8ac74bc2a0c88fcb8e5deeb3"
+        },
+        {
+          "bytes": 1000,
+          "path": "remote-owner.json",
+          "sha256": "3c0c2fd4c7ec71ebf3b70aed669ca99a88e4439d535dce49d16858d35541395f"
+        }
+      ]
+    },
+    {
+      "artifact": {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12665904990/zip",
+        "created_at": "2026-10-26T16:29:00Z",
+        "digest": "sha256:53f3e404b166a99866504120825498c4173f5228dd0feb71b0082c13d16cef85",
+        "expired": false,
+        "expires_at": "2026-11-09T16:28:59Z",
+        "id": 12665904990,
+        "name": "small-provider-cpu-a8affa02f945d7816e84020f8790aab7ab82fe81-1",
+        "size_in_bytes": 27306,
+        "updated_at": "2026-10-26T16:29:00Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12665904990",
+        "workflow_run": {
+          "head_branch": "bt-001-small-model-provider-20261027",
+          "head_repository_id": 1393671873,
+          "head_sha": "a8affa02f945d7816e84020f8790aab7ab82fe81",
+          "id": 40358593168,
+          "repository_id": 1393671873
+        }
+      },
+      "members": [
+        {
+          "bytes": 167,
+          "path": "preflight.json",
+          "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+        },
+        {
+          "bytes": 106325,
+          "path": "tests.log",
+          "sha256": "41ed9b805029eb5de65aa53a8c9ea35bebc8ab26d4910bcb0fb40cf872248750"
+        },
+        {
+          "bytes": 1335,
+          "path": "transport/image.log",
+          "sha256": "3e28dc7a16c2a6ca35ec6cb19a73a481102ec7cdcf4b23ee3955159646f51fb7"
+        },
+        {
+          "bytes": 10285,
+          "path": "transport/receipt.json",
+          "sha256": "ae3046d057411eaef3beb4ff16e4daf0a1ff8981357408b6916be045818cd8c4"
+        },
+        {
+          "bytes": 10672,
+          "path": "transport-summary.json",
+          "sha256": "a8aab145cb4d87927690c5f15247a6209e7d1f6a5d6b0f72d12570e7e43d6cd5"
+        }
+      ],
+      "native_tests": {
+        "count": 630,
+        "errors": 0,
+        "failures": 0,
+        "seconds": 196.629,
+        "skips": 0
+      }
+    },
+    {
+      "artifact": {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12667113042/zip",
+        "created_at": "2026-10-26T16:28:08Z",
+        "digest": "sha256:745c7f5c3a39c8e41cdc545a00cfa97578ebd08842ff9af3721f81b92673198e",
+        "expired": false,
+        "expires_at": "2026-11-09T16:28:07Z",
+        "id": 12667113042,
+        "name": "small-provider-owner-5aadac4d20ed14d4900f44124ece021e890ba08b-1",
+        "size_in_bytes": 2525,
+        "updated_at": "2026-10-26T16:28:08Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12667113042",
+        "workflow_run": {
+          "head_branch": "bt-001-small-model-provider-20261027",
+          "head_repository_id": 1393671873,
+          "head_sha": "5aadac4d20ed14d4900f44124ece021e890ba08b",
+          "id": 40359142960,
+          "repository_id": 1393671873
+        }
+      },
+      "members": [
+        {
+          "bytes": 24293,
+          "path": "account-quotes.json",
+          "sha256": "53f8fed1a0213c6fab9cb424cc3a3fc93d5cad048206095cfc9cab180ad311b7"
+        },
+        {
+          "bytes": 999,
+          "path": "remote-owner.json",
+          "sha256": "7028252d537ff3487bd9ba5a0729639df776d0bb632e04a78a82d9b362fe43ff"
+        }
+      ]
+    },
+    {
+      "artifact": {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12668040243/zip",
+        "created_at": "2026-10-26T16:27:59Z",
+        "digest": "sha256:2a3b997c4f041d80a59810f2e259228fddc9ec356787033aaadd97d30507c64a",
+        "expired": false,
+        "expires_at": "2026-11-09T16:27:58Z",
+        "id": 12668040243,
+        "name": "small-provider-watch-5aadac4d20ed14d4900f44124ece021e890ba08b-1",
+        "size_in_bytes": 652,
+        "updated_at": "2026-10-26T16:27:59Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12668040243",
+        "workflow_run": {
+          "head_branch": "bt-001-small-model-provider-20261027",
+          "head_repository_id": 1393671873,
+          "head_sha": "5aadac4d20ed14d4900f44124ece021e890ba08b",
+          "id": 40359143080,
+          "repository_id": 1393671873
+        }
+      },
+      "members": [
+        {
+          "bytes": 977,
+          "path": "remote-watch.json",
+          "sha256": "538f9a61086caa97328023fdedf44638cc3ce481df25ff903b91c42b98d736c7"
+        }
+      ]
+    },
+    {
+      "artifact": {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12668465606/zip",
+        "created_at": "2026-10-26T16:33:48Z",
+        "digest": "sha256:c43714c2d2a2aafbd7fca9868529e0709b7c3da11d79bbca2d88ab9548e30bad",
+        "expired": false,
+        "expires_at": "2026-11-09T16:33:47Z",
+        "id": 12668465606,
+        "name": "small-provider-cpu-5aadac4d20ed14d4900f44124ece021e890ba08b-1",
+        "size_in_bytes": 27345,
+        "updated_at": "2026-10-26T16:33:48Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12668465606",
+        "workflow_run": {
+          "head_branch": "bt-001-small-model-provider-20261027",
+          "head_repository_id": 1393671873,
+          "head_sha": "5aadac4d20ed14d4900f44124ece021e890ba08b",
+          "id": 40359142948,
+          "repository_id": 1393671873
+        }
+      },
+      "members": [
+        {
+          "bytes": 167,
+          "path": "preflight.json",
+          "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+        },
+        {
+          "bytes": 106646,
+          "path": "tests.log",
+          "sha256": "77a3f2998507fce290353036ca0547f84601705c40e822e7d0ee9430089ba429"
+        },
+        {
+          "bytes": 10285,
+          "path": "transport/receipt.json",
+          "sha256": "86bc5d31cbd96d2173d7c54a421c91fd4ca2053f21b6b284a58fd614fcb92f7c"
+        },
+        {
+          "bytes": 1302,
+          "path": "transport/image.log",
+          "sha256": "9e6b02d4f44a2786abde022c87737c05c402148077180c7bba8dcfe367681b05"
+        },
+        {
+          "bytes": 10672,
+          "path": "transport-summary.json",
+          "sha256": "f98b45e44efd972d801db925567fdc95f14a284760d4301592165349a0693581"
+        }
+      ],
+      "native_tests": {
+        "count": 632,
+        "errors": 0,
+        "failures": 0,
+        "seconds": 151.543,
+        "skips": 0
+      }
+    }
+  ],
+  "draft_pr": "https://github.com/hynk-studio/backtrace/pull/36",
+  "earlier_attempts": [
+    {
+      "cpu_run": 40358353499,
+      "owner_run": 40358351590,
+      "result": "CPU/owner YAML parse rejected before job entry; colon-space in an unquoted shell scalar. Bounded watcher timed out waiting for nonexistent counterpart.",
+      "source_sha": "62762cb1dd778f4db912459d802b8d8005c3c0ad",
+      "watch_run": 40358356284
+    },
+    {
+      "cpu_run": 40358593168,
+      "owner_run": 40358593088,
+      "result": "630 native tests, exact-image transport and independent remote observation passed. Quote query failed InvalidOperation; original throw site was not retained. Nullable quote handling was independently corrected; final read retained 19 null compute prices as unavailable.",
+      "source_sha": "a8affa02f945d7816e84020f8790aab7ab82fe81",
+      "watch_run": 40358593064
+    }
+  ],
+  "gpu_minimum": "NOT_RUN",
+  "limits": [
+    "Live provider API reads and GitHub remote observation passed; no live Pod network/NAT/SSH capability profile was observed.",
+    "Default OCI exact-image execution prerequisites are blocked: namespaces denied, cgroup ancestors hidden, bwrap absent, system Python3.12.3 instead of required3.12.14.",
+    "Remote observer was deployed, checked and terminated. It is not a continuously running service and no paid cleanup target is armed.",
+    "Live resource deletion across independent hosts remains unqualified. Existing local cleanup tests are preserved, not promoted.",
+    "Quotes are dated stock observations with no reservation; available RAM, GPU exclusivity/BF16 and tax/other costs remain unobserved."
+  ],
+  "local_tests": [
+    {
+      "bytes": 120636,
+      "failures": [
+        "ERROR: test_real_offline_replacement_survives_force_reinstall (test_linux_runtime.LinuxRuntimeTests.test_real_offline_replacement_survives_force_reinstall)",
+        "ERROR: test_real_offline_resolver_failure_rolls_back_environment (test_linux_runtime.LinuxRuntimeTests.test_real_offline_resolver_failure_rolls_back_environment)",
+        "ERROR: test_real_venv_is_seeded_offline_from_the_frozen_wheel (test_prepayment_job.VenvSeedTests.test_real_venv_is_seeded_offline_from_the_frozen_wheel)",
+        "ERROR: test_linux_group_observation_does_not_launch_ps (test_startup_guard.GroupCleanupTests.test_linux_group_observation_does_not_launch_ps)",
+        "ERROR: test_observation_failure_still_kills_and_reaps_owned_process (test_startup_guard.GroupCleanupTests.test_observation_failure_still_kills_and_reaps_owned_process) (persistent=False)",
+        "ERROR: test_observation_failure_still_kills_and_reaps_owned_process (test_startup_guard.GroupCleanupTests.test_observation_failure_still_kills_and_reaps_owned_process) (persistent=True)",
+        "ERROR: test_harmless_recoverable_and_quoted (test_startup_guard.StartupGuardTests.test_harmless_recoverable_and_quoted)",
+        "ERROR: test_kill_fallback_and_idempotent_cleanup (test_startup_guard.StartupGuardTests.test_kill_fallback_and_idempotent_cleanup)",
+        "ERROR: test_stale_previous_log (test_startup_guard.StartupGuardTests.test_stale_previous_log)",
+        "ERROR: test_successful_readiness (test_startup_guard.StartupGuardTests.test_successful_readiness)",
+        "FAIL: test_fatal_during_health_wins (test_startup_guard.StartupGuardTests.test_fatal_during_health_wins)",
+        "FAIL: test_fatal_worker_parent_alive (test_startup_guard.StartupGuardTests.test_fatal_worker_parent_alive)",
+        "FAIL: test_readiness_deadline_without_health (test_startup_guard.StartupGuardTests.test_readiness_deadline_without_health)",
+        "FAIL: test_slow_fixture_boot_preserves_post_evidence_bound (test_startup_guard.StartupGuardTests.test_slow_fixture_boot_preserves_post_evidence_bound)",
+        "FAIL: test_total_deadline_without_readiness (test_startup_guard.StartupGuardTests.test_total_deadline_without_readiness)"
+      ],
+      "file": "full-local-1.log",
+      "outcome": "FAILED (failures=5, errors=10, skipped=4)",
+      "seconds": 140.784,
+      "sha256": "90574c56a1fd8c3468c9ac896b883385703fb2fed52eb7d09a9b86cb3fc7f4f2",
+      "tests": 630
+    },
+    {
+      "bytes": 121103,
+      "failures": [
+        "ERROR: test_real_offline_replacement_survives_force_reinstall (test_linux_runtime.LinuxRuntimeTests.test_real_offline_replacement_survives_force_reinstall)",
+        "ERROR: test_real_offline_resolver_failure_rolls_back_environment (test_linux_runtime.LinuxRuntimeTests.test_real_offline_resolver_failure_rolls_back_environment)",
+        "ERROR: test_real_venv_is_seeded_offline_from_the_frozen_wheel (test_prepayment_job.VenvSeedTests.test_real_venv_is_seeded_offline_from_the_frozen_wheel)",
+        "ERROR: test_linux_group_observation_does_not_launch_ps (test_startup_guard.GroupCleanupTests.test_linux_group_observation_does_not_launch_ps)",
+        "ERROR: test_observation_failure_still_kills_and_reaps_owned_process (test_startup_guard.GroupCleanupTests.test_observation_failure_still_kills_and_reaps_owned_process) (persistent=False)",
+        "ERROR: test_observation_failure_still_kills_and_reaps_owned_process (test_startup_guard.GroupCleanupTests.test_observation_failure_still_kills_and_reaps_owned_process) (persistent=True)",
+        "ERROR: test_harmless_recoverable_and_quoted (test_startup_guard.StartupGuardTests.test_harmless_recoverable_and_quoted)",
+        "ERROR: test_kill_fallback_and_idempotent_cleanup (test_startup_guard.StartupGuardTests.test_kill_fallback_and_idempotent_cleanup)",
+        "ERROR: test_stale_previous_log (test_startup_guard.StartupGuardTests.test_stale_previous_log)",
+        "ERROR: test_successful_readiness (test_startup_guard.StartupGuardTests.test_successful_readiness)",
+        "FAIL: test_fatal_during_health_wins (test_startup_guard.StartupGuardTests.test_fatal_during_health_wins)",
+        "FAIL: test_fatal_worker_parent_alive (test_startup_guard.StartupGuardTests.test_fatal_worker_parent_alive)",
+        "FAIL: test_readiness_deadline_without_health (test_startup_guard.StartupGuardTests.test_readiness_deadline_without_health)",
+        "FAIL: test_slow_fixture_boot_preserves_post_evidence_bound (test_startup_guard.StartupGuardTests.test_slow_fixture_boot_preserves_post_evidence_bound)",
+        "FAIL: test_total_deadline_without_readiness (test_startup_guard.StartupGuardTests.test_total_deadline_without_readiness)"
+      ],
+      "file": "full-local-2.log",
+      "outcome": "FAILED (failures=5, errors=10, skipped=4)",
+      "seconds": 156.652,
+      "sha256": "7719d5576df3648897001c2d9f8947788ec951b5422852a78d428f3e9c009308",
+      "tests": 632
+    },
+    {
+      "bytes": 1405,
+      "failures": [],
+      "file": "focused-1.log",
+      "outcome": "OK",
+      "seconds": 0.011,
+      "sha256": "2d6927a5d13dd130435a99fb20415ade0591661d32c5c65cab99e7940ae9545a",
+      "tests": 10
+    },
+    {
+      "bytes": 1729,
+      "failures": [],
+      "file": "focused-2.log",
+      "outcome": "OK",
+      "seconds": 0.011,
+      "sha256": "5eb5b3b3f54101981209d19b5fe655387f1e7f58b1636a33498282427d9ed87e",
+      "tests": 12
+    }
+  ],
+  "next_before_minimum": [
+    "Resolve execution topology: validate a native GPU host compatible with current isolation, or design and qualify container-compatible GPU-only execution with native CPU isolation. Do not bypass namespace/cgroup checks.",
+    "Bind and qualify an independent cleanup controller for the selected resource/source, including owner/state loss and two actual absence reads.",
+    "Refresh exact stock/quote/account, then bind one separately authorized bounded GPU-minimum attempt. No old permit is reusable."
+  ],
+  "preservation": {
+    "baseline_and_precheck_plan_unchanged": true,
+    "previous_branch_heads": {
+      "bt-001-a100-cpu-qualification": "50c9ee629b9a0d59dcd076d26eca80fe9969b376",
+      "bt-001-a100-start-20261019": "80cb0efa905ba7f068ea10e04ecf1c37c4382401",
+      "bt-001-a100-start-20261020b": "91788995fa6e7fd185a4a4e001a13558ce37581b",
+      "bt-001-a100-start-20261020c": "48dafadc25e42980e3674c247627662695891b84",
+      "bt-001-a100-start-20261021a": "6b7a861f286a2e68b169ccb9c4c1fb99c9ead756",
+      "bt-001-a100-start-20261021b": "ec58d2d6a8200a7cfb74185fce9ccc82dabaab81",
+      "bt-001-a100-start-20261021c": "5aea23d2456233414c74f3346f1163acd0779fa2",
+      "bt-001-a100-start-api-recovery": "7f53553078483cd2555f0bed0abd0410cf42f3d0",
+      "bt-001-a100-start-bootstrap-probe": "f7cb1164e06586486254ce193e30201e12e5c424",
+      "bt-001-a100-start-calibrated-20261023": "6973f96255cdecf2d02f7e1ad976522f7982699d",
+      "bt-001-a100-start-connected-gpu": "cdef8537994f65e6a26645ec684f5917bd126c7b",
+      "bt-001-a100-start-qualified-20261023": "626e3a619a025f64e3713af11b8e4097471470ab",
+      "bt-001-a100-start-verified-20261024": "e31873dab5b400a1ddc236c7ac9c2440f05fdab7",
+      "bt-001-a100-state": "10c101135b005e5c9133323a50fe7c6c81701460",
+      "bt-001-a100-watch-20261019": "80cb0efa905ba7f068ea10e04ecf1c37c4382401",
+      "bt-001-a100-watch-20261020b": "91788995fa6e7fd185a4a4e001a13558ce37581b",
+      "bt-001-a100-watch-20261020c": "48dafadc25e42980e3674c247627662695891b84",
+      "bt-001-a100-watch-20261021a": "6b7a861f286a2e68b169ccb9c4c1fb99c9ead756",
+      "bt-001-a100-watch-20261021b": "ec58d2d6a8200a7cfb74185fce9ccc82dabaab81",
+      "bt-001-a100-watch-20261021c": "5aea23d2456233414c74f3346f1163acd0779fa2",
+      "bt-001-a100-watch-api-recovery": "7f53553078483cd2555f0bed0abd0410cf42f3d0",
+      "bt-001-a100-watch-bootstrap-probe": "f7cb1164e06586486254ce193e30201e12e5c424",
+      "bt-001-a100-watch-calibrated-20261023": "6973f96255cdecf2d02f7e1ad976522f7982699d",
+      "bt-001-a100-watch-connected-gpu": "cdef8537994f65e6a26645ec684f5917bd126c7b",
+      "bt-001-a100-watch-qualified-20261023": "626e3a619a025f64e3713af11b8e4097471470ab",
+      "bt-001-a100-watch-verified-20261024": "e31873dab5b400a1ddc236c7ac9c2440f05fdab7",
+      "bt-001-abductive-evaluation-20261026": "31d02bb9826889deb8f188fa0e0e1562d436295f",
+      "bt-001-api-readiness-recovery": "d604960a2bd3bb0efc7e428f08d4f14c80eabf58",
+      "bt-001-bootstrap": "c9001e00be16c1d3fcb7cd80b9a63998cecb6e4b",
+      "bt-001-bootstrap-diagnostics": "a673cd92d8ba2fbd58f90d78401a205dade7f7b5",
+      "bt-001-bootstrap-probe": "e655960cb7db584e869709ba3c504dedcd73dee0",
+      "bt-001-calibrated-evaluation-20261023": "92456475a47fd5003a25306db48d412d31cc6cf9",
+      "bt-001-calibrated-gpu-20261023": "1bf344ea98cb524d25b1de05422ebf7c7ff232a0",
+      "bt-001-calibrated-observe-20261023": "e7ceaf9d0246dd8f5d97c72cb69389b9879f91f9",
+      "bt-001-connected-gpu-smoke": "bf3a650bb5b82d981e5666ac4747ff997d26d405",
+      "bt-001-connected-qualification": "5bd2d4d9cd27b51ede825afa959be924701c5943",
+      "bt-001-cpu-binding": "9660ec3195108108236406b298607926380a7b0e",
+      "bt-001-full-path-parity": "aa391853494f1b6c67bcdcc10ceb09fdf3e72b4a",
+      "bt-001-full-setup-cpu": "e1e054d03d3e5f6d37c05ac70b71eb5d9018c552",
+      "bt-001-qualified-gpu-20261023": "37d6d45ab8a89dad1f7fbeedc0d3c37e037684f4",
+      "bt-001-qualified-observe-20261023": "9b63b8ad6ec1998cb38ba7580fe7e0b51cb001c7",
+      "bt-001-r0-artifacts": "56c612e68626d07da6b0c5378ec6bd7f05f82fee",
+      "bt-001-r0-smoke": "919c6bc939dcbcbe31ab619954a9ab2e85da4c4d",
+      "bt-001-research-deployment-probe-20261025": "3af0362065f88076c0f3e65d57ffdfeac4220e27",
+      "bt-001-research-execution-prep-20261024": "e938c47af790585800921ef6cc66f792046f6651",
+      "bt-001-research-prep-20261024": "80d72ec643df55b709d1acd9b5c7816d5d9105e6",
+      "bt-001-research-prepaid-entry-20261026": "e8074474132ffdde9c4b73206c8c22ce7c2a4180",
+      "bt-001-research-reduced9-20261026": "3b0f5e8028a7835ac44b8e9cffd488b185e1e127",
+      "bt-001-research-reduced9-observe-20261026-0007": "f6f230ee107699ae9cc645db0a22aec210324a0d",
+      "bt-001-research-reduced9-start-20261026": "a8ae2765e9b57a408be3e3930b3a69a977601535",
+      "bt-001-research-reduced9-state-20261026": "25ea1eddda40d8ad27d9f121adca3ddd7fb776b4",
+      "bt-001-research-reduced9-watch-20261026": "a8ae2765e9b57a408be3e3930b3a69a977601535",
+      "bt-001-research-serving-lifecycle-20261025": "f7698ad6654c26bebaeb29d2e137d478d47ae55a",
+      "bt-001-research-split-runtime-20261025": "808f360734410a44c80709aa4ee96b8fcc123c3d",
+      "bt-001-research-state-20261026": "59466d054f86d1049259273e613553eb8999a6d1",
+      "bt-001-research-verifier-amendment-20261025": "dd75363ba3979a13753a3ffc099fe56d3e9b5224",
+      "bt-001-research-verifier-prep-20261024": "aaea5e1a6ae8f0460d40e8ea5b60bc0b26d6207a",
+      "bt-001-retry-preparation-20261023": "8b7b1416eec1d714dfbb581e4aa06a06793f2c27",
+      "bt-001-small-abductive-plan-20261026": "4a4c28380de2103ff9b432b1c7f55de9b4514182",
+      "bt-001-small-model-gpu-20261026": "6a0afa9a7ab88a1d77edc808bb78575b96b0ae17",
+      "bt-001-small-model-precheck-20261026": "c048ec313e5e6cf20dc0b802efa48f336854b46d",
+      "bt-001-small-model-runner-20261026": "aeb06af108a348c32422954c172b634c0bd5959e",
+      "bt-001-small-model-runtime-20261026": "5ad61b43d1cda581e7651c7def9aaea88f5c461b",
+      "bt-001-startup-guard-a100": "a08b2a63914538e1688ddf9d33773f7a9de48a19",
+      "bt-001-startup-reaper-diagnostic-20261023": "16d1df8ea19d4e760226aad13bcd6f1e3aea8ba6",
+      "bt-001-startup-reaper-fix-20261023": "4dcc641cc772988d76cbd2cfa500d95c7326f3e5",
+      "bt-001-task-budget-evaluation-20261023": "03c2e7cdae165fc4bf2a0ddc5a270f5769f47e37",
+      "bt-001-task-calibration-20261023": "4c997d379a3967dc54ccaeb38fb0c05273ca96c7",
+      "bt-001-temporal-baseline-20261026": "764a30465d01fba994a64e3d592c6e45a9b37711",
+      "bt-001-verified-evaluation-20261024": "bf50a54525b8d78ebe7bb021ea517219c45d70d3",
+      "bt-001-verified-gpu-20261024": "04ec3016c2631a2f0c08a004a2e1ecdbdb7b4fea",
+      "bt-001-verified-observe-20261024": "0d38f93621b16312be267de1fc0723eb1ffe6d76",
+      "main": "23616971a4ec57d32fcce769e0a2abf44faa9cfe"
+    },
+    "previous_branches_unchanged": 73,
+    "previous_qualified_files_unchanged": 24
+  },
+  "pretrained_inference": "NOT_RUN",
+  "provider_resource_mutations": 0,
+  "recorded_at_utc": "2026-10-26T16:36:53.660231+00:00",
+  "remote_owner": {
+    "authorization_created": false,
+    "cleanup_of_live_resource": "NOT_TESTED_NO_RESOURCE",
+    "counterpart_run_id": "40359143080",
+    "gpu_minimum": "NOT_RUN",
+    "heartbeat_cessation_at": 1793032042.3836439,
+    "independent_boots": true,
+    "inventory_after": {
+      "complete_paginated_list": true,
+      "observed_at": "2026-10-26T16:27:56Z",
+      "pod_count": 0,
+      "resource_mutations": 0
+    },
+    "inventory_before": {
+      "complete_paginated_list": true,
+      "observed_at": "2026-10-26T16:26:53Z",
+      "pod_count": 0,
+      "resource_mutations": 0
+    },
+    "mode": "DEPLOYED_READ_ONLY_NO_TARGET",
+    "paid_cleanup_armed": false,
+    "persistent_monitoring": false,
+    "provider_mutations": 0,
+    "remote_observation": {
+      "action": "NO_TARGET_NO_PROVIDER_MUTATION",
+      "age_seconds": 36.64517664909363,
+      "at": 1793032070.819712,
+      "owner_run_id": "40359142960",
+      "reason": "OWNER_HEARTBEAT_STALE",
+      "run_id": "40359143080",
+      "source_sha": "5aadac4d20ed14d4900f44124ece021e890ba08b",
+      "watch_run_id": "40359143080"
+    },
+    "role": "owner",
+    "run_id": "40359142960",
+    "source_sha": "5aadac4d20ed14d4900f44124ece021e890ba08b",
+    "status": "PASS",
+    "terminated": true
+  },
+  "remote_watch": {
+    "authorization_created": false,
+    "cleanup_of_live_resource": "NOT_TESTED_NO_RESOURCE",
+    "counterpart_run_id": "40359142960",
+    "gpu_minimum": "NOT_RUN",
+    "heartbeat_samples": 8,
+    "independent_boots": true,
+    "inventory_after": {
+      "complete_paginated_list": true,
+      "observed_at": "2026-10-26T16:27:58Z",
+      "pod_count": 0,
+      "resource_mutations": 0
+    },
+    "inventory_before": {
+      "complete_paginated_list": true,
+      "observed_at": "2026-10-26T16:26:50Z",
+      "pod_count": 0,
+      "resource_mutations": 0
+    },
+    "mode": "DEPLOYED_READ_ONLY_NO_TARGET",
+    "paid_cleanup_armed": false,
+    "persistent_monitoring": false,
+    "provider_mutations": 0,
+    "remote_observation": {
+      "action": "NO_TARGET_NO_PROVIDER_MUTATION",
+      "age_seconds": 36.64517664909363,
+      "at": 1793032070.819712,
+      "owner_run_id": "40359142960",
+      "reason": "OWNER_HEARTBEAT_STALE",
+      "run_id": "40359143080",
+      "source_sha": "5aadac4d20ed14d4900f44124ece021e890ba08b",
+      "watch_run_id": "40359143080"
+    },
+    "role": "watch",
+    "run_id": "40359143080",
+    "source_sha": "5aadac4d20ed14d4900f44124ece021e890ba08b",
+    "status": "PASS",
+    "terminated": true
+  },
+  "schema": "small-model-provider-evidence-v1",
+  "source_hashes": {
+    ".github/workflows/small-model-precheck-cpu.yml": "f13609448771bfada0e1750e52676608a2da1d700c89d28251f07e518f314a0f",
+    ".github/workflows/small-model-provider-cpu.yml": "1314824b147395afaac6a4f8708f3c19004f441f8dc8617f6096526a82f4eaff",
+    ".github/workflows/small-model-provider-owner.yml": "0bb06419810437a0bdce8efa15aab651c2d02748c9e469801cd0777393e245fc",
+    ".github/workflows/small-model-provider-watch.yml": "8af1ae7416563c61d4c9e973ec2ddba7f97296b7be93369a34094a655fc6d197",
+    "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+    "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+    "docs/cloud-controller-requirements.txt": "6e8e0115d53ffb67b8a9001e0b4e3f06747fb470aad4bdcb23e8a864d4018bdc",
+    "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+    "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+    "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+    "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+    "tests/test_small_model_precheck.py": "21ad1e073cc9f83eca8e41034cff22371df7629188b07921b5ecdcc8d0ec4e47",
+    "tests/test_small_model_provider.py": "242530d07de276c3b36eff5484fe0a15d6f457bd7705db63e14e54e03d71f94c",
+    "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+    "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+    "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+    "tools/cloud_inventory.py": "f4865ae92c7f41375a15ecf917e932562cca608ca7a1607d18d1b370bd0932ff",
+    "tools/cloud_offer.py": "9387b91be560cf80a85a5bae8166acb7c35f7a61135042971d21cafdb76c3df5",
+    "tools/cloud_probe.py": "bb89c097e7fe0c6bc56771e87695056d60c11f510502173105a102a25d48e22f",
+    "tools/cloud_transport.py": "013d93fc8c1548bc7eaf4cf9a4f5a49608b7e16d537b192accf053151fbf5902",
+    "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+    "tools/free_container_cleanup.py": "3dc64f6fa013e992e8c02fa702330a14003cb2e7ab0d536e3dc0da80ce3e9466",
+    "tools/private_delivery.py": "f010c41715e2548b86a4b3dfc009e22e57fcbf5a52429e4f7f1165632f1a4a40",
+    "tools/research_entry_contract.py": "1a4997a22bcb2bb9acd5dde8bfe916e987ae20131c9073610f2bb2e863908e47",
+    "tools/research_entry_state.py": "b3858570800b87f36a2ebd99a4ebbf65295edf5756b1a7b6cf1d6c4c13316389",
+    "tools/runpod_control.py": "09219477947e39b2c7c58b6e7e44f385bd5d1140cbdb7a47cddef3ab7f6cf400",
+    "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903",
+    "tools/small_model_lifecycle.py": "32f0cc0215c9c4098540b95a5fd1e3194af9764ba1f01d1317df0553875b4506",
+    "tools/small_model_lifecycle_probe.py": "c8af61b707903398d29a883ce1c9525af93494cb71612b6d299bbac240b704ed",
+    "tools/small_model_precheck.py": "dafcfa6cc32d78204a102b7e73eb1be3eeb499a906a90a7390503134fa81a63d",
+    "tools/small_model_provider.py": "b5c9e0a0e7c9ac98a8dc8a6d24b20f5c45de9690483ae37b65196e30218a37c4",
+    "tools/small_model_provider_probe.py": "467a96a5cd7131da46155f9c6a675718049c1547d3a5d950efff73ea1e9da8cd",
+    "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+    "tools/small_model_remote_watch.py": "eec9864d54e0859399e5e9f9c9334f2c21809e470a015d57b65d7119f9657e82",
+    "tools/small_model_resources.py": "1d763165c9af25461a50ae55665a18052d71c74698f1abdfd70eb81f77e367ca",
+    "tools/small_model_runner.py": "ed7436caa9421bc4a166ccca63ac2602fd527dab2bbe44010acabad0095e33df",
+    "tools/small_model_runner_probe.py": "dfbff0eabb1c72d914ee1528b059338261427ba0713425c264f2c5c4986e095a",
+    "tools/small_model_worker.py": "9dae8020f5fa52d2f1c395bc17d4433a93d7206c9e5e6ed3e70729698376a2bf",
+    "tools/ssh_bootstrap.py": "b657ddd6f145f66f4e15f2d30a23d8870ae56aa7f60d396ae1f41de485916839",
+    "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+    "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+  },
+  "source_sha": "5aadac4d20ed14d4900f44124ece021e890ba08b",
+  "state": {
+    "all_new_state_blobs": [
+      {
+        "mode": "100644",
+        "path": "small-provider/5aadac4d20ed14d4900f44124ece021e890ba08b/done.json",
+        "sha": "46a06d1dbfbfe8acd832b46a953bea2c97a76a0b",
+        "size": 134,
+        "type": "blob",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/46a06d1dbfbfe8acd832b46a953bea2c97a76a0b"
+      },
+      {
+        "mode": "100644",
+        "path": "small-provider/5aadac4d20ed14d4900f44124ece021e890ba08b/observed.json",
+        "sha": "23128938a7a61d161130510a866ea84d1e80bd0c",
+        "size": 269,
+        "type": "blob",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/23128938a7a61d161130510a866ea84d1e80bd0c"
+      },
+      {
+        "mode": "100644",
+        "path": "small-provider/5aadac4d20ed14d4900f44124ece021e890ba08b/owner-heartbeat.json",
+        "sha": "5955593e1f59f46adc639fdc3eb000afabe53481",
+        "size": 105,
+        "type": "blob",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/5955593e1f59f46adc639fdc3eb000afabe53481"
+      },
+      {
+        "mode": "100644",
+        "path": "small-provider/5aadac4d20ed14d4900f44124ece021e890ba08b/owner.json",
+        "sha": "777d0448eb636862a8d89e1cff8480a836c63d7f",
+        "size": 199,
+        "type": "blob",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/777d0448eb636862a8d89e1cff8480a836c63d7f"
+      },
+      {
+        "mode": "100644",
+        "path": "small-provider/5aadac4d20ed14d4900f44124ece021e890ba08b/ready.json",
+        "sha": "fa48cb82657d5932a5091ced5388240813fe95e3",
+        "size": 133,
+        "type": "blob",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/fa48cb82657d5932a5091ced5388240813fe95e3"
+      },
+      {
+        "mode": "100644",
+        "path": "small-provider/5aadac4d20ed14d4900f44124ece021e890ba08b/watch-heartbeat.json",
+        "sha": "7c007d30956d5fa6ac181e6f38a2aee071770f0b",
+        "size": 105,
+        "type": "blob",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/7c007d30956d5fa6ac181e6f38a2aee071770f0b"
+      },
+      {
+        "mode": "100644",
+        "path": "small-provider/5aadac4d20ed14d4900f44124ece021e890ba08b/watch.json",
+        "sha": "7dd40f89540fad4d8334bdbe2cd6f66107054be1",
+        "size": 201,
+        "type": "blob",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/7dd40f89540fad4d8334bdbe2cd6f66107054be1"
+      },
+      {
+        "mode": "100644",
+        "path": "small-provider/62762cb1dd778f4db912459d802b8d8005c3c0ad/watch.json",
+        "sha": "a45b451b0504bd1aa4b630f94125569a924784b3",
+        "size": 201,
+        "type": "blob",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/a45b451b0504bd1aa4b630f94125569a924784b3"
+      },
+      {
+        "mode": "100644",
+        "path": "small-provider/a8affa02f945d7816e84020f8790aab7ab82fe81/done.json",
+        "sha": "dceb198161e5f01bd1fac7551a57e875a4c31f4b",
+        "size": 134,
+        "type": "blob",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/dceb198161e5f01bd1fac7551a57e875a4c31f4b"
+      },
+      {
+        "mode": "100644",
+        "path": "small-provider/a8affa02f945d7816e84020f8790aab7ab82fe81/observed.json",
+        "sha": "4a25be86dc2b30fce26fd5581f8f5dae747cb702",
+        "size": 270,
+        "type": "blob",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/4a25be86dc2b30fce26fd5581f8f5dae747cb702"
+      },
+      {
+        "mode": "100644",
+        "path": "small-provider/a8affa02f945d7816e84020f8790aab7ab82fe81/owner-heartbeat.json",
+        "sha": "c88f7817100bc2d21e9b782928c688cadef22dd0",
+        "size": 104,
+        "type": "blob",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/c88f7817100bc2d21e9b782928c688cadef22dd0"
+      },
+      {
+        "mode": "100644",
+        "path": "small-provider/a8affa02f945d7816e84020f8790aab7ab82fe81/owner.json",
+        "sha": "30cf1300040ae5ceb893ea50f0a909f556197691",
+        "size": 201,
+        "type": "blob",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/30cf1300040ae5ceb893ea50f0a909f556197691"
+      },
+      {
+        "mode": "100644",
+        "path": "small-provider/a8affa02f945d7816e84020f8790aab7ab82fe81/ready.json",
+        "sha": "9fcf7282f2bc4354754b883db505a4136be74eb6",
+        "size": 134,
+        "type": "blob",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/9fcf7282f2bc4354754b883db505a4136be74eb6"
+      },
+      {
+        "mode": "100644",
+        "path": "small-provider/a8affa02f945d7816e84020f8790aab7ab82fe81/watch-heartbeat.json",
+        "sha": "8bde3a1f14bea56c48a7a59ea477d97c9f5e8b96",
+        "size": 105,
+        "type": "blob",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/8bde3a1f14bea56c48a7a59ea477d97c9f5e8b96"
+      },
+      {
+        "mode": "100644",
+        "path": "small-provider/a8affa02f945d7816e84020f8790aab7ab82fe81/watch.json",
+        "sha": "c20723c44af5d9df3305cfd95e49551d121262ab",
+        "size": 201,
+        "type": "blob",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/c20723c44af5d9df3305cfd95e49551d121262ab"
+      }
+    ],
+    "branch": "bt-001-small-model-provider-state-20261027",
+    "head": "1a95a00b94cc5df5440d88fb8391a59e47f276b9",
+    "source_records": [
+      {
+        "expected_sha": "46a06d1dbfbfe8acd832b46a953bea2c97a76a0b",
+        "path": "small-provider/5aadac4d20ed14d4900f44124ece021e890ba08b/done.json",
+        "response": {
+          "at": 1793032074.1538372,
+          "run_id": "40359142960",
+          "source_sha": "5aadac4d20ed14d4900f44124ece021e890ba08b",
+          "watch_run_id": "40359143080"
+        }
+      },
+      {
+        "expected_sha": "23128938a7a61d161130510a866ea84d1e80bd0c",
+        "path": "small-provider/5aadac4d20ed14d4900f44124ece021e890ba08b/observed.json",
+        "response": {
+          "action": "NO_TARGET_NO_PROVIDER_MUTATION",
+          "age_seconds": 36.64517664909363,
+          "at": 1793032070.819712,
+          "owner_run_id": "40359142960",
+          "reason": "OWNER_HEARTBEAT_STALE",
+          "run_id": "40359143080",
+          "source_sha": "5aadac4d20ed14d4900f44124ece021e890ba08b",
+          "watch_run_id": "40359143080"
+        }
+      },
+      {
+        "expected_sha": "5955593e1f59f46adc639fdc3eb000afabe53481",
+        "path": "small-provider/5aadac4d20ed14d4900f44124ece021e890ba08b/owner-heartbeat.json",
+        "response": {
+          "at": 1793032034.1745353,
+          "run_id": "40359142960",
+          "source_sha": "5aadac4d20ed14d4900f44124ece021e890ba08b"
+        }
+      },
+      {
+        "expected_sha": "777d0448eb636862a8d89e1cff8480a836c63d7f",
+        "path": "small-provider/5aadac4d20ed14d4900f44124ece021e890ba08b/owner.json",
+        "response": {
+          "at": 1793032006.02035,
+          "boot_sha256": "76c00e0d4bd4b7127f0300762ed496061dbddf7f66e2a7de37bcd96f66d2ca89",
+          "role": "owner",
+          "run_id": "40359142960",
+          "source_sha": "5aadac4d20ed14d4900f44124ece021e890ba08b"
+        }
+      },
+      {
+        "expected_sha": "fa48cb82657d5932a5091ced5388240813fe95e3",
+        "path": "small-provider/5aadac4d20ed14d4900f44124ece021e890ba08b/ready.json",
+        "response": {
+          "at": 1793032010.332544,
+          "owner_run_id": "40359142960",
+          "run_id": "40359143080",
+          "source_sha": "5aadac4d20ed14d4900f44124ece021e890ba08b"
+        }
+      },
+      {
+        "expected_sha": "7c007d30956d5fa6ac181e6f38a2aee071770f0b",
+        "path": "small-provider/5aadac4d20ed14d4900f44124ece021e890ba08b/watch-heartbeat.json",
+        "response": {
+          "at": 1793032068.9484158,
+          "run_id": "40359143080",
+          "source_sha": "5aadac4d20ed14d4900f44124ece021e890ba08b"
+        }
+      },
+      {
+        "expected_sha": "7dd40f89540fad4d8334bdbe2cd6f66107054be1",
+        "path": "small-provider/5aadac4d20ed14d4900f44124ece021e890ba08b/watch.json",
+        "response": {
+          "at": 1793032006.9582505,
+          "boot_sha256": "43126fc0b602cee79e04fc7a55088b8abd44373416a593e81e15602a37356158",
+          "role": "watch",
+          "run_id": "40359143080",
+          "source_sha": "5aadac4d20ed14d4900f44124ece021e890ba08b"
+        }
+      }
+    ]
+  },
+  "status": "PASS_CONNECTION_TRANSPORT_OBSERVER__EXECUTION_ENVIRONMENT_BLOCKED",
+  "training": "NOT_RUN",
+  "transport": {
+    "binary_transfer": {
+      "bytes": 1400320,
+      "sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a"
+    },
+    "cleanup": {
+      "absence_reads": 2,
+      "container_id": "3a23356c56b6ec837f88cdf462f69d5b07488ad5cd4271d2e23af316cc01663e",
+      "name": "backtrace-free-full-setup-9380-small-provider",
+      "observations": [
+        {
+          "state": "ABSENT"
+        },
+        {
+          "state": "ABSENT"
+        }
+      ],
+      "request": {
+        "outcome": "ACKNOWLEDGED",
+        "returncode": 0
+      },
+      "seconds": 1.143,
+      "status": "PASS"
+    },
+    "container_id": "3a23356c56b6ec837f88cdf462f69d5b07488ad5cd4271d2e23af316cc01663e",
+    "container_mode": "DEFAULT_UNPRIVILEGED_OCI",
+    "execution_environment": "BLOCKED_NON_GPU_PREREQUISITES",
+    "full_runtime_installation": "NOT_RUN",
+    "gpu_calls": 0,
+    "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+    "image_id": "sha256:4638f27bc2a17c4487d2dcb57e0dca10c9cf6601ee6bf849162b58f1d8b1ee8e",
+    "paid_launch_enabled": false,
+    "payload_manifest": {
+      "files": [
+        {
+          "bytes": 6100,
+          "path": ".github/workflows/small-model-precheck-cpu.yml",
+          "sha256": "f13609448771bfada0e1750e52676608a2da1d700c89d28251f07e518f314a0f"
+        },
+        {
+          "bytes": 1333,
+          "path": "docs/abductive-baseline-protocol-v1.json",
+          "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+        },
+        {
+          "bytes": 1570,
+          "path": "docs/abductive-evaluation-protocol-v1.json",
+          "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+        },
+        {
+          "bytes": 3614,
+          "path": "docs/small-model-cpu-requirements.txt",
+          "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+        },
+        {
+          "bytes": 12569,
+          "path": "docs/small-model-gpu-baseline-v1.json",
+          "sha256": "02079e9a8b314aef8843cc052f8720bfdee853065ca0662f7769ced2dc02f35d"
+        },
+        {
+          "bytes": 5661,
+          "path": "docs/small-model-gpu-requirements.txt",
+          "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+        },
+        {
+          "bytes": 46113,
+          "path": "docs/small-model-runtime-lock-v1.json",
+          "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+        },
+        {
+          "bytes": 1619,
+          "path": "docs/temporal-evaluation-protocol-v1.json",
+          "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+        },
+        {
+          "bytes": 8703,
+          "path": "tests/test_small_model_precheck.py",
+          "sha256": "21ad1e073cc9f83eca8e41034cff22371df7629188b07921b5ecdcc8d0ec4e47"
+        },
+        {
+          "bytes": 10993,
+          "path": "tools/abductive_baseline.py",
+          "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+        },
+        {
+          "bytes": 23091,
+          "path": "tools/abductive_benchmark.py",
+          "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+        },
+        {
+          "bytes": 15889,
+          "path": "tools/abductive_scoring.py",
+          "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+        },
+        {
+          "bytes": 27737,
+          "path": "tools/exact_teacher.py",
+          "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+        },
+        {
+          "bytes": 29485,
+          "path": "tools/runpod_control.py",
+          "sha256": "09219477947e39b2c7c58b6e7e44f385bd5d1140cbdb7a47cddef3ab7f6cf400"
+        },
+        {
+          "bytes": 18334,
+          "path": "tools/small_model_gpu.py",
+          "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+        },
+        {
+          "bytes": 21759,
+          "path": "tools/small_model_lifecycle.py",
+          "sha256": "32f0cc0215c9c4098540b95a5fd1e3194af9764ba1f01d1317df0553875b4506"
+        },
+        {
+          "bytes": 15664,
+          "path": "tools/small_model_lifecycle_probe.py",
+          "sha256": "c8af61b707903398d29a883ce1c9525af93494cb71612b6d299bbac240b704ed"
+        },
+        {
+          "bytes": 10973,
+          "path": "tools/small_model_precheck.py",
+          "sha256": "dafcfa6cc32d78204a102b7e73eb1be3eeb499a906a90a7390503134fa81a63d"
+        },
+        {
+          "bytes": 27430,
+          "path": "tools/small_model_readiness.py",
+          "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+        },
+        {
+          "bytes": 4516,
+          "path": "tools/small_model_resources.py",
+          "sha256": "1d763165c9af25461a50ae55665a18052d71c74698f1abdfd70eb81f77e367ca"
+        },
+        {
+          "bytes": 28092,
+          "path": "tools/small_model_runner.py",
+          "sha256": "ed7436caa9421bc4a166ccca63ac2602fd527dab2bbe44010acabad0095e33df"
+        },
+        {
+          "bytes": 18614,
+          "path": "tools/small_model_runner_probe.py",
+          "sha256": "dfbff0eabb1c72d914ee1528b059338261427ba0713425c264f2c5c4986e095a"
+        },
+        {
+          "bytes": 8311,
+          "path": "tools/small_model_worker.py",
+          "sha256": "9dae8020f5fa52d2f1c395bc17d4433a93d7206c9e5e6ed3e70729698376a2bf"
+        },
+        {
+          "bytes": 14053,
+          "path": "tools/temporal_benchmark.py",
+          "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+        },
+        {
+          "bytes": 7408,
+          "path": "tools/temporal_scoring.py",
+          "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+        }
+      ],
+      "phase": "bootstrap",
+      "schema_version": 1
+    },
+    "payload_transfer": {
+      "bytes": 369631,
+      "files": 25,
+      "manifest_sha256": "482f4ac382545e8044850e6fa0841177f7e2ad0dab538ff0af830449de156276",
+      "phase": "bootstrap",
+      "schema_version": 1,
+      "verified": true
+    },
+    "provider_api_calls": 0,
+    "provider_capabilities": "NOT_OBSERVED",
+    "provider_network_nat": "NOT_OBSERVED",
+    "remote": {
+      "checks": {
+        "memory": false,
+        "namespaces": false,
+        "python_exact": false,
+        "root": true,
+        "tools": false
+      },
+      "credential_environment": "ABSENT",
+      "gpu_calls": 0,
+      "memory": {
+        "error_type": "ValueError",
+        "reason": "namespaced cgroup root hides ancestor memory limits",
+        "status": "BLOCKED"
+      },
+      "namespace_entry": {
+        "exit_code": 1,
+        "stderr": "unshare: unshare failed: Operation not permitted\n"
+      },
+      "payload_files": 25,
+      "payload_sha256": "482f4ac382545e8044850e6fa0841177f7e2ad0dab538ff0af830449de156276",
+      "prepared_plan_sha256": "eee72721e08b336492aeb661e607991e39173eb685e2be62d7ec8a3c89885009",
+      "pretrained_requests": 0,
+      "python": "3.12.3",
+      "status": "BLOCKED_NON_GPU_PREREQUISITES",
+      "tools": {
+        "bwrap": null,
+        "setpriv": "/usr/bin/setpriv",
+        "unshare": "/usr/bin/unshare"
+      },
+      "training_steps": 0,
+      "uid": 0
+    },
+    "run_id": "40359142948",
+    "scope": "FREE_EXACT_IMAGE_NEW_PAYLOAD",
+    "source_hashes": {
+      ".github/workflows/small-model-precheck-cpu.yml": "f13609448771bfada0e1750e52676608a2da1d700c89d28251f07e518f314a0f",
+      ".github/workflows/small-model-provider-cpu.yml": "1314824b147395afaac6a4f8708f3c19004f441f8dc8617f6096526a82f4eaff",
+      ".github/workflows/small-model-provider-owner.yml": "0bb06419810437a0bdce8efa15aab651c2d02748c9e469801cd0777393e245fc",
+      ".github/workflows/small-model-provider-watch.yml": "8af1ae7416563c61d4c9e973ec2ddba7f97296b7be93369a34094a655fc6d197",
+      "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+      "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+      "docs/cloud-controller-requirements.txt": "6e8e0115d53ffb67b8a9001e0b4e3f06747fb470aad4bdcb23e8a864d4018bdc",
+      "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+      "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+      "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+      "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+      "tests/test_small_model_precheck.py": "21ad1e073cc9f83eca8e41034cff22371df7629188b07921b5ecdcc8d0ec4e47",
+      "tests/test_small_model_provider.py": "242530d07de276c3b36eff5484fe0a15d6f457bd7705db63e14e54e03d71f94c",
+      "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+      "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+      "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+      "tools/cloud_inventory.py": "f4865ae92c7f41375a15ecf917e932562cca608ca7a1607d18d1b370bd0932ff",
+      "tools/cloud_offer.py": "9387b91be560cf80a85a5bae8166acb7c35f7a61135042971d21cafdb76c3df5",
+      "tools/cloud_probe.py": "bb89c097e7fe0c6bc56771e87695056d60c11f510502173105a102a25d48e22f",
+      "tools/cloud_transport.py": "013d93fc8c1548bc7eaf4cf9a4f5a49608b7e16d537b192accf053151fbf5902",
+      "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+      "tools/free_container_cleanup.py": "3dc64f6fa013e992e8c02fa702330a14003cb2e7ab0d536e3dc0da80ce3e9466",
+      "tools/private_delivery.py": "f010c41715e2548b86a4b3dfc009e22e57fcbf5a52429e4f7f1165632f1a4a40",
+      "tools/research_entry_contract.py": "1a4997a22bcb2bb9acd5dde8bfe916e987ae20131c9073610f2bb2e863908e47",
+      "tools/research_entry_state.py": "b3858570800b87f36a2ebd99a4ebbf65295edf5756b1a7b6cf1d6c4c13316389",
+      "tools/runpod_control.py": "09219477947e39b2c7c58b6e7e44f385bd5d1140cbdb7a47cddef3ab7f6cf400",
+      "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903",
+      "tools/small_model_lifecycle.py": "32f0cc0215c9c4098540b95a5fd1e3194af9764ba1f01d1317df0553875b4506",
+      "tools/small_model_lifecycle_probe.py": "c8af61b707903398d29a883ce1c9525af93494cb71612b6d299bbac240b704ed",
+      "tools/small_model_precheck.py": "dafcfa6cc32d78204a102b7e73eb1be3eeb499a906a90a7390503134fa81a63d",
+      "tools/small_model_provider.py": "b5c9e0a0e7c9ac98a8dc8a6d24b20f5c45de9690483ae37b65196e30218a37c4",
+      "tools/small_model_provider_probe.py": "467a96a5cd7131da46155f9c6a675718049c1547d3a5d950efff73ea1e9da8cd",
+      "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+      "tools/small_model_remote_watch.py": "eec9864d54e0859399e5e9f9c9334f2c21809e470a015d57b65d7119f9657e82",
+      "tools/small_model_resources.py": "1d763165c9af25461a50ae55665a18052d71c74698f1abdfd70eb81f77e367ca",
+      "tools/small_model_runner.py": "ed7436caa9421bc4a166ccca63ac2602fd527dab2bbe44010acabad0095e33df",
+      "tools/small_model_runner_probe.py": "dfbff0eabb1c72d914ee1528b059338261427ba0713425c264f2c5c4986e095a",
+      "tools/small_model_worker.py": "9dae8020f5fa52d2f1c395bc17d4433a93d7206c9e5e6ed3e70729698376a2bf",
+      "tools/ssh_bootstrap.py": "b657ddd6f145f66f4e15f2d30a23d8870ae56aa7f60d396ae1f41de485916839",
+      "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+      "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    "source_sha": "5aadac4d20ed14d4900f44124ece021e890ba08b",
+    "status": "PASS_TRANSPORT",
+    "transport_build": {
+      "binaries": {
+        "dropbear": {
+          "bytes": 1400320,
+          "sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a"
+        },
+        "dropbearkey": {
+          "bytes": 1165584,
+          "sha256": "5d33b842b70f674859459713ce3f28e62e32bdaca04950d6a599e1b8d84f3690"
+        }
+      },
+      "matches_prior_transport": true,
+      "paid_transport": "NOT STARTED",
+      "source_sha256": "827d3f6e510e7554ee18d5c6a00dfee1a6a555559495e65e2e8f8d41c79eed84"
+    },
+    "transport_material": {
+      "binary_bytes": 1400320,
+      "binary_sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a",
+      "method": "mutual-tls13-then-pinned-ssh",
+      "minimum_validity_seconds": 3600
+    },
+    "wrong_host_key": "REFUSED"
+  }
+}

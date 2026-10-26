@@ -26,6 +26,26 @@ and a source/resource-bound independent cleanup controller are qualified.
 Run and retain full local/native suites; read-only account snapshots are dated,
 not stock reservations or permits. See `docs/small-model-provider-20261027.md`.
 
+Final operational source is `5aadac4d20ed14d4900f44124ece021e890ba08b`.
+Read `docs/small-model-provider-evidence-20261027.json` for independently verified
+native/artifact/state evidence and all retained failures. Native run 40359142948
+passed 632 tests in 151.543s with zero failures/errors/skips, preflight and the
+exact-image new-payload transport. Seven artifacts/all 17 members, 41 source
+hashes, 25 payload files and seven final-source state blobs were checked.
+Separate owner/watch 40359142960/40359143080 deployed read-only observers,
+confirmed zero live Pods and detected heartbeat cessation at age 36.645s.
+They have terminated;
+there is no persistent watcher or armed resource-deletion target. New payload
+TLS/SSH transfer reproduces all25 files/369631bytes and the unchanged plan, but
+default OCI execution remains BLOCKED: namespaces denied, cgroup ancestors
+hidden, bubblewrap absent and system Python3.12.3. Provider NAT/capabilities,
+actual GPU and distributed resource cleanup remain unqualified. Do not paper
+over this structural mismatch by silently granting privileges or relaxing checks.
+Fresh account observation at2026-10-27 01:27:56KST retained USD3.0795030588,
+zero spend/Pods and autopay off. Affordable filtered stock existed, but is not
+reserved or proof of executable hardware. All24 prior qualified sources and
+all73 pre-existing branch heads are unchanged. No paid scope was created.
+
 ## Current preparation scope (2026-10-26)
 
 The owner requested **최소검증 전까지 진행해**. Work on
