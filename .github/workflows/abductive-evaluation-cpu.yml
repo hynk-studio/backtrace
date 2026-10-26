@@ -1,0 +1,68 @@
+name: Small abductive model evaluation CPU checks
+
+on:
+  push:
+    branches: [bt-001-abductive-evaluation-20261026]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: abductive-cpu-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  cpu:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Full native Linux suite and CPU preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p evidence .local
+          python_path="$(command -v python3)"
+          sudo "$python_path" -m unittest discover -s tests -v 2>&1 | tee evidence/cpu-tests.log
+          "$python_path" tools/backtrace.py preflight | tee evidence/preflight.json
+          git diff --check
+      - name: Generate and audit the complete candidate dataset
+        run: |
+          python -m tools.abductive_benchmark generate .local/abductive-data --variants 20 > evidence/generation.json
+          python -m tools.abductive_benchmark audit .local/abductive-data > evidence/audit.json
+          python -m tools.abductive_benchmark export-training .local/abductive-data .local/train-only > evidence/training-export.json
+          python -m tools.abductive_benchmark export-inputs .local/abductive-data .local/eval-inputs --split reserved > evidence/input-export.json
+      - name: Score authored oracle and missing-response controls
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from tools import abductive_benchmark as b, abductive_scoring as s
+          root, manifest = b.read_manifest(Path('.local/abductive-data'))
+          results = {}
+          for split in b.SPLITS:
+              agents, labels = [b.read_rows(root, f'{split}/{kind}.jsonl', manifest) for kind in ('agent', 'evaluator')]
+              predictions = [{'id': a['id'], 'response': s.optimal_response(a['input'], r['reference'])}
+                             for a, r in zip(agents, labels)]
+              oracle = s.score_records(agents, labels, predictions)
+              missing = s.score_records(agents, labels, [])
+              assert all(c['response_status'] == 'VALID' and not any(c['losses'].values()) for c in oracle['cases'])
+              assert all(v['error_rate'] in (0, None) for v in oracle['revision_pairs'].values())
+              assert all(c['response_status'] == 'MISSING' and all(v == 1 for v in c['losses'].values()) for c in missing['cases'])
+              results[split] = {'assigned': len(agents), 'oracle': 'PASS', 'missing': 'PASS',
+                                'oracle_revision_pairs': oracle['revision_pairs'], 'model_result': False}
+          Path('evidence/controls.json').write_text(json.dumps(results, indent=2) + '\n')
+          PY
+      - name: Preserve aggregate CPU evidence only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: abductive-cpu-${{ github.sha }}-${{ github.run_attempt }}
+          path: evidence/
+          retention-days: 14
+          if-no-files-found: error
