@@ -1,5 +1,23 @@
 # Backtrace working agreement
 
+## Current preparation scope (2026-10-26)
+
+The owner requested **최소검증 전까지 진행해**. Work on
+`bt-001-small-model-precheck-20261026`, stacked on Draft #34 at
+`6a0afa9a7ab88a1d77edc808bb78575b96b0ae17`, with one new Draft PR.
+Read `docs/small-model-precheck-20261026.md`. Prepare effective cgroup memory
+checks, allocation-clock supervision, bounded recovery/export and cleanup-only
+observation. Qualify real CPU process teardown and the connected original
+collector through a loopback provider replica. Preserve all earlier sources,
+scientific inputs, runtime locks, baseline bytes, receipts and consumed claims.
+Stop before the actual GPU minimum: no hardware allocation, GPU probe,
+pretrained inference, training, paid API, Augnes write, merge or issue closure.
+A local watcher process is not an independent remote deployment. Provider
+bootstrap/transport and distributed cleanup remain launch prerequisites; keep
+paid launch disabled and do not rebrand CPU controls as physical GPU evidence.
+Retain the required full local run and exact-source native qualification,
+including any failed attempts. No current paid permission exists.
+
 ## Current research priority (2026-10-26)
 
 The owner explicitly requested **GPU 실행 환경 검증과 실제 모델 기준 성능 측정 준비**.

@@ -39,6 +39,12 @@ installation/CPU compatibility qualification passed 604 native tests, the exact
 56-package CUDA install, CPU controls and missing-GPU rejection. The
 [receipt](docs/small-model-gpu-cpu-20261026.json) keeps this separate from physical
 GPU kernel/driver and pretrained measurements.
+The [pre-minimum preparation](docs/small-model-precheck-20261026.md) adds
+allocation-clock supervision, bounded evidence export, cleanup-only resource
+observations and effective cgroup memory checks. It separates a hardware-only
+checkpoint from the unchanged full-model baseline. Local/native CPU qualification
+and actual distributed/provider readiness are reported separately; paid launch
+remains disabled.
 Training, adapter save/reload and Augnes integration are **NOT RUN**.
 
 The [latest coding pilot](docs/research-reduced9-execution-20261026.md) attempted

@@ -44,6 +44,12 @@ plan. Native run 40335270281 passed 604 tests, all 56 CUDA-wheel/install checks,
 CPU oracle/random controls and missing-GPU rejection. Free CPU compatibility of
 CUDA packages does not qualify physical hardware or an allocation-inclusive
 provider lifecycle.
+The [pre-minimum preparation](small-model-precheck-20261026.md) adds an outer
+allocation-clock mechanism, bounded recovery/export and a cleanup-only adapter,
+with a local separate-process watcher and cgroup headroom checks. Free replicas
+cannot qualify new provider bootstrap/transport or an independent remote watcher;
+the hardware-only minimum and full baseline remain distinct blocked execution
+checkpoints.
 Actual pretrained loading and GPU isolation/measurements
 remain required. Preparing or tokenizing
 5,760 requests per backbone is not running them or authorizing that grid.
