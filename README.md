@@ -42,9 +42,12 @@ GPU kernel/driver and pretrained measurements.
 The [pre-minimum preparation](docs/small-model-precheck-20261026.md) adds
 allocation-clock supervision, bounded evidence export, cleanup-only resource
 observations and effective cgroup memory checks. It separates a hardware-only
-checkpoint from the unchanged full-model baseline. Local/native CPU qualification
-and actual distributed/provider readiness are reported separately; paid launch
-remains disabled.
+checkpoint from the unchanged full-model baseline. Native run 40349526548 passed
+620 tests and 14 operational cases, including the actual interrupted collector.
+All eleven CPU export archives were independently verified. The
+[receipt](docs/small-model-precheck-cpu-20261026.json) preserves two earlier native
+failures and local environment failures. Actual provider bootstrap/remote
+watcher deployment and physical GPU checks remain pending; paid launch is disabled.
 Training, adapter save/reload and Augnes integration are **NOT RUN**.
 
 The [latest coding pilot](docs/research-reduced9-execution-20261026.md) attempted

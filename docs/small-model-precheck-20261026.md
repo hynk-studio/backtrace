@@ -135,6 +135,36 @@ archive is retained with digest
 `f268eb8bffa270afe4a5d45696d8fb83ca6c64afcf7eeecfbf60ecf6d23a5251`.
 No native or GPU success is inferred from unit-test counts.
 
+Final native [run 40349526548](https://github.com/hynk-studio/backtrace/actions/runs/40349526548)
+qualified `68f649b259e3da639f687a34e16d238e78c77d9a`:
+
+| Observation | Result |
+| --- | --- |
+| Full suite | 620 tests in 205.724 s; zero failures/errors/skips |
+| Original host and nested boundaries | All filesystem/network/UID/PID/parent-loss checks passed |
+| Standalone lifecycle cases | All twelve passed, including expected UNKNOWN/UNRESOLVED provider reads |
+| Connected original CPU pipeline | All ten original checks passed; 36 exact authored and 36 tiny-random outputs |
+| Actual outer-deadline recovery | One OK, one INTERRUPTED, 34 NOT_RUN; no retry; disposable copies removed |
+| Independent byte verification | 242 ZIP members, 24 source hashes, 11 exported tars with all 220 members |
+| Prior preparation | Five artifacts and all 36 tiny-random CPU raw outputs byte-identical |
+| Effective CI RAM | Correctly reported insufficient for the future 32 GiB baseline requirement |
+| GPU minimum / pretrained / training | NOT RUN |
+
+The [receipt](small-model-precheck-cpu-20261026.json) records each expected failure,
+owner/watcher outcome, export hash and preservation check. Archive SHA-256 is
+`96667773c36abe6cc1d6259fabec4afff73f906e8d8eabf0d2e200ed4a1e6066`.
+Normal completion and successful acknowledgement-fault controls exported before
+both cleanup loops. Export failure still cleaned the resource. Owner death has
+no completed export receipt; cleanup takes priority and unexported remote evidence
+is not guaranteed. Provider-read failure remains UNRESOLVED, not a false deletion
+claim; the qualification fixture subsequently reaped its own CPU process.
+
+The final focused local suite passed 33 checks in 33.663 seconds. The final local
+full suite attempted 620 tests in 152.955 seconds and retained 5 failures, 10
+errors and 4 skips in the existing environment-specific checks. The earlier
+local/native attempts remain in the receipt. Final documentation commits do not
+change any of the 24 qualified source files or generated plan bytes.
+
 Before an actual allocation, select a suitable native/privileged environment,
 qualify the new payload's bootstrap/remote transport and independent remote
 watcher, obtain a fresh authenticated price/stock/balance observation, and bind

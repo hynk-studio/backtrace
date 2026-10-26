@@ -19,6 +19,23 @@ paid launch disabled and do not rebrand CPU controls as physical GPU evidence.
 Retain the required full local run and exact-source native qualification,
 including any failed attempts. No current paid permission exists.
 
+Native run 40349526548 at `68f649b259e3da639f687a34e16d238e78c77d9a`
+passed all 620 tests (205.724 s; no failures/errors/skips), direct and nested
+boundaries, twelve standalone lifecycle controls, the complete original CPU
+pipeline and actual outer-deadline collector recovery. Interrupted coverage is
+one received, one interrupted and 34 NOT_RUN, without retries. Independently
+verified 242 archive members, 24 source hashes and all 220 members inside eleven
+CPU result archives. Read `docs/small-model-precheck-cpu-20261026.json`.
+The first two failed native runs and all local full-suite environment failures
+remain retained. The corrected earlier boundary probe is the only changed file
+among the prior 21 source hashes; 20 remain identical, as do all 13 scientific/
+runtime sources, five preparation artifacts and all 36 tiny-random CPU outputs.
+The local watcher and loopback provider establish no remote/provider resilience.
+Draft #35 remains unmerged. Actual GPU minimum, full pretrained inference,
+training and Augnes transfer are NOT RUN. Remote watcher deployment, new payload
+provider bootstrap/transport and fresh resource/quote/balance plus authorization
+remain paid-launch gates. No paid allocation or old-permit reuse occurred.
+
 ## Current research priority (2026-10-26)
 
 The owner explicitly requested **GPU 실행 환경 검증과 실제 모델 기준 성능 측정 준비**.

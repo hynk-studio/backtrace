@@ -5,8 +5,9 @@ Refs [BT-001](https://github.com/hynk-studio/backtrace/issues/1).
 
 The [pre-minimum preparation](small-model-precheck-20261026.md) separates the
 next hardware-only checkpoint from the unchanged 36-request pretrained baseline.
-Outer time/export/cleanup and effective memory mechanisms are prepared on free
-CPU. Actual GPU execution and the new provider/distributed launch gate remain
+Outer time/export/cleanup and effective memory mechanisms passed free native
+qualification: 620 tests and 14 operational cases, with all eleven CPU export
+archives independently verified. Actual GPU execution and the new provider/distributed launch gate remain
 unqualified; no consumed permit is reused.
 
 ## Objective and priority
