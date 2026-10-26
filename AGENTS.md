@@ -2,6 +2,23 @@
 
 ## Current research priority (2026-10-26)
 
+The owner instructed **계속해서 진행해**. Current work is
+`bt-001-small-model-runtime-20261026`, stacked on Draft #31 at
+`764a30465d01fba994a64e3d592c6e45a9b37711`, for one new Draft PR. Read
+`docs/small-model-readiness-20261026.md`. Pin official E2B/E4B metadata,
+tokenizers, runtime closure and bounded development inputs. All 11,520 actual
+tokenization assignments fit the proposed input ceiling; no pretrained model
+has run. Explicit full-wrapper to text-model key mapping fixes the observed
+random-initialization failure in the tiny random CPU checkpoint probe. This is
+not pretrained save/reload or a training result. Keep GPU installation, actual
+weight loading, isolated inference/evaluation runner and hardware measurements
+unqualified until separately implemented and checked. Conditional USD 1 / 3,000 s
+smoke limits are a proposal, not a live quote, current balance or paid permit.
+Preserve the incomplete local full-suite log and qualify the exact new source
+on native Linux. No paid launch, Augnes write, merge or issue closure.
+
+### Previous temporal and prompt preparation
+
 The owner again instructed **다음 단계 진행하자**. Current work is
 `bt-001-temporal-baseline-20261026`, stacked on Draft #30 at
 `31d02bb9826889deb8f188fa0e0e1562d436295f`, for a new Draft PR. Read
