@@ -32,7 +32,13 @@ CPU loading probes. The [CPU collector](docs/small-model-runner-20261026.md)
 connects isolated raw-token generation, durable output collection and the exact
 evaluators. Its [native qualification](docs/small-model-runner-cpu-20261026.json)
 passed 592 tests and explicit random/authored/failure-recovery controls. Actual pretrained loading,
-GPU isolation/installation and memory/throughput measurements remain unqualified.
+NVIDIA device/kernel qualification and GPU memory/throughput measurements remain unqualified.
+The [CUDA preparation](docs/small-model-gpu-20261026.md) now adds explicit device
+checks, no-fallback CUDA execution and a fixed baseline plan. Its free CUDA-build
+installation/CPU compatibility qualification passed 604 native tests, the exact
+56-package CUDA install, CPU controls and missing-GPU rejection. The
+[receipt](docs/small-model-gpu-cpu-20261026.json) keeps this separate from physical
+GPU kernel/driver and pretrained measurements.
 Training, adapter save/reload and Augnes integration are **NOT RUN**.
 
 The [latest coding pilot](docs/research-reduced9-execution-20261026.md) attempted

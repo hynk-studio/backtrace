@@ -2,6 +2,35 @@
 
 ## Current research priority (2026-10-26)
 
+The owner explicitly requested **GPU 실행 환경 검증과 실제 모델 기준 성능 측정 준비**.
+Work on `bt-001-small-model-gpu-20261026`, stacked on Draft #33 at
+`aeb06af108a348c32422954c172b634c0bd5959e`, with one new Draft PR. Install and
+verify the pinned CUDA package closure on free CPU, implement fail-closed GPU
+device/runtime checks and prepare the original bounded pretrained baseline.
+Preserve the scientific sources, runtime locks, old receipts and consumed paid
+scopes. Distinguish CUDA-package CPU compatibility checks from real GPU kernel,
+driver/device isolation, full pretrained loading and performance measurements.
+No GPU is currently exposed to this Work environment. Do not allocate paid
+hardware, run a pretrained model, train, merge, close #1 or modify Augnes.
+Complete exact-source native Linux qualification and retain failed attempts.
+
+Native run 40335270281 at `2ea31a8b5f17684a6c82f2452cf3072d42f8329a`
+passed all 604 tests without failures/errors/skips, the complete CPU collector
+controls, all 56 CUDA wheels (3,606,157,908 bytes), fresh offline CUDA installation
+and native-library resolution. The CUDA build then passed CPU oracle/random
+controls, a real character-device bind, namespace/parent-loss checks and actual
+missing-GPU worker rejection. CPU/CUDA builds used identical tiny random
+checkpoint bytes and produced identical CPU raw outputs. Read
+`docs/small-model-gpu-cpu-20261026.json`: all 109 archive members, 74 inner run
+files and 21 source hashes were checked. The generated baseline plan matches
+native bytes. Local full-suite failure remains recorded separately. Draft #34
+remains unmerged. Actual NVIDIA devices/kernels, full pretrained weights and
+performance, GPU-context interruption, training and Augnes transfer are NOT RUN.
+The outer provider lifecycle, fresh resource/quote/balance and hardware
+qualification remain prerequisites for a separately authorized paid attempt.
+
+### Previous isolated CPU collector
+
 The owner next instructed **다음 단계 진행하자**. Work on
 `bt-001-small-model-runner-20261026`, stacked on Draft #32 at
 `5ad61b43d1cda581e7651c7def9aaea88f5c461b`, with one new Draft PR. Read

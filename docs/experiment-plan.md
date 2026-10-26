@@ -12,7 +12,7 @@ new held-out families, repeated seeds and a separate Augnes transfer assessment.
 | Stage | Next result | Status |
 | --- | --- | --- |
 | A0 | Goal and input/output contract | Documented; no capability result |
-| A1 | Expanded teacher, frozen evaluation/rubrics and development baselines | CPU evaluators, fixed prompts/runtime and isolated collector qualified with random/authored controls; pretrained baselines, GPU connection, broader E2/real-language transfer, power analysis and final sealing pending |
+| A1 | Expanded teacher, frozen evaluation/rubrics and development baselines | CPU instruments and CUDA-package CPU compatibility qualified; pretrained baselines, physical GPU/outer lifecycle, broader E2/real-language transfer, power analysis and final sealing pending |
 | A2 | Actual tiny update, save/reload, resource measurements | NOT RUN |
 | A3 | Controlled E2B/E4B training and confirmatory evaluation | NOT RUN |
 | A4 | Augnes time-cutoff replay, prospective shadow cases and device validation | NOT RUN |
@@ -37,7 +37,14 @@ both models. The [CPU collector](small-model-runner-20261026.md) now connects
 isolated generation, raw output preservation and evaluation with authored and
 tiny random controls. Native run 40328552441 passed 592 tests, both 36-request
 controls and actual timeout/crash/coordinator-death recovery; all random fixture
-responses were INVALID_OUTPUT, not evidence of task competence. Actual pretrained loading and GPU isolation/measurements
+responses were INVALID_OUTPUT, not evidence of task competence. The
+[CUDA preparation](small-model-gpu-20261026.md) adds package-install verification,
+explicit device checks/resource measurement and a fixed original-smoke baseline
+plan. Native run 40335270281 passed 604 tests, all 56 CUDA-wheel/install checks,
+CPU oracle/random controls and missing-GPU rejection. Free CPU compatibility of
+CUDA packages does not qualify physical hardware or an allocation-inclusive
+provider lifecycle.
+Actual pretrained loading and GPU isolation/measurements
 remain required. Preparing or tokenizing
 5,760 requests per backbone is not running them or authorizing that grid.
 Kaggle is optional, and extending the historical coding campaign is deferred.
