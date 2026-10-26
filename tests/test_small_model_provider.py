@@ -18,7 +18,7 @@ class ProviderTests(unittest.TestCase):
             with self.subTest(method=method),self.assertRaises(ValueError):api.request(method,'/pods')
 
     def test_invalid_costs(self):
-        for value in ('NaN','Infinity','-1',True):
+        for value in ('NaN','Infinity','-1',True,None,''):
             with self.subTest(value=value),self.assertRaises(ValueError):p.money(value)
 
     def test_quote_budget_and_null_filtered_summaries(self):
@@ -36,6 +36,24 @@ class ProviderTests(unittest.TestCase):
         for field,value in (('supportPublicIp',False),('availableGpuCounts',[2]),('stockStatus','None')):
             saved=price[field];price[field]=value
             self.assertFalse(p.quote(gpu,'EU-RO-1',read)['stock_eligible']);price[field]=saved
+
+    def test_nullable_unavailable_price_is_not_zero_or_affordable_stock(self):
+        gpu={'id':'NVIDIA A40','memoryInGb':48}
+        price={'uninterruptablePrice':None,'minMemory':None,'minVcpu':None,'stockStatus':'None'}
+        result=p.quote(gpu,'EU-RO-1',lambda *a:{'gpuTypes':[dict(gpu,secureCloud=True,lowestPrice=price)]})
+        self.assertFalse(result['stock_eligible'])
+        self.assertEqual(result['pricing_status'],'UNAVAILABLE_NULL_COMPUTE_PRICE')
+        self.assertNotIn('compute_within_proposal',result)
+
+    def test_partial_account_survives_later_read_failure(self):
+        result={}
+        def read(source):
+            if 'myself' in source:return {'myself':{'clientBalance':3,'currentSpendPerHr':0,'isAutoPayEnabled':False}}
+            raise RuntimeError('catalog unavailable')
+        with self.assertRaises(RuntimeError):p.inspect(read=read,report=result)
+        self.assertEqual(result['account']['credit_balance_usd'],'3')
+        self.assertEqual(result['status'],'INCOMPLETE')
+        self.assertEqual(result['stage'],'CATALOG_READ')
 
     def test_mismatched_quote_rejected(self):
         with self.assertRaises(ValueError):
