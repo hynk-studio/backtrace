@@ -1,5 +1,31 @@
 # Backtrace working agreement
 
+## Provider connection and remote observation (2026-10-27 KST)
+
+The owner requested **공급자 환경 연결 검증, 원격 감시 프로세스 배포,
+최신 요금·잔액 확인**. Work on `bt-001-small-model-provider-20261027`, stacked
+on Draft #35 at `c048ec313e5e6cf20dc0b802efa48f336854b46d`, with one new Draft PR.
+This permits authenticated provider reads and a bounded independent read-only
+remote watcher deployment. Preserve all previous operational/scientific files,
+receipts, consumed claims and branch heads. Use only a new source-scoped free
+state branch `bt-001-small-model-provider-state-20261027`. No paid resource,
+GPU minimum, pretrained inference/training, account setting change, recurring
+monitor, merge, issue closure or Augnes write. This instruction supersedes the
+earlier no-remote-deployment preparation boundary only for this bounded scope.
+
+Qualify fresh TLS/SSH material and the new byte-bound precheck payload inside
+the unchanged digest-pinned image. Probe its actual non-GPU prerequisites under
+default OCI settings; do not silently grant privileged mode, expose host cgroups
+or relax the earlier isolation/memory requirements. Account/API connectivity and
+exact-image bridge transport do not establish Runpod network/NAT/capabilities.
+Deploy owner and watcher as separate native workflows, require exact source/run/
+boot identities and observe real heartbeat cessation across GitHub CAS state.
+No paid target exists: observer deployment is not an armed deletion controller.
+Keep the original GPU launch gate disabled until the actual execution environment
+and a source/resource-bound independent cleanup controller are qualified.
+Run and retain full local/native suites; read-only account snapshots are dated,
+not stock reservations or permits. See `docs/small-model-provider-20261027.md`.
+
 ## Current preparation scope (2026-10-26)
 
 The owner requested **최소검증 전까지 진행해**. Work on
