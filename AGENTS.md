@@ -967,3 +967,17 @@ credit does not grant another paid allocation. No automatic retry, training,
 merge, issue closure or submission. Free trace analysis/prospective design may
 continue while preserving these outcomes; changed operational sources require
 renewed qualification, and a new paid attempt requires new owner authorization.
+
+The unpaid follow-up is in
+`docs/research-reduced9-timeout-analysis-20261026.md`, with the synchronized
+status in `docs/experiment-plan.md`. It inspects retained traces without
+another model or provider run. The proposed shared 210/270-second checkpoint and
+90-second finalization reserve are a future versioned candidate only; original
+nine outcomes, prompt archives, allowances, qualified operational source and
+consumed permit stay fixed. Do not
+select only the seven missing slots for a retrospective rescue or assume a
+five-minute timeout was caused solely by API latency. The original conservative
+nine-slot USD4.30 ceiling is no longer funded by the observed USD3.0795030588
+balance while retaining the USD0.50 reserve. Future changed operational bytes
+need new complete free qualification; another paid allocation needs a newly
+bounded affordable scope and separate owner authorization.

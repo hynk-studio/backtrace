@@ -138,6 +138,10 @@ prospective changes while preserving these outcomes. Operational changes require
 renewed qualification; another paid attempt requires new owner authorization.
 R3 remains separate and does not depend on a positive R2 result.
 
+The subsequent unpaid [timeout review and prospective comparison note](research-reduced9-timeout-analysis-20261026.md)
+inspects the retained traces. Its proposed common-arm checkpoint is not part of
+this executed source or a retrospective change to these nine results.
+
 All 61 pre-task branch heads and 12 pre-existing free-state metadata blobs were
 preserved. The only changed existing branches are this review and the reduced
 state branch. New observation/start/watch branches belong to this accepted scope.
