@@ -945,3 +945,25 @@ pair to export, both independent deletion receipts, free CPU evaluation and fina
 account evidence. Do not create another allocation, reset the claim or rerun paid
 workflows. The previous unconsumed/no-stock checkpoint no longer describes this
 scope. All existing budget/scientific limits and protected history remain in force.
+
+
+Final reduced-nine actual execution: owner40248465278 is INCOMPLETE, watcher
+40248422989 succeeded, and both independently proved deletion of0a5nl1huxm2vmz.
+All nine real-model slots were attempted;189 forwarded HTTP requests reconciled.
+Two original submitted patches were evaluated after both deletions: requests R1
+failed8 tests; requests R2 passed207 with13 inherited skips. R2's original patch
+was submitted before the300-second limit and preserved despite a later timeout.
+Seven slots had no submission and remain NOT_EVALUATED. Preserve raw statuses
+7 TIMEOUT/1 COMPLETED/1 INCOMPLETE; all eight non-completed sessions retain the
+five-minute timeout error. Do not relabel missing patches as failed tests or infer
+general R2 superiority. No effect estimate was computed.
+Owner audit verified152 retained/163 exported records,182 source hashes and8
+actual JUnit files. Both deletion receipts precede CPU evaluation. Independent
+final account observation40254160991 found zero Pods/spend, autopay off and
+USD3.0795030588; additional costUSD1.9142661298, cumulativeUSD6.9204969412.
+All61 protected heads and12 old free-state blobs remain unchanged. Read the final
+execution record and results JSON. This authorization is consumed; remaining
+credit does not grant another paid allocation. No automatic retry, training,
+merge, issue closure or submission. Free trace analysis/prospective design may
+continue while preserving these outcomes; changed operational sources require
+renewed qualification, and a new paid attempt requires new owner authorization.

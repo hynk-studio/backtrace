@@ -1,9 +1,11 @@
 # Reduced nine-slot pilot
 
-Execution continuation: the accepted allocation is now consumed and running.
-See [the actual execution record](research-reduced9-execution-20261026.md) for
-current owner/watch identities and status. The no-stock/unconsumed statements
-below describe the earlier free-qualification checkpoint.
+Execution continuation: the accepted allocation is consumed and deleted. Nine
+real-model slots were attempted; one submitted patch passed, one failed and seven
+were not submitted, so the pilot remains INCOMPLETE. See
+[the actual execution record](research-reduced9-execution-20261026.md) for verified
+outcomes, USD1.9142661298 spend and USD3.0795030588 final balance. The no-stock and
+unconsumed statements below describe the earlier free-qualification checkpoint.
 
 Owner instruction: **축소안으로 진행하자**. One new attempt is authorized after
 free qualification and a fresh account/stock check; there is no top-up or paid retry.
