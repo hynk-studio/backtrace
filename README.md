@@ -23,8 +23,13 @@ CPU instruments and controls, not model-performance results. The
 snapshots and paired JSON/controlled-English B0/B1 development prompts. It reuses
 the same 800 episodes and 40 families, rather than adding independent cases.
 A1 remains partial pending model baselines, missing-model construction, real
-language transfer, power analysis and final test sealing. Model identities,
-tokenization, runtime and execution limits still need qualification.
+language transfer, power analysis and final test sealing. The
+[runtime preparation](docs/small-model-readiness-20261026.md) pins official
+E2B/E4B revisions and a hash-locked CPU environment, checks all 11,520 actual
+tokenization assignments, and prepares 36-request smoke / 288-request screening
+scopes across both models. Explicit checkpoint key mapping passes tiny random
+CPU loading probes. Actual pretrained loading, a bounded isolated inference
+runner, GPU installation and memory/throughput measurements remain unqualified.
 Training, adapter save/reload and Augnes integration are **NOT RUN**.
 
 The [latest coding pilot](docs/research-reduced9-execution-20261026.md) attempted

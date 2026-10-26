@@ -1,0 +1,62 @@
+name: Small model tokenizer and loading readiness CPU checks
+
+on:
+  push:
+    branches: [bt-001-small-model-runtime-20261026]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: small-model-readiness-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  cpu:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      TOKENIZERS_PARALLELISM: 'false'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Full native Linux suite and CPU preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p evidence .local
+          python_path="$(command -v python3)"
+          sudo "$python_path" -m unittest discover -s tests -v 2>&1 | tee evidence/cpu-tests.log
+          "$python_path" tools/backtrace.py preflight | tee evidence/preflight.json
+          git diff --check
+      - name: Acquire hash-locked CPU wheels and install offline
+        run: |
+          python -m venv .local/runtime
+          .local/runtime/bin/python -m pip download --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cpu -r docs/small-model-cpu-requirements.txt -d .local/wheels > evidence/dependency-download.log 2>&1
+          .local/runtime/bin/python -m pip install --no-index --find-links .local/wheels --require-hashes -r docs/small-model-cpu-requirements.txt > evidence/dependency-install.log 2>&1
+          .local/runtime/bin/python -m pip check > evidence/dependency-check.txt
+      - name: Acquire metadata only and reconstruct qualified input packets
+        run: |
+          python -m tools.small_model_readiness acquire .local/model-sources > evidence/source-acquisition.json
+          python -m tools.small_model_readiness rebuild-packets .local/packets > evidence/packet-reconstruction.json
+      - name: Verify real tokenizers and tiny random loading layouts offline
+        env:
+          HF_HUB_OFFLINE: '1'
+        run: |
+          .local/runtime/bin/python -m tools.small_model_readiness random-layout-probe .local/model-sources .local/random-layout > evidence/random-layout.json
+          .local/runtime/bin/python -m tools.small_model_readiness tokenize .local/model-sources .local/packets .local/tokenization.json > evidence/tokenization-summary.json
+          cp .local/tokenization.json evidence/tokenization-cases.json
+          python -m tools.small_model_readiness prepare-scope .local/packets .local/tokenization.json .local/smoke --scope smoke > evidence/smoke-scope.json
+          python -m tools.small_model_readiness prepare-scope .local/packets .local/tokenization.json .local/screening --scope screening > evidence/screening-scope.json
+      - name: Preserve qualification evidence without weights or prompts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: small-model-readiness-${{ github.sha }}-${{ github.run_attempt }}
+          path: evidence/
+          retention-days: 14
+          if-no-files-found: error

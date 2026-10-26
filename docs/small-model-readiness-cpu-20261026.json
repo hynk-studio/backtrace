@@ -1,0 +1,660 @@
+{
+  "additional_qualified_source_hashes": {
+    ".github/workflows/small-model-readiness-cpu.yml": "40db2887559c9974745bf9566e24d560565468232cfcaa523e1a850d4a142711",
+    "tests/test_small_model_readiness.py": "b3d4a25d10cd1e5889f4417309f79be1266097248e2eefa34c9aeca433ac7714"
+  },
+  "artifact": {
+    "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12640353622/zip",
+    "created_at": "2026-10-26T09:49:18Z",
+    "digest": "sha256:95b75bd93e74eed060711cb81123cf40c14f270d36452c7fd98b5bda86f1b276",
+    "expired": false,
+    "expires_at": "2026-11-09T09:49:17Z",
+    "id": 12640353622,
+    "name": "small-model-readiness-47f89819e89743b73363fa208035f1c781891221-1",
+    "size_in_bytes": 1362435,
+    "updated_at": "2026-10-26T09:49:18Z",
+    "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12640353622",
+    "verified_members": {
+      "cpu-tests.log": {
+        "bytes": 97917,
+        "sha256": "d09a05abfdc689d337ce4e0cb7a0e8d763efcf199525875c4eeca4c90908c83b"
+      },
+      "dependency-check.txt": {
+        "bytes": 30,
+        "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+      },
+      "dependency-download.log": {
+        "bytes": 10906,
+        "sha256": "166914f57981146efdad6c9f5a643c54d55c825a7f08c6f61b93d3c498b05dad"
+      },
+      "dependency-install.log": {
+        "bytes": 5824,
+        "sha256": "d37a06770f6e9acffa3fdf721caf7426070cb68b1db2baab8374eda4043a9a70"
+      },
+      "packet-reconstruction.json": {
+        "bytes": 230,
+        "sha256": "de4f939cbf71aecefd1269ff178f658df213385ee23189f20aef8af4ba2db8ee"
+      },
+      "preflight.json": {
+        "bytes": 167,
+        "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+      },
+      "random-layout.json": {
+        "bytes": 639,
+        "sha256": "dde34fcbc57e27f03226889470a6ccfccd510a18c40e9422d5bd3b8fe7a7beed"
+      },
+      "screening-scope.json": {
+        "bytes": 3826,
+        "sha256": "43d4eb96660fb77c98aac7218c15197c40bd69f50697ec92d17041264c074797"
+      },
+      "smoke-scope.json": {
+        "bytes": 4535,
+        "sha256": "eeaa7759ff4093bc6b600b0ab08a77a8346cec15649fe0c90d2aa053c610f678"
+      },
+      "source-acquisition.json": {
+        "bytes": 214,
+        "sha256": "c0fac68eee8b9c5f0f54537b0a35772f79112340a86eb986b9f6101a18ab4577"
+      },
+      "tokenization-cases.json": {
+        "bytes": 3762679,
+        "sha256": "a46dade619cf0b8cdf3bf6168a13913b4156e92642f7d730b745640fccadde20"
+      },
+      "tokenization-summary.json": {
+        "bytes": 5589,
+        "sha256": "36458eb4b8999755a322e1110282880e2724c5241c4e4dd1452979e4ccfda282"
+      }
+    },
+    "verified_sha256": "95b75bd93e74eed060711cb81123cf40c14f270d36452c7fd98b5bda86f1b276",
+    "workflow_run": {
+      "head_branch": "bt-001-small-model-runtime-20261026",
+      "head_repository_id": 1393671873,
+      "head_sha": "47f89819e89743b73363fa208035f1c781891221",
+      "id": 40301835535,
+      "repository_id": 1393671873
+    }
+  },
+  "base_sha": "764a30465d01fba994a64e3d592c6e45a9b37711",
+  "draft_pr": "https://github.com/hynk-studio/backtrace/pull/32",
+  "interpretation": "CPU tokenization, input-scope preparation and tiny random layout loading evidence only; not pretrained task performance, training benefit, calibrated uncertainty or deployment fit.",
+  "local": {
+    "artifacts": {
+      ".local/small-model-acquisition-check.log": {
+        "bytes": 214,
+        "sha256": "c0fac68eee8b9c5f0f54537b0a35772f79112340a86eb986b9f6101a18ab4577"
+      },
+      ".local/small-model-focused-release.log": {
+        "bytes": 3455,
+        "sha256": "b2874ec25db8e9f745aca630c1c3d1b14ea521b1e97546205a98f1af34cbd80f"
+      },
+      ".local/small-model-full-tests.log": {
+        "bytes": 83871,
+        "sha256": "cb783f4f0b89b83cddda66ddaf02ab3362230c5bce1afdff47093764034ac798"
+      },
+      ".local/small-model-gpu-resolve.json": {
+        "bytes": 544992,
+        "sha256": "5dab1dcd9ec26bf1a7de3d2abb168d0c0b0fb3a6b8a42c20fcf980a934673352"
+      },
+      ".local/small-model-offline-install.log": {
+        "bytes": 6434,
+        "sha256": "b01b1f04efb0a09b2c104a0d75b6777229df0d36512428d7d8cba05f86f13b80"
+      },
+      ".local/small-model-preflight-release.json": {
+        "bytes": 167,
+        "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+      },
+      ".local/small-model-random-layout-1.log": {
+        "bytes": 4995,
+        "sha256": "8767b0a436f9f43035f25ff5c4bb101e7894d54bebecd1b22cf255ff83f797d4"
+      },
+      ".local/small-model-random-layout-1/failed.json": {
+        "bytes": 37,
+        "sha256": "8243487bf5563ca721ffaddef8f3de847d4042f9f906b304de502db267bf7cf9"
+      },
+      ".local/small-model-random-layout-2.log": {
+        "bytes": 1397,
+        "sha256": "cf7645e60eb737ae304ecec1575e11c39b79d258b41573be1f07c38e295ace8e"
+      },
+      ".local/small-model-random-layout-2/report.json": {
+        "bytes": 431,
+        "sha256": "def0f71b07e3ab12253a2aa1c3fe21aae40a1287f23333b06f71b50d742424f5"
+      },
+      ".local/small-model-tokenization-release.json": {
+        "bytes": 3762679,
+        "sha256": "a46dade619cf0b8cdf3bf6168a13913b4156e92642f7d730b745640fccadde20"
+      }
+    },
+    "focused_tests": {
+      "seconds": 6.456,
+      "status": "PASS",
+      "tests": 21
+    },
+    "full_suite": {
+      "completed_test_count": null,
+      "exit_code": 1,
+      "final_unittest_summary_present": false,
+      "last_line": "test_readiness_deadline_without_health (test_startup_guard.StartupGuardTests.test_readiness_deadline_without_health) ... ",
+      "note": "Existing pip-fixture and startup/procfs test failures are visible, but the final exception summary is absent. Do not infer a full-suite result or silently replace this attempt with native success.",
+      "observed_nonpassing_lines": [
+        "test_private_ssh_mask_reproduces_failure_and_workload_exec_restores_read_access (test_cloud_worker_permissions.WorkloadPermissionsTests.test_private_ssh_mask_reproduces_failure_and_workload_exec_restores_read_access) ... skipped 'real root Linux with mapped workload UID/GID required'",
+        "test_real_offline_replacement_survives_force_reinstall (test_linux_runtime.LinuxRuntimeTests.test_real_offline_replacement_survives_force_reinstall) ... ERROR",
+        "test_real_offline_resolver_failure_rolls_back_environment (test_linux_runtime.LinuxRuntimeTests.test_real_offline_resolver_failure_rolls_back_environment) ... ERROR",
+        "test_actual_unprivileged_git_patch_roundtrip (test_pod_system.SystemPackagesTests.test_actual_unprivileged_git_patch_roundtrip) ... skipped 'actual mapped root Linux with harness utilities required'",
+        "test_real_venv_is_seeded_offline_from_the_frozen_wheel (test_prepayment_job.VenvSeedTests.test_real_venv_is_seeded_offline_from_the_frozen_wheel) ... ERROR",
+        "test_private_umask_does_not_block_agent_workspace_or_expose_credentials (test_research_entry.ContractTests.test_private_umask_does_not_block_agent_workspace_or_expose_credentials) ... skipped 'requires the production native PID/UID host'",
+        "test_linux_group_observation_does_not_launch_ps (test_startup_guard.GroupCleanupTests.test_linux_group_observation_does_not_launch_ps) ... ERROR",
+        "  test_observation_failure_still_kills_and_reaps_owned_process (test_startup_guard.GroupCleanupTests.test_observation_failure_still_kills_and_reaps_owned_process) (persistent=False) ... ERROR",
+        "  test_observation_failure_still_kills_and_reaps_owned_process (test_startup_guard.GroupCleanupTests.test_observation_failure_still_kills_and_reaps_owned_process) (persistent=True) ... ERROR",
+        "test_fatal_during_health_wins (test_startup_guard.StartupGuardTests.test_fatal_during_health_wins) ... FAIL",
+        "test_harmless_recoverable_and_quoted (test_startup_guard.StartupGuardTests.test_harmless_recoverable_and_quoted) ... ERROR",
+        "test_kill_fallback_and_idempotent_cleanup (test_startup_guard.StartupGuardTests.test_kill_fallback_and_idempotent_cleanup) ... ERROR"
+      ],
+      "status": "INCOMPLETE_FAILED",
+      "terminal_cause": "NOT_ESTABLISHED_FROM_RETAINED_LOG"
+    },
+    "initial_random_layout_probe": {
+      "error": "ValueError",
+      "observation": "Full-wrapper model.language_model keys were not mapped to text model keys; loading reported missing/unexpected weights and newly initialized text parameters.",
+      "pretrained_weights_loaded": false,
+      "retained_log_tail": "                | MISSING    | \nmodel.layers.{0...34}.layer_scalar                                     | MISSING    | \nmodel.layers.{0...34}.input_layernorm.weight                           | MISSING    | \nmodel.layers.{0...34}.mlp.up_proj.weight                               | MISSING    | \nmodel.layers.{0...34}.mlp.down_proj.weight                             | MISSING    | \nmodel.layers.{0...34}.self_attn.q_proj.weight                          | MISSING    | \nmodel.layers.{0...34}.post_per_layer_input_norm.weight                 | MISSING    | \nmodel.layers.{0...34}.self_attn.o_proj.weight                          | MISSING    | \nmodel.layers.{0...34}.mlp.gate_proj.weight                             | MISSING    | \nmodel.per_layer_model_projection.weight                                | MISSING    | \nmodel.layers.{0...34}.per_layer_projection.weight                      | MISSING    | \nmodel.embed_tokens_per_layer.weight                                    | MISSING    | \nmodel.layers.{0...14}.self_attn.v_proj.weight                          | MISSING    | \nmodel.layers.{0...14}.self_attn.k_norm.weight                          | MISSING    | \nmodel.norm.weight                                                      | MISSING    | \nlm_head.weight                                                         | MISSING    | \nmodel.embed_tokens.weight                                              | MISSING    | \nmodel.per_layer_projection_norm.weight                                 | MISSING    | \n\nNotes:\n- UNEXPECTED:\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\n- MISSING:\tthose params were newly initialized because missing from the checkpoint. Consider training on your downstream task.\nsmall model readiness failed: ValueError\n",
+      "status": "FAIL_RANDOM_LAYOUT_ONLY"
+    }
+  },
+  "local_native_byte_identical": [
+    "tokenization-cases.json",
+    "tokenization-summary.json",
+    "source-acquisition.json",
+    "smoke-scope.json",
+    "screening-scope.json",
+    "preflight.json"
+  ],
+  "native_job_id": 121501336919,
+  "native_linux": {
+    "packet_reconstruction": {
+      "assigned_per_packet": 1440,
+      "baseline_manifest_sha256": "85baaa61e09623d2ff06dcfbbc54906d2f22130808dc4b0cf1ec731075bce4c0",
+      "packet_files": 4,
+      "solver_called": false,
+      "status": "PASS_QUALIFIED_INPUT_RECONSTRUCTION"
+    },
+    "preflight": {
+      "dependencies": "standard library only",
+      "local_tooling": "READY",
+      "official_validator": "NOT RUN",
+      "python": "3.12.14",
+      "r0_clean_packaging": "NOT RUN"
+    },
+    "random_layout": {
+      "models": {
+        "E2B": {
+          "double_wide_mlp": true,
+          "generated_tokens": 2,
+          "kv_shared_layers": 20,
+          "layers": 35,
+          "logits_max_abs_difference": 0.0,
+          "pretrained_weights_loaded": false,
+          "status": "PASS_RANDOM_LAYOUT_ONLY",
+          "training_performed": false
+        },
+        "E4B": {
+          "double_wide_mlp": false,
+          "generated_tokens": 2,
+          "kv_shared_layers": 18,
+          "layers": 42,
+          "logits_max_abs_difference": 0.0,
+          "pretrained_weights_loaded": false,
+          "status": "PASS_RANDOM_LAYOUT_ONLY",
+          "training_performed": false
+        }
+      },
+      "status": "PASS_RANDOM_LAYOUT_ONLY"
+    },
+    "screening_scope": {
+      "execution_limits_proposal": null,
+      "files": {
+        "B0-json.jsonl": {
+          "bytes": 310828,
+          "records": 72,
+          "sha256": "cb10884b7a3685f02805fec2f8e6db2ab3dc831265adf90e37cd83095a88b03a"
+        },
+        "B1-json.jsonl": {
+          "bytes": 354100,
+          "records": 72,
+          "sha256": "fbd5b39c3e290aab3f1f9ac2e2cd63bf615993bfd8c245b1f1741eb239efcf43"
+        }
+      },
+      "generation": {
+        "batch_size": 1,
+        "do_sample": false,
+        "enable_thinking": false,
+        "eos_token_ids": [
+          1,
+          106,
+          50
+        ],
+        "max_input_tokens": 12288,
+        "max_new_tokens": 4096,
+        "num_beams": 1,
+        "pad_token_id": 0,
+        "retries": 0,
+        "tools": false
+      },
+      "gpu_run_authorized": false,
+      "input_tokens_per_model": {
+        "E2B": 154468,
+        "E4B": 154468
+      },
+      "interpretation": "descriptive pilot; one episode per family, not a powered confirmation",
+      "max_output_tokens_per_model": 589824,
+      "missing_or_failed_assigned_cases": "retained in denominator; no retries or replacement cases",
+      "model_loading": {
+        "attention_implementation": "sdpa",
+        "device_map": {
+          "": "cuda:0"
+        },
+        "key_mapping": {
+          "^model\\.language_model\\.": "model."
+        },
+        "missing_or_shape_mismatched_text_weights": "FAIL; never accept random initialization",
+        "model_class": "Gemma4ForCausalLM",
+        "precision": "bfloat16",
+        "silent_quantization_or_offload": false,
+        "unexpected_weights": "only declared non-text towers and documented shared-KV redundant tensors"
+      },
+      "models": {
+        "E2B": {
+          "repo_id": "google/gemma-4-E2B-it",
+          "revision": "3e22461f65e89153144f8adb70e3b8c2cc9845a7"
+        },
+        "E4B": {
+          "repo_id": "google/gemma-4-E4B-it",
+          "revision": "ee0ef6023621cff504d758262d4e04895a5af4a2"
+        }
+      },
+      "remaining_gates": [
+        "actual checkpoint load and GPU peak/throughput",
+        "isolated inputs-only runtime",
+        "fresh resource/price/balance check and bounded owner authorization if paid"
+      ],
+      "requests_per_model": 144,
+      "runtime_isolation": "NOT_PROVEN",
+      "scope": "screening",
+      "selection_rule": "SHA-ordered development families, variant 0, all nine views; no outcome selection",
+      "source_hashes": {
+        "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+        "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+        "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+        "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+        "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+        "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+        "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+        "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+        "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+        "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+        "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+        "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+        "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+      },
+      "split": "development",
+      "status": "PREPARED_NOT_GPU_QUALIFIED",
+      "tokenization_report_sha256": "a46dade619cf0b8cdf3bf6168a13913b4156e92642f7d730b745640fccadde20",
+      "total_requests": 288,
+      "version": "small-model-development-scope-v1"
+    },
+    "smoke_scope": {
+      "execution_limits_proposal": {
+        "allocation_inclusive_wall_seconds": 3000,
+        "automatic_second_allocation": false,
+        "billing_requirement": "Fresh quote including minimum billing quantum and fees must fit compute <=0.90 and all charges <=1.00 USD; otherwise do not launch.",
+        "fresh_balance_reserve_usd_for_future_proposal": "0.50",
+        "max_allocated_gpus": 1,
+        "max_compute_charges_usd_for_future_proposal": "0.90",
+        "max_compute_hourly_usd_for_future_proposal": 1,
+        "max_other_charges_usd_for_future_proposal": "0.10",
+        "max_total_usd_for_future_proposal": 1,
+        "minimum_gpu_memory_gib_candidate": 24,
+        "models_sequential": true,
+        "paid_authorization": false,
+        "price_and_balance_status": "NOT_REFRESHED; these are conditional caps, not provider quotes"
+      },
+      "files": {
+        "B0-json.jsonl": {
+          "bytes": 39083,
+          "records": 9,
+          "sha256": "8012c5a5c36d9114c575473aa1c67a030c4697984243561381bff6b82f87d7e7"
+        },
+        "B1-json.jsonl": {
+          "bytes": 44492,
+          "records": 9,
+          "sha256": "113bf91fa81c611661180113ee78d13443bedb86cee59267a5f7994109d70949"
+        }
+      },
+      "generation": {
+        "batch_size": 1,
+        "do_sample": false,
+        "enable_thinking": false,
+        "eos_token_ids": [
+          1,
+          106,
+          50
+        ],
+        "max_input_tokens": 12288,
+        "max_new_tokens": 4096,
+        "num_beams": 1,
+        "pad_token_id": 0,
+        "retries": 0,
+        "tools": false
+      },
+      "gpu_run_authorized": false,
+      "input_tokens_per_model": {
+        "E2B": 19301,
+        "E4B": 19301
+      },
+      "interpretation": "implementation/throughput probe",
+      "max_output_tokens_per_model": 73728,
+      "missing_or_failed_assigned_cases": "retained in denominator; no retries or replacement cases",
+      "model_loading": {
+        "attention_implementation": "sdpa",
+        "device_map": {
+          "": "cuda:0"
+        },
+        "key_mapping": {
+          "^model\\.language_model\\.": "model."
+        },
+        "missing_or_shape_mismatched_text_weights": "FAIL; never accept random initialization",
+        "model_class": "Gemma4ForCausalLM",
+        "precision": "bfloat16",
+        "silent_quantization_or_offload": false,
+        "unexpected_weights": "only declared non-text towers and documented shared-KV redundant tensors"
+      },
+      "models": {
+        "E2B": {
+          "repo_id": "google/gemma-4-E2B-it",
+          "revision": "3e22461f65e89153144f8adb70e3b8c2cc9845a7"
+        },
+        "E4B": {
+          "repo_id": "google/gemma-4-E4B-it",
+          "revision": "ee0ef6023621cff504d758262d4e04895a5af4a2"
+        }
+      },
+      "remaining_gates": [
+        "actual checkpoint load and GPU peak/throughput",
+        "isolated inputs-only runtime",
+        "fresh resource/price/balance check and bounded owner authorization if paid"
+      ],
+      "requests_per_model": 18,
+      "runtime_isolation": "NOT_PROVEN",
+      "scope": "smoke",
+      "selection_rule": "SHA-ordered development families, variant 0, all nine views; no outcome selection",
+      "source_hashes": {
+        "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+        "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+        "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+        "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+        "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+        "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+        "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+        "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+        "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+        "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+        "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+        "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+        "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+      },
+      "split": "development",
+      "status": "PREPARED_NOT_GPU_QUALIFIED",
+      "tokenization_report_sha256": "a46dade619cf0b8cdf3bf6168a13913b4156e92642f7d730b745640fccadde20",
+      "total_requests": 36,
+      "version": "small-model-development-scope-v1"
+    },
+    "source_acquisition": {
+      "lock_sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+      "models": [
+        "E2B",
+        "E4B"
+      ],
+      "pretrained_weights_downloaded": false,
+      "status": "PASS_METADATA_AND_TOKENIZERS"
+    },
+    "tokenization_summary": {
+      "assignments": 11520,
+      "baseline_manifest_sha256": "85baaa61e09623d2ff06dcfbbc54906d2f22130808dc4b0cf1ec731075bce4c0",
+      "cpu_packages": {
+        "Jinja2": "3.1.6",
+        "MarkupSafe": "3.0.4",
+        "PyYAML": "6.0.3",
+        "Pygments": "2.21.0",
+        "accelerate": "1.15.0",
+        "annotated-doc": "0.0.5",
+        "anyio": "4.15.1",
+        "click": "8.5.0",
+        "filelock": "4.2.4",
+        "fsspec": "2026.9.0",
+        "h11": "0.16.0",
+        "hf-xet": "1.7.0",
+        "httpcore2": "2.16.0",
+        "httpx2": "2.16.0",
+        "huggingface_hub": "2.3.0",
+        "idna": "3.20",
+        "markdown-it-py": "4.2.0",
+        "mdurl": "0.1.2",
+        "mpmath": "1.3.0",
+        "networkx": "3.6.1",
+        "numpy": "2.5.4",
+        "packaging": "26.3",
+        "pip": "25.0.1",
+        "psutil": "7.2.2",
+        "regex": "2026.9.29",
+        "rich": "15.0.0",
+        "safetensors": "0.8.0",
+        "setuptools": "78.1.0",
+        "shellingham": "1.5.4",
+        "sympy": "1.14.0",
+        "tokenizers": "0.23.3",
+        "torch": "2.13.0+cpu",
+        "tqdm": "4.70.1",
+        "transformers": "5.20.2",
+        "truststore": "0.10.5",
+        "typer": "0.27.3",
+        "typing_extensions": "4.16.0"
+      },
+      "generation": {
+        "batch_size": 1,
+        "do_sample": false,
+        "enable_thinking": false,
+        "eos_token_ids": [
+          1,
+          106,
+          50
+        ],
+        "max_input_tokens": 12288,
+        "max_new_tokens": 4096,
+        "num_beams": 1,
+        "pad_token_id": 0,
+        "retries": 0,
+        "tools": false
+      },
+      "gpu_qualification": "NOT_RUN",
+      "models": {
+        "E2B": {
+          "bf16_text_weight_bytes_lower_bound": 9257138688,
+          "gpu_memory_measured": false,
+          "mapped_text_tensor_shapes_verified": 541,
+          "max_position_embeddings": 131072,
+          "model_class": "Gemma4ForCausalLM",
+          "pretrained_weights_loaded": false,
+          "redundant_shared_kv_tensors": 60,
+          "tensor_values_verified": false,
+          "text_parameter_count_meta": 4628569344
+        },
+        "E4B": {
+          "bf16_text_weight_bytes_lower_bound": 14926026752,
+          "gpu_memory_measured": false,
+          "mapped_text_tensor_shapes_verified": 666,
+          "max_position_embeddings": 131072,
+          "model_class": "Gemma4ForCausalLM",
+          "pretrained_weights_loaded": false,
+          "redundant_shared_kv_tensors": 54,
+          "tensor_values_verified": false,
+          "text_parameter_count_meta": 7463013376
+        }
+      },
+      "overflow": 0,
+      "pretrained_model_evaluation": "NOT_RUN",
+      "runtime_isolation": "NOT_PROVEN",
+      "source_hashes": {
+        "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+        "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+        "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+        "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+        "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+        "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+        "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+        "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+        "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+        "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+        "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+        "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+        "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+      },
+      "status": "PASS_TOKENIZATION_ONLY",
+      "summaries": {
+        "E2B": {
+          "B0-controlled_text.jsonl": {
+            "count": 1440,
+            "max": 1462,
+            "min": 781,
+            "overflow": 0,
+            "p50": 1119,
+            "p95": 1393,
+            "p99": 1437,
+            "sum": 1649902
+          },
+          "B0-json.jsonl": {
+            "count": 1440,
+            "max": 1288,
+            "min": 693,
+            "overflow": 0,
+            "p50": 1021,
+            "p95": 1250,
+            "p99": 1271,
+            "sum": 1469086
+          },
+          "B1-controlled_text.jsonl": {
+            "count": 1440,
+            "max": 1561,
+            "min": 880,
+            "overflow": 0,
+            "p50": 1218,
+            "p95": 1492,
+            "p99": 1536,
+            "sum": 1792462
+          },
+          "B1-json.jsonl": {
+            "count": 1440,
+            "max": 1387,
+            "min": 792,
+            "overflow": 0,
+            "p50": 1120,
+            "p95": 1349,
+            "p99": 1370,
+            "sum": 1611646
+          }
+        },
+        "E4B": {
+          "B0-controlled_text.jsonl": {
+            "count": 1440,
+            "max": 1462,
+            "min": 781,
+            "overflow": 0,
+            "p50": 1119,
+            "p95": 1393,
+            "p99": 1437,
+            "sum": 1649902
+          },
+          "B0-json.jsonl": {
+            "count": 1440,
+            "max": 1288,
+            "min": 693,
+            "overflow": 0,
+            "p50": 1021,
+            "p95": 1250,
+            "p99": 1271,
+            "sum": 1469086
+          },
+          "B1-controlled_text.jsonl": {
+            "count": 1440,
+            "max": 1561,
+            "min": 880,
+            "overflow": 0,
+            "p50": 1218,
+            "p95": 1492,
+            "p99": 1536,
+            "sum": 1792462
+          },
+          "B1-json.jsonl": {
+            "count": 1440,
+            "max": 1387,
+            "min": 792,
+            "overflow": 0,
+            "p50": 1120,
+            "p95": 1349,
+            "p99": 1370,
+            "sum": 1611646
+          }
+        }
+      }
+    }
+  },
+  "native_run": {
+    "conclusion": "success",
+    "created_at": "2026-10-26T09:44:05Z",
+    "head_sha": "47f89819e89743b73363fa208035f1c781891221",
+    "html_url": "https://github.com/hynk-studio/backtrace/actions/runs/40301835535",
+    "id": 40301835535,
+    "run_attempt": 1,
+    "status": "completed",
+    "updated_at": "2026-10-26T09:49:22Z"
+  },
+  "random_layout_local_native_equal": true,
+  "recorded_at": "2026-10-26T09:52:17.348195+00:00",
+  "remaining": {
+    "a1": "PARTIAL",
+    "augnes_transfer_and_deployment": "NOT_RUN",
+    "bounded_inference_output_collector_and_evaluator_connection": "NOT_IMPLEMENTED_OR_QUALIFIED",
+    "cuda_installation_and_hardware": "NOT_RUN",
+    "fresh_quote_and_balance": "NOT_REFRESHED",
+    "inputs_only_os_isolation": "NOT_PROVEN",
+    "kaggle": "OPTIONAL_UNDECIDED",
+    "measured_gpu_peak_and_throughput": "NOT_RUN",
+    "paid_execution_authorized": false,
+    "pretrained_model_inference": "NOT_RUN",
+    "pretrained_weight_value_verification": "NOT_RUN",
+    "training_and_adapter_save_reload": "NOT_RUN"
+  },
+  "source_hashes": {
+    "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+    "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+    "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+    "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+    "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+    "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+    "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+    "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+    "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+    "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+    "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+    "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+    "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+  },
+  "source_sha": "47f89819e89743b73363fa208035f1c781891221",
+  "source_tree": "1dcd2678648a0ff8cd012f6afabdc07d3f833035",
+  "status": "PASS_CPU_READINESS_ONLY",
+  "test_result": {
+    "errors": 0,
+    "failures": 0,
+    "seconds": 165.761,
+    "skips": 0,
+    "tests": 575
+  },
+  "version": "small-model-readiness-cpu-receipt-v1"
+}
