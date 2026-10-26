@@ -1,5 +1,29 @@
 # Backtrace working agreement
 
+## Current research priority (2026-10-26)
+
+The owner clarified that reliable evaluation of a small abductive specialist,
+with potential Augnes use, takes priority over a quick training demo. Follow
+`docs/small-abductive-model-plan-20261026.md` and the current section of
+`docs/experiment-plan.md`. E2B/E4B are candidates; Kaggle is optional. This
+decision authorizes the research-plan update and free preparation, not paid
+training or Augnes product writes. The immediate next implementation is the
+evaluation/data contract; no training result exists. Use strong prompting and
+matched general-reasoning training controls, sealed family/episode splits and
+replicated confirmation. Treat the existing teacher's 48 exposed questions as
+development fixtures. Distinguish supplied-model inference from new hypothesis
+construction, temporal transfer and real Augnes usefulness.
+
+This priority supersedes the historical coding-first sequence below, not its
+evidence or consumed authorizations. Preserve all old scientific/operational
+bytes and actual paid/watch heads. Research train/save/reload and deployment
+validation are independent of the optional Kaggle attachment gate. Plan changes
+are docs-only; implementation needs its own source-bound checks and bounded
+execution scope. Work in Backtrace and use a new issue-scoped Draft PR for this
+plan update, stacked on Draft #28. Do not merge or close #1.
+
+## Standing agreement and historical execution records
+
 Backtrace is independent research, not Augnes product development. Work only in
 this repository. Read current origin, branch/base/head, status, issue and PRs
 before modifying or publishing. Preserve unrelated changes; never force-push.

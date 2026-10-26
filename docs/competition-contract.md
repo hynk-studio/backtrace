@@ -1,5 +1,13 @@
 # Competition contract: acquired sources and checked R0-clean package
 
+Current-priority note, 2026-10-26: the
+[small-model research plan](small-abductive-model-plan-20261026.md) makes Kaggle
+an optional later transfer decision. This document records the earlier acquired
+31B contract and starter, not a renewed E2B/E4B executable contract. Reacquire
+the current organizer model list, starter and adapter-loading rules before
+implementing a small-model competition submission. Historical artifact versions
+and verified requirements below must not be silently applied to new variants.
+
 Bootstrap inspection: 2026-09-28 UTC. Artifact follow-up: 2026-09-29 UTC.
 The guide, starter and harness packages are now acquired; official CPU checks
 pass separately on the original starter and the generated R0-clean archive.

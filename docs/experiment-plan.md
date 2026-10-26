@@ -1,10 +1,36 @@
-# Bounded research sequence
+# Backtrace research sequence
 
-Question: does specialist post-training in logical/abductive inference, Bayesian
-belief revision and decision-relevant inspection improve resolved software tasks
-under a matched total inference budget?
+## Current priority: specialist capability and potential Augnes use
 
-## Current evidence, 26 October 2026 KST
+On 26 October the owner clarified that rapid completion is not the objective.
+The first objective is reliable evidence of a small abductive model's capability,
+with potential Augnes deployment considered during evaluation. Follow the
+[small-model plan](small-abductive-model-plan-20261026.md): E2B and E4B are
+candidates, with strong prompt and matched general-reasoning training controls,
+new held-out families, repeated seeds and a separate Augnes transfer assessment.
+
+| Stage | Next result | Status |
+| --- | --- | --- |
+| A0 | Goal and input/output contract | Documented; no capability result |
+| A1 | Expanded teacher, frozen evaluation/rubrics and development baselines | Next implementation; NOT RUN |
+| A2 | Actual tiny update, save/reload, resource measurements | NOT RUN |
+| A3 | Controlled E2B/E4B training and confirmatory evaluation | NOT RUN |
+| A4 | Augnes time-cutoff replay, prospective shadow cases and device validation | NOT RUN |
+| A5 | Independent adoption and Kaggle-submission decisions | NOT DECIDED |
+
+The current 24 training plus 24 evaluation examples are development fixtures,
+not sufficient confirmatory evidence. They supply the model and hypotheses and
+do not yet test open hypothesis construction. Small-model training, deployment
+and transfer remain unmeasured. Implement the evaluator before judging learning.
+Kaggle is optional, and extending the historical coding campaign is deferred.
+The new training path does not depend on positive R2 results or Kaggle attachment.
+
+The sections below preserve the original question, evidence and procedures:
+does specialist post-training improve resolved software tasks under a matched
+inference budget? Historical execution/qualification and consumed paid scopes
+are not changed by the new priority.
+
+## Preserved coding-pilot evidence, 26 October 2026 KST
 
 The [reduced nine-slot execution](research-reduced9-execution-20261026.md) used
 one qualified A100 allocation at source `a8ae2765e9b57a408be3e3930b3a69a977601535`.
@@ -78,7 +104,7 @@ this slice. Historical receipts and consumed authorizations remain unchanged.
 | R2 | R1 plus hypotheses, forward predictions, evidence revision and useful-inspection guidance | Reduced pilot: 3 attempted, 1 pre-timeout submitted resolved patch, 1 confirmed resolution; no treatment effect estimate. |
 | R3 | R2 runtime plus a specialist post-trained adapter | Exact teacher prepared; adapter training, save/reload and runtime attachment NOT RUN. |
 
-## 1. Matched coding pilot
+## 1. Matched coding pilot — deferred transfer track
 
 Use [matched-comparison.md](matched-comparison.md) and its machine-readable
 [protocol](research-comparison-protocol.json). The runtime lock binds the actual
@@ -178,10 +204,11 @@ and optimizer data. No real competition examples or leaderboard feedback become
 training labels. Exact synthetic competence and real software-engineering
 transfer are separate outcomes.
 
-## 3. Adapter feasibility and training controls — later work
+## 3. Historical competition-adapter feasibility and training controls
 
-R2 need not outperform R1 before a small, explicitly budgeted R3 feasibility
-experiment. Promptability and learnability are different hypotheses. First
+For this deferred competition track, R2 need not outperform R1 before a small,
+explicitly budgeted R3 feasibility experiment. Promptability and learnability
+are different hypotheses. First
 verify the exact trainable checkpoint, tokenizer/template and adapter target
 modules, one tiny training step, save/reload and attachment to the competition
 runtime. An inference-quantized model is not assumed directly trainable; a PEFT

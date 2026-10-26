@@ -1,31 +1,30 @@
 # Backtrace
 
-Current work: [matched R0/R1/R2 preparation](docs/matched-comparison.md) and a
-[small exact CPU teacher](docs/exact-teacher.md), following the owner's
-2026-10-24 instruction to proceed with research steps 1 and 2.
+Current priority, 2026-10-26: **establish whether a small specialist model learns
+useful abductive inference, with potential Augnes use in view**. Speed of the
+first training run is not the research objective. E2B and E4B are candidates;
+Kaggle submission is an optional later decision.
 
-The [last real-model diagnostic](docs/verified-gpu-20261024.md) completed in
-196.630 seconds with 27 charged tools and 29 model calls. Its exact submitted
-patch passed four public tests, and server/worker/provider cleanup completed.
-The task had already been inspected, so this is an execution reference, not a
-held-out score or evidence of a causal improvement. Its missing final-edit
-recheck remains a process flag despite passing the external tests.
+The [small-model plan](docs/small-abductive-model-plan-20261026.md) separates
+exact synthetic inference, hypothesis construction, temporal/textual transfer
+and Augnes case evaluation. Compare specialist training with strong prompting
+and matched general-reasoning training within each model size. Require unseen
+problem families, repeated seeds, uncertainty and measured deployment cost.
+See the [overall sequence](docs/experiment-plan.md) for current priorities.
 
-The new comparison freezes that runtime and builds separate R0/R1/R2 candidates
-with the same five-minute/30-tool allowance. Historical R1 v2 already contained
-some hypothesis guidance; the new R1 is an explicitly defined generic-review
-control. The exact teacher generates rational probability, logic and inspection
-value labels with structurally separated train/evaluation worlds. See the
-[current evidence report](docs/research-preparation-20261024.md) for actual
-selection, tests and remaining gates. The completed free CPU run passed all 419
-Linux tests, selected six primary tasks and six reserves across three repositories,
-and reproduced 24 train plus 24 evaluation questions with exact labels.
-No new model execution, training, paid
-allocation or competition submission follows from this CPU preparation.
+The [CPU teacher](docs/exact-teacher.md) has 24 training and 24 evaluation
+questions with exact labels. It receives a declared model and candidate
+hypotheses; these are development fixtures, not evidence of learned abduction.
+Training, adapter save/reload and Augnes integration are **NOT RUN**. The next
+implementation is expanded data and a frozen evaluation contract.
 
-Does post-training logical/abductive inference, Bayesian belief revision, and
-selection of useful inspections improve Gemma's software-engineering performance
-under a matched inference budget?
+The [latest coding pilot](docs/research-reduced9-execution-20261026.md) attempted
+nine R0/R1/R2 slots. Two original patches were submitted and evaluated; one
+resolved its task, seven slots had no submission, and the pilot is INCOMPLETE.
+The [trace analysis](docs/research-reduced9-timeout-analysis-20261026.md) and
+all original outcomes remain preserved. This is not a training-effect estimate.
+Both cleanup proofs passed and its paid permit is consumed. The original
+[matched comparison](docs/matched-comparison.md) is now a deferred transfer track.
 
 ## Historical setup milestones
 
@@ -171,10 +170,11 @@ See [competition contract](docs/competition-contract.md),
 [source manifest](docs/source-manifest.json), [experiment plan](docs/experiment-plan.md),
 and [verification report](docs/verification.md).
 
-Current non-goals: Augnes integration, a central model, a general formal prover,
-training pipeline, RL campaign or new agent hierarchy. The small finite teacher
-and matched-prompt preparation are now implemented; transfer and adapter learning
-remain untested. All earlier paid attempts are consumed. The human controls
-merges, new paid execution and competition submissions.
+Current scope is small-model research preparation and evaluation design.
+Training implementation is planned; product integration, a central model, a
+general formal prover, RL campaign and new agent hierarchy are not implemented
+by this change. Transfer and adapter learning remain untested. All earlier paid
+attempts are consumed. The human controls merges, new paid execution and
+competition submissions.
 No repository license has been selected. Third-party code, weights and data are
 not included.

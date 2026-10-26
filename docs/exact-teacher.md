@@ -1,5 +1,13 @@
 # Exact finite-world CPU teacher
 
+Priority update, 2026-10-26: this implementation is the starting instrument for
+the [small abductive-model plan](small-abductive-model-plan-20261026.md).
+Its existing 48 exposed questions are development fixtures. It supplies the
+probability model and candidate hypotheses, so success here alone cannot show
+novel hypothesis construction, long-horizon inspection or Augnes usefulness.
+The new evaluation/data expansion is planned, not implemented in this document.
+The historical generation and CPU results below remain unchanged.
+
 This implements the small teacher proposed in [the experiment plan](experiment-plan.md).
 It generates structured reasoning questions and exact reference answers without
 calling a model, using a competition task, or starting training. It is a local

@@ -1,5 +1,11 @@
 # A matched R0/R1/R2 pilot prepared on CPU
 
+Priority update, 2026-10-26: the
+[small abductive-model plan](small-abductive-model-plan-20261026.md) is now the
+primary research track. Extending this coding pilot is deferred; it is not a
+prerequisite for specialist training. Preserve this protocol and its original
+outcomes as a possible later transfer instrument.
+
 Status update, 26 October 2026 KST: the separately amended
 [reduced nine-slot pilot](research-reduced9-execution-20261026.md) attempted the
 first selected task from each of the three repositories under all three arms.
