@@ -17,6 +17,18 @@ smoke limits are a proposal, not a live quote, current balance or paid permit.
 Preserve the incomplete local full-suite log and qualify the exact new source
 on native Linux. No paid launch, Augnes write, merge or issue closure.
 
+Native CPU run 40301835535 at 47f89819e89743b73363fa208035f1c781891221
+passed all 575 tests without failures/errors/skips, preflight, fresh offline
+hash-locked installation, public metadata/header acquisition, exact input
+reconstruction, both random loading probes, all 11,520 tokenization assignments
+and both bounded scopes. Artifact digest, all 12 members and 15 source-file
+hashes were verified. Local/native tokenization, scopes, acquisition and
+preflight bytes match; random probe results match. Read
+`docs/small-model-readiness-cpu-20261026.json`. Draft #32 remains unmerged.
+The next free step is a bounded input-only inference/output collector connected
+to the evaluator, with isolated runtime and failure/deadline qualification.
+Do not turn this CPU receipt or its conditional caps into a paid launch permit.
+
 ### Previous temporal and prompt preparation
 
 The owner again instructed **다음 단계 진행하자**. Current work is

@@ -158,14 +158,26 @@ creates the exact venv, hash-checks wheel acquisition, installs offline and runs
 the full Linux suite, preflight, metadata acquisition, byte-exact reconstruction,
 both random probes, all tokenization assignments and both scopes. Its artifact
 contains summaries, hashes and token IDs' digests, not weights or raw prompts.
-Native results are pending at the implementation commit.
+Native run [40301835535](https://github.com/hynk-studio/backtrace/actions/runs/40301835535),
+attempt 1, passed at source `47f89819e89743b73363fa208035f1c781891221`, tree
+`1dcd2678648a0ff8cd012f6afabdc07d3f833035`: all **575 tests**, no failures,
+errors or skips, followed by every preparation step above. Artifact 12640353622
+has verified SHA-256
+`95b75bd93e74eed060711cb81123cf40c14f270d36452c7fd98b5bda86f1b276`.
+All 12 archive members and 15 qualified source hashes were checked. Actual
+tokenization cases/summaries, both bounded scopes, acquisition and preflight
+were byte-identical locally and on native Linux; random loading results matched.
+The [verified CPU receipt](small-model-readiness-cpu-20261026.json) binds these
+results and preserves earlier local failures. Its follow-up commit changes
+documentation only; it does not claim a new source execution.
 
 Local focused tests: 21 passed. The local full-suite attempt exited 1 without a
 final unittest summary; its retained log ends during the existing startup-guard
-tests and includes existing pip-fixture/procfs-namespace failures. It is
+tests and shows failures/errors in pip-fixture and startup/procfs checks. The
+terminal cause is not established from that log. It is
 INCOMPLETE/FAILED, not a pass or an asserted complete 575-test result. Preflight,
 actual offline installation, corrected random probes and full tokenization
-passed independently. Native qualification is recorded separately when complete.
+passed independently. Native qualification above remains a separate result.
 
 ## Primary-source provenance and limits
 
