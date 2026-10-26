@@ -1,5 +1,10 @@
 # Reduced nine-slot pilot
 
+Execution continuation: the accepted allocation is now consumed and running.
+See [the actual execution record](research-reduced9-execution-20261026.md) for
+current owner/watch identities and status. The no-stock/unconsumed statements
+below describe the earlier free-qualification checkpoint.
+
 Owner instruction: **축소안으로 진행하자**. One new attempt is authorized after
 free qualification and a fresh account/stock check; there is no top-up or paid retry.
 This branch is stacked on Draft #27, whose final head is

@@ -934,3 +934,14 @@ quotes, reset a consumed claim, automatically repeat a paid allocation, merge,
 close #1, submit or train. All nine actual model slots are NOT_RUN. No stock polling
 automation was created. Preserve the qualified182 operational bytes if adding
 result documentation; operational changes need renewed exact-source qualification.
+
+The owner then instructed **진행하자**. The accepted reduced-nine scope is now
+consumed in attempt `2d987dffb06f4446819c0c6feaafd432`, EU-RO-1 Pod
+`0a5nl1huxm2vmz`, owner40248465278 and watcher40248422989, both at qualified
+sourcea8ae2765e9b57a408be3e3930b3a69a977601535. Read
+docs/research-reduced9-execution-20261026.md. The 09:43 KST checkpoint is actual
+workload RUNNING, with outcomes and deletion still unverified. Continue this exact
+pair to export, both independent deletion receipts, free CPU evaluation and final
+account evidence. Do not create another allocation, reset the claim or rerun paid
+workflows. The previous unconsumed/no-stock checkpoint no longer describes this
+scope. All existing budget/scientific limits and protected history remain in force.
