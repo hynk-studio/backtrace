@@ -29,14 +29,18 @@ jobs:
           mkdir -p evidence .local
           if ! command -v bwrap >/dev/null; then sudo apt-get update && sudo apt-get install -y bubblewrap; fi
           python_path="$(command -v python3)"
-          sudo "$python_path" - <<'PY' > evidence/early-boundary.json 2> evidence/early-boundary-stderr.log
+          runtime_root="$(mktemp -d /tmp/backtrace-cpu-runtime-XXXXXX)"
+          chmod 755 "$runtime_root"
+          "$python_path" -m venv "$runtime_root"
+          echo "BACKTRACE_CPU_RUNTIME=$runtime_root" >> "$GITHUB_ENV"
+          sudo "$python_path" - "$runtime_root/bin/python" <<'PY' > evidence/early-boundary.json 2> evidence/early-boundary-stderr.log
           import json,sys
           from pathlib import Path
           from tools.small_model_runner_probe import boundary_probe
           root=Path('.local/runner-early').resolve(); root.mkdir(mode=0o700)
           for kind in ('sources','models'):
               (root/kind/'E2B').mkdir(mode=0o700,parents=True)
-          print(json.dumps(boundary_probe(Path(sys.executable),root/'sources',root/'models',root/'boundaries'),sort_keys=True))
+          print(json.dumps(boundary_probe(Path(sys.argv[1]),root/'sources',root/'models',root/'boundaries'),sort_keys=True))
           PY
       - name: Full native Linux suite and CPU preflight
         run: |
@@ -51,19 +55,18 @@ jobs:
           sudo apt-get update > evidence/os-install.log 2>&1
           sudo apt-get install -y bubblewrap >> evidence/os-install.log 2>&1
           bwrap --version > evidence/bubblewrap-version.txt
-          python -m venv .local/runtime
-          .local/runtime/bin/python -m pip download --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cpu -r docs/small-model-cpu-requirements.txt -d .local/wheels > evidence/dependency-download.log 2>&1
-          .local/runtime/bin/python -m pip install --no-index --find-links .local/wheels --require-hashes -r docs/small-model-cpu-requirements.txt > evidence/dependency-install.log 2>&1
-          .local/runtime/bin/python -m pip check > evidence/dependency-check.txt
+          "$BACKTRACE_CPU_RUNTIME/bin/python" -m pip download --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cpu -r docs/small-model-cpu-requirements.txt -d .local/wheels > evidence/dependency-download.log 2>&1
+          "$BACKTRACE_CPU_RUNTIME/bin/python" -m pip install --no-index --find-links .local/wheels --require-hashes -r docs/small-model-cpu-requirements.txt > evidence/dependency-install.log 2>&1
+          "$BACKTRACE_CPU_RUNTIME/bin/python" -m pip check > evidence/dependency-check.txt
       - name: Reconstruct and verify original development inputs
         run: |
           python -m tools.small_model_readiness acquire .local/model-sources > evidence/source-acquisition.json
           python -m tools.small_model_readiness rebuild-packets .local/packets > evidence/packet-reconstruction.json
-          HF_HUB_OFFLINE=1 .local/runtime/bin/python -m tools.small_model_readiness tokenize .local/model-sources .local/packets .local/tokenization.json > evidence/tokenization-summary.json
+          HF_HUB_OFFLINE=1 "$BACKTRACE_CPU_RUNTIME/bin/python" -m tools.small_model_readiness tokenize .local/model-sources .local/packets .local/tokenization.json > evidence/tokenization-summary.json
           python -m tools.small_model_readiness prepare-scope .local/packets .local/tokenization.json .local/smoke --scope smoke > evidence/smoke-scope.json
       - name: Actual isolated random-model and authored-control path
         run: |
-          runtime_python="$(pwd)/.local/runtime/bin/python"
+          runtime_python="$BACKTRACE_CPU_RUNTIME/bin/python"
           sudo env HF_HUB_OFFLINE=1 TOKENIZERS_PARALLELISM=false "$runtime_python" -m tools.small_model_runner_probe .local/model-sources .local/packets .local/tokenization.json .local/smoke .local/runner-qualification > evidence/runner-summary.json 2> evidence/runner-stderr.log
       - name: Preserve bounded results without inputs or model weights
         if: always()

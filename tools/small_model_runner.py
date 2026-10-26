@@ -188,6 +188,20 @@ def snapshot_assets(model,tokenizer,job,script,*,probe=False):
         shutil.rmtree(root);raise
 
 
+def require_worker_traversal(directory):
+    """bwrap resolves bind sources after switching to the fixed namespace UID.
+
+    Never relax private ancestor permissions. Install trusted runtime assets in
+    a dedicated traversable directory instead of beneath private research data.
+    """
+    directory=Path(directory).absolute()
+    for path in (directory,*directory.parents):
+        info=path.stat()
+        shift=6 if info.st_uid==65532 else 3 if info.st_gid==65532 else 0
+        if not path.is_dir() or not (info.st_mode >> shift)&1:
+            raise ValueError('runtime bind source is not traversable by worker: '+str(path))
+
+
 def jail_command(python, model, tokenizer, job, *, script=WORKER, probe=None):
     """Empty mount tree, explicit read-only assets, private PID/network/user namespaces."""
     if sys.platform != 'linux' or os.geteuid() != 0 or not shutil.which('bwrap'):
@@ -197,6 +211,8 @@ def jail_command(python, model, tokenizer, job, *, script=WORKER, probe=None):
     # This is a trusted, already hash-qualified interpreter, never model input.
     prefix = subprocess.check_output([str(python), '-I', '-c', 'import sys; print(sys.base_prefix)'],
                                      timeout=10, env={'PATH':'/usr/bin:/bin'}).decode().strip()
+    require_worker_traversal(runtime)
+    require_worker_traversal(prefix)
     command = [shutil.which('bwrap'), '--unshare-user', '--unshare-pid', '--unshare-net',
         '--unshare-ipc', '--unshare-uts', '--disable-userns', '--die-with-parent', '--new-session',
         '--uid','65532','--gid','65532','--cap-drop','ALL','--clearenv',

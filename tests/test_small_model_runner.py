@@ -124,6 +124,16 @@ class LocalTests(unittest.TestCase):
         (model/'config.json').unlink();(model/'config.json').symlink_to(job)
         with self.assertRaises(ValueError):run.snapshot_assets(model,tokenizer,job,script)
 
+    def test_runtime_private_parent_is_rejected_without_chmod(self):
+        with tempfile.TemporaryDirectory(prefix='backtrace-runtime-test-') as name:
+            parent=Path(name);parent.chmod(0o700)
+            runtime=parent/'runtime';runtime.mkdir(mode=0o755)
+            with self.assertRaisesRegex(ValueError,'not traversable'):
+                run.require_worker_traversal(runtime)
+            self.assertEqual(parent.stat().st_mode&0o777,0o700)
+            parent.chmod(0o755)
+            run.require_worker_traversal(runtime)
+
     def test_prepared_scope_matches_published_inputs_and_rejects_tampering(self):
         # Full prompt byte reconstruction is separately covered by readiness;
         # exercise every actual smoke field and its fixed paired schedule here.

@@ -28,6 +28,21 @@ and disabled nested user namespaces bound the worker. The coordinator is trusted
 root on native Linux. This is a concrete input-isolation policy, not a claim to
 resist a malicious host/kernel. No GPU device nodes are exposed.
 
+Approved asset files are copied into a disposable, traversable staging directory
+and mounted read-only. This resolves the observed namespace-UID/private-parent
+permission conflict without changing source or evaluator directory permissions.
+The allowlist contains public model/tokenizer files, the fixed worker and a job
+configuration; it excludes prompts, labels and credentials. Normal cleanup
+removes these copies. The parent-loss qualification supervisor removes registered
+copies after proving the worker namespace is gone. An independently killed
+unsupervised coordinator may leave these non-secret copies until host cleanup;
+process termination and file cleanup are distinct properties.
+
+The approved Python environment is installed in a dedicated traversable runtime
+directory outside the private research tree. Its wheel installation remains
+hash-locked. The launcher rejects private runtime ancestors without changing
+their permissions, and the early native probe uses this same runtime path.
+
 The worker re-tokenizes every input and requires the exact prior count and token
 digest. It loads offline without remote code, rejects missing/mismatched text
 weights and preserves the full output-token sequence. The coordinator decodes
@@ -54,7 +69,7 @@ handling and explicit deadline cleanup are tested with detached descendants.
 
 ## Evaluation and evidence separation
 
-Only after the worker closes does the trusted evaluator generate references for
+For model outputs, only after the worker closes does the trusted evaluator generate references for
 the already selected development inputs. Both static and temporal scorers keep
 their original bytes and complete episode groupings. The report contains fixed
 assignment-denominator scores and separate received-only case metrics. Missing
@@ -86,7 +101,7 @@ runtime offline, acquires pinned tokenizer/header metadata, reconstructs and
 re-tokenizes the existing inputs, then executes:
 
 ```sh
-sudo env HF_HUB_OFFLINE=1 TOKENIZERS_PARALLELISM=false .local/runtime/bin/python -m tools.small_model_runner_probe .local/model-sources .local/packets .local/tokenization.json .local/smoke .local/runner-qualification
+sudo env HF_HUB_OFFLINE=1 TOKENIZERS_PARALLELISM=false "$BACKTRACE_CPU_RUNTIME/bin/python" -m tools.small_model_runner_probe .local/model-sources .local/packets .local/tokenization.json .local/smoke .local/runner-qualification
 ```
 
 Use a fresh output directory. The coordinator must have native namespace
@@ -107,7 +122,24 @@ out-of-range per-layer overrides from the full configuration; removing those
 fixture-only overrides allowed both random checkpoints to be created. The
 next local attempt stopped at namespace setup (a required procfs namespace path
 was absent); a direct shell probe also reported NETLINK_ROUTE permission denied.
-Neither ran isolated inference. The local focused suite passed 15 tests.
+Neither ran isolated inference. The initial local focused suite passed 15 tests;
+the final focused suite, including asset exclusion and runtime-ancestor permission
+regressions, is checked separately. The local full suite attempted 590 tests with 5 failures,
+10 errors and 4 skips in existing pip-fixture/startup/procfs checks; it remains
+a failed local result.
+
+Initial native run 40323532972 at
+`84039d08438280958b060d9d5109a143fd476605` passed all 590 tests and preparation,
+then failed before the boundary worker entered. Its artifact omitted the inner
+boundary log; that diagnostic gap was corrected. The early diagnostic run
+40324725974 at `4a49ebfe6144567d7d0e8533e9271d87fc86a964` retained the precise
+mount-source Permission denied error. Asset staging fixed that failure, and the
+corrected native boundary precheck passed. Run 40326406879 at
+`8ab6dae167221d976fcd0213ffdb21ecfb7c66c3` then passed 591 tests and preparation,
+but the real runtime beneath private `.local` failed with the same permission
+class. The runtime is now installed outside that private tree, with an explicit
+early traversal check and same-runtime boundary probe. These failed runs do not
+establish a completed inference path.
 Local full-suite and exact-source native results are recorded separately in the
 final evidence receipt; native qualification is pending at this implementation
 commit. These failures are not replaced with a claim that the Work environment
