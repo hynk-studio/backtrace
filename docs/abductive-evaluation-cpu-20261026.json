@@ -1,0 +1,262 @@
+{
+  "artifact_files": {
+    "audit.json": "e6d87544d36a68f36e259f76699a2f9f279cbaeafefafb34c0924d4876f932a5",
+    "controls.json": "bb9829f2561ba3d001d3d031d25157eca91628f759164b34360903902fb67ead",
+    "cpu-tests.log": "01075e10dc553d2dd7444d8e942c9aaa3da3235d9e533c907bebfdcd3a83835a",
+    "generation.json": "fe36225ef52b76afcbf05c6566c2611b6d98e791ad931e694b073ea138ac6623",
+    "input-export.json": "4068f1306c2c907e6171bc7e67f1380a47c45c6b0be701a802210be8801192a2",
+    "preflight.json": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f",
+    "training-export.json": "f453c157fe69468f3816d64fcfbd287a22a8969ebc56729a1382d27786c7a0ce"
+  },
+  "artifact_id": 12632093738,
+  "artifact_sha256": "6e119fe943bc2edab78e40b37ac5967eaba268e7436b0fe69751c88b5fe1b498",
+  "augnes_integration": "NOT_RUN",
+  "confirmatory_ready": false,
+  "controls": {
+    "development": {
+      "assigned": 800,
+      "missing": "PASS",
+      "model_result": false,
+      "oracle": "PASS",
+      "oracle_revision_pairs": {
+        "duplicate_invariance": {
+          "episodes": 160,
+          "error_rate": 0.0
+        },
+        "revision_direction": {
+          "episodes": 156,
+          "error_rate": 0.0
+        }
+      }
+    },
+    "reserved": {
+      "assigned": 2000,
+      "missing": "PASS",
+      "model_result": false,
+      "oracle": "PASS",
+      "oracle_revision_pairs": {
+        "duplicate_invariance": {
+          "episodes": 400,
+          "error_rate": 0.0
+        },
+        "revision_direction": {
+          "episodes": 380,
+          "error_rate": 0.0
+        }
+      }
+    },
+    "train": {
+      "assigned": 1200,
+      "missing": "PASS",
+      "model_result": false,
+      "oracle": "PASS",
+      "oracle_revision_pairs": {
+        "duplicate_invariance": {
+          "episodes": 240,
+          "error_rate": 0.0
+        },
+        "revision_direction": {
+          "episodes": 232,
+          "error_rate": 0.0
+        }
+      }
+    }
+  },
+  "exports": {
+    "input-export.json": {
+      "file": {
+        "bytes": 2302048,
+        "records": 2000,
+        "sha256": "ebf414d69e5ba356d272d9f854fbdb49886b42fa238a4960db43c17709c05697"
+      },
+      "kind": "inputs_only",
+      "runtime_isolation": "NOT_PROVEN_BY_FILE_EXPORT",
+      "source_manifest_sha256": "acefa4d565377fad628f164fef15f8dda712d4e81d7397424e55748a4012073a",
+      "split": "reserved"
+    },
+    "training-export.json": {
+      "file": {
+        "bytes": 2044373,
+        "records": 1200,
+        "sha256": "9d45faedfa74c56822e333b5a361d3f70bf29057ec34245a5a3b7e9d6babef5c"
+      },
+      "kind": "training",
+      "runtime_isolation": "NOT_PROVEN_BY_FILE_EXPORT",
+      "source_manifest_sha256": "acefa4d565377fad628f164fef15f8dda712d4e81d7397424e55748a4012073a",
+      "split": "train"
+    }
+  },
+  "full_tests": {
+    "errors": 0,
+    "failed": 0,
+    "run": 533,
+    "skipped": 0
+  },
+  "generation": {
+    "audit": {
+      "confirmatory_ready": false,
+      "counts": {
+        "development": 800,
+        "reserved": 2000,
+        "train": 1200
+      },
+      "coverage": {
+        "development": {
+          "abduction/INCONSISTENT_EVIDENCE": 24,
+          "abduction/MODEL_MISMATCH": 28,
+          "abduction/OK": 108,
+          "inference/INCONSISTENT_EVIDENCE": 24,
+          "inference/MODEL_MISMATCH": 28,
+          "inference/OK": 108,
+          "revision/MODEL_MISMATCH": 8,
+          "revision/OK": 472
+        },
+        "reserved": {
+          "abduction/INCONSISTENT_EVIDENCE": 60,
+          "abduction/MODEL_MISMATCH": 80,
+          "abduction/OK": 260,
+          "inference/INCONSISTENT_EVIDENCE": 60,
+          "inference/MODEL_MISMATCH": 80,
+          "inference/OK": 260,
+          "revision/MODEL_MISMATCH": 40,
+          "revision/OK": 1160
+        },
+        "train": {
+          "abduction/INCONSISTENT_EVIDENCE": 36,
+          "abduction/MODEL_MISMATCH": 44,
+          "abduction/OK": 160,
+          "inference/INCONSISTENT_EVIDENCE": 36,
+          "inference/MODEL_MISMATCH": 44,
+          "inference/OK": 160,
+          "revision/MODEL_MISMATCH": 16,
+          "revision/OK": 704
+        }
+      },
+      "episode_counts": {
+        "development": 160,
+        "reserved": 400,
+        "train": 240
+      },
+      "family_counts": {
+        "development": 8,
+        "reserved": 20,
+        "train": 12
+      },
+      "model_evaluation": "NOT_RUN",
+      "status": "PASS"
+    },
+    "files": {
+      "development/agent.jsonl": {
+        "bytes": 909926,
+        "records": 800,
+        "sha256": "0dd5abfd742d8112d3dfbe0672338773c74cec011d4300693526bc6ac432df0f"
+      },
+      "development/evaluator.jsonl": {
+        "bytes": 876357,
+        "records": 800,
+        "sha256": "9f1cf96080452dedde072ab7db6fc27f2491de87223aea75d7f290cd896f75c7"
+      },
+      "reserved/agent.jsonl": {
+        "bytes": 2302048,
+        "records": 2000,
+        "sha256": "ebf414d69e5ba356d272d9f854fbdb49886b42fa238a4960db43c17709c05697"
+      },
+      "reserved/evaluator.jsonl": {
+        "bytes": 2201024,
+        "records": 2000,
+        "sha256": "14c1ba97f29f5c16f2a55430eeb41dc253bc14c8d63907178ce8bfd2748e5850"
+      },
+      "train/agent.jsonl": {
+        "bytes": 1397721,
+        "records": 1200,
+        "sha256": "f39ab4f9554ecb5bfe645622c6334bdd6786f84ad4d9be106d2fb2f7d33eab55"
+      },
+      "train/evaluator.jsonl": {
+        "bytes": 1329632,
+        "records": 1200,
+        "sha256": "37ba0e24111fd2cf4b6fb428ffa4c48466c64944c1bc46f956c596d0c9da5b2a"
+      }
+    },
+    "source_hashes": {
+      "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+      "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+      "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+      "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    "status": "CPU_PREPARATION_NOT_CONFIRMATORY",
+    "variants": 20,
+    "version": "abductive-evaluation-v1"
+  },
+  "initial_local_full_suite": {
+    "errors": 10,
+    "failures": 5,
+    "log_sha256": "eb6d8ac6b5df3a1f7497419c7a26402f63c09c1aa7a304a25a662b56f21c7f84",
+    "run": 532,
+    "skips": 4,
+    "status": "FAILED_LOCAL_ENVIRONMENT_CHECKS; preserved, not overwritten by CI"
+  },
+  "initial_oracle_bug": "Duplicate model-mismatch states were incorrectly penalized; corrected before CI with analytic regression.",
+  "initial_oracle_controls": [
+    {
+      "invalid_cases": 0,
+      "nonzero_case_losses": 0,
+      "revision_pairs": {
+        "duplicate_invariance": {
+          "episodes": 240,
+          "error_rate": 0.03333333333333333
+        },
+        "revision_direction": {
+          "episodes": 232,
+          "error_rate": 0.0
+        }
+      },
+      "split": "train"
+    },
+    {
+      "invalid_cases": 0,
+      "nonzero_case_losses": 0,
+      "revision_pairs": {
+        "duplicate_invariance": {
+          "episodes": 160,
+          "error_rate": 0.025
+        },
+        "revision_direction": {
+          "episodes": 156,
+          "error_rate": 0.0
+        }
+      },
+      "split": "development"
+    },
+    {
+      "invalid_cases": 0,
+      "nonzero_case_losses": 0,
+      "revision_pairs": {
+        "duplicate_invariance": {
+          "episodes": 400,
+          "error_rate": 0.05
+        },
+        "revision_direction": {
+          "episodes": 380,
+          "error_rate": 0.0
+        }
+      },
+      "split": "reserved"
+    }
+  ],
+  "job_id": 121436871319,
+  "model_evaluation": "NOT_RUN",
+  "preflight": {
+    "dependencies": "standard library only",
+    "local_tooling": "READY",
+    "official_validator": "NOT RUN",
+    "python": "3.12.14",
+    "r0_clean_packaging": "NOT RUN"
+  },
+  "run_attempt": 1,
+  "run_id": 40281911634,
+  "run_url": "https://github.com/hynk-studio/backtrace/actions/runs/40281911634",
+  "source_sha": "4063ce3d4b811d27e10218241871ccb55e76ad8d",
+  "source_tree": "5768b80984c71410836bf3bcdc186af58d551e46",
+  "status": "PASS_CPU_INSTRUMENTS_ONLY",
+  "training": "NOT_RUN"
+}

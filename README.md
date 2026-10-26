@@ -15,8 +15,12 @@ See the [overall sequence](docs/experiment-plan.md) for current priorities.
 The [CPU teacher](docs/exact-teacher.md) has 24 training and 24 evaluation
 questions with exact labels. It receives a declared model and candidate
 hypotheses; these are development fixtures, not evidence of learned abduction.
-Training, adapter save/reload and Augnes integration are **NOT RUN**. The next
-implementation is expanded data and a frozen evaluation contract.
+The [new evaluation implementation](docs/abductive-evaluation-20261026.md) adds
+40 disjoint graph families, 4,000 candidate records, train-only exports, bounded
+hypothesis construction, timed evidence revision and exact scoring. These are
+CPU instruments and controls, not model-performance results. A1 remains partial
+pending model baselines, broader E2/E3 tasks and final test sealing.
+Training, adapter save/reload and Augnes integration are **NOT RUN**.
 
 The [latest coding pilot](docs/research-reduced9-execution-20261026.md) attempted
 nine R0/R1/R2 slots. Two original patches were submitted and evaluated; one

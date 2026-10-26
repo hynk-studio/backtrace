@@ -1,6 +1,6 @@
 # Small abductive model: evidence before deployment
 
-Decision date: 2026-10-26. Status: **PLAN; training and deployment NOT RUN**.
+Decision date: 2026-10-26. Status: **A1 CPU instruments implemented; training and deployment NOT RUN**.
 Refs [BT-001](https://github.com/hynk-studio/backtrace/issues/1).
 
 ## Objective and priority
@@ -31,10 +31,14 @@ does not discover a causal graph or generate new hypothesis structures. Its
 inspection policy has one observation followed by one action. Zero-support
 model mismatch is narrower than detecting arbitrary missing causes.
 
-These 48 questions are development fixtures. Their exposed labels and repeatedly
-inspected families must not become the new confirmatory test. No student answers,
-training loader, adapter, save/reload result or Augnes integration has been
-measured. The completed coding pilot does not estimate a training effect.
+These historical 48 questions are development fixtures. Their exposed labels and
+repeatedly inspected families must not become the new confirmatory test. No student
+baseline, training run, adapter save/reload or Augnes integration has been measured.
+The completed coding pilot does not estimate a training effect.
+The [first A1 implementation](abductive-evaluation-20261026.md) now adds a new
+candidate dataset, exact scoring and train/input exports. Its E2 task constructs
+root assignments under a supplied model; E3 covers fixed-world evidence updates.
+Broader hypothesis/model construction and temporal/textual transfer remain open.
 
 ## Intended Augnes role and input/output contract
 
@@ -204,7 +208,7 @@ Do not claim counterfactual task resolution from an unexecuted recommendation.
 | Stage | Deliverable | Current status |
 | --- | --- | --- |
 | A0: goal and capability contract | This plan; E2B/E4B candidates; Kaggle optional | Documented in this change; no model result |
-| A1: evaluation before training | Expanded teacher, E2/E3 rubric, leakage checks, frozen data/metrics; development baselines and sample-size calculation | NOT RUN; immediate next implementation |
+| A1: evaluation before training | Expanded teacher, E2/E3 rubric, leakage checks, frozen data/metrics; development baselines and sample-size calculation | PARTIAL: CPU instruments implemented; broader E2/E3, baseline/power analysis and final test sealing pending |
 | A2: training feasibility | Pinned training environment; tiny update/save/reload; actual memory/throughput and bounded training proposal | NOT RUN |
 | A3: controlled training and confirmation | B0/B1/B2/S evidence within each size; three-seed confirmation; untouched evaluation and negative results | NOT RUN |
 | A4: Augnes candidate assessment | Time-cutoff case replay, fresh shadow cases, quantized artifact and device measurements | NOT RUN |
