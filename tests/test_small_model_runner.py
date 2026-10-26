@@ -103,6 +103,27 @@ class LocalTests(unittest.TestCase):
             (model/'labels.json').write_text('must not mount')
             with self.assertRaises(ValueError):run.verify_pretrained_directory('E2B',model)
 
+    def test_asset_snapshot_excludes_private_siblings_and_preserves_source_permissions(self):
+        model=self.root/'model';model.mkdir(mode=0o700)
+        tokenizer=self.root/'tokenizer';tokenizer.mkdir(mode=0o700)
+        for directory,names in [(model,{'config.json','generation_config.json','model.safetensors'}),(tokenizer,ready.FILES)]:
+            for name in names:
+                p=directory/name;p.write_bytes(b'fixture');p.chmod(0o600)
+            (directory/'evaluator-secret').write_bytes(b'must not copy')
+        job=self.root/'job';job.write_text('{}');job.chmod(0o600)
+        script=self.root/'worker';script.write_text('pass')
+        stage=run.snapshot_assets(model,tokenizer,job,script)
+        try:
+            self.assertEqual({p.name for p in stage.iterdir()},{'model','tokenizer','job.json','worker.py'})
+            self.assertEqual({p.name for p in (stage/'model').iterdir()},{'config.json','generation_config.json','model.safetensors'})
+            self.assertEqual((model/'config.json').stat().st_mode&0o777,0o600)
+            self.assertEqual(model.stat().st_mode&0o777,0o700)
+            self.assertEqual((stage/'model/config.json').stat().st_mode&0o777,0o444)
+            self.assertFalse(any(p.name=='evaluator-secret' for p in stage.rglob('*')))
+        finally:run.shutil.rmtree(stage)
+        (model/'config.json').unlink();(model/'config.json').symlink_to(job)
+        with self.assertRaises(ValueError):run.snapshot_assets(model,tokenizer,job,script)
+
     def test_prepared_scope_matches_published_inputs_and_rejects_tampering(self):
         # Full prompt byte reconstruction is separately covered by readiness;
         # exercise every actual smoke field and its fixed paired schedule here.

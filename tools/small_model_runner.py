@@ -15,6 +15,7 @@ import shutil
 import signal
 import subprocess
 import sys
+import tempfile
 import time
 
 from tools import abductive_benchmark as base
@@ -144,7 +145,47 @@ def pretrained_cpu_factory(python,sources,models,jobs):
     commands={name:jail_command(python,Path(models)/name,sources/name,jobs/(name+'.json')) for name in ready.MODELS}
     def make(name,output):
         return Channel(commands[name],output/(name+'-stderr.log'))
+    make.close=lambda: [command.close() for command in commands.values()]
+    make.staging_paths=[str(command.staging) for command in commands.values()]
     return make
+
+
+class JailCommand(list):
+    """Only approved public model/runtime assets enter this disposable host staging tree."""
+    def __init__(self,command,staging,probe_path=None):
+        super().__init__(command);self.staging=Path(staging);self.probe_path=probe_path
+    def close(self):
+        if self.staging.exists():shutil.rmtree(self.staging)
+
+
+def snapshot_assets(model,tokenizer,job,script,*,probe=False):
+    import stat
+    root=Path(tempfile.mkdtemp(prefix='backtrace-model-worker-'))
+    # Only explicitly copied model/tokenizer/config/script files are here. No
+    # prompts, labels, credentials or repository directories. The original
+    # private source tree keeps its permissions; bwrap mounts this tree read-only.
+    root.chmod(0o755)
+    try:
+        for source,destination,names in [(Path(model),root/'model',{'config.json','generation_config.json','model.safetensors'}),
+                                         (Path(tokenizer),root/'tokenizer',ready.FILES)]:
+            destination.mkdir(mode=0o755)
+            actual={p.name for p in source.iterdir()}
+            if not probe and not names <= actual:
+                raise ValueError('required worker assets absent')
+            for name in sorted(names & actual):
+                path=source/name
+                info=path.lstat()
+                if not stat.S_ISREG(info.st_mode) or info.st_nlink!=1:
+                    raise ValueError('worker asset must be a regular non-linked file')
+                shutil.copyfile(path,destination/name,follow_symlinks=False)
+                (destination/name).chmod(0o444)
+        for source,name in [(job,'job.json'),(script,'worker.py')]:
+            raw=regular(Path(source))
+            (root/name).write_bytes(raw);(root/name).chmod(0o444)
+        if probe:(root/'probe').mkdir(mode=0o777);(root/'probe').chmod(0o777)
+        return root
+    except BaseException:
+        shutil.rmtree(root);raise
 
 
 def jail_command(python, model, tokenizer, job, *, script=WORKER, probe=None):
@@ -164,23 +205,31 @@ def jail_command(python, model, tokenizer, job, *, script=WORKER, probe=None):
         '--ro-bind',str(runtime),str(runtime)]
     if not Path(prefix).is_relative_to('/usr') and Path(prefix) != runtime:
         command += ['--ro-bind',prefix,prefix]
-    for host, guest in [(model,'/model'), (tokenizer,'/tokenizer'), (job,'/job.json'), (script,'/worker.py')]:
-        command += ['--ro-bind',str(Path(host).absolute()),guest]
+    staging=snapshot_assets(model,tokenizer,job,script,probe=probe is not None)
+    for host,guest in [('model','/model'),('tokenizer','/tokenizer'),('job.json','/job.json'),('worker.py','/worker.py')]:
+        command += ['--ro-bind',str(staging/host),guest]
     if probe is not None:
-        command += ['--bind',str(Path(probe).absolute()),'/probe']
+        command += ['--bind',str(staging/'probe'),'/probe']
     for key, value in {'PATH':'/usr/bin:/bin', 'HOME':'/tmp', 'HF_HUB_OFFLINE':'1',
         'TOKENIZERS_PARALLELISM':'false', 'OMP_NUM_THREADS':'1', 'OPENBLAS_NUM_THREADS':'1',
         'PYTHONDONTWRITEBYTECODE':'1', 'LANG':'C.UTF-8'}.items():
         command += ['--setenv',key,value]
-    return command + ['--chdir','/tmp',str(python),'-I','/worker.py']
+    return JailCommand(command + ['--chdir','/tmp',str(python),'-I','/worker.py'],staging,
+                       staging/'probe' if probe is not None else None)
 
 
 class Channel:
     def __init__(self, command, log):
+        self.command=command
         self.log = open(log, 'xb')
-        self.process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-            stderr=self.log, bufsize=0, start_new_session=True, close_fds=True,
-            env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8'})
+        try:
+            self.process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                stderr=self.log, bufsize=0, start_new_session=True, close_fds=True,
+                env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8'})
+        except BaseException:
+            self.log.close()
+            if isinstance(command,JailCommand):command.close()
+            raise
         os.set_blocking(self.process.stdin.fileno(), False)
         os.set_blocking(self.process.stdout.fileno(), False)
         self.partial = b''
@@ -227,6 +276,7 @@ class Channel:
             self.process.wait(timeout=5)
         self.process.stdout.close()
         self.log.close()
+        if isinstance(self.command,JailCommand):self.command.close()
         return self.process.returncode
 
 
@@ -277,6 +327,7 @@ def collect(schedule, output, worker_factory, tokenizers, *, mode, max_new_token
         {k:v for k,v in r.items() if k!='messages'} for r in schedule],
         'max_new_tokens':max_new_tokens,'total_seconds':total_seconds,
         'startup_seconds':startup_seconds,'request_seconds':request_seconds,'retries':0}
+    assignment['disposable_worker_assets']=getattr(worker_factory,'staging_paths',[])
     base.private_write(output/'assignment.json',exact.canonical(assignment))
     started=time.monotonic(); deadline=started+total_seconds
     channel=None; active=None; hellos={}; exits={}; error=None
@@ -301,6 +352,7 @@ def collect(schedule, output, worker_factory, tokenizers, *, mode, max_new_token
                             or hello.get('net_namespace') == os.readlink('/proc/self/ns/net')):
                         raise ValueError('worker isolation/mode handshake failed')
                     hellos[model]=hello
+                    base.private_write(output/(model+'-ready.json'),exact.canonical(hello))
                 except (OSError,ValueError,TimeoutError,EOFError) as exc:
                     error='STARTUP_'+type(exc).__name__; break
             wire={k:request[k] for k in ('id','messages','input_tokens','input_ids_sha256')}
@@ -328,6 +380,7 @@ def collect(schedule, output, worker_factory, tokenizers, *, mode, max_new_token
         if channel is not None:
             exits[active]=channel.close()
             if error is None and exits[active] != 0: error='WORKER_EXIT'
+        if hasattr(worker_factory,'close'):worker_factory.close()
         ledger.close()
         report={'status':'INCOMPLETE' if error else 'COMPLETED', 'mode':mode,'error':error,
             'assigned':len(records),'coverage':dict(Counter(r['status'] for r in records)),

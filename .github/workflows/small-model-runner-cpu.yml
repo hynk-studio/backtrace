@@ -82,7 +82,7 @@ jobs:
               if p.is_file() and p.stat().st_size<=1024*1024:
                   shutil.copyfile(p,Path('evidence')/('early-diagnostic-'+str(p.relative_to(early)).replace('/','-')))
           for name in ('oracle','tool_boundary','hang','crash','wrong_id','oversize','startup_hang','random','parent-loss'):
-              for leaf in ('collection.json','recovery.json','evaluation.json','ledger.jsonl','E2B-stderr.log','E4B-stderr.log'):
+              for leaf in ('collection.json','recovery.json','evaluation.json','ledger.jsonl','E2B-stderr.log','E4B-stderr.log','E2B-ready.json','E4B-ready.json'):
                   p=root/name/leaf
                   if p.is_file() and p.stat().st_size<=16*1024*1024:
                       shutil.copyfile(p,Path('evidence')/(name+'-'+leaf))

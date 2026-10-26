@@ -9,6 +9,7 @@ import signal
 import socket
 import subprocess
 import sys
+import tempfile
 import time
 
 from tools import abductive_benchmark as base
@@ -55,6 +56,8 @@ def factory(python,sources,models,jobs,mode,maximum,*,fault=None):
     commands={name:runner.jail_command(python,models/name,sources/name,jobs/(name+'.json')) for name in ready.MODELS}
     def make(name,output):
         return runner.Channel(commands[name],output/(name+'-stderr.log'))
+    make.close=lambda: [command.close() for command in commands.values()]
+    make.staging_paths=[str(command.staging) for command in commands.values()]
     return make
 
 
@@ -99,8 +102,9 @@ def boundary_probe(python,sources,models,output):
     observations={}; checks={}
     try:
         for variant in ('deadline','parent_loss'):
-            probe=output/variant;probe.mkdir(mode=0o777);probe.chmod(0o777)
-            command=runner.jail_command(python,models/'E2B',sources/'E2B',job,script=script,probe=probe)
+            saved=output/variant;saved.mkdir(mode=0o700)
+            command=runner.jail_command(python,models/'E2B',sources/'E2B',job,script=script,probe=saved)
+            probe=command.probe_path
             log=open(output/(variant+'.log'),'wb')
             started=time.monotonic()
             if variant=='deadline':
@@ -120,6 +124,7 @@ def boundary_probe(python,sources,models,output):
                 os.killpg(process.pid,signal.SIGKILL);process.wait(timeout=5)
                 time.sleep(2.2)
                 facts=base.strict_json((probe/'facts.json').read_bytes())
+                base.private_write(saved/'facts.json',exact.canonical(facts))
                 observations[variant]=facts
                 checks[variant+'_descendant_stopped']=not (probe/'late').exists()
                 checks[variant+'_bounded']=time.monotonic()-started<15
@@ -139,6 +144,7 @@ def boundary_probe(python,sources,models,output):
                 if process.poll() is None:
                     os.killpg(process.pid,signal.SIGKILL);process.wait(timeout=5)
                 log.close()
+                command.close()
     finally: sock.close()
     if not all(checks.values()):raise AssertionError(checks)
     return {'checks':checks,'observations':observations,'status':'PASS_NATIVE_BOUNDARIES'}
@@ -178,13 +184,27 @@ r.collect(schedule,output/'parent-loss',worker,tokenizers,mode='scripted_control
             raise RuntimeError('coordinator never reached second request: '+detail)
         os.killpg(process.pid,signal.SIGKILL);process.wait(timeout=5)
         time.sleep(.3)
+        hello=base.strict_json((output/'parent-loss/E2B-ready.json').read_bytes())
+        live=[]
+        for proc in Path('/proc').iterdir():
+            if proc.name.isdigit():
+                try:
+                    if os.readlink(proc/'ns/pid')==hello['pid_namespace']:live.append(proc.name)
+                except OSError:pass
+        if live:raise AssertionError('model worker survived coordinator loss')
         recovered=runner.recover(output/'parent-loss')
         plan,schedule,_=runner.load_scope(scope,packets,tokens)
         evaluation=runner.evaluate(plan,schedule,recovered)
         base.private_write(output/'parent-loss/evaluation.json',exact.canonical(evaluation))
         if recovered['coverage']!={'OK':1,'INTERRUPTED':1,'NOT_RUN':34}:
             raise AssertionError(recovered['coverage'])
-        return {k:v for k,v in recovered.items() if k!='records'}
+        assignment=base.strict_json((output/'parent-loss/assignment.json').read_bytes())
+        for name in assignment['disposable_worker_assets']:
+            path=Path(name)
+            if path.parent!=Path(tempfile.gettempdir()) or not path.name.startswith('backtrace-model-worker-') or path.is_symlink():
+                raise ValueError('unexpected disposable asset path')
+            if path.exists():shutil.rmtree(path)
+        return {k:v for k,v in recovered.items() if k!='records'}|{'worker_namespace_gone':True,'disposable_assets_removed':True}
     finally:
         if process.poll() is None:
             os.killpg(process.pid,signal.SIGKILL);process.wait(timeout=5)
