@@ -1,0 +1,19 @@
+{
+  "additional_cap_usd": "1.00",
+  "allocation_inclusive_seconds": 3000,
+  "approval_reference": "Current user instruction in this ChatGPT project conversation; one hardware-only attempt after free qualification",
+  "approved_at": 1793075879.7747977,
+  "authorization_id": "hardware-minimum-20261027-one",
+  "automatic_retry": false,
+  "contract_sha256": "ca4b02bd5e32b57547a10a8527eb05d979b32693a4deb33c24f5e4e60e6cdf05",
+  "expires_at": 1793083079.7747977,
+  "instruction": "\ucd5c\uc18c\uac80\uc99d \uc9c4\ud589\ud558\uc790",
+  "mode": "OWNER_APPROVED_HARDWARE_MINIMUM",
+  "pretrained_requests": 0,
+  "qualification_run_id": "40449750336",
+  "single_use": true,
+  "source_sha": "bc4e691306f7eca3adcc52abf438a564716226b4",
+  "top_up_allowed": false,
+  "training_steps": 0,
+  "weight_download_bytes": 0
+}
