@@ -20,6 +20,16 @@ has terminated without a paid target. Resolve this topology and qualify remote
 resource cleanup before the hardware minimum; available credit/stock alone does
 not establish execution readiness. No scientific protocol or prior input changed.
 
+The [container correction](small-model-container-20261027.md) now qualifies exact
+Python 3.12.14 and all 56 CUDA packages inside the same ordinary image, with the
+evaluator outside and a non-root filtered inference worker inside. Native
+40445252781 passed 639 tests and 23 connected controls,
+including both 36-assignment CPU controls and real remote worker-loss cleanup.
+Tiny-random raw outputs match the preceding native qualification. This remains
+CPU instrumentation evidence: production CUDA integration, provider memory
+admission, live device/context tests and resource-bound remote deletion are
+pending. The free adapter rejects actual CUDA/pretrained modes.
+
 The owner clarified that speed is not the objective. The first objective is to
 establish whether a small specialist model learns useful abductive inference,
 with possible Augnes use considered from the outset. E2B and E4B are candidates;

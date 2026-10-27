@@ -26,6 +26,16 @@ independent resource-bound cleanup controller before the GPU minimum; the observ
 is terminated and unarmed. See [actual evidence](small-model-provider-20261027.md).
 No GPU/model/training result is added by this connection work.
 
+The [container correction](small-model-container-20261027.md) now qualifies a
+separate native evaluator plus dedicated ordinary-container CPU worker. Run
+40445252781 passed 639 tests, exact Python/CUDA package installation,
+all 23 boundary/lifecycle controls, 36 exact authored assignments and
+36 tiny-random assignments identical to the earlier raw outputs. This resolves
+the free container runtime/worker path without changing scientific inputs or
+relaxing the old native memory check. Production CUDA integration, provider
+memory admission and independent resource-bound deletion remain launch gates.
+A1 is still partial; A2 and training have not begun.
+
 The historical 24 training plus 24 evaluation examples are development fixtures,
 not sufficient confirmatory evidence. They supply the model and hypotheses and
 do not yet test open hypothesis construction. Small-model training, deployment

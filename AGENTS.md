@@ -1,5 +1,35 @@
 # Backtrace working agreement
 
+## Container execution correction (2026-10-27 KST)
+
+The owner requested **실행 환경 보완 후 확인까지 진행해**. Work on
+`bt-001-small-model-container-20261027`, stacked on Draft #36 at
+`669fd7f12a164c294747d05e455185b626a9d355`, with one new Draft PR.
+Implement and qualify a versioned dedicated-container inference path. The
+unchanged collector, evaluator and labels stay on the native owner host; only
+approved runtime/model assets and input frames cross authenticated SSH.
+Use ordinary OCI isolation, fixed unprivileged worker UID, no-new-privileges,
+and an enforced socket/process-creation filter with bounded transport teardown.
+Do not alter the historical native isolation or memory checks. Qualify actual
+Python 3.12.14 and the unchanged CUDA wheel closure in the exact image on free
+CPU, including original authored/random collection and real failure controls.
+Retain all failed runs and all earlier scientific/operational bytes. No paid
+allocation, actual GPU minimum, pretrained inference, training, account change,
+recurring observer, merge, issue closure, or Augnes write is authorized. Hidden
+provider cgroup ancestors and resource-bound distributed deletion remain explicit
+launch gates until separately evidenced; CPU controls cannot waive those gates.
+
+Native container run 40445252781 at `eef423182e449d94cd3118a721f914881366901a` passed 639 tests
+(172.176s; no failures/errors/skips), exact Python/CUDA-package install,
+all 23 container controls and actual remote loss/deadline cleanup.
+Read `docs/small-model-container-evidence-20261027.json`. Preserve all five failed
+native attempts, local failures, 41 prior sources and 75 prior branch heads.
+The native collector/scorers and all 36 random outputs remain unchanged.
+This is free CPU container qualification only. The adapter still rejects CUDA
+and pretrained modes; provider memory admission, live NAT/device/context checks
+and resource-bound independent deletion remain unqualified. No paid launch,
+training, merge or Augnes integration is enabled by this result.
+
 ## Provider connection and remote observation (2026-10-27 KST)
 
 The owner requested **공급자 환경 연결 검증, 원격 감시 프로세스 배포,

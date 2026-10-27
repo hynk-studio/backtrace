@@ -51,8 +51,15 @@ failures and local environment failures. The
 authenticated account/quotes, exact-image delivery of the new payload and a
 bounded remote observer on an independent runner. The default container fails
 the current native namespace/cgroup prerequisites. The observer terminated after
-its liveness check; no paid cleanup target is armed. Native-compatible execution,
-distributed resource cleanup and physical GPU checks remain pending; paid launch is disabled.
+its liveness check; no paid cleanup target is armed. The
+[ordinary-container correction](docs/small-model-container-20261027.md) now keeps
+the evaluator outside the inference container, installs exact Python 3.12.14
+and the 56-wheel CUDA closure, and enforces a non-root socket/process-filtered
+worker. Native run 40445252781 passed 639 tests and 23 container
+controls, both 36-assignment CPU controls and actual remote worker-loss cleanup.
+All random raw outputs match the earlier native result. Production CUDA
+integration, provider memory admission, resource-bound independent deletion and
+physical GPU checks remain pending; paid launch is disabled.
 Training, adapter save/reload and Augnes integration are **NOT RUN**.
 
 The [latest coding pilot](docs/research-reduced9-execution-20261026.md) attempted
