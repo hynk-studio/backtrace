@@ -1,0 +1,2446 @@
+{
+  "schema": "small-model-hardware-minimum-retry-evidence-v1",
+  "date_kst": "2026-10-27",
+  "status": "FAIL",
+  "pr_url": "https://github.com/hynk-studio/backtrace/pull/39",
+  "instruction": "1회 다시 진행해",
+  "contract": {
+    "scope": "HARDWARE_ONLY_OCI_V1",
+    "total_seconds": 3000,
+    "work_seconds": 2580,
+    "cleanup_seconds": 300,
+    "export_seconds": 120,
+    "maximum_additional_usd": "1.00",
+    "compute_cap_usd": "0.90",
+    "storage_hourly_projection_usd": "0.015",
+    "credit_reserve_usd": "0.50",
+    "allocations": 1,
+    "automatic_retry": false,
+    "weight_bytes": 0,
+    "pretrained_requests": 0,
+    "training_steps": 0,
+    "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+    "disk_gb": 100,
+    "min_gpu_reported_bytes": 25769803776,
+    "min_provider_ram_gb": 32,
+    "resident_ram_probe_bytes": 8589934592,
+    "full_model_memory_admission": "NOT_ESTABLISHED"
+  },
+  "base_source": "db9c48032f47466ccf2f975dfea8dba44c12c8c0",
+  "source": "24bf9c87a81094a358f6bb6c40dda97b21546d67",
+  "source_tree": "829eba9ad8da082e08d5a3801b4cb23f268ea407",
+  "source_hashes": {
+    "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+    "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+    "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+    "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+    "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+    "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae",
+    "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+    "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+    "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+    "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+    "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+    "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+    "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+    "tools/small_model_runner.py": "ed7436caa9421bc4a166ccca63ac2602fd527dab2bbe44010acabad0095e33df",
+    "tools/small_model_worker.py": "9dae8020f5fa52d2f1c395bc17d4433a93d7206c9e5e6ed3e70729698376a2bf",
+    "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903",
+    "tools/small_model_resources.py": "1d763165c9af25461a50ae55665a18052d71c74698f1abdfd70eb81f77e367ca",
+    "tools/small_model_lifecycle.py": "32f0cc0215c9c4098540b95a5fd1e3194af9764ba1f01d1317df0553875b4506",
+    "tools/small_model_precheck.py": "dafcfa6cc32d78204a102b7e73eb1be3eeb499a906a90a7390503134fa81a63d",
+    "tools/small_model_lifecycle_probe.py": "c8af61b707903398d29a883ce1c9525af93494cb71612b6d299bbac240b704ed",
+    "tests/test_small_model_precheck.py": "21ad1e073cc9f83eca8e41034cff22371df7629188b07921b5ecdcc8d0ec4e47",
+    ".github/workflows/small-model-precheck-cpu.yml": "f13609448771bfada0e1750e52676608a2da1d700c89d28251f07e518f314a0f",
+    "tools/small_model_runner_probe.py": "dfbff0eabb1c72d914ee1528b059338261427ba0713425c264f2c5c4986e095a",
+    "tools/runpod_control.py": "09219477947e39b2c7c58b6e7e44f385bd5d1140cbdb7a47cddef3ab7f6cf400",
+    "tools/small_model_provider.py": "b5c9e0a0e7c9ac98a8dc8a6d24b20f5c45de9690483ae37b65196e30218a37c4",
+    "tools/small_model_remote_watch.py": "eec9864d54e0859399e5e9f9c9334f2c21809e470a015d57b65d7119f9657e82",
+    "tools/small_model_provider_probe.py": "467a96a5cd7131da46155f9c6a675718049c1547d3a5d950efff73ea1e9da8cd",
+    "tools/cloud_transport.py": "013d93fc8c1548bc7eaf4cf9a4f5a49608b7e16d537b192accf053151fbf5902",
+    "tools/ssh_bootstrap.py": "b657ddd6f145f66f4e15f2d30a23d8870ae56aa7f60d396ae1f41de485916839",
+    "tools/private_delivery.py": "f010c41715e2548b86a4b3dfc009e22e57fcbf5a52429e4f7f1165632f1a4a40",
+    "tools/free_container_cleanup.py": "3dc64f6fa013e992e8c02fa702330a14003cb2e7ab0d536e3dc0da80ce3e9466",
+    "tools/cloud_offer.py": "9387b91be560cf80a85a5bae8166acb7c35f7a61135042971d21cafdb76c3df5",
+    "tools/cloud_inventory.py": "f4865ae92c7f41375a15ecf917e932562cca608ca7a1607d18d1b370bd0932ff",
+    "tools/cloud_probe.py": "bb89c097e7fe0c6bc56771e87695056d60c11f510502173105a102a25d48e22f",
+    "tools/research_entry_state.py": "b3858570800b87f36a2ebd99a4ebbf65295edf5756b1a7b6cf1d6c4c13316389",
+    "tools/research_entry_contract.py": "1a4997a22bcb2bb9acd5dde8bfe916e987ae20131c9073610f2bb2e863908e47",
+    "tests/test_small_model_provider.py": "242530d07de276c3b36eff5484fe0a15d6f457bd7705db63e14e54e03d71f94c",
+    "docs/cloud-controller-requirements.txt": "6e8e0115d53ffb67b8a9001e0b4e3f06747fb470aad4bdcb23e8a864d4018bdc",
+    ".github/workflows/small-model-provider-cpu.yml": "1314824b147395afaac6a4f8708f3c19004f441f8dc8617f6096526a82f4eaff",
+    ".github/workflows/small-model-provider-owner.yml": "0bb06419810437a0bdce8efa15aab651c2d02748c9e469801cd0777393e245fc",
+    ".github/workflows/small-model-provider-watch.yml": "8af1ae7416563c61d4c9e973ec2ddba7f97296b7be93369a34094a655fc6d197",
+    "tools/small_model_container.py": "d87cc12a3dc39dd9c235956f1b7a5181b060e57c7e104a86aacc991977e20410",
+    "tools/small_model_container_worker.py": "f5bd153ade59d83222ee170a252801479b6591a012b6facac3312e1c0644fb09",
+    "tools/small_model_container_install.py": "e44a80ef7ca4c6611ea0536a76889efed5011fdea2bf27331acb21cc0aac5ecc",
+    "tools/small_model_container_probe.py": "924cf57ec8868ea1acdaaaf7868f829071e7c34a16416c3db069b03e6642081b",
+    "tests/test_small_model_container.py": "ef05ed3f780c6a668c1ad2e31b2ba704521f94dcff3d03f9afff70d0567e2e4b",
+    ".github/workflows/small-model-container-cpu.yml": "52745e5f7a5ddc42796b094e450a5641090da68aebf6998c23503bb97961f249",
+    "tools/small_model_minimum_probe.py": "8ffef411118334316d569f6b5c302e243d1f2a45e7e9dbad71cc7c175a777a94",
+    "tools/small_model_minimum_retry.py": "48c9512766d99e1bd5a75d6712fa2d0c643b7f65d5b5de22d2bc1786a1e6a3c4",
+    "tools/small_model_minimum_worker.py": "04910b6682517221a4684af30dfe22ec728d2b8e64a3363f9a8e54498b4692ed",
+    "tools/small_model_minimum.py": "68bebd6d41730a2208eb03eca598d5152cf2034dd9af81e1eab8f6f039529888",
+    "tools/small_model_minimum_remote.py": "dd6b2300527ba22ed985c9e76932cfa301d7ac2844fbc27d1ee45293adbb8497",
+    "tests/test_small_model_minimum_retry.py": "ca2a4d349efa03ae180e7b16608e41bc786503ac961fb48c6a3d7f89b4e76ce7",
+    "tests/test_small_model_minimum.py": "ab75e74c29c21b92db67b737090da99beade002c55b456afc53dfccfa39051b9",
+    ".github/workflows/small-model-minimum-retry-cpu.yml": "a480c1329fc75a8d1eb2a96b1712073b40c4c6a78dd88d984dafa39d97952dc7",
+    ".github/workflows/small-model-minimum-retry-quote.yml": "6eeff6411ab8d6e967f9add1f7ba902ce5a519f5018332723e32065e6fcdcd8d",
+    ".github/workflows/small-model-minimum-quote.yml": "f93cc9946f39cf3d814a24fc62c968cdc822b169167d3dd50c8f84813a8958c0",
+    ".github/workflows/small-model-minimum-retry-live.yml": "4f9f9fc148c610084b8a388701a55776ab878d689f0f6d9212b152c0b024900e",
+    ".github/workflows/small-model-minimum-cpu.yml": "e960267e3b69ad5b3c6562e7b3dd36d04451e621fd77519321a091b17295906a",
+    ".github/workflows/small-model-minimum-live.yml": "e2062c003c010bd8ac4a67ff7e39a066b44af2007b8e5f67186c82316b9ccf05",
+    "tools/cloud_bootstrap.py": "b032f0d92bb042cb3388699fe230084c077fb78a59b4df86184f12feb6610487",
+    "tools/research_entry.py": "9f3c753cb26f9ab4d22ef5a27d4c900bc109ea10cbc4447df97d58b337762d85",
+    "docs/research-reduced9-amendment-20261026.json": "ba9b235c84db383f2413bc7adeb03888de9fd0fc571e8e67cc8ae4f9057563c7"
+  },
+  "prior_source_hashes": {
+    "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+    "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+    "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+    "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+    "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+    "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae",
+    "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+    "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+    "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+    "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+    "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+    "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+    "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+    "tools/small_model_runner.py": "ed7436caa9421bc4a166ccca63ac2602fd527dab2bbe44010acabad0095e33df",
+    "tools/small_model_worker.py": "9dae8020f5fa52d2f1c395bc17d4433a93d7206c9e5e6ed3e70729698376a2bf",
+    "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903",
+    "tools/small_model_resources.py": "1d763165c9af25461a50ae55665a18052d71c74698f1abdfd70eb81f77e367ca",
+    "tools/small_model_lifecycle.py": "32f0cc0215c9c4098540b95a5fd1e3194af9764ba1f01d1317df0553875b4506",
+    "tools/small_model_precheck.py": "dafcfa6cc32d78204a102b7e73eb1be3eeb499a906a90a7390503134fa81a63d",
+    "tools/small_model_lifecycle_probe.py": "c8af61b707903398d29a883ce1c9525af93494cb71612b6d299bbac240b704ed",
+    "tests/test_small_model_precheck.py": "21ad1e073cc9f83eca8e41034cff22371df7629188b07921b5ecdcc8d0ec4e47",
+    ".github/workflows/small-model-precheck-cpu.yml": "f13609448771bfada0e1750e52676608a2da1d700c89d28251f07e518f314a0f",
+    "tools/small_model_runner_probe.py": "dfbff0eabb1c72d914ee1528b059338261427ba0713425c264f2c5c4986e095a",
+    "tools/runpod_control.py": "09219477947e39b2c7c58b6e7e44f385bd5d1140cbdb7a47cddef3ab7f6cf400",
+    "tools/small_model_provider.py": "b5c9e0a0e7c9ac98a8dc8a6d24b20f5c45de9690483ae37b65196e30218a37c4",
+    "tools/small_model_remote_watch.py": "eec9864d54e0859399e5e9f9c9334f2c21809e470a015d57b65d7119f9657e82",
+    "tools/small_model_provider_probe.py": "467a96a5cd7131da46155f9c6a675718049c1547d3a5d950efff73ea1e9da8cd",
+    "tools/cloud_transport.py": "013d93fc8c1548bc7eaf4cf9a4f5a49608b7e16d537b192accf053151fbf5902",
+    "tools/ssh_bootstrap.py": "b657ddd6f145f66f4e15f2d30a23d8870ae56aa7f60d396ae1f41de485916839",
+    "tools/private_delivery.py": "f010c41715e2548b86a4b3dfc009e22e57fcbf5a52429e4f7f1165632f1a4a40",
+    "tools/free_container_cleanup.py": "3dc64f6fa013e992e8c02fa702330a14003cb2e7ab0d536e3dc0da80ce3e9466",
+    "tools/cloud_offer.py": "9387b91be560cf80a85a5bae8166acb7c35f7a61135042971d21cafdb76c3df5",
+    "tools/cloud_inventory.py": "f4865ae92c7f41375a15ecf917e932562cca608ca7a1607d18d1b370bd0932ff",
+    "tools/cloud_probe.py": "bb89c097e7fe0c6bc56771e87695056d60c11f510502173105a102a25d48e22f",
+    "tools/research_entry_state.py": "b3858570800b87f36a2ebd99a4ebbf65295edf5756b1a7b6cf1d6c4c13316389",
+    "tools/research_entry_contract.py": "1a4997a22bcb2bb9acd5dde8bfe916e987ae20131c9073610f2bb2e863908e47",
+    "tests/test_small_model_provider.py": "242530d07de276c3b36eff5484fe0a15d6f457bd7705db63e14e54e03d71f94c",
+    "docs/cloud-controller-requirements.txt": "6e8e0115d53ffb67b8a9001e0b4e3f06747fb470aad4bdcb23e8a864d4018bdc",
+    ".github/workflows/small-model-provider-cpu.yml": "1314824b147395afaac6a4f8708f3c19004f441f8dc8617f6096526a82f4eaff",
+    ".github/workflows/small-model-provider-owner.yml": "0bb06419810437a0bdce8efa15aab651c2d02748c9e469801cd0777393e245fc",
+    ".github/workflows/small-model-provider-watch.yml": "8af1ae7416563c61d4c9e973ec2ddba7f97296b7be93369a34094a655fc6d197",
+    "tools/small_model_container.py": "d87cc12a3dc39dd9c235956f1b7a5181b060e57c7e104a86aacc991977e20410",
+    "tools/small_model_container_worker.py": "f5bd153ade59d83222ee170a252801479b6591a012b6facac3312e1c0644fb09",
+    "tools/small_model_container_install.py": "e44a80ef7ca4c6611ea0536a76889efed5011fdea2bf27331acb21cc0aac5ecc",
+    "tools/small_model_container_probe.py": "924cf57ec8868ea1acdaaaf7868f829071e7c34a16416c3db069b03e6642081b",
+    "tests/test_small_model_container.py": "ef05ed3f780c6a668c1ad2e31b2ba704521f94dcff3d03f9afff70d0567e2e4b",
+    ".github/workflows/small-model-container-cpu.yml": "52745e5f7a5ddc42796b094e450a5641090da68aebf6998c23503bb97961f249",
+    "tools/small_model_minimum_probe.py": "8ffef411118334316d569f6b5c302e243d1f2a45e7e9dbad71cc7c175a777a94",
+    "tools/small_model_minimum_worker.py": "04910b6682517221a4684af30dfe22ec728d2b8e64a3363f9a8e54498b4692ed",
+    "tools/small_model_minimum.py": "68bebd6d41730a2208eb03eca598d5152cf2034dd9af81e1eab8f6f039529888",
+    "tools/small_model_minimum_remote.py": "dd6b2300527ba22ed985c9e76932cfa301d7ac2844fbc27d1ee45293adbb8497",
+    "tests/test_small_model_minimum.py": "ab75e74c29c21b92db67b737090da99beade002c55b456afc53dfccfa39051b9",
+    ".github/workflows/small-model-minimum-quote.yml": "f93cc9946f39cf3d814a24fc62c968cdc822b169167d3dd50c8f84813a8958c0",
+    ".github/workflows/small-model-minimum-cpu.yml": "e960267e3b69ad5b3c6562e7b3dd36d04451e621fd77519321a091b17295906a",
+    ".github/workflows/small-model-minimum-live.yml": "e2062c003c010bd8ac4a67ff7e39a066b44af2007b8e5f67186c82316b9ccf05",
+    "tools/cloud_bootstrap.py": "b032f0d92bb042cb3388699fe230084c077fb78a59b4df86184f12feb6610487",
+    "tools/research_entry.py": "9f3c753cb26f9ab4d22ef5a27d4c900bc109ea10cbc4447df97d58b337762d85",
+    "docs/research-reduced9-amendment-20261026.json": "ba9b235c84db383f2413bc7adeb03888de9fd0fc571e8e67cc8ae4f9057563c7"
+  },
+  "preserved_prior_source_count": 58,
+  "authorization": {
+    "source_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67",
+    "contract_sha256": "ca4b02bd5e32b57547a10a8527eb05d979b32693a4deb33c24f5e4e60e6cdf05",
+    "authorization_id": "hardware-minimum-retry-20261027-one",
+    "namespace": "minimum-retry-paid-20261027",
+    "instruction": "1회 다시 진행해",
+    "single_use": true,
+    "mode": "OWNER_APPROVED_HARDWARE_MINIMUM",
+    "additional_cap_usd": "1.00",
+    "allocation_inclusive_seconds": 3000,
+    "automatic_retry": false,
+    "top_up_allowed": false,
+    "weight_download_bytes": 0,
+    "pretrained_requests": 0,
+    "training_steps": 0,
+    "qualification_run_id": "40455264861",
+    "approved_at": 1793079305.6779218,
+    "expires_at": 1793086505.6779218,
+    "approval_reference": "Current owner instruction: 1회 다시 진행해; one further hardware-only allocation under the same USD1 and 3000-second limits after exact-source qualification",
+    "previous_consumed_authorization": "hardware-minimum-20261027-one"
+  },
+  "authorization_commit": "bcc42db0e644241af87a8c2378d8429e1aa4caea",
+  "quote": {
+    "allocation_requests": 0,
+    "observation": {
+      "account": {
+        "auto_pay": false,
+        "credit_balance_usd": "3.0787204894",
+        "observed_at": "2026-10-27T05:26:02Z",
+        "spend_per_hour_usd": "0"
+      },
+      "account_idle": true,
+      "allocation_requests": 0,
+      "candidate_gpus": [
+        {
+          "id": "NVIDIA RTX A5000",
+          "memoryInGb": 24,
+          "secureCloud": true,
+          "securePrice": 0.27
+        },
+        {
+          "id": "NVIDIA GeForce RTX 3090",
+          "memoryInGb": 24,
+          "secureCloud": true,
+          "securePrice": 0.5
+        },
+        {
+          "id": "NVIDIA A40",
+          "memoryInGb": 48,
+          "secureCloud": true,
+          "securePrice": 0.59
+        },
+        {
+          "id": "NVIDIA L4",
+          "memoryInGb": 24,
+          "secureCloud": true,
+          "securePrice": 0.59
+        },
+        {
+          "id": "NVIDIA RTX A6000",
+          "memoryInGb": 48,
+          "secureCloud": true,
+          "securePrice": 0.59
+        },
+        {
+          "id": "NVIDIA L40",
+          "memoryInGb": 48,
+          "secureCloud": true,
+          "securePrice": 0.82
+        },
+        {
+          "id": "NVIDIA GeForce RTX 4090",
+          "memoryInGb": 24,
+          "secureCloud": true,
+          "securePrice": 0.89
+        },
+        {
+          "id": "NVIDIA L40S",
+          "memoryInGb": 48,
+          "secureCloud": true,
+          "securePrice": 1.09
+        }
+      ],
+      "excluded_or_unqueried_pairs": 6,
+      "hardware_capabilities": "NOT_OBSERVED",
+      "inventory": {
+        "complete_paginated_list": true,
+        "observed_at": "2026-10-27T05:26:09Z",
+        "pod_count": 0,
+        "resource_mutations": 0
+      },
+      "launch_enabled": false,
+      "maximum_pairs": 32,
+      "offers": [
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.5",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 125,
+            "minVcpu": 32,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.5
+          },
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "observed_at": "2026-10-27T05:26:03Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.4291666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.4166666666666666666666666667",
+          "region": "EU-CZ-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "High"
+          },
+          "compute_usd_per_hour": "0.59",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 50,
+            "minVcpu": 9,
+            "stockStatus": "High",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.59
+          },
+          "gpu": "NVIDIA A40",
+          "observed_at": "2026-10-27T05:26:03Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+          "region": "EU-SE-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.59",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 71,
+            "minVcpu": 18,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.59
+          },
+          "gpu": "NVIDIA L4",
+          "observed_at": "2026-10-27T05:26:03Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+          "region": "EU-RO-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.59",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 50,
+            "minVcpu": 9,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.59
+          },
+          "gpu": "NVIDIA RTX A6000",
+          "observed_at": "2026-10-27T05:26:04Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+          "region": "EU-SE-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.89",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 167,
+            "minVcpu": 42,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.89
+          },
+          "gpu": "NVIDIA GeForce RTX 4090",
+          "observed_at": "2026-10-27T05:26:04Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.7416666666666666666666666667",
+          "region": "EU-CZ-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.89",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 46,
+            "minVcpu": 8,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.89
+          },
+          "gpu": "NVIDIA GeForce RTX 4090",
+          "observed_at": "2026-10-27T05:26:04Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.7416666666666666666666666667",
+          "region": "EU-RO-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "1.09",
+          "compute_within_proposal": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 125,
+            "minVcpu": 32,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 1.09
+          },
+          "gpu": "NVIDIA L40S",
+          "observed_at": "2026-10-27T05:26:04Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333",
+          "proposed_3000s_compute_usd": "0.9083333333333333333333333333",
+          "region": "EU-NL-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA RTX A5000",
+          "observed_at": "2026-10-27T05:26:04Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "EU-SE-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA RTX A6000",
+          "observed_at": "2026-10-27T05:26:05Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "EU-RO-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Medium"
+          },
+          "compute_usd_per_hour": "0.59",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 43,
+            "minVcpu": 9,
+            "stockStatus": "Medium",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.59
+          },
+          "gpu": "NVIDIA A40",
+          "observed_at": "2026-10-27T05:26:05Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+          "region": "CA-MTL-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.59",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 55,
+            "minVcpu": 14,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.59
+          },
+          "gpu": "NVIDIA L4",
+          "observed_at": "2026-10-27T05:26:05Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+          "region": "EUR-IS-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.59",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 100,
+            "minVcpu": 12,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.59
+          },
+          "gpu": "NVIDIA L4",
+          "observed_at": "2026-10-27T05:26:05Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+          "region": "EUR-IS-2",
+          "reported_gpu_gb": 24,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.59",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 86,
+            "minVcpu": 16,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.59
+          },
+          "gpu": "NVIDIA L4",
+          "observed_at": "2026-10-27T05:26:05Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+          "region": "US-MO-2",
+          "reported_gpu_gb": 24,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.59",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 62,
+            "minVcpu": 8,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.59
+          },
+          "gpu": "NVIDIA RTX A6000",
+          "observed_at": "2026-10-27T05:26:05Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+          "region": "US-TX-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.82",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 143,
+            "minVcpu": 16,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.82
+          },
+          "gpu": "NVIDIA L40",
+          "observed_at": "2026-10-27T05:26:06Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.6958333333333333333333333333",
+          "proposed_3000s_compute_usd": "0.6833333333333333333333333333",
+          "region": "EUR-IS-2",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.89",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 62,
+            "minVcpu": 16,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.89
+          },
+          "gpu": "NVIDIA GeForce RTX 4090",
+          "observed_at": "2026-10-27T05:26:06Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.7416666666666666666666666667",
+          "region": "EUR-IS-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.89",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 100,
+            "minVcpu": 9,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.89
+          },
+          "gpu": "NVIDIA GeForce RTX 4090",
+          "observed_at": "2026-10-27T05:26:06Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.7416666666666666666666666667",
+          "region": "EUR-IS-2",
+          "reported_gpu_gb": 24,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "0.89",
+          "compute_within_proposal": true,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 86,
+            "minVcpu": 15,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 0.89
+          },
+          "gpu": "NVIDIA GeForce RTX 4090",
+          "observed_at": "2026-10-27T05:26:06Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667",
+          "proposed_3000s_compute_usd": "0.7416666666666666666666666667",
+          "region": "EUR-NO-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "1.09",
+          "compute_within_proposal": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 102,
+            "minVcpu": 16,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 1.09
+          },
+          "gpu": "NVIDIA L40S",
+          "observed_at": "2026-10-27T05:26:07Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333",
+          "proposed_3000s_compute_usd": "0.9083333333333333333333333333",
+          "region": "EUR-IS-2",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "1.09",
+          "compute_within_proposal": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 94,
+            "minVcpu": 16,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 1.09
+          },
+          "gpu": "NVIDIA L40S",
+          "observed_at": "2026-10-27T05:26:07Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333",
+          "proposed_3000s_compute_usd": "0.9083333333333333333333333333",
+          "region": "OC-AU-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "1.09",
+          "compute_within_proposal": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 125,
+            "minVcpu": 32,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 1.09
+          },
+          "gpu": "NVIDIA L40S",
+          "observed_at": "2026-10-27T05:26:07Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333",
+          "proposed_3000s_compute_usd": "0.9083333333333333333333333333",
+          "region": "US-MO-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": true,
+            "status": "Low"
+          },
+          "compute_usd_per_hour": "1.09",
+          "compute_within_proposal": false,
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": 62,
+            "minVcpu": 16,
+            "stockStatus": "Low",
+            "supportPublicIp": null,
+            "uninterruptablePrice": 1.09
+          },
+          "gpu": "NVIDIA L40S",
+          "observed_at": "2026-10-27T05:26:07Z",
+          "pricing_status": "OBSERVED",
+          "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333",
+          "proposed_3000s_compute_usd": "0.9083333333333333333333333333",
+          "region": "US-TX-3",
+          "reported_gpu_gb": 48,
+          "stock_eligible": true,
+          "storage_projection_usd_per_hour": "0.015"
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA RTX A5000",
+          "observed_at": "2026-10-27T05:26:07Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "CA-MTL-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA RTX A5000",
+          "observed_at": "2026-10-27T05:26:08Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "US-CA-2",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA RTX A5000",
+          "observed_at": "2026-10-27T05:26:08Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "US-IL-1",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "observed_at": "2026-10-27T05:26:08Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "EUR-IS-2",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA A40",
+          "observed_at": "2026-10-27T05:26:08Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "US-MO-1",
+          "reported_gpu_gb": 48,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA L4",
+          "observed_at": "2026-10-27T05:26:08Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "US-GA-2",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA RTX A6000",
+          "observed_at": "2026-10-27T05:26:08Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "US-KS-2",
+          "reported_gpu_gb": 48,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA L40",
+          "observed_at": "2026-10-27T05:26:09Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "US-KS-2",
+          "reported_gpu_gb": 48,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA GeForce RTX 4090",
+          "observed_at": "2026-10-27T05:26:09Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "CA-MTL-3",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        },
+        {
+          "broad_stock": {
+            "available": false,
+            "status": null
+          },
+          "exact_quote": {
+            "availableGpuCounts": null,
+            "minMemory": null,
+            "minVcpu": null,
+            "stockStatus": null,
+            "supportPublicIp": null,
+            "uninterruptablePrice": null
+          },
+          "gpu": "NVIDIA GeForce RTX 4090",
+          "observed_at": "2026-10-27T05:26:09Z",
+          "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+          "region": "US-CA-2",
+          "reported_gpu_gb": 24,
+          "stock_eligible": false
+        }
+      ],
+      "proposal_funded": true,
+      "quote_constraints": {
+        "container_disk_gb": 100,
+        "gpu_count": 1,
+        "minimum_cuda": "12.8",
+        "minimum_gpu_gb": 24,
+        "minimum_ram_gb": 32,
+        "minimum_vcpu": 8,
+        "public_ip": true,
+        "secure_cloud": true,
+        "volume_gb": 0
+      },
+      "schema": "small-model-provider-read-v1",
+      "settings_changed": false,
+      "stage": "COMPLETE",
+      "status": "PASS_READ_ONLY",
+      "storage_basis": "Published USD0.10/GB/month; USD0.015/hour for 100GB rounds up a 28-day month. Projection, not a provider quote; taxes/other charges not established."
+    },
+    "resource_mutations": 0,
+    "run_id": "40455264846",
+    "source_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67",
+    "status": "PASS"
+  },
+  "quote_run_id": 40455264846,
+  "free_qualification": {
+    "run": {
+      "id": 40455264861,
+      "head_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67",
+      "head_branch": "bt-001-small-model-minimum-retry-20261027",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "push",
+      "path": ".github/workflows/small-model-minimum-retry-cpu.yml",
+      "run_attempt": 1
+    },
+    "native_tests": {
+      "count": 661,
+      "seconds": 208.005,
+      "outcome": "OK"
+    },
+    "container_cleanup": {
+      "absence_reads": 2,
+      "container_id": "9bce16452fd8ab9c3777bb21786cf467e5c19b20ca76589e33d2e0978115dd30",
+      "name": "backtrace-free-full-setup-13283-minimum",
+      "observations": [
+        {
+          "state": "ABSENT"
+        },
+        {
+          "state": "ABSENT"
+        }
+      ],
+      "request": {
+        "outcome": "ACKNOWLEDGED",
+        "returncode": 0
+      },
+      "seconds": 4.542,
+      "status": "PASS"
+    },
+    "connected": {
+      "actual_gpu": false,
+      "binary_transfer": {
+        "bytes": 1400320,
+        "sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a"
+      },
+      "diagnostics": {
+        "actual_gpu": false,
+        "boundary": {
+          "caps": 0,
+          "credential_environment_absent": true,
+          "exec_denied": true,
+          "fork_denied": true,
+          "namespace_denied": true,
+          "net_namespace": "net:[4026532273]",
+          "no_new_privs": "1",
+          "pid_namespace": "pid:[4026532224]",
+          "private_file_denied": true,
+          "readonly_job": true,
+          "root_denied": true,
+          "seccomp": "2",
+          "socket_denied": true,
+          "threads_work": true,
+          "uid": 65532,
+          "unix_socket_denied": true
+        },
+        "checks": {
+          "credential_environment_absent": true,
+          "deadline": true,
+          "exec_denied": true,
+          "fork_denied": true,
+          "missing_gpu_rejected": true,
+          "namespace_denied": true,
+          "private_file_denied": true,
+          "readonly_job": true,
+          "resident_memory": true,
+          "root_denied": true,
+          "socket_denied": true,
+          "supervisor": true,
+          "threads_work": true,
+          "transport": true,
+          "unix_socket_denied": true,
+          "worker_identity": true
+        },
+        "interruptions": {
+          "deadline": {
+            "active": {
+              "kind": "CPU_ONLY"
+            },
+            "after": {
+              "elapsed_seconds": 15.001370681000026,
+              "exit_code": -9,
+              "mode": "cpu-hold",
+              "pid": 66,
+              "process_state": "ABSENT",
+              "reason": "DEADLINE",
+              "same_process_alive": false,
+              "start_ticks": "52900",
+              "supervisor_pid": 65
+            },
+            "before": {
+              "mode": "cpu-hold",
+              "pid": 66,
+              "process_state": "S",
+              "reason": "RUNNING",
+              "same_process_alive": true,
+              "start_ticks": "52900",
+              "supervisor_pid": 65
+            },
+            "hello": {
+              "pid": 66,
+              "status": "CPU_CONTEXT_ACTIVE"
+            }
+          },
+          "supervisor": {
+            "active": {
+              "kind": "CPU_ONLY"
+            },
+            "after": {
+              "mode": "cpu-hold",
+              "pid": 80,
+              "process_state": "ABSENT",
+              "reason": "RUNNING",
+              "same_process_alive": false,
+              "start_ticks": "54498",
+              "supervisor_pid": 79
+            },
+            "before": {
+              "mode": "cpu-hold",
+              "pid": 80,
+              "process_state": "S",
+              "reason": "RUNNING",
+              "same_process_alive": true,
+              "start_ticks": "54498",
+              "supervisor_pid": 79
+            },
+            "hello": {
+              "pid": 80,
+              "status": "CPU_CONTEXT_ACTIVE"
+            }
+          },
+          "transport": {
+            "active": {
+              "kind": "CPU_ONLY"
+            },
+            "after": {
+              "mode": "cpu-hold",
+              "pid": 73,
+              "process_state": "ABSENT",
+              "reason": "RUNNING",
+              "same_process_alive": false,
+              "start_ticks": "54439",
+              "supervisor_pid": 72
+            },
+            "before": {
+              "mode": "cpu-hold",
+              "pid": 73,
+              "process_state": "S",
+              "reason": "RUNNING",
+              "same_process_alive": true,
+              "start_ticks": "54439",
+              "supervisor_pid": 72
+            },
+            "hello": {
+              "pid": 73,
+              "status": "CPU_CONTEXT_ACTIVE"
+            }
+          }
+        },
+        "memory_observation": {
+          "cgroup": "0::/\n",
+          "disk_free_bytes": 69984980992,
+          "hidden_ancestor_admission": "NOT_ESTABLISHED",
+          "meminfo": "MemTotal:       16373452 kB\nMemFree:          419580 kB\nMemAvailable:   15191380 kB\nBuffers:           79024 kB\nCached:         14555660 kB\nSwapCached:           48 kB\nActive:           595948 kB\nInactive:       14365976 kB\nActive(anon):     107836 kB\nInactive(anon):   276108 kB\nActive(file):     488112 kB\nInactive(file): 14089868 kB\nUnevictable:       46780 kB\nMlocked:           43708 kB\nSwapTotal:       3145724 kB\nSwapFree:        3145676 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:            295764 kB\nWriteback:             0 kB\nAnonPages:        354960 kB\nMapped:           338084 kB\nShmem:             48080 kB\nKReclaimable:     539772 kB\nSlab:             671220 kB\nSReclaimable:     539772 kB\nSUnreclaim:       131448 kB\nKernelStack:        4496 kB\nPageTables:         7148 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:    11332448 kB\nCommitted_AS:    2384400 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       41916 kB\nVmallocChunk:          0 kB\nPercpu:             2288 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:    165888 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nCmaTotal:              0 kB\nCmaFree:               0 kB\nUnaccepted:            0 kB\nBalloon:               0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      152704 kB\nDirectMap2M:     6133760 kB\nDirectMap1G:    12582912 kB\n",
+          "visible": {
+            "memory.current": "6149304320",
+            "memory.events": "low 0\nhigh 0\nmax 923\noom 0\noom_kill 0\noom_group_kill 0",
+            "memory.high": "max",
+            "memory.max": "6442450944"
+          }
+        },
+        "pretrained_requests": 0,
+        "resident_memory": {
+          "full_model_memory_admission": "NOT_ESTABLISHED",
+          "future_reservation": false,
+          "resident_bytes": 67108864,
+          "rss_bytes": 82571264,
+          "swap_bytes": 0,
+          "touched_bytes": 67108864
+        },
+        "status": "PASS_FREE_HARDWARE_PATH_CONTROLS",
+        "training_steps": 0,
+        "weight_bytes": 0
+      },
+      "installation": {
+        "compiled_cuda": "12.6",
+        "gpu_kernels": "NOT_RUN",
+        "interpreter_archive": {
+          "bytes": 94433525,
+          "files": 896
+        },
+        "pretrained_inference": "NOT_RUN",
+        "python": "3.12.14",
+        "python_shared_library": {
+          "path": "/opt/backtrace/python/lib/libpython3.12.so.1.0",
+          "sha256": "1fa3c52ba5aa8f6b2852836a4bf6cbb23161f7cf379f6f19248d87124b28b38a"
+        },
+        "status": "PASS_EXACT_CONTAINER_RUNTIME_CPU_ONLY"
+      },
+      "runtime_transfer": {
+        "bytes": 3642433337,
+        "files": 63,
+        "manifest_sha256": "d0023e2e66d60fd7df1f4b4e3094264cb1b5e7bae1aa469a97d51328cd3f6230",
+        "phase": "bootstrap",
+        "schema_version": 1,
+        "verified": true
+      },
+      "status": "PASS_FREE_HARDWARE_PATH_CONTROLS"
+    },
+    "owner": {
+      "actual": false,
+      "claim": {
+        "actual": false,
+        "cleanup_seconds": 45,
+        "contract_sha256": "ca4b02bd5e32b57547a10a8527eb05d979b32693a4deb33c24f5e4e60e6cdf05",
+        "costs": {},
+        "gpu": "FREE_CPU_REPLICA",
+        "name": "backtrace-small-minimum-cd8d1176cc814955b537f2d9b519ce56",
+        "namespace": "minimum-retry-free-24bf9c87a81094a358f6bb6c40dda97b21546d67",
+        "owner_boot": "18e62f5c96d03429de8b9da9653db23db20ba0446baad2b32661e7ec7dc45636",
+        "poll_seconds": 2,
+        "region": "EU-RO-1",
+        "request_sha256": "607a9a269ee9aff1c81cce2830e6adb3a7e78766107d1659aa26afe22d233459",
+        "requested_at": 1793078767.8224053,
+        "run_id": "40455264861",
+        "source_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67",
+        "total_seconds": 180,
+        "unknown_create_seconds": 10,
+        "watch_boot": "8c1e994fac554ca135006d5278ebe2c79d35da7360e2bcbf1c1d53885b3ec2fd"
+      },
+      "cleanup": {
+        "absence_reads": 2,
+        "claim_sha256": "5a101598ced9cb87bafbba98f0e9ced3e96e30e9a8d64c5a54dd7fc11500f758",
+        "completed_at": 1793078804.820167,
+        "history": [
+          {
+            "at": 1793078801.185244,
+            "id": "free-de6f9225e38b447aa635cc33380a54f8",
+            "state": "ABSENT"
+          },
+          {
+            "at": 1793078804.8201659,
+            "id": "free-de6f9225e38b447aa635cc33380a54f8",
+            "state": "ABSENT"
+          }
+        ],
+        "pod_id": "free-de6f9225e38b447aa635cc33380a54f8",
+        "started_at": 1793078799.4381893,
+        "status": "DELETED"
+      },
+      "create_attempted": true,
+      "independent_replica_cleanup": {
+        "absence_reads": 2,
+        "actual": false,
+        "claim_sha256": "5a101598ced9cb87bafbba98f0e9ced3e96e30e9a8d64c5a54dd7fc11500f758",
+        "completed_at": 1793078796.343149,
+        "history": [
+          {
+            "at": 1793078790.245167,
+            "id": "free-de6f9225e38b447aa635cc33380a54f8",
+            "state": "DELETE_SENT"
+          },
+          {
+            "at": 1793078793.3356798,
+            "id": "free-de6f9225e38b447aa635cc33380a54f8",
+            "state": "ABSENT"
+          },
+          {
+            "at": 1793078796.3431478,
+            "id": "free-de6f9225e38b447aa635cc33380a54f8",
+            "state": "ABSENT"
+          }
+        ],
+        "pod_id": "free-de6f9225e38b447aa635cc33380a54f8",
+        "provider_create_requests": 0,
+        "reason": "OWNER_HEARTBEAT_LOST",
+        "source_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67",
+        "started_at": 1793078787.7396994,
+        "status": "DELETED",
+        "watch_boot": "8c1e994fac554ca135006d5278ebe2c79d35da7360e2bcbf1c1d53885b3ec2fd"
+      },
+      "pod_id": "free-de6f9225e38b447aa635cc33380a54f8",
+      "provider_create_requests": 0,
+      "status": "PASS_FREE_REMOTE_CLEANUP"
+    },
+    "watch": {
+      "absence_reads": 2,
+      "actual": false,
+      "claim_sha256": "5a101598ced9cb87bafbba98f0e9ced3e96e30e9a8d64c5a54dd7fc11500f758",
+      "completed_at": 1793078796.343149,
+      "history": [
+        {
+          "at": 1793078790.245167,
+          "id": "free-de6f9225e38b447aa635cc33380a54f8",
+          "state": "DELETE_SENT"
+        },
+        {
+          "at": 1793078793.3356798,
+          "id": "free-de6f9225e38b447aa635cc33380a54f8",
+          "state": "ABSENT"
+        },
+        {
+          "at": 1793078796.3431478,
+          "id": "free-de6f9225e38b447aa635cc33380a54f8",
+          "state": "ABSENT"
+        }
+      ],
+      "pod_id": "free-de6f9225e38b447aa635cc33380a54f8",
+      "provider_create_requests": 0,
+      "reason": "OWNER_HEARTBEAT_LOST",
+      "started_at": 1793078787.7396994,
+      "status": "DELETED",
+      "watch_boot": "8c1e994fac554ca135006d5278ebe2c79d35da7360e2bcbf1c1d53885b3ec2fd"
+    }
+  },
+  "local_tests": {
+    "focused-tests.log": {
+      "count": 22,
+      "seconds": 0.212,
+      "outcome": "OK",
+      "sha256": "34904f25765f959c9db1e91dcea5e18d91602ac047c327e0e5188386c6c1af67",
+      "failure_names": []
+    },
+    "local-full-tests.log": {
+      "count": 661,
+      "seconds": 135.809,
+      "outcome": "FAILED (failures=5, errors=10, skipped=4)",
+      "sha256": "49beb8ee508e808bab958098c4a751d565b9599daaac30cce14b2d52236b9a61",
+      "failure_names": [
+        "ERROR: test_real_offline_replacement_survives_force_reinstall (test_linux_runtime.LinuxRuntimeTests.test_real_offline_replacement_survives_force_reinstall)",
+        "ERROR: test_real_offline_resolver_failure_rolls_back_environment (test_linux_runtime.LinuxRuntimeTests.test_real_offline_resolver_failure_rolls_back_environment)",
+        "ERROR: test_real_venv_is_seeded_offline_from_the_frozen_wheel (test_prepayment_job.VenvSeedTests.test_real_venv_is_seeded_offline_from_the_frozen_wheel)",
+        "ERROR: test_linux_group_observation_does_not_launch_ps (test_startup_guard.GroupCleanupTests.test_linux_group_observation_does_not_launch_ps)",
+        "ERROR: test_observation_failure_still_kills_and_reaps_owned_process (test_startup_guard.GroupCleanupTests.test_observation_failure_still_kills_and_reaps_owned_process) (persistent=False)",
+        "ERROR: test_observation_failure_still_kills_and_reaps_owned_process (test_startup_guard.GroupCleanupTests.test_observation_failure_still_kills_and_reaps_owned_process) (persistent=True)",
+        "ERROR: test_harmless_recoverable_and_quoted (test_startup_guard.StartupGuardTests.test_harmless_recoverable_and_quoted)",
+        "ERROR: test_kill_fallback_and_idempotent_cleanup (test_startup_guard.StartupGuardTests.test_kill_fallback_and_idempotent_cleanup)",
+        "ERROR: test_stale_previous_log (test_startup_guard.StartupGuardTests.test_stale_previous_log)",
+        "ERROR: test_successful_readiness (test_startup_guard.StartupGuardTests.test_successful_readiness)",
+        "FAIL: test_fatal_during_health_wins (test_startup_guard.StartupGuardTests.test_fatal_during_health_wins)",
+        "FAIL: test_fatal_worker_parent_alive (test_startup_guard.StartupGuardTests.test_fatal_worker_parent_alive)",
+        "FAIL: test_readiness_deadline_without_health (test_startup_guard.StartupGuardTests.test_readiness_deadline_without_health)",
+        "FAIL: test_slow_fixture_boot_preserves_post_evidence_bound (test_startup_guard.StartupGuardTests.test_slow_fixture_boot_preserves_post_evidence_bound)",
+        "FAIL: test_total_deadline_without_readiness (test_startup_guard.StartupGuardTests.test_total_deadline_without_readiness)"
+      ]
+    },
+    "unchanged_previous_environment_failure_names": true
+  },
+  "paid_attempt": {
+    "actual": true,
+    "claim": {
+      "actual": true,
+      "cleanup_seconds": 300,
+      "contract_sha256": "ca4b02bd5e32b57547a10a8527eb05d979b32693a4deb33c24f5e4e60e6cdf05",
+      "costs": {
+        "additional_cap": "1.00",
+        "compute_per_hour": "0.59",
+        "credit_reserve": ".50",
+        "hourly_all_in_projection": "0.605",
+        "initial_balance": "3.0787204894",
+        "maximum_projection": "0.5041666666666666666666666667",
+        "storage_per_hour": ".015"
+      },
+      "gpu": "NVIDIA A40",
+      "name": "backtrace-small-minimum-f8993042048d4d309e6adfee86de3288",
+      "namespace": "minimum-retry-paid-20261027",
+      "owner_boot": "e2902792c67e3acd9194f514e18e75ceedc70f9ff39fe8e1e6500e29fc8e0a39",
+      "poll_seconds": 90,
+      "region": "CA-MTL-1",
+      "request_sha256": "13d6b34ca17bd05e8ded1f50db16d854d06927cbc3c28d6af838110d972d760a",
+      "requested_at": 1793079485.6021638,
+      "run_id": "40456274581",
+      "source_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67",
+      "total_seconds": 3000,
+      "unknown_create_seconds": 90,
+      "watch_boot": "83fcb4e59a1dac1abf42a48e18ff3a8f369a24ecb64492b48ed130ebefe2d41d"
+    },
+    "cleanup": {
+      "absence_reads": 2,
+      "claim_sha256": "68d95b64efb1c1e12275d6e727a61132ce52761b83033e1073b77e94546b082f",
+      "completed_at": 1793080082.030065,
+      "history": [
+        {
+          "at": 1793079900.8908198,
+          "id": "u9owrl71pxbzky",
+          "state": "DELETE_SENT"
+        },
+        {
+          "at": 1793079991.4613469,
+          "id": "u9owrl71pxbzky",
+          "state": "ABSENT"
+        },
+        {
+          "at": 1793080082.0300634,
+          "id": "u9owrl71pxbzky",
+          "state": "ABSENT"
+        }
+      ],
+      "pod_id": "u9owrl71pxbzky",
+      "started_at": 1793079899.4080625,
+      "status": "DELETED"
+    },
+    "create_attempted": true,
+    "error": "hardware diagnostic failed",
+    "error_type": "RuntimeError",
+    "frames": [
+      {
+        "file": "small_model_minimum.py",
+        "function": "owner",
+        "line": 375
+      }
+    ],
+    "github_budget": {
+      "limit": 5000,
+      "nominal_combined_requests_per_hour": 560,
+      "observed_at": 1793079478.3596654,
+      "remaining": 4951,
+      "required_until_reset": 740,
+      "reserved_combined_requests_per_hour": 800,
+      "reset": 1793082352,
+      "resource": "core"
+    },
+    "pod_id": "u9owrl71pxbzky",
+    "provider_create_requests": 1,
+    "readiness_observations": [
+      {
+        "direct_endpoint_present": false,
+        "direct_endpoint_valid": false,
+        "elapsed_seconds": 9,
+        "provider_status": "RUNNING",
+        "readiness": "WAIT_DIRECT_ENDPOINT",
+        "runtime_present": false,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": false,
+        "direct_endpoint_valid": false,
+        "elapsed_seconds": 41,
+        "provider_status": "RUNNING",
+        "readiness": "WAIT_DIRECT_ENDPOINT",
+        "runtime_present": false,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": false,
+        "direct_endpoint_valid": false,
+        "elapsed_seconds": 73,
+        "provider_status": "RUNNING",
+        "readiness": "WAIT_DIRECT_ENDPOINT",
+        "runtime_present": false,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": false,
+        "direct_endpoint_valid": false,
+        "elapsed_seconds": 104,
+        "provider_status": "RUNNING",
+        "readiness": "WAIT_DIRECT_ENDPOINT",
+        "runtime_present": false,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": true,
+        "direct_endpoint_valid": true,
+        "elapsed_seconds": 136,
+        "provider_status": "RUNNING",
+        "readiness": "READY",
+        "runtime_present": true,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": true,
+        "direct_endpoint_valid": true,
+        "elapsed_seconds": 228,
+        "provider_status": "RUNNING",
+        "readiness": "READY",
+        "runtime_present": true,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": true,
+        "direct_endpoint_valid": true,
+        "elapsed_seconds": 320,
+        "provider_status": "RUNNING",
+        "readiness": "READY",
+        "runtime_present": true,
+        "started_at_present": true
+      },
+      {
+        "direct_endpoint_present": true,
+        "direct_endpoint_valid": true,
+        "elapsed_seconds": 412,
+        "provider_status": "RUNNING",
+        "readiness": "READY",
+        "runtime_present": true,
+        "started_at_present": true
+      }
+    ],
+    "selected_offer": {
+      "broad_stock": {
+        "available": true,
+        "status": "Medium"
+      },
+      "compute_usd_per_hour": "0.59",
+      "compute_within_proposal": true,
+      "costs": {
+        "additional_cap": "1.00",
+        "compute_per_hour": "0.59",
+        "credit_reserve": ".50",
+        "hourly_all_in_projection": "0.605",
+        "initial_balance": "3.0787204894",
+        "maximum_projection": "0.5041666666666666666666666667",
+        "storage_per_hour": ".015"
+      },
+      "exact_quote": {
+        "availableGpuCounts": null,
+        "minMemory": 43,
+        "minVcpu": 9,
+        "stockStatus": "Medium",
+        "supportPublicIp": null,
+        "uninterruptablePrice": 0.59
+      },
+      "gpu": "NVIDIA A40",
+      "observed_at": "2026-10-27T05:38:01Z",
+      "pricing_status": "OBSERVED",
+      "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+      "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+      "region": "CA-MTL-1",
+      "reported_gpu_gb": 48,
+      "stock_eligible": true,
+      "storage_projection_usd_per_hour": "0.015"
+    },
+    "status": "FAIL",
+    "account_before": {
+      "auto_pay": false,
+      "credit_balance_usd": "3.0787204894",
+      "observed_at": "2026-10-27T05:37:58Z",
+      "spend_per_hour_usd": "0"
+    },
+    "remote": {
+      "actual_gpu": true,
+      "binary_transfer": {
+        "bytes": 1400320,
+        "sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a"
+      },
+      "error": "worker ended before response",
+      "error_type": "EOFError",
+      "frames": [
+        {
+          "file": "small_model_minimum_remote.py",
+          "function": "connected",
+          "line": 207
+        },
+        {
+          "file": "small_model_minimum_remote.py",
+          "function": "exercise",
+          "line": 146
+        },
+        {
+          "file": "small_model_minimum_remote.py",
+          "function": "one",
+          "line": 106
+        },
+        {
+          "file": "small_model_runner.py",
+          "function": "read",
+          "line": 266
+        }
+      ],
+      "installation": {
+        "compiled_cuda": "12.6",
+        "gpu_kernels": "NOT_RUN",
+        "interpreter_archive": {
+          "bytes": 94433525,
+          "files": 896
+        },
+        "pretrained_inference": "NOT_RUN",
+        "python": "3.12.14",
+        "python_shared_library": {
+          "path": "/opt/backtrace/python/lib/libpython3.12.so.1.0",
+          "sha256": "1fa3c52ba5aa8f6b2852836a4bf6cbb23161f7cf379f6f19248d87124b28b38a"
+        },
+        "status": "PASS_EXACT_CONTAINER_RUNTIME_CPU_ONLY"
+      },
+      "runtime_transfer": {
+        "bytes": 3642433337,
+        "files": 63,
+        "manifest_sha256": "3e77af9aed4490e628569ee560d944a24de9b4e4345abdd3b92428920bd2a0e5",
+        "phase": "bootstrap",
+        "schema_version": 1,
+        "verified": true
+      },
+      "status": "FAIL"
+    },
+    "run_id": 40456274581,
+    "run_url": "https://github.com/hynk-studio/backtrace/actions/runs/40456274581",
+    "claim_sha256": "68d95b64efb1c1e12275d6e727a61132ce52761b83033e1073b77e94546b082f",
+    "claim_requested_at_kst": "2026-10-27T14:38:05.602164+09:00",
+    "watch_cleanup": {
+      "absence_reads": 2,
+      "actual": true,
+      "claim_sha256": "68d95b64efb1c1e12275d6e727a61132ce52761b83033e1073b77e94546b082f",
+      "completed_at": 1793080049.564956,
+      "history": [
+        {
+          "at": 1793079958.8853633,
+          "id": "u9owrl71pxbzky",
+          "state": "ABSENT"
+        },
+        {
+          "at": 1793080049.5649538,
+          "id": "u9owrl71pxbzky",
+          "state": "ABSENT"
+        }
+      ],
+      "pod_id": "u9owrl71pxbzky",
+      "provider_create_requests": 0,
+      "reason": "OWNER_DONE",
+      "started_at": 1793079958.0765407,
+      "status": "DELETED",
+      "watch_boot": "83fcb4e59a1dac1abf42a48e18ff3a8f369a24ecb64492b48ed130ebefe2d41d"
+    },
+    "owner_cleanup_completed_kst": "2026-10-27T14:48:02.030065+09:00",
+    "watch_cleanup_completed_kst": "2026-10-27T14:47:29.564956+09:00",
+    "account_after": {
+      "auto_pay": false,
+      "credit_balance_usd": "3.0181656274",
+      "observed_at": "2026-10-27T05:48:03Z",
+      "spend_per_hour_usd": "0"
+    },
+    "inventory_after": {
+      "complete_paginated_list": true,
+      "observed_at": "2026-10-27T05:48:10Z",
+      "pod_count": 0,
+      "resource_mutations": 0
+    },
+    "observed_credit_delta_usd": "0.0605548620",
+    "billing_finality": "NOT_ESTABLISHED",
+    "authorization_consumed": true,
+    "automatic_second_create": false
+  },
+  "artifacts": [
+    {
+      "artifact": {
+        "id": 12712093181,
+        "name": "small-minimum-retry-quotes-24bf9c87a81094a358f6bb6c40dda97b21546d67",
+        "size_in_bytes": 1960,
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12712093181",
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12712093181/zip",
+        "expired": false,
+        "created_at": "2026-10-27T05:26:10Z",
+        "expires_at": "2026-11-10T05:26:09Z",
+        "updated_at": "2026-10-27T05:26:10Z",
+        "digest": "sha256:57ff6fab9a3e2e6e6148c584e1abf704b2b951c6d8ffb03dfeff4f7983dc4fa5",
+        "workflow_run": {
+          "id": 40455264846,
+          "repository_id": 1393671873,
+          "head_repository_id": 1393671873,
+          "head_branch": "bt-001-small-model-minimum-retry-20261027",
+          "head_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67"
+        }
+      },
+      "members": {
+        "account-quotes.json": {
+          "bytes": 26156,
+          "sha256": "7c4b1bd9969c6e2a9d2e25f7b8da0949b34ce88452b97af15496fb89772c37cc"
+        }
+      }
+    },
+    {
+      "artifact": {
+        "id": 12712765147,
+        "name": "small-minimum-retry-container-24bf9c87a81094a358f6bb6c40dda97b21546d67-1",
+        "size_in_bytes": 59377,
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12712765147",
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12712765147/zip",
+        "expired": false,
+        "created_at": "2026-10-27T05:34:38Z",
+        "expires_at": "2026-11-10T05:34:37Z",
+        "updated_at": "2026-10-27T05:34:38Z",
+        "digest": "sha256:8d33290b4a4b6a0880fa136c4e775c1ce3e013f6b5ac1885ed1ebb187c92e1ec",
+        "workflow_run": {
+          "id": 40455264861,
+          "repository_id": 1393671873,
+          "head_repository_id": 1393671873,
+          "head_branch": "bt-001-small-model-minimum-retry-20261027",
+          "head_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67"
+        }
+      },
+      "members": {
+        "container-image.log": {
+          "bytes": 1335,
+          "sha256": "65c93849fafb29db90f019c6ff058a8cf701746905b8d46151b16423165ee169"
+        },
+        "container-receipt.json": {
+          "bytes": 39754,
+          "sha256": "4f101c630b9f1b0abeb45437da000690471f9206ebda2bcc111d82cdbc7e8832"
+        },
+        "container-remote-connected-receipt.json": {
+          "bytes": 12064,
+          "sha256": "27fdb14d99d25bb31fe3823a0edf4fd3aaeb01a047e0cc4a9e97cfdbcb07ec8b"
+        },
+        "container-remote-diagnostics-boundary-526222891846.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-remote-diagnostics-boundary-memory-checkpoint.json": {
+          "bytes": 2912,
+          "sha256": "2c29f825f07931aef9f17cdd5cd3008708923d434bec111830301993d9166e3f"
+        },
+        "container-remote-diagnostics-deadline-checkpoint.json": {
+          "bytes": 3413,
+          "sha256": "9511f0d8d0a739a40afe65b5e635d6250e2e49de663360bbc53654f91c02d09a"
+        },
+        "container-remote-diagnostics-deadline.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-remote-diagnostics-memory-526498036956.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-remote-diagnostics-missing-gpu.log": {
+          "bytes": 551,
+          "sha256": "27d4bb28c19fdb036ccd05764f52db515492c6f568356b4b436272c9be73d41d"
+        },
+        "container-remote-diagnostics-receipt.json": {
+          "bytes": 4245,
+          "sha256": "0e508caf90e069db0d5d812fe0f519d7c3dabc0c4454b7ab8c88e7bd8cbe77ab"
+        },
+        "container-remote-diagnostics-supervisor-checkpoint.json": {
+          "bytes": 4223,
+          "sha256": "8a72491c33febba7f2c625993525d8093f8c846b60d40b355ed6be0a77ad05ba"
+        },
+        "container-remote-diagnostics-supervisor.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-remote-diagnostics-transport-checkpoint.json": {
+          "bytes": 3817,
+          "sha256": "85db7095a1814d39ef0f25b8cd4ddda4261af54dedc115fff6e2a74e3cf4340a"
+        },
+        "container-remote-diagnostics-transport.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-remote-install.log": {
+          "bytes": 10564,
+          "sha256": "fb3c6c4966af7e01c4ed2278bfc30bb4e669b0a3b6cba66cc372c01995099333"
+        },
+        "container-stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-remote-installation-checkpoint.json": {
+          "bytes": 7783,
+          "sha256": "0d66d48f3ffceccd822da2c0997ac9269fe36fb26d4c86dde433b9799d97cfb9"
+        },
+        "container.json": {
+          "bytes": 41049,
+          "sha256": "c0c1b64bb7bc8024a56d22e41daffd27c86cd893482b7fe4cc6718f349638cc8"
+        },
+        "preflight.json": {
+          "bytes": 167,
+          "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+        },
+        "tests.log": {
+          "bytes": 111737,
+          "sha256": "74ed4f7f96e4484729a27ac823c25ce512e77d2801c38f9a36829cc98b370cdc"
+        }
+      }
+    },
+    {
+      "artifact": {
+        "id": 12711673414,
+        "name": "small-minimum-retry-cpu-owner-24bf9c87a81094a358f6bb6c40dda97b21546d67-1",
+        "size_in_bytes": 7732,
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12711673414",
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12711673414/zip",
+        "expired": false,
+        "created_at": "2026-10-27T05:26:47Z",
+        "expires_at": "2026-11-10T05:26:46Z",
+        "updated_at": "2026-10-27T05:26:47Z",
+        "digest": "sha256:340a9bb6e9f99b5da41548d2741ea9329a8f0e1305ff534191ae6941ffb7186a",
+        "workflow_run": {
+          "id": 40455264861,
+          "repository_id": 1393671873,
+          "head_repository_id": 1393671873,
+          "head_branch": "bt-001-small-model-minimum-retry-20261027",
+          "head_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67"
+        }
+      },
+      "members": {
+        "minimum-owner/receipt.json": {
+          "bytes": 8664,
+          "sha256": "571ab2aa0b6010197fd634cddb8d408d95ad03db07cae734f1bd0a09b9ad6a37"
+        },
+        "minimum-owner.json": {
+          "bytes": 8664,
+          "sha256": "571ab2aa0b6010197fd634cddb8d408d95ad03db07cae734f1bd0a09b9ad6a37"
+        }
+      }
+    },
+    {
+      "artifact": {
+        "id": 12711569990,
+        "name": "small-minimum-retry-cpu-watch-24bf9c87a81094a358f6bb6c40dda97b21546d67-1",
+        "size_in_bytes": 498,
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12711569990",
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12711569990/zip",
+        "expired": false,
+        "created_at": "2026-10-27T05:26:38Z",
+        "expires_at": "2026-11-10T05:26:37Z",
+        "updated_at": "2026-10-27T05:26:38Z",
+        "digest": "sha256:206219b011a30288067963fa0ba9bccc28131dbdd164b4ac51514f0715896a24",
+        "workflow_run": {
+          "id": 40455264861,
+          "repository_id": 1393671873,
+          "head_repository_id": 1393671873,
+          "head_branch": "bt-001-small-model-minimum-retry-20261027",
+          "head_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67"
+        }
+      },
+      "members": {
+        "minimum-watch.json": {
+          "bytes": 671,
+          "sha256": "5cb0d71303d8b0883a870a5a93bd0de1e0a475d199bbe449cf64fa80ed39ebe7"
+        }
+      }
+    },
+    {
+      "artifact": {
+        "id": 12713126335,
+        "name": "small-minimum-retry-live-watch-24bf9c87a81094a358f6bb6c40dda97b21546d67-1",
+        "size_in_bytes": 461,
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12713126335",
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12713126335/zip",
+        "expired": false,
+        "created_at": "2026-10-27T05:47:31Z",
+        "expires_at": "2026-11-10T05:47:31Z",
+        "updated_at": "2026-10-27T05:47:31Z",
+        "digest": "sha256:516116dbaeb16b909c3332e25e45e580e89d72a9e8468aa6d24ad6a35578b6d3",
+        "workflow_run": {
+          "id": 40456274581,
+          "repository_id": 1393671873,
+          "head_repository_id": 1393671873,
+          "head_branch": "bt-001-small-model-minimum-retry-start-20261027",
+          "head_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67"
+        }
+      },
+      "members": {
+        "minimum-watch.json": {
+          "bytes": 499,
+          "sha256": "993f66ca2f3695b705bce4e4b19d29c9bbdd6e8d280a9d601920f73d16624111"
+        }
+      }
+    },
+    {
+      "artifact": {
+        "id": 12712314573,
+        "name": "small-minimum-retry-live-owner-24bf9c87a81094a358f6bb6c40dda97b21546d67-1",
+        "size_in_bytes": 26745,
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12712314573",
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12712314573/zip",
+        "expired": false,
+        "created_at": "2026-10-27T05:48:10Z",
+        "expires_at": "2026-11-10T05:48:10Z",
+        "updated_at": "2026-10-27T05:48:10Z",
+        "digest": "sha256:ab9a83d8701a25cfd69676e8714a67fe1d784ca979d4b813b6afe528100a984c",
+        "workflow_run": {
+          "id": 40456274581,
+          "repository_id": 1393671873,
+          "head_repository_id": 1393671873,
+          "head_branch": "bt-001-small-model-minimum-retry-start-20261027",
+          "head_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67"
+        }
+      },
+      "members": {
+        "account-after.json": {
+          "bytes": 24848,
+          "sha256": "07776e7a10def0a0cc1072f32021f37a9c294f7339c79ad35df54354c97a7801"
+        },
+        "minimum-owner/remote/connected-receipt.json": {
+          "bytes": 8130,
+          "sha256": "676a0938241043e324545620f375bcef9c527d2f239b2108de8908a77dbe0a9c"
+        },
+        "minimum-owner/receipt.json": {
+          "bytes": 35714,
+          "sha256": "cb145683cb3806140e5ce649ed9f496966d5b4bdde0488a660506259098fd87c"
+        },
+        "minimum-owner/remote/diagnostics/boundary-523790475259.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "minimum-owner/remote/diagnostics/boundary-memory-checkpoint.json": {
+          "bytes": 4501,
+          "sha256": "c59ee7ac940ca67c1fed01bc0ab8d279c50e123675ab917bbd153cfa83b5e8a0"
+        },
+        "minimum-owner/remote/diagnostics/kernels-529471360839.log": {
+          "bytes": 996,
+          "sha256": "ffec955fc65a3e32b83fbedcc03609b709154dfc107fb75b7ea55516c66214f4"
+        },
+        "minimum-owner/remote/diagnostics/memory-524346637625.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "minimum-owner/remote/install.log": {
+          "bytes": 10564,
+          "sha256": "fb3c6c4966af7e01c4ed2278bfc30bb4e669b0a3b6cba66cc372c01995099333"
+        },
+        "minimum-owner/remote/installation-checkpoint.json": {
+          "bytes": 7782,
+          "sha256": "a6ed5bf140b367ce5369ddfa1cda50759403cebb3fdf771fa82261d1c4ac80e3"
+        },
+        "minimum-owner/worker.log": {
+          "bytes": 19,
+          "sha256": "acfa622a1e8a6efe27a83d99a131dd3cf819bd034244874ac1511ec9a2e56a01"
+        },
+        "minimum-owner.json": {
+          "bytes": 35714,
+          "sha256": "cb145683cb3806140e5ce649ed9f496966d5b4bdde0488a660506259098fd87c"
+        }
+      }
+    }
+  ],
+  "verified_artifact_count": 6,
+  "verified_member_count": 36,
+  "state_and_preservation": {
+    "state_commit": "4640e459d1507b8e9a8c6243e79d894003f90954",
+    "state_tree": "f91d4cba5f6804da08619905d6626d8a9d787191",
+    "verified_paid_records": [
+      {
+        "name": "authorization",
+        "path": "minimum/minimum-retry-paid-20261027/authorization.json",
+        "git_blob_sha": "758cf0e52c27afbd4eee3b66ccd85ee12168cfd6",
+        "sha256": "72458fa5cf7f963e4fccb33f8f40e304e8b41c45c89fbeb64bacaf3b0a201d32",
+        "bytes": 950,
+        "value": {
+          "source_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67",
+          "contract_sha256": "ca4b02bd5e32b57547a10a8527eb05d979b32693a4deb33c24f5e4e60e6cdf05",
+          "authorization_id": "hardware-minimum-retry-20261027-one",
+          "namespace": "minimum-retry-paid-20261027",
+          "instruction": "1회 다시 진행해",
+          "single_use": true,
+          "mode": "OWNER_APPROVED_HARDWARE_MINIMUM",
+          "additional_cap_usd": "1.00",
+          "allocation_inclusive_seconds": 3000,
+          "automatic_retry": false,
+          "top_up_allowed": false,
+          "weight_download_bytes": 0,
+          "pretrained_requests": 0,
+          "training_steps": 0,
+          "qualification_run_id": "40455264861",
+          "approved_at": 1793079305.6779218,
+          "expires_at": 1793086505.6779218,
+          "approval_reference": "Current owner instruction: 1회 다시 진행해; one further hardware-only allocation under the same USD1 and 3000-second limits after exact-source qualification",
+          "previous_consumed_authorization": "hardware-minimum-20261027-one"
+        }
+      },
+      {
+        "name": "owner",
+        "path": "minimum/minimum-retry-paid-20261027/owner.json",
+        "git_blob_sha": "f3344544bcd386bd1de6d9938004326bd3c5f3af",
+        "sha256": "d1efddfd09416d73ee6cbed06032cce2a6859b75df11f6a1f72974c72f21aa00",
+        "bytes": 201,
+        "value": {
+          "at": 1793079476.5906212,
+          "boot_sha256": "e2902792c67e3acd9194f514e18e75ceedc70f9ff39fe8e1e6500e29fc8e0a39",
+          "role": "owner",
+          "run_id": "40456274581",
+          "source_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67"
+        }
+      },
+      {
+        "name": "watch",
+        "path": "minimum/minimum-retry-paid-20261027/watch.json",
+        "git_blob_sha": "e8c93a3bb85f668c62b8ecac56bd559523b1b4de",
+        "sha256": "ee77ea5f5333213c23d6322d2e374eae9c19e08e525df7a791875b8c45de613a",
+        "bytes": 201,
+        "value": {
+          "at": 1793079398.8992145,
+          "boot_sha256": "83fcb4e59a1dac1abf42a48e18ff3a8f369a24ecb64492b48ed130ebefe2d41d",
+          "role": "watch",
+          "run_id": "40456274581",
+          "source_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67"
+        }
+      },
+      {
+        "name": "claim",
+        "path": "minimum/minimum-retry-paid-20261027/claim.json",
+        "git_blob_sha": "0fd88779ec436eb3c8b55795a6eb9ca786e24f90",
+        "sha256": "68d95b64efb1c1e12275d6e727a61132ce52761b83033e1073b77e94546b082f",
+        "bytes": 925,
+        "value": {
+          "actual": true,
+          "cleanup_seconds": 300,
+          "contract_sha256": "ca4b02bd5e32b57547a10a8527eb05d979b32693a4deb33c24f5e4e60e6cdf05",
+          "costs": {
+            "additional_cap": "1.00",
+            "compute_per_hour": "0.59",
+            "credit_reserve": ".50",
+            "hourly_all_in_projection": "0.605",
+            "initial_balance": "3.0787204894",
+            "maximum_projection": "0.5041666666666666666666666667",
+            "storage_per_hour": ".015"
+          },
+          "gpu": "NVIDIA A40",
+          "name": "backtrace-small-minimum-f8993042048d4d309e6adfee86de3288",
+          "namespace": "minimum-retry-paid-20261027",
+          "owner_boot": "e2902792c67e3acd9194f514e18e75ceedc70f9ff39fe8e1e6500e29fc8e0a39",
+          "poll_seconds": 90,
+          "region": "CA-MTL-1",
+          "request_sha256": "13d6b34ca17bd05e8ded1f50db16d854d06927cbc3c28d6af838110d972d760a",
+          "requested_at": 1793079485.6021638,
+          "run_id": "40456274581",
+          "source_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67",
+          "total_seconds": 3000,
+          "unknown_create_seconds": 90,
+          "watch_boot": "83fcb4e59a1dac1abf42a48e18ff3a8f369a24ecb64492b48ed130ebefe2d41d"
+        }
+      },
+      {
+        "name": "armed",
+        "path": "minimum/minimum-retry-paid-20261027/armed.json",
+        "git_blob_sha": "8167f9a5e3b44feae12689f9e64e9446e6a80436",
+        "sha256": "bee6096031a3957b0915145308d3d18b55bc10e063fdf6cededb85f44a35d558",
+        "bytes": 244,
+        "value": {
+          "at": 1793079490.1045067,
+          "claim_sha256": "68d95b64efb1c1e12275d6e727a61132ce52761b83033e1073b77e94546b082f",
+          "source_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67",
+          "watch_boot": "83fcb4e59a1dac1abf42a48e18ff3a8f369a24ecb64492b48ed130ebefe2d41d"
+        }
+      },
+      {
+        "name": "heartbeat",
+        "path": "minimum/minimum-retry-paid-20261027/heartbeat.json",
+        "git_blob_sha": "377d004c61a25ede714d7cd2ed4750072b46f0e1",
+        "sha256": "91877d7380142109a87f208f862be09906176a270bfc60679aee506a9e68c6b0",
+        "bytes": 164,
+        "value": {
+          "at": 1793079806.6785228,
+          "claim_sha256": "68d95b64efb1c1e12275d6e727a61132ce52761b83033e1073b77e94546b082f",
+          "source_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67"
+        }
+      },
+      {
+        "name": "watch-heartbeat",
+        "path": "minimum/minimum-retry-paid-20261027/watch-heartbeat.json",
+        "git_blob_sha": "86fc212b0c3e559a7d52f1598f39388571447119",
+        "sha256": "0afec4dc01891b08d154d80661e175bff1f0035bc9ff87fc31850a03b544b3cb",
+        "bytes": 163,
+        "value": {
+          "at": 1793079956.101325,
+          "claim_sha256": "68d95b64efb1c1e12275d6e727a61132ce52761b83033e1073b77e94546b082f",
+          "source_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67"
+        }
+      },
+      {
+        "name": "pod",
+        "path": "minimum/minimum-retry-paid-20261027/pod.json",
+        "git_blob_sha": "9047dbf91a0e83e0af6714b0490eac5ffb62cbe7",
+        "sha256": "6beec4ffbfdb688636a24f95ffba81136631212293e1651803a9864ad5f28685",
+        "bytes": 166,
+        "value": {
+          "claim_sha256": "68d95b64efb1c1e12275d6e727a61132ce52761b83033e1073b77e94546b082f",
+          "pod_id": "u9owrl71pxbzky",
+          "source_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67"
+        }
+      },
+      {
+        "name": "done",
+        "path": "minimum/minimum-retry-paid-20261027/done.json",
+        "git_blob_sha": "e73b4b4ed6975001c18cf7a106ebc06b81a2e915",
+        "sha256": "64c04a470b58ff5b58053deaf022bd84dece14b045e7bba2c7e877d12f8bc06a",
+        "bytes": 193,
+        "value": {
+          "at": 1793079898.3153303,
+          "claim_sha256": "68d95b64efb1c1e12275d6e727a61132ce52761b83033e1073b77e94546b082f",
+          "provider_create_requests": 1,
+          "source_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67"
+        }
+      },
+      {
+        "name": "owner-cleanup",
+        "path": "minimum/minimum-retry-paid-20261027/owner-cleanup.json",
+        "git_blob_sha": "dae835b1ac8092afb295713a2f3a9580e5c28f47",
+        "sha256": "2f69acd403fb93223193673725e6f06c9a8e0a6cf0077217a08a4a1b560ce1b2",
+        "bytes": 480,
+        "value": {
+          "absence_reads": 2,
+          "claim_sha256": "68d95b64efb1c1e12275d6e727a61132ce52761b83033e1073b77e94546b082f",
+          "completed_at": 1793080082.030065,
+          "history": [
+            {
+              "at": 1793079900.8908198,
+              "id": "u9owrl71pxbzky",
+              "state": "DELETE_SENT"
+            },
+            {
+              "at": 1793079991.4613469,
+              "id": "u9owrl71pxbzky",
+              "state": "ABSENT"
+            },
+            {
+              "at": 1793080082.0300634,
+              "id": "u9owrl71pxbzky",
+              "state": "ABSENT"
+            }
+          ],
+          "pod_id": "u9owrl71pxbzky",
+          "source_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67",
+          "started_at": 1793079899.4080625,
+          "status": "DELETED"
+        }
+      },
+      {
+        "name": "watch-cleanup",
+        "path": "minimum/minimum-retry-paid-20261027/watch-cleanup.json",
+        "git_blob_sha": "de28b883e65e8401be421d7efe6b286d48c8f732",
+        "sha256": "477ed7bc22f09fdbb39354df42a75d61f3f5351dfccb5aaea312b1d81b5c157e",
+        "bytes": 555,
+        "value": {
+          "absence_reads": 2,
+          "actual": true,
+          "claim_sha256": "68d95b64efb1c1e12275d6e727a61132ce52761b83033e1073b77e94546b082f",
+          "completed_at": 1793080049.564956,
+          "history": [
+            {
+              "at": 1793079958.8853633,
+              "id": "u9owrl71pxbzky",
+              "state": "ABSENT"
+            },
+            {
+              "at": 1793080049.5649538,
+              "id": "u9owrl71pxbzky",
+              "state": "ABSENT"
+            }
+          ],
+          "pod_id": "u9owrl71pxbzky",
+          "provider_create_requests": 0,
+          "reason": "OWNER_DONE",
+          "source_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67",
+          "started_at": 1793079958.0765407,
+          "status": "DELETED",
+          "watch_boot": "83fcb4e59a1dac1abf42a48e18ff3a8f369a24ecb64492b48ed130ebefe2d41d"
+        }
+      }
+    ],
+    "previous_branch_heads": {
+      "bt-001-a100-cpu-qualification": "50c9ee629b9a0d59dcd076d26eca80fe9969b376",
+      "bt-001-a100-start-20261019": "80cb0efa905ba7f068ea10e04ecf1c37c4382401",
+      "bt-001-a100-start-20261020b": "91788995fa6e7fd185a4a4e001a13558ce37581b",
+      "bt-001-a100-start-20261020c": "48dafadc25e42980e3674c247627662695891b84",
+      "bt-001-a100-start-20261021a": "6b7a861f286a2e68b169ccb9c4c1fb99c9ead756",
+      "bt-001-a100-start-20261021b": "ec58d2d6a8200a7cfb74185fce9ccc82dabaab81",
+      "bt-001-a100-start-20261021c": "5aea23d2456233414c74f3346f1163acd0779fa2",
+      "bt-001-a100-start-api-recovery": "7f53553078483cd2555f0bed0abd0410cf42f3d0",
+      "bt-001-a100-start-bootstrap-probe": "f7cb1164e06586486254ce193e30201e12e5c424",
+      "bt-001-a100-start-calibrated-20261023": "6973f96255cdecf2d02f7e1ad976522f7982699d",
+      "bt-001-a100-start-connected-gpu": "cdef8537994f65e6a26645ec684f5917bd126c7b",
+      "bt-001-a100-start-qualified-20261023": "626e3a619a025f64e3713af11b8e4097471470ab",
+      "bt-001-a100-start-verified-20261024": "e31873dab5b400a1ddc236c7ac9c2440f05fdab7",
+      "bt-001-a100-state": "10c101135b005e5c9133323a50fe7c6c81701460",
+      "bt-001-a100-watch-20261019": "80cb0efa905ba7f068ea10e04ecf1c37c4382401",
+      "bt-001-a100-watch-20261020b": "91788995fa6e7fd185a4a4e001a13558ce37581b",
+      "bt-001-a100-watch-20261020c": "48dafadc25e42980e3674c247627662695891b84",
+      "bt-001-a100-watch-20261021a": "6b7a861f286a2e68b169ccb9c4c1fb99c9ead756",
+      "bt-001-a100-watch-20261021b": "ec58d2d6a8200a7cfb74185fce9ccc82dabaab81",
+      "bt-001-a100-watch-20261021c": "5aea23d2456233414c74f3346f1163acd0779fa2",
+      "bt-001-a100-watch-api-recovery": "7f53553078483cd2555f0bed0abd0410cf42f3d0",
+      "bt-001-a100-watch-bootstrap-probe": "f7cb1164e06586486254ce193e30201e12e5c424",
+      "bt-001-a100-watch-calibrated-20261023": "6973f96255cdecf2d02f7e1ad976522f7982699d",
+      "bt-001-a100-watch-connected-gpu": "cdef8537994f65e6a26645ec684f5917bd126c7b",
+      "bt-001-a100-watch-qualified-20261023": "626e3a619a025f64e3713af11b8e4097471470ab",
+      "bt-001-a100-watch-verified-20261024": "e31873dab5b400a1ddc236c7ac9c2440f05fdab7",
+      "bt-001-abductive-evaluation-20261026": "31d02bb9826889deb8f188fa0e0e1562d436295f",
+      "bt-001-api-readiness-recovery": "d604960a2bd3bb0efc7e428f08d4f14c80eabf58",
+      "bt-001-bootstrap": "c9001e00be16c1d3fcb7cd80b9a63998cecb6e4b",
+      "bt-001-bootstrap-diagnostics": "a673cd92d8ba2fbd58f90d78401a205dade7f7b5",
+      "bt-001-bootstrap-probe": "e655960cb7db584e869709ba3c504dedcd73dee0",
+      "bt-001-calibrated-evaluation-20261023": "92456475a47fd5003a25306db48d412d31cc6cf9",
+      "bt-001-calibrated-gpu-20261023": "1bf344ea98cb524d25b1de05422ebf7c7ff232a0",
+      "bt-001-calibrated-observe-20261023": "e7ceaf9d0246dd8f5d97c72cb69389b9879f91f9",
+      "bt-001-connected-gpu-smoke": "bf3a650bb5b82d981e5666ac4747ff997d26d405",
+      "bt-001-connected-qualification": "5bd2d4d9cd27b51ede825afa959be924701c5943",
+      "bt-001-cpu-binding": "9660ec3195108108236406b298607926380a7b0e",
+      "bt-001-full-path-parity": "aa391853494f1b6c67bcdcc10ceb09fdf3e72b4a",
+      "bt-001-full-setup-cpu": "e1e054d03d3e5f6d37c05ac70b71eb5d9018c552",
+      "bt-001-qualified-gpu-20261023": "37d6d45ab8a89dad1f7fbeedc0d3c37e037684f4",
+      "bt-001-qualified-observe-20261023": "9b63b8ad6ec1998cb38ba7580fe7e0b51cb001c7",
+      "bt-001-r0-artifacts": "56c612e68626d07da6b0c5378ec6bd7f05f82fee",
+      "bt-001-r0-smoke": "919c6bc939dcbcbe31ab619954a9ab2e85da4c4d",
+      "bt-001-research-deployment-probe-20261025": "3af0362065f88076c0f3e65d57ffdfeac4220e27",
+      "bt-001-research-execution-prep-20261024": "e938c47af790585800921ef6cc66f792046f6651",
+      "bt-001-research-prep-20261024": "80d72ec643df55b709d1acd9b5c7816d5d9105e6",
+      "bt-001-research-prepaid-entry-20261026": "e8074474132ffdde9c4b73206c8c22ce7c2a4180",
+      "bt-001-research-reduced9-20261026": "3b0f5e8028a7835ac44b8e9cffd488b185e1e127",
+      "bt-001-research-reduced9-observe-20261026-0007": "f6f230ee107699ae9cc645db0a22aec210324a0d",
+      "bt-001-research-reduced9-start-20261026": "a8ae2765e9b57a408be3e3930b3a69a977601535",
+      "bt-001-research-reduced9-state-20261026": "25ea1eddda40d8ad27d9f121adca3ddd7fb776b4",
+      "bt-001-research-reduced9-watch-20261026": "a8ae2765e9b57a408be3e3930b3a69a977601535",
+      "bt-001-research-serving-lifecycle-20261025": "f7698ad6654c26bebaeb29d2e137d478d47ae55a",
+      "bt-001-research-split-runtime-20261025": "808f360734410a44c80709aa4ee96b8fcc123c3d",
+      "bt-001-research-state-20261026": "59466d054f86d1049259273e613553eb8999a6d1",
+      "bt-001-research-verifier-amendment-20261025": "dd75363ba3979a13753a3ffc099fe56d3e9b5224",
+      "bt-001-research-verifier-prep-20261024": "aaea5e1a6ae8f0460d40e8ea5b60bc0b26d6207a",
+      "bt-001-retry-preparation-20261023": "8b7b1416eec1d714dfbb581e4aa06a06793f2c27",
+      "bt-001-small-abductive-plan-20261026": "4a4c28380de2103ff9b432b1c7f55de9b4514182",
+      "bt-001-small-model-container-20261027": "10ec8a248e4b4c9ede3ff0698f595799514425d8",
+      "bt-001-small-model-gpu-20261026": "6a0afa9a7ab88a1d77edc808bb78575b96b0ae17",
+      "bt-001-small-model-minimum-20261027": "db9c48032f47466ccf2f975dfea8dba44c12c8c0",
+      "bt-001-small-model-minimum-start-20261027": "bc4e691306f7eca3adcc52abf438a564716226b4",
+      "bt-001-small-model-minimum-state-20261027": "12f958b225336d9dce3d1c5ed7c6e4f0107c9e21",
+      "bt-001-small-model-precheck-20261026": "c048ec313e5e6cf20dc0b802efa48f336854b46d",
+      "bt-001-small-model-provider-20261027": "669fd7f12a164c294747d05e455185b626a9d355",
+      "bt-001-small-model-provider-state-20261027": "1a95a00b94cc5df5440d88fb8391a59e47f276b9",
+      "bt-001-small-model-runner-20261026": "aeb06af108a348c32422954c172b634c0bd5959e",
+      "bt-001-small-model-runtime-20261026": "5ad61b43d1cda581e7651c7def9aaea88f5c461b",
+      "bt-001-startup-guard-a100": "a08b2a63914538e1688ddf9d33773f7a9de48a19",
+      "bt-001-startup-reaper-diagnostic-20261023": "16d1df8ea19d4e760226aad13bcd6f1e3aea8ba6",
+      "bt-001-startup-reaper-fix-20261023": "4dcc641cc772988d76cbd2cfa500d95c7326f3e5",
+      "bt-001-task-budget-evaluation-20261023": "03c2e7cdae165fc4bf2a0ddc5a270f5769f47e37",
+      "bt-001-task-calibration-20261023": "4c997d379a3967dc54ccaeb38fb0c05273ca96c7",
+      "bt-001-temporal-baseline-20261026": "764a30465d01fba994a64e3d592c6e45a9b37711",
+      "bt-001-verified-evaluation-20261024": "bf50a54525b8d78ebe7bb021ea517219c45d70d3",
+      "bt-001-verified-gpu-20261024": "04ec3016c2631a2f0c08a004a2e1ecdbdb7b4fea",
+      "bt-001-verified-observe-20261024": "0d38f93621b16312be267de1fc0723eb1ffe6d76",
+      "main": "23616971a4ec57d32fcce769e0a2abf44faa9cfe"
+    },
+    "preserved_prior_branch_count": 79,
+    "preserved_prior_source_count": 58,
+    "paid_source_hash_count": 63,
+    "paid_start_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67"
+  },
+  "weights_and_model_results": {
+    "weight_download_bytes": 0,
+    "pretrained_requests": 0,
+    "training_steps": 0,
+    "augnes_changes": 0
+  },
+  "full_model_memory_admission": "NOT_ESTABLISHED",
+  "remaining": [
+    "CUDA initialization root-cause isolation and successful actual hardware minimum",
+    "Full-model container admission and actual pretrained baseline",
+    "Tiny update and save/reload",
+    "Controlled E2B/E4B training and confirmatory evaluation",
+    "Augnes transfer assessment"
+  ],
+  "no_automatic_paid_retry": true,
+  "partial_diagnostics": {
+    "actual_gpu": true,
+    "boundary": {
+      "caps": 0,
+      "credential_environment_absent": true,
+      "exec_denied": true,
+      "fork_denied": true,
+      "namespace_denied": true,
+      "net_namespace": "net:[4026537523]",
+      "no_new_privs": "1",
+      "pid_namespace": "pid:[4026537521]",
+      "private_file_denied": true,
+      "readonly_job": true,
+      "root_denied": true,
+      "seccomp": "2",
+      "socket_denied": true,
+      "threads_work": true,
+      "uid": 65532,
+      "unix_socket_denied": true
+    },
+    "checks": {
+      "credential_environment_absent": true,
+      "exec_denied": true,
+      "fork_denied": true,
+      "namespace_denied": true,
+      "private_file_denied": true,
+      "readonly_job": true,
+      "resident_memory": true,
+      "root_denied": true,
+      "socket_denied": true,
+      "threads_work": true,
+      "unix_socket_denied": true,
+      "worker_identity": true
+    },
+    "initial_gpu": {
+      "device_basename": "nvidia4",
+      "driver_version": "595.91.07",
+      "mig": "N/A",
+      "minimum_total_bytes": 25769803776,
+      "name": "NVIDIA A40",
+      "nodes": [
+        {
+          "major": 195,
+          "minor": 254,
+          "mode": 438,
+          "path": "/dev/nvidia-modeset"
+        },
+        {
+          "major": 505,
+          "minor": 0,
+          "mode": 438,
+          "path": "/dev/nvidia-uvm"
+        },
+        {
+          "major": 505,
+          "minor": 1,
+          "mode": 438,
+          "path": "/dev/nvidia-uvm-tools"
+        },
+        {
+          "major": 195,
+          "minor": 4,
+          "mode": 438,
+          "path": "/dev/nvidia4"
+        },
+        {
+          "major": 195,
+          "minor": 255,
+          "mode": 438,
+          "path": "/dev/nvidiactl"
+        }
+      ],
+      "nvidia_smi_xml_sha256": "2b7f26a852b53ca0825655a7fc7d185f36c0a6172b249d8ed184b04b2843564f",
+      "reported_total_bytes": 48305799168,
+      "uuid": "GPU-806fb3fc-dfe6-77d5-82b7-8aae9d224255"
+    },
+    "memory_observation": {
+      "cgroup": "13:pids:/docker/29f25a78fd44594d0a96c2bc148d68456fdcba61490dc5b67ae247f8a3769e05\n12:rdma:/docker/29f25a78fd44594d0a96c2bc148d68456fdcba61490dc5b67ae247f8a3769e05\n11:cpuset:/docker/29f25a78fd44594d0a96c2bc148d68456fdcba61490dc5b67ae247f8a3769e05\n10:blkio:/docker/29f25a78fd44594d0a96c2bc148d68456fdcba61490dc5b67ae247f8a3769e05\n9:hugetlb:/docker/29f25a78fd44594d0a96c2bc148d68456fdcba61490dc5b67ae247f8a3769e05\n8:misc:/docker/29f25a78fd44594d0a96c2bc148d68456fdcba61490dc5b67ae247f8a3769e05\n7:devices:/docker/29f25a78fd44594d0a96c2bc148d68456fdcba61490dc5b67ae247f8a3769e05\n6:memory:/docker/29f25a78fd44594d0a96c2bc148d68456fdcba61490dc5b67ae247f8a3769e05\n5:perf_event:/docker/29f25a78fd44594d0a96c2bc148d68456fdcba61490dc5b67ae247f8a3769e05\n4:cpu,cpuacct:/docker/29f25a78fd44594d0a96c2bc148d68456fdcba61490dc5b67ae247f8a3769e05\n3:freezer:/docker/29f25a78fd44594d0a96c2bc148d68456fdcba61490dc5b67ae247f8a3769e05\n2:net_cls,net_prio:/docker/29f25a78fd44594d0a96c2bc148d68456fdcba61490dc5b67ae247f8a3769e05\n1:name=systemd:/docker/29f25a78fd44594d0a96c2bc148d68456fdcba61490dc5b67ae247f8a3769e05\n0::/docker/29f25a78fd44594d0a96c2bc148d68456fdcba61490dc5b67ae247f8a3769e05\n",
+      "disk_free_bytes": 96921800704,
+      "hidden_ancestor_admission": "NOT_ESTABLISHED",
+      "meminfo": "MemTotal:       527975176 kB\nMemFree:        139417380 kB\nMemAvailable:   414038448 kB\nBuffers:          599252 kB\nCached:         276590584 kB\nSwapCached:            0 kB\nActive:         140894744 kB\nInactive:       225537108 kB\nActive(anon):   87586268 kB\nInactive(anon):  9846004 kB\nActive(file):   53308476 kB\nInactive(file): 215691104 kB\nUnevictable:        3152 kB\nMlocked:              80 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:           3402256 kB\nWriteback:             0 kB\nAnonPages:      89080272 kB\nMapped:         12857192 kB\nShmem:           8190216 kB\nKReclaimable:   10770944 kB\nSlab:           13531664 kB\nSReclaimable:   10017320 kB\nSUnreclaim:      3514344 kB\nKernelStack:       75232 kB\nPageTables:       265164 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:    263987588 kB\nCommitted_AS:   227545072 kB\nVmallocTotal:   13743895347199 kB\nVmallocUsed:      524964 kB\nVmallocChunk:          0 kB\nPercpu:           508800 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:  23582720 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:   2486272 kB\nFilePmdMapped:         0 kB\nUnaccepted:            0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:    157075912 kB\nDirectMap2M:    368953344 kB\nDirectMap1G:    12582912 kB\n",
+      "visible": {}
+    },
+    "pretrained_requests": 0,
+    "resident_memory": {
+      "full_model_memory_admission": "NOT_ESTABLISHED",
+      "future_reservation": false,
+      "resident_bytes": 8589934592,
+      "rss_bytes": 8607899648,
+      "swap_bytes": 0,
+      "touched_bytes": 8589934592
+    },
+    "status": "INCOMPLETE",
+    "training_steps": 0,
+    "weight_bytes": 0
+  },
+  "failure_analysis": {
+    "classification": "BLOCKED_CUDA_INITIALIZATION_304",
+    "root_cause": "NOT_ESTABLISHED",
+    "confirmed": "torch.cuda.is_available / cudaGetDeviceCount emitted CUDA error 304 before the kernel response; worker then raised the unchanged no-CPU-fallback gate.",
+    "kernel_log": "/opt/backtrace/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:188: UserWarning: CUDA initialization: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 304: OS call failed or operation not supported on this OS (Triggered internally at /__w/pytorch/pytorch/c10/cuda/CUDAFunctions.cpp:119.)\n  return torch._C._cuda_getDeviceCount() > 0\nTraceback (most recent call last):\n  File \"/opt/backtrace/minimum.py\", line 131, in <module>\n    if sys.argv[1]=='child':child(int(sys.argv[2]),sys.argv[3])\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/backtrace/minimum.py\", line 74, in child\n    facts=worker.cuda_check(config)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/backtrace/worker.py\", line 28, in cuda_check\n    raise RuntimeError('CUDA 12.6 device unavailable; CPU fallback forbidden')\nRuntimeError: CUDA 12.6 device unavailable; CPU fallback forbidden\n",
+    "kernel_log_sha256": "ffec955fc65a3e32b83fbedcc03609b709154dfc107fb75b7ea55516c66214f4",
+    "cuda_error_code_is_not_a_linux_syscall_number": true,
+    "working_hypothesis": "The added pre-initialization syscall filter may conflict with CUDA initialization; not established without differential CUDA controls or denied-call evidence.",
+    "other_unresolved_causes": [
+      "Provider/driver/library configuration",
+      "UID/capability/rlimit or device-access behavior"
+    ],
+    "missing_evidence": [
+      "CUDA initialization outside the added filter",
+      "Same-UID paired filtered/unfiltered CUDA result",
+      "Failing OS call and errno",
+      "Mapped libcuda path/hash in the worker"
+    ],
+    "not_run": [
+      "BF16 matmul",
+      "BF16 SDPA",
+      "Active CUDA context interruption",
+      "Pretrained inference",
+      "Training"
+    ],
+    "references": [
+      {
+        "url": "https://docs.nvidia.com/cuda/archive/12.6.3/cuda-runtime-api/group__CUDART__TYPES.html",
+        "accessed": "2026-10-27",
+        "type": "PRIMARY_DOCUMENTATION",
+        "version": "CUDA 12.6.3",
+        "supports": "cudaErrorOperatingSystem=304 means an OS call failed; it does not identify the syscall or cause."
+      },
+      {
+        "url": "https://docs.kernel.org/userspace-api/seccomp_filter.html",
+        "accessed": "2026-10-27",
+        "type": "PRIMARY_DOCUMENTATION",
+        "supports": "SECCOMP_RET_ERRNO can return an errno without executing a syscall; tracing/logging options are separate mechanisms."
+      }
+    ],
+    "next_diagnostic": {
+      "status": "DESIGNED_NOT_IMPLEMENTED_OR_EXECUTED",
+      "paid_authorization": false,
+      "same_pinned_runtime_and_gpu": true,
+      "fresh_process_per_case": true,
+      "no_models_or_credentials": true,
+      "cases": [
+        {
+          "id": "A",
+          "configuration": "Trusted sanitized root diagnostic under ordinary provider OCI, without our additional filter",
+          "purpose": "Establish basic CUDA initialization independently of the worker boundary"
+        },
+        {
+          "id": "B",
+          "configuration": "Same UID65532, cleared capabilities/environment, limits and no-new-privileges as worker; no additional custom filter",
+          "purpose": "Isolate UID/limits/device effects from our filter"
+        },
+        {
+          "id": "C",
+          "configuration": "The unchanged complete production worker boundary, including custom filter before CUDA initialization",
+          "purpose": "Test the additional filter as the only B-to-C variable"
+        }
+      ],
+      "capture": [
+        "CUDA driver/runtime return codes",
+        "Actual loaded library paths and hashes",
+        "UID/capabilities/no-new-privileges/filter counts",
+        "Device open errno",
+        "Bounded syscall-denial trace when available"
+      ],
+      "interpretation": {
+        "A_fails": "Investigate provider/image/library before changing worker policy",
+        "A_passes_B_fails": "Investigate UID/limits/device path",
+        "B_passes_C_fails": "Attribute the differential failure to the added filter; identify the denied call before correction"
+      },
+      "promotion": "No blanket filter removal or late initialization reorder is qualified; changes require observed syscall evidence, thread/FD handling review and renewed boundary plus real CUDA checks."
+    }
+  }
+}

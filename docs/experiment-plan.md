@@ -12,7 +12,7 @@ new held-out families, repeated seeds and a separate Augnes transfer assessment.
 | Stage | Next result | Status |
 | --- | --- | --- |
 | A0 | Goal and input/output contract | Documented; no capability result |
-| A1 | Expanded teacher, frozen evaluation/rubrics and development baselines | CPU instruments qualified; one hardware attempt failed before kernels, independent provider deletion confirmed; pretrained baselines, GPU checks, broader E2/real-language transfer, power analysis and final sealing pending |
+| A1 | Expanded teacher, frozen evaluation/rubrics and development baselines | CPU instruments qualified; actual transport/device/8 GiB RAM checks observed, CUDA initialization blocked by error 304; pretrained baselines, GPU kernels, broader E2/real-language transfer, power analysis and final sealing pending |
 | A2 | Actual tiny update, save/reload, resource measurements | NOT RUN |
 | A3 | Controlled E2B/E4B training and confirmatory evaluation | NOT RUN |
 | A4 | Augnes time-cutoff replay, prospective shadow cases and device validation | NOT RUN |
@@ -45,6 +45,19 @@ inventory was empty, with no observed credit change. This establishes actual
 resource cleanup, not GPU capability. The startup-readiness correction passed
 656 native tests, all 16 free container controls and separate-runner replica
 cleanup. The paid authorization is consumed; no automatic retry.
+
+The [separately authorized retry](small-model-minimum-retry-20261027.md), source
+24bf9c87a81094a358f6bb6c40dda97b21546d67, passed 661 native tests and the free
+container/lifecycle checks, then made one further A40 allocation. Real provider
+metadata became ready at 136 seconds; fixed transport/runtime installation,
+device inventory and the 8 GiB resident probe passed. CUDA initialization failed
+with error 304 before any BF16 kernel or context-loss check. Both deletion proofs
+passed and the final inventory was empty; observed credit decreased USD 0.0605548620
+to USD 3.0181656274. The root cause is unresolved. Next free preparation is a
+bounded paired initialization collector that separates provider/library,
+UID/limit/device and added-filter effects. Its design is recorded, not executed;
+no blanket relaxation or further paid allocation is qualified. Both hardware
+attempt permits remain consumed, and A1 is still partial.
 
 The historical 24 training plus 24 evaluation examples are development fixtures,
 not sufficient confirmatory evidence. They supply the model and hypotheses and
