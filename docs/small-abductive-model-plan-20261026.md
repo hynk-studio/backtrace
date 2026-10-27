@@ -69,7 +69,7 @@ Free validation reuses the existing exact-image workflow's container job. The
 owner/watcher jobs for historical scopes do not run on this preparation branch.
 The unchanged independent deletion controller is reused later, not rebuilt here.
 A denied-syscall trace is still NOT COLLECTED. Free checks qualify instrumentation
-only; actual A/B/C, GPU interruption and pretrained performance remain NOT RUN.
+only; actual GPU A/B/C, GPU interruption and pretrained performance remain NOT RUN.
 
 Local validation of this preparation: 31 of 32 focused tests pass; the actual
 privilege-change test fails with EPERM at capability drop. This Work host reports
@@ -78,8 +78,24 @@ cannot qualify the ordinary-OCI A/B/C boundary. Do not skip or relabel that fail
 The full local suite ran 671 tests with six failures, ten errors and four skips;
 five failures/ten errors/four skips match the preceding local environment paths,
 with the new boundary failure reported separately. Preflight and diff checks pass.
-Original failed logs and partial results are retained locally. Exact-image free
-qualification is NOT RUN, and this is not a paid-launch-ready claim.
+Original failed logs and partial results are retained locally. They remain failed
+local observations, separate from the native qualification below.
+
+Free exact-image run [40464148007](https://github.com/hynk-studio/backtrace/actions/runs/40464148007)
+at source `21f362ca1ca23d29f16351096b9c3e7b14d4847a` passed on its first attempt:
+671 native tests in 185.385 seconds with no failures/errors/skips, preflight and
+all 17 container controls. The [verified CPU evidence](small-model-cuda-diagnostic-cpu-20261027.json)
+retains the original A/B/C streams and observations. A ran as root with one
+ambient filter; B ran as UID/GID 65532 with zero capabilities, no-new-privileges
+and one filter; C had the same worker restrictions and two filters. Environment,
+limits, interpreter and loaded CUDA runtime hash matched. All three correctly
+rejected the missing GPU; their decision is CPU_CONTROLS_ONLY. Each process was
+confirmed absent, and container cleanup had two absence reads. The artifact ZIP
+digest, all 34 members and all 64 source hashes were checked. No runtime correction
+or repeat native run was needed. The original filter, model kernel probe,
+provider/deadline controller, runtime lock, smoke inputs and scorer are unchanged.
+This establishes a functioning comparison instrument, not CUDA success, a fixed
+304 error, or a complete newly authorized paid launch.
 
 The comparison-only entry is the existing `connected(..., comparison_only=True)`
 (or `exercise(..., comparison_only=True)` after installation). It records A/B/C

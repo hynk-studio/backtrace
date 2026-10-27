@@ -17,6 +17,17 @@ path, measure the existing E2B development subset before expanding evaluation or
 infrastructure. Training feasibility and early Augnes case replays follow; neither
 establishes specialist benefit without the retained comparisons and untouched test.
 
+Free qualification is complete at source `21f362ca1ca23d29f16351096b9c3e7b14d4847a`,
+run 40464148007: 671 native tests and 17 ordinary-container controls passed on
+attempt 1. A/B/C identities and filter counts 1/1/2 were observed; all three
+correctly rejected absent GPU hardware and their workers were confirmed gone.
+Two container absence reads completed cleanup. Read
+`docs/small-model-cuda-diagnostic-cpu-20261027.json` for the raw comparison streams,
+verified artifact/source hashes and the separately retained local failures.
+This is CPU instrumentation evidence only. Actual CUDA cause and denied syscall
+remain unknown. No new paid scope is authorized or connected by this result.
+The evidence follow-up changes documentation only; preserve qualified code bytes.
+
 
 ## Hardware retry outcome: CUDA initialization blocked (2026-10-27 KST)
 
