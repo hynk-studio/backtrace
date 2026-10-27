@@ -1,5 +1,25 @@
 # Backtrace working agreement
 
+## Authorized hardware minimum (2026-10-27 KST)
+
+The owner now requested **최소검증 진행하자**. This supersedes the earlier
+pre-minimum stop only for one hardware-only attempt on a new stacked Draft PR.
+Work on `bt-001-small-model-minimum-20261027`, based on Draft #37 at
+`10ec8a248e4b4c9ede3ff0698f595799514425d8`. Qualify the exact new controller
+and dedicated container GPU probe before allocation. Current scope: one GPU,
+one allocation, at most USD 1 projected additional cost, 3,000 allocation-inclusive
+seconds, no top-up or automatic retry, at least USD 0.50 remaining credit.
+No full checkpoint downloads, pretrained requests, training, Augnes write,
+merge or issue closure. Preserve every historical source, receipt and consumed
+claim; new state and start/watch branches must never reuse an old permit.
+Use fresh authenticated account/stock/price, source-bound single-use approval,
+an independent armed cleanup controller and two post-delete absence observations.
+Record hidden cgroup ancestors honestly. The dedicated hardware-only path may
+observe visible limits and physically touched resident RAM; this never waives
+the old full-model native memory admission check or establishes model capacity.
+All actual GPU, transport and context-loss observations belong to this attempt;
+CPU controls are not hardware results. Retain failures and qualify exact source.
+
 ## Container execution correction (2026-10-27 KST)
 
 The owner requested **실행 환경 보완 후 확인까지 진행해**. Work on
