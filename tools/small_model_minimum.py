@@ -16,6 +16,7 @@ import uuid
 from tools import small_model_container as container, small_model_provider as provider
 from tools import small_model_lifecycle as life, runpod_control as control
 from tools import research_entry as prior, research_entry_contract as prior_contract
+from tools.cloud_bootstrap import observe
 from tools.research_entry_state import State as Wire, StateError
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -34,6 +35,7 @@ CONTRACT={'scope':'HARDWARE_ONLY_OCI_V1','total_seconds':3000,'work_seconds':258
 
 def sources():
     extra=[p for folder,pattern in [('tools','small_model_minimum*.py'),('tests','test_small_model_minimum*.py'),('.github/workflows','small-model-minimum*.yml')] for p in (ROOT/folder).glob(pattern)]
+    extra.extend(ROOT/p for p in ('tools/cloud_bootstrap.py','tools/research_entry.py','docs/research-reduced9-amendment-20261026.json'))
     return dict(container.sources(),**{str(p.relative_to(ROOT)):life.digest(p.read_bytes()) for p in extra})
 
 
@@ -156,10 +158,27 @@ def resource_matches(pod,claim):
 
 
 def endpoint(pod):
+    """None means provisioning metadata is incomplete, never a trusted endpoint."""
     from tools.ssh_bootstrap import validate_endpoint
-    r=pod['ssh']['direct'];validate_endpoint(r['host'],r['port'])
-    rows=[p for p in pod['runtime']['ports'] if p.get('private')==22 and p.get('type')=='tcp']
-    if r['username']!='root' or len(rows)!=1 or rows[0]['ip']!=r['host'] or rows[0]['public']!=r['port']:
+    ssh=pod.get('ssh');runtime=pod.get('runtime')
+    for value in (ssh,runtime):
+        if value is not None and not isinstance(value,dict):raise ValueError('invalid endpoint metadata')
+    r=ssh.get('direct') if ssh else None
+    if r is not None and not isinstance(r,dict):raise ValueError('invalid direct endpoint')
+    if r is not None:
+        if r.get('username') not in (None,'root'):raise ValueError('unexpected SSH user')
+        host=r.get('host');port=r.get('port')
+        if host is not None and not isinstance(host,str):raise ValueError('invalid SSH host')
+        if port is not None and (type(port) is not int or not 1<=port<=65535):raise ValueError('invalid SSH port')
+        if host is not None:validate_endpoint(host,port if port is not None else 22)
+    ports=runtime.get('ports') if runtime else None
+    if ports is not None and (not isinstance(ports,list) or any(not isinstance(p,dict) for p in ports)):
+        raise ValueError('invalid runtime port metadata')
+    rows=[p for p in (ports or []) if p.get('private')==22 and p.get('type')=='tcp']
+    if len(rows)>1:raise ValueError('ambiguous runtime SSH mapping')
+    if not r or any(r.get(k) is None for k in ('host','port','username')) or not rows:return None
+    if any(rows[0].get(k) is None for k in ('ip','public')):return None
+    if rows[0]['ip']!=r['host'] or type(rows[0]['public']) is not int or rows[0]['public']!=r['port']:
         raise ValueError('exact authenticated direct SSH mapping required')
     return {'host':r['host'],'port':r['port']}
 
@@ -248,6 +267,7 @@ def watch(state,api,rid,me):
             if done:
                 if done[0]['claim_sha256']!=life.digest(claim):raise StateError('completion binding changed')
                 possible=bool(done[0]['provider_create_requests']);reason='OWNER_DONE'
+                break  # An owner's completed deletion is not a changed resource.
             now=time.time()
             if now<last:reason='CLOCK_REVERSED'
             elif time.monotonic()>=deadline-claim['cleanup_seconds']:reason='DEADLINE'
@@ -331,8 +351,17 @@ def owner(state,api,rid,me,prepared=None):
             if not fresh(state.read('watch-heartbeat'),claim,time.time(),240):raise StateError('independent watcher heartbeat lost')
             require_run(state,rid);pod=api.get(pod_id)
             if not resource_matches(pod,claim):raise StateError('assigned hardware or price mismatch')
-            if pod['status']=='RUNNING':
-                ep=endpoint(pod);current=life.digest(ep)
+            observation=observe(pod,elapsed)
+            result.setdefault('readiness_observations',[]).append(observation)
+            if process is None and elapsed>=900:raise TimeoutError('provider startup exceeded 900 seconds')
+            try:ep=endpoint(pod) if pod['status']=='RUNNING' else None
+            except ValueError:
+                observation['readiness']='INVALID_ENDPOINT_MAPPING';raise
+            if ep is None:
+                if observation['readiness']=='READY':observation['readiness']='WAIT_RUNTIME_MAPPING'
+                if endpoint_hash:raise StateError('provider endpoint disappeared')
+            else:
+                observation['readiness']='READY';current=life.digest(ep)
                 if endpoint_hash and endpoint_hash!=current:raise StateError('provider endpoint changed')
                 if process is None:
                     endpoint_hash=current;path=out/'endpoint.json';path.write_bytes(life.encoded(ep));path.chmod(0o600)
@@ -345,7 +374,6 @@ def owner(state,api,rid,me,prepared=None):
                 result['remote']=json.loads((out/'remote/connected-receipt.json').read_bytes())
                 if process.returncode or result['remote']['status']!='PASS_ACTUAL_HARDWARE_ONLY':raise RuntimeError('hardware diagnostic failed')
                 result['status']='PASS_ACTUAL_HARDWARE_ONLY';break
-            if process is None and elapsed>=900:raise TimeoutError('provider startup exceeded 900 seconds')
             sha=beat(state,'heartbeat',claim,sha);last=now
             time.sleep(30 if process is None else 90)
     except Exception as e:

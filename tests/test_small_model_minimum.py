@@ -145,5 +145,113 @@ class MinimumTests(unittest.TestCase):
         self.assertEqual(len(observations),1)
         self.assertEqual(api.create.call_count,1)
 
+    def run_paid_owner_fixture(self,metadata,*,running=False):
+        """Execute the owner state machine with delayed provider snapshots, no I/O."""
+        start=time.time();clock=[start];records={};spawn_times=[]
+        state=mock.Mock(source=SOURCE,namespace='minimum-paid-20261027',actual=True)
+        peer={'run_id':'123','role':'watch','boot_sha256':'b'*64}
+        permit={'source_sha':SOURCE,'contract_sha256':life.digest(m.CONTRACT),
+            'mode':'OWNER_APPROVED_HARDWARE_MINIMUM','single_use':True,'additional_cap_usd':'1.00',
+            'allocation_inclusive_seconds':3000,'instruction':'최소검증 진행하자','qualification_run_id':'123',
+            'approved_at':start-1,'expires_at':start+3600}
+        def write(name,value,previous=None):
+            records[name]=dict(value,source_sha=SOURCE);return 'c'*40
+        def read(name):
+            if name=='watch':return peer,'d'*40
+            if name=='authorization':return permit,'d'*40
+            if name in ('armed','watch-heartbeat'):
+                return {'claim_sha256':life.digest(records['claim']),'watch_boot':'b'*64,'at':clock[0]},'d'*40
+            return (records[name],'d'*40) if name in records else None
+        state.read.side_effect=read;state.write.side_effect=write
+        api=mock.Mock();api.list.return_value=[]
+        api.create.side_effect=lambda r:{'id':'owned','name':r['name']}
+        samples=iter(metadata);last=[None]
+        def get(pod_id):
+            last[0]=next(samples,last[0]);c=records['claim']
+            return dict({'id':pod_id,'name':c['name'],'image':m.control.BASE,'cloud':'SECURE',
+                'disk':100,'mounts':{},'ports':['22/tcp'],'locked':False,'status':'RUNNING',
+                'dataCenterId':c['region'],'cost':'.45',
+                'gpu':{'id':c['gpu'],'count':1,'memory':32,'vcpuCount':8}},**last[0])
+        api.get.side_effect=get
+        def sleep(seconds):clock[0]+=seconds
+        process=mock.Mock(returncode=0);process.poll.return_value=None if running else 0
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td);(root/'keys').mkdir();(root/'keys/initializer.json').write_text('{}')
+            def launch(argv,**kwargs):
+                spawn_times.append(clock[0]-start);out=Path(argv[-1]);out.mkdir()
+                (out/'connected-receipt.json').write_text(json.dumps({'status':'PASS_ACTUAL_HARDWARE_ONLY'}))
+                return process
+            with mock.patch.object(m,'ROOT',root),mock.patch.object(m,'sources',return_value={}),\
+                    mock.patch.object(m,'require_run'),mock.patch.object(m,'require_qualification'),\
+                    mock.patch.object(m.provider,'ReadOnlyAPI'),mock.patch.object(m.provider,'inspect',side_effect=lambda **kw:snapshot()),\
+                    mock.patch.object(m.prior_contract,'github_budget',return_value={}),\
+                    mock.patch.object(m,'request_for',side_effect=lambda offer,init,attempt:{'name':'backtrace-small-minimum-'+attempt}),\
+                    mock.patch.object(m,'work_alarm',return_value=lambda:None),\
+                    mock.patch.object(m.time,'time',side_effect=lambda:clock[0]),\
+                    mock.patch.object(m.time,'monotonic',side_effect=lambda:clock[0]-start),\
+                    mock.patch.object(m.time,'sleep',side_effect=sleep),\
+                    mock.patch.object(m.subprocess,'Popen',side_effect=launch) as spawn,\
+                    mock.patch.object(cleanup,'stop'),\
+                    mock.patch.object(cleanup,'reconcile',return_value={'status':'DELETED','absence_reads':2}) as reconcile:
+                result=m.owner(state,api,'123',{'boot_sha256':'a'*64},root)
+            reconcile.assert_called_once()
+        self.assertEqual(api.create.call_count,1)
+        self.assertEqual(result['cleanup']['status'],'DELETED')
+        return result,spawn,spawn_times
+
+    @staticmethod
+    def ready_metadata():
+        return {'ssh':{'direct':{'host':'192.0.2.1','port':12222,'username':'root'}},
+            'runtime':{'ports':[{'private':22,'type':'tcp','ip':'192.0.2.1','public':12222}]}}
+
+    def test_running_before_ssh_and_runtime_metadata_waits_without_early_launch(self):
+        ready=self.ready_metadata()
+        cases=[{'ssh':None,'runtime':None},{'ssh':{'direct':None},'runtime':None},
+            dict(ready,runtime=None),dict(ready,runtime={'ports':[]}),ready]
+        result,spawn,times=self.run_paid_owner_fixture(cases)
+        self.assertEqual(result['status'],'PASS_ACTUAL_HARDWARE_ONLY')
+        self.assertEqual(times,[120]);spawn.assert_called_once()
+        self.assertEqual([r['readiness'] for r in result['readiness_observations']],
+            ['WAIT_DIRECT_ENDPOINT','WAIT_DIRECT_ENDPOINT','WAIT_RUNTIME_MAPPING','WAIT_RUNTIME_MAPPING','READY'])
+        self.assertNotIn('192.0.2.1',json.dumps(result['readiness_observations']))
+
+    def test_pending_endpoint_hits_original_startup_deadline_and_cleanup_without_retry(self):
+        result,spawn,times=self.run_paid_owner_fixture([{'ssh':None,'runtime':None}])
+        self.assertEqual(result['status'],'FAIL');self.assertEqual(result['error_type'],'TimeoutError')
+        self.assertEqual(result['readiness_observations'][-1]['elapsed_seconds'],900)
+        spawn.assert_not_called();self.assertEqual(times,[])
+
+    def test_contradictory_complete_endpoint_never_launches(self):
+        bad=self.ready_metadata();bad['runtime']['ports'][0]['public']=12223
+        result,spawn,_=self.run_paid_owner_fixture([bad])
+        self.assertEqual(result['status'],'FAIL');self.assertEqual(result['error_type'],'ValueError')
+        self.assertEqual(result['readiness_observations'][-1]['readiness'],'INVALID_ENDPOINT_MAPPING')
+        spawn.assert_not_called()
+        for field,value in [('username','nobody'),('port',True),('host','bad host')]:
+            p=self.ready_metadata();p['ssh']['direct'][field]=value
+            with self.subTest(field=field),self.assertRaises(ValueError):m.endpoint(p)
+        p=self.ready_metadata();p['runtime']['ports']*=2
+        with self.assertRaises(ValueError):m.endpoint(p)
+
+    def test_endpoint_loss_after_launch_fails_instead_of_reconnecting(self):
+        result,spawn,_=self.run_paid_owner_fixture([self.ready_metadata(),{'ssh':None,'runtime':None}],running=True)
+        self.assertEqual(result['status'],'FAIL');self.assertEqual(result['error'],'provider endpoint disappeared')
+        spawn.assert_called_once()
+
+    def test_watcher_retains_owner_done_when_resource_is_already_absent(self):
+        c={'source_sha':SOURCE,'contract_sha256':life.digest(m.CONTRACT),'namespace':'minimum-paid-20261027',
+            'run_id':'123','actual':True,'owner_boot':'a'*64,'watch_boot':'b'*64,
+            'name':'backtrace-small-minimum-'+'c'*32,'total_seconds':3000,'cleanup_seconds':300,
+            'poll_seconds':90,'unknown_create_seconds':90,'requested_at':time.time()}
+        records={'claim':c,'pod':{'claim_sha256':life.digest(c),'pod_id':'owned'},
+            'done':{'claim_sha256':life.digest(c),'provider_create_requests':1}}
+        state=mock.Mock(source=SOURCE,namespace=c['namespace'],actual=True)
+        state.read.side_effect=lambda name:(records[name],'d'*40) if name in records else None
+        api=mock.Mock();api.get.return_value=None
+        with mock.patch.object(cleanup,'reconcile',return_value={'status':'DELETED','absence_reads':2}) as reconcile:
+            result=m.watch(state,api,'123',{'boot_sha256':'b'*64})
+        self.assertEqual(result['reason'],'OWNER_DONE');api.get.assert_not_called()
+        reconcile.assert_called_once_with(api,c,'owned',possible_create=True)
+
 
 if __name__=='__main__':unittest.main()
