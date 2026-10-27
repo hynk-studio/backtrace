@@ -102,7 +102,8 @@ def command(ssh_prefix,name,mode,*,fault=None,seconds=240,script='worker'):
     if name not in ready.MODELS or mode not in ('scripted_control','random_fixture'):
         raise ValueError('container path permits CPU controls only')
     if not 0<seconds<=3000 or script not in ('worker','boundary'):raise ValueError('invalid boundary')
-    return [*ssh_prefix,shlex.join(['/opt/backtrace/venv/bin/python','-I','/opt/backtrace/launcher.py',
+    return [*ssh_prefix,shlex.join(['/usr/bin/env','-i','PATH=/usr/bin:/bin','LANG=C.UTF-8',
+            'LD_LIBRARY_PATH=/opt/backtrace/python/lib','/opt/backtrace/venv/bin/python','-I','/opt/backtrace/launcher.py',
             'run',job_name(name,mode,fault),str(seconds),script])]
 
 

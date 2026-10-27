@@ -135,7 +135,8 @@ def supervise(job_name, seconds, script='worker'):
     started=time.monotonic();end=started+float(seconds)
     log=Path('/root/backtrace')/(job_name+'-state.json')
     child_process=subprocess.Popen([sys.executable,'-I',__file__,'child',str(os.getpid()),script],
-        stdin=subprocess.PIPE,bufsize=0,close_fds=True,env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8'})
+        stdin=subprocess.PIPE,bufsize=0,close_fds=True,env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8',
+            'LD_LIBRARY_PATH':str(ROOT/'python/lib')})
     state={'pid':child_process.pid,'start_ticks':Path(f'/proc/{child_process.pid}/stat').read_text().split()[21],
            'supervisor_pid':os.getpid(),'reason':'RUNNING'}
     log.write_text(json.dumps(state));pending=b''

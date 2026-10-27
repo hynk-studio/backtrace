@@ -40,6 +40,10 @@ def installed(lock):
     spec=lock['gpu_candidate']
     if platform.python_version()!=spec['python'] or platform.machine()!='x86_64':
         raise ValueError('wrong isolated interpreter')
+    python_library=ROOT/'python/lib/libpython3.12.so.1.0'
+    loaded={line.split()[-1] for line in Path('/proc/self/maps').read_text().splitlines() if 'libpython3.12.so' in line}
+    if loaded!={str(python_library)}:raise ValueError('Python shared library escaped the delivered runtime')
+    with python_library.open('rb') as f:python_sha=hashlib.file_digest(f,'sha256').hexdigest()
     norm=lambda n:re.sub(r'[-_.]+','-',n).lower()
     rows=list(importlib.metadata.distributions())
     actual={norm(d.metadata['Name']):d.version for d in rows}
@@ -60,6 +64,7 @@ def installed(lock):
         with p.open('rb') as f:digest=hashlib.file_digest(f,'sha256').hexdigest()
         native[name]={'sha256':digest,'bytes':p.stat().st_size,'ldd':ld}
     return {'status':'PASS_EXACT_CONTAINER_RUNTIME_CPU_ONLY','python':platform.python_version(),
+            'python_shared_library':{'path':str(python_library),'sha256':python_sha},
             'packages':actual,'native_libraries':native,'compiled_cuda':torch.version.cuda,
             'gpu_kernels':'NOT_RUN','pretrained_inference':'NOT_RUN'}
 
@@ -70,7 +75,8 @@ def install(payload):
     runtime=unpack(payload/'python.tar.gz',ROOT/'python')
     python=ROOT/'python/bin/python3.12'
     env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8','HOME':'/root','PIP_CONFIG_FILE':'/dev/null',
-         'PIP_NO_INDEX':'1','PIP_NO_CACHE_DIR':'1','HF_HUB_OFFLINE':'1'}
+         'PIP_NO_INDEX':'1','PIP_NO_CACHE_DIR':'1','HF_HUB_OFFLINE':'1',
+         'LD_LIBRARY_PATH':str(ROOT/'python/lib')}
     subprocess.run([str(python),'-I','-m','venv','--without-pip',str(ROOT/'venv')],
                    env=env,check=True,timeout=30)
     python=ROOT/'venv/bin/python';wheels=payload/'wheels'
