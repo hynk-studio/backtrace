@@ -83,6 +83,9 @@ print(json.dumps({'uuid':ids[0],'xml':raw,'nodes':nodes}))
         nodes={n['path']:n for n in r['nodes']}
         if any(p not in nodes or nodes[p]['mode']&6!=6 for p in expected):
             raise ValueError('unprivileged worker GPU device access unavailable')
+        if (nodes[expected[0]]['major']!=195 or nodes[expected[0]]['minor']!=int(parsed['device_basename'][6:])
+                or nodes['/dev/nvidiactl']['major']!=195):
+            raise ValueError('unexpected NVIDIA device major/minor identity')
         numeric=[p for p in nodes if p.startswith('/dev/nvidia') and p[11:].isdigit()]
         if numeric!=[expected[0]]:raise ValueError('additional GPU device exposed')
         return dict(parsed,nodes=r['nodes'])

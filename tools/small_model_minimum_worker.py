@@ -111,6 +111,12 @@ def supervise(mode, seconds, config_path):
             if time.monotonic()>=end:state['reason']='DEADLINE';break
             readable,_,_=select.select([0],[],[],min(.1,max(0,end-time.monotonic())))
             if readable and not os.read(0,65536):state['reason']='TRANSPORT_EOF';break
+        if child_process.poll() is None and state['reason']=='TRANSPORT_EOF':
+            # A completed JSON response can reach the owner before Python/CUDA
+            # finishes finalization. Preserve the same bounded graceful EOF
+            # allowance as the already qualified container supervisor.
+            try:child_process.wait(timeout=min(1,max(.001,end-time.monotonic())))
+            except subprocess.TimeoutExpired:pass
         if child_process.poll() is None:child_process.kill()
         code=child_process.wait(timeout=3)
         state.update(exit_code=code,elapsed_seconds=time.monotonic()-started,

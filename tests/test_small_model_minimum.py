@@ -120,5 +120,30 @@ class MinimumTests(unittest.TestCase):
                 api.assert_not_called();prepare.assert_not_called()
         finally:os.umask(previous)
 
+    def test_owner_retains_observed_cleanup_when_a_later_state_read_would_be_stale(self):
+        records={};observations=[]
+        state=mock.Mock(source=SOURCE,namespace='minimum-free-'+SOURCE,actual=False)
+        peer={'run_id':'123','role':'watch','boot_sha256':'b'*64}
+        def write(name,value,previous=None):
+            records[name]=dict(value,source_sha=SOURCE);return 'c'*40
+        def read(name):
+            if name=='watch':return peer,'d'*40
+            if name in ('armed','watch-heartbeat'):
+                return {'claim_sha256':life.digest(records['claim']),'watch_boot':'b'*64,'at':time.time()},'d'*40
+            if name=='watch-cleanup':
+                observations.append(name)
+                if len(observations)>1:return None
+                return {'reason':'OWNER_HEARTBEAT_LOST','status':'DELETED','pod_id':'free-resource'},'d'*40
+            return (records[name],'d'*40) if name in records else None
+        state.read.side_effect=read;state.write.side_effect=write
+        api=mock.Mock();api.create.side_effect=lambda r:{'id':'free-resource','name':r['name']}
+        with tempfile.TemporaryDirectory() as td,mock.patch.object(m,'ROOT',Path(td)),\
+                mock.patch.object(m,'sources',return_value={}),mock.patch.object(m,'require_run'),\
+                mock.patch.object(cleanup,'reconcile',return_value={'status':'DELETED','absence_reads':2}):
+            result=m.owner(state,api,'123',{'boot_sha256':'a'*64})
+        self.assertEqual(result['status'],'PASS_FREE_REMOTE_CLEANUP')
+        self.assertEqual(len(observations),1)
+        self.assertEqual(api.create.call_count,1)
+
 
 if __name__=='__main__':unittest.main()

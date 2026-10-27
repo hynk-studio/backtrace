@@ -77,9 +77,13 @@ class State(Wire):
                 if str(e)=='state HTTP 409' and (check[1] if check else None)==previous and attempt<3:
                     time.sleep(.2*(attempt+1));continue
                 raise
-        check=self.read(name)
-        if not check or life.encoded(check[0])!=raw:raise StateError('minimum write not confirmed')
-        return check[1]
+        # Contents reads can briefly lag a successful immutable write. Confirm
+        # by bounded reads; never repeat an ambiguous non-idempotent write.
+        for attempt in range(4):
+            check=self.read(name)
+            if check and life.encoded(check[0])==raw:return check[1]
+            if attempt<3:time.sleep(.2*(attempt+1))
+        raise StateError('minimum write not confirmed')
 
 
 def validate_permit(value,source,now):
@@ -312,10 +316,12 @@ def owner(state,api,rid,me,prepared=None):
             # A real independent runner must detect missing heartbeats and use
             # its cached exact identity to remove this free replica resource.
             end=time.monotonic()+90
-            while not state.read('watch-cleanup'):
+            while True:
+                observed=state.read('watch-cleanup')
+                if observed:break
                 if time.monotonic()>=end:raise TimeoutError('independent replica cleanup absent')
                 time.sleep(2)
-            proof=state.read('watch-cleanup')[0]
+            proof=observed[0]
             if proof['reason']!='OWNER_HEARTBEAT_LOST' or proof['status']!='DELETED' or proof['pod_id']!=pod_id:raise AssertionError('wrong free cleanup outcome')
             result['independent_replica_cleanup']=proof;result['status']='PASS_FREE_REMOTE_CLEANUP';return result
         wall0=time.time();mono0=time.monotonic();last=wall0;endpoint_hash=None
