@@ -59,7 +59,14 @@ worker. Native run 40445252781 passed 639 tests and 23 container
 controls, both 36-assignment CPU controls and actual remote worker-loss cleanup.
 All random raw outputs match the earlier native result. Production CUDA
 integration, provider memory admission, resource-bound independent deletion and
-physical GPU checks remain pending; paid launch is disabled.
+physical GPU checks were still pending at that stage. The subsequent
+[hardware minimum](docs/small-model-minimum-20261027.md) made one A40 allocation
+and failed before GPU execution because RUNNING preceded usable SSH metadata.
+Both controllers confirmed deletion twice; final inventory was empty and
+observed credit remained USD 3.0795030588. The consumed attempt is retained.
+A bounded readiness-wait correction passed 656 native tests and all 16 free
+container controls; no
+automatic paid retry is enabled. The actual hardware minimum remains unpassed.
 Training, adapter save/reload and Augnes integration are **NOT RUN**.
 
 The [latest coding pilot](docs/research-reduced9-execution-20261026.md) attempted

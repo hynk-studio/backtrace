@@ -12,7 +12,7 @@ new held-out families, repeated seeds and a separate Augnes transfer assessment.
 | Stage | Next result | Status |
 | --- | --- | --- |
 | A0 | Goal and input/output contract | Documented; no capability result |
-| A1 | Expanded teacher, frozen evaluation/rubrics and development baselines | CPU instruments and CUDA-package CPU compatibility qualified; pretrained baselines, physical GPU/remote provider lifecycle, broader E2/real-language transfer, power analysis and final sealing pending |
+| A1 | Expanded teacher, frozen evaluation/rubrics and development baselines | CPU instruments qualified; one hardware attempt failed before kernels, independent provider deletion confirmed; pretrained baselines, GPU checks, broader E2/real-language transfer, power analysis and final sealing pending |
 | A2 | Actual tiny update, save/reload, resource measurements | NOT RUN |
 | A3 | Controlled E2B/E4B training and confirmatory evaluation | NOT RUN |
 | A4 | Augnes time-cutoff replay, prospective shadow cases and device validation | NOT RUN |
@@ -35,6 +35,16 @@ the free container runtime/worker path without changing scientific inputs or
 relaxing the old native memory check. Production CUDA integration, provider
 memory admission and independent resource-bound deletion remain launch gates.
 A1 is still partial; A2 and training have not begun.
+
+The [one-allocation hardware minimum](small-model-minimum-20261027.md) then used
+an A40 after exact-source free qualification (651 native tests and 16 container
+checks). It failed before runtime transfer or GPU kernels: provider RUNNING
+preceded available SSH metadata and the controller dereferenced it too early.
+Owner and independent watcher each confirmed the exact Pod absent twice; final
+inventory was empty, with no observed credit change. This establishes actual
+resource cleanup, not GPU capability. The startup-readiness correction passed
+656 native tests, all 16 free container controls and separate-runner replica
+cleanup. The paid authorization is consumed; no automatic retry.
 
 The historical 24 training plus 24 evaluation examples are development fixtures,
 not sufficient confirmatory evidence. They supply the model and hypotheses and
