@@ -6,12 +6,14 @@ boundaries and distributed provider cleanup still block a paid launch.
 import hashlib
 import io
 import json
+import contextlib
 import os
 from pathlib import Path
 import platform
 import shlex
 import shutil
 import stat
+import subprocess
 import sys
 import tarfile
 
@@ -107,9 +109,21 @@ def command(ssh_prefix,name,mode,*,fault=None,seconds=240,script='worker'):
             'run',job_name(name,mode,fault),str(seconds),script])]
 
 
+class ContainerChannel(runner.Channel):
+    def close(self):
+        # Remote EOF cleanup includes a one-second graceful worker wait. Give
+        # SSH time to carry its exit status before the original local kill path;
+        # equal one-second timers race and can leave the next serialized job busy.
+        with contextlib.suppress(OSError):self.process.stdin.close()
+        try:self.process.wait(timeout=3)
+        except subprocess.TimeoutExpired:pass
+        finally:code=super().close()
+        return code
+
+
 def factory(ssh_prefix,mode,*,fault=None,seconds=240):
     def make(name,output):
-        return runner.Channel(command(ssh_prefix,name,mode,fault=fault,seconds=seconds),output/(name+'-stderr.log'))
+        return ContainerChannel(command(ssh_prefix,name,mode,fault=fault,seconds=seconds),output/(name+'-stderr.log'))
     return make
 
 

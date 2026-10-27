@@ -71,5 +71,11 @@ print(json.dumps(r))
             (root/'labels.json').write_text('must not enter')
             with self.assertRaises(ValueError):verify(root,raw,exact=True)
 
+    def test_transport_close_preserves_exit_after_remote_grace_period(self):
+        with tempfile.TemporaryDirectory() as td:
+            channel=container.ContainerChannel([sys.executable,'-I','-c',
+                'import sys,time;sys.stdin.buffer.read();time.sleep(1.15)'],Path(td)/'stderr.log')
+            self.assertEqual(channel.close(),0)
+
 
 if __name__=='__main__':unittest.main()
