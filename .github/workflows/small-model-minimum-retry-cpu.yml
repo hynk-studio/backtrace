@@ -1,0 +1,109 @@
+name: Small model hardware minimum retry cpu
+on:
+  push:
+    branches: [bt-001-small-model-minimum-retry-20261027]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: small-minimum-retry-cpu-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  container:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Full exact-source native tests and preflight
+        run: |
+          set -euo pipefail
+          mkdir -p evidence .local
+          if ! command -v bwrap >/dev/null; then sudo apt-get update && sudo apt-get install -y bubblewrap; fi
+          sudo "$(command -v python)" -m unittest discover -s tests -v > evidence/tests.log 2>&1
+          python tools/backtrace.py preflight > evidence/preflight.json
+          git diff --check
+      - name: Prepare pinned CUDA wheels and transport before any allocation
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
+          python -m pip download --no-cache-dir --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cu126 -r docs/small-model-gpu-requirements.txt -d .local/cuda-wheels
+          python - <<'PYBUILD'
+          from pathlib import Path
+          import json
+          from tools.cloud_transport import build
+          root=Path('.local/transport-build');result=build(root)
+          (root/'receipt.json').write_text(json.dumps(result,sort_keys=True))
+          PYBUILD
+      - name: Exercise the exact hardware entry in a free ordinary container
+        run: |
+          sudo --preserve-env=GITHUB_SHA,GITHUB_RUN_ID "$(command -v python)" -m tools.small_model_minimum_probe .local/cuda-wheels .local/transport-build .local/minimum-qualification > evidence/container.json 2> evidence/container-stderr.log
+      - name: Preserve bounded qualification evidence
+        if: always()
+        run: |
+          sudo python - <<'PYSAVE'
+          from pathlib import Path
+          import shutil
+          root=Path('.local/minimum-qualification')
+          for p in root.rglob('*'):
+              if p.is_file() and not p.is_symlink() and p.suffix in ('.json','.log') and p.stat().st_size<16*1024**2:
+                  shutil.copyfile(p,Path('evidence')/('container-'+str(p.relative_to(root)).replace('/','-')))
+          for p in Path('evidence').iterdir():p.chmod(0o644)
+          PYSAVE
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: small-minimum-retry-container-${{ github.sha }}-${{ github.run_attempt }}
+          path: evidence/
+          retention-days: 14
+  owner:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Qualify separate-runner source-bound cleanup
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -m tools.small_model_minimum_retry owner free
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: small-minimum-retry-cpu-owner-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            evidence/**/*.json
+            evidence/**/*.log
+            !evidence/**/endpoint.json
+          retention-days: 14
+  watch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Qualify separate-runner source-bound cleanup
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -m tools.small_model_minimum_retry watch free
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: small-minimum-retry-cpu-watch-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            evidence/**/*.json
+            evidence/**/*.log
+            !evidence/**/endpoint.json
+          retention-days: 14

@@ -1,5 +1,23 @@
 # Backtrace working agreement
 
+## One newly authorized hardware retry (2026-10-27 KST)
+
+The owner instructed **1회 다시 진행해**, accepting the proposed same USD 1 /
+3,000-second hardware-only retry. Work on `bt-001-small-model-minimum-retry-20261027`,
+stacked on Draft #38 at `db9c48032f47466ccf2f975dfea8dba44c12c8c0`, with a new
+Draft PR. This permits exactly one further provider create after exact-source
+free qualification, fresh account/stock/price and source-bound authorization.
+Use only `bt-001-small-model-minimum-retry-state-20261027` and its new namespace,
+and `bt-001-small-model-minimum-retry-start-20261027` for the actual launch.
+Preserve all 79 pre-existing branch heads, all 58 tracked operational/scientific
+sources from Draft #38, historical state and consumed authorizations unchanged.
+The new scope adapter reuses the already-corrected controller and hardware entry.
+No automatic second allocation, top-up, pretrained weights/requests, training,
+Augnes changes, merge or issue closure. Retain at least USD 0.50 credit, the same
+allocation-inclusive work/export/cleanup limits, independent armed watcher and
+two absence observations after cleanup. Record actual outcomes and all failures;
+free CPU checks do not establish real GPU capability or full-model memory.
+
 ## Hardware minimum outcome and consumed scope (2026-10-27 UTC)
 
 The one authorization below is now consumed. Paid run 40450834812 at
