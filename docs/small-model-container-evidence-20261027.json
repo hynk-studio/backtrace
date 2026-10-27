@@ -1,0 +1,2826 @@
+{
+  "artifacts": [
+    {
+      "metadata": {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12706048695/zip",
+        "created_at": "2026-10-27T02:52:06Z",
+        "digest": "sha256:80b85bce4772bec37c6b74d3dcf477c2d2a2c7de5e2ebf533b16e271c9733332",
+        "expired": false,
+        "expires_at": "2026-11-10T02:52:05Z",
+        "id": 12706048695,
+        "name": "small-container-cpu-b263acd3f8b581913189ffd4e779e0b84d33b52f-1",
+        "size_in_bytes": 36043,
+        "updated_at": "2026-10-27T02:52:06Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12706048695",
+        "workflow_run": {
+          "head_branch": "bt-001-small-model-container-20261027",
+          "head_repository_id": 1393671873,
+          "head_sha": "b263acd3f8b581913189ffd4e779e0b84d33b52f",
+          "id": 40440302423,
+          "repository_id": 1393671873
+        }
+      },
+      "run_id": 40440302423,
+      "source": "b263acd3f8b581913189ffd4e779e0b84d33b52f",
+      "verified_members": {
+        "container-receipt.json": {
+          "bytes": 6725,
+          "sha256": "e851f578472ff7ce06d4e3352729820478c75d66ebab061ac14fdfbe90531497"
+        },
+        "container-stderr.log": {
+          "bytes": 300,
+          "sha256": "41c972c89443e9b3d95d1db33e9216236d6ff1ce16d9929c90c146f9bc634a61"
+        },
+        "container-summary.json": {
+          "bytes": 6921,
+          "sha256": "f0a4a54a5827e56ce144bb995920f7504f17d2b058ec071a8810a3e4e1ceccd8"
+        },
+        "cuda-download.log": {
+          "bytes": 19540,
+          "sha256": "bf35a0de03f15ba8a3f5d0e8e57d3ece1fae96c42ea604984c9c5a3f8cad390d"
+        },
+        "disk-before-container.txt": {
+          "bytes": 89,
+          "sha256": "d9ed1380c0ec2918cca1ddf80234981e7bb83136fe439765926b611ed2e870d3"
+        },
+        "owner-install.log": {
+          "bytes": 8955,
+          "sha256": "c7db84bff11bde4b4a5c6ec1c5e4a123fb4acabc6e6af5e0f8dcdf9cc1a34ed8"
+        },
+        "owner-pip-check.txt": {
+          "bytes": 30,
+          "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+        },
+        "packet-reconstruction.json": {
+          "bytes": 230,
+          "sha256": "de4f939cbf71aecefd1269ff178f658df213385ee23189f20aef8af4ba2db8ee"
+        },
+        "preflight.json": {
+          "bytes": 167,
+          "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+        },
+        "smoke-scope.json": {
+          "bytes": 4535,
+          "sha256": "eeaa7759ff4093bc6b600b0ab08a77a8346cec15649fe0c90d2aa053c610f678"
+        },
+        "source-acquisition.json": {
+          "bytes": 214,
+          "sha256": "c0fac68eee8b9c5f0f54537b0a35772f79112340a86eb986b9f6101a18ab4577"
+        },
+        "tests.log": {
+          "bytes": 107595,
+          "sha256": "529a8d360b671474edb73a9545eff8e1228c37299dacf5c2340acc7592f86d9e"
+        },
+        "tokenization-summary.json": {
+          "bytes": 5589,
+          "sha256": "36458eb4b8999755a322e1110282880e2724c5241c4e4dd1452979e4ccfda282"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12706875930/zip",
+        "created_at": "2026-10-27T03:04:30Z",
+        "digest": "sha256:1571da586873fcdb48673ef8c3997a85f358b20f5b7d77c907810e6ba1b51b03",
+        "expired": false,
+        "expires_at": "2026-11-10T03:04:29Z",
+        "id": 12706875930,
+        "name": "small-container-cpu-0a7022950e78bb63b5f03d4cc8481d7631b61fcb-1",
+        "size_in_bytes": 51922,
+        "updated_at": "2026-10-27T03:04:30Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12706875930",
+        "workflow_run": {
+          "head_branch": "bt-001-small-model-container-20261027",
+          "head_repository_id": 1393671873,
+          "head_sha": "0a7022950e78bb63b5f03d4cc8481d7631b61fcb",
+          "id": 40441120663,
+          "repository_id": 1393671873
+        }
+      },
+      "run_id": 40441120663,
+      "source": "0a7022950e78bb63b5f03d4cc8481d7631b61fcb",
+      "verified_members": {
+        "container-image.log": {
+          "bytes": 1237,
+          "sha256": "02e507682ffeb5bffedb0c3029929a77259380cbb8f639b509dde3d79956c154"
+        },
+        "container-install.log": {
+          "bytes": 11982,
+          "sha256": "f393313b96973d2fc24edc9a5085f4812b400800d6182a589ad2e75f6ab8e370"
+        },
+        "container-receipt.json": {
+          "bytes": 33123,
+          "sha256": "70eed40f791d4d94d8e0b97689537c828bb5e94c69d16a27e3d70fa3d60817f7"
+        },
+        "container-stderr.log": {
+          "bytes": 300,
+          "sha256": "a47dad427dcaa6b0c9cad1c9adad254f6d2bf0c34256080487db13b2431cb154"
+        },
+        "container-summary.json": {
+          "bytes": 34311,
+          "sha256": "62aaa9106a27f470f1e47f3f5bc06190996d478f4d50d7c6f727d30bb02f6e93"
+        },
+        "controller-install.log": {
+          "bytes": 2559,
+          "sha256": "a7eaae3f3034b211c7d8e1211e6e731a05bdc13c90324d20d9be0a70ed3d6611"
+        },
+        "cuda-download.log": {
+          "bytes": 19539,
+          "sha256": "488ceb6a2198ac7f6d6d0c83812b8f629fa89c3f7b7453aa02a70b00d7e642ff"
+        },
+        "disk-before-container.txt": {
+          "bytes": 89,
+          "sha256": "da35937633a6e711d9339aeff881cc8742bf1bdf3e37bee3c7204a939a40831c"
+        },
+        "owner-install.log": {
+          "bytes": 8955,
+          "sha256": "9735fa47d5754b6e64833587ab1c8e93c6d00b1d69daef0e658491b8ec3617e9"
+        },
+        "owner-pip-check.txt": {
+          "bytes": 30,
+          "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+        },
+        "packet-reconstruction.json": {
+          "bytes": 230,
+          "sha256": "de4f939cbf71aecefd1269ff178f658df213385ee23189f20aef8af4ba2db8ee"
+        },
+        "preflight.json": {
+          "bytes": 167,
+          "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+        },
+        "smoke-scope.json": {
+          "bytes": 4535,
+          "sha256": "eeaa7759ff4093bc6b600b0ab08a77a8346cec15649fe0c90d2aa053c610f678"
+        },
+        "source-acquisition.json": {
+          "bytes": 214,
+          "sha256": "c0fac68eee8b9c5f0f54537b0a35772f79112340a86eb986b9f6101a18ab4577"
+        },
+        "tests.log": {
+          "bytes": 107610,
+          "sha256": "677a46a4a1b75f73c933154d84a6c9ca1347d646fa5990e86b5b849ca97a81cc"
+        },
+        "tokenization-summary.json": {
+          "bytes": 5589,
+          "sha256": "36458eb4b8999755a322e1110282880e2724c5241c4e4dd1452979e4ccfda282"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12706712271/zip",
+        "created_at": "2026-10-27T03:14:41Z",
+        "digest": "sha256:a382500a2fe33167050b1ba9b49eaf8f5d44bb55b3690c33e73d9b0a686def21",
+        "expired": false,
+        "expires_at": "2026-11-10T03:14:40Z",
+        "id": 12706712271,
+        "name": "small-container-cpu-2c1c06928b673bdf1a76ae18c2c86efa8e11edbe-1",
+        "size_in_bytes": 56641,
+        "updated_at": "2026-10-27T03:14:41Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12706712271",
+        "workflow_run": {
+          "head_branch": "bt-001-small-model-container-20261027",
+          "head_repository_id": 1393671873,
+          "head_sha": "2c1c06928b673bdf1a76ae18c2c86efa8e11edbe",
+          "id": 40441515101,
+          "repository_id": 1393671873
+        }
+      },
+      "run_id": 40441515101,
+      "source": "2c1c06928b673bdf1a76ae18c2c86efa8e11edbe",
+      "verified_members": {
+        "container-boundary.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-image.log": {
+          "bytes": 1302,
+          "sha256": "aabf6aeb99016d8b6baa9896c9685aab6fce651b2f38871521e485c54a563920"
+        },
+        "container-install.log": {
+          "bytes": 10564,
+          "sha256": "fb3c6c4966af7e01c4ed2278bfc30bb4e669b0a3b6cba66cc372c01995099333"
+        },
+        "container-oracle-E2B-ready.json": {
+          "bytes": 151,
+          "sha256": "65068748c7731f7cabca2d2a025351590ca33595740e339c4687778e43f3e359"
+        },
+        "container-oracle-E2B-stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-oracle-E4B-ready.json": {
+          "bytes": 151,
+          "sha256": "65068748c7731f7cabca2d2a025351590ca33595740e339c4687778e43f3e359"
+        },
+        "container-oracle-E4B-stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-oracle-assignment.json": {
+          "bytes": 9172,
+          "sha256": "8c9e4298ec35b531c95858b9bd03aaff8ec89b219d74633607c446d872e22e97"
+        },
+        "container-oracle-collection.json": {
+          "bytes": 55764,
+          "sha256": "1fb8d0ae0b08332a7d9de30ea0ad5df3a187c15571f26abeb82f85df4c138a84"
+        },
+        "container-oracle-evaluation.json": {
+          "bytes": 43826,
+          "sha256": "0cec9a7ee660ff7f9be0219eb6fcc667db30dea98480c83a392a4527c0ee7daf"
+        },
+        "container-oracle-ledger.jsonl": {
+          "bytes": 59574,
+          "sha256": "f30f9e22ed3c97b54329d1cd0968eb6a8b6373e5df5a5a578e614140eb47eb9d"
+        },
+        "container-receipt.json": {
+          "bytes": 40898,
+          "sha256": "2b32795294b0987473f0ed0db0cb024596b2a4abd7b7a4ec125e6bcb1cf833d4"
+        },
+        "container-stderr.log": {
+          "bytes": 1340,
+          "sha256": "c28fb586380caeffd96218fb8f1c9f95972ee31ad2a1cfef14402a956436a23b"
+        },
+        "container-summary.json": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "controller-install.log": {
+          "bytes": 2561,
+          "sha256": "18d649f926be642fba93990a186f20411a644f84e4e466eb840153509e182408"
+        },
+        "cuda-download.log": {
+          "bytes": 19538,
+          "sha256": "5572fa885daa1fa45cb45c3f5fae85c558b6f2f7ec51bc5cf058ccf59ebfdaee"
+        },
+        "disk-before-container.txt": {
+          "bytes": 89,
+          "sha256": "da35937633a6e711d9339aeff881cc8742bf1bdf3e37bee3c7204a939a40831c"
+        },
+        "owner-install.log": {
+          "bytes": 8958,
+          "sha256": "3ce48e748197698934d64631d8491d6b25220a7e7a75d45cccfa2b0e2786804c"
+        },
+        "owner-pip-check.txt": {
+          "bytes": 30,
+          "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+        },
+        "packet-reconstruction.json": {
+          "bytes": 230,
+          "sha256": "de4f939cbf71aecefd1269ff178f658df213385ee23189f20aef8af4ba2db8ee"
+        },
+        "preflight.json": {
+          "bytes": 167,
+          "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+        },
+        "smoke-scope.json": {
+          "bytes": 4535,
+          "sha256": "eeaa7759ff4093bc6b600b0ab08a77a8346cec15649fe0c90d2aa053c610f678"
+        },
+        "source-acquisition.json": {
+          "bytes": 214,
+          "sha256": "c0fac68eee8b9c5f0f54537b0a35772f79112340a86eb986b9f6101a18ab4577"
+        },
+        "tests.log": {
+          "bytes": 107599,
+          "sha256": "8ac4f8b1fb1b9dd2b9c865c58f879a18bcc0092d9e7367e0b50446e2efdce009"
+        },
+        "tokenization-summary.json": {
+          "bytes": 5589,
+          "sha256": "36458eb4b8999755a322e1110282880e2724c5241c4e4dd1452979e4ccfda282"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12706878810/zip",
+        "created_at": "2026-10-27T03:23:26Z",
+        "digest": "sha256:d5d463e785bb07bdf002c73b1172b341622b56997e533325b40d2b24aa9df055",
+        "expired": false,
+        "expires_at": "2026-11-10T03:23:25Z",
+        "id": 12706878810,
+        "name": "small-container-cpu-39a9d6fa0a0988757c0875936e6a077e10cb375d-1",
+        "size_in_bytes": 56661,
+        "updated_at": "2026-10-27T03:23:26Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12706878810",
+        "workflow_run": {
+          "head_branch": "bt-001-small-model-container-20261027",
+          "head_repository_id": 1393671873,
+          "head_sha": "39a9d6fa0a0988757c0875936e6a077e10cb375d",
+          "id": 40442256551,
+          "repository_id": 1393671873
+        }
+      },
+      "run_id": 40442256551,
+      "source": "39a9d6fa0a0988757c0875936e6a077e10cb375d",
+      "verified_members": {
+        "container-boundary.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-image.log": {
+          "bytes": 1313,
+          "sha256": "1c47d1a0498a695e9797b0c369a9215337b939847add4aca5057ca8981767666"
+        },
+        "container-install.log": {
+          "bytes": 10564,
+          "sha256": "fb3c6c4966af7e01c4ed2278bfc30bb4e669b0a3b6cba66cc372c01995099333"
+        },
+        "container-oracle-E2B-ready.json": {
+          "bytes": 151,
+          "sha256": "c93540c6f14b673bebf42f55d78cf460fbe7311d5269f980f73b6fb800d38896"
+        },
+        "container-oracle-E2B-stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-oracle-E4B-ready.json": {
+          "bytes": 151,
+          "sha256": "c93540c6f14b673bebf42f55d78cf460fbe7311d5269f980f73b6fb800d38896"
+        },
+        "container-oracle-E4B-stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-oracle-assignment.json": {
+          "bytes": 9172,
+          "sha256": "8c9e4298ec35b531c95858b9bd03aaff8ec89b219d74633607c446d872e22e97"
+        },
+        "container-oracle-collection.json": {
+          "bytes": 55768,
+          "sha256": "0a8cd4b4a4e0dfecc7b9c9e242e537071b340c4b7820afe49e1e74479724a17f"
+        },
+        "container-oracle-evaluation.json": {
+          "bytes": 43826,
+          "sha256": "0cec9a7ee660ff7f9be0219eb6fcc667db30dea98480c83a392a4527c0ee7daf"
+        },
+        "container-oracle-ledger.jsonl": {
+          "bytes": 59578,
+          "sha256": "5d5a29d737bd1477a0ff784a73abfba0bc536ac4f51bdaa52f3818ff6e316497"
+        },
+        "container-receipt.json": {
+          "bytes": 40898,
+          "sha256": "69a72136d8a0b9a895f76be375035e3035fed027c775597cb350ebf30f17aaa1"
+        },
+        "container-stderr.log": {
+          "bytes": 1340,
+          "sha256": "f2ab1c52f126620ddac34044ccc0a10411f32ebd89ec4597633af6d80d567d26"
+        },
+        "container-summary.json": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "controller-install.log": {
+          "bytes": 2560,
+          "sha256": "e59354c8bc37dfb8915bcfc922b1675472b3d93708ede353689b87e06215e4ae"
+        },
+        "cuda-download.log": {
+          "bytes": 19532,
+          "sha256": "5152b6db6666011e3e18ca0404d475c789a0378570a958f560b9e92a6d9fca36"
+        },
+        "disk-before-container.txt": {
+          "bytes": 89,
+          "sha256": "d9ed1380c0ec2918cca1ddf80234981e7bb83136fe439765926b611ed2e870d3"
+        },
+        "owner-install.log": {
+          "bytes": 8967,
+          "sha256": "adb14d1c9e7f62933eb905b85e742f1579e61857b4b6c6abab3ace83a7f197db"
+        },
+        "owner-pip-check.txt": {
+          "bytes": 30,
+          "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+        },
+        "packet-reconstruction.json": {
+          "bytes": 230,
+          "sha256": "de4f939cbf71aecefd1269ff178f658df213385ee23189f20aef8af4ba2db8ee"
+        },
+        "preflight.json": {
+          "bytes": 167,
+          "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+        },
+        "smoke-scope.json": {
+          "bytes": 4535,
+          "sha256": "eeaa7759ff4093bc6b600b0ab08a77a8346cec15649fe0c90d2aa053c610f678"
+        },
+        "source-acquisition.json": {
+          "bytes": 214,
+          "sha256": "c0fac68eee8b9c5f0f54537b0a35772f79112340a86eb986b9f6101a18ab4577"
+        },
+        "tests.log": {
+          "bytes": 107776,
+          "sha256": "72021dd3d0b5f4b192622b1bc3f85c0827e260c1d61a595a76dcaf662a2290de"
+        },
+        "tokenization-summary.json": {
+          "bytes": 5589,
+          "sha256": "36458eb4b8999755a322e1110282880e2724c5241c4e4dd1452979e4ccfda282"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12707732676/zip",
+        "created_at": "2026-10-27T03:34:40Z",
+        "digest": "sha256:8b56b2f61d5d378ac5ac1a0cb0ec58f8b1498b080e652aa961ac67d91a353625",
+        "expired": false,
+        "expires_at": "2026-11-10T03:34:39Z",
+        "id": 12707732676,
+        "name": "small-container-cpu-86e6be564e5791fb40847729ce738f5fce804cbf-1",
+        "size_in_bytes": 172662,
+        "updated_at": "2026-10-27T03:34:40Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12707732676",
+        "workflow_run": {
+          "head_branch": "bt-001-small-model-container-20261027",
+          "head_repository_id": 1393671873,
+          "head_sha": "86e6be564e5791fb40847729ce738f5fce804cbf",
+          "id": 40443534752,
+          "repository_id": 1393671873
+        }
+      },
+      "run_id": 40443534752,
+      "source": "86e6be564e5791fb40847729ce738f5fce804cbf",
+      "verified_members": {
+        "container-boundary-checkpoint.json": {
+          "bytes": 40898,
+          "sha256": "da0f01704a5a8f1c3746394317064699ac11bddf8a3bd97d8222f1557f17c7f7"
+        },
+        "container-boundary.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-crash-E2B-ready.json": {
+          "bytes": 151,
+          "sha256": "fa3452eb9b0a84793044c0ca2a1ba5a58a254c53ddd29633c429d3741d7f149c"
+        },
+        "container-crash-E2B-stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-crash-assignment.json": {
+          "bytes": 9172,
+          "sha256": "8c9e4298ec35b531c95858b9bd03aaff8ec89b219d74633607c446d872e22e97"
+        },
+        "container-crash-checkpoint.json": {
+          "bytes": 46746,
+          "sha256": "e09dc131d6914f30bda73e2defde1acc08324e17f731d03143b29ee2b6e27a01"
+        },
+        "container-crash-collection.json": {
+          "bytes": 7572,
+          "sha256": "7406c72f59e4e9b291fb1b8267adaa0f7bcc0297329017b016ac6b4a9ca74b40"
+        },
+        "container-crash-evaluation.json": {
+          "bytes": 35465,
+          "sha256": "3d3bece7c6926e14400ef3ff840657eeba33f3801605737a5dd1c636c4fada43"
+        },
+        "container-crash-ledger.jsonl": {
+          "bytes": 1764,
+          "sha256": "808a06087f02a6921693dfd5c9d271e2227b61031b5900030cf5227345675eac"
+        },
+        "container-hang-E2B-ready.json": {
+          "bytes": 151,
+          "sha256": "fa3452eb9b0a84793044c0ca2a1ba5a58a254c53ddd29633c429d3741d7f149c"
+        },
+        "container-hang-E2B-stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-hang-assignment.json": {
+          "bytes": 9171,
+          "sha256": "271dbc5d006373b2de90e74c8ac5d9ccae8f3b6ea1381668590149acf275615e"
+        },
+        "container-hang-checkpoint.json": {
+          "bytes": 44786,
+          "sha256": "2c15c5dc2944b0b9a3ccf2a4700361e85a6f9614544aee0aea09f5d82d6aa73b"
+        },
+        "container-hang-collection.json": {
+          "bytes": 7562,
+          "sha256": "5fca1e3fb5897df4883a004f10fe2d7aa8a226179bd7889122263022d641c173"
+        },
+        "container-hang-evaluation.json": {
+          "bytes": 35460,
+          "sha256": "78b7ca592ea433e0b637f15b71a2e7645e7eb18b8028ce23dff8cef56f22f468"
+        },
+        "container-hang-ledger.jsonl": {
+          "bytes": 1763,
+          "sha256": "6422ef7378d093174a7fbc9b662083421c4e5c73dea63229546f0faabe5024be"
+        },
+        "container-image.log": {
+          "bytes": 1335,
+          "sha256": "3def39d226917abc99bfe65b58f9ffcbabb21358d104205427d5f1e7c5ab4ef6"
+        },
+        "container-install.log": {
+          "bytes": 10564,
+          "sha256": "fb3c6c4966af7e01c4ed2278bfc30bb4e669b0a3b6cba66cc372c01995099333"
+        },
+        "container-oracle-E2B-ready.json": {
+          "bytes": 151,
+          "sha256": "fa3452eb9b0a84793044c0ca2a1ba5a58a254c53ddd29633c429d3741d7f149c"
+        },
+        "container-oracle-E2B-stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-oracle-E4B-ready.json": {
+          "bytes": 151,
+          "sha256": "fa3452eb9b0a84793044c0ca2a1ba5a58a254c53ddd29633c429d3741d7f149c"
+        },
+        "container-oracle-E4B-stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-oracle-assignment.json": {
+          "bytes": 9172,
+          "sha256": "8c9e4298ec35b531c95858b9bd03aaff8ec89b219d74633607c446d872e22e97"
+        },
+        "container-oracle-checkpoint.json": {
+          "bytes": 42837,
+          "sha256": "e5eb499127f26a38b30b1dfaf47e6729a1681cc17773e825239b4d285778d8a4"
+        },
+        "container-oracle-collection.json": {
+          "bytes": 55765,
+          "sha256": "98e9c42c42cc481a8dd55298c8db3a64e59e94e63561c60cf5ace6be66a7e763"
+        },
+        "container-oracle-evaluation.json": {
+          "bytes": 43826,
+          "sha256": "0cec9a7ee660ff7f9be0219eb6fcc667db30dea98480c83a392a4527c0ee7daf"
+        },
+        "container-oracle-ledger.jsonl": {
+          "bytes": 59574,
+          "sha256": "4608808d571ec4183e07f14992b505c5d7d35d490234cf9209e1182c8147bbce"
+        },
+        "container-oversize-E2B-ready.json": {
+          "bytes": 151,
+          "sha256": "fa3452eb9b0a84793044c0ca2a1ba5a58a254c53ddd29633c429d3741d7f149c"
+        },
+        "container-oversize-E2B-stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-oversize-assignment.json": {
+          "bytes": 9172,
+          "sha256": "8c9e4298ec35b531c95858b9bd03aaff8ec89b219d74633607c446d872e22e97"
+        },
+        "container-oversize-checkpoint.json": {
+          "bytes": 50665,
+          "sha256": "1fddba8d8a5a0e1ebda1ee6fb4dde4c1a6d06ab2c9626ce76705b014cd310030"
+        },
+        "container-oversize-collection.json": {
+          "bytes": 1404533,
+          "sha256": "0324fc701ea02fd37891b7a21d54a07940dde86154a3aed31df71ed6dd32447c"
+        },
+        "container-oversize-evaluation.json": {
+          "bytes": 34608,
+          "sha256": "b8e2d10de38d84fbc88d2dd519fe9668acffffd98ad08adcc52643b68b247712"
+        },
+        "container-oversize-ledger.jsonl": {
+          "bytes": 1398445,
+          "sha256": "e1a0852f3647dd19629bbf1539341e01eb13d5dbdc3b895b3a71bece52236ba3"
+        },
+        "container-receipt.json": {
+          "bytes": 51187,
+          "sha256": "4100d27c23f6571363ba2071a7daba0c18141fb1f107c527472271f291073d2e"
+        },
+        "container-stderr.log": {
+          "bytes": 300,
+          "sha256": "d41a1c24b8c8c333d7adeb1a3d41566163726c422b697080404f2a79139b312b"
+        },
+        "container-summary.json": {
+          "bytes": 52919,
+          "sha256": "97150e6b11b24061f53939a1f24c8b6d42b54c8aedb81ba8552b940c35c1c088"
+        },
+        "container-wrong_id-E2B-ready.json": {
+          "bytes": 151,
+          "sha256": "fa3452eb9b0a84793044c0ca2a1ba5a58a254c53ddd29633c429d3741d7f149c"
+        },
+        "container-wrong_id-E2B-stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-wrong_id-assignment.json": {
+          "bytes": 9172,
+          "sha256": "8c9e4298ec35b531c95858b9bd03aaff8ec89b219d74633607c446d872e22e97"
+        },
+        "container-wrong_id-checkpoint.json": {
+          "bytes": 48704,
+          "sha256": "ece64725d8c14eea575724e186589aa1612c3cb83ff0355cb276c181a96d721e"
+        },
+        "container-wrong_id-collection.json": {
+          "bytes": 7742,
+          "sha256": "d253fbe3dbc0ac98de1dd3bce2845102029b5f7951fefa5d429df8b2b3048973"
+        },
+        "container-wrong_id-evaluation.json": {
+          "bytes": 34608,
+          "sha256": "b8e2d10de38d84fbc88d2dd519fe9668acffffd98ad08adcc52643b68b247712"
+        },
+        "container-wrong_id-ledger.jsonl": {
+          "bytes": 1657,
+          "sha256": "4b84b49b08d5861a67296260bb7d1b5f99a3726fec3e11c9c779a8cf23302778"
+        },
+        "controller-install.log": {
+          "bytes": 2559,
+          "sha256": "d849728f876425d1efa5f0d8040432f23637811beed5339c1d6bf6d5eded3997"
+        },
+        "cuda-download.log": {
+          "bytes": 19538,
+          "sha256": "c25b003a67722e3f79c304cbcafc8844ece3ab58b86ac3418a6c07410add2ce3"
+        },
+        "disk-before-container.txt": {
+          "bytes": 89,
+          "sha256": "da35937633a6e711d9339aeff881cc8742bf1bdf3e37bee3c7204a939a40831c"
+        },
+        "owner-install.log": {
+          "bytes": 8955,
+          "sha256": "add6c77c0d487c715e5108e609fec58c0e6580f05412bdbb37e569cb3f32ad1d"
+        },
+        "owner-pip-check.txt": {
+          "bytes": 30,
+          "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+        },
+        "packet-reconstruction.json": {
+          "bytes": 230,
+          "sha256": "de4f939cbf71aecefd1269ff178f658df213385ee23189f20aef8af4ba2db8ee"
+        },
+        "preflight.json": {
+          "bytes": 167,
+          "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+        },
+        "smoke-scope.json": {
+          "bytes": 4535,
+          "sha256": "eeaa7759ff4093bc6b600b0ab08a77a8346cec15649fe0c90d2aa053c610f678"
+        },
+        "source-acquisition.json": {
+          "bytes": 214,
+          "sha256": "c0fac68eee8b9c5f0f54537b0a35772f79112340a86eb986b9f6101a18ab4577"
+        },
+        "tests.log": {
+          "bytes": 107772,
+          "sha256": "17d7beccdc96480f843015c8d43baf035ff9b245a3fc7396838b160bfb27d52a"
+        },
+        "tokenization-summary.json": {
+          "bytes": 5589,
+          "sha256": "36458eb4b8999755a322e1110282880e2724c5241c4e4dd1452979e4ccfda282"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12708746040/zip",
+        "created_at": "2026-10-27T03:48:57Z",
+        "digest": "sha256:90014d5b3d245c37696966242e8bde34f854e7d028d7d3de7e3f62080b1c3b7c",
+        "expired": false,
+        "expires_at": "2026-11-10T03:48:55Z",
+        "id": 12708746040,
+        "name": "small-container-cpu-eef423182e449d94cd3118a721f914881366901a-1",
+        "size_in_bytes": 214055,
+        "updated_at": "2026-10-27T03:48:57Z",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/12708746040",
+        "workflow_run": {
+          "head_branch": "bt-001-small-model-container-20261027",
+          "head_repository_id": 1393671873,
+          "head_sha": "eef423182e449d94cd3118a721f914881366901a",
+          "id": 40445252781,
+          "repository_id": 1393671873
+        }
+      },
+      "run_id": 40445252781,
+      "source": "eef423182e449d94cd3118a721f914881366901a",
+      "verified_members": {
+        "container-boundary-checkpoint.json": {
+          "bytes": 40898,
+          "sha256": "fa80edf2a14ce23b1aaf014171d0bfb8aa189d0619acb1d2e3821640b7d75a67"
+        },
+        "container-boundary.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-crash-E2B-ready.json": {
+          "bytes": 151,
+          "sha256": "c93540c6f14b673bebf42f55d78cf460fbe7311d5269f980f73b6fb800d38896"
+        },
+        "container-crash-E2B-stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-crash-assignment.json": {
+          "bytes": 9172,
+          "sha256": "8c9e4298ec35b531c95858b9bd03aaff8ec89b219d74633607c446d872e22e97"
+        },
+        "container-crash-checkpoint.json": {
+          "bytes": 46746,
+          "sha256": "b00bca38c3cd611af6d1a0287f336aa30a3df1989df528fc2c44dde2e94f15aa"
+        },
+        "container-crash-collection.json": {
+          "bytes": 7572,
+          "sha256": "a10c4d3907dc19fdb8c20772961152bae107560eb0a51dd18193df73a8e58756"
+        },
+        "container-crash-evaluation.json": {
+          "bytes": 35465,
+          "sha256": "3d3bece7c6926e14400ef3ff840657eeba33f3801605737a5dd1c636c4fada43"
+        },
+        "container-crash-ledger.jsonl": {
+          "bytes": 1764,
+          "sha256": "16cbf27164a11680f84d2f5736493325c564977741f473ff4382db73289ca42c"
+        },
+        "container-deadline.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-hang-E2B-ready.json": {
+          "bytes": 151,
+          "sha256": "c93540c6f14b673bebf42f55d78cf460fbe7311d5269f980f73b6fb800d38896"
+        },
+        "container-hang-E2B-stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-hang-assignment.json": {
+          "bytes": 9171,
+          "sha256": "271dbc5d006373b2de90e74c8ac5d9ccae8f3b6ea1381668590149acf275615e"
+        },
+        "container-hang-checkpoint.json": {
+          "bytes": 44786,
+          "sha256": "bf47acbfcdcec9316d6c44b5c0302b5d29af0ccef0c1b9cd6f0406d0d6ae1324"
+        },
+        "container-hang-collection.json": {
+          "bytes": 7562,
+          "sha256": "c579ca1c454a04954c59ef3aace0be7bfad451dbb67da1695bc014bddf68782a"
+        },
+        "container-hang-evaluation.json": {
+          "bytes": 35460,
+          "sha256": "78b7ca592ea433e0b637f15b71a2e7645e7eb18b8028ce23dff8cef56f22f468"
+        },
+        "container-hang-ledger.jsonl": {
+          "bytes": 1763,
+          "sha256": "6836034404a26a1e63670b4498964e8f3952520db1a0e775360f23fc0ec13989"
+        },
+        "container-image.log": {
+          "bytes": 1335,
+          "sha256": "b8f5c8b180a93c454e8887d5f5dd6ab4357e6a6920f56591d8238a8a5da7572e"
+        },
+        "container-install.log": {
+          "bytes": 10564,
+          "sha256": "fb3c6c4966af7e01c4ed2278bfc30bb4e669b0a3b6cba66cc372c01995099333"
+        },
+        "container-oracle-E2B-ready.json": {
+          "bytes": 151,
+          "sha256": "c93540c6f14b673bebf42f55d78cf460fbe7311d5269f980f73b6fb800d38896"
+        },
+        "container-oracle-E2B-stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-oracle-E4B-ready.json": {
+          "bytes": 151,
+          "sha256": "c93540c6f14b673bebf42f55d78cf460fbe7311d5269f980f73b6fb800d38896"
+        },
+        "container-oracle-E4B-stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-oracle-assignment.json": {
+          "bytes": 9172,
+          "sha256": "8c9e4298ec35b531c95858b9bd03aaff8ec89b219d74633607c446d872e22e97"
+        },
+        "container-oracle-checkpoint.json": {
+          "bytes": 42837,
+          "sha256": "cab717dcae43f722e0941c7eac327d91186add1b9d1de8ce41f3edcef7be39c2"
+        },
+        "container-oracle-collection.json": {
+          "bytes": 55763,
+          "sha256": "c0017b4df08014425a63eab503caa863dcf7d8053d8e1937008b698d23bc6cd8"
+        },
+        "container-oracle-evaluation.json": {
+          "bytes": 43826,
+          "sha256": "0cec9a7ee660ff7f9be0219eb6fcc667db30dea98480c83a392a4527c0ee7daf"
+        },
+        "container-oracle-ledger.jsonl": {
+          "bytes": 59572,
+          "sha256": "c457c92c4f7bd17086a100c21880cf8e35d6fe44a3a55748602be56db5c12d45"
+        },
+        "container-oversize-E2B-ready.json": {
+          "bytes": 151,
+          "sha256": "c93540c6f14b673bebf42f55d78cf460fbe7311d5269f980f73b6fb800d38896"
+        },
+        "container-oversize-E2B-stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-oversize-assignment.json": {
+          "bytes": 9172,
+          "sha256": "8c9e4298ec35b531c95858b9bd03aaff8ec89b219d74633607c446d872e22e97"
+        },
+        "container-oversize-checkpoint.json": {
+          "bytes": 50664,
+          "sha256": "f4eb97f64c4569b2db56e5dfe69f090f1e8f76a6f71a8b57b0d5e46883699dce"
+        },
+        "container-oversize-collection.json": {
+          "bytes": 1404532,
+          "sha256": "faf238845d720851ffa9d2511ac9a7ef9935ae182f2c436550cec97709a316fc"
+        },
+        "container-oversize-evaluation.json": {
+          "bytes": 34608,
+          "sha256": "b8e2d10de38d84fbc88d2dd519fe9668acffffd98ad08adcc52643b68b247712"
+        },
+        "container-oversize-ledger.jsonl": {
+          "bytes": 1398445,
+          "sha256": "e1a0852f3647dd19629bbf1539341e01eb13d5dbdc3b895b3a71bece52236ba3"
+        },
+        "container-random-E2B-ready.json": {
+          "bytes": 149,
+          "sha256": "6fb677b6c42f9e586effa01affd5885f0cba205dca51db010e1dcb47a2adde5e"
+        },
+        "container-random-E2B-stderr.log": {
+          "bytes": 144,
+          "sha256": "65990fb7c981bad344edf803fc66c7b59ca8edaf94ab80746bea7fc7ddfb3b78"
+        },
+        "container-random-E4B-ready.json": {
+          "bytes": 149,
+          "sha256": "6fb677b6c42f9e586effa01affd5885f0cba205dca51db010e1dcb47a2adde5e"
+        },
+        "container-random-E4B-stderr.log": {
+          "bytes": 144,
+          "sha256": "3730036b9398a7dbc09c8d1348be454fa1cfb1146f23f751392040399612472b"
+        },
+        "container-random-assignment.json": {
+          "bytes": 9167,
+          "sha256": "a7c3baca9a12885186ff8670fb072fd9a77c2f14183de827602cc561a3116c5b"
+        },
+        "container-random-checkpoint.json": {
+          "bytes": 54564,
+          "sha256": "a78f9fdd00b3f10bc1774a9a02afe168484dfd6689197582ba112e1ff3f6b2cd"
+        },
+        "container-random-collection.json": {
+          "bytes": 13717,
+          "sha256": "64acfb29b26e37ac0f0128f5353387ca236df32c37d15bee709da141ce16d840"
+        },
+        "container-random-evaluation.json": {
+          "bytes": 43940,
+          "sha256": "5c67b1ce27a8e976ec3b9bde94382bfbac68df8d28d22c029ccb8a7e6b6a8143"
+        },
+        "container-random-ledger.jsonl": {
+          "bytes": 17520,
+          "sha256": "b7ad0767cf29ea97a4bdcf6e70340dc7b450993447adf4b0e79e266c3c440bcf"
+        },
+        "container-receipt.json": {
+          "bytes": 55721,
+          "sha256": "b15badfcf6fef80e952a0152bd740f0cdf7a7132934b0e77b371b293319b36a1"
+        },
+        "container-startup_hang-E2B-stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-startup_hang-assignment.json": {
+          "bytes": 9168,
+          "sha256": "13c1af249a2b73b0fbeab6f5607b14537775b418372e719b005bb4c23d594c4e"
+        },
+        "container-startup_hang-checkpoint.json": {
+          "bytes": 52624,
+          "sha256": "ef6e30509faeff67a2efa29c5323ac53976230d50be020808bd981f14b26dd90"
+        },
+        "container-startup_hang-collection.json": {
+          "bytes": 6208,
+          "sha256": "673832293825fd775179457ce7b8d32e85c4de891eb814e49d2352ac6a3b28ac"
+        },
+        "container-startup_hang-evaluation.json": {
+          "bytes": 34591,
+          "sha256": "1740f3db4bbe740908992808930ff404d4c3d35955ef408b5975198af82d7b75"
+        },
+        "container-startup_hang-ledger.jsonl": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-stderr.log": {
+          "bytes": 300,
+          "sha256": "1332ba699687d7d80ab4ed667b298cf8bc1cab04e606aafef1b65c9ccc1ff9b6"
+        },
+        "container-summary.json": {
+          "bytes": 57635,
+          "sha256": "dbf55a7f72c4af7d3e69cb39fc9c1d9147848561671722e944226cb96053fbf9"
+        },
+        "container-supervisor-loss.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-transport-loss.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-wrong_id-E2B-ready.json": {
+          "bytes": 151,
+          "sha256": "c93540c6f14b673bebf42f55d78cf460fbe7311d5269f980f73b6fb800d38896"
+        },
+        "container-wrong_id-E2B-stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "container-wrong_id-assignment.json": {
+          "bytes": 9172,
+          "sha256": "8c9e4298ec35b531c95858b9bd03aaff8ec89b219d74633607c446d872e22e97"
+        },
+        "container-wrong_id-checkpoint.json": {
+          "bytes": 48704,
+          "sha256": "eadc59a8d070ad018f0a5377fc8fb68a4eb26917895f8b438e1f0ac5ea1b79ee"
+        },
+        "container-wrong_id-collection.json": {
+          "bytes": 7742,
+          "sha256": "2387e834857bfcf7f0182ab6b2663f4fffbe11d54ff682dc92b4b457f18521cc"
+        },
+        "container-wrong_id-evaluation.json": {
+          "bytes": 34608,
+          "sha256": "b8e2d10de38d84fbc88d2dd519fe9668acffffd98ad08adcc52643b68b247712"
+        },
+        "container-wrong_id-ledger.jsonl": {
+          "bytes": 1657,
+          "sha256": "a9a90eff1b2e15b5031049b83c429a93310be507f994921b6b591a333393961c"
+        },
+        "controller-install.log": {
+          "bytes": 2557,
+          "sha256": "d677e1063c1018c022e2612f93ea8596e5f0b03ce5df50d2bb8490319b4251a7"
+        },
+        "cuda-download.log": {
+          "bytes": 19541,
+          "sha256": "aa328284a63e4bbea36f1c2d54ca986fc59ee131a51991f525af25cdf3a61c1e"
+        },
+        "disk-before-container.txt": {
+          "bytes": 89,
+          "sha256": "da35937633a6e711d9339aeff881cc8742bf1bdf3e37bee3c7204a939a40831c"
+        },
+        "owner-install.log": {
+          "bytes": 8958,
+          "sha256": "0029bcb893c0e3f322f8cac8bdc2785c7866293f1561368d4c47f4b225c8864b"
+        },
+        "owner-pip-check.txt": {
+          "bytes": 30,
+          "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+        },
+        "packet-reconstruction.json": {
+          "bytes": 230,
+          "sha256": "de4f939cbf71aecefd1269ff178f658df213385ee23189f20aef8af4ba2db8ee"
+        },
+        "preflight.json": {
+          "bytes": 167,
+          "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+        },
+        "smoke-scope.json": {
+          "bytes": 4535,
+          "sha256": "eeaa7759ff4093bc6b600b0ab08a77a8346cec15649fe0c90d2aa053c610f678"
+        },
+        "source-acquisition.json": {
+          "bytes": 214,
+          "sha256": "c0fac68eee8b9c5f0f54537b0a35772f79112340a86eb986b9f6101a18ab4577"
+        },
+        "tests.log": {
+          "bytes": 107773,
+          "sha256": "8f5ea3dacc4621729d42dea1bda83560c5dbaddd980bf542a90a97bded7ef18b"
+        },
+        "tokenization-summary.json": {
+          "bytes": 5589,
+          "sha256": "36458eb4b8999755a322e1110282880e2724c5241c4e4dd1452979e4ccfda282"
+        }
+      }
+    }
+  ],
+  "augnes_modified": false,
+  "draft_pr": "https://github.com/hynk-studio/backtrace/pull/37",
+  "earlier_native_attempts": [
+    {
+      "checks": {},
+      "cleanup": {
+        "absence_reads": 2,
+        "container_id": null,
+        "name": "backtrace-free-full-setup-9031-small-container",
+        "observations": [
+          {
+            "state": "ABSENT"
+          },
+          {
+            "state": "ABSENT"
+          }
+        ],
+        "request": {
+          "outcome": "ACKNOWLEDGED",
+          "returncode": 0
+        },
+        "seconds": 1.101,
+        "status": "PASS"
+      },
+      "collections": {},
+      "error": "No module named 'requests'",
+      "frames": [
+        {
+          "file": "small_model_container_probe.py",
+          "function": "qualify",
+          "line": 39
+        },
+        {
+          "file": "cloud_transport.py",
+          "function": "build",
+          "line": 22
+        }
+      ],
+      "installation_status": "NOT_COMPLETED",
+      "job_id": 121978777994,
+      "native_tests": {
+        "count": 638,
+        "outcome": "OK",
+        "seconds": 200.908
+      },
+      "run_id": 40440302423,
+      "source": "b263acd3f8b581913189ffd4e779e0b84d33b52f",
+      "source_hashes_verified": 47,
+      "status": "FAIL",
+      "stderr_tail": "\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\rWriting model shards: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1/1 [00:00<00:00, 114.57it/s]\n\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\rWriting model shards: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1/1 [00:00<00:00, 134.51it/s]\n",
+      "tree": "bb36c3a4e47a8da44c670482221b0ec2c8d6b9e0"
+    },
+    {
+      "checks": {},
+      "cleanup": {
+        "absence_reads": 2,
+        "container_id": "74f62b3b58b1e01a460d09e831165307f59b2cdccc5763241e98287bd8c55762",
+        "name": "backtrace-free-full-setup-13455-small-container",
+        "observations": [
+          {
+            "state": "ABSENT"
+          },
+          {
+            "state": "ABSENT"
+          }
+        ],
+        "request": {
+          "outcome": "ACKNOWLEDGED",
+          "returncode": 0
+        },
+        "seconds": 4.162,
+        "status": "PASS"
+      },
+      "collections": {},
+      "error": "exact-image offline installation failed",
+      "frames": [
+        {
+          "file": "small_model_container_probe.py",
+          "function": "qualify",
+          "line": 100
+        }
+      ],
+      "installation_error_tail": "athfinder, click, anyio, annotated-doc, accelerate\nSuccessfully installed Jinja2-3.1.6 MarkupSafe-3.0.4 PyYAML-6.0.3 Pygments-2.21.0 accelerate-1.15.0 annotated-doc-0.0.5 anyio-4.15.1 click-8.5.0 cuda-bindings-12.9.10 cuda-pathfinder-1.8.4 cuda-toolkit-12.6.3 filelock-4.2.4 fsspec-2026.9.0 h11-0.16.0 hf-xet-1.7.0 httpcore2-2.16.0 httpx2-2.16.0 huggingface_hub-2.3.0 idna-3.20 markdown-it-py-4.2.0 mdurl-0.1.2 mpmath-1.3.0 networkx-3.6.1 numpy-2.5.4 nvidia-cublas-cu12-12.6.4.1 nvidia-cuda-cupti-cu12-12.6.80 nvidia-cuda-nvrtc-cu12-12.6.85 nvidia-cuda-runtime-cu12-12.6.77 nvidia-cudnn-cu12-9.10.2.21 nvidia-cufft-cu12-11.3.0.4 nvidia-cufile-cu12-1.11.1.6 nvidia-curand-cu12-10.3.7.77 nvidia-cusolver-cu12-11.7.1.2 nvidia-cusparse-cu12-12.5.4.2 nvidia-cusparselt-cu12-0.7.1 nvidia-nccl-cu12-2.29.3 nvidia-nvjitlink-cu12-12.6.85 nvidia-nvshmem-cu12-3.4.5 nvidia-nvtx-cu12-12.6.77 packaging-26.3 pip-25.0.1 psutil-7.2.2 regex-2026.9.29 rich-15.0.0 safetensors-0.8.0 setuptools-78.1.0 shellingham-1.5.4 sympy-1.14.0 tokenizers-0.23.3 torch-2.13.0+cu126 tqdm-4.70.1 transformers-5.20.2 triton-3.7.1 truststore-0.10.5 typer-0.27.3 typing_extensions-4.16.0\nNo broken requirements found.\nTraceback (most recent call last):\n  File \"/opt/backtrace/installer.py\", line 106, in <module>\n    elif sys.argv[1]=='check':result=installed(json.loads((ROOT/'runtime-lock.json').read_bytes()))\n                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/backtrace/installer.py\", line 42, in installed\n    raise ValueError('wrong isolated interpreter')\nValueError: wrong isolated interpreter\nTraceback (most recent call last):\n  File \"/root/backtrace/runtime/installer.py\", line 105, in <module>\n    if sys.argv[1]=='install':result=install(sys.argv[2])\n                                     ^^^^^^^^^^^^^^^^^^^^\n  File \"/root/backtrace/runtime/installer.py\", line 93, in install\n    raw=subprocess.check_output([str(python),'-I',str(ROOT/'installer.py'),'check'],env=env,timeout=120)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 466, in check_output\n    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['/opt/backtrace/venv/bin/python', '-I', '/opt/backtrace/installer.py', 'check']' returned non-zero exit status 1.\n",
+      "installation_status": "NOT_COMPLETED",
+      "job_id": 121981448510,
+      "native_tests": {
+        "count": 638,
+        "outcome": "OK",
+        "seconds": 200.919
+      },
+      "run_id": 40441120663,
+      "source": "0a7022950e78bb63b5f03d4cc8481d7631b61fcb",
+      "source_hashes_verified": 47,
+      "status": "FAIL",
+      "stderr_tail": "\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\rWriting model shards: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1/1 [00:00<00:00, 114.55it/s]\n\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\rWriting model shards: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1/1 [00:00<00:00, 137.78it/s]\n",
+      "tree": "450a7f28d488a35f482f875b112a256e56ced4b9"
+    },
+    {
+      "checks": {
+        "boundary_exit": true,
+        "credential_environment_absent": true,
+        "exec_denied": true,
+        "fork_denied": true,
+        "namespace_denied": true,
+        "outer_namespaces": true,
+        "private_file_denied": true,
+        "readonly_job": true,
+        "root_denied": true,
+        "socket_denied": true,
+        "threads_work": true,
+        "unix_socket_denied": true,
+        "worker_identity": true
+      },
+      "cleanup": "NOT_RETAINED",
+      "collections": {
+        "container-oracle-collection.json": {
+          "coverage": {
+            "OK": 36
+          },
+          "status": "COMPLETED"
+        }
+      },
+      "error": null,
+      "frames": null,
+      "installation_status": "PASS_EXACT_CONTAINER_RUNTIME_CPU_ONLY",
+      "job_id": 121984633170,
+      "native_tests": {
+        "count": 638,
+        "outcome": "OK",
+        "seconds": 184.698
+      },
+      "run_id": 40441515101,
+      "source": "2c1c06928b673bdf1a76ae18c2c86efa8e11edbe",
+      "source_hashes_verified": 47,
+      "status": "INCOMPLETE",
+      "stderr_tail": "\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\rWriting model shards: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1/1 [00:00<00:00, 103.79it/s]\n\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\rWriting model shards: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1/1 [00:00<00:00, 117.63it/s]\nTraceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/home/runner/work/backtrace/backtrace/tools/small_model_container_probe.py\", line 209, in <module>\n    result=qualify(*(Path(p).resolve() for p in sys.argv[1:]))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/backtrace/backtrace/tools/small_model_container_probe.py\", line 203, in qualify\n    life.write(output/'receipt.json',result)\n  File \"/home/runner/work/backtrace/backtrace/tools/small_model_lifecycle.py\", line 51, in write\n    with path.open('xb') as stream:\n         ^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/pathlib.py\", line 1013, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileExistsError: [Errno 17] File exists: '/home/runner/work/backtrace/backtrace/.local/container-qualification/receipt.json'\n",
+      "tree": "51ecef149dcdc70d139b9b6eaeace5ea34c8b20e"
+    },
+    {
+      "checks": {
+        "boundary_exit": true,
+        "credential_environment_absent": true,
+        "exec_denied": true,
+        "fork_denied": true,
+        "namespace_denied": true,
+        "outer_namespaces": true,
+        "private_file_denied": true,
+        "readonly_job": true,
+        "root_denied": true,
+        "socket_denied": true,
+        "threads_work": true,
+        "unix_socket_denied": true,
+        "worker_identity": true
+      },
+      "cleanup": "NOT_RETAINED",
+      "collections": {
+        "container-oracle-collection.json": {
+          "coverage": {
+            "OK": 36
+          },
+          "status": "COMPLETED"
+        }
+      },
+      "error": null,
+      "frames": null,
+      "installation_status": "PASS_EXACT_CONTAINER_RUNTIME_CPU_ONLY",
+      "job_id": 121987778668,
+      "native_tests": {
+        "count": 639,
+        "outcome": "OK",
+        "seconds": 147.68
+      },
+      "run_id": 40442256551,
+      "source": "39a9d6fa0a0988757c0875936e6a077e10cb375d",
+      "source_hashes_verified": 47,
+      "status": "INCOMPLETE",
+      "stderr_tail": "\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\rWriting model shards: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1/1 [00:00<00:00, 154.93it/s]\n\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\rWriting model shards: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1/1 [00:00<00:00, 174.18it/s]\nTraceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/home/runner/work/backtrace/backtrace/tools/small_model_container_probe.py\", line 209, in <module>\n    result=qualify(*(Path(p).resolve() for p in sys.argv[1:]))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/backtrace/backtrace/tools/small_model_container_probe.py\", line 203, in qualify\n    life.write(output/'receipt.json',result)\n  File \"/home/runner/work/backtrace/backtrace/tools/small_model_lifecycle.py\", line 51, in write\n    with path.open('xb') as stream:\n         ^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/pathlib.py\", line 1013, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileExistsError: [Errno 17] File exists: '/home/runner/work/backtrace/backtrace/.local/container-qualification/receipt.json'\n",
+      "tree": "f2391798090481c9b9583bfbbb1771d9cd37a197"
+    },
+    {
+      "checks": {
+        "boundary_exit": true,
+        "crash": true,
+        "credential_environment_absent": true,
+        "exec_denied": true,
+        "fork_denied": true,
+        "hang": true,
+        "namespace_denied": true,
+        "oracle": true,
+        "outer_namespaces": true,
+        "oversize": true,
+        "private_file_denied": true,
+        "readonly_job": true,
+        "root_denied": true,
+        "socket_denied": true,
+        "threads_work": true,
+        "unix_socket_denied": true,
+        "worker_identity": true,
+        "wrong_id": true
+      },
+      "cleanup": {
+        "absence_reads": 2,
+        "container_id": "0bcf5756c4fa6358eb97e1f803a41572f4c692feb6a07a6cfe6252ed369953b4",
+        "name": "backtrace-free-full-setup-13070-small-container",
+        "observations": [
+          {
+            "state": "ABSENT"
+          },
+          {
+            "state": "ABSENT"
+          }
+        ],
+        "request": {
+          "outcome": "ACKNOWLEDGED",
+          "returncode": 0
+        },
+        "seconds": 4.186,
+        "status": "PASS"
+      },
+      "collections": {
+        "container-crash-collection.json": {
+          "coverage": {
+            "NOT_RUN": 34,
+            "OK": 1,
+            "WORKER_ERROR": 1
+          },
+          "status": "INCOMPLETE"
+        },
+        "container-hang-collection.json": {
+          "coverage": {
+            "NOT_RUN": 34,
+            "OK": 1,
+            "TIMEOUT": 1
+          },
+          "status": "INCOMPLETE"
+        },
+        "container-oracle-collection.json": {
+          "coverage": {
+            "OK": 36
+          },
+          "status": "COMPLETED"
+        },
+        "container-oversize-collection.json": {
+          "coverage": {
+            "NOT_RUN": 35,
+            "WORKER_ERROR": 1
+          },
+          "status": "INCOMPLETE"
+        },
+        "container-wrong_id-collection.json": {
+          "coverage": {
+            "NOT_RUN": 35,
+            "WORKER_ERROR": 1
+          },
+          "status": "INCOMPLETE"
+        }
+      },
+      "error": "bounded execution limits required",
+      "frames": [
+        {
+          "file": "small_model_container_probe.py",
+          "function": "qualify",
+          "line": 133
+        },
+        {
+          "file": "small_model_runner.py",
+          "function": "collect",
+          "line": 346
+        }
+      ],
+      "installation_status": "PASS_EXACT_CONTAINER_RUNTIME_CPU_ONLY",
+      "job_id": 121990439657,
+      "native_tests": {
+        "count": 639,
+        "outcome": "OK",
+        "seconds": 201.387
+      },
+      "run_id": 40443534752,
+      "source": "86e6be564e5791fb40847729ce738f5fce804cbf",
+      "source_hashes_verified": 47,
+      "status": "FAIL",
+      "stderr_tail": "\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\rWriting model shards: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1/1 [00:00<00:00, 117.25it/s]\n\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\rWriting model shards: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1/1 [00:00<00:00, 139.09it/s]\n",
+      "tree": "baa1d88b8c90050561bcbdb4e1e33f56e13d39df"
+    }
+  ],
+  "gpu_minimum": "NOT_RUN",
+  "issue_closed": false,
+  "job_id": 121994875175,
+  "latest_local_focused_tests": {
+    "count": 7,
+    "errors": 0,
+    "failures": 0,
+    "seconds": 1.207,
+    "skipped": 0,
+    "source_sha": "eef423182e449d94cd3118a721f914881366901a"
+  },
+  "limitations": [
+    "Dedicated inference-only container, not the historical native empty-mount-tree jail or a multi-tenant/tool-execution service.",
+    "Native owner and Docker replica share one runner/kernel; loopback SSH failure controls do not establish live provider NAT or cross-host resilience.",
+    "Free adapter deliberately rejects CUDA and pretrained modes. Production CUDA integration remains unqualified.",
+    "Default OCI cgroup ancestors remain hidden. Host-enforced 6 GiB CPU replica quota does not establish provider 8/32 GiB headroom.",
+    "No live Runpod Pod, NAT, device, GPU context teardown or source/resource-bound distributed deletion was exercised.",
+    "36 authored and 36 tiny-random assignments are instrumentation checks across nine views/two arms/two models, not independent capability samples."
+  ],
+  "local_final_suite": {
+    "command": "python3 -m unittest discover -s tests -v",
+    "completed_summary_present": true,
+    "diagnostics": "\nERROR: test_real_offline_replacement_survives_force_reinstall (test_linux_runtime.LinuxRuntimeTests.test_real_offline_replacement_survives_force_reinstall)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_linux_runtime.py\", line 192, in test_real_offline_replacement_survives_force_reinstall\n    self.copy_bootstrap(root)\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_linux_runtime.py\", line 27, in copy_bootstrap\n    runtime.verify_supplied(directory, [runtime.BOOTSTRAP])\n  File \"/workspace/scratch/ae1408b79248/backtrace/tools/linux_runtime.py\", line 116, in verify_supplied\n    raise ValueError('supplied wheel size mismatch: ' + name)\nValueError: supplied wheel size mismatch: pip-25.0.1-py3-none-any.whl\n\n======================================================================\nERROR: test_real_offline_resolver_failure_rolls_back_environment (test_linux_runtime.LinuxRuntimeTests.test_real_offline_resolver_failure_rolls_back_environment)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_linux_runtime.py\", line 162, in test_real_offline_resolver_failure_rolls_back_environment\n    self.copy_bootstrap(root)\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_linux_runtime.py\", line 27, in copy_bootstrap\n    runtime.verify_supplied(directory, [runtime.BOOTSTRAP])\n  File \"/workspace/scratch/ae1408b79248/backtrace/tools/linux_runtime.py\", line 116, in verify_supplied\n    raise ValueError('supplied wheel size mismatch: ' + name)\nValueError: supplied wheel size mismatch: pip-25.0.1-py3-none-any.whl\n\n======================================================================\nERROR: test_real_venv_is_seeded_offline_from_the_frozen_wheel (test_prepayment_job.VenvSeedTests.test_real_venv_is_seeded_offline_from_the_frozen_wheel)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_prepayment_job.py\", line 32, in test_real_venv_is_seeded_offline_from_the_frozen_wheel\n    receipt = pod.ensure_venv_seed(wheels, stdlib=stdlib, seed_root=seed)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/ae1408b79248/backtrace/tools/pod_bootstrap.py\", line 73, in ensure_venv_seed\n    raise ValueError('frozen pip bootstrap wheel required')\nValueError: frozen pip bootstrap wheel required\n\n======================================================================\nERROR: test_linux_group_observation_does_not_launch_ps (test_startup_guard.GroupCleanupTests.test_linux_group_observation_does_not_launch_ps)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 224, in test_linux_group_observation_does_not_launch_ps\n    self.assertIn(os.getpid(), group_members(os.getpgrp()))\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/ae1408b79248/backtrace/tools/startup_guard.py\", line 163, in group_members\n    raise OSError('procfs PID namespace does not match this process')\nOSError: procfs PID namespace does not match this process\n\n======================================================================\nERROR: test_observation_failure_still_kills_and_reaps_owned_process (test_startup_guard.GroupCleanupTests.test_observation_failure_still_kills_and_reaps_owned_process) (persistent=False)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 238, in test_observation_failure_still_kills_and_reaps_owned_process\n    self.assertIn(process.pid, group_members(process.pid))\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/ae1408b79248/backtrace/tools/startup_guard.py\", line 163, in group_members\n    raise OSError('procfs PID namespace does not match this process')\nOSError: procfs PID namespace does not match this process\n\n======================================================================\nERROR: test_observation_failure_still_kills_and_reaps_owned_process (test_startup_guard.GroupCleanupTests.test_observation_failure_still_kills_and_reaps_owned_process) (persistent=True)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 238, in test_observation_failure_still_kills_and_reaps_owned_process\n    self.assertIn(process.pid, group_members(process.pid))\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/ae1408b79248/backtrace/tools/startup_guard.py\", line 163, in group_members\n    raise OSError('procfs PID namespace does not match this process')\nOSError: procfs PID namespace does not match this process\n\n======================================================================\nERROR: test_harmless_recoverable_and_quoted (test_startup_guard.StartupGuardTests.test_harmless_recoverable_and_quoted)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 193, in test_harmless_recoverable_and_quoted\n    self.exercise('harmless')\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 151, in exercise\n    server.stop()\n  File \"/workspace/scratch/ae1408b79248/backtrace/tools/startup_guard.py\", line 382, in stop\n    stop_group(process, self._group, grace=min(timeout, 1.0))\n  File \"/workspace/scratch/ae1408b79248/backtrace/tools/startup_guard.py\", line 222, in stop_group\n    while pgid and group_members(pgid):\n                   ^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/ae1408b79248/backtrace/tools/startup_guard.py\", line 163, in group_members\n    raise OSError('procfs PID namespace does not match this process')\nOSError: procfs PID namespace does not match this process\n\n======================================================================\nERROR: test_kill_fallback_and_idempotent_cleanup (test_startup_guard.StartupGuardTests.test_kill_fallback_and_idempotent_cleanup)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 207, in test_kill_fallback_and_idempotent_cleanup\n    self.exercise('stubborn')\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 151, in exercise\n    server.stop()\n  File \"/workspace/scratch/ae1408b79248/backtrace/tools/startup_guard.py\", line 382, in stop\n    stop_group(process, self._group, grace=min(timeout, 1.0))\n  File \"/workspace/scratch/ae1408b79248/backtrace/tools/startup_guard.py\", line 222, in stop_group\n    while pgid and group_members(pgid):\n                   ^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/ae1408b79248/backtrace/tools/startup_guard.py\", line 163, in group_members\n    raise OSError('procfs PID namespace does not match this process')\nOSError: procfs PID namespace does not match this process\n\n======================================================================\nERROR: test_stale_previous_log (test_startup_guard.StartupGuardTests.test_stale_previous_log)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 196, in test_stale_previous_log\n    self.exercise('stale')\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 151, in exercise\n    server.stop()\n  File \"/workspace/scratch/ae1408b79248/backtrace/tools/startup_guard.py\", line 382, in stop\n    stop_group(process, self._group, grace=min(timeout, 1.0))\n  File \"/workspace/scratch/ae1408b79248/backtrace/tools/startup_guard.py\", line 222, in stop_group\n    while pgid and group_members(pgid):\n                   ^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/ae1408b79248/backtrace/tools/startup_guard.py\", line 163, in group_members\n    raise OSError('procfs PID namespace does not match this process')\nOSError: procfs PID namespace does not match this process\n\n======================================================================\nERROR: test_successful_readiness (test_startup_guard.StartupGuardTests.test_successful_readiness)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 190, in test_successful_readiness\n    self.exercise('ready')\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 151, in exercise\n    server.stop()\n  File \"/workspace/scratch/ae1408b79248/backtrace/tools/startup_guard.py\", line 382, in stop\n    stop_group(process, self._group, grace=min(timeout, 1.0))\n  File \"/workspace/scratch/ae1408b79248/backtrace/tools/startup_guard.py\", line 222, in stop_group\n    while pgid and group_members(pgid):\n                   ^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/ae1408b79248/backtrace/tools/startup_guard.py\", line 163, in group_members\n    raise OSError('procfs PID namespace does not match this process')\nOSError: procfs PID namespace does not match this process\n\n======================================================================\nFAIL: test_fatal_during_health_wins (test_startup_guard.StartupGuardTests.test_fatal_during_health_wins)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 187, in test_fatal_during_health_wins\n    self.exercise('race')\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 154, in exercise\n    self.assertEqual(before, server.startup_observation)\nAssertionError: {'sta[83 chars]ds': 5.1677998271770775e-05, 'child_subreaper_[382 chars]ess'} != {'sta[83 chars]ds': 8.087199239525944e-05, 'child_subreaper_b[381 chars]ess'}\nDiff is 652 characters long. Set self.maxDiff to None to see it.\n\n======================================================================\nFAIL: test_fatal_worker_parent_alive (test_startup_guard.StartupGuardTests.test_fatal_worker_parent_alive)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 179, in test_fatal_worker_parent_alive\n    self.exercise('fatal')\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 154, in exercise\n    self.assertEqual(before, server.startup_observation)\nAssertionError: {'sta[83 chars]ds': 0.00017290099640376866, 'child_subreaper_[382 chars]ess'} != {'sta[83 chars]ds': 3.5172997741028666e-05, 'child_subreaper_[382 chars]ess'}\nDiff is 653 characters long. Set self.maxDiff to None to see it.\n\n======================================================================\nFAIL: test_readiness_deadline_without_health (test_startup_guard.StartupGuardTests.test_readiness_deadline_without_health)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 204, in test_readiness_deadline_without_health\n    self.exercise('timeout', total=4, startup=0.6)\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 154, in exercise\n    self.assertEqual(before, server.startup_observation)\nAssertionError: {'sta[72 chars]ds': 4.597900260705501e-05, 'child_subreaper_b[236 chars]out'} != {'sta[72 chars]ds': 2.9503993573598564e-05, 'child_subreaper_[237 chars]out'}\n  {'asgi_traceback_sha256': None,\n   'child_subreaper_before': 1,\n   'cleanup_error': 'procfs PID namespace does not match this process',\n   'consecutive_health_500s': 0,\n   'detected': None,\n   'health_status': None,\n   'primary_error': 'authored readiness timeout',\n   'ready': None,\n   'repeated_asgi_tracebacks': 0,\n   'started': 86144.779831498,\n-  'teardown_seconds': 4.597900260705501e-05}\n+  'teardown_seconds': 2.9503993573598564e-05}\n\n======================================================================\nFAIL: test_slow_fixture_boot_preserves_post_evidence_bound (test_startup_guard.StartupGuardTests.test_slow_fixture_boot_preserves_post_evidence_bound)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 184, in test_slow_fixture_boot_preserves_post_evidence_bound\n    self.exercise('fatal', boot_delay=4.2)\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 154, in exercise\n    self.assertEqual(before, server.startup_observation)\nAssertionError: {'sta[83 chars]ds': 5.019600212108344e-05, 'child_subreaper_b[381 chars]ess'} != {'sta[83 chars]ds': 2.9996008379384875e-05, 'child_subreaper_[382 chars]ess'}\nDiff is 737 characters long. Set self.maxDiff to None to see it.\n\n======================================================================\nFAIL: test_total_deadline_without_readiness (test_startup_guard.StartupGuardTests.test_total_deadline_without_readiness)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 200, in test_total_deadline_without_readiness\n    self.exercise('timeout', total=0.6)\n  File \"/workspace/scratch/ae1408b79248/backtrace/tests/test_startup_guard.py\", line 154, in exercise\n    self.assertEqual(before, server.startup_observation)\nAssertionError: {'sta[72 chars]ds': 4.554800398182124e-05, 'child_subreaper_b[250 chars]ess'} != {'sta[72 chars]ds': 3.002599987667054e-05, 'child_subreaper_b[250 chars]ess'}\n  {'asgi_traceback_sha256': None,\n   'child_subreaper_before': 1,\n   'cleanup_error': 'procfs PID namespace does not match this process',\n   'consecutive_health_500s': 0,\n   'detected': None,\n   'health_status': None,\n   'primary_error': 'startup readiness/total deadline expired',\n   'ready': None,\n   'repeated_asgi_tracebacks': 0,\n   'started': 86150.085633715,\n-  'teardown_seconds': 4.554800398182124e-05}\n+  'teardown_seconds': 3.002599987667054e-05}\n\n----------------------------------------------------------------------\nRan 639 tests in 139.331s\n\nFAILED (failures=5, errors=10, skipped=4)\n",
+    "errors": 10,
+    "exit_code": 1,
+    "failures": 5,
+    "focused_tests": {
+      "count": 7,
+      "errors": 0,
+      "failures": 0,
+      "seconds": 1.214,
+      "skipped": 0
+    },
+    "last_lines": [
+      "----------------------------------------------------------------------",
+      "Ran 639 tests in 139.331s",
+      "",
+      "FAILED (failures=5, errors=10, skipped=4)"
+    ],
+    "log_sha256": "2e9afb6d89729062d1ff9dc16fcd99bfc94ff1596fc2d635aee57aec8542707e",
+    "observed_error_lines": [
+      "test_real_offline_replacement_survives_force_reinstall (test_linux_runtime.LinuxRuntimeTests.test_real_offline_replacement_survives_force_reinstall) ... ERROR",
+      "test_real_offline_resolver_failure_rolls_back_environment (test_linux_runtime.LinuxRuntimeTests.test_real_offline_resolver_failure_rolls_back_environment) ... ERROR",
+      "test_real_venv_is_seeded_offline_from_the_frozen_wheel (test_prepayment_job.VenvSeedTests.test_real_venv_is_seeded_offline_from_the_frozen_wheel) ... ERROR",
+      "test_linux_group_observation_does_not_launch_ps (test_startup_guard.GroupCleanupTests.test_linux_group_observation_does_not_launch_ps) ... ERROR",
+      "  test_observation_failure_still_kills_and_reaps_owned_process (test_startup_guard.GroupCleanupTests.test_observation_failure_still_kills_and_reaps_owned_process) (persistent=False) ... ERROR",
+      "  test_observation_failure_still_kills_and_reaps_owned_process (test_startup_guard.GroupCleanupTests.test_observation_failure_still_kills_and_reaps_owned_process) (persistent=True) ... ERROR",
+      "test_harmless_recoverable_and_quoted (test_startup_guard.StartupGuardTests.test_harmless_recoverable_and_quoted) ... ERROR",
+      "test_kill_fallback_and_idempotent_cleanup (test_startup_guard.StartupGuardTests.test_kill_fallback_and_idempotent_cleanup) ... ERROR",
+      "test_stale_previous_log (test_startup_guard.StartupGuardTests.test_stale_previous_log) ... ERROR",
+      "test_successful_readiness (test_startup_guard.StartupGuardTests.test_successful_readiness) ... ERROR"
+    ],
+    "observed_proc_pid_mismatch": true,
+    "observed_test_lines": 639,
+    "seconds": 139.331,
+    "skipped": 4,
+    "source_sha": "86e6be564e5791fb40847729ce738f5fce804cbf",
+    "status": "FAILED_WORK_RUNTIME",
+    "tests": 639
+  },
+  "local_initial_attempt": {
+    "command": "python3 -m unittest discover -s tests -v",
+    "completed_summary_present": false,
+    "exit_code": 1,
+    "focused_tests": {
+      "count": 6,
+      "errors": 0,
+      "failures": 0,
+      "seconds": 0.069,
+      "skipped": 0
+    },
+    "last_lines": [
+      "test_top_up_cannot_reduce_historical_spend (test_research_entry.ContractTests.test_top_up_cannot_reduce_historical_spend) ... ok",
+      "test_ambiguous_create_never_retries_and_finds_exact_name (test_research_entry.WireLifecycleTests.test_ambiguous_create_never_retries_and_finds_exact_name) ... {\"mode\": \"CPU_REPLICA\", \"research_entry\": \"claimed\", \"source_sha\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"}",
+      "{\"mode\": \"CPU_REPLICA\", \"research_entry\": \"single_create\"}",
+      "{\"research_entry\": \"owner_failure\", \"stage\": \"create\", \"type\": \"ProviderError\"}"
+    ],
+    "log_sha256": "481deec17a24de44ba58f1c95a37f4b7a2eec6976e9ac1bc76c4d8241ab4b6a0",
+    "observed_error_lines": [
+      "test_real_offline_replacement_survives_force_reinstall (test_linux_runtime.LinuxRuntimeTests.test_real_offline_replacement_survives_force_reinstall) ... ERROR",
+      "test_real_offline_resolver_failure_rolls_back_environment (test_linux_runtime.LinuxRuntimeTests.test_real_offline_resolver_failure_rolls_back_environment) ... ERROR",
+      "test_real_venv_is_seeded_offline_from_the_frozen_wheel (test_prepayment_job.VenvSeedTests.test_real_venv_is_seeded_offline_from_the_frozen_wheel) ... ERROR"
+    ],
+    "observed_test_lines": 351,
+    "preflight": {
+      "dependencies": "standard library only",
+      "local_tooling": "READY",
+      "official_validator": "NOT RUN",
+      "python": "3.12.14",
+      "r0_clean_packaging": "NOT RUN"
+    },
+    "proc_observation": "os.getpid() and /proc/self/stat report different PID identities; Work runtime is not native host",
+    "status": "INCOMPLETE_WORK_RUNTIME"
+  },
+  "merged": false,
+  "native_tests": {
+    "count": 639,
+    "outcome": "OK",
+    "seconds": 172.176
+  },
+  "paid_provider_allocations": 0,
+  "preservation": {
+    "all_previous_branch_heads_unchanged": true,
+    "cuda_native_library_hashes_equal": true,
+    "original_assignment_identity_equal": true,
+    "previous_branch_heads": {
+      "bt-001-a100-cpu-qualification": "50c9ee629b9a0d59dcd076d26eca80fe9969b376",
+      "bt-001-a100-start-20261019": "80cb0efa905ba7f068ea10e04ecf1c37c4382401",
+      "bt-001-a100-start-20261020b": "91788995fa6e7fd185a4a4e001a13558ce37581b",
+      "bt-001-a100-start-20261020c": "48dafadc25e42980e3674c247627662695891b84",
+      "bt-001-a100-start-20261021a": "6b7a861f286a2e68b169ccb9c4c1fb99c9ead756",
+      "bt-001-a100-start-20261021b": "ec58d2d6a8200a7cfb74185fce9ccc82dabaab81",
+      "bt-001-a100-start-20261021c": "5aea23d2456233414c74f3346f1163acd0779fa2",
+      "bt-001-a100-start-api-recovery": "7f53553078483cd2555f0bed0abd0410cf42f3d0",
+      "bt-001-a100-start-bootstrap-probe": "f7cb1164e06586486254ce193e30201e12e5c424",
+      "bt-001-a100-start-calibrated-20261023": "6973f96255cdecf2d02f7e1ad976522f7982699d",
+      "bt-001-a100-start-connected-gpu": "cdef8537994f65e6a26645ec684f5917bd126c7b",
+      "bt-001-a100-start-qualified-20261023": "626e3a619a025f64e3713af11b8e4097471470ab",
+      "bt-001-a100-start-verified-20261024": "e31873dab5b400a1ddc236c7ac9c2440f05fdab7",
+      "bt-001-a100-state": "10c101135b005e5c9133323a50fe7c6c81701460",
+      "bt-001-a100-watch-20261019": "80cb0efa905ba7f068ea10e04ecf1c37c4382401",
+      "bt-001-a100-watch-20261020b": "91788995fa6e7fd185a4a4e001a13558ce37581b",
+      "bt-001-a100-watch-20261020c": "48dafadc25e42980e3674c247627662695891b84",
+      "bt-001-a100-watch-20261021a": "6b7a861f286a2e68b169ccb9c4c1fb99c9ead756",
+      "bt-001-a100-watch-20261021b": "ec58d2d6a8200a7cfb74185fce9ccc82dabaab81",
+      "bt-001-a100-watch-20261021c": "5aea23d2456233414c74f3346f1163acd0779fa2",
+      "bt-001-a100-watch-api-recovery": "7f53553078483cd2555f0bed0abd0410cf42f3d0",
+      "bt-001-a100-watch-bootstrap-probe": "f7cb1164e06586486254ce193e30201e12e5c424",
+      "bt-001-a100-watch-calibrated-20261023": "6973f96255cdecf2d02f7e1ad976522f7982699d",
+      "bt-001-a100-watch-connected-gpu": "cdef8537994f65e6a26645ec684f5917bd126c7b",
+      "bt-001-a100-watch-qualified-20261023": "626e3a619a025f64e3713af11b8e4097471470ab",
+      "bt-001-a100-watch-verified-20261024": "e31873dab5b400a1ddc236c7ac9c2440f05fdab7",
+      "bt-001-abductive-evaluation-20261026": "31d02bb9826889deb8f188fa0e0e1562d436295f",
+      "bt-001-api-readiness-recovery": "d604960a2bd3bb0efc7e428f08d4f14c80eabf58",
+      "bt-001-bootstrap": "c9001e00be16c1d3fcb7cd80b9a63998cecb6e4b",
+      "bt-001-bootstrap-diagnostics": "a673cd92d8ba2fbd58f90d78401a205dade7f7b5",
+      "bt-001-bootstrap-probe": "e655960cb7db584e869709ba3c504dedcd73dee0",
+      "bt-001-calibrated-evaluation-20261023": "92456475a47fd5003a25306db48d412d31cc6cf9",
+      "bt-001-calibrated-gpu-20261023": "1bf344ea98cb524d25b1de05422ebf7c7ff232a0",
+      "bt-001-calibrated-observe-20261023": "e7ceaf9d0246dd8f5d97c72cb69389b9879f91f9",
+      "bt-001-connected-gpu-smoke": "bf3a650bb5b82d981e5666ac4747ff997d26d405",
+      "bt-001-connected-qualification": "5bd2d4d9cd27b51ede825afa959be924701c5943",
+      "bt-001-cpu-binding": "9660ec3195108108236406b298607926380a7b0e",
+      "bt-001-full-path-parity": "aa391853494f1b6c67bcdcc10ceb09fdf3e72b4a",
+      "bt-001-full-setup-cpu": "e1e054d03d3e5f6d37c05ac70b71eb5d9018c552",
+      "bt-001-qualified-gpu-20261023": "37d6d45ab8a89dad1f7fbeedc0d3c37e037684f4",
+      "bt-001-qualified-observe-20261023": "9b63b8ad6ec1998cb38ba7580fe7e0b51cb001c7",
+      "bt-001-r0-artifacts": "56c612e68626d07da6b0c5378ec6bd7f05f82fee",
+      "bt-001-r0-smoke": "919c6bc939dcbcbe31ab619954a9ab2e85da4c4d",
+      "bt-001-research-deployment-probe-20261025": "3af0362065f88076c0f3e65d57ffdfeac4220e27",
+      "bt-001-research-execution-prep-20261024": "e938c47af790585800921ef6cc66f792046f6651",
+      "bt-001-research-prep-20261024": "80d72ec643df55b709d1acd9b5c7816d5d9105e6",
+      "bt-001-research-prepaid-entry-20261026": "e8074474132ffdde9c4b73206c8c22ce7c2a4180",
+      "bt-001-research-reduced9-20261026": "3b0f5e8028a7835ac44b8e9cffd488b185e1e127",
+      "bt-001-research-reduced9-observe-20261026-0007": "f6f230ee107699ae9cc645db0a22aec210324a0d",
+      "bt-001-research-reduced9-start-20261026": "a8ae2765e9b57a408be3e3930b3a69a977601535",
+      "bt-001-research-reduced9-state-20261026": "25ea1eddda40d8ad27d9f121adca3ddd7fb776b4",
+      "bt-001-research-reduced9-watch-20261026": "a8ae2765e9b57a408be3e3930b3a69a977601535",
+      "bt-001-research-serving-lifecycle-20261025": "f7698ad6654c26bebaeb29d2e137d478d47ae55a",
+      "bt-001-research-split-runtime-20261025": "808f360734410a44c80709aa4ee96b8fcc123c3d",
+      "bt-001-research-state-20261026": "59466d054f86d1049259273e613553eb8999a6d1",
+      "bt-001-research-verifier-amendment-20261025": "dd75363ba3979a13753a3ffc099fe56d3e9b5224",
+      "bt-001-research-verifier-prep-20261024": "aaea5e1a6ae8f0460d40e8ea5b60bc0b26d6207a",
+      "bt-001-retry-preparation-20261023": "8b7b1416eec1d714dfbb581e4aa06a06793f2c27",
+      "bt-001-small-abductive-plan-20261026": "4a4c28380de2103ff9b432b1c7f55de9b4514182",
+      "bt-001-small-model-gpu-20261026": "6a0afa9a7ab88a1d77edc808bb78575b96b0ae17",
+      "bt-001-small-model-precheck-20261026": "c048ec313e5e6cf20dc0b802efa48f336854b46d",
+      "bt-001-small-model-provider-20261027": "669fd7f12a164c294747d05e455185b626a9d355",
+      "bt-001-small-model-provider-state-20261027": "1a95a00b94cc5df5440d88fb8391a59e47f276b9",
+      "bt-001-small-model-runner-20261026": "aeb06af108a348c32422954c172b634c0bd5959e",
+      "bt-001-small-model-runtime-20261026": "5ad61b43d1cda581e7651c7def9aaea88f5c461b",
+      "bt-001-startup-guard-a100": "a08b2a63914538e1688ddf9d33773f7a9de48a19",
+      "bt-001-startup-reaper-diagnostic-20261023": "16d1df8ea19d4e760226aad13bcd6f1e3aea8ba6",
+      "bt-001-startup-reaper-fix-20261023": "4dcc641cc772988d76cbd2cfa500d95c7326f3e5",
+      "bt-001-task-budget-evaluation-20261023": "03c2e7cdae165fc4bf2a0ddc5a270f5769f47e37",
+      "bt-001-task-calibration-20261023": "4c997d379a3967dc54ccaeb38fb0c05273ca96c7",
+      "bt-001-temporal-baseline-20261026": "764a30465d01fba994a64e3d592c6e45a9b37711",
+      "bt-001-verified-evaluation-20261024": "bf50a54525b8d78ebe7bb021ea517219c45d70d3",
+      "bt-001-verified-gpu-20261024": "04ec3016c2631a2f0c08a004a2e1ecdbdb7b4fea",
+      "bt-001-verified-observe-20261024": "0d38f93621b16312be267de1fc0723eb1ffe6d76",
+      "main": "23616971a4ec57d32fcce769e0a2abf44faa9cfe"
+    },
+    "previous_operational_sources_unchanged": 41,
+    "previous_preparation_bytes_identical": {
+      "packet-reconstruction.json": true,
+      "smoke-scope.json": true,
+      "source-acquisition.json": true,
+      "tokenization-summary.json": true
+    },
+    "random_checkpoint_bytes_equal": true,
+    "random_raw_outputs_equal": 36
+  },
+  "pretrained_inference": "NOT_RUN",
+  "provider_api_calls": 0,
+  "qualification": {
+    "asset_manifest": {
+      "files": [
+        {
+          "bytes": 1489,
+          "path": "jobs/E2B-random-fixture-normal.json",
+          "sha256": "3ced6ee14b70619129a34e4eec232c1b366e88ef0556a306b13522ab3f22c8a1"
+        },
+        {
+          "bytes": 1497,
+          "path": "jobs/E2B-scripted-control-crash.json",
+          "sha256": "a91be041afec4ba39982c24fb4b117c6bd8b90b25f1c8fa8c97f2298d1a2eed3"
+        },
+        {
+          "bytes": 1496,
+          "path": "jobs/E2B-scripted-control-hang.json",
+          "sha256": "58c4612f37ff091febf907d655e34f1f1ec2472d73a37652c1f955b51fabcc08"
+        },
+        {
+          "bytes": 1494,
+          "path": "jobs/E2B-scripted-control-normal.json",
+          "sha256": "2775b92d5eee35a4666670d4bdb2e0d0269d705cadf910003c6c3c214477b78e"
+        },
+        {
+          "bytes": 1500,
+          "path": "jobs/E2B-scripted-control-oversize.json",
+          "sha256": "479d9b172a51cd072f974e06601b05f2ca689afbab45a9af9ea60a4a4d14f710"
+        },
+        {
+          "bytes": 1504,
+          "path": "jobs/E2B-scripted-control-startup-hang.json",
+          "sha256": "e721363d43e758a153afbb5e3423fd7480bfc68f5fa85b7358b45f3fea9e9501"
+        },
+        {
+          "bytes": 1500,
+          "path": "jobs/E2B-scripted-control-wrong-id.json",
+          "sha256": "86a20a6604abbc6bdcaa05a30d0424e8d6021f6d30ef6210ac1709ea04dcc4f3"
+        },
+        {
+          "bytes": 1489,
+          "path": "jobs/E4B-random-fixture-normal.json",
+          "sha256": "48f6076f932add17170ec378d44008b5347825f7758649e669bd134f9df2e098"
+        },
+        {
+          "bytes": 1497,
+          "path": "jobs/E4B-scripted-control-crash.json",
+          "sha256": "d1d52d83548ecea5d720897c7a5f4912c3f39a3dcfc16fe5306fb8162f68b580"
+        },
+        {
+          "bytes": 1496,
+          "path": "jobs/E4B-scripted-control-hang.json",
+          "sha256": "c8bb8d670ebdec1580f60ecfc7c943ac4c6afd15bc332557d8237a35e850eb50"
+        },
+        {
+          "bytes": 1494,
+          "path": "jobs/E4B-scripted-control-normal.json",
+          "sha256": "365d298d4fa2a164b6f245d62c538e848b8541a66bd8ccdc56eb8905198d7905"
+        },
+        {
+          "bytes": 1500,
+          "path": "jobs/E4B-scripted-control-oversize.json",
+          "sha256": "3292d0d9b33a1a6aaa254df743efa7f9cdcc7820e97dd70ebcef55273fda1732"
+        },
+        {
+          "bytes": 1504,
+          "path": "jobs/E4B-scripted-control-startup-hang.json",
+          "sha256": "1836891af75380e50b025f5cf716fde0146f658968a74ee3927fc090c2f51a84"
+        },
+        {
+          "bytes": 1500,
+          "path": "jobs/E4B-scripted-control-wrong-id.json",
+          "sha256": "723b22df51e9183b1b88eb381dc6eb0460b1d9a13ef87a315e662407a49cc60f"
+        },
+        {
+          "bytes": 1857,
+          "path": "models/E2B/config.json",
+          "sha256": "8f65b24472277882a0381e0a9a72ee99d077d5e9a473caa8d83b55e7954b19db"
+        },
+        {
+          "bytes": 216,
+          "path": "models/E2B/generation_config.json",
+          "sha256": "8cb828ae33739e804f6b3b57d0c31cb1fa56c3cb1741126e8fd04504ec18a44e"
+        },
+        {
+          "bytes": 25191424,
+          "path": "models/E2B/model.safetensors",
+          "sha256": "ca89a7d559370e86ebe7c3f72f54c4574ad05bf313d8d352e64f914996e1b88d"
+        },
+        {
+          "bytes": 1858,
+          "path": "models/E4B/config.json",
+          "sha256": "a3ab7a3fd6629dc5b65b3e63177e4397cf38261b63467cb624c9578d922e590f"
+        },
+        {
+          "bytes": 216,
+          "path": "models/E4B/generation_config.json",
+          "sha256": "8cb828ae33739e804f6b3b57d0c31cb1fa56c3cb1741126e8fd04504ec18a44e"
+        },
+        {
+          "bytes": 25191424,
+          "path": "models/E4B/model.safetensors",
+          "sha256": "ca89a7d559370e86ebe7c3f72f54c4574ad05bf313d8d352e64f914996e1b88d"
+        },
+        {
+          "bytes": 27955,
+          "path": "tokenizers/E2B/README.md",
+          "sha256": "3e0608a6be80e3eb040a5aa6c76707809503deb85be6360184a118fb6156526c"
+        },
+        {
+          "bytes": 18569,
+          "path": "tokenizers/E2B/chat_template.jinja",
+          "sha256": "0a2c8073c878ab1da004bee933a998606537bbb62016310352c7285c3f01c5b5"
+        },
+        {
+          "bytes": 4954,
+          "path": "tokenizers/E2B/config.json",
+          "sha256": "1b28f3d2c3100f6c594754b81107428bd7b822a7f48272ca681dae9d2ec38330"
+        },
+        {
+          "bytes": 208,
+          "path": "tokenizers/E2B/generation_config.json",
+          "sha256": "d4226bbe3117d2d253ba4609720ba82c6c4ce4627a9a6ae05387c78983ac03de"
+        },
+        {
+          "bytes": 1689,
+          "path": "tokenizers/E2B/processor_config.json",
+          "sha256": "32bdf45d2ad4cc29a0822ddd157a182de76644f0419a6228d151495256e9813c"
+        },
+        {
+          "bytes": 32169626,
+          "path": "tokenizers/E2B/tokenizer.json",
+          "sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f"
+        },
+        {
+          "bytes": 3082,
+          "path": "tokenizers/E2B/tokenizer_config.json",
+          "sha256": "9f4fec4b1dc6ecddf8f4a92e9caea5971c0e67d81309f3f9066a2bee8c362633"
+        },
+        {
+          "bytes": 27956,
+          "path": "tokenizers/E4B/README.md",
+          "sha256": "b21e4f69614ccd77baa2f3797d05311040dee07b989cb9f0d25111aa4b605b2c"
+        },
+        {
+          "bytes": 18569,
+          "path": "tokenizers/E4B/chat_template.jinja",
+          "sha256": "0a2c8073c878ab1da004bee933a998606537bbb62016310352c7285c3f01c5b5"
+        },
+        {
+          "bytes": 5145,
+          "path": "tokenizers/E4B/config.json",
+          "sha256": "33b10c02df3c2e8536cf323d29d53262aaa2f4d11dbe19bc729373fbe90295d4"
+        },
+        {
+          "bytes": 208,
+          "path": "tokenizers/E4B/generation_config.json",
+          "sha256": "d4226bbe3117d2d253ba4609720ba82c6c4ce4627a9a6ae05387c78983ac03de"
+        },
+        {
+          "bytes": 1689,
+          "path": "tokenizers/E4B/processor_config.json",
+          "sha256": "32bdf45d2ad4cc29a0822ddd157a182de76644f0419a6228d151495256e9813c"
+        },
+        {
+          "bytes": 32169626,
+          "path": "tokenizers/E4B/tokenizer.json",
+          "sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f"
+        },
+        {
+          "bytes": 3082,
+          "path": "tokenizers/E4B/tokenizer_config.json",
+          "sha256": "9f4fec4b1dc6ecddf8f4a92e9caea5971c0e67d81309f3f9066a2bee8c362633"
+        }
+      ],
+      "phase": "model",
+      "schema_version": 1
+    },
+    "assets_transfer": {
+      "bytes": 114860313,
+      "files": 34,
+      "manifest_sha256": "99bdd6289b2824aee2a6fcd1fc3c217efb6dfc7e3ffd0d5a17cea91cd33f466c",
+      "phase": "model",
+      "schema_version": 1,
+      "verified": true
+    },
+    "binary_transfer": {
+      "bytes": 1400320,
+      "sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a"
+    },
+    "boundary": {
+      "caps": 0,
+      "credential_environment_absent": true,
+      "exec_denied": true,
+      "fork_denied": true,
+      "namespace_denied": true,
+      "net_namespace": "net:[4026532319]",
+      "no_new_privs": "1",
+      "pid_namespace": "pid:[4026532317]",
+      "private_file_denied": true,
+      "readonly_job": true,
+      "root_denied": true,
+      "seccomp": "2",
+      "socket_denied": true,
+      "threads_work": true,
+      "uid": 65532,
+      "unix_socket_denied": true
+    },
+    "checks": {
+      "boundary_exit": true,
+      "crash": true,
+      "credential_environment_absent": true,
+      "exec_denied": true,
+      "fork_denied": true,
+      "hang": true,
+      "namespace_denied": true,
+      "oracle": true,
+      "outer_namespaces": true,
+      "oversize": true,
+      "private_file_denied": true,
+      "random": true,
+      "readonly_job": true,
+      "remote_deadline": true,
+      "root_denied": true,
+      "socket_denied": true,
+      "startup_hang": true,
+      "supervisor_loss": true,
+      "threads_work": true,
+      "transport_loss": true,
+      "unix_socket_denied": true,
+      "worker_identity": true,
+      "wrong_id": true
+    },
+    "cleanup": {
+      "absence_reads": 2,
+      "container_id": "aad97d05710345d6ad35edf26efeecaae685ae393afb704fd6550176fcd15855",
+      "name": "backtrace-free-full-setup-13646-small-container",
+      "observations": [
+        {
+          "state": "ABSENT"
+        },
+        {
+          "state": "ABSENT"
+        }
+      ],
+      "request": {
+        "outcome": "ACKNOWLEDGED",
+        "returncode": 0
+      },
+      "seconds": 5.853,
+      "status": "PASS"
+    },
+    "container_id": "aad97d05710345d6ad35edf26efeecaae685ae393afb704fd6550176fcd15855",
+    "container_mode": "ORDINARY_OCI_WITH_6_GIB_MEMORY_LIMIT",
+    "container_resource_observation": {
+      "cgroup_ancestry": "HIDDEN_NOT_ADMITTED",
+      "installed_assets": 42,
+      "memory_max": "6442450944"
+    },
+    "fixture_model_manifests": {
+      "E2B": {
+        "config.json": {
+          "bytes": 1857,
+          "sha256": "8f65b24472277882a0381e0a9a72ee99d077d5e9a473caa8d83b55e7954b19db"
+        },
+        "generation_config.json": {
+          "bytes": 216,
+          "sha256": "8cb828ae33739e804f6b3b57d0c31cb1fa56c3cb1741126e8fd04504ec18a44e"
+        },
+        "model.safetensors": {
+          "bytes": 25191424,
+          "sha256": "ca89a7d559370e86ebe7c3f72f54c4574ad05bf313d8d352e64f914996e1b88d"
+        }
+      },
+      "E4B": {
+        "config.json": {
+          "bytes": 1858,
+          "sha256": "a3ab7a3fd6629dc5b65b3e63177e4397cf38261b63467cb624c9578d922e590f"
+        },
+        "generation_config.json": {
+          "bytes": 216,
+          "sha256": "8cb828ae33739e804f6b3b57d0c31cb1fa56c3cb1741126e8fd04504ec18a44e"
+        },
+        "model.safetensors": {
+          "bytes": 25191424,
+          "sha256": "ca89a7d559370e86ebe7c3f72f54c4574ad05bf313d8d352e64f914996e1b88d"
+        }
+      }
+    },
+    "host_container_controls": {
+      "CapAdd": null,
+      "Memory": 6442450944,
+      "MemorySwap": 6442450944,
+      "NetworkMode": "bridge",
+      "PidMode": "",
+      "Privileged": false,
+      "SecurityOpt": null
+    },
+    "image": "pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca",
+    "image_id": "sha256:4638f27bc2a17c4487d2dcb57e0dca10c9cf6601ee6bf849162b58f1d8b1ee8e",
+    "installation": {
+      "compiled_cuda": "12.6",
+      "gpu_kernels": "NOT_RUN",
+      "interpreter_archive": {
+        "bytes": 94433525,
+        "files": 896
+      },
+      "native_libraries": {
+        "libc10_cuda.so": {
+          "bytes": 630305,
+          "ldd": "\tlinux-vdso.so.1 (0x00007f5a7d22d000)\n\tlibc10.so => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/libc10.so (0x00007f5a7d03f000)\n\tlibdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f5a7d038000)\n\tlibcudart.so.12 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/../../nvidia/cuda_runtime/lib/libcudart.so.12 (0x00007f5a7cc00000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f5a7c982000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f5a7cf4d000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f5a7cf1f000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f5a7c770000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f5a7d22f000)\n\tlibpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f5a7cf18000)\n\tlibrt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007f5a7cf13000)\n",
+          "sha256": "598ccb098cf51f1b4b452f4a7089a9cdd19fb7788be3509bce63061adb845854"
+        },
+        "libtorch_cpu.so": {
+          "bytes": 438418705,
+          "ldd": "\tlinux-vdso.so.1 (0x00007fbddd244000)\n\tlibc10.so => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/libc10.so (0x00007fbdc82ed000)\n\tlibrt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007fbdc82e6000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fbdc82b6000)\n\tlibdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007fbdc82b1000)\n\tlibpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fbdc82ac000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fbdc81c3000)\n\tlibgomp.so.1 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/libgomp.so.1 (0x00007fbdc7e00000)\n\tlibcupti.so.12 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/../../nvidia/cuda_cupti/lib/libcupti.so.12 (0x00007fbdc760c000)\n\tlibcudart.so.12 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/../../nvidia/cuda_runtime/lib/libcudart.so.12 (0x00007fbdc7200000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fbdc6f82000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fbdc6d70000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007fbddd246000)\n\tlibutil.so.1 => /lib/x86_64-linux-gnu/libutil.so.1 (0x00007fbdc81bc000)\n",
+          "sha256": "b2b21751cfdc12375e45e8cf867faa8932b4cd51d6fefd85aaa29cc2ba9fe52d"
+        },
+        "libtorch_cuda.so": {
+          "bytes": 1003519049,
+          "ldd": "\tlinux-vdso.so.1 (0x00007f33e1a52000)\n\tlibtorch_nvshmem.so => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/libtorch_nvshmem.so (0x00007f33a6272000)\n\tlibc10_cuda.so => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/libc10_cuda.so (0x00007f33a61d2000)\n\tlibcudart.so.12 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/../../nvidia/cuda_runtime/lib/libcudart.so.12 (0x00007f33a5e00000)\n\tlibcusparse.so.12 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/../../nvidia/cusparse/lib/libcusparse.so.12 (0x00007f3394200000)\n\tlibcufft.so.11 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/../../nvidia/cufft/lib/libcufft.so.11 (0x00007f3383000000)\n\tlibcufile.so.0 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/../../nvidia/cufile/lib/libcufile.so.0 (0x00007f3382d28000)\n\tlibcusparseLt.so.0 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/../../nvidia/cusparselt/lib/libcusparseLt.so.0 (0x00007f3367bb8000)\n\tlibnccl.so.2 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/../../nvidia/nccl/lib/libnccl.so.2 (0x00007f3351c00000)\n\tlibcurand.so.10 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/../../nvidia/curand/lib/libcurand.so.10 (0x00007f334b600000)\n\tlibcublas.so.12 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/../../nvidia/cublas/lib/libcublas.so.12 (0x00007f3344c00000)\n\tlibcublasLt.so.12 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/../../nvidia/cublas/lib/libcublasLt.so.12 (0x00007f3323200000)\n\tlibcudnn.so.9 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/../../nvidia/cudnn/lib/libcudnn.so.9 (0x00007f3322e00000)\n\tlibnvrtc.so.12 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/../../nvidia/cuda_nvrtc/lib/libnvrtc.so.12 (0x00007f331ee00000)\n\tlibdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f33a61c5000)\n\tlibrt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007f33a61c0000)\n\tlibpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f33a61bb000)\n\tlibc10.so => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/libc10.so (0x00007f33a5cba000)\n\tlibtorch_cpu.so => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so (0x00007f3309ff7000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f33a60d0000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f3309d79000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f33a5c8c000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f3309b67000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f33e1a54000)\n\tlibnvshmem_host.so.3 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/../../nvidia/nvshmem/lib/libnvshmem_host.so.3 (0x00007f3300000000)\n\tlibgomp.so.1 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/libgomp.so.1 (0x00007f32ffc00000)\n\tlibnvJitLink.so.12 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/../../nvidia/cusparse/lib/../../nvjitlink/lib/libnvJitLink.so.12 (0x00007f32fc800000)\n\tlibcupti.so.12 => /opt/backtrace/venv/lib/python3.12/site-packages/torch/lib/../../nvidia/cuda_cupti/lib/libcupti.so.12 (0x00007f32fc00c000)\n\tlibutil.so.1 => /lib/x86_64-linux-gnu/libutil.so.1 (0x00007f33a60c7000)\n",
+          "sha256": "66d916674a414a3f8facd58901630be77b82c68a8cdc0175269b624c41bd5310"
+        }
+      },
+      "packages": {
+        "accelerate": "1.15.0",
+        "annotated-doc": "0.0.5",
+        "anyio": "4.15.1",
+        "click": "8.5.0",
+        "cuda-bindings": "12.9.10",
+        "cuda-pathfinder": "1.8.4",
+        "cuda-toolkit": "12.6.3",
+        "filelock": "4.2.4",
+        "fsspec": "2026.9.0",
+        "h11": "0.16.0",
+        "hf-xet": "1.7.0",
+        "httpcore2": "2.16.0",
+        "httpx2": "2.16.0",
+        "huggingface-hub": "2.3.0",
+        "idna": "3.20",
+        "jinja2": "3.1.6",
+        "markdown-it-py": "4.2.0",
+        "markupsafe": "3.0.4",
+        "mdurl": "0.1.2",
+        "mpmath": "1.3.0",
+        "networkx": "3.6.1",
+        "numpy": "2.5.4",
+        "nvidia-cublas-cu12": "12.6.4.1",
+        "nvidia-cuda-cupti-cu12": "12.6.80",
+        "nvidia-cuda-nvrtc-cu12": "12.6.85",
+        "nvidia-cuda-runtime-cu12": "12.6.77",
+        "nvidia-cudnn-cu12": "9.10.2.21",
+        "nvidia-cufft-cu12": "11.3.0.4",
+        "nvidia-cufile-cu12": "1.11.1.6",
+        "nvidia-curand-cu12": "10.3.7.77",
+        "nvidia-cusolver-cu12": "11.7.1.2",
+        "nvidia-cusparse-cu12": "12.5.4.2",
+        "nvidia-cusparselt-cu12": "0.7.1",
+        "nvidia-nccl-cu12": "2.29.3",
+        "nvidia-nvjitlink-cu12": "12.6.85",
+        "nvidia-nvshmem-cu12": "3.4.5",
+        "nvidia-nvtx-cu12": "12.6.77",
+        "packaging": "26.3",
+        "pip": "25.0.1",
+        "psutil": "7.2.2",
+        "pygments": "2.21.0",
+        "pyyaml": "6.0.3",
+        "regex": "2026.9.29",
+        "rich": "15.0.0",
+        "safetensors": "0.8.0",
+        "setuptools": "78.1.0",
+        "shellingham": "1.5.4",
+        "sympy": "1.14.0",
+        "tokenizers": "0.23.3",
+        "torch": "2.13.0+cu126",
+        "tqdm": "4.70.1",
+        "transformers": "5.20.2",
+        "triton": "3.7.1",
+        "truststore": "0.10.5",
+        "typer": "0.27.3",
+        "typing-extensions": "4.16.0"
+      },
+      "pretrained_inference": "NOT_RUN",
+      "python": "3.12.14",
+      "python_shared_library": {
+        "path": "/opt/backtrace/python/lib/libpython3.12.so.1.0",
+        "sha256": "1fa3c52ba5aa8f6b2852836a4bf6cbb23161f7cf379f6f19248d87124b28b38a"
+      },
+      "status": "PASS_EXACT_CONTAINER_RUNTIME_CPU_ONLY"
+    },
+    "launch_gates": {
+      "actual_provider_container": "NOT_OBSERVED",
+      "gpu_context_teardown": "NOT_RUN",
+      "hidden_cgroup_ancestor_admission": "BLOCKED_REQUIRES_HOST_EVIDENCE",
+      "paid_launch_enabled": false,
+      "pretrained_inference": "NOT_RUN",
+      "source_resource_bound_remote_deletion": "NOT_QUALIFIED",
+      "training": "NOT_RUN"
+    },
+    "provider_api_calls": 0,
+    "remote_deadline": {
+      "elapsed_seconds": 1.0135591389999945,
+      "exit_code": -9,
+      "pid": 104,
+      "process_state": "ABSENT",
+      "reason": "DEADLINE",
+      "same_process_alive": false,
+      "start_ticks": "65716",
+      "supervisor_pid": 103
+    },
+    "run_id": "40445252781",
+    "runs": {
+      "crash": {
+        "assigned": 36,
+        "coverage": {
+          "NOT_RUN": 34,
+          "OK": 1,
+          "WORKER_ERROR": 1
+        },
+        "error": "WORKER_ERROR",
+        "gpu_requested": false,
+        "gpu_run": false,
+        "mode": "scripted_control",
+        "pretrained_capability_claim": "NOT_ESTABLISHED",
+        "source_hashes": {
+          "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+          "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+          "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+          "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+          "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+          "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+          "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+          "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+          "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+          "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+          "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903",
+          "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+          "tools/small_model_runner.py": "ed7436caa9421bc4a166ccca63ac2602fd527dab2bbe44010acabad0095e33df",
+          "tools/small_model_worker.py": "9dae8020f5fa52d2f1c395bc17d4433a93d7206c9e5e6ed3e70729698376a2bf",
+          "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+          "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+        },
+        "status": "INCOMPLETE",
+        "training": false,
+        "wall_seconds": 4.988488673999996,
+        "worker_exit_codes": {
+          "E2B": 23
+        }
+      },
+      "hang": {
+        "assigned": 36,
+        "coverage": {
+          "NOT_RUN": 34,
+          "OK": 1,
+          "TIMEOUT": 1
+        },
+        "error": "TIMEOUT",
+        "gpu_requested": false,
+        "gpu_run": false,
+        "mode": "scripted_control",
+        "pretrained_capability_claim": "NOT_ESTABLISHED",
+        "source_hashes": {
+          "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+          "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+          "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+          "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+          "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+          "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+          "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+          "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+          "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+          "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+          "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903",
+          "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+          "tools/small_model_runner.py": "ed7436caa9421bc4a166ccca63ac2602fd527dab2bbe44010acabad0095e33df",
+          "tools/small_model_worker.py": "9dae8020f5fa52d2f1c395bc17d4433a93d7206c9e5e6ed3e70729698376a2bf",
+          "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+          "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+        },
+        "status": "INCOMPLETE",
+        "training": false,
+        "wall_seconds": 7.028517093999994,
+        "worker_exit_codes": {
+          "E2B": 137
+        }
+      },
+      "oracle": {
+        "assigned": 36,
+        "coverage": {
+          "OK": 36
+        },
+        "error": null,
+        "gpu_requested": false,
+        "gpu_run": false,
+        "mode": "scripted_control",
+        "pretrained_capability_claim": "NOT_ESTABLISHED",
+        "source_hashes": {
+          "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+          "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+          "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+          "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+          "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+          "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+          "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+          "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+          "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+          "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+          "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903",
+          "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+          "tools/small_model_runner.py": "ed7436caa9421bc4a166ccca63ac2602fd527dab2bbe44010acabad0095e33df",
+          "tools/small_model_worker.py": "9dae8020f5fa52d2f1c395bc17d4433a93d7206c9e5e6ed3e70729698376a2bf",
+          "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+          "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+        },
+        "status": "COMPLETED",
+        "training": false,
+        "wall_seconds": 14.031732425999962,
+        "worker_exit_codes": {
+          "E2B": 0,
+          "E4B": 0
+        }
+      },
+      "oversize": {
+        "assigned": 36,
+        "coverage": {
+          "NOT_RUN": 35,
+          "WORKER_ERROR": 1
+        },
+        "error": "WORKER_ERROR",
+        "gpu_requested": false,
+        "gpu_run": false,
+        "mode": "scripted_control",
+        "pretrained_capability_claim": "NOT_ESTABLISHED",
+        "source_hashes": {
+          "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+          "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+          "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+          "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+          "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+          "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+          "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+          "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+          "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+          "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+          "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903",
+          "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+          "tools/small_model_runner.py": "ed7436caa9421bc4a166ccca63ac2602fd527dab2bbe44010acabad0095e33df",
+          "tools/small_model_worker.py": "9dae8020f5fa52d2f1c395bc17d4433a93d7206c9e5e6ed3e70729698376a2bf",
+          "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+          "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+        },
+        "status": "INCOMPLETE",
+        "training": false,
+        "wall_seconds": 6.014808913000024,
+        "worker_exit_codes": {
+          "E2B": 137
+        }
+      },
+      "random": {
+        "assigned": 36,
+        "coverage": {
+          "INVALID_OUTPUT": 36
+        },
+        "error": null,
+        "gpu_requested": false,
+        "gpu_run": false,
+        "mode": "random_fixture",
+        "pretrained_capability_claim": "NOT_ESTABLISHED",
+        "source_hashes": {
+          "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+          "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+          "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+          "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+          "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+          "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+          "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+          "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+          "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+          "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+          "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903",
+          "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+          "tools/small_model_runner.py": "ed7436caa9421bc4a166ccca63ac2602fd527dab2bbe44010acabad0095e33df",
+          "tools/small_model_worker.py": "9dae8020f5fa52d2f1c395bc17d4433a93d7206c9e5e6ed3e70729698376a2bf",
+          "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+          "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+        },
+        "status": "COMPLETED",
+        "training": false,
+        "wall_seconds": 13.265784044999918,
+        "worker_exit_codes": {
+          "E2B": 0,
+          "E4B": 0
+        }
+      },
+      "startup_hang": {
+        "assigned": 36,
+        "coverage": {
+          "NOT_RUN": 36
+        },
+        "error": "STARTUP_TimeoutError",
+        "gpu_requested": false,
+        "gpu_run": false,
+        "mode": "scripted_control",
+        "pretrained_capability_claim": "NOT_ESTABLISHED",
+        "source_hashes": {
+          "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+          "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+          "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+          "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+          "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+          "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+          "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+          "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+          "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+          "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+          "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903",
+          "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+          "tools/small_model_runner.py": "ed7436caa9421bc4a166ccca63ac2602fd527dab2bbe44010acabad0095e33df",
+          "tools/small_model_worker.py": "9dae8020f5fa52d2f1c395bc17d4433a93d7206c9e5e6ed3e70729698376a2bf",
+          "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+          "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+        },
+        "status": "INCOMPLETE",
+        "training": false,
+        "wall_seconds": 2.0175885900000594,
+        "worker_exit_codes": {
+          "E2B": 137
+        }
+      },
+      "wrong_id": {
+        "assigned": 36,
+        "coverage": {
+          "NOT_RUN": 35,
+          "WORKER_ERROR": 1
+        },
+        "error": "WORKER_ERROR",
+        "gpu_requested": false,
+        "gpu_run": false,
+        "mode": "scripted_control",
+        "pretrained_capability_claim": "NOT_ESTABLISHED",
+        "source_hashes": {
+          "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+          "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+          "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+          "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+          "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+          "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+          "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+          "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+          "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+          "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+          "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903",
+          "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+          "tools/small_model_runner.py": "ed7436caa9421bc4a166ccca63ac2602fd527dab2bbe44010acabad0095e33df",
+          "tools/small_model_worker.py": "9dae8020f5fa52d2f1c395bc17d4433a93d7206c9e5e6ed3e70729698376a2bf",
+          "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+          "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+        },
+        "status": "INCOMPLETE",
+        "training": false,
+        "wall_seconds": 5.756997933999969,
+        "worker_exit_codes": {
+          "E2B": 0
+        }
+      }
+    },
+    "runtime_bundle": {
+      "python": {
+        "archive_bytes": 36193177,
+        "bytes": 94433525,
+        "files": 896,
+        "sha256": "d5f3aafb70f70d72316603b5825028e2044818f40f3479d156403b81fe9db2a6"
+      },
+      "wheels": {
+        "count": 56,
+        "source_hashes": {
+          "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+          "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+          "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+          "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+          "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+          "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+          "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+          "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+          "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+          "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+          "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903",
+          "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+          "tools/small_model_runner.py": "ed7436caa9421bc4a166ccca63ac2602fd527dab2bbe44010acabad0095e33df",
+          "tools/small_model_worker.py": "9dae8020f5fa52d2f1c395bc17d4433a93d7206c9e5e6ed3e70729698376a2bf",
+          "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+          "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+        },
+        "status": "PASS_CUDA_WHEEL_BYTES",
+        "total_bytes": 3606157908,
+        "wheels": {
+          "accelerate-1.15.0-py3-none-any.whl": {
+            "bytes": 394295,
+            "sha256": "97eacca0b73e45cb867dbf8c5d5d4dc32219544300e0c8992c7334dc2ef33cec"
+          },
+          "annotated_doc-0.0.5-py3-none-any.whl": {
+            "bytes": 5302,
+            "sha256": "117bac03a25ede5df5440e855b32d556049ca169ead221505badf432fed4b101"
+          },
+          "anyio-4.15.1-py3-none-any.whl": {
+            "bytes": 132079,
+            "sha256": "6152fdbbf9a77fdec97731721bebf7c4c44f7c29b424b0065826173efc7ed101"
+          },
+          "click-8.5.0-py3-none-any.whl": {
+            "bytes": 125251,
+            "sha256": "255bc9599cf7748b4b1a446ccc735421bd08a2ae529a8b88597d3de5664ee360"
+          },
+          "cuda_bindings-12.9.10-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl": {
+            "bytes": 7627380,
+            "sha256": "420e44cfcd939cd69d6cfe8efc5f08b44850994cae399a49b9299a464324ce97"
+          },
+          "cuda_pathfinder-1.8.4-py3-none-any.whl": {
+            "bytes": 62594,
+            "sha256": "85a4e708c725d603f576042ef32781a3d1737c51e84c35fe361d2680191af65a"
+          },
+          "cuda_toolkit-12.6.3-py2.py3-none-any.whl": {
+            "bytes": 2288,
+            "sha256": "79d8605baeb6c2f695761e0efb54bc62dbc3c9e32eb0742df7669c07befaa8f7"
+          },
+          "filelock-4.2.4-py3-none-any.whl": {
+            "bytes": 162475,
+            "sha256": "301241438c57936ef93f4243a94f2559022268bfcf9b375a9a72eb0f8db8358e"
+          },
+          "fsspec-2026.9.0-py3-none-any.whl": {
+            "bytes": 221738,
+            "sha256": "8dd6e646e99ea382bd85f97a45e6b526a442d79423a7dc673f1e2756d05fcb5f"
+          },
+          "h11-0.16.0-py3-none-any.whl": {
+            "bytes": 37515,
+            "sha256": "63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86"
+          },
+          "hf_xet-1.7.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl": {
+            "bytes": 4212180,
+            "sha256": "2814a6e999d13464c4d679b788cc5d784eb5a4edfc638a31f10e9a11ab531ef8"
+          },
+          "httpcore2-2.16.0-py3-none-any.whl": {
+            "bytes": 85070,
+            "sha256": "5c4358319f2602d984ad93182c9fee5160f22e9da7babdda870a5e7c4e2dc34f"
+          },
+          "httpx2-2.16.0-py3-none-any.whl": {
+            "bytes": 97880,
+            "sha256": "fd2c5d7909e8d86fe92d53020c310ca0e4e431b838c207c5754b9bbf0308d49a"
+          },
+          "huggingface_hub-2.3.0-py3-none-any.whl": {
+            "bytes": 855161,
+            "sha256": "5da369600233568a126eb5578754935b2add9446b42d9e2fc0927d56840ac1a5"
+          },
+          "idna-3.20-py3-none-any.whl": {
+            "bytes": 69583,
+            "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c"
+          },
+          "jinja2-3.1.6-py3-none-any.whl": {
+            "bytes": 134899,
+            "sha256": "85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67"
+          },
+          "markdown_it_py-4.2.0-py3-none-any.whl": {
+            "bytes": 91687,
+            "sha256": "9f7ebbcd14fe59494226453aed97c1070d83f8d24b6fc3a3bcf9a38092641c4a"
+          },
+          "markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl": {
+            "bytes": 22985,
+            "sha256": "8e124f974786f831d6043728e38296969d3579db8896fe004682f5758e613581"
+          },
+          "mdurl-0.1.2-py3-none-any.whl": {
+            "bytes": 9979,
+            "sha256": "84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8"
+          },
+          "mpmath-1.3.0-py3-none-any.whl": {
+            "bytes": 536198,
+            "sha256": "a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c"
+          },
+          "networkx-3.6.1-py3-none-any.whl": {
+            "bytes": 2068504,
+            "sha256": "d47fbf302e7d9cbbb9e2555a0d267983d2aa476bac30e90dfbe5669bd57f3762"
+          },
+          "numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl": {
+            "bytes": 16727283,
+            "sha256": "fbde6962867ee75b48b0ee29b2b9372ec5d617799dbaf38e82dc0596f2f7738a"
+          },
+          "nvidia_cublas_cu12-12.6.4.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl": {
+            "bytes": 393138322,
+            "sha256": "08ed2686e9875d01b58e3cb379c6896df8e76c75e0d4a7f7dace3d7b6d9ef8eb"
+          },
+          "nvidia_cuda_cupti_cu12-12.6.80-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl": {
+            "bytes": 8917980,
+            "sha256": "6768bad6cab4f19e8292125e5f1ac8aa7d1718704012a0e3272a6f61c4bce132"
+          },
+          "nvidia_cuda_nvrtc_cu12-12.6.85-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl": {
+            "bytes": 23649944,
+            "sha256": "800927308ccc5dd6246d3f61f7fcef2ed7ec4e59e199090d360d3293f78bd5a2"
+          },
+          "nvidia_cuda_runtime_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl": {
+            "bytes": 897690,
+            "sha256": "ba3b56a4f896141e25e19ab287cd71e52a6a0f4b29d0d31609f60e3b4d5219b7"
+          },
+          "nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl": {
+            "bytes": 706758467,
+            "sha256": "949452be657fa16687d0930933f032835951ef0892b37d2d53824d1a84dc97a8"
+          },
+          "nvidia_cufft_cu12-11.3.0.4-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl": {
+            "bytes": 200221632,
+            "sha256": "ccba62eb9cef5559abd5e0d54ceed2d9934030f51163df018532142a8ec533e5"
+          },
+          "nvidia_cufile_cu12-1.11.1.6-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl": {
+            "bytes": 1142103,
+            "sha256": "cc23469d1c7e52ce6c1d55253273d32c565dd22068647f3aa59b3c6b005bf159"
+          },
+          "nvidia_curand_cu12-10.3.7.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl": {
+            "bytes": 56279010,
+            "sha256": "a42cd1344297f70b9e39a1e4f467a4e1c10f1da54ff7a85c12197f6c652c8bdf"
+          },
+          "nvidia_cusolver_cu12-11.7.1.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl": {
+            "bytes": 158229790,
+            "sha256": "e9e49843a7707e42022babb9bcfa33c29857a93b88020c4e4434656a655b698c"
+          },
+          "nvidia_cusparse_cu12-12.5.4.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl": {
+            "bytes": 216561367,
+            "sha256": "7556d9eca156e18184b94947ade0fba5bb47d69cec46bf8660fd2c71a4b48b73"
+          },
+          "nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl": {
+            "bytes": 287193691,
+            "sha256": "f1bb701d6b930d5a7cea44c19ceb973311500847f81b634d802b7b539dc55623"
+          },
+          "nvidia_nccl_cu12-2.29.3-py3-none-manylinux_2_18_x86_64.whl": {
+            "bytes": 289760316,
+            "sha256": "35ad42e7d5d722a83c36a3a478e281c20a5646383deaf1b9ed1a9ab7d61bed53"
+          },
+          "nvidia_nvjitlink_cu12-12.6.85-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl": {
+            "bytes": 19744971,
+            "sha256": "eedc36df9e88b682efe4309aa16b5b4e78c2407eac59e8c10a6a47535164369a"
+          },
+          "nvidia_nvshmem_cu12-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl": {
+            "bytes": 139103095,
+            "sha256": "042f2500f24c021db8a06c5eec2539027d57460e1c1a762055a6554f72c369bd"
+          },
+          "nvidia_nvtx_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl": {
+            "bytes": 89276,
+            "sha256": "b90bed3df379fa79afbd21be8e04a0314336b8ae16768b58f2d34cb1d04cd7d2"
+          },
+          "packaging-26.3-py3-none-any.whl": {
+            "bytes": 129956,
+            "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c"
+          },
+          "pip-25.0.1-py3-none-any.whl": {
+            "bytes": 1841526,
+            "sha256": "c46efd13b6aa8279f33f2864459c8ce587ea6a1a59ee20de055868d8f7688f7f"
+          },
+          "psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl": {
+            "bytes": 155560,
+            "sha256": "076a2d2f923fd4821644f5ba89f059523da90dc9014e85f8e45a5774ca5bc6f9"
+          },
+          "pygments-2.21.0-py3-none-any.whl": {
+            "bytes": 1250147,
+            "sha256": "2363c69b61c4a97c838da3b130dcd6468f4848992b21a82f2a63ec34377137d9"
+          },
+          "pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl": {
+            "bytes": 807870,
+            "sha256": "ba1cc08a7ccde2d2ec775841541641e4548226580ab850948cbfda66a1befcdc"
+          },
+          "regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl": {
+            "bytes": 807783,
+            "sha256": "39ab5894d971f9ac68baa6eca5c50387db579cfcacf36ae8df3feceb1815e6d0"
+          },
+          "rich-15.0.0-py3-none-any.whl": {
+            "bytes": 310654,
+            "sha256": "33bd4ef74232fb73fe9279a257718407f169c09b78a87ad3d296f548e27de0bb"
+          },
+          "safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl": {
+            "bytes": 516040,
+            "sha256": "fd6f3f93c9a0a7cc2788ee63fb763353d4bd2e89b0751bc78fcf7dda00bea774"
+          },
+          "setuptools-78.1.0-py3-none-any.whl": {
+            "bytes": 1256108,
+            "sha256": "3e386e96793c8702ae83d17b853fb93d3e09ef82ec62722e61da5cd22376dcd8"
+          },
+          "shellingham-1.5.4-py2.py3-none-any.whl": {
+            "bytes": 9755,
+            "sha256": "7ecfff8f2fd72616f7481040475a65b2bf8af90a56c89140852d1120324e8686"
+          },
+          "sympy-1.14.0-py3-none-any.whl": {
+            "bytes": 6299353,
+            "sha256": "e091cc3e99d2141a0ba2847328f5479b05d94a6635cb96148ccb3f34671bd8f5"
+          },
+          "tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl": {
+            "bytes": 3396193,
+            "sha256": "376851d22bcf9d650a5c3090bb83e6cf9e895fbf0595369fa4cd43c1f69b5f87"
+          },
+          "torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl": {
+            "bytes": 843744582,
+            "sha256": "8695f3c6b7966d44560275b90c5c28e5091ba33ddbb1ab33b2173782ca1e9145"
+          },
+          "tqdm-4.70.1-py3-none-any.whl": {
+            "bytes": 80199,
+            "sha256": "c293e525e6fef9c20e8728fd4612df02a0aa31bb5fe91ecd93e123b1b7bffa73"
+          },
+          "transformers-5.20.2-py3-none-any.whl": {
+            "bytes": 12844921,
+            "sha256": "7ae75dbc1fb3922aff1b6c97b9e5479d6cf26fd86a8866bfb71324190479f807"
+          },
+          "triton-3.7.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl": {
+            "bytes": 197149381,
+            "sha256": "225910e79149807de74a0ca63160aa285956a8d64a2951d558997c57e2584ae1"
+          },
+          "truststore-0.10.5-py3-none-any.whl": {
+            "bytes": 19017,
+            "sha256": "9aaaedaefaf06d8b206278cf8b5012bc897f485a874503501e12d776df78951c"
+          },
+          "typer-0.27.3-py3-none-any.whl": {
+            "bytes": 123312,
+            "sha256": "e50022f28b82a86313e54501317a1db64bf8f8d036ff8cfe5ca7e47675454aff"
+          },
+          "typing_extensions-4.16.0-py3-none-any.whl": {
+            "bytes": 45571,
+            "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"
+          }
+        }
+      }
+    },
+    "runtime_manifest": {
+      "files": [
+        {
+          "bytes": 6093,
+          "path": "installer.py",
+          "sha256": "e44a80ef7ca4c6611ea0536a76889efed5011fdea2bf27331acb21cc0aac5ecc"
+        },
+        {
+          "bytes": 9081,
+          "path": "launcher.py",
+          "sha256": "f5bd153ade59d83222ee170a252801479b6591a012b6facac3312e1c0644fb09"
+        },
+        {
+          "bytes": 36193177,
+          "path": "python.tar.gz",
+          "sha256": "d5f3aafb70f70d72316603b5825028e2044818f40f3479d156403b81fe9db2a6"
+        },
+        {
+          "bytes": 5661,
+          "path": "requirements.txt",
+          "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+        },
+        {
+          "bytes": 46113,
+          "path": "runtime-lock.json",
+          "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+        },
+        {
+          "bytes": 394295,
+          "path": "wheels/accelerate-1.15.0-py3-none-any.whl",
+          "sha256": "97eacca0b73e45cb867dbf8c5d5d4dc32219544300e0c8992c7334dc2ef33cec"
+        },
+        {
+          "bytes": 5302,
+          "path": "wheels/annotated_doc-0.0.5-py3-none-any.whl",
+          "sha256": "117bac03a25ede5df5440e855b32d556049ca169ead221505badf432fed4b101"
+        },
+        {
+          "bytes": 132079,
+          "path": "wheels/anyio-4.15.1-py3-none-any.whl",
+          "sha256": "6152fdbbf9a77fdec97731721bebf7c4c44f7c29b424b0065826173efc7ed101"
+        },
+        {
+          "bytes": 125251,
+          "path": "wheels/click-8.5.0-py3-none-any.whl",
+          "sha256": "255bc9599cf7748b4b1a446ccc735421bd08a2ae529a8b88597d3de5664ee360"
+        },
+        {
+          "bytes": 7627380,
+          "path": "wheels/cuda_bindings-12.9.10-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+          "sha256": "420e44cfcd939cd69d6cfe8efc5f08b44850994cae399a49b9299a464324ce97"
+        },
+        {
+          "bytes": 62594,
+          "path": "wheels/cuda_pathfinder-1.8.4-py3-none-any.whl",
+          "sha256": "85a4e708c725d603f576042ef32781a3d1737c51e84c35fe361d2680191af65a"
+        },
+        {
+          "bytes": 2288,
+          "path": "wheels/cuda_toolkit-12.6.3-py2.py3-none-any.whl",
+          "sha256": "79d8605baeb6c2f695761e0efb54bc62dbc3c9e32eb0742df7669c07befaa8f7"
+        },
+        {
+          "bytes": 162475,
+          "path": "wheels/filelock-4.2.4-py3-none-any.whl",
+          "sha256": "301241438c57936ef93f4243a94f2559022268bfcf9b375a9a72eb0f8db8358e"
+        },
+        {
+          "bytes": 221738,
+          "path": "wheels/fsspec-2026.9.0-py3-none-any.whl",
+          "sha256": "8dd6e646e99ea382bd85f97a45e6b526a442d79423a7dc673f1e2756d05fcb5f"
+        },
+        {
+          "bytes": 37515,
+          "path": "wheels/h11-0.16.0-py3-none-any.whl",
+          "sha256": "63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86"
+        },
+        {
+          "bytes": 4212180,
+          "path": "wheels/hf_xet-1.7.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+          "sha256": "2814a6e999d13464c4d679b788cc5d784eb5a4edfc638a31f10e9a11ab531ef8"
+        },
+        {
+          "bytes": 85070,
+          "path": "wheels/httpcore2-2.16.0-py3-none-any.whl",
+          "sha256": "5c4358319f2602d984ad93182c9fee5160f22e9da7babdda870a5e7c4e2dc34f"
+        },
+        {
+          "bytes": 97880,
+          "path": "wheels/httpx2-2.16.0-py3-none-any.whl",
+          "sha256": "fd2c5d7909e8d86fe92d53020c310ca0e4e431b838c207c5754b9bbf0308d49a"
+        },
+        {
+          "bytes": 855161,
+          "path": "wheels/huggingface_hub-2.3.0-py3-none-any.whl",
+          "sha256": "5da369600233568a126eb5578754935b2add9446b42d9e2fc0927d56840ac1a5"
+        },
+        {
+          "bytes": 69583,
+          "path": "wheels/idna-3.20-py3-none-any.whl",
+          "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c"
+        },
+        {
+          "bytes": 134899,
+          "path": "wheels/jinja2-3.1.6-py3-none-any.whl",
+          "sha256": "85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67"
+        },
+        {
+          "bytes": 91687,
+          "path": "wheels/markdown_it_py-4.2.0-py3-none-any.whl",
+          "sha256": "9f7ebbcd14fe59494226453aed97c1070d83f8d24b6fc3a3bcf9a38092641c4a"
+        },
+        {
+          "bytes": 22985,
+          "path": "wheels/markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+          "sha256": "8e124f974786f831d6043728e38296969d3579db8896fe004682f5758e613581"
+        },
+        {
+          "bytes": 9979,
+          "path": "wheels/mdurl-0.1.2-py3-none-any.whl",
+          "sha256": "84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8"
+        },
+        {
+          "bytes": 536198,
+          "path": "wheels/mpmath-1.3.0-py3-none-any.whl",
+          "sha256": "a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c"
+        },
+        {
+          "bytes": 2068504,
+          "path": "wheels/networkx-3.6.1-py3-none-any.whl",
+          "sha256": "d47fbf302e7d9cbbb9e2555a0d267983d2aa476bac30e90dfbe5669bd57f3762"
+        },
+        {
+          "bytes": 16727283,
+          "path": "wheels/numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+          "sha256": "fbde6962867ee75b48b0ee29b2b9372ec5d617799dbaf38e82dc0596f2f7738a"
+        },
+        {
+          "bytes": 393138322,
+          "path": "wheels/nvidia_cublas_cu12-12.6.4.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+          "sha256": "08ed2686e9875d01b58e3cb379c6896df8e76c75e0d4a7f7dace3d7b6d9ef8eb"
+        },
+        {
+          "bytes": 8917980,
+          "path": "wheels/nvidia_cuda_cupti_cu12-12.6.80-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+          "sha256": "6768bad6cab4f19e8292125e5f1ac8aa7d1718704012a0e3272a6f61c4bce132"
+        },
+        {
+          "bytes": 23649944,
+          "path": "wheels/nvidia_cuda_nvrtc_cu12-12.6.85-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl",
+          "sha256": "800927308ccc5dd6246d3f61f7fcef2ed7ec4e59e199090d360d3293f78bd5a2"
+        },
+        {
+          "bytes": 897690,
+          "path": "wheels/nvidia_cuda_runtime_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+          "sha256": "ba3b56a4f896141e25e19ab287cd71e52a6a0f4b29d0d31609f60e3b4d5219b7"
+        },
+        {
+          "bytes": 706758467,
+          "path": "wheels/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl",
+          "sha256": "949452be657fa16687d0930933f032835951ef0892b37d2d53824d1a84dc97a8"
+        },
+        {
+          "bytes": 200221632,
+          "path": "wheels/nvidia_cufft_cu12-11.3.0.4-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+          "sha256": "ccba62eb9cef5559abd5e0d54ceed2d9934030f51163df018532142a8ec533e5"
+        },
+        {
+          "bytes": 1142103,
+          "path": "wheels/nvidia_cufile_cu12-1.11.1.6-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+          "sha256": "cc23469d1c7e52ce6c1d55253273d32c565dd22068647f3aa59b3c6b005bf159"
+        },
+        {
+          "bytes": 56279010,
+          "path": "wheels/nvidia_curand_cu12-10.3.7.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+          "sha256": "a42cd1344297f70b9e39a1e4f467a4e1c10f1da54ff7a85c12197f6c652c8bdf"
+        },
+        {
+          "bytes": 158229790,
+          "path": "wheels/nvidia_cusolver_cu12-11.7.1.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+          "sha256": "e9e49843a7707e42022babb9bcfa33c29857a93b88020c4e4434656a655b698c"
+        },
+        {
+          "bytes": 216561367,
+          "path": "wheels/nvidia_cusparse_cu12-12.5.4.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+          "sha256": "7556d9eca156e18184b94947ade0fba5bb47d69cec46bf8660fd2c71a4b48b73"
+        },
+        {
+          "bytes": 287193691,
+          "path": "wheels/nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl",
+          "sha256": "f1bb701d6b930d5a7cea44c19ceb973311500847f81b634d802b7b539dc55623"
+        },
+        {
+          "bytes": 289760316,
+          "path": "wheels/nvidia_nccl_cu12-2.29.3-py3-none-manylinux_2_18_x86_64.whl",
+          "sha256": "35ad42e7d5d722a83c36a3a478e281c20a5646383deaf1b9ed1a9ab7d61bed53"
+        },
+        {
+          "bytes": 19744971,
+          "path": "wheels/nvidia_nvjitlink_cu12-12.6.85-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl",
+          "sha256": "eedc36df9e88b682efe4309aa16b5b4e78c2407eac59e8c10a6a47535164369a"
+        },
+        {
+          "bytes": 139103095,
+          "path": "wheels/nvidia_nvshmem_cu12-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+          "sha256": "042f2500f24c021db8a06c5eec2539027d57460e1c1a762055a6554f72c369bd"
+        },
+        {
+          "bytes": 89276,
+          "path": "wheels/nvidia_nvtx_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+          "sha256": "b90bed3df379fa79afbd21be8e04a0314336b8ae16768b58f2d34cb1d04cd7d2"
+        },
+        {
+          "bytes": 129956,
+          "path": "wheels/packaging-26.3-py3-none-any.whl",
+          "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c"
+        },
+        {
+          "bytes": 1841526,
+          "path": "wheels/pip-25.0.1-py3-none-any.whl",
+          "sha256": "c46efd13b6aa8279f33f2864459c8ce587ea6a1a59ee20de055868d8f7688f7f"
+        },
+        {
+          "bytes": 155560,
+          "path": "wheels/psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl",
+          "sha256": "076a2d2f923fd4821644f5ba89f059523da90dc9014e85f8e45a5774ca5bc6f9"
+        },
+        {
+          "bytes": 1250147,
+          "path": "wheels/pygments-2.21.0-py3-none-any.whl",
+          "sha256": "2363c69b61c4a97c838da3b130dcd6468f4848992b21a82f2a63ec34377137d9"
+        },
+        {
+          "bytes": 807870,
+          "path": "wheels/pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+          "sha256": "ba1cc08a7ccde2d2ec775841541641e4548226580ab850948cbfda66a1befcdc"
+        },
+        {
+          "bytes": 807783,
+          "path": "wheels/regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+          "sha256": "39ab5894d971f9ac68baa6eca5c50387db579cfcacf36ae8df3feceb1815e6d0"
+        },
+        {
+          "bytes": 310654,
+          "path": "wheels/rich-15.0.0-py3-none-any.whl",
+          "sha256": "33bd4ef74232fb73fe9279a257718407f169c09b78a87ad3d296f548e27de0bb"
+        },
+        {
+          "bytes": 516040,
+          "path": "wheels/safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+          "sha256": "fd6f3f93c9a0a7cc2788ee63fb763353d4bd2e89b0751bc78fcf7dda00bea774"
+        },
+        {
+          "bytes": 1256108,
+          "path": "wheels/setuptools-78.1.0-py3-none-any.whl",
+          "sha256": "3e386e96793c8702ae83d17b853fb93d3e09ef82ec62722e61da5cd22376dcd8"
+        },
+        {
+          "bytes": 9755,
+          "path": "wheels/shellingham-1.5.4-py2.py3-none-any.whl",
+          "sha256": "7ecfff8f2fd72616f7481040475a65b2bf8af90a56c89140852d1120324e8686"
+        },
+        {
+          "bytes": 6299353,
+          "path": "wheels/sympy-1.14.0-py3-none-any.whl",
+          "sha256": "e091cc3e99d2141a0ba2847328f5479b05d94a6635cb96148ccb3f34671bd8f5"
+        },
+        {
+          "bytes": 3396193,
+          "path": "wheels/tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+          "sha256": "376851d22bcf9d650a5c3090bb83e6cf9e895fbf0595369fa4cd43c1f69b5f87"
+        },
+        {
+          "bytes": 843744582,
+          "path": "wheels/torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl",
+          "sha256": "8695f3c6b7966d44560275b90c5c28e5091ba33ddbb1ab33b2173782ca1e9145"
+        },
+        {
+          "bytes": 80199,
+          "path": "wheels/tqdm-4.70.1-py3-none-any.whl",
+          "sha256": "c293e525e6fef9c20e8728fd4612df02a0aa31bb5fe91ecd93e123b1b7bffa73"
+        },
+        {
+          "bytes": 12844921,
+          "path": "wheels/transformers-5.20.2-py3-none-any.whl",
+          "sha256": "7ae75dbc1fb3922aff1b6c97b9e5479d6cf26fd86a8866bfb71324190479f807"
+        },
+        {
+          "bytes": 197149381,
+          "path": "wheels/triton-3.7.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+          "sha256": "225910e79149807de74a0ca63160aa285956a8d64a2951d558997c57e2584ae1"
+        },
+        {
+          "bytes": 19017,
+          "path": "wheels/truststore-0.10.5-py3-none-any.whl",
+          "sha256": "9aaaedaefaf06d8b206278cf8b5012bc897f485a874503501e12d776df78951c"
+        },
+        {
+          "bytes": 123312,
+          "path": "wheels/typer-0.27.3-py3-none-any.whl",
+          "sha256": "e50022f28b82a86313e54501317a1db64bf8f8d036ff8cfe5ca7e47675454aff"
+        },
+        {
+          "bytes": 45571,
+          "path": "wheels/typing_extensions-4.16.0-py3-none-any.whl",
+          "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"
+        },
+        {
+          "bytes": 8311,
+          "path": "worker.py",
+          "sha256": "9dae8020f5fa52d2f1c395bc17d4433a93d7206c9e5e6ed3e70729698376a2bf"
+        }
+      ],
+      "phase": "bootstrap",
+      "schema_version": 1
+    },
+    "runtime_transfer": {
+      "bytes": 3642426344,
+      "files": 62,
+      "manifest_sha256": "b71ed63c412e12ea27f43172be9ba23454937306e0bff149964e51b88b39138f",
+      "phase": "bootstrap",
+      "schema_version": 1,
+      "verified": true
+    },
+    "scope": "FREE_CONTAINER_EXECUTION_V1",
+    "scope_sha256": "221879e54cdb71cf61961ee2d125095d1102e153e352058c5cb55d2a5e70e652",
+    "source_hashes": {
+      ".github/workflows/small-model-container-cpu.yml": "52745e5f7a5ddc42796b094e450a5641090da68aebf6998c23503bb97961f249",
+      ".github/workflows/small-model-precheck-cpu.yml": "f13609448771bfada0e1750e52676608a2da1d700c89d28251f07e518f314a0f",
+      ".github/workflows/small-model-provider-cpu.yml": "1314824b147395afaac6a4f8708f3c19004f441f8dc8617f6096526a82f4eaff",
+      ".github/workflows/small-model-provider-owner.yml": "0bb06419810437a0bdce8efa15aab651c2d02748c9e469801cd0777393e245fc",
+      ".github/workflows/small-model-provider-watch.yml": "8af1ae7416563c61d4c9e973ec2ddba7f97296b7be93369a34094a655fc6d197",
+      "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+      "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+      "docs/cloud-controller-requirements.txt": "6e8e0115d53ffb67b8a9001e0b4e3f06747fb470aad4bdcb23e8a864d4018bdc",
+      "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+      "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+      "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+      "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+      "tests/test_small_model_container.py": "ef05ed3f780c6a668c1ad2e31b2ba704521f94dcff3d03f9afff70d0567e2e4b",
+      "tests/test_small_model_precheck.py": "21ad1e073cc9f83eca8e41034cff22371df7629188b07921b5ecdcc8d0ec4e47",
+      "tests/test_small_model_provider.py": "242530d07de276c3b36eff5484fe0a15d6f457bd7705db63e14e54e03d71f94c",
+      "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+      "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+      "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+      "tools/cloud_inventory.py": "f4865ae92c7f41375a15ecf917e932562cca608ca7a1607d18d1b370bd0932ff",
+      "tools/cloud_offer.py": "9387b91be560cf80a85a5bae8166acb7c35f7a61135042971d21cafdb76c3df5",
+      "tools/cloud_probe.py": "bb89c097e7fe0c6bc56771e87695056d60c11f510502173105a102a25d48e22f",
+      "tools/cloud_transport.py": "013d93fc8c1548bc7eaf4cf9a4f5a49608b7e16d537b192accf053151fbf5902",
+      "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+      "tools/free_container_cleanup.py": "3dc64f6fa013e992e8c02fa702330a14003cb2e7ab0d536e3dc0da80ce3e9466",
+      "tools/private_delivery.py": "f010c41715e2548b86a4b3dfc009e22e57fcbf5a52429e4f7f1165632f1a4a40",
+      "tools/research_entry_contract.py": "1a4997a22bcb2bb9acd5dde8bfe916e987ae20131c9073610f2bb2e863908e47",
+      "tools/research_entry_state.py": "b3858570800b87f36a2ebd99a4ebbf65295edf5756b1a7b6cf1d6c4c13316389",
+      "tools/runpod_control.py": "09219477947e39b2c7c58b6e7e44f385bd5d1140cbdb7a47cddef3ab7f6cf400",
+      "tools/small_model_container.py": "d87cc12a3dc39dd9c235956f1b7a5181b060e57c7e104a86aacc991977e20410",
+      "tools/small_model_container_install.py": "e44a80ef7ca4c6611ea0536a76889efed5011fdea2bf27331acb21cc0aac5ecc",
+      "tools/small_model_container_probe.py": "924cf57ec8868ea1acdaaaf7868f829071e7c34a16416c3db069b03e6642081b",
+      "tools/small_model_container_worker.py": "f5bd153ade59d83222ee170a252801479b6591a012b6facac3312e1c0644fb09",
+      "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903",
+      "tools/small_model_lifecycle.py": "32f0cc0215c9c4098540b95a5fd1e3194af9764ba1f01d1317df0553875b4506",
+      "tools/small_model_lifecycle_probe.py": "c8af61b707903398d29a883ce1c9525af93494cb71612b6d299bbac240b704ed",
+      "tools/small_model_precheck.py": "dafcfa6cc32d78204a102b7e73eb1be3eeb499a906a90a7390503134fa81a63d",
+      "tools/small_model_provider.py": "b5c9e0a0e7c9ac98a8dc8a6d24b20f5c45de9690483ae37b65196e30218a37c4",
+      "tools/small_model_provider_probe.py": "467a96a5cd7131da46155f9c6a675718049c1547d3a5d950efff73ea1e9da8cd",
+      "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+      "tools/small_model_remote_watch.py": "eec9864d54e0859399e5e9f9c9334f2c21809e470a015d57b65d7119f9657e82",
+      "tools/small_model_resources.py": "1d763165c9af25461a50ae55665a18052d71c74698f1abdfd70eb81f77e367ca",
+      "tools/small_model_runner.py": "ed7436caa9421bc4a166ccca63ac2602fd527dab2bbe44010acabad0095e33df",
+      "tools/small_model_runner_probe.py": "dfbff0eabb1c72d914ee1528b059338261427ba0713425c264f2c5c4986e095a",
+      "tools/small_model_worker.py": "9dae8020f5fa52d2f1c395bc17d4433a93d7206c9e5e6ed3e70729698376a2bf",
+      "tools/ssh_bootstrap.py": "b657ddd6f145f66f4e15f2d30a23d8870ae56aa7f60d396ae1f41de485916839",
+      "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+      "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    "source_sha": "eef423182e449d94cd3118a721f914881366901a",
+    "status": "PASS_FREE_CONTAINER_EXECUTION",
+    "supervisor_loss": {
+      "after": {
+        "pid": 120,
+        "process_state": "ABSENT",
+        "reason": "RUNNING",
+        "same_process_alive": false,
+        "start_ticks": "65908",
+        "supervisor_pid": 118
+      },
+      "before": {
+        "pid": 120,
+        "process_state": "S",
+        "reason": "RUNNING",
+        "same_process_alive": true,
+        "start_ticks": "65908",
+        "supervisor_pid": 118
+      }
+    },
+    "transport_build": {
+      "binaries": {
+        "dropbear": {
+          "bytes": 1400320,
+          "sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a"
+        },
+        "dropbearkey": {
+          "bytes": 1165584,
+          "sha256": "5d33b842b70f674859459713ce3f28e62e32bdaca04950d6a599e1b8d84f3690"
+        }
+      },
+      "matches_prior_transport": true,
+      "paid_transport": "NOT STARTED",
+      "source_sha256": "827d3f6e510e7554ee18d5c6a00dfee1a6a555559495e65e2e8f8d41c79eed84"
+    },
+    "transport_loss": {
+      "after": {
+        "pid": 111,
+        "process_state": "ABSENT",
+        "reason": "RUNNING",
+        "same_process_alive": false,
+        "start_ticks": "65851",
+        "supervisor_pid": 110
+      },
+      "before": {
+        "pid": 111,
+        "process_state": "S",
+        "reason": "RUNNING",
+        "same_process_alive": true,
+        "start_ticks": "65851",
+        "supervisor_pid": 110
+      }
+    },
+    "transport_material": {
+      "binary_bytes": 1400320,
+      "binary_sha256": "18b9bda72eddc5622f030c3d08b52078ac519912867a2facef40edac852d363a",
+      "method": "mutual-tls13-then-pinned-ssh",
+      "minimum_validity_seconds": 3600
+    },
+    "wrong_host_key": "REFUSED"
+  },
+  "recorded_at_utc": "2026-10-27T03:50:51.781494+00:00",
+  "schema": "small-model-container-free-execution-v1",
+  "source_sha": "eef423182e449d94cd3118a721f914881366901a",
+  "source_tree": "f1193767ee3cc77fd123ce8a59efc392edd5169a",
+  "status": "PASS_FREE_CONTAINER_EXECUTION_PAID_LAUNCH_BLOCKED",
+  "training": "NOT_RUN",
+  "workflow_run": 40445252781
+}

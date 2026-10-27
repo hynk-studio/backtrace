@@ -19,6 +19,17 @@ recurring observer, merge, issue closure, or Augnes write is authorized. Hidden
 provider cgroup ancestors and resource-bound distributed deletion remain explicit
 launch gates until separately evidenced; CPU controls cannot waive those gates.
 
+Native container run 40445252781 at `eef423182e449d94cd3118a721f914881366901a` passed 639 tests
+(172.176s; no failures/errors/skips), exact Python/CUDA-package install,
+all 23 container controls and actual remote loss/deadline cleanup.
+Read `docs/small-model-container-evidence-20261027.json`. Preserve all five failed
+native attempts, local failures, 41 prior sources and 75 prior branch heads.
+The native collector/scorers and all 36 random outputs remain unchanged.
+This is free CPU container qualification only. The adapter still rejects CUDA
+and pretrained modes; provider memory admission, live NAT/device/context checks
+and resource-bound independent deletion remain unqualified. No paid launch,
+training, merge or Augnes integration is enabled by this result.
+
 ## Provider connection and remote observation (2026-10-27 KST)
 
 The owner requested **공급자 환경 연결 검증, 원격 감시 프로세스 배포,
