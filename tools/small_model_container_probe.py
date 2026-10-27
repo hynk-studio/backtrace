@@ -19,7 +19,7 @@ from tools import runpod_control as control, small_model_lifecycle as life
 from tools.free_container_cleanup import remove
 
 
-def qualify(sources,packets,tokens,scope,wheels,output):
+def qualify(sources,packets,tokens,scope,wheels,transport,output):
     ready.check_packages();sources=ready.validate_sources(sources)
     plan,schedule,scope_hash=runner.load_scope(scope,packets,tokens)
     if plan['scope']!='smoke' or list(Path('/dev').glob('nvidia[0-9]*')):
@@ -36,8 +36,14 @@ def qualify(sources,packets,tokens,scope,wheels,output):
         tokenizers={n:AutoTokenizer.from_pretrained(sources/n,local_files_only=True,trust_remote_code=False) for n in ready.MODELS}
         models=output/'random-models';result['fixture_model_manifests']=probe.random_models(sources,models)
         with tempfile.TemporaryDirectory(prefix='backtrace-small-container-',dir='/root') as td:
-            root=Path(td);result['transport_build']=cloud_transport.build(root/'build')
-            binaries=root/'build/dropbear-DROPBEAR_2026.94'
+            root=Path(td);result['transport_build']=json.loads((transport/'receipt.json').read_bytes())
+            binaries=transport/'dropbear-DROPBEAR_2026.94'
+            # This rebuild uses a separate pinned controller environment; never
+            # contaminate the exact CPU/model closure with owner HTTP libraries.
+            for binary,expected in result['transport_build']['binaries'].items():
+                path=binaries/binary
+                if path.stat().st_size!=expected['bytes'] or delivery.digest(path)!=expected['sha256']:
+                    raise ValueError('prebuilt transport bytes changed')
             init=ssh.prepare(binaries/'dropbear',binaries/'dropbearkey',root/'keys',profile='actions-20261019')
             life.write(root/'keys/initializer.json',init)
             result['transport_material']=ssh.validate_material(root/'keys',profile='actions-20261019')

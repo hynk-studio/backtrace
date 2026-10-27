@@ -39,6 +39,15 @@ jobs:
           "$runtime_root/bin/python" -m pip install --no-cache-dir --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cpu -r docs/small-model-cpu-requirements.txt > evidence/owner-install.log 2>&1
           "$runtime_root/bin/python" -m pip check > evidence/owner-pip-check.txt
           python -m pip download --no-cache-dir --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cu126 -r docs/small-model-gpu-requirements.txt -d .local/cuda-wheels > evidence/cuda-download.log 2>&1
+          python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt > evidence/controller-install.log 2>&1
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          from tools.cloud_transport import build
+          root=Path('.local/transport-build')
+          result=build(root)
+          (root/'receipt.json').write_text(json.dumps(result,sort_keys=True))
+          PY
           df -h . > evidence/disk-before-container.txt
       - name: Reconstruct unchanged inputs and scope
         run: |
@@ -48,7 +57,7 @@ jobs:
           python -m tools.small_model_readiness prepare-scope .local/packets .local/tokenization.json .local/smoke --scope smoke > evidence/smoke-scope.json
       - name: Install and exercise exact image through authenticated SSH
         run: |
-          sudo --preserve-env=GITHUB_SHA,GITHUB_RUN_ID env HF_HUB_OFFLINE=1 TOKENIZERS_PARALLELISM=false "$BACKTRACE_CPU_RUNTIME/bin/python" -m tools.small_model_container_probe .local/model-sources .local/packets .local/tokenization.json .local/smoke .local/cuda-wheels .local/container-qualification > evidence/container-summary.json 2> evidence/container-stderr.log
+          sudo --preserve-env=GITHUB_SHA,GITHUB_RUN_ID env HF_HUB_OFFLINE=1 TOKENIZERS_PARALLELISM=false "$BACKTRACE_CPU_RUNTIME/bin/python" -m tools.small_model_container_probe .local/model-sources .local/packets .local/tokenization.json .local/smoke .local/cuda-wheels .local/transport-build .local/container-qualification > evidence/container-summary.json 2> evidence/container-stderr.log
       - name: Preserve bounded public CPU evidence
         if: always()
         run: |
