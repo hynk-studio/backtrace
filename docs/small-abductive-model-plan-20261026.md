@@ -39,6 +39,17 @@ container controls. This is a
 failed minimum with successful cleanup; it provides no model-capability evidence
 and grants no automatic paid retry. A1 remains partial and A2 has not started.
 
+The [authorized retry](small-model-minimum-retry-20261027.md) subsequently
+established actual provider connection, fixed runtime installation, one A40
+device and 8 GiB touched resident RAM. CUDA initialization failed with error 304
+before kernels; successful device inventory is not a CUDA capability result.
+The added-filter interaction is a hypothesis requiring paired CUDA controls,
+which were missing from this attempt. A concrete diagnostic comparison is
+designed but not implemented or executed. Both deletion proofs passed, with
+observed remaining credit USD 3.0181656274. This retry is consumed. GPU kernels,
+full-model admission, pretrained baselines, training and Augnes transfer remain
+unqualified or NOT RUN; no research capability claim is promoted.
+
 The owner clarified that speed is not the objective. The first objective is to
 establish whether a small specialist model learns useful abductive inference,
 with possible Augnes use considered from the outset. E2B and E4B are candidates;

@@ -67,6 +67,14 @@ observed credit remained USD 3.0795030588. The consumed attempt is retained.
 A bounded readiness-wait correction passed 656 native tests and all 16 free
 container controls; no
 automatic paid retry is enabled. The actual hardware minimum remains unpassed.
+The [separately authorized retry](docs/small-model-minimum-retry-20261027.md)
+passed 661 native tests before one new A40 allocation. Actual connection,
+runtime installation, device inventory and an 8 GiB resident-memory probe passed;
+CUDA initialization then failed with error 304 before BF16 kernels. Root cause
+remains unresolved; a comparison of CUDA initialization with and without the
+added worker filter is designed, not executed. Both deletion proofs passed.
+Final observed credit was USD 3.0181656274 (14:48 KST), zero Pods/hourly spend,
+and the retry permit is consumed. No automatic paid retry is enabled.
 Training, adapter save/reload and Augnes integration are **NOT RUN**.
 
 The [latest coding pilot](docs/research-reduced9-execution-20261026.md) attempted

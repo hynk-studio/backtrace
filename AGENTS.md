@@ -1,5 +1,53 @@
 # Backtrace working agreement
 
+## Hardware retry outcome: CUDA initialization blocked (2026-10-27 KST)
+
+The retry below is consumed. Exact source
+`24bf9c87a81094a358f6bb6c40dda97b21546d67` passed free run 40455264861:
+661 native tests (208.005 seconds, no failures/errors/skips), all 16 container
+controls and separate-runner replica cleanup. Paid run 40456274581 then made
+one A40 allocation, Pod `u9owrl71pxbzky`. The readiness correction waited through
+missing metadata and connected at 136 seconds. Actual pinned TLS/SSH transfer,
+runtime installation, device inventory and the 8 GiB resident probe passed.
+
+CUDA initialization failed at cudaGetDeviceCount with CUDA error 304; no BF16
+kernel or active-context interruption ran. The root cause is NOT ESTABLISHED.
+The added syscall filter is a hypothesis, not a demonstrated cause. Missing
+evidence includes paired CUDA initialization without/with that filter and a
+failed-syscall trace. Do not relabel nvidia-smi or free CPU success as CUDA success,
+remove the filter indiscriminately, or claim the CUDA problem fixed. The next
+diagnostic comparison is designed in `docs/small-model-minimum-retry-20261027.md`,
+but is not implemented, qualified or authorized for another paid allocation.
+
+Owner and watcher independently proved deletion with two absence reads; watcher
+reason is now OWNER_DONE. Both jobs terminated. At 14:48:03 KST credit was
+USD 3.0181656274; complete inventory at 14:48:10 contained zero Pods, with zero
+hourly spend and autopay off. Observed credit decrease for this attempt is
+USD 0.0605548620, not final billing evidence. Six artifacts/36 members, eleven
+paid state blobs and all 63 paid source hashes were verified. All 58 prior
+sources and 79 pre-existing branch heads remain unchanged. Preserve the actual
+paid source/start head and state commit `4640e459d1507b8e9a8c6243e79d894003f90954`.
+No unused paid authorization remains. Read the corresponding evidence JSON.
+Actual hardware minimum remains unpassed; models, training and Augnes are NOT RUN.
+
+## One authorized hardware retry, now consumed (2026-10-27 KST)
+
+The owner instructed **1회 다시 진행해**, accepting the proposed same USD 1 /
+3,000-second hardware-only retry. Work on `bt-001-small-model-minimum-retry-20261027`,
+stacked on Draft #38 at `db9c48032f47466ccf2f975dfea8dba44c12c8c0`, with a new
+Draft PR. This permitted exactly one further provider create after exact-source
+free qualification, fresh account/stock/price and source-bound authorization.
+Use only `bt-001-small-model-minimum-retry-state-20261027` and its new namespace,
+and `bt-001-small-model-minimum-retry-start-20261027` for the actual launch.
+Preserve all 79 pre-existing branch heads, all 58 tracked operational/scientific
+sources from Draft #38, historical state and consumed authorizations unchanged.
+The new scope adapter reuses the already-corrected controller and hardware entry.
+No automatic second allocation, top-up, pretrained weights/requests, training,
+Augnes changes, merge or issue closure. Retain at least USD 0.50 credit, the same
+allocation-inclusive work/export/cleanup limits, independent armed watcher and
+two absence observations after cleanup. Record actual outcomes and all failures;
+free CPU checks do not establish real GPU capability or full-model memory.
+
 ## Hardware minimum outcome and consumed scope (2026-10-27 UTC)
 
 The one authorization below is now consumed. Paid run 40450834812 at
