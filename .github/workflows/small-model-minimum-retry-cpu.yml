@@ -1,7 +1,7 @@
 name: Small model hardware minimum retry cpu
 on:
   push:
-    branches: [bt-001-small-model-minimum-retry-20261027]
+    branches: [bt-001-small-model-minimum-retry-20261027, bt-001-cuda-cause-isolation-20261027]
 permissions:
   contents: write
   actions: read
@@ -62,6 +62,7 @@ jobs:
           path: evidence/
           retention-days: 14
   owner:
+    if: github.ref_name == 'bt-001-small-model-minimum-retry-20261027'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -85,6 +86,7 @@ jobs:
             !evidence/**/endpoint.json
           retention-days: 14
   watch:
+    if: github.ref_name == 'bt-001-small-model-minimum-retry-20261027'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:

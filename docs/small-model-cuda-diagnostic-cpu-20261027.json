@@ -1,0 +1,630 @@
+{
+  "status": "QUALIFIED_CPU_INSTRUMENT_ONLY",
+  "source_sha": "21f362ca1ca23d29f16351096b9c3e7b14d4847a",
+  "source_tree": "2d046a661ed11b68cb5efb6fa38e101739e2a87a",
+  "run_id": 40464148007,
+  "run_attempt": 1,
+  "run_url": "https://github.com/hynk-studio/backtrace/actions/runs/40464148007",
+  "native_tests": {
+    "tests": 671,
+    "seconds": 185.385,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "raw_summary": "Ran 671 tests in 185.385s\n\nOK\n"
+  },
+  "preflight": {
+    "dependencies": "standard library only",
+    "local_tooling": "READY",
+    "official_validator": "NOT RUN",
+    "python": "3.12.14",
+    "r0_clean_packaging": "NOT RUN"
+  },
+  "runtime": {
+    "status": "PASS_EXACT_CONTAINER_RUNTIME_CPU_ONLY",
+    "python": "3.12.14",
+    "compiled_cuda": "12.6",
+    "package_count": 56
+  },
+  "checks": {
+    "credential_environment_absent": true,
+    "cuda_comparison_cpu": true,
+    "deadline": true,
+    "exec_denied": true,
+    "fork_denied": true,
+    "missing_gpu_rejected": true,
+    "namespace_denied": true,
+    "private_file_denied": true,
+    "readonly_job": true,
+    "resident_memory": true,
+    "root_denied": true,
+    "socket_denied": true,
+    "supervisor": true,
+    "threads_work": true,
+    "transport": true,
+    "unix_socket_denied": true,
+    "worker_identity": true
+  },
+  "comparison": {
+    "actual_gpu": false,
+    "automatic_retry": false,
+    "cases": {
+      "A": {
+        "before": {
+          "case": "A",
+          "identity": {
+            "CapBnd": "00000000a80425fb",
+            "CapEff": "00000000a80425fb",
+            "CapPrm": "00000000a80425fb",
+            "Gid": "0\t0\t0\t0",
+            "Groups": "0",
+            "NoNewPrivs": "0",
+            "Seccomp": "2",
+            "Seccomp_filters": "1",
+            "Uid": "0\t0\t0\t0",
+            "cuda_visible_devices": "GPU-00000000-0000-0000-0000-000000000000",
+            "environment_sha256": "7a3f225f9ab1d445348cfa70d313439120a074fce7d5f20acf1fb635448b9bc9",
+            "executable": "/opt/backtrace/venv/bin/python",
+            "limits": {
+              "RLIMIT_AS": [
+                -1,
+                -1
+              ],
+              "RLIMIT_CORE": [
+                0,
+                0
+              ],
+              "RLIMIT_FSIZE": [
+                1048576,
+                1048576
+              ],
+              "RLIMIT_NOFILE": [
+                65536,
+                65536
+              ],
+              "RLIMIT_NPROC": [
+                -1,
+                -1
+              ]
+            },
+            "python": "3.12.14"
+          },
+          "phase": "BEFORE_CUDA"
+        },
+        "exit_code": 0,
+        "primary_checkpoint": {
+          "case": "A",
+          "error": "CUDA 12.6 device unavailable; CPU fallback forbidden",
+          "error_type": "RuntimeError",
+          "phase": "RESULT",
+          "status": "FAIL"
+        },
+        "result": {
+          "case": "A",
+          "cuda_libraries": {
+            "/opt/backtrace/venv/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12": {
+              "sha256": "095296727cfb5f51e5b3ae69a3cb88cbd7b6592f314ace0fdfc4e1d758c2aa85"
+            }
+          },
+          "device_open": {
+            "nvidia-uvm": 2,
+            "nvidia0": 2,
+            "nvidiactl": 2
+          },
+          "error": "CUDA 12.6 device unavailable; CPU fallback forbidden",
+          "error_type": "RuntimeError",
+          "phase": "RESULT",
+          "status": "FAIL",
+          "supplemental_after_probe": {
+            "cudaGetDeviceCount_return": 35,
+            "device_count": null,
+            "driver_error": "libcuda.so.1: cannot open shared object file: No such file or directory"
+          }
+        },
+        "teardown": {
+          "elapsed_seconds": 1.5489404960000002,
+          "exit_code": 0,
+          "mode": "diagnostic-a",
+          "pid": 66,
+          "process_state": "ABSENT",
+          "reason": "TRANSPORT_EOF",
+          "same_process_alive": false,
+          "start_ticks": "63859",
+          "supervisor_pid": 65
+        }
+      },
+      "B": {
+        "before": {
+          "case": "B",
+          "identity": {
+            "CapBnd": "0000000000000000",
+            "CapEff": "0000000000000000",
+            "CapPrm": "0000000000000000",
+            "Gid": "65532\t65532\t65532\t65532",
+            "Groups": "",
+            "NoNewPrivs": "1",
+            "Seccomp": "2",
+            "Seccomp_filters": "1",
+            "Uid": "65532\t65532\t65532\t65532",
+            "cuda_visible_devices": "GPU-00000000-0000-0000-0000-000000000000",
+            "environment_sha256": "7a3f225f9ab1d445348cfa70d313439120a074fce7d5f20acf1fb635448b9bc9",
+            "executable": "/opt/backtrace/venv/bin/python",
+            "limits": {
+              "RLIMIT_AS": [
+                -1,
+                -1
+              ],
+              "RLIMIT_CORE": [
+                0,
+                0
+              ],
+              "RLIMIT_FSIZE": [
+                1048576,
+                1048576
+              ],
+              "RLIMIT_NOFILE": [
+                65536,
+                65536
+              ],
+              "RLIMIT_NPROC": [
+                -1,
+                -1
+              ]
+            },
+            "python": "3.12.14"
+          },
+          "phase": "BEFORE_CUDA"
+        },
+        "exit_code": 0,
+        "primary_checkpoint": {
+          "case": "B",
+          "error": "CUDA 12.6 device unavailable; CPU fallback forbidden",
+          "error_type": "RuntimeError",
+          "phase": "RESULT",
+          "status": "FAIL"
+        },
+        "result": {
+          "case": "B",
+          "cuda_libraries": {
+            "/opt/backtrace/venv/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12": {
+              "sha256": "095296727cfb5f51e5b3ae69a3cb88cbd7b6592f314ace0fdfc4e1d758c2aa85"
+            }
+          },
+          "device_open": {
+            "nvidia-uvm": 2,
+            "nvidia0": 2,
+            "nvidiactl": 2
+          },
+          "error": "CUDA 12.6 device unavailable; CPU fallback forbidden",
+          "error_type": "RuntimeError",
+          "phase": "RESULT",
+          "status": "FAIL",
+          "supplemental_after_probe": {
+            "cudaGetDeviceCount_return": 35,
+            "device_count": null,
+            "driver_error": "libcuda.so.1: cannot open shared object file: No such file or directory"
+          }
+        },
+        "teardown": {
+          "elapsed_seconds": 1.5372518069999614,
+          "exit_code": 0,
+          "mode": "diagnostic-b",
+          "pid": 72,
+          "process_state": "ABSENT",
+          "reason": "TRANSPORT_EOF",
+          "same_process_alive": false,
+          "start_ticks": "64052",
+          "supervisor_pid": 71
+        }
+      },
+      "C": {
+        "before": {
+          "case": "C",
+          "identity": {
+            "CapBnd": "0000000000000000",
+            "CapEff": "0000000000000000",
+            "CapPrm": "0000000000000000",
+            "Gid": "65532\t65532\t65532\t65532",
+            "Groups": "",
+            "NoNewPrivs": "1",
+            "Seccomp": "2",
+            "Seccomp_filters": "2",
+            "Uid": "65532\t65532\t65532\t65532",
+            "cuda_visible_devices": "GPU-00000000-0000-0000-0000-000000000000",
+            "environment_sha256": "7a3f225f9ab1d445348cfa70d313439120a074fce7d5f20acf1fb635448b9bc9",
+            "executable": "/opt/backtrace/venv/bin/python",
+            "limits": {
+              "RLIMIT_AS": [
+                -1,
+                -1
+              ],
+              "RLIMIT_CORE": [
+                0,
+                0
+              ],
+              "RLIMIT_FSIZE": [
+                1048576,
+                1048576
+              ],
+              "RLIMIT_NOFILE": [
+                65536,
+                65536
+              ],
+              "RLIMIT_NPROC": [
+                -1,
+                -1
+              ]
+            },
+            "python": "3.12.14"
+          },
+          "phase": "BEFORE_CUDA"
+        },
+        "exit_code": 0,
+        "primary_checkpoint": {
+          "case": "C",
+          "error": "CUDA 12.6 device unavailable; CPU fallback forbidden",
+          "error_type": "RuntimeError",
+          "phase": "RESULT",
+          "status": "FAIL"
+        },
+        "result": {
+          "case": "C",
+          "cuda_libraries": {
+            "/opt/backtrace/venv/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12": {
+              "sha256": "095296727cfb5f51e5b3ae69a3cb88cbd7b6592f314ace0fdfc4e1d758c2aa85"
+            }
+          },
+          "device_open": {
+            "nvidia-uvm": 2,
+            "nvidia0": 2,
+            "nvidiactl": 2
+          },
+          "error": "CUDA 12.6 device unavailable; CPU fallback forbidden",
+          "error_type": "RuntimeError",
+          "phase": "RESULT",
+          "status": "FAIL",
+          "supplemental_after_probe": {
+            "cudaGetDeviceCount_return": 35,
+            "device_count": null,
+            "driver_error": "libcuda.so.1: cannot open shared object file: No such file or directory"
+          }
+        },
+        "teardown": {
+          "elapsed_seconds": 1.5692572169999721,
+          "exit_code": 0,
+          "mode": "diagnostic-c",
+          "pid": 78,
+          "process_state": "ABSENT",
+          "reason": "TRANSPORT_EOF",
+          "same_process_alive": false,
+          "start_ticks": "64245",
+          "supervisor_pid": 77
+        }
+      }
+    },
+    "decision": "CPU_CONTROLS_ONLY",
+    "denied_syscall_trace": "NOT_COLLECTED"
+  },
+  "raw_comparison_streams": {
+    "A": {
+      "stdout": "{\"case\": \"A\", \"phase\": \"RESULT\", \"status\": \"FAIL\", \"error_type\": \"RuntimeError\", \"error\": \"CUDA 12.6 device unavailable; CPU fallback forbidden\", \"supplemental_after_probe\": {\"driver_error\": \"libcuda.so.1: cannot open shared object file: No such file or directory\", \"cudaGetDeviceCount_return\": 35, \"device_count\": null}, \"device_open\": {\"nvidia0\": 2, \"nvidiactl\": 2, \"nvidia-uvm\": 2}, \"cuda_libraries\": {\"/opt/backtrace/venv/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12\": {\"sha256\": \"095296727cfb5f51e5b3ae69a3cb88cbd7b6592f314ace0fdfc4e1d758c2aa85\"}}}\n",
+      "stderr": "BACKTRACE_CUDA_BEFORE {\"case\": \"A\", \"phase\": \"BEFORE_CUDA\", \"identity\": {\"Uid\": \"0\\t0\\t0\\t0\", \"Gid\": \"0\\t0\\t0\\t0\", \"Groups\": \"0\", \"CapEff\": \"00000000a80425fb\", \"CapPrm\": \"00000000a80425fb\", \"CapBnd\": \"00000000a80425fb\", \"NoNewPrivs\": \"0\", \"Seccomp\": \"2\", \"Seccomp_filters\": \"1\", \"limits\": {\"RLIMIT_CORE\": [0, 0], \"RLIMIT_FSIZE\": [1048576, 1048576], \"RLIMIT_NOFILE\": [65536, 65536], \"RLIMIT_AS\": [-1, -1], \"RLIMIT_NPROC\": [-1, -1]}, \"python\": \"3.12.14\", \"executable\": \"/opt/backtrace/venv/bin/python\", \"cuda_visible_devices\": \"GPU-00000000-0000-0000-0000-000000000000\", \"environment_sha256\": \"7a3f225f9ab1d445348cfa70d313439120a074fce7d5f20acf1fb635448b9bc9\"}}\nTraceback (most recent call last):\n  File \"/opt/backtrace/minimum.py\", line 45, in diagnostic_cuda\n    result['gpu'] = worker.cuda_check(config)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/backtrace/worker.py\", line 28, in cuda_check\n    raise RuntimeError('CUDA 12.6 device unavailable; CPU fallback forbidden')\nRuntimeError: CUDA 12.6 device unavailable; CPU fallback forbidden\nBACKTRACE_CUDA_PRIMARY {\"case\": \"A\", \"phase\": \"RESULT\", \"status\": \"FAIL\", \"error_type\": \"RuntimeError\", \"error\": \"CUDA 12.6 device unavailable; CPU fallback forbidden\"}\n"
+    },
+    "B": {
+      "stdout": "{\"case\": \"B\", \"phase\": \"RESULT\", \"status\": \"FAIL\", \"error_type\": \"RuntimeError\", \"error\": \"CUDA 12.6 device unavailable; CPU fallback forbidden\", \"supplemental_after_probe\": {\"driver_error\": \"libcuda.so.1: cannot open shared object file: No such file or directory\", \"cudaGetDeviceCount_return\": 35, \"device_count\": null}, \"device_open\": {\"nvidia0\": 2, \"nvidiactl\": 2, \"nvidia-uvm\": 2}, \"cuda_libraries\": {\"/opt/backtrace/venv/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12\": {\"sha256\": \"095296727cfb5f51e5b3ae69a3cb88cbd7b6592f314ace0fdfc4e1d758c2aa85\"}}}\n",
+      "stderr": "BACKTRACE_CUDA_BEFORE {\"case\": \"B\", \"phase\": \"BEFORE_CUDA\", \"identity\": {\"Uid\": \"65532\\t65532\\t65532\\t65532\", \"Gid\": \"65532\\t65532\\t65532\\t65532\", \"Groups\": \"\", \"CapEff\": \"0000000000000000\", \"CapPrm\": \"0000000000000000\", \"CapBnd\": \"0000000000000000\", \"NoNewPrivs\": \"1\", \"Seccomp\": \"2\", \"Seccomp_filters\": \"1\", \"limits\": {\"RLIMIT_CORE\": [0, 0], \"RLIMIT_FSIZE\": [1048576, 1048576], \"RLIMIT_NOFILE\": [65536, 65536], \"RLIMIT_AS\": [-1, -1], \"RLIMIT_NPROC\": [-1, -1]}, \"python\": \"3.12.14\", \"executable\": \"/opt/backtrace/venv/bin/python\", \"cuda_visible_devices\": \"GPU-00000000-0000-0000-0000-000000000000\", \"environment_sha256\": \"7a3f225f9ab1d445348cfa70d313439120a074fce7d5f20acf1fb635448b9bc9\"}}\nTraceback (most recent call last):\n  File \"/opt/backtrace/minimum.py\", line 45, in diagnostic_cuda\n    result['gpu'] = worker.cuda_check(config)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/backtrace/worker.py\", line 28, in cuda_check\n    raise RuntimeError('CUDA 12.6 device unavailable; CPU fallback forbidden')\nRuntimeError: CUDA 12.6 device unavailable; CPU fallback forbidden\nBACKTRACE_CUDA_PRIMARY {\"case\": \"B\", \"phase\": \"RESULT\", \"status\": \"FAIL\", \"error_type\": \"RuntimeError\", \"error\": \"CUDA 12.6 device unavailable; CPU fallback forbidden\"}\n"
+    },
+    "C": {
+      "stdout": "{\"case\": \"C\", \"phase\": \"RESULT\", \"status\": \"FAIL\", \"error_type\": \"RuntimeError\", \"error\": \"CUDA 12.6 device unavailable; CPU fallback forbidden\", \"supplemental_after_probe\": {\"driver_error\": \"libcuda.so.1: cannot open shared object file: No such file or directory\", \"cudaGetDeviceCount_return\": 35, \"device_count\": null}, \"device_open\": {\"nvidia0\": 2, \"nvidiactl\": 2, \"nvidia-uvm\": 2}, \"cuda_libraries\": {\"/opt/backtrace/venv/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12\": {\"sha256\": \"095296727cfb5f51e5b3ae69a3cb88cbd7b6592f314ace0fdfc4e1d758c2aa85\"}}}\n",
+      "stderr": "BACKTRACE_CUDA_BEFORE {\"case\": \"C\", \"phase\": \"BEFORE_CUDA\", \"identity\": {\"Uid\": \"65532\\t65532\\t65532\\t65532\", \"Gid\": \"65532\\t65532\\t65532\\t65532\", \"Groups\": \"\", \"CapEff\": \"0000000000000000\", \"CapPrm\": \"0000000000000000\", \"CapBnd\": \"0000000000000000\", \"NoNewPrivs\": \"1\", \"Seccomp\": \"2\", \"Seccomp_filters\": \"2\", \"limits\": {\"RLIMIT_CORE\": [0, 0], \"RLIMIT_FSIZE\": [1048576, 1048576], \"RLIMIT_NOFILE\": [65536, 65536], \"RLIMIT_AS\": [-1, -1], \"RLIMIT_NPROC\": [-1, -1]}, \"python\": \"3.12.14\", \"executable\": \"/opt/backtrace/venv/bin/python\", \"cuda_visible_devices\": \"GPU-00000000-0000-0000-0000-000000000000\", \"environment_sha256\": \"7a3f225f9ab1d445348cfa70d313439120a074fce7d5f20acf1fb635448b9bc9\"}}\nTraceback (most recent call last):\n  File \"/opt/backtrace/minimum.py\", line 45, in diagnostic_cuda\n    result['gpu'] = worker.cuda_check(config)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/backtrace/worker.py\", line 28, in cuda_check\n    raise RuntimeError('CUDA 12.6 device unavailable; CPU fallback forbidden')\nRuntimeError: CUDA 12.6 device unavailable; CPU fallback forbidden\nBACKTRACE_CUDA_PRIMARY {\"case\": \"C\", \"phase\": \"RESULT\", \"status\": \"FAIL\", \"error_type\": \"RuntimeError\", \"error\": \"CUDA 12.6 device unavailable; CPU fallback forbidden\"}\n"
+    }
+  },
+  "container_cleanup": {
+    "absence_reads": 2,
+    "container_id": "1cc63527f5bb47a8e16fc46689cefe642f379d9381e9189e747f757b82c9b28e",
+    "name": "backtrace-free-full-setup-13304-minimum",
+    "observations": [
+      {
+        "state": "ABSENT"
+      },
+      {
+        "state": "ABSENT"
+      }
+    ],
+    "request": {
+      "outcome": "ACKNOWLEDGED",
+      "returncode": 0
+    },
+    "seconds": 6.49,
+    "status": "PASS"
+  },
+  "provider_create_requests": 0,
+  "source_hashes": {
+    ".github/workflows/small-model-container-cpu.yml": "52745e5f7a5ddc42796b094e450a5641090da68aebf6998c23503bb97961f249",
+    ".github/workflows/small-model-minimum-cpu.yml": "e960267e3b69ad5b3c6562e7b3dd36d04451e621fd77519321a091b17295906a",
+    ".github/workflows/small-model-minimum-live.yml": "e2062c003c010bd8ac4a67ff7e39a066b44af2007b8e5f67186c82316b9ccf05",
+    ".github/workflows/small-model-minimum-quote.yml": "f93cc9946f39cf3d814a24fc62c968cdc822b169167d3dd50c8f84813a8958c0",
+    ".github/workflows/small-model-minimum-retry-cpu.yml": "acde46496d679685f4b54e3247c46e061e7c45c7c0bb81ef79a8a140f254a683",
+    ".github/workflows/small-model-minimum-retry-live.yml": "4f9f9fc148c610084b8a388701a55776ab878d689f0f6d9212b152c0b024900e",
+    ".github/workflows/small-model-minimum-retry-quote.yml": "6eeff6411ab8d6e967f9add1f7ba902ce5a519f5018332723e32065e6fcdcd8d",
+    ".github/workflows/small-model-precheck-cpu.yml": "f13609448771bfada0e1750e52676608a2da1d700c89d28251f07e518f314a0f",
+    ".github/workflows/small-model-provider-cpu.yml": "1314824b147395afaac6a4f8708f3c19004f441f8dc8617f6096526a82f4eaff",
+    ".github/workflows/small-model-provider-owner.yml": "0bb06419810437a0bdce8efa15aab651c2d02748c9e469801cd0777393e245fc",
+    ".github/workflows/small-model-provider-watch.yml": "8af1ae7416563c61d4c9e973ec2ddba7f97296b7be93369a34094a655fc6d197",
+    "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+    "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+    "docs/cloud-controller-requirements.txt": "6e8e0115d53ffb67b8a9001e0b4e3f06747fb470aad4bdcb23e8a864d4018bdc",
+    "docs/research-reduced9-amendment-20261026.json": "ba9b235c84db383f2413bc7adeb03888de9fd0fc571e8e67cc8ae4f9057563c7",
+    "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+    "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+    "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+    "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+    "tests/test_small_model_container.py": "ef05ed3f780c6a668c1ad2e31b2ba704521f94dcff3d03f9afff70d0567e2e4b",
+    "tests/test_small_model_minimum.py": "ab75e74c29c21b92db67b737090da99beade002c55b456afc53dfccfa39051b9",
+    "tests/test_small_model_minimum_diagnostic.py": "f00b99345fe3c63ab8d0c95c2a339b9c75f1460dd3417e52230f2b7cbf46a493",
+    "tests/test_small_model_minimum_retry.py": "ca2a4d349efa03ae180e7b16608e41bc786503ac961fb48c6a3d7f89b4e76ce7",
+    "tests/test_small_model_precheck.py": "21ad1e073cc9f83eca8e41034cff22371df7629188b07921b5ecdcc8d0ec4e47",
+    "tests/test_small_model_provider.py": "242530d07de276c3b36eff5484fe0a15d6f457bd7705db63e14e54e03d71f94c",
+    "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+    "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+    "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+    "tools/cloud_bootstrap.py": "b032f0d92bb042cb3388699fe230084c077fb78a59b4df86184f12feb6610487",
+    "tools/cloud_inventory.py": "f4865ae92c7f41375a15ecf917e932562cca608ca7a1607d18d1b370bd0932ff",
+    "tools/cloud_offer.py": "9387b91be560cf80a85a5bae8166acb7c35f7a61135042971d21cafdb76c3df5",
+    "tools/cloud_probe.py": "bb89c097e7fe0c6bc56771e87695056d60c11f510502173105a102a25d48e22f",
+    "tools/cloud_transport.py": "013d93fc8c1548bc7eaf4cf9a4f5a49608b7e16d537b192accf053151fbf5902",
+    "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+    "tools/free_container_cleanup.py": "3dc64f6fa013e992e8c02fa702330a14003cb2e7ab0d536e3dc0da80ce3e9466",
+    "tools/private_delivery.py": "f010c41715e2548b86a4b3dfc009e22e57fcbf5a52429e4f7f1165632f1a4a40",
+    "tools/research_entry.py": "9f3c753cb26f9ab4d22ef5a27d4c900bc109ea10cbc4447df97d58b337762d85",
+    "tools/research_entry_contract.py": "1a4997a22bcb2bb9acd5dde8bfe916e987ae20131c9073610f2bb2e863908e47",
+    "tools/research_entry_state.py": "b3858570800b87f36a2ebd99a4ebbf65295edf5756b1a7b6cf1d6c4c13316389",
+    "tools/runpod_control.py": "09219477947e39b2c7c58b6e7e44f385bd5d1140cbdb7a47cddef3ab7f6cf400",
+    "tools/small_model_container.py": "d87cc12a3dc39dd9c235956f1b7a5181b060e57c7e104a86aacc991977e20410",
+    "tools/small_model_container_install.py": "e44a80ef7ca4c6611ea0536a76889efed5011fdea2bf27331acb21cc0aac5ecc",
+    "tools/small_model_container_probe.py": "924cf57ec8868ea1acdaaaf7868f829071e7c34a16416c3db069b03e6642081b",
+    "tools/small_model_container_worker.py": "f5bd153ade59d83222ee170a252801479b6591a012b6facac3312e1c0644fb09",
+    "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903",
+    "tools/small_model_lifecycle.py": "32f0cc0215c9c4098540b95a5fd1e3194af9764ba1f01d1317df0553875b4506",
+    "tools/small_model_lifecycle_probe.py": "c8af61b707903398d29a883ce1c9525af93494cb71612b6d299bbac240b704ed",
+    "tools/small_model_minimum.py": "68bebd6d41730a2208eb03eca598d5152cf2034dd9af81e1eab8f6f039529888",
+    "tools/small_model_minimum_probe.py": "8ffef411118334316d569f6b5c302e243d1f2a45e7e9dbad71cc7c175a777a94",
+    "tools/small_model_minimum_remote.py": "8b2e9ea55037fc416707f8b3bd20acf0c0f7b6a8536026af1fff4e63cac822e6",
+    "tools/small_model_minimum_retry.py": "48c9512766d99e1bd5a75d6712fa2d0c643b7f65d5b5de22d2bc1786a1e6a3c4",
+    "tools/small_model_minimum_worker.py": "c812d32cabca8a7f6c8e7eb9a0f79e3b83d129799bee181de8f0ed35178eaff1",
+    "tools/small_model_precheck.py": "dafcfa6cc32d78204a102b7e73eb1be3eeb499a906a90a7390503134fa81a63d",
+    "tools/small_model_provider.py": "b5c9e0a0e7c9ac98a8dc8a6d24b20f5c45de9690483ae37b65196e30218a37c4",
+    "tools/small_model_provider_probe.py": "467a96a5cd7131da46155f9c6a675718049c1547d3a5d950efff73ea1e9da8cd",
+    "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+    "tools/small_model_remote_watch.py": "eec9864d54e0859399e5e9f9c9334f2c21809e470a015d57b65d7119f9657e82",
+    "tools/small_model_resources.py": "1d763165c9af25461a50ae55665a18052d71c74698f1abdfd70eb81f77e367ca",
+    "tools/small_model_runner.py": "ed7436caa9421bc4a166ccca63ac2602fd527dab2bbe44010acabad0095e33df",
+    "tools/small_model_runner_probe.py": "dfbff0eabb1c72d914ee1528b059338261427ba0713425c264f2c5c4986e095a",
+    "tools/small_model_worker.py": "9dae8020f5fa52d2f1c395bc17d4433a93d7206c9e5e6ed3e70729698376a2bf",
+    "tools/ssh_bootstrap.py": "b657ddd6f145f66f4e15f2d30a23d8870ae56aa7f60d396ae1f41de485916839",
+    "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+    "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+  },
+  "all_source_hashes_verified": true,
+  "unchanged_from_base": [
+    "tools/small_model_container_worker.py",
+    "tools/small_model_worker.py",
+    "tools/small_model_minimum.py",
+    "tools/small_model_lifecycle.py",
+    "docs/small-model-runtime-lock-v1.json",
+    "docs/small-model-gpu-baseline-v1.json",
+    "tools/abductive_scoring.py"
+  ],
+  "artifact": {
+    "id": 12715504445,
+    "sha256": "0a0f6218958f0e36cb8fb01950ed7b6764aabaa1974d1b8680c3c5ba453b7d29",
+    "bytes": 78664,
+    "members": [
+      {
+        "path": "container-image.log",
+        "bytes": 1335,
+        "sha256": "9a5c6174a89828ff7870a6ea76480ecb5d0c5947c9f3b3dda7e36dfae952ce89"
+      },
+      {
+        "path": "container-receipt.json",
+        "bytes": 44767,
+        "sha256": "080a23fdbb95e47949f2da0474e4fbcff032230019303fb707a91fc92c07af50"
+      },
+      {
+        "path": "container-remote-connected-receipt.json",
+        "bytes": 16963,
+        "sha256": "51dfef753d6ab147fba32dfbffb9bb5538087c8155dcfc668ef84243f7c6f397"
+      },
+      {
+        "path": "container-remote-diagnostics-boundary-635882494092.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "container-remote-diagnostics-boundary-memory-checkpoint.json",
+        "bytes": 2916,
+        "sha256": "f4609eda5c0af0f4b63b9c529d8fcf7411417e8905cf2e8577dd621b73ddd1c6"
+      },
+      {
+        "path": "container-remote-diagnostics-cuda-comparison-A-stderr.log",
+        "bytes": 1224,
+        "sha256": "aacc799367870a6f9d165f75cc967538cc3d3b2629dc41c411f9d4ebe01ee500"
+      },
+      {
+        "path": "container-remote-diagnostics-cuda-comparison-A-checkpoint.json",
+        "bytes": 1457,
+        "sha256": "01e898094badc0654503f4cbef5cbbbc7b0649ffbbb97e9c75300b00400fb0b9"
+      },
+      {
+        "path": "container-remote-diagnostics-cuda-comparison-A-stdout.log",
+        "bytes": 578,
+        "sha256": "c21be636bb50ea9a3ff53c831f21e05c8467353fc7b2aa39c4805d7cb39bab42"
+      },
+      {
+        "path": "container-remote-diagnostics-cuda-comparison-A-teardown.json",
+        "bytes": 1671,
+        "sha256": "7c58ca08b5a08374cdb7c93abba1877e9ab445dd3bef974952f311e82facb6d5"
+      },
+      {
+        "path": "container-remote-diagnostics-cuda-comparison-B-checkpoint.json",
+        "bytes": 3041,
+        "sha256": "62dbd30d2c46255523824fc372c9be0e7c11b2649c8b2ba6265c82d0596b6051"
+      },
+      {
+        "path": "container-remote-diagnostics-cuda-comparison-B-stderr.log",
+        "bytes": 1255,
+        "sha256": "792856fb2582d64e8c93aa0ce646e468e7f054af28cdd96c7d72d72d43b48557"
+      },
+      {
+        "path": "container-remote-diagnostics-cuda-comparison-B-stdout.log",
+        "bytes": 578,
+        "sha256": "4a26dfd2bf58adef9ea42db3af08ca993b91376c9c86fa1c09eaa8e877d68fb4"
+      },
+      {
+        "path": "container-remote-diagnostics-cuda-comparison-B-teardown.json",
+        "bytes": 3255,
+        "sha256": "3fcc06e8359d98a215001e3f6fc0b52bdbbfe6701c7634ffbb0c5f379abccdc9"
+      },
+      {
+        "path": "container-remote-diagnostics-cuda-comparison-C-checkpoint.json",
+        "bytes": 4625,
+        "sha256": "68eed129da2a49ad69a95857b3ca5db19e6c9cf814977f0c68f92fe061bb212d"
+      },
+      {
+        "path": "container-remote-diagnostics-cuda-comparison-C-stderr.log",
+        "bytes": 1255,
+        "sha256": "bc4076da90d67d6870d7558eccaa666860f1d926a27df054a756807b46db4a10"
+      },
+      {
+        "path": "container-remote-diagnostics-cuda-comparison-C-stdout.log",
+        "bytes": 578,
+        "sha256": "7d998ac90cf12b2d77d1787ab501051d776a7f0a21e2eb2767490bcb7a6a1412"
+      },
+      {
+        "path": "container-remote-diagnostics-cuda-comparison-C-teardown.json",
+        "bytes": 4839,
+        "sha256": "14510dc21b587037c5d51732ee088c82150277d8914cf80e5f0326ec68316262"
+      },
+      {
+        "path": "container-remote-diagnostics-cuda-comparison-receipt.json",
+        "bytes": 4846,
+        "sha256": "c779fa922621f5588b6cc58384d7eaa0e3e03119fd639a1c8e1a150edda7c9b6"
+      },
+      {
+        "path": "container-remote-diagnostics-cuda-comparison-started.json",
+        "bytes": 119,
+        "sha256": "e68bcac9e62ef4bf46da48e96379832d70b88ca758b6692825b77370c11bf204"
+      },
+      {
+        "path": "container-remote-diagnostics-deadline-checkpoint.json",
+        "bytes": 8312,
+        "sha256": "42fb9d13add1a7ea84e0bfd8e29922a4949e217189e127d04ffcc02e5db69336"
+      },
+      {
+        "path": "container-remote-diagnostics-deadline.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "container-remote-diagnostics-memory-636142990485.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "container-remote-diagnostics-missing-gpu.log",
+        "bytes": 552,
+        "sha256": "58bd7227dfd3f225fd8f3439bd033fecdffdc6d0598f83d0ee5257570e1d4dcd"
+      },
+      {
+        "path": "container-remote-diagnostics-receipt.json",
+        "bytes": 9144,
+        "sha256": "9c37363de0006db2e21dd466de53a1be557f869910f737d709e6bb359cac533c"
+      },
+      {
+        "path": "container-remote-diagnostics-supervisor-checkpoint.json",
+        "bytes": 9122,
+        "sha256": "54a2b093cd73e8d23d2a9b63e6ed8c11592f9afc9881896019f076426e0284f6"
+      },
+      {
+        "path": "container-remote-diagnostics-supervisor.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "container-remote-diagnostics-transport-checkpoint.json",
+        "bytes": 8716,
+        "sha256": "7a7d86d1be62e538bf04fa49a33bcbf1c7c058b8fb9cda25a7e38d0e5ecd4f43"
+      },
+      {
+        "path": "container-remote-diagnostics-transport.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "container-remote-install.log",
+        "bytes": 10564,
+        "sha256": "fb3c6c4966af7e01c4ed2278bfc30bb4e669b0a3b6cba66cc372c01995099333"
+      },
+      {
+        "path": "container-remote-installation-checkpoint.json",
+        "bytes": 7783,
+        "sha256": "14b8a4d7114ca0de560c45073f0cd3eb481185d4b56fd3aba617034da19a70af"
+      },
+      {
+        "path": "container-stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "container.json",
+        "bytes": 46406,
+        "sha256": "1172a4269f229be92ad0fba6688fc02079f4457cf27188200bed7a4db11a475e"
+      },
+      {
+        "path": "preflight.json",
+        "bytes": 167,
+        "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+      },
+      {
+        "path": "tests.log",
+        "bytes": 113749,
+        "sha256": "27558667b0663a419de31ba74fbaecf1c0a8acc0288f4a57605e6932a545cc9a"
+      }
+    ],
+    "all_members_hashed": true
+  },
+  "local_validation": {
+    "focused": {
+      "tests": 32,
+      "passed": 31,
+      "failures": 1,
+      "failure": "test_real_child_changes_only_the_requested_identity_and_filter_boundary: EPERM during capability drop"
+    },
+    "full": {
+      "tests": 671,
+      "failures": 6,
+      "errors": 10,
+      "skips": 4,
+      "unchanged_prior_failure_error_cases": 15
+    },
+    "boundary": {
+      "CapPrm": "0000000000000000",
+      "CapEff": "0000000000000000",
+      "CapBnd": "0000000000000000",
+      "NoNewPrivs": "1",
+      "Seccomp": "2",
+      "Seccomp_filters": "1",
+      "has_cap_setpcap": false
+    },
+    "qualification": "NOT_PASSED; retained separately from native success"
+  },
+  "limits": {
+    "actual_gpu_abc": "NOT_RUN",
+    "cuda_304_root_cause": "UNRESOLVED",
+    "denied_syscall_trace": "NOT_COLLECTED",
+    "pretrained_inference": "NOT_RUN",
+    "training": "NOT_RUN",
+    "new_paid_authorization": false,
+    "historical_owner_watcher_jobs": "SKIPPED on preparation branch; unchanged controllers, not a new distributed-deletion qualification"
+  }
+}
