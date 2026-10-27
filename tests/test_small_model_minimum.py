@@ -55,7 +55,7 @@ class MinimumTests(unittest.TestCase):
         c={'source_sha':SOURCE,'contract_sha256':life.digest(m.CONTRACT),'namespace':state.namespace,
             'run_id':'123','actual':True,'owner_boot':'a'*64,'watch_boot':'b'*64,
             'name':'backtrace-small-minimum-'+'c'*32,'total_seconds':3000,'cleanup_seconds':300,
-            'poll_seconds':90,'unknown_create_seconds':90}
+            'poll_seconds':90,'unknown_create_seconds':90,'requested_at':time.time()}
         m.check_claim(c,state,'123')
         for key,value in [('source_sha','d'*40),('watch_boot','a'*64),('name','old-resource'),('total_seconds',3001)]:
             with self.subTest(key=key),self.assertRaises(m.StateError):m.check_claim(dict(c,**{key:value}),state,'123')
@@ -94,6 +94,31 @@ class MinimumTests(unittest.TestCase):
         with self.assertRaises(ValueError):state.write('authorization',{})
         with self.assertRaises(ValueError):state.path('../../research-state')
         with self.assertRaises(ValueError):state.write('claim',{},'b'*40)
+
+    def test_real_owner_deadline_interrupts_blocking_work_and_is_removed_before_cleanup(self):
+        import signal
+        old=signal.getsignal(signal.SIGALRM)
+        close=m.work_alarm(.04)
+        try:
+            with self.assertRaisesRegex(TimeoutError,'allocation-inclusive'):
+                time.sleep(1)
+        finally:close()
+        self.assertEqual(signal.getsignal(signal.SIGALRM),old)
+        self.assertEqual(signal.getitimer(signal.ITIMER_REAL),(0.0,0.0))
+
+    def test_no_actual_provider_client_or_preparation_without_current_permit(self):
+        import os
+        environment={'GITHUB_REF_NAME':m.START,'GITHUB_RUN_ATTEMPT':'1','GITHUB_SHA':SOURCE,
+            'GITHUB_RUN_ID':'123','GITHUB_TOKEN':'fixture'}
+        previous=os.umask(0o077)
+        try:
+            with mock.patch.dict(os.environ,environment),mock.patch.object(m,'State') as state,\
+                    mock.patch.object(m,'require_run'),mock.patch.object(m.control,'RunpodAPI') as api,\
+                    mock.patch.object(remote,'prepare') as prepare:
+                state.return_value.read.return_value=None
+                with self.assertRaises((ValueError,TypeError)):m.main('owner',True)
+                api.assert_not_called();prepare.assert_not_called()
+        finally:os.umask(previous)
 
 
 if __name__=='__main__':unittest.main()

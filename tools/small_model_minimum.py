@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path
 import re
+import signal
 import subprocess
 import sys
 import time
@@ -167,7 +168,23 @@ def check_claim(claim,state,run_id):
         raise StateError('exact source/role/resource claim required')
     if state.actual and any(claim.get(k)!=v for k,v in {'total_seconds':3000,'cleanup_seconds':300,'poll_seconds':90,'unknown_create_seconds':90}.items()):
         raise StateError('paid deadline contract changed')
+    if (life.finite(claim['requested_at'])<=0 or
+            any(not re.fullmatch('[0-9a-f]{64}',claim[k]) for k in ('owner_boot','watch_boot'))):
+        raise StateError('claim clock and kernel identities required')
     return claim
+
+
+def work_alarm(seconds):
+    """Interrupt blocked owner work at the remaining allocation work deadline."""
+    if not 0<life.finite(seconds)<=2580:raise TimeoutError('no hardware work allowance remains')
+    if signal.getitimer(signal.ITIMER_REAL)!=(0.0,0.0):raise ValueError('unshared owner deadline timer required')
+    def expired(signum,frame):raise TimeoutError('allocation-inclusive work deadline')
+    previous=signal.signal(signal.SIGALRM,expired)
+    signal.setitimer(signal.ITIMER_REAL,seconds)
+    def close():
+        signal.setitimer(signal.ITIMER_REAL,0)
+        signal.signal(signal.SIGALRM,previous)
+    return close
 
 
 class ReplicaAPI:
@@ -245,7 +262,7 @@ def watch(state,api,rid,me):
 
 def owner(state,api,rid,me,prepared=None):
     result={'status':'INCOMPLETE','actual':state.actual,'provider_create_requests':0,'source_hashes':sources()}
-    claim=None;pod_id=None;process=None;sha=None;possible=False
+    claim=None;pod_id=None;process=None;sha=None;possible=False;clear_alarm=None
     out=ROOT/'evidence/minimum-owner';out.mkdir(parents=True,exist_ok=True)
     try:
         if state.read('claim'):raise ValueError('single-use hardware scope already consumed')
@@ -284,6 +301,7 @@ def owner(state,api,rid,me,prepared=None):
         if state.actual:
             validate_permit(permit,state.source,time.time());choose(snap,time.time())
             if time.time()-claim['requested_at']>=60 or api.list():raise ValueError('claim expired or account no longer idle')
+            clear_alarm=work_alarm(2580-(time.time()-claim['requested_at']))
         possible=True;result['provider_create_requests']=1 if state.actual else 0
         result['create_attempted']=True
         created=api.create(request)  # Exactly one call. No retries on any response.
@@ -329,6 +347,7 @@ def owner(state,api,rid,me,prepared=None):
         result.update(status='FAIL',error_type=type(e).__name__,error=str(e)[:700],
             frames=[{'file':Path(f.filename).name,'function':f.name,'line':f.lineno} for f in traceback.extract_tb(e.__traceback__)][-8:])
     finally:
+        if clear_alarm:clear_alarm()
         prior.stop(process)
         if claim:
             with contextlib.suppress(Exception):state.write('done',{'claim_sha256':life.digest(claim),'provider_create_requests':int(possible),'at':time.time()})
