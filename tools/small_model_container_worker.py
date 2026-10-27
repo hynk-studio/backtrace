@@ -17,6 +17,7 @@ import select
 import signal
 import subprocess
 import sys
+import tempfile
 import time
 
 ROOT = Path('/opt/backtrace')
@@ -106,6 +107,16 @@ def child(parent, script):
     else:runpy.run_path(str(ROOT/'worker.py'),run_name='__main__')
 
 
+def state_write(path, value):
+    fd,temporary=tempfile.mkstemp(prefix='.'+path.name+'-',dir=path.parent)
+    try:
+        with os.fdopen(fd,'w') as f:
+            json.dump(value,f,sort_keys=True);f.flush();os.fsync(f.fileno())
+        os.replace(temporary,path)
+    finally:
+        if os.path.exists(temporary):os.unlink(temporary)
+
+
 def supervise(job_name, seconds, script='worker'):
     if (os.geteuid()!=0 or platform.python_version()!='3.12.14'
             or not 0<float(seconds)<=3000 or script not in ('worker','boundary')
@@ -139,7 +150,7 @@ def supervise(job_name, seconds, script='worker'):
             'LD_LIBRARY_PATH':str(ROOT/'python/lib')})
     state={'pid':child_process.pid,'start_ticks':Path(f'/proc/{child_process.pid}/stat').read_text().split()[21],
            'supervisor_pid':os.getpid(),'reason':'RUNNING'}
-    log.write_text(json.dumps(state));pending=b''
+    state_write(log,state);pending=b''
     os.set_blocking(0,False);os.set_blocking(child_process.stdin.fileno(),False)
     try:
         while child_process.poll() is None:
@@ -161,7 +172,7 @@ def supervise(job_name, seconds, script='worker'):
         code=child_process.wait(timeout=3)
         state.update(exit_code=code,elapsed_seconds=time.monotonic()-started,
                      reason=state['reason'] if state['reason']!='RUNNING' else 'EXITED')
-        log.write_text(json.dumps(state,sort_keys=True))
+        state_write(log,state)
         return code if code>=0 else 128-code
     finally:
         if child_process.poll() is None:child_process.kill();child_process.wait(timeout=3)

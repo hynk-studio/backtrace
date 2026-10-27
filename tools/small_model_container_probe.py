@@ -116,7 +116,7 @@ print(json.dumps({'installed_assets':len(list(target.rglob('*'))),'memory_max':p
                 checks['outer_namespaces']=boundary['pid_namespace']!=os.readlink('/proc/self/ns/pid') and boundary['net_namespace']!=os.readlink('/proc/self/ns/net')
                 checks['boundary_exit']=boundary_exit==0
                 result['checks']=checks
-                life.write(output/'receipt.json',result)
+                life.write(output/'boundary-checkpoint.json',result)
                 if not all(checks.values()):raise AssertionError('container boundary checks failed')
                 raw_ids={}
                 for item in schedule:
@@ -144,10 +144,11 @@ print(json.dumps({'installed_assets':len(list(target.rglob('*'))),'memory_max':p
                     elif label in ('hang','crash'):checks[label]=collection['coverage']=={'OK':1,('TIMEOUT' if label=='hang' else 'WORKER_ERROR'):1,'NOT_RUN':34}
                     elif label=='startup_hang':checks[label]=collection['coverage']=={'NOT_RUN':36}
                     else:checks[label]=collection['coverage']=={'WORKER_ERROR':1,'NOT_RUN':35}
-                    life.write(output/'receipt.json',result)
+                    life.write(output/(label+'-checkpoint.json'),result)
                     if not checks[label]:raise AssertionError('collector control failed: '+label)
                 def state(job):
-                    return remote("import json,pathlib;p=pathlib.Path('/root/backtrace/"+job+"-state.json');r=json.loads(p.read_bytes());q=pathlib.Path('/proc')/str(r['pid'])/'stat';r['same_process_alive']=q.exists() and q.read_text().split()[21]==r['start_ticks'];print(json.dumps(r))")
+                    code="import json,pathlib\np=pathlib.Path('/root/backtrace/"+job+"-state.json')\nr=json.loads(p.read_bytes());q=pathlib.Path('/proc')/str(r['pid'])/'stat'\ntry:s=q.read_text().split();r['same_process_alive']=s[21]==r['start_ticks'];r['process_state']=s[2]\nexcept (FileNotFoundError,ProcessLookupError):r['same_process_alive']=False;r['process_state']='ABSENT'\nprint(json.dumps(r))"
+                    return remote(code)
                 # Root supervisor deadline, independent of owner Channel deadlines.
                 command=container.command(prefix,'E2B','scripted_control',fault='startup_hang',seconds=1)
                 channel=runner.Channel(command,output/'deadline.log')

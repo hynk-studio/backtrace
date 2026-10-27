@@ -68,7 +68,7 @@ jobs:
           allowed={'receipt.json','collection.json','evaluation.json','assignment.json','ledger.jsonl','E2B-ready.json','E4B-ready.json','E2B-stderr.log','E4B-stderr.log','boundary.log','deadline.log','transport-loss.log','supervisor-loss.log','image.log','install.log','remote-error.log'}
           for p in root.rglob('*'):
               if p.is_symlink() or 'random-models' in p.parts:continue
-              if p.is_file() and p.name in allowed and p.stat().st_size<=16*1024**2:
+              if p.is_file() and (p.name in allowed or p.name.endswith('-checkpoint.json')) and p.stat().st_size<=16*1024**2:
                   shutil.copyfile(p,Path('evidence')/('container-'+str(p.relative_to(root)).replace('/','-')))
           for p in Path('evidence').iterdir():p.chmod(0o644)
           PY
