@@ -132,7 +132,7 @@ print(json.dumps({'installed_assets':len(list(target.rglob('*'))),'memory_max':p
                     factory=container.factory(prefix,mode,fault=fault)
                     collection=runner.collect(schedule,output/label,factory,tokenizers,mode=mode,
                         max_new_tokens=2 if label=='random' else 4096,total_seconds=1 if label=='startup_hang' else 240,
-                        startup_seconds=1 if label=='startup_hang' else 45,request_seconds=1 if label=='hang' else 30,
+                        startup_seconds=1 if label=='startup_hang' else 45,request_seconds=1 if label in ('hang','startup_hang') else 30,
                         fixture_ids=None if label=='random' else raw_ids)
                     evaluation=runner.evaluate(plan,schedule,collection)
                     life.write(output/label/'evaluation.json',evaluation)
