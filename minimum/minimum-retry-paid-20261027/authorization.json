@@ -1,0 +1,21 @@
+{
+  "source_sha": "24bf9c87a81094a358f6bb6c40dda97b21546d67",
+  "contract_sha256": "ca4b02bd5e32b57547a10a8527eb05d979b32693a4deb33c24f5e4e60e6cdf05",
+  "authorization_id": "hardware-minimum-retry-20261027-one",
+  "namespace": "minimum-retry-paid-20261027",
+  "instruction": "1회 다시 진행해",
+  "single_use": true,
+  "mode": "OWNER_APPROVED_HARDWARE_MINIMUM",
+  "additional_cap_usd": "1.00",
+  "allocation_inclusive_seconds": 3000,
+  "automatic_retry": false,
+  "top_up_allowed": false,
+  "weight_download_bytes": 0,
+  "pretrained_requests": 0,
+  "training_steps": 0,
+  "qualification_run_id": "40455264861",
+  "approved_at": 1793079305.6779218,
+  "expires_at": 1793086505.6779218,
+  "approval_reference": "Current owner instruction: 1회 다시 진행해; one further hardware-only allocation under the same USD1 and 3000-second limits after exact-source qualification",
+  "previous_consumed_authorization": "hardware-minimum-20261027-one"
+}
