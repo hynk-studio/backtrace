@@ -30,6 +30,15 @@ CPU instrumentation evidence: production CUDA integration, provider memory
 admission, live device/context tests and resource-bound remote deletion are
 pending. The free adapter rejects actual CUDA/pretrained modes.
 
+The subsequent [hardware minimum](small-model-minimum-20261027.md) consumed one
+bounded A40 allocation. It stopped before GPU kernels because the controller
+used SSH metadata before it was ready. Both independent controllers confirmed
+deletion, and the final account snapshot showed zero Pods. The correction adds
+bounded endpoint readiness waiting and passed 656 native tests plus all 16 free
+container controls. This is a
+failed minimum with successful cleanup; it provides no model-capability evidence
+and grants no automatic paid retry. A1 remains partial and A2 has not started.
+
 The owner clarified that speed is not the objective. The first objective is to
 establish whether a small specialist model learns useful abductive inference,
 with possible Augnes use considered from the outset. E2B and E4B are candidates;

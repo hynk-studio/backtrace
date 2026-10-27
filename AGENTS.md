@@ -1,5 +1,35 @@
 # Backtrace working agreement
 
+## Hardware minimum outcome and consumed scope (2026-10-27 UTC)
+
+The one authorization below is now consumed. Paid run 40450834812 at
+`bc4e691306f7eca3adcc52abf438a564716226b4` created exactly one A40 Pod
+`qxvxecldgw2ohg` in CA-MTL-1 and failed before runtime transfer or GPU kernels.
+RUNNING preceded complete SSH metadata; the controller dereferenced a null
+intermediate. Owner and independent watcher each confirmed the exact Pod absent
+twice. At 04:43:41 UTC credit remained USD 3.0795030588 with zero hourly spend;
+complete inventory at 04:43:49 UTC was empty. This is an observed zero balance
+delta, not final billing evidence. Both paid jobs terminated. Preserve their
+source, authorization, state records, receipts and paid start branch unchanged.
+
+The free readiness correction is source
+`a94cb50535a8c4d7107de32862d0e016c46d96bb`, run 40452065045. It waits for
+complete matching SSH metadata under the original startup/work limits, rejects
+contradiction or loss after connection, records allowlisted readiness facts and
+preserves OWNER_DONE after completed deletion. Native/container run 40452065045
+passed all 656 tests (189.165 seconds, no failures/errors/skips), preflight,
+all 16 container controls and separate-runner replica deletion. All 58 source
+hashes, 15 artifacts/71 members and 11 paid state blobs were verified. All 76
+previous branch heads and 47 previous tracked sources are preserved. Seventeen
+focused local tests passed; the full local 656-test run retains the same five
+failures, ten errors and four skips as the initial environment-dependent run.
+Retain these failures and every earlier failed qualification.
+Read `docs/small-model-minimum-20261027.md` and the corresponding evidence JSON.
+Hardware minimum is NOT PASSED; pretrained inference, training and Augnes
+transfer remain NOT RUN. No unused paid authorization remains. Another paid
+attempt requires a new bounded owner instruction, fresh unused state/start
+identity and renewed exact-source free qualification; never reset the old claim.
+
 ## Authorized hardware minimum (2026-10-27 KST)
 
 The owner now requested **최소검증 진행하자**. This supersedes the earlier
