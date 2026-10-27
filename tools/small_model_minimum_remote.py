@@ -45,8 +45,10 @@ def remote(prefix,code,seconds=30):
 
 
 def command(prefix,mode,seconds,actual):
-    if mode not in ('boundary','memory','cpu-hold','kernels','active') or not 0<seconds<=180:
+    if mode not in ('boundary','memory','cpu-hold','kernels','active','diagnostic-a','diagnostic-b','diagnostic-c') or not 0<seconds<=180:
         raise ValueError('bounded hardware-only diagnostic required')
+    if mode.startswith('diagnostic-') and seconds > 30:
+        raise ValueError('diagnostic case ceiling is 30 seconds')
     return prefix+[shlex.join(['/usr/bin/env','-i','PATH=/usr/bin:/bin','LANG=C.UTF-8',
         'LD_LIBRARY_PATH=/opt/backtrace/python/lib','/opt/backtrace/venv/bin/python','-I',
         '/opt/backtrace/minimum.py','run',mode,str(seconds),
@@ -61,6 +63,106 @@ try:
 except (FileNotFoundError,ProcessLookupError):r['same_process_alive']=False;r['process_state']='ABSENT'
 print(json.dumps(r))
 """)
+
+
+def diagnostic_decision(rows, actual):
+    """Classify only comparable, complete observations; never prescribe a relaxation."""
+    if set(rows) != {'A', 'B', 'C'}:
+        return 'INCONCLUSIVE_STOP_SAME_ROUTE'
+    if any(row.get('error') or row.get('exit_code') != 0 for row in rows.values()):
+        return 'INCONCLUSIVE_STOP_SAME_ROUTE'
+    try:
+        identities = [rows[key]['before']['identity'] for key in 'ABC']
+        a, b, c = identities
+        common = ('limits', 'python', 'executable', 'cuda_visible_devices', 'environment_sha256')
+        if any(any(value[name] != a[name] for name in common) for value in identities):
+            return 'INCOMPARABLE_STOP_SAME_ROUTE'
+        if a['Uid'].split() != ['0']*4:
+            return 'INCOMPARABLE_STOP_SAME_ROUTE'
+        for value in (b, c):
+            if (value['Uid'].split() != ['65532']*4 or value['Gid'].split() != ['65532']*4
+                    or value['Groups'] or value['NoNewPrivs'] != '1'
+                    or any(int(value[name], 16) for name in ('CapEff', 'CapPrm', 'CapBnd'))):
+                return 'INCOMPARABLE_STOP_SAME_ROUTE'
+        if int(b['Seccomp_filters']) != int(a['Seccomp_filters']) or int(c['Seccomp_filters']) != int(b['Seccomp_filters'])+1:
+            return 'INCOMPARABLE_STOP_SAME_ROUTE'
+        # Failure can prevent a library from loading. Missing post-probe mappings
+        # are an outcome, not proof that the starting environments differed.
+        libraries = [rows[key]['result']['cuda_libraries'] for key in 'ABC']
+        seen = {}
+        for mapping in libraries:
+            for path, value in mapping.items():
+                if path in seen and seen[path] != value:
+                    return 'INCOMPARABLE_STOP_SAME_ROUTE'
+                seen[path] = value
+        statuses = [rows[key]['result']['status'] for key in 'ABC']
+        if any(status not in ('PASS_ACTUAL_CUDA_KERNELS', 'FAIL') for status in statuses):
+            return 'INCONCLUSIVE_STOP_SAME_ROUTE'
+        passed = [status == 'PASS_ACTUAL_CUDA_KERNELS' for status in statuses]
+    except (KeyError, TypeError, ValueError):
+        return 'INCONCLUSIVE_STOP_SAME_ROUTE'
+    if not actual:
+        return 'CPU_CONTROLS_ONLY'
+    return {(False, False, False): 'COMMON_PROVIDER_RUNTIME_PATH_STOP',
+            (True, False, False): 'WORKER_IDENTITY_LIMIT_LAYER',
+            (True, True, False): 'ADDED_FILTER_IMPLICATED_SYSCALL_UNRESOLVED',
+            (True, True, True): 'CUDA_PATH_WORKS_FAILURE_NOT_REPRODUCED'}.get(
+                tuple(passed), 'NONMONOTONIC_INCONCLUSIVE_STOP_SAME_ROUTE')
+
+
+def diagnose(prefix, output, *, actual):
+    """Three bounded fresh processes on an already-installed host; no allocation API."""
+    output = Path(output); output.mkdir(mode=0o700, parents=True, exist_ok=False)
+    receipt = {'actual_gpu': actual, 'cases': {}, 'decision': 'INCOMPLETE',
+               'denied_syscall_trace': 'NOT_COLLECTED', 'automatic_retry': False}
+    life.write(output/'started.json', receipt)
+    for case in 'ABC':
+        row = {}; receipt['cases'][case] = row
+        channel = None
+        try:
+            channel = container.ContainerChannel(command(prefix, 'diagnostic-'+case.lower(), 30, actual), output/(case+'-stderr.log'))
+            deadline = time.monotonic()+35
+            row['result'] = channel.read(deadline)
+            if row['result'].get('case') != case or row['result'].get('phase') != 'RESULT':
+                raise ValueError('diagnostic case/phase mismatch')
+        except Exception as exc:
+            row['error'] = {'type': type(exc).__name__, 'message': str(exc)[:1500]}
+        finally:
+            if channel is not None:
+                try:
+                    row['exit_code'] = channel.close()
+                except Exception as exc:
+                    row['error'] = {'type': type(exc).__name__, 'message': str(exc)[:1500]}
+                (output/(case+'-stdout.log')).write_bytes(channel.partial)
+            try:
+                checkpoints = [json.loads(line.removeprefix('BACKTRACE_CUDA_BEFORE '))
+                    for line in (output/(case+'-stderr.log')).read_text().splitlines()
+                    if line.startswith('BACKTRACE_CUDA_BEFORE ')]
+                if len(checkpoints) != 1 or checkpoints[0].get('case') != case or checkpoints[0].get('phase') != 'BEFORE_CUDA':
+                    raise ValueError('one matching pre-CUDA checkpoint required')
+                row['before'] = checkpoints[0]
+                primary = [json.loads(line.removeprefix('BACKTRACE_CUDA_PRIMARY '))
+                    for line in (output/(case+'-stderr.log')).read_text().splitlines()
+                    if line.startswith('BACKTRACE_CUDA_PRIMARY ')]
+                if len(primary) == 1 and primary[0].get('case') == case:
+                    row['primary_checkpoint'] = primary[0]
+            except Exception as exc:
+                row['checkpoint_error'] = str(exc)[:500]
+            life.write(output/(case+'-checkpoint.json'), receipt)
+        try:
+            row['teardown'] = state(prefix)
+            if row['teardown']['same_process_alive']:
+                raise RuntimeError('diagnostic process survived; stop before next case')
+            if actual:
+                row['idle_after'] = inventory(prefix, row['before']['identity']['cuda_visible_devices'])
+        except Exception as exc:
+            row['error'] = {'type': type(exc).__name__, 'message': str(exc)[:1500]}
+            break
+        finally:
+            life.write(output/(case+'-teardown.json'), receipt)
+    receipt['decision'] = diagnostic_decision(receipt['cases'], actual)
+    life.write(output/'receipt.json', receipt)
+    return receipt
 
 
 def inventory(prefix,uuid=None,idle=True):
@@ -97,7 +199,7 @@ print(json.dumps({'uuid':ids[0],'xml':raw,'nodes':nodes}))
         'used_memory':rows[0].findtext('used_memory'),'xml_sha256':life.digest(r['xml'].encode())}
 
 
-def exercise(prefix,output,*,actual):
+def exercise(prefix,output,*,actual,comparison_only=False):
     output=Path(output);output.mkdir(mode=0o700,parents=True,exist_ok=True)
     result={'status':'INCOMPLETE','actual_gpu':actual,'weight_bytes':0,'pretrained_requests':0,'training_steps':0,'checks':{}}
     def retain(label):life.write(output/(label+'-checkpoint.json'),result)
@@ -133,6 +235,11 @@ print(json.dumps(r))
     else:device={'uuid':'GPU-00000000-0000-0000-0000-000000000000','minimum_total_bytes':24*1024**3,'device_basename':'nvidia0'}
     config={'gpu':device,'resident_bytes':size}
     remote(prefix,"import pathlib,json;p=pathlib.Path('/opt/backtrace/"+('minimum-gpu.json' if actual else 'minimum-cpu.json')+"');p.write_text("+repr(json.dumps(config))+");p.chmod(0o444);print('{}')")
+    if comparison_only:
+        result['cuda_comparison'] = diagnose(prefix, output/'cuda-comparison', actual=actual)
+        result['status'] = 'DIAGNOSTIC_RECORDED'
+        life.write(output/'receipt.json', result)
+        return result
     boundary=one('boundary');result['boundary']=boundary
     checks=result['checks']
     for key in ('socket_denied','unix_socket_denied','fork_denied','exec_denied','root_denied',
@@ -153,6 +260,11 @@ print(json.dumps(r))
         finally:code=ch.close()
         checks['missing_gpu_rejected']=code!=0 and 'CPU fallback forbidden' in (output/'missing-gpu.log').read_text()
         if not checks['missing_gpu_rejected']:raise AssertionError('missing GPU not rejected at exact kernel gate')
+        result['cuda_comparison_cpu'] = diagnose(prefix, output/'cuda-comparison', actual=False)
+        checks['cuda_comparison_cpu'] = (result['cuda_comparison_cpu']['decision'] == 'CPU_CONTROLS_ONLY'
+            and all(row['result']['status'] == 'FAIL' and 'CPU fallback forbidden' in row['result'].get('error', '')
+                    for row in result['cuda_comparison_cpu']['cases'].values()))
+        if not checks['cuda_comparison_cpu']:raise AssertionError('CPU comparison logging/boundaries failed')
     result['interruptions']={}
     for kind in ('deadline','transport','supervisor'):
         ch=container.ContainerChannel(command(prefix,'active' if actual else 'cpu-hold',15 if kind=='deadline' else 120,actual),output/(kind+'.log'))
@@ -188,7 +300,7 @@ print(json.dumps(r))
     life.write(output/'receipt.json',result);return result
 
 
-def connected(root,endpoint,output,*,actual):
+def connected(root,endpoint,output,*,actual,comparison_only=False):
     root=Path(root);output=Path(output);output.mkdir(mode=0o700,parents=True,exist_ok=True)
     result={'status':'INCOMPLETE','actual_gpu':actual}
     try:
@@ -204,7 +316,7 @@ def connected(root,endpoint,output,*,actual):
                 stdout=subprocess.PIPE,stderr=log,timeout=1100,env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8'})
         if p.returncode:raise RuntimeError('exact offline install failed')
         result['installation']=json.loads(p.stdout);life.write(output/'installation-checkpoint.json',result)
-        result['diagnostics']=exercise(prefix,output/'diagnostics',actual=actual)
+        result['diagnostics']=exercise(prefix,output/'diagnostics',actual=actual,comparison_only=comparison_only)
         result['status']=result['diagnostics']['status']
     except Exception as e:
         import traceback

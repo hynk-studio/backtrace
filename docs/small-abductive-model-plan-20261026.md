@@ -3,52 +3,115 @@
 Decision date: 2026-10-26. Status: **A1 CPU instruments implemented; training and deployment NOT RUN**.
 Refs [BT-001](https://github.com/hynk-studio/backtrace/issues/1).
 
-The [pre-minimum preparation](small-model-precheck-20261026.md) separates the
-next hardware-only checkpoint from the unchanged 36-request pretrained baseline.
-Outer time/export/cleanup and effective memory mechanisms passed free native
-qualification: 620 tests and 14 operational cases, with all eleven CPU export
-archives independently verified. Actual GPU execution and the new provider/distributed launch gate remain
-unqualified; no consumed permit is reused.
+## Current operating decision (2026-10-27 KST)
 
-## Objective and priority
+**Infrastructure expansion is paused. The next question is where CUDA fails.**
+The [last hardware attempt](small-model-minimum-retry-20261027.md) passed actual
+provider readiness, pinned runtime delivery, device inventory and an 8 GiB
+resident-memory probe, then failed at CUDA initialization with error 304. Both
+controllers confirmed deletion. The added filter remains a hypothesis. There is
+no unused paid authorization, and this revision performs no provider allocation.
+This is no evidence against specialist learning: the research experiment has
+not yet been reached.
 
-The 2026-10-27 [provider follow-up](small-model-provider-20261027.md) passed
-live account/quote access, exact-image new-payload delivery and bounded independent
-remote observation. It also established a blocker: the tested ordinary container
-does not satisfy the prepared native namespace/cgroup prerequisites. The observer
-has terminated without a paid target. Resolve this topology and qualify remote
-resource cleanup before the hardware minimum; available credit/stock alone does
-not establish execution readiness. No scientific protocol or prior input changed.
+Keep the established time/cost cap and independent cleanup, evaluator-only
+answers, raw outputs and failures, B1 strong prompting and B2 general-reasoning
+training controls, and the distinction between synthetic accuracy and Augnes
+usefulness. Change the order and size of implementation, not these standards.
+A proposed change must identify the uncertainty it reduces and the decision it
+enables. Defer changes that cannot do either. Do not add another agent/provider
+controller, evaluator layer, model candidate or benchmark before the baseline.
 
-The [container correction](small-model-container-20261027.md) now qualifies exact
-Python 3.12.14 and all 56 CUDA packages inside the same ordinary image, with the
-evaluator outside and a non-root filtered inference worker inside. Native
-40445252781 passed 639 tests and 23 connected controls,
-including both 36-assignment CPU controls and real remote worker-loss cleanup.
-Tiny-random raw outputs match the preceding native qualification. This remains
-CPU instrumentation evidence: production CUDA integration, provider memory
-admission, live device/context tests and resource-bound remote deletion are
-pending. The free adapter rejects actual CUDA/pretrained modes.
+The current free change extends the existing hardware worker/supervisor and SSH
+collector. A/B/C each get a fresh process and the same installed runtime, GPU
+UUID, sanitized environment and 30-second ceiling:
 
-The subsequent [hardware minimum](small-model-minimum-20261027.md) consumed one
-bounded A40 allocation. It stopped before GPU kernels because the controller
-used SSH metadata before it was ready. Both independent controllers confirmed
-deletion, and the final account snapshot showed zero Pods. The correction adds
-bounded endpoint readiness waiting and passed 656 native tests plus all 16 free
-container controls. This is a
-failed minimum with successful cleanup; it provides no model-capability evidence
-and grants no automatic paid retry. A1 remains partial and A2 has not started.
+| Case | Configuration | Question |
+| --- | --- | --- |
+| A | Trusted root, ordinary provider OCI, no additional project filter | Does the common provider/runtime CUDA path work? |
+| B | UID/GID 65532, cleared groups/capabilities, fixed limits and no-new-privileges, no additional filter | Does the worker privilege/restriction layer change the outcome? |
+| C | Same as B with the unchanged project filter before CUDA | Does adding this filter change the outcome? |
 
-The [authorized retry](small-model-minimum-retry-20261027.md) subsequently
-established actual provider connection, fixed runtime installation, one A40
-device and 8 GiB touched resident RAM. CUDA initialization failed with error 304
-before kernels; successful device inventory is not a CUDA capability result.
-The added-filter interaction is a hypothesis requiring paired CUDA controls,
-which were missing from this attempt. A concrete diagnostic comparison is
-designed but not implemented or executed. Both deletion proofs passed, with
-observed remaining credit USD 3.0181656274. This retry is consumed. GPU kernels,
-full-model admission, pretrained baselines, training and Augnes transfer remain
-unqualified or NOT RUN; no research capability claim is promoted.
+The original torch CUDA/BF16/SDPA probe runs first. Each case preserves a pre-CUDA
+identity/filter-count/limit checkpoint, raw stdout/stderr and its result, actual
+exit status and process-absence observation. Supplemental driver/runtime return
+codes, device-open errno and loaded CUDA library paths/hashes follow the primary
+probe; these are not independent controls or substitutes for a failed result.
+A timeout, lost transport or incomplete record is inconclusive, not a CUDA FAIL.
+Successful device enumeration alone is never CUDA success. CPU comparisons are
+labeled CPU_CONTROLS_ONLY even if an authored test fixture reports success.
+
+| Complete A/B/C kernel results | Decision |
+| --- | --- |
+| fail / fail / fail | Investigate the common provider/image/library path; this does not exclude additional worker problems. Stop renting the same path without discriminating evidence. |
+| pass / fail / fail | Narrow to worker identity/privileges/limits/device access; it does not identify one restriction. |
+| pass / pass / fail | The added filter is implicated. Identify the rejected call before a narrow correction; do not remove the filter or move initialization ahead of it on inference alone. |
+| pass / pass / pass | The current path works but the historical failure is not reproduced. Complete the existing actual GPU interruption checks, then proceed toward the baseline. |
+| Any other pattern, unequal starting conditions, missing result or unconfirmed teardown | Inconclusive. Stop; preserve all observations and reconsider the execution environment. |
+
+**A future paid diagnostic is one allocation, not a retry loop.** Its proposal
+keeps the existing maximum USD 1, 3,000 allocation-inclusive seconds, USD 0.50
+reserve, no top-up and no automatic second create; refresh affordability before
+requesting approval. Work/export/cleanup remain 2,580/120/300 seconds. The three
+cases consume at most 90 worker seconds within that window. If available, a
+bounded denied-call trace may follow the first comparison in the same allocation;
+record its availability/failure and treat traced runs as supplementary because
+tracing changes execution. No tracing tool or capability is silently installed
+or enabled on paid hardware. No repeated A/B/C run substitutes for missing logs.
+If this one diagnosis does not distinguish a relevant layer, or a layer is
+implicated without evidence supporting a correction, stop the same-route rental
+and review the environment choice before any further paid proposal. Export errors
+must never suppress deletion; unresolved deletion prevents further compute.
+
+The comparison code has no provider-create operation. Existing historical paid
+start branches, claims and receipts remain fixed; no new paid scope is created.
+Free validation reuses the existing exact-image workflow's container job. The
+owner/watcher jobs for historical scopes do not run on this preparation branch.
+The unchanged independent deletion controller is reused later, not rebuilt here.
+A denied-syscall trace is still NOT COLLECTED. Free checks qualify instrumentation
+only; actual A/B/C, GPU interruption and pretrained performance remain NOT RUN.
+
+Local validation of this preparation: 31 of 32 focused tests pass; the actual
+privilege-change test fails with EPERM at capability drop. This Work host reports
+zero effective/permitted/bounding capabilities, including no CAP_SETPCAP, so it
+cannot qualify the ordinary-OCI A/B/C boundary. Do not skip or relabel that failure.
+The full local suite ran 671 tests with six failures, ten errors and four skips;
+five failures/ten errors/four skips match the preceding local environment paths,
+with the new boundary failure reported separately. Preflight and diff checks pass.
+Original failed logs and partial results are retained locally. Exact-image free
+qualification is NOT RUN, and this is not a paid-launch-ready claim.
+
+The comparison-only entry is the existing `connected(..., comparison_only=True)`
+(or `exercise(..., comparison_only=True)` after installation). It records A/B/C
+without repeating the resident-memory/interruption campaign. The existing paid
+owner still uses its historical entry; no paid adapter/authorization is created
+in this preparation. Connecting a newly authorized diagnostic must reuse the
+existing owner/watcher and export/deletion limits, with this prepared comparison
+as its measurement payload, not introduce another lifecycle framework.
+
+After the common execution path works, use the **existing 18 E2B assignments**
+(nine development cases, each B0/B1) from the original 36-assignment smoke.
+Preserve their input bytes, prompts, scoring and assigned denominators. Report
+valid/invalid/missing responses, posterior/decision error, cold loading and
+observed latency/VRAM/RAM. With this small sample, latency quantiles are descriptive.
+Do not wait for broader E2/E3 construction, power analysis or final test sealing
+before measuring this development baseline. These later gates still apply to
+confirmatory claims. E4B remains the deferred 18 assignments, not silently dropped
+or counted as E2B failures; extend to it after the shared path works.
+
+Then verify a small actual E2B update, changed adapter tensors, save/reload and
+adapter-on/off behavior. This demonstrates implementation only. B1/B2/S controlled
+comparison and untouched evaluation are required for a learning claim. Soon after
+the initial baseline, review three to five development-only Augnes case replays
+with evidence cutoffs: plausible explanations, disconfirming predictions, useful
+next checks and unsupported claims. Use source-grounded review and retain
+ambiguity. This early gap check does not require product integration, does not
+publish private cases and does not certify deployment usefulness.
+
+Progress reports have three items: what was learned; what remains unknown; what
+decision the next task enables. The assistant manages identifiers and approval
+records. Completion means a decision-relevant uncertainty decreased, not that
+more preparation files or tests were produced.
 
 The owner clarified that speed is not the objective. The first objective is to
 establish whether a small specialist model learns useful abductive inference,
