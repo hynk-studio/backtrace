@@ -194,7 +194,7 @@ def connected(root,endpoint,output,*,actual):
         prefix=prefix_for(root,host,port)
         ssh.wait_for_command(prefix,['true'],30)
         result['runtime_transfer']=delivery.push(root/'runtime',root/'runtime-manifest.json',
-            prefix+[delivery.ssh_command(host,port,root/'keys/owner-key',ssh.known_hosts(root/'keys',host,port),
+            prefix+[delivery.ssh_command(host,port,root/'keys/owner-key',root/'keys/known-hosts',
                 '/root/backtrace/runtime',life.digest((root/'runtime-manifest.json').read_bytes()))[-1]],600)
         with (output/'install.log').open('xb') as log:
             p=subprocess.run(prefix+[shlex.join(['/usr/bin/python3.12','-I','/root/backtrace/runtime/installer.py','install','/root/backtrace/runtime'])],
