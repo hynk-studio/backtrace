@@ -1,5 +1,31 @@
 # Backtrace working agreement
 
+## Current passive-listener correction (2026-10-31 KST)
+
+The current autonomous-continuation instruction remains active. First E2B attempt
+41203845196 at immutable source `13f98c34cb90de7d9265af74d8153aecb78b9d1b`
+failed before model work: A/B actual kernels passed; C/D CUDA initialization
+failed; D recorded two connect and two bind denials. All 24 assignments remain
+NOT_RUN. Read `docs/small-model-e2b-execution-20261031.md` and its retained raw
+evidence. Both controllers proved deletion. At 13:22:25 UTC there were zero Pods,
+zero spend, autopay off and USD 2.7145033478; cumulative observed continuation
+spend is USD 0.1915407861.
+
+Continue the evidence-supported bind/listen correction on Draft #45. Keep connect,
+accept, send, all other socket shapes and inherited socket descriptors blocked.
+The candidate permits a passive Unix sequenced-packet listener; it does not claim
+address-string filtering. Its native kernel test must prove that a queued peer
+cannot be accepted or read through the listener. No CUDA initialization is moved
+before restrictions and no privileged namespace is added.
+
+Fresh free qualification must precede the new `e2b-listener-paid-20261031`
+namespace and `bt-001-e2b-listener-start-20261031` start. The previous E2B and trace
+source/start refs, permits, failures and state remain immutable. Reuse the same
+owner/watcher, affordable scope and 24 inputs, without a blind repeat or new
+orchestration layer. The existing cumulative USD 1 ceiling and reserve still
+cover the next USD 0.505 maximum projection. Continue through actual evidence and
+interpretation; another diagnostic, passing test or Draft PR is not completion.
+
 ## Active E2B measurement continuation (2026-10-31 KST)
 
 The owner's current autonomous-continuation instruction remains active. Work on

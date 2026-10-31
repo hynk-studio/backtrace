@@ -2,9 +2,10 @@
 
 Standalone trusted launcher, never a model-selected program. The native owner
 keeps the evaluator. Only one inference worker is allowed in this container.
-Network/IPC connections, process creation, exec, ptrace and namespace changes
-are denied in-kernel; one observed unconnected driver socket shape and ordinary
-threads remain available. This is not the native bwrap jail.
+Worker-initiated network/IPC connections, accepted channels, process creation,
+exec, ptrace and namespace changes are denied in-kernel. One driver socket shape
+may bind/listen, but cannot connect, accept or send. Ordinary threads remain
+available. This is not the native bwrap jail.
 """
 import ctypes
 import errno
@@ -48,13 +49,15 @@ def restrict_syscalls(*, trace_denials=False):
     rows = [(0x20,0,0,4),(0x15,1,0,0xc000003e),(0x06,0,0,0x80000000),
             (0x20,0,0,0),(0x35,0,1,0x40000000),(0x06,0,0,0x80000000)]
     # Actual GPU trace 41200242706 denied socket(AF_UNIX,
-    # SOCK_SEQPACKET|SOCK_CLOEXEC, 0). Permit only this inert descriptor shape.
-    # Connect/bind/listen/accept/sendmsg/sendto/socketpair remain denied; no
-    # connected descriptors survive child setup. Other socket shapes stay denied.
+    # SOCK_SEQPACKET|SOCK_CLOEXEC, 0). Follow-up 41203845196 reached bind denial.
+    # CUDA's UVM listener needs bind/listen (also observed by upstream snapd).
+    # Connect/accept/sendmsg/sendto/socketpair remain denied, no connected socket
+    # survives child setup, and other socket shapes stay denied. A queued peer
+    # cannot be accepted or read through the passive listening descriptor.
     rows += [(0x15,0,8,41),(0x20,0,0,16),(0x15,0,5,1),
              (0x20,0,0,24),(0x15,0,3,0x80005),(0x20,0,0,32),
              (0x15,0,1,0),(0x06,0,0,0x7fff0000),(0x06,0,0,deny_action|errno.EPERM)]
-    denied = (42,43,44,46,49,50,53,57,58,59,101,155,161,165,166,
+    denied = (42,43,44,46,53,57,58,59,101,155,161,165,166,
               272,288,299,304,307,308,310,311,321,322,323,425,426,427,438)
     for nr in denied:
         # libc can block SIGSYS across spawn/fork/exec. Preserve literal ERRNO

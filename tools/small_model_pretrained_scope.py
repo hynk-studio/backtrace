@@ -15,13 +15,14 @@ from tools import small_model_minimum_probe as probe, small_model_pretrained as 
 from tools import small_model_container as container
 
 REVIEW='bt-001-e2b-baseline-20261031'
-START='bt-001-e2b-baseline-start-20261031'
+START='bt-001-e2b-listener-start-20261031'
 STATE_BRANCH='bt-001-e2b-baseline-state-20261031'
-NAMESPACE='e2b-baseline-paid-20261031'
+NAMESPACE='e2b-listener-paid-20261031'
 WORKFLOW='.github/workflows/small-model-pretrained.yml'
 INSTRUCTION='이번에는 목표까지 실제로 이어가도록 하고 혼자 해결할 수 없는 문제가 있을 때만 멈추고 보고해'
 CONTRACT=dict(minimum.CONTRACT,scope='E2B_ORIGINAL_18_PLUS_3_RETROSPECTIVE_REPLAYS_V1',
     weight_bytes=10246621918,pretrained_requests=24,training_steps=0,
+    cuda_socket_policy='UNIX_SEQPACKET_PASSIVE_BIND_LISTEN_NO_CONNECTIONS_V1',
     full_model_memory_admission='BOUNDED_ATTEMPT_PROVIDER_AND_VISIBLE_MEMORY_ONLY')
 OriginalState=minimum.State
 original_sources=minimum.sources

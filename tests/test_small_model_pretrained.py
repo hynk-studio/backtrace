@@ -1,5 +1,7 @@
 import json
 from pathlib import Path
+import select
+import socket
 import tempfile
 import subprocess
 import sys
@@ -40,17 +42,24 @@ class PretrainedTests(unittest.TestCase):
                                  (output/'collection/ledger.jsonl').read_bytes())
                 self.assertTrue((output/'collection/wire-0000.json').exists())
 
-    def test_only_observed_socket_shape_is_created_and_cannot_communicate(self):
-        code="""import ctypes,errno,json,socket,os
+    def test_passive_driver_listener_cannot_accept_or_read_a_queued_peer(self):
+        code="""import ctypes,errno,json,socket,os,sys
 from tools.small_model_container_worker import restrict_syscalls
 restrict_syscalls();s=socket.socket(socket.AF_UNIX,socket.SOCK_SEQPACKET|socket.SOCK_CLOEXEC,0);r={}
+s.bind('\\0backtrace-cuda-'+str(os.getpid()));s.listen(128)
+print(json.dumps({'address':s.getsockname()}),flush=True)
+if sys.stdin.readline()!='continue\\n':raise RuntimeError('test peer not ready')
 lib=ctypes.CDLL(None,use_errno=True)
 def bare_socket():
  fd=lib.syscall(41,1,5,0)
  if fd<0:raise OSError(ctypes.get_errno(),'raw socket')
  os.close(fd)
+def accept(nr):
+ fd=lib.syscall(nr,s.fileno(),0,0,0)
+ if fd<0:raise OSError(ctypes.get_errno(),'accept')
+ os.close(fd)
 for name,fn in [('connect',lambda:s.connect('/tmp/backtrace-not-a-server')),
- ('bind',lambda:s.bind('/tmp/backtrace-must-not-bind')),('listen',lambda:s.listen(1)),
+ ('accept',lambda:accept(43)),('accept4',lambda:accept(288)),
  ('sendmsg',lambda:s.sendmsg([b'x'])),('sendto',lambda:s.sendto(b'x','/tmp/backtrace-not-a-server')),
  ('inet',lambda:socket.socket()),('unix_stream',lambda:socket.socket(socket.AF_UNIX)),
  ('unix_no_cloexec',bare_socket),
@@ -58,11 +67,27 @@ for name,fn in [('connect',lambda:s.connect('/tmp/backtrace-not-a-server')),
  try:fn()
  except OSError as e:r[name]=e.errno==errno.EPERM
  else:r[name]=False
+try:os.read(s.fileno(),1)
+except OSError as e:r['listener_cannot_receive']=e.errno in (errno.EINVAL,errno.ENOTCONN)
+else:r['listener_cannot_receive']=False
 s.close();print(json.dumps(r))
 """
-        p=subprocess.run([sys.executable,'-c',code],capture_output=True,text=True,timeout=10)
-        self.assertEqual(p.returncode,0,p.stderr)
-        self.assertEqual(len(json.loads(p.stdout)),9);self.assertTrue(all(json.loads(p.stdout).values()))
+        p=subprocess.Popen([sys.executable,'-c',code],stdin=subprocess.PIPE,
+                           stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
+        try:
+            self.assertTrue(select.select([p.stdout],[],[],10)[0],'listener startup timed out')
+            first=p.stdout.readline()
+            if not first:
+                _,err=p.communicate(timeout=5);self.fail(err)
+            address=json.loads(first)['address']
+            with socket.socket(socket.AF_UNIX,socket.SOCK_SEQPACKET|socket.SOCK_CLOEXEC,0) as peer:
+                peer.settimeout(3);peer.connect(address);peer.sendall(b'queued-peer-data')
+                out,err=p.communicate('continue\n',timeout=10)
+            self.assertEqual(p.returncode,0,err)
+            self.assertEqual(len(json.loads(out)),10);self.assertTrue(all(json.loads(out).values()))
+        finally:
+            if p.poll() is None:p.kill()
+            p.communicate(timeout=5)
 
     def test_no_failed_partial_or_cpu_hardware_record_authorizes_a_job(self):
         good={'status':'PASS_ACTUAL_HARDWARE_ONLY','actual_gpu':True,

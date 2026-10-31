@@ -1,15 +1,19 @@
 # Small abductive model: evidence before deployment
 
-Decision date: 2026-10-26; revised 2026-10-31 KST. Status: **A/B/C recorded; added filter implicated in CUDA initialization, denied syscall unresolved; free code corrections qualified. Pretrained baseline, training and Augnes replay NOT RUN**.
-Refs [BT-001](https://github.com/hynk-studio/backtrace/issues/1).
+Decision date: 2026-10-26; revised 2026-10-31 KST. Status: **actual CUDA
+A/B kernels pass; C/D initialization still fails after socket-creation correction;
+bind/listen candidate is being qualified. Pretrained baseline, training and
+Augnes replay remain NOT_RUN**. Refs [BT-001](https://github.com/hynk-studio/backtrace/issues/1).
 
-Current [diagnostic outcome](small-model-cuda-diagnostic-20261031.md): the one
-paid scope is consumed and cleaned up. A/B initialized CUDA but failed a later
-joint gate; C alone returned 304. Preserve the original failed run. A known
-UUID spelling defect and post-recording duplicate-write bug are corrected and
-verified by 679 native tests and 17 ordinary-container checks. Production
-filtering is unchanged. The denied operation and a
-supported remedy remain prerequisites to another same-route capability run.
+The [current execution record](small-model-e2b-execution-20261031.md) preserves
+first E2B attempt 41203845196 and the preceding denied-call trace. The initial
+trace identified Unix sequenced-packet socket creation. Allowing that exact shape
+exposed connect/bind denials; it was insufficient. The next candidate permits only
+passive bind/listen while keeping connect/accept/send and other socket shapes
+blocked. Its justification and limits are explicit. Both failed resources were
+independently deleted. All 24 planned assignments remain NOT_RUN; infrastructure
+progress is not a small-model result. The owner's continuation instruction remains
+active for the next qualified, affordable measurement.
 
 ## Active objective and delegated continuation (2026-10-31 KST)
 
