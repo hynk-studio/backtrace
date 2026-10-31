@@ -75,21 +75,27 @@ def qualified_job(hardware,header):
 def after_hardware(root,endpoint,prefix,output,hardware):
     header=json.loads((ROOT/'.local/e2b/sources/E2B/tensor-header.json').read_bytes())
     job=qualified_job(hardware,header)
+    jobs=root/'assets/jobs';jobs.mkdir(mode=0o700)
+    life.write(jobs/'E2B-pretrained.json',job)
+    # The complete multimodal-key allowlist can exceed SSH command-size bounds.
+    # Send the trusted job through the existing authenticated manifest stream.
+    manifest=root/'assets-qualified-manifest.json'
+    manifest.write_bytes(container.manifest(root/'assets','model'))
     # Installed model bytes are immutable and contain no prompts or labels.
-    transfer=delivery.push(root/'assets',root/'assets-manifest.json',
+    transfer=delivery.push(root/'assets',manifest,
         prefix+[delivery.ssh_command(endpoint['host'],endpoint['port'],root/'keys/owner-key',
-            root/'keys/known-hosts','/root/backtrace/assets',life.digest((root/'assets-manifest.json').read_bytes()))[-1]],600)
+            root/'keys/known-hosts','/root/backtrace/assets',life.digest(manifest.read_bytes()))[-1]],600)
     installed=remote.remote(prefix,"""import json,pathlib,shutil
 src=pathlib.Path('/root/backtrace/assets');dst=pathlib.Path('/opt/backtrace/assets')
 shutil.move(str(src),dst)
 for p in dst.rglob('*'):
  if p.is_symlink():raise ValueError('asset symlink')
  p.chmod(0o755 if p.is_dir() else 0o444)
-dst.chmod(0o755);(dst/'jobs').mkdir(mode=0o755)
-p=dst/'jobs/E2B-pretrained.json';p.write_text("""+repr(json.dumps(job))+""");p.chmod(0o444)
+dst.chmod(0o755)
 print(json.dumps({'bytes':sum(p.stat().st_size for p in dst.rglob('*') if p.is_file()),'model':'E2B'}))
 """,60)
-    life.write(output/'asset-transfer.json',{'transfer':transfer,'installation':installed})
+    life.write(output/'asset-transfer.json',{'transfer':transfer,'installation':installed,
+        'qualified_manifest_sha256':life.digest(manifest.read_bytes())})
     spec=output/'collector-input.json';life.write(spec,{'prefix':prefix,'gpu_uuid':job['gpu']['uuid']})
     python=ROOT/'.local/model-runtime/bin/python'
     try:
