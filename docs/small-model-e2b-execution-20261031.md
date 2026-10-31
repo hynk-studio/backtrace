@@ -98,3 +98,13 @@ start `bt-001-e2b-listener-start-20261031`, only after complete free qualificati
 It preserves the original 24 assignments and still compares A/B/C/D before model
 work on the same allocation. The consumed first source/start/permit stays fixed.
 No pretrained result or Augnes utility is established; continue to measurement.
+
+The first passive-listener free run, 41205794481 at
+`60b2f79173925f01ae896f24175e610e611d3636`, failed one of 688 native tests:
+the new test attempted to JSON-encode Python's bytes-valued abstract Unix socket
+address. Socket creation/bind/listen had already succeeded. Explicit ASCII
+decoding fixes the test's parent/child address handoff; the production filter is
+unchanged by that correction. Preserve artifact 13044049582, SHA-256
+`1c28353ed08885bb8637b5f85c63450031a1dca4dc5fc1f07b59ce3d0690ed82`.
+No new paid action occurred. Complete native/container qualification is still
+required before the next permit.

@@ -47,7 +47,7 @@ class PretrainedTests(unittest.TestCase):
 from tools.small_model_container_worker import restrict_syscalls
 restrict_syscalls();s=socket.socket(socket.AF_UNIX,socket.SOCK_SEQPACKET|socket.SOCK_CLOEXEC,0);r={}
 s.bind('\\0backtrace-cuda-'+str(os.getpid()));s.listen(128)
-print(json.dumps({'address':s.getsockname()}),flush=True)
+print(json.dumps({'address':s.getsockname().decode('ascii')}),flush=True)
 if sys.stdin.readline()!='continue\\n':raise RuntimeError('test peer not ready')
 lib=ctypes.CDLL(None,use_errno=True)
 def bare_socket():
