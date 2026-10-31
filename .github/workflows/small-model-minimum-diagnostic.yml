@@ -1,7 +1,7 @@
-name: Small model bounded CUDA diagnosis
+name: Small model CUDA denial trace
 on:
   push:
-    branches: [bt-001-cuda-diagnostic-20261031, bt-001-cuda-diagnostic-start-20261031]
+    branches: [bt-001-cuda-trace-20261031, bt-001-cuda-trace-start-20261031]
 permissions:
   contents: write
   actions: read
@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   container:
-    if: github.ref_name == 'bt-001-cuda-diagnostic-20261031'
+    if: github.ref_name == 'bt-001-cuda-trace-20261031'
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     permissions:
@@ -76,7 +76,7 @@ jobs:
         run: |
           python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
       - name: Prepare pinned CUDA wheels and transport before any allocation
-        if: github.ref_name == 'bt-001-cuda-diagnostic-start-20261031'
+        if: github.ref_name == 'bt-001-cuda-trace-start-20261031'
         run: |
           python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
           python -m pip download --no-cache-dir --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cu126 -r docs/small-model-gpu-requirements.txt -d .local/cuda-wheels
@@ -93,7 +93,7 @@ jobs:
           RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
         run: |
           mode=free
-          if [ "$GITHUB_REF_NAME" = bt-001-cuda-diagnostic-start-20261031 ]; then mode=paid; fi
+          if [ "$GITHUB_REF_NAME" = bt-001-cuda-trace-start-20261031 ]; then mode=paid; fi
           python -m tools.small_model_minimum_diagnostic owner "$mode"
       - name: Preserve current account and quotes (read only)
         if: always()
@@ -125,7 +125,7 @@ jobs:
           RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
         run: |
           mode=free
-          if [ "$GITHUB_REF_NAME" = bt-001-cuda-diagnostic-start-20261031 ]; then mode=paid; fi
+          if [ "$GITHUB_REF_NAME" = bt-001-cuda-trace-start-20261031 ]; then mode=paid; fi
           python -m tools.small_model_minimum_diagnostic watch "$mode"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()

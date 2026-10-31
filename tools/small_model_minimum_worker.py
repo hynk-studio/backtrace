@@ -18,7 +18,7 @@ import sys
 import time
 
 ROOT = Path('/opt/backtrace')
-DIAGNOSTIC_MODES = ('diagnostic-a', 'diagnostic-b', 'diagnostic-c')
+DIAGNOSTIC_MODES = ('diagnostic-a', 'diagnostic-b', 'diagnostic-c', 'diagnostic-d')
 
 
 def diagnostic_identity():
@@ -86,6 +86,11 @@ def diagnostic_cuda(config, mode):
                 result['supplemental_after_probe']['device_count'] = count.value if code == 0 else None
         except Exception as exc:
             result['cuda_libraries'][path] = {'error_type': type(exc).__name__, 'error': str(exc)[:500]}
+    if mode == 'diagnostic-d':
+        recorder = ctypes.CDLL(str(ROOT/'denial-trace.so'))
+        recorder.backtrace_trace_count.restype = ctypes.c_uint
+        result['denial_trace'] = {'count': recorder.backtrace_trace_count(), 'log_limit': 64,
+                                 'syscalls_remain_denied': True, 'diagnostic_only': True}
     print(json.dumps(result), flush=True)
 
 
@@ -134,7 +139,12 @@ def child(parent, mode):
         'CUDA_CACHE_DISABLE':'1','CUDA_VISIBLE_DEVICES':config.get('gpu',{}).get('uuid',''),
         'CUDA_DEVICE_ORDER':'PCI_BUS_ID'})
     resource.setrlimit(resource.RLIMIT_CORE,(0,0));resource.setrlimit(resource.RLIMIT_FSIZE,(1048576,1048576))
-    if mode == 'diagnostic-b':
+    if mode == 'diagnostic-d':
+        recorder = ctypes.CDLL(str(ROOT/'denial-trace.so'), use_errno=True)
+        if recorder.backtrace_trace_install():
+            raise OSError(ctypes.get_errno(), 'denial recorder unavailable')
+        base.restrict_syscalls(trace_denials=True)
+    elif mode == 'diagnostic-b':
         base.prctl(38, 1)  # B and C share no-new-privileges; only C adds our filter.
     elif mode != 'diagnostic-a':
         base.restrict_syscalls()

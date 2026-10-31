@@ -1,5 +1,29 @@
 # Backtrace working agreement
 
+## Active continuation and denied-call trace (2026-10-31 KST)
+
+The owner explicitly instructed continued work to the actual small-model/Augnes
+measurement goal, stopping only on a blocker requiring the owner. This supersedes
+preparation-only stopping points and the consumed one-diagnosis scope below;
+historical permits/results remain immutable. Work on
+`bt-001-cuda-trace-20261031`, stacked on Draft #43. Do not merge the Draft stack.
+
+The next discriminating step records added-filter denials in a fourth fresh
+hardware-only process D, after unchanged A/B/C. The production default filter's
+decisions remain unchanged. D uses SIGSYS recording, still denies the call and
+returns the same EPERM; clone3's ENOSYS fallback remains untraced because libc
+blocks signals during thread creation. Instrumentation can affect signal behavior
+and timing; D is not silently equated with C. No ptrace/capability grant is needed.
+
+Reuse the existing qualified owner/watcher and exact-source CPU/container checks.
+Bind the next single-use trace permit to fresh source/state/start identities:
+USD 1 / 3,000 allocation-inclusive seconds / USD 0.50 reserve; no top-up or blind
+same-route retry. Continue evidence-supported fixes and affordable experiments
+afterward under the owner's current delegation; finishing a diagnostic/PR is not
+the research goal. Keep new cumulative spend within USD 1 unless the owner later
+sets a larger limit. Pretrained inference and replay are still NOT RUN. Scientific
+inputs, scoring, raw failures, old source/start refs and paid states stay intact.
+
 ## CUDA comparison outcome and free corrections (2026-10-31 KST)
 
 The authorized one-use scope is consumed. Paid run 41177113950 at
