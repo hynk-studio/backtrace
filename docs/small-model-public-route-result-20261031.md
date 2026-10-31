@@ -11,8 +11,9 @@ the directly observed failing condition is the available permitted route price.
 Provider create requests:0. All three model assignments and four updates remain
 NOT_RUN. Account observations before and after reportUSD1.9441643765, autopay off
 and zero hourly spend; complete inventories at19:26:43 and19:26:51 contain zero
-Pods. No additional GPU charge was observed. The independent watcher has no
-claim and will exit its bounded1500-second pre-claim wait; it cannot create a Pod.
+Pods. No additional GPU charge was observed. The independent watcher finished its bounded1500-second pre-claim wait with
+`NO_CLAIM` and zero provider create requests. The complete workflow is a
+zero-allocation failure, not an outstanding resource.
 The start/permit remain immutable and will not be rerun.
 
 All six owner artifact members,200 nested source bindings and the original
@@ -37,3 +38,21 @@ post-update generation; all CUDA/isolation/deletion controls. New start/state ar
 `bt-001-e2b-public-route-state-20261031`, namespace`e2b-public-route-paid-20261031`.
 Fresh exact-source free qualification and a new single-use permit precede any
 allocation. No top-up, automatic retry, overlap, merge or Augnes write.
+## Exact-source qualification and new execution checkpoint
+
+The route amendment passed free run41234720167 at
+`2e0a16e9ea8eea8e1d680d84805be85783088b9b`:729 native tests in176.365 seconds,
+17 ordinary-container controls, full3,642,464,920-byte runtime and
+10,246,621,918-byte E2B checkpoint, separate readback and two cleanup absence
+observations. The full model download/readback took223.954 seconds. All55 raw
+members and292 source entries over92 paths were independently verified and are
+retained in `evidence/direct-route-qualified-run-41234720167/`.
+These are preparation/CPU controls; they do not establish GPU training or benefit.
+
+A fresh delegated single-use permit at
+`165e8506f98d805470e72296b10a757f247b5bba` binds that exact source, qualification
+and contract. Start `bt-001-e2b-public-route-start-20261031` launched
+run41236271328. At20:00 UTC the pre-allocation model/input preparation finished
+and the bounded owner/watcher stage was active. This checkpoint is not a
+completed model result. Keep the paid source/start immutable; continue to actual
+outcomes, both deletion proofs and measured cost before any E4B allocation.

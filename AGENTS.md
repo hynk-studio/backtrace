@@ -1,5 +1,16 @@
 # Backtrace working agreement
 
+## Qualified public route is executing (2026-10-31 20:00 UTC)
+
+Read docs/small-model-public-route-result-20261031.md. Earlier41233521859 is fully
+finished with zero provider creates and watcher NO_CLAIM. New free41234720167 at
+source2e0a16e9ea8eea8e1d680d84805be85783088b9b passed729 native tests,17 controls,
+full public runtime/model readback and cleanup;55 raw members/292 source entries
+are retained. Fresh permit165e8506f98d805470e72296b10a757f247b5bba and immutable
+start launched41236271328. Preparation finished; actual outcome/deletion is not
+known at this checkpoint. Continue the existing pair, not another start. Do not
+claim actual training, completed20 screening or Augnes benefit from free controls.
+
 ## Public-transport route amendment after zero-allocation rejection (2026-10-31 UTC)
 
 Read docs/small-model-public-route-result-20261031.md. Run41233521859 issued zero

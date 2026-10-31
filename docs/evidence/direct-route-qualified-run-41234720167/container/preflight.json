@@ -1,0 +1,7 @@
+{
+  "dependencies": "standard library only",
+  "local_tooling": "READY",
+  "official_validator": "NOT RUN",
+  "python": "3.12.14",
+  "r0_clean_packaging": "NOT RUN"
+}
