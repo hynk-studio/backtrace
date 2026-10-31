@@ -1,17 +1,4 @@
-
-Loading weights:   0%|          | 0/540 [00:00<?, ?it/s]
-Loading weights:   0%|          | 2/540 [00:00<03:25,  2.62it/s]
-Loading weights:  14%|█▍        | 75/540 [00:00<00:03, 116.45it/s]
-Loading weights:  26%|██▋       | 143/540 [00:00<00:01, 219.35it/s]
-Loading weights:  39%|███▉      | 210/540 [00:01<00:01, 306.92it/s]
-Loading weights:  49%|████▉     | 267/540 [00:01<00:00, 359.55it/s]
-Loading weights:  60%|█████▉    | 323/540 [00:01<00:00, 350.77it/s]
-Loading weights:  69%|██████▊   | 371/540 [00:01<00:00, 354.73it/s]
-Loading weights:  77%|███████▋  | 416/540 [00:01<00:00, 328.88it/s]
-Loading weights:  84%|████████▍ | 456/540 [00:01<00:00, 337.71it/s]
-Loading weights:  92%|█████████▏| 495/540 [00:01<00:00, 347.82it/s]
-Loading weights:  99%|█████████▉| 534/540 [00:01<00:00, 342.07it/s]
-Loading weights: 100%|██████████| 540/540 [00:01<00:00, 270.86it/s]
+Loading weights:   0%|          | 0/540 [00:00<?, ?it/s]Loading weights:   0%|          | 2/540 [00:00<03:25,  2.62it/s]Loading weights:  14%|█▍        | 75/540 [00:00<00:03, 116.45it/s]Loading weights:  26%|██▋       | 143/540 [00:00<00:01, 219.35it/s]Loading weights:  39%|███▉      | 210/540 [00:01<00:01, 306.92it/s]Loading weights:  49%|████▉     | 267/540 [00:01<00:00, 359.55it/s]Loading weights:  60%|█████▉    | 323/540 [00:01<00:00, 350.77it/s]Loading weights:  69%|██████▊   | 371/540 [00:01<00:00, 354.73it/s]Loading weights:  77%|███████▋  | 416/540 [00:01<00:00, 328.88it/s]Loading weights:  84%|████████▍ | 456/540 [00:01<00:00, 337.71it/s]Loading weights:  92%|█████████▏| 495/540 [00:01<00:00, 347.82it/s]Loading weights:  99%|█████████▉| 534/540 [00:01<00:00, 342.07it/s]Loading weights: 100%|██████████| 540/540 [00:01<00:00, 270.86it/s]
 [transformers] [1mGemma4ForCausalLM LOAD REPORT[0m from: /model
 Key                                                                          | Status     |  | 
 -----------------------------------------------------------------------------+------------+--+-
