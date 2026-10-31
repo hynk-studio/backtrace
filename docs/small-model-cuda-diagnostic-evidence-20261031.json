@@ -5060,7 +5060,7 @@
     "additional_allocation_requests": 0
   },
   "free_corrections": {
-    "status": "FOCUSED_PASS_NATIVE_QUALIFICATION_PENDING",
+    "status": "PASS_NATIVE_AND_CONTAINER_NO_NEW_GPU_RUN",
     "changes": [
       "Preserve immutable connected receipt; write digest-bound diagnostic summary separately.",
       "Normalize only full PyTorch CUuuid and nvidia-smi GPU-prefix spelling; retain exact UUID, memory, architecture, BF16 and exposed-node gates.",
@@ -5100,12 +5100,619 @@
       "format_url": "https://github.com/pytorch/pytorch/blob/v2.13.0/torch/csrc/utils.cpp",
       "format_blob": "fef9984964eab7521a1e4672550dfd92fa725e68",
       "interpretation": "The pinned upstream CUuuid formatter has no GPU- prefix; direct string equality against nvidia-smi rejects matching devices. The paid joint gate did not retain individual device properties, so other admission failures remain unmeasured."
+    },
+    "source_sha": "112039ef3c3bdbe01d3f65bcc6753a8016ee1726",
+    "source_tree": "dfa93b54d101f2e0c241b6faef445b102e835790",
+    "run_id": 41178604712,
+    "run_attempt": 1,
+    "run_conclusion": "success",
+    "native_tests": {
+      "tests": 679,
+      "seconds": 141.941,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    "container_checks": {
+      "credential_environment_absent": true,
+      "cuda_comparison_cpu": true,
+      "deadline": true,
+      "exec_denied": true,
+      "fork_denied": true,
+      "missing_gpu_rejected": true,
+      "namespace_denied": true,
+      "private_file_denied": true,
+      "readonly_job": true,
+      "resident_memory": true,
+      "root_denied": true,
+      "socket_denied": true,
+      "supervisor": true,
+      "threads_work": true,
+      "transport": true,
+      "unix_socket_denied": true,
+      "worker_identity": true
+    },
+    "container_cleanup": {
+      "absence_reads": 2,
+      "container_id": "08d022c08b6a54bfe328b09ab2ab5d1e96720799d517af3175d70737e026bfc6",
+      "name": "backtrace-free-full-setup-13613-minimum",
+      "observations": [
+        {
+          "state": "ABSENT"
+        },
+        {
+          "state": "ABSENT"
+        }
+      ],
+      "request": {
+        "outcome": "ACKNOWLEDGED",
+        "returncode": 0
+      },
+      "seconds": 6.734,
+      "status": "PASS"
+    },
+    "source_hashes": {
+      ".github/workflows/small-model-container-cpu.yml": "52745e5f7a5ddc42796b094e450a5641090da68aebf6998c23503bb97961f249",
+      ".github/workflows/small-model-minimum-cpu.yml": "e960267e3b69ad5b3c6562e7b3dd36d04451e621fd77519321a091b17295906a",
+      ".github/workflows/small-model-minimum-diagnostic.yml": "6f5832e5659591e1b1647fae0f5e5591952666668151663e0f48976f402432aa",
+      ".github/workflows/small-model-minimum-live.yml": "e2062c003c010bd8ac4a67ff7e39a066b44af2007b8e5f67186c82316b9ccf05",
+      ".github/workflows/small-model-minimum-quote.yml": "f93cc9946f39cf3d814a24fc62c968cdc822b169167d3dd50c8f84813a8958c0",
+      ".github/workflows/small-model-minimum-retry-cpu.yml": "acde46496d679685f4b54e3247c46e061e7c45c7c0bb81ef79a8a140f254a683",
+      ".github/workflows/small-model-minimum-retry-live.yml": "4f9f9fc148c610084b8a388701a55776ab878d689f0f6d9212b152c0b024900e",
+      ".github/workflows/small-model-minimum-retry-quote.yml": "6eeff6411ab8d6e967f9add1f7ba902ce5a519f5018332723e32065e6fcdcd8d",
+      ".github/workflows/small-model-precheck-cpu.yml": "f13609448771bfada0e1750e52676608a2da1d700c89d28251f07e518f314a0f",
+      ".github/workflows/small-model-provider-cpu.yml": "1314824b147395afaac6a4f8708f3c19004f441f8dc8617f6096526a82f4eaff",
+      ".github/workflows/small-model-provider-owner.yml": "0bb06419810437a0bdce8efa15aab651c2d02748c9e469801cd0777393e245fc",
+      ".github/workflows/small-model-provider-watch.yml": "8af1ae7416563c61d4c9e973ec2ddba7f97296b7be93369a34094a655fc6d197",
+      "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+      "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+      "docs/cloud-controller-requirements.txt": "6e8e0115d53ffb67b8a9001e0b4e3f06747fb470aad4bdcb23e8a864d4018bdc",
+      "docs/research-reduced9-amendment-20261026.json": "ba9b235c84db383f2413bc7adeb03888de9fd0fc571e8e67cc8ae4f9057563c7",
+      "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+      "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+      "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+      "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+      "tests/test_small_model_container.py": "ef05ed3f780c6a668c1ad2e31b2ba704521f94dcff3d03f9afff70d0567e2e4b",
+      "tests/test_small_model_minimum.py": "ab75e74c29c21b92db67b737090da99beade002c55b456afc53dfccfa39051b9",
+      "tests/test_small_model_minimum_diagnostic.py": "944470aab610f01f34af02518b6784a835198d43b7c21bc7f80081f64c02a018",
+      "tests/test_small_model_minimum_diagnostic_scope.py": "0fa54c0748ad010d7a2a03e64e5a5d45ba97f756f55c414995b3cb219349a1e0",
+      "tests/test_small_model_minimum_retry.py": "ca2a4d349efa03ae180e7b16608e41bc786503ac961fb48c6a3d7f89b4e76ce7",
+      "tests/test_small_model_precheck.py": "21ad1e073cc9f83eca8e41034cff22371df7629188b07921b5ecdcc8d0ec4e47",
+      "tests/test_small_model_provider.py": "242530d07de276c3b36eff5484fe0a15d6f457bd7705db63e14e54e03d71f94c",
+      "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+      "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+      "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+      "tools/cloud_bootstrap.py": "b032f0d92bb042cb3388699fe230084c077fb78a59b4df86184f12feb6610487",
+      "tools/cloud_inventory.py": "f4865ae92c7f41375a15ecf917e932562cca608ca7a1607d18d1b370bd0932ff",
+      "tools/cloud_offer.py": "9387b91be560cf80a85a5bae8166acb7c35f7a61135042971d21cafdb76c3df5",
+      "tools/cloud_probe.py": "bb89c097e7fe0c6bc56771e87695056d60c11f510502173105a102a25d48e22f",
+      "tools/cloud_transport.py": "013d93fc8c1548bc7eaf4cf9a4f5a49608b7e16d537b192accf053151fbf5902",
+      "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+      "tools/free_container_cleanup.py": "3dc64f6fa013e992e8c02fa702330a14003cb2e7ab0d536e3dc0da80ce3e9466",
+      "tools/private_delivery.py": "f010c41715e2548b86a4b3dfc009e22e57fcbf5a52429e4f7f1165632f1a4a40",
+      "tools/research_entry.py": "9f3c753cb26f9ab4d22ef5a27d4c900bc109ea10cbc4447df97d58b337762d85",
+      "tools/research_entry_contract.py": "1a4997a22bcb2bb9acd5dde8bfe916e987ae20131c9073610f2bb2e863908e47",
+      "tools/research_entry_state.py": "b3858570800b87f36a2ebd99a4ebbf65295edf5756b1a7b6cf1d6c4c13316389",
+      "tools/runpod_control.py": "09219477947e39b2c7c58b6e7e44f385bd5d1140cbdb7a47cddef3ab7f6cf400",
+      "tools/small_model_container.py": "d87cc12a3dc39dd9c235956f1b7a5181b060e57c7e104a86aacc991977e20410",
+      "tools/small_model_container_install.py": "e44a80ef7ca4c6611ea0536a76889efed5011fdea2bf27331acb21cc0aac5ecc",
+      "tools/small_model_container_probe.py": "924cf57ec8868ea1acdaaaf7868f829071e7c34a16416c3db069b03e6642081b",
+      "tools/small_model_container_worker.py": "f5bd153ade59d83222ee170a252801479b6591a012b6facac3312e1c0644fb09",
+      "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903",
+      "tools/small_model_lifecycle.py": "32f0cc0215c9c4098540b95a5fd1e3194af9764ba1f01d1317df0553875b4506",
+      "tools/small_model_lifecycle_probe.py": "c8af61b707903398d29a883ce1c9525af93494cb71612b6d299bbac240b704ed",
+      "tools/small_model_minimum.py": "bf9a0ef1d29301150635b861a9cd1f73e881b617387c9fa9d2a7c5a637d075e2",
+      "tools/small_model_minimum_diagnostic.py": "0a739d976a3c36ee1f63abd688558edd09fe2e9528fa8521564e91bb95bf7ee4",
+      "tools/small_model_minimum_probe.py": "8ffef411118334316d569f6b5c302e243d1f2a45e7e9dbad71cc7c175a777a94",
+      "tools/small_model_minimum_remote.py": "acac3a3fae5cc72f9ba68709d6d6a8e706c3580134ba8c5a810ab6e1822f3f90",
+      "tools/small_model_minimum_retry.py": "48c9512766d99e1bd5a75d6712fa2d0c643b7f65d5b5de22d2bc1786a1e6a3c4",
+      "tools/small_model_minimum_worker.py": "c812d32cabca8a7f6c8e7eb9a0f79e3b83d129799bee181de8f0ed35178eaff1",
+      "tools/small_model_precheck.py": "dafcfa6cc32d78204a102b7e73eb1be3eeb499a906a90a7390503134fa81a63d",
+      "tools/small_model_provider.py": "b5c9e0a0e7c9ac98a8dc8a6d24b20f5c45de9690483ae37b65196e30218a37c4",
+      "tools/small_model_provider_probe.py": "467a96a5cd7131da46155f9c6a675718049c1547d3a5d950efff73ea1e9da8cd",
+      "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+      "tools/small_model_remote_watch.py": "eec9864d54e0859399e5e9f9c9334f2c21809e470a015d57b65d7119f9657e82",
+      "tools/small_model_resources.py": "1d763165c9af25461a50ae55665a18052d71c74698f1abdfd70eb81f77e367ca",
+      "tools/small_model_runner.py": "ed7436caa9421bc4a166ccca63ac2602fd527dab2bbe44010acabad0095e33df",
+      "tools/small_model_runner_probe.py": "dfbff0eabb1c72d914ee1528b059338261427ba0713425c264f2c5c4986e095a",
+      "tools/small_model_worker.py": "bf74915403c76fa9701bad7ed8184e2f3e6c6d8ffefddb6a5a0ef218e768fd54",
+      "tools/ssh_bootstrap.py": "b657ddd6f145f66f4e15f2d30a23d8870ae56aa7f60d396ae1f41de485916839",
+      "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+      "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    "all_source_hashes_verified": true,
+    "owner": {
+      "actual": false,
+      "claim": {
+        "actual": false,
+        "cleanup_seconds": 45,
+        "contract_sha256": "51aec78aaaf99ee617c3d6e277499f819615ea87b9b76ccb59dd875c61aba8eb",
+        "costs": {},
+        "gpu": "FREE_CPU_REPLICA",
+        "name": "backtrace-small-minimum-e4839cb7d465414e8169111ebb3adf9a",
+        "namespace": "cuda-diagnostic-free-112039ef3c3bdbe01d3f65bcc6753a8016ee1726",
+        "owner_boot": "a81efaefa80c5f1826ba00e633edb2d1c05a02ad26ce793fcb6ef89b5f0bcfa7",
+        "poll_seconds": 2,
+        "region": "EU-RO-1",
+        "request_sha256": "acb60885b8e63085bc8aa7780c3d44aec4b842191a95cc2f60cbdea1e98d111d",
+        "requested_at": 1793429819.3254752,
+        "run_id": "41178604712",
+        "source_sha": "112039ef3c3bdbe01d3f65bcc6753a8016ee1726",
+        "total_seconds": 180,
+        "unknown_create_seconds": 10,
+        "watch_boot": "b42b65cb139847ab68787c9bdda3eecc9cd0f1e886fa86b172afe876b3459fc7"
+      },
+      "cleanup": {
+        "absence_reads": 2,
+        "claim_sha256": "5a0ac09378a0a7cae138ddec8c829b1724a0dd0fc70423b166800286c4aec8c6",
+        "completed_at": 1793429843.821795,
+        "history": [
+          {
+            "at": 1793429840.4656625,
+            "id": "free-e807fbe67bb94127b0f454262901732a",
+            "state": "ABSENT"
+          },
+          {
+            "at": 1793429843.8217938,
+            "id": "free-e807fbe67bb94127b0f454262901732a",
+            "state": "ABSENT"
+          }
+        ],
+        "pod_id": "free-e807fbe67bb94127b0f454262901732a",
+        "started_at": 1793429839.529124,
+        "status": "DELETED"
+      },
+      "create_attempted": true,
+      "independent_replica_cleanup": {
+        "absence_reads": 2,
+        "actual": false,
+        "claim_sha256": "5a0ac09378a0a7cae138ddec8c829b1724a0dd0fc70423b166800286c4aec8c6",
+        "completed_at": 1793429836.799734,
+        "history": [
+          {
+            "at": 1793429824.8272142,
+            "id": null,
+            "state": "UNCONFIRMED"
+          },
+          {
+            "at": 1793429829.7127595,
+            "id": "free-e807fbe67bb94127b0f454262901732a",
+            "state": "DELETE_SENT"
+          },
+          {
+            "at": 1793429833.194921,
+            "id": "free-e807fbe67bb94127b0f454262901732a",
+            "state": "ABSENT"
+          },
+          {
+            "at": 1793429836.799733,
+            "id": "free-e807fbe67bb94127b0f454262901732a",
+            "state": "ABSENT"
+          }
+        ],
+        "pod_id": "free-e807fbe67bb94127b0f454262901732a",
+        "provider_create_requests": 0,
+        "reason": "OWNER_HEARTBEAT_LOST",
+        "source_sha": "112039ef3c3bdbe01d3f65bcc6753a8016ee1726",
+        "started_at": 1793429823.7625754,
+        "status": "DELETED",
+        "watch_boot": "b42b65cb139847ab68787c9bdda3eecc9cd0f1e886fa86b172afe876b3459fc7"
+      },
+      "pod_id": "free-e807fbe67bb94127b0f454262901732a",
+      "provider_create_requests": 0,
+      "source_hashes": {
+        ".github/workflows/small-model-container-cpu.yml": "52745e5f7a5ddc42796b094e450a5641090da68aebf6998c23503bb97961f249",
+        ".github/workflows/small-model-minimum-cpu.yml": "e960267e3b69ad5b3c6562e7b3dd36d04451e621fd77519321a091b17295906a",
+        ".github/workflows/small-model-minimum-diagnostic.yml": "6f5832e5659591e1b1647fae0f5e5591952666668151663e0f48976f402432aa",
+        ".github/workflows/small-model-minimum-live.yml": "e2062c003c010bd8ac4a67ff7e39a066b44af2007b8e5f67186c82316b9ccf05",
+        ".github/workflows/small-model-minimum-quote.yml": "f93cc9946f39cf3d814a24fc62c968cdc822b169167d3dd50c8f84813a8958c0",
+        ".github/workflows/small-model-minimum-retry-cpu.yml": "acde46496d679685f4b54e3247c46e061e7c45c7c0bb81ef79a8a140f254a683",
+        ".github/workflows/small-model-minimum-retry-live.yml": "4f9f9fc148c610084b8a388701a55776ab878d689f0f6d9212b152c0b024900e",
+        ".github/workflows/small-model-minimum-retry-quote.yml": "6eeff6411ab8d6e967f9add1f7ba902ce5a519f5018332723e32065e6fcdcd8d",
+        ".github/workflows/small-model-precheck-cpu.yml": "f13609448771bfada0e1750e52676608a2da1d700c89d28251f07e518f314a0f",
+        ".github/workflows/small-model-provider-cpu.yml": "1314824b147395afaac6a4f8708f3c19004f441f8dc8617f6096526a82f4eaff",
+        ".github/workflows/small-model-provider-owner.yml": "0bb06419810437a0bdce8efa15aab651c2d02748c9e469801cd0777393e245fc",
+        ".github/workflows/small-model-provider-watch.yml": "8af1ae7416563c61d4c9e973ec2ddba7f97296b7be93369a34094a655fc6d197",
+        "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+        "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+        "docs/cloud-controller-requirements.txt": "6e8e0115d53ffb67b8a9001e0b4e3f06747fb470aad4bdcb23e8a864d4018bdc",
+        "docs/research-reduced9-amendment-20261026.json": "ba9b235c84db383f2413bc7adeb03888de9fd0fc571e8e67cc8ae4f9057563c7",
+        "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+        "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+        "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+        "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+        "tests/test_small_model_container.py": "ef05ed3f780c6a668c1ad2e31b2ba704521f94dcff3d03f9afff70d0567e2e4b",
+        "tests/test_small_model_minimum.py": "ab75e74c29c21b92db67b737090da99beade002c55b456afc53dfccfa39051b9",
+        "tests/test_small_model_minimum_diagnostic.py": "944470aab610f01f34af02518b6784a835198d43b7c21bc7f80081f64c02a018",
+        "tests/test_small_model_minimum_diagnostic_scope.py": "0fa54c0748ad010d7a2a03e64e5a5d45ba97f756f55c414995b3cb219349a1e0",
+        "tests/test_small_model_minimum_retry.py": "ca2a4d349efa03ae180e7b16608e41bc786503ac961fb48c6a3d7f89b4e76ce7",
+        "tests/test_small_model_precheck.py": "21ad1e073cc9f83eca8e41034cff22371df7629188b07921b5ecdcc8d0ec4e47",
+        "tests/test_small_model_provider.py": "242530d07de276c3b36eff5484fe0a15d6f457bd7705db63e14e54e03d71f94c",
+        "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+        "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+        "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+        "tools/cloud_bootstrap.py": "b032f0d92bb042cb3388699fe230084c077fb78a59b4df86184f12feb6610487",
+        "tools/cloud_inventory.py": "f4865ae92c7f41375a15ecf917e932562cca608ca7a1607d18d1b370bd0932ff",
+        "tools/cloud_offer.py": "9387b91be560cf80a85a5bae8166acb7c35f7a61135042971d21cafdb76c3df5",
+        "tools/cloud_probe.py": "bb89c097e7fe0c6bc56771e87695056d60c11f510502173105a102a25d48e22f",
+        "tools/cloud_transport.py": "013d93fc8c1548bc7eaf4cf9a4f5a49608b7e16d537b192accf053151fbf5902",
+        "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+        "tools/free_container_cleanup.py": "3dc64f6fa013e992e8c02fa702330a14003cb2e7ab0d536e3dc0da80ce3e9466",
+        "tools/private_delivery.py": "f010c41715e2548b86a4b3dfc009e22e57fcbf5a52429e4f7f1165632f1a4a40",
+        "tools/research_entry.py": "9f3c753cb26f9ab4d22ef5a27d4c900bc109ea10cbc4447df97d58b337762d85",
+        "tools/research_entry_contract.py": "1a4997a22bcb2bb9acd5dde8bfe916e987ae20131c9073610f2bb2e863908e47",
+        "tools/research_entry_state.py": "b3858570800b87f36a2ebd99a4ebbf65295edf5756b1a7b6cf1d6c4c13316389",
+        "tools/runpod_control.py": "09219477947e39b2c7c58b6e7e44f385bd5d1140cbdb7a47cddef3ab7f6cf400",
+        "tools/small_model_container.py": "d87cc12a3dc39dd9c235956f1b7a5181b060e57c7e104a86aacc991977e20410",
+        "tools/small_model_container_install.py": "e44a80ef7ca4c6611ea0536a76889efed5011fdea2bf27331acb21cc0aac5ecc",
+        "tools/small_model_container_probe.py": "924cf57ec8868ea1acdaaaf7868f829071e7c34a16416c3db069b03e6642081b",
+        "tools/small_model_container_worker.py": "f5bd153ade59d83222ee170a252801479b6591a012b6facac3312e1c0644fb09",
+        "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903",
+        "tools/small_model_lifecycle.py": "32f0cc0215c9c4098540b95a5fd1e3194af9764ba1f01d1317df0553875b4506",
+        "tools/small_model_lifecycle_probe.py": "c8af61b707903398d29a883ce1c9525af93494cb71612b6d299bbac240b704ed",
+        "tools/small_model_minimum.py": "bf9a0ef1d29301150635b861a9cd1f73e881b617387c9fa9d2a7c5a637d075e2",
+        "tools/small_model_minimum_diagnostic.py": "0a739d976a3c36ee1f63abd688558edd09fe2e9528fa8521564e91bb95bf7ee4",
+        "tools/small_model_minimum_probe.py": "8ffef411118334316d569f6b5c302e243d1f2a45e7e9dbad71cc7c175a777a94",
+        "tools/small_model_minimum_remote.py": "acac3a3fae5cc72f9ba68709d6d6a8e706c3580134ba8c5a810ab6e1822f3f90",
+        "tools/small_model_minimum_retry.py": "48c9512766d99e1bd5a75d6712fa2d0c643b7f65d5b5de22d2bc1786a1e6a3c4",
+        "tools/small_model_minimum_worker.py": "c812d32cabca8a7f6c8e7eb9a0f79e3b83d129799bee181de8f0ed35178eaff1",
+        "tools/small_model_precheck.py": "dafcfa6cc32d78204a102b7e73eb1be3eeb499a906a90a7390503134fa81a63d",
+        "tools/small_model_provider.py": "b5c9e0a0e7c9ac98a8dc8a6d24b20f5c45de9690483ae37b65196e30218a37c4",
+        "tools/small_model_provider_probe.py": "467a96a5cd7131da46155f9c6a675718049c1547d3a5d950efff73ea1e9da8cd",
+        "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+        "tools/small_model_remote_watch.py": "eec9864d54e0859399e5e9f9c9334f2c21809e470a015d57b65d7119f9657e82",
+        "tools/small_model_resources.py": "1d763165c9af25461a50ae55665a18052d71c74698f1abdfd70eb81f77e367ca",
+        "tools/small_model_runner.py": "ed7436caa9421bc4a166ccca63ac2602fd527dab2bbe44010acabad0095e33df",
+        "tools/small_model_runner_probe.py": "dfbff0eabb1c72d914ee1528b059338261427ba0713425c264f2c5c4986e095a",
+        "tools/small_model_worker.py": "bf74915403c76fa9701bad7ed8184e2f3e6c6d8ffefddb6a5a0ef218e768fd54",
+        "tools/ssh_bootstrap.py": "b657ddd6f145f66f4e15f2d30a23d8870ae56aa7f60d396ae1f41de485916839",
+        "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+        "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+      },
+      "status": "PASS_FREE_REMOTE_CLEANUP"
+    },
+    "watch": {
+      "absence_reads": 2,
+      "actual": false,
+      "claim_sha256": "5a0ac09378a0a7cae138ddec8c829b1724a0dd0fc70423b166800286c4aec8c6",
+      "completed_at": 1793429836.799734,
+      "history": [
+        {
+          "at": 1793429824.8272142,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793429829.7127595,
+          "id": "free-e807fbe67bb94127b0f454262901732a",
+          "state": "DELETE_SENT"
+        },
+        {
+          "at": 1793429833.194921,
+          "id": "free-e807fbe67bb94127b0f454262901732a",
+          "state": "ABSENT"
+        },
+        {
+          "at": 1793429836.799733,
+          "id": "free-e807fbe67bb94127b0f454262901732a",
+          "state": "ABSENT"
+        }
+      ],
+      "pod_id": "free-e807fbe67bb94127b0f454262901732a",
+      "provider_create_requests": 0,
+      "reason": "OWNER_HEARTBEAT_LOST",
+      "started_at": 1793429823.7625754,
+      "status": "DELETED",
+      "watch_boot": "b42b65cb139847ab68787c9bdda3eecc9cd0f1e886fa86b172afe876b3459fc7"
+    },
+    "artifacts": [
+      {
+        "id": 13034505038,
+        "name": "small-cuda-diagnostic-cpu-watch-112039ef3c3bdbe01d3f65bcc6753a8016ee1726-1",
+        "size_in_bytes": 528,
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/13034505038",
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/13034505038/zip",
+        "expired": false,
+        "created_at": "2026-10-31T06:57:19Z",
+        "expires_at": "2026-11-14T06:57:18Z",
+        "updated_at": "2026-10-31T06:57:19Z",
+        "digest": "sha256:4013cce8339d1499a3cd8841b674ec79c4e77a1fa6e5f23a1578b9b109dfa037",
+        "workflow_run": {
+          "id": 41178604712,
+          "repository_id": 1393671873,
+          "head_repository_id": 1393671873,
+          "head_branch": "bt-001-cuda-diagnostic-20261031",
+          "head_sha": "112039ef3c3bdbe01d3f65bcc6753a8016ee1726"
+        },
+        "members": [
+          {
+            "name": "minimum-watch.json",
+            "bytes": 728,
+            "sha256": "4376378b8f5c913d85236b5f94584c5d9d145f9fc07c03648c65e375778fc111"
+          }
+        ]
+      },
+      {
+        "id": 13034256169,
+        "name": "small-cuda-diagnostic-cpu-owner-112039ef3c3bdbe01d3f65bcc6753a8016ee1726-1",
+        "size_in_bytes": 10073,
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/13034256169",
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/13034256169/zip",
+        "expired": false,
+        "created_at": "2026-10-31T06:57:34Z",
+        "expires_at": "2026-11-14T06:57:33Z",
+        "updated_at": "2026-10-31T06:57:34Z",
+        "digest": "sha256:b8990760e1fc3b256ee8e8b2e1941fb949a8285273997219347b0b65b160d4ce",
+        "workflow_run": {
+          "id": 41178604712,
+          "repository_id": 1393671873,
+          "head_repository_id": 1393671873,
+          "head_branch": "bt-001-cuda-diagnostic-20261031",
+          "head_sha": "112039ef3c3bdbe01d3f65bcc6753a8016ee1726"
+        },
+        "members": [
+          {
+            "name": "account-after.json",
+            "bytes": 26148,
+            "sha256": "828590505497219030302dee104a0049862f6bc4f36c1047eaec56414b550c4b"
+          },
+          {
+            "name": "minimum-owner/receipt.json",
+            "bytes": 9188,
+            "sha256": "004554506b7aeb11c524b1438fbab5d5beba509ef987582c963711d2e25afbef"
+          },
+          {
+            "name": "minimum-owner.json",
+            "bytes": 9188,
+            "sha256": "004554506b7aeb11c524b1438fbab5d5beba509ef987582c963711d2e25afbef"
+          }
+        ]
+      },
+      {
+        "id": 13034022401,
+        "name": "small-cuda-diagnostic-container-112039ef3c3bdbe01d3f65bcc6753a8016ee1726-1",
+        "size_in_bytes": 79345,
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/13034022401",
+        "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/13034022401/zip",
+        "expired": false,
+        "created_at": "2026-10-31T07:04:15Z",
+        "expires_at": "2026-11-14T07:04:14Z",
+        "updated_at": "2026-10-31T07:04:15Z",
+        "digest": "sha256:8248d7be1b5bb87bfe313a0bfe4bd830c106b123627ceac5d7ba1ae0a2753de4",
+        "workflow_run": {
+          "id": 41178604712,
+          "repository_id": 1393671873,
+          "head_repository_id": 1393671873,
+          "head_branch": "bt-001-cuda-diagnostic-20261031",
+          "head_sha": "112039ef3c3bdbe01d3f65bcc6753a8016ee1726"
+        },
+        "members": [
+          {
+            "name": "container-image.log",
+            "bytes": 1269,
+            "sha256": "3109c120ba29c2254bf5fbbeccda7eee53fe1d7326eaa5b5779f601d5f0073f6"
+          },
+          {
+            "name": "container-receipt.json",
+            "bytes": 45192,
+            "sha256": "35c9cca66cd4a30134b6c905c95605dc2cb98e666506a5e2814d3faf68b870d0"
+          },
+          {
+            "name": "container-remote-connected-receipt.json",
+            "bytes": 17036,
+            "sha256": "9932a2ba0159d9fd2e3cd66a71139d207d84ecb2b18d6ba4d086bc27a826bdaf"
+          },
+          {
+            "name": "container-remote-diagnostics-boundary-435612293496.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "container-remote-diagnostics-boundary-memory-checkpoint.json",
+            "bytes": 2989,
+            "sha256": "58e53c991bc2a8e594ebf53f3ba73d444f8e7777e97c48fb6fdb910c3dc8fe0a"
+          },
+          {
+            "name": "container-remote-diagnostics-cuda-comparison-A-checkpoint.json",
+            "bytes": 1457,
+            "sha256": "01e898094badc0654503f4cbef5cbbbc7b0649ffbbb97e9c75300b00400fb0b9"
+          },
+          {
+            "name": "container-remote-diagnostics-cuda-comparison-A-stderr.log",
+            "bytes": 1224,
+            "sha256": "6423acc65375b71eb325dcad7f4a4c27ae5019cef38925bdc09fd64dbc072ff7"
+          },
+          {
+            "name": "container-remote-diagnostics-cuda-comparison-A-stdout.log",
+            "bytes": 578,
+            "sha256": "c21be636bb50ea9a3ff53c831f21e05c8467353fc7b2aa39c4805d7cb39bab42"
+          },
+          {
+            "name": "container-remote-diagnostics-cuda-comparison-A-teardown.json",
+            "bytes": 1671,
+            "sha256": "979614eebed42f2c701bc2816819115e9ee62b50a18562c4c7a622312648a954"
+          },
+          {
+            "name": "container-remote-diagnostics-cuda-comparison-B-checkpoint.json",
+            "bytes": 3041,
+            "sha256": "42d6d87ec54c7b16729318777e8b5476a2a307bb7aab3c17a79f3b435dac2068"
+          },
+          {
+            "name": "container-remote-diagnostics-cuda-comparison-B-stderr.log",
+            "bytes": 1255,
+            "sha256": "e4390a1a7919f1457448a271a10ede1e3de2bc4c3aaf6833f08a2a7deae9b4d4"
+          },
+          {
+            "name": "container-remote-diagnostics-cuda-comparison-B-stdout.log",
+            "bytes": 578,
+            "sha256": "4a26dfd2bf58adef9ea42db3af08ca993b91376c9c86fa1c09eaa8e877d68fb4"
+          },
+          {
+            "name": "container-remote-diagnostics-cuda-comparison-B-teardown.json",
+            "bytes": 3255,
+            "sha256": "317bb9218bb9ebbd8bc68cb9771505e2f28f0ab69dce9a4abdaa680f860558e4"
+          },
+          {
+            "name": "container-remote-diagnostics-cuda-comparison-C-checkpoint.json",
+            "bytes": 4625,
+            "sha256": "d94f48dacf042713bbd393627b430be5d505e557f04dd47b0955ca87c1d18719"
+          },
+          {
+            "name": "container-remote-diagnostics-cuda-comparison-C-stdout.log",
+            "bytes": 578,
+            "sha256": "7d998ac90cf12b2d77d1787ab501051d776a7f0a21e2eb2767490bcb7a6a1412"
+          },
+          {
+            "name": "container-remote-diagnostics-cuda-comparison-C-stderr.log",
+            "bytes": 1255,
+            "sha256": "3cfec78af26496da21c65236a8597ba63adee342335f848c90ffea2356577ab6"
+          },
+          {
+            "name": "container-remote-diagnostics-cuda-comparison-C-teardown.json",
+            "bytes": 4839,
+            "sha256": "237da6a79c108a8d8a42266b2109669fc25aaef4ecb20927c3abb955d07ddeb5"
+          },
+          {
+            "name": "container-remote-diagnostics-cuda-comparison-receipt.json",
+            "bytes": 4846,
+            "sha256": "e7059de27e8fe56299bebb85d3ca2d8bb6f78507087f03ff436c28c302dd35b1"
+          },
+          {
+            "name": "container-remote-diagnostics-cuda-comparison-started.json",
+            "bytes": 119,
+            "sha256": "e68bcac9e62ef4bf46da48e96379832d70b88ca758b6692825b77370c11bf204"
+          },
+          {
+            "name": "container-remote-diagnostics-deadline-checkpoint.json",
+            "bytes": 8385,
+            "sha256": "466ae233603dd4654fb1e1909c391cca30125b0227e6418f3bd6b90211622375"
+          },
+          {
+            "name": "container-remote-diagnostics-deadline.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "container-remote-diagnostics-memory-435859213975.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "container-remote-diagnostics-missing-gpu.log",
+            "bytes": 552,
+            "sha256": "40f39e6c6c63051ce3aaf4d951e436300852024821e88d92216c1b7204cc76f8"
+          },
+          {
+            "name": "container-remote-diagnostics-receipt.json",
+            "bytes": 9217,
+            "sha256": "f5bf38941ff2cdda0e69cfd6c70cecd46389fb93a5b056d23324c668aec84551"
+          },
+          {
+            "name": "container-remote-diagnostics-supervisor-checkpoint.json",
+            "bytes": 9195,
+            "sha256": "1ffeaa0dae5477427683074932da00aaaeb4ef3ee4249b745f37ada9ca095068"
+          },
+          {
+            "name": "container-remote-diagnostics-supervisor.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "container-remote-diagnostics-transport-checkpoint.json",
+            "bytes": 8789,
+            "sha256": "4b394ee4778a9ab97883e8d6e5f441fdd82a57750832b391b123249580e519e1"
+          },
+          {
+            "name": "container-remote-diagnostics-transport.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "container-remote-install.log",
+            "bytes": 10564,
+            "sha256": "fb3c6c4966af7e01c4ed2278bfc30bb4e669b0a3b6cba66cc372c01995099333"
+          },
+          {
+            "name": "container-remote-installation-checkpoint.json",
+            "bytes": 7783,
+            "sha256": "231a54b71c1f0f2af2fc3c9bb52077873ff86e218e60008bb1185f2c9c8346a5"
+          },
+          {
+            "name": "container-stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": "container.json",
+            "bytes": 46837,
+            "sha256": "7e3945f240f69d53aecc7642f8ccb529472eacfa40e550adf9b9fdf1795a50fb"
+          },
+          {
+            "name": "preflight.json",
+            "bytes": 167,
+            "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+          },
+          {
+            "name": "tests.log",
+            "bytes": 115228,
+            "sha256": "688fead21f2cd0f3e943e991fc84f1c396c76c91099253af8ce24002f301d6e5"
+          }
+        ]
+      }
+    ],
+    "verified_artifact_count": 3,
+    "verified_member_count": 38,
+    "paid_state_preservation": {
+      "checked_at_state_commit": "fb098b6b54f491defbe13c48039cac6e8a33feaa",
+      "paid_state_commit": "13e7f67fa672dace6f45e637b0393bd7053c38d9",
+      "count": 11,
+      "all_unchanged": true
+    },
+    "preserved_refs": [
+      {
+        "branch": "bt-001-cuda-diagnostic-start-20261031",
+        "sha": "7082d5d0756ba627eeff73ed467f0a3d29c4fe7b",
+        "unchanged": true
+      },
+      {
+        "branch": "bt-001-cuda-cause-isolation-20261027",
+        "sha": "df1b5ca28f7a795a845fb9a7b3ec65281c9724f8",
+        "unchanged": true
+      },
+      {
+        "branch": "bt-001-augnes-first-plan-20261031",
+        "sha": "29220b2dcd71c18ad7706a1c3b332d9641df906e",
+        "unchanged": true
+      }
+    ],
+    "actual_gpu": false,
+    "account_after": {
+      "source_sha": "112039ef3c3bdbe01d3f65bcc6753a8016ee1726",
+      "run_id": "41178604712",
+      "status": "PASS",
+      "allocation_requests": 0,
+      "resource_mutations": 0,
+      "observation": {
+        "account": {
+          "auto_pay": false,
+          "credit_balance_usd": "2.9060441339",
+          "observed_at": "2026-10-31T06:57:25Z",
+          "spend_per_hour_usd": "0"
+        },
+        "inventory": {
+          "complete_paginated_list": true,
+          "observed_at": "2026-10-31T06:57:33Z",
+          "pod_count": 0,
+          "resource_mutations": 0
+        },
+        "account_idle": true
+      }
     }
   },
   "augnes_source_audit": {
     "status": "READ_ONLY_PREPARATION_NOT_REPLAY",
     "source_commit": "bbb7dee536817fe4b7f28f5353a1d88f56c7e44d",
-    "local_connector": "UNAVAILABLE_CONNECTION_FAILED",
+    "local_connector": "UNAVAILABLE_CONNECTION_FAILED_ON_CONSTELLATION_AND_WORK_LOOP_READONLY",
     "records": [
       {
         "source": "https://github.com/hynk-studio/augnes/blob/bbb7dee536817fe4b7f28f5353a1d88f56c7e44d/docs/verification/P3_3_ANOMALY_MINIMUM_CHECK_QUALIFICATION.md",

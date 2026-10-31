@@ -19,9 +19,12 @@ spend, autopay off and observed credit USD 2.9060441339. Observed decrease is
 USD 0.1037751241, not final billing. Preserve source/start refs and paid state
 commit `13e7f67fa672dace6f45e637b0393bd7053c38d9`. No unused permit remains.
 Read `docs/small-model-cuda-diagnostic-20261031.md` and its evidence JSON.
+Free corrections at `112039ef3c3bdbe01d3f65bcc6753a8016ee1726` passed run
+41178604712: 679 native tests and all 17 ordinary-container controls, plus
+independent cleanup. All 67 source hashes, three archives/38 members and the
+unchanged eleven paid state blobs were verified. No new GPU run occurred.
 Do not repeat the unmodified paid route or weaken the filter without evidence
-identifying a supported correction. Finish free qualification of the known
-code defects first. Hardware kernels, pretrained baseline, training and Augnes
+identifying a supported correction. Hardware kernels, pretrained baseline, training and Augnes
 replays remain NOT RUN; an infrastructure result is not model capability.
 
 ## Current work: Augnes-first continuation (2026-10-31 KST)

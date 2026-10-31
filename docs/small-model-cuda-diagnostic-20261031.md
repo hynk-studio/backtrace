@@ -57,8 +57,14 @@ for this coarse pattern. No historical result is relabelled as success.
    static defect does not establish that every other device gate would pass.
 
 Focused free validation: **26 tests passed**, preflight and whitespace checks
-passed. Full native/container qualification of the corrections is pending.
-The production filter is byte-for-byte unchanged. No replacement paid permit,
+passed. Corrected source `112039ef3c3bdbe01d3f65bcc6753a8016ee1726` (tree
+`dfa93b54d101f2e0c241b6faef445b102e835790`) passed
+[free run 41178604712](https://github.com/hynk-studio/backtrace/actions/runs/41178604712),
+attempt 1: **679 native tests in 141.941 seconds, no failures/errors/skips**,
+all **17 ordinary-container controls**, and separate-runner cleanup with two
+absence reads each. Three archives / 38 members and all 67 source hashes were
+verified. The eleven paid state blobs and the paid start/prior review refs
+remain unchanged. The production filter is byte-for-byte unchanged. No replacement paid permit,
 second allocation or broader model execution is part of these corrections.
 
 ## Cost, cleanup and preservation
@@ -68,6 +74,8 @@ absence twice; watcher reason is `OWNER_DONE`. Both paid jobs terminated.
 Complete inventory at 2026-10-31 06:49:24 UTC contained zero Pods. Account read
 at 06:49:15 showed USD 2.9060441339, zero hourly spend and autopay off.
 The observed balance decrease is **USD 0.1037751241**, not final billing evidence.
+The later free-run read at 06:57:25 UTC retained the same balance/zero spend;
+complete inventory at 06:57:33 again contained zero Pods.
 The original USD 1 / 3,000-second / USD 0.50-reserve contract was retained.
 
 All 67 executed source hashes, two paid archives / 23 members and eleven state
