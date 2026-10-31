@@ -1,4 +1,4 @@
-"""Reuse the pinned E2B sources and original development assignments.
+"""Reuse the pinned E4B sources and original development assignments.
 
 Preparation downloads the actual checkpoint without allocating a GPU. No labels
 or evaluator files are sent to a model. Execution is a later explicit entry.
@@ -37,22 +37,22 @@ def replay_schedule(tokenizer):
             messages=[{'role':'system','content':prompt},{'role':'user','content':json.dumps(payload,ensure_ascii=False)}]
             encoded=ready.encode(tokenizer,messages,12288)
             if encoded['overflow']:raise ValueError('replay token overflow')
-            rows.append({'model':'E2B','arm':arm,'id':case['id'],'messages':messages,
+            rows.append({'model':'E4B','arm':arm,'id':case['id'],'messages':messages,
                 'input_tokens':encoded['input_tokens'],'input_ids_sha256':encoded['token_ids_sha256']})
     return rows
 
 
 def prepare_runtime(root):
     initializer=remote.prepare(root,ROOT/'.local/cuda-wheels',ROOT/'.local/transport-build')
-    prepared=ROOT/'.local/e2b'
-    verified=runner.verify_pretrained_directory('E2B',prepared/'models/E2B')
+    prepared=ROOT/'.local/e4b'
+    verified=runner.verify_pretrained_directory('E4B',prepared/'models/E4B')
     ready.validate_sources(prepared/'sources')
     assets=Path(root)/'assets';assets.mkdir(mode=0o700)
-    for kind,origin,names in [('models',prepared/'models/E2B',('config.json','generation_config.json','model.safetensors')),
-                              ('tokenizers',prepared/'sources/E2B',sorted(ready.FILES))]:
-        target=assets/kind/'E2B';target.mkdir(mode=0o700,parents=True)
+    for kind,origin,names in [('models',prepared/'models/E4B',('config.json','generation_config.json','model.safetensors')),
+                              ('tokenizers',prepared/'sources/E4B',sorted(ready.FILES))]:
+        target=assets/kind/'E4B';target.mkdir(mode=0o700,parents=True)
         for name in names:
-            # Relocate the verified large checkpoint; no duplicate 10 GB file.
+            # Relocate the verified large checkpoint; no duplicate 16 GB file.
             if kind=='models':shutil.move(str(origin/name),target/name)
             else:shutil.copyfile(origin/name,target/name)
     (Path(root)/'assets-manifest.json').write_bytes(container.manifest(assets,'model'))
@@ -66,17 +66,17 @@ def qualified_job(hardware,header):
     if (hardware.get('status')!='PASS_ACTUAL_HARDWARE_ONLY' or not hardware.get('actual_gpu')
             or not hardware.get('checks') or not all(hardware['checks'].values())):
         raise ValueError('complete actual hardware checks required')
-    return {'container_model':'E2B','mode':'pretrained_cuda','gpu':hardware['initial_gpu'],
+    return {'container_model':'E4B','mode':'pretrained_cuda','gpu':hardware['initial_gpu'],
         'hardware_receipt_sha256':life.digest(hardware),'packages':ready.lock()['gpu_candidate']['packages'],
         'key_mapping':ready.lock()['model_loading']['key_mapping'],'max_input_tokens':12288,'max_new_tokens':4096,
         'allowed_unexpected_keys':[k for k in header if k.startswith(ready.NON_TEXT_PREFIXES)]}
 
 
 def after_hardware(root,endpoint,prefix,output,hardware):
-    header=json.loads((ROOT/'.local/e2b/sources/E2B/tensor-header.json').read_bytes())
+    header=json.loads((ROOT/'.local/e4b/sources/E4B/tensor-header.json').read_bytes())
     job=qualified_job(hardware,header)
     jobs=root/'assets/jobs';jobs.mkdir(mode=0o700)
-    life.write(jobs/'E2B-pretrained.json',job)
+    life.write(jobs/'E4B-pretrained.json',job)
     # The complete multimodal-key allowlist can exceed SSH command-size bounds.
     # Send the trusted job through the existing authenticated manifest stream.
     manifest=root/'assets-qualified-manifest.json'
@@ -92,7 +92,7 @@ for p in dst.rglob('*'):
  if p.is_symlink():raise ValueError('asset symlink')
  p.chmod(0o755 if p.is_dir() else 0o444)
 dst.chmod(0o755)
-print(json.dumps({'bytes':sum(p.stat().st_size for p in dst.rglob('*') if p.is_file()),'model':'E2B'}))
+print(json.dumps({'bytes':sum(p.stat().st_size for p in dst.rglob('*') if p.is_file()),'model':'E4B'}))
 """,60)
     life.write(output/'asset-transfer.json',{'transfer':transfer,'installation':installed,
         'qualified_manifest_sha256':life.digest(manifest.read_bytes())})
@@ -107,7 +107,7 @@ print(json.dumps({'bytes':sum(p.stat().st_size for p in dst.rglob('*') if p.is_f
         preserve_collection(output)
     # An observed idle GPU and absent worker are required before evaluation.
     stopped=remote.remote(prefix,"""import json,pathlib
-r=json.loads(pathlib.Path('/root/backtrace/E2B-pretrained-state.json').read_bytes())
+r=json.loads(pathlib.Path('/root/backtrace/E4B-pretrained-state.json').read_bytes())
 try:r['same_process_alive']=pathlib.Path('/proc',str(r['pid']),'stat').read_text().split()[21]==r['start_ticks']
 except (FileNotFoundError,ProcessLookupError):r['same_process_alive']=False
 print(json.dumps(r))
@@ -117,15 +117,15 @@ print(json.dumps(r))
     if stopped['same_process_alive'] or p.returncode:raise RuntimeError('inference collector or cleanup failed')
     collection=json.loads((output/'collection/collection.json').read_bytes())
     # Evaluation needs only standard-library modules after the model is gone.
-    plan,schedule,_=runner.load_scope(ROOT/'.local/e2b/scope',ROOT/'.local/e2b/packets',ROOT/'.local/e2b/tokenization.json')
-    selected=[r for r in schedule if r['model']=='E2B']
+    plan,schedule,_=runner.load_scope(ROOT/'.local/e4b/scope',ROOT/'.local/e4b/packets',ROOT/'.local/e4b/tokenization.json')
+    selected=[r for r in schedule if r['model']=='E4B']
     original=dict(collection,records=collection['records'][:18],assigned=18,
         coverage=dict(Counter(r['status'] for r in collection['records'][:18])))
     scores=runner.evaluate(plan,selected,original)
     life.write(output/'baseline-scores.json',scores)
     life.write(output/'replay-returns.json',{'limitations':json.loads(REPLAY.read_bytes())['limitations'],
         'records':collection['records'][18:],'rubric_sha256':life.digest((ROOT/'docs/augnes-development-replay-rubric-20261031.json').read_bytes())})
-    return {'status':'PASS_E2B_COLLECTION' if collection['status']=='COMPLETED' else 'INCOMPLETE_E2B_COLLECTION',
+    return {'status':'PASS_E4B_COLLECTION' if collection['status']=='COMPLETED' else 'INCOMPLETE_E4B_COLLECTION',
         'assigned':24,'coverage':collection['coverage'],'collection_status':collection['status'],
         'training_steps':0,'capability_claim':'DESCRIPTIVE_DEVELOPMENT_ONLY',
         'memory_limit':'Provider allocation and visible memory observed; hidden ancestor limit not attested'}
@@ -134,24 +134,24 @@ print(json.dumps(r))
 def collect(spec_path,output):
     from transformers import AutoTokenizer
     spec=json.loads(Path(spec_path).read_bytes());output=Path(output)
-    prepared=ROOT/'.local/e2b'
-    tokenizer=AutoTokenizer.from_pretrained(prepared/'sources/E2B',local_files_only=True,trust_remote_code=False)
+    prepared=ROOT/'.local/e4b'
+    tokenizer=AutoTokenizer.from_pretrained(prepared/'sources/E4B',local_files_only=True,trust_remote_code=False)
     _,schedule,_=runner.load_scope(prepared/'scope',prepared/'packets',prepared/'tokenization.json')
-    selected=[r for r in schedule if r['model']=='E2B']+replay_schedule(tokenizer)
+    selected=[r for r in schedule if r['model']=='E4B']+replay_schedule(tokenizer)
     life.write(output/'input-schedule.json',{'requests':selected,'packet_sha256':life.digest(REPLAY.read_bytes())})
     def factory(name,directory):
-        if name!='E2B':raise ValueError('E2B only')
+        if name!='E4B':raise ValueError('E4B only')
         command=spec['prefix']+[shlex.join(['/usr/bin/env','-i','PATH=/usr/bin:/bin','LANG=C.UTF-8',
             'LD_LIBRARY_PATH=/opt/backtrace/python/lib','/opt/backtrace/venv/bin/python','-I',
-            '/opt/backtrace/launcher.py','run','E2B-pretrained','1500','pretrained'])]
-        return container.ContainerChannel(command,directory/'E2B-stderr.log')
+            '/opt/backtrace/launcher.py','run','E4B-pretrained','1500','pretrained'])]
+        return container.ContainerChannel(command,directory/'E4B-stderr.log')
     factory.gpu_uuid=spec['gpu_uuid']
-    return runner.collect(selected,ROOT/'.local/e2b-collection',factory,{'E2B':tokenizer},mode='pretrained_cuda',
+    return runner.collect(selected,ROOT/'.local/e4b-collection',factory,{'E4B':tokenizer},mode='pretrained_cuda',
         max_new_tokens=4096,total_seconds=1500,startup_seconds=180,request_seconds=90)
 
 
 def preserve_collection(output):
-    source=ROOT/'.local/e2b-collection';target=Path(output)/'collection';count=0
+    source=ROOT/'.local/e4b-collection';target=Path(output)/'collection';count=0
     if source.exists():
         target.mkdir(parents=True,exist_ok=True)
         for p in source.iterdir():
@@ -165,9 +165,15 @@ def inspect_inputs(prepared,*,cuda_runtime=False):
     prepared=Path(prepared)
     if cuda_runtime:gpu.check_runtime()
     else:ready.check_packages()
-    tokenizer=AutoTokenizer.from_pretrained(prepared/'sources/E2B',local_files_only=True,trust_remote_code=False)
+    tokenizer=AutoTokenizer.from_pretrained(prepared/'sources/E4B',local_files_only=True,trust_remote_code=False)
     plan,schedule,_=runner.load_scope(prepared/'scope',prepared/'packets',prepared/'tokenization.json')
-    original=[r for r in schedule if r['model']=='E2B'];replays=replay_schedule(tokenizer)
+    original=[r for r in schedule if r['model']=='E4B'];replays=replay_schedule(tokenizer)
+    previous=json.loads((ROOT/'docs/evidence/e2b-run-41206950960/input-schedule.json').read_bytes())['requests']
+    current=original+replays
+    if len(previous)!=24 or len(current)!=24 or any(
+            a['model']!='E2B' or b['model']!='E4B' or
+            any(a[k]!=b[k] for k in ('id','arm','messages')) for a,b in zip(previous,current)):
+        raise ValueError('E4B comparison must preserve all 24 E2B messages and assignments')
     for row in original:
         actual=ready.encode(tokenizer,row['messages'],12288)
         if actual['input_tokens']!=row['input_tokens'] or actual['token_ids_sha256']!=row['input_ids_sha256']:
@@ -176,7 +182,8 @@ def inspect_inputs(prepared,*,cuda_runtime=False):
     missing={'mode':'pretrained_cuda','source_hashes':runner.source_hashes(),
         'coverage':{'NOT_RUN':18},'records':[dict(model=r['model'],arm=r['arm'],id=r['id'],status='NOT_RUN') for r in original]}
     runner.evaluate(plan,original,missing)
-    return {'status':'PASS_INPUTS_NOT_INFERENCE','original_assigned':len(original),'replay_assigned':len(replays),
+    return {'status':'PASS_INPUTS_NOT_INFERENCE','identical_e2b_comparison_messages':True,
+        'original_assigned':len(original),'replay_assigned':len(replays),
         'assigned_before_allocation':[{**{k:v for k,v in r.items() if k!='messages'},'initial_status':'NOT_RUN'} for r in original+replays],
         'replays':[{k:v for k,v in r.items() if k!='messages'} for r in replays],
         'packet_sha256':life.digest(REPLAY.read_bytes()),'pretrained_requests':0}
@@ -197,16 +204,16 @@ def prepare(output, readiness_archive):
     ready.rebuild_packets(output/'packets')
     ready.prepare_scope(output/'packets',output/'tokenization.json',output/'scope',scope='smoke')
     plan,schedule,_ = runner.load_scope(output/'scope',output/'packets',output/'tokenization.json')
-    selected = [row for row in schedule if row['model']=='E2B']
+    selected = [row for row in schedule if row['model']=='E4B']
     if len(selected)!=18 or {row['arm'] for row in selected}!={'B0','B1'}:
-        raise ValueError('original 18 E2B assignments required')
+        raise ValueError('original 18 E4B assignments required')
     ready.acquire_sources(output/'sources')
-    spec = ready.lock()['models']['E2B']; weight = spec['weights_metadata_only'][0]
+    spec = ready.lock()['models']['E4B']; weight = spec['weights_metadata_only'][0]
     if shutil.disk_usage(output).free < weight['bytes'] + 4*1024**3:
         raise RuntimeError('insufficient free disk before checkpoint acquisition')
-    model = output/'models/E2B'; model.mkdir(mode=0o700,parents=True)
+    model = output/'models/E4B'; model.mkdir(mode=0o700,parents=True)
     for name in ('config.json','generation_config.json'):
-        shutil.copyfile(output/'sources/E2B'/name,model/name)
+        shutil.copyfile(output/'sources/E4B'/name,model/name)
     destination = model/'model.safetensors'; started=time.monotonic(); size=0
     # The complete response is hash-checked against the previously pinned LFS OID.
     request=urllib.request.Request(spec['tensor_header']['url']+'?download=true')
@@ -217,10 +224,10 @@ def prepare(output, readiness_archive):
             if size>weight['bytes'] or time.monotonic()-started>900:
                 raise RuntimeError('checkpoint acquisition bound exceeded')
             stream.write(chunk)
-    verified=runner.verify_pretrained_directory('E2B',model)
+    verified=runner.verify_pretrained_directory('E4B',model)
     result={'status':'PASS_PRETRAINED_BYTES_NOT_INFERENCE','weights':verified,
         'assigned':len(selected),'independent_development_episodes':1,
-        'scope':'E2B_ONLY_FROM_ORIGINAL_SMOKE','excluded_model':'E4B_CONDITIONAL',
+        'scope':'E4B_ONLY_FROM_ORIGINAL_SMOKE','excluded_model':'E2B_MEASURED_SEPARATELY',
         'checkpoint_download_seconds':time.monotonic()-started,'pretrained_requests':0,
         'source_sha':__import__('os').environ.get('GITHUB_SHA')}
     life.write(output/'preparation.json',result); return result
