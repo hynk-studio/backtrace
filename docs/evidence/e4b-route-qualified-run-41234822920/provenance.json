@@ -1,0 +1,357 @@
+{
+  "run_id": 41234822920,
+  "source_sha": "99ee2509c2b38a0c3e0729cf66b62baaba3e5533",
+  "workflow_conclusion": "success",
+  "native_tests": 736,
+  "native_seconds": 211.082,
+  "container_controls": 17,
+  "verified_source_entries": 307,
+  "verified_source_paths": 97,
+  "artifacts": {
+    "container": {
+      "id": 13055945292,
+      "sha256": "9063627ca2a228c5d003d389b27a351406e92b89dc01bd5a21ed2d044cb0258a"
+    },
+    "inputs": {
+      "id": 13054944182,
+      "sha256": "84477836236e0c455122d8654d20457761d8cda1c40195d18294027b212c348a"
+    },
+    "owner": {
+      "id": 13054854123,
+      "sha256": "24a4b4b751e6874b7f1b13c91f651efbc8f70a4a0186235dc323593b081748fd"
+    },
+    "watch": {
+      "id": 13054757749,
+      "sha256": "8943430eed6a2f3b0f86375597a471e33dc4586b6f3ceb8295e899564f92d332"
+    }
+  },
+  "files": [
+    {
+      "role": "container",
+      "path": "container-image.log",
+      "bytes": 1302,
+      "sha256": "bce6bb49a3fae7c84f702deb72666d09aca189d4ff79394238e87d24917671dd"
+    },
+    {
+      "role": "container",
+      "path": "container-pretrained-missing-gpu.log",
+      "bytes": 957,
+      "sha256": "8cd22da557dda34a2b9cb9c17e17e436d2fa25a870f7d96fd2d47917696e3e23"
+    },
+    {
+      "role": "container",
+      "path": "container-public-model-qualification.log",
+      "bytes": 28462,
+      "sha256": "abd539844ad2a9a5f111cdf7eabbabe0a46f674a07d17615e29eb8cb1074963a"
+    },
+    {
+      "role": "container",
+      "path": "container-receipt.json",
+      "bytes": 51018,
+      "sha256": "0e076be83e4e274e9df3c2b84d77ab9eb53437074df9a17a0dd8ed0fbaa5a843"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-connected-receipt.json",
+      "bytes": 18925,
+      "sha256": "5521b0f4b7d3924a03b011da74e126248a81b4896daf25fbe82db33a5c990606"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-boundary-635456651493.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-boundary-memory-checkpoint.json",
+      "bytes": 2989,
+      "sha256": "95d8d9009c42a194b8dab051d3d55717391c8c7d68b204101fde878fced7f15f"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-cuda-comparison-A-checkpoint.json",
+      "bytes": 1457,
+      "sha256": "01e898094badc0654503f4cbef5cbbbc7b0649ffbbb97e9c75300b00400fb0b9"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-cuda-comparison-A-stderr.log",
+      "bytes": 1225,
+      "sha256": "0ecb3d3d7207f626ae1a8ca54b0ae0fc52954c78f321e5377719fbd1d420fcd3"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-cuda-comparison-A-stdout.log",
+      "bytes": 578,
+      "sha256": "c21be636bb50ea9a3ff53c831f21e05c8467353fc7b2aa39c4805d7cb39bab42"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-cuda-comparison-A-teardown.json",
+      "bytes": 1670,
+      "sha256": "520d569fc2b1d5a1736a813212d7db50fa2fe780bd928f88f3a9154a716c39be"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-cuda-comparison-B-checkpoint.json",
+      "bytes": 3040,
+      "sha256": "6114a6ea69debe2b7e5c027c04180402516b21c70bd2d403d3485ce4fea57b2b"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-cuda-comparison-B-stderr.log",
+      "bytes": 1256,
+      "sha256": "d230bd3a3ae59ec239ca266a853949483c91d81f669fa0c19ca5439a9d053f86"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-cuda-comparison-B-stdout.log",
+      "bytes": 578,
+      "sha256": "4a26dfd2bf58adef9ea42db3af08ca993b91376c9c86fa1c09eaa8e877d68fb4"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-cuda-comparison-B-teardown.json",
+      "bytes": 3254,
+      "sha256": "420bbb12560f58fa3e54fa50074843f63c8bf7be41b1f8491e9caf30b3c9cdc1"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-cuda-comparison-C-checkpoint.json",
+      "bytes": 4624,
+      "sha256": "3a92ca917d6eb148353d47a8ac18acd6a113ea8c840ae14075ea30ac5cb0f60f"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-cuda-comparison-C-stderr.log",
+      "bytes": 1256,
+      "sha256": "f031bbf2e137f5b93a7139efe985347425fbd86a72edcc6f67419c91e3182a24"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-cuda-comparison-C-stdout.log",
+      "bytes": 578,
+      "sha256": "7d998ac90cf12b2d77d1787ab501051d776a7f0a21e2eb2767490bcb7a6a1412"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-cuda-comparison-C-teardown.json",
+      "bytes": 4838,
+      "sha256": "7e0789cc9fc5527f12ae1c043bab14b859e8e32b10191ba4e7d5f9a9b81b5ac9"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-cuda-comparison-D-checkpoint.json",
+      "bytes": 6303,
+      "sha256": "e507207ff81a610a97740753337a01dd027009d44a0d9bf888f159f9a58b1d15"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-cuda-comparison-D-stderr.log",
+      "bytes": 1256,
+      "sha256": "2d786a3571fa37ead308b550d1abd1040782f78e30a707c22fd99f803488502a"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-cuda-comparison-D-stdout.log",
+      "bytes": 682,
+      "sha256": "527bfade87c5e776f70eb33fc5a0f34a9ef8844ea5679ce9697581173f86805f"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-cuda-comparison-D-teardown.json",
+      "bytes": 6517,
+      "sha256": "09b128cca1b5e03bf69b6f80efdd2b82ed379f7a3c8f39af40e576920427f667"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-cuda-comparison-receipt.json",
+      "bytes": 6731,
+      "sha256": "0f7940c6c44f0713f547da858ad78c80694f72bd796b89c5d6035705c9931ecd"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-cuda-comparison-started.json",
+      "bytes": 119,
+      "sha256": "e68bcac9e62ef4bf46da48e96379832d70b88ca758b6692825b77370c11bf204"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-deadline-checkpoint.json",
+      "bytes": 10269,
+      "sha256": "9dce693363345429e065275a773ee61a25b731d816a14bb75765ab8ab294e845"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-deadline.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-memory-635733512556.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-missing-gpu.log",
+      "bytes": 553,
+      "sha256": "24ef69744a82d01f871bb642e7869d1446bfaa2b7dbf3a3d5de9ac98ee66661e"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-receipt.json",
+      "bytes": 11106,
+      "sha256": "ba8916f8074b439aadd7850d9069b3269419694abe7c75e2be2e2d525ffa50b2"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-supervisor-checkpoint.json",
+      "bytes": 11084,
+      "sha256": "6b8421b1e57408c426ed84b881ef51fcd3f8edcf323732792d292498f94c936a"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-transport-checkpoint.json",
+      "bytes": 10673,
+      "sha256": "7957ebceae3bfb548f50138f3f6659cdb93718f4a9d34f3a07c7347e513b9a1d"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-diagnostics-transport.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-install.log",
+      "bytes": 10564,
+      "sha256": "fb3c6c4966af7e01c4ed2278bfc30bb4e669b0a3b6cba66cc372c01995099333"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-installation-checkpoint.json",
+      "bytes": 7783,
+      "sha256": "8243d286331a348c6f8c1f485ff40304f6b69619f5ed76ed3e5d8e626878a909"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-runtime-transfer-progress.json",
+      "bytes": 12096,
+      "sha256": "7b8233f2b9ac4d8e5498ba71cfa2605d3b59bdca1ac757dc5090956187d27bee"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-runtime-transfer-progress.json.owner.json",
+      "bytes": 1860,
+      "sha256": "b60aa37a9841976fe94fb37987189d9ccfc7b31c5920beabd52b1fa637d8c967"
+    },
+    {
+      "role": "container",
+      "path": "container-remote-runtime-transfer-progress.json.receiver.log",
+      "bytes": 27961,
+      "sha256": "0eb149d754e7790c328f99203f17a74a1f13b5e5cb9355fa94dff994cbdda49b"
+    },
+    {
+      "role": "container",
+      "path": "container-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "container",
+      "path": "container.json",
+      "bytes": 38,
+      "sha256": "dfd929dc663a3b5e6505e5b8ba0c90e50d44e0e74ab2ec9418fda4337210fdcc"
+    },
+    {
+      "role": "container",
+      "path": "preflight.json",
+      "bytes": 167,
+      "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+    },
+    {
+      "role": "container",
+      "path": "tests.log",
+      "bytes": 125171,
+      "sha256": "ec7d0a203bbd08c24653d8444c8518220c19bf99f99e005271990bbd5be54765"
+    },
+    {
+      "role": "container",
+      "path": "transport-window-control.json",
+      "bytes": 2296,
+      "sha256": "0815bda204fa6f252ef10efec5f1d90b7ee9822869e65045972e768ebdbbe231"
+    },
+    {
+      "role": "container",
+      "path": "transport-window-control.log",
+      "bytes": 1530,
+      "sha256": "3a3218099125c775d0bb74159c2e9c8e5723489add33b1b9e5d38e3f6650bf67"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/receipt.json",
+      "bytes": 12435,
+      "sha256": "9d341e8428f49358ec3c5a18dcd2539873ff9db6d5d6f0eb19e93e4082b53902"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner.json",
+      "bytes": 12435,
+      "sha256": "9d341e8428f49358ec3c5a18dcd2539873ff9db6d5d6f0eb19e93e4082b53902"
+    },
+    {
+      "role": "owner",
+      "path": "account-after.json",
+      "bytes": 24302,
+      "sha256": "69d789157e0e3e1eaed51bf25aef6ca2453aeff12a111986b90033283dde329b"
+    },
+    {
+      "role": "watch",
+      "path": "minimum-watch.json",
+      "bytes": 671,
+      "sha256": "f0c842dd823b73b35a5105cd60e93e463b1c5357ddc997ef6dcce83ba83e0f16"
+    },
+    {
+      "role": "inputs",
+      "path": "dependency-download.log",
+      "bytes": 10907,
+      "sha256": "c1ac3f2333be2d18d30db18bbd021c6eea7d582398af9a9eeacfc26d1b3e48ef"
+    },
+    {
+      "role": "inputs",
+      "path": "dependency-install.log",
+      "bytes": 5824,
+      "sha256": "d37a06770f6e9acffa3fdf721caf7426070cb68b1db2baab8374eda4043a9a70"
+    },
+    {
+      "role": "inputs",
+      "path": "input-verification.json",
+      "bytes": 4313,
+      "sha256": "b4017685ba3a73aa7925c41f377c9806dbef3fbcb2ef56cf31ed9120812088b0"
+    },
+    {
+      "role": "inputs",
+      "path": "preparation.json",
+      "bytes": 510,
+      "sha256": "dc0755a9df4cab2de00d238a7e97b05f0dc99b7f1721e6136362da287e9c74c4"
+    },
+    {
+      "role": "inputs",
+      "path": "preparation.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "actual_gpu": false,
+  "provider_create_requests": 0,
+  "boundary": "Full pinned public runtime/model preparation and CPU controls only; not GPU inference/training or capability evidence."
+}

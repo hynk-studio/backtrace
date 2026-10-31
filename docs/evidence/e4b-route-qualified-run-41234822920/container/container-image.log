@@ -1,0 +1,31 @@
+docker.io/pytorch/pytorch@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca: Pulling from pytorch/pytorch
+e93fce65fb9f: Pulling fs layer
+6831761682dc: Pulling fs layer
+58aaab9bde9b: Pulling fs layer
+850f0690c0a3: Pulling fs layer
+eefdd43f1b04: Pulling fs layer
+526a66eb7587: Pulling fs layer
+850f0690c0a3: Waiting
+eefdd43f1b04: Waiting
+526a66eb7587: Waiting
+e93fce65fb9f: Verifying Checksum
+e93fce65fb9f: Download complete
+6831761682dc: Verifying Checksum
+6831761682dc: Download complete
+850f0690c0a3: Download complete
+526a66eb7587: Verifying Checksum
+526a66eb7587: Download complete
+eefdd43f1b04: Verifying Checksum
+eefdd43f1b04: Download complete
+e93fce65fb9f: Pull complete
+6831761682dc: Pull complete
+58aaab9bde9b: Verifying Checksum
+58aaab9bde9b: Download complete
+58aaab9bde9b: Pull complete
+850f0690c0a3: Pull complete
+eefdd43f1b04: Pull complete
+526a66eb7587: Pull complete
+Digest: sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca
+Status: Downloaded newer image for pytorch/pytorch@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca
+docker.io/pytorch/pytorch:2.10.0-cuda12.8-cudnn9-runtime@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca
+c1cb618cb6354a62984f5669ef3b4de669f22612adb02a42528757df7128158b

@@ -65,3 +65,21 @@ An appropriate label or repetition of a supplied goal is not added value. Curren
 flow/main-model and prospective comparisons remain necessary for an Augnes benefit
 claim, and the current local Augnes connections are unavailable. Continue actual
 measurement/interpretation under delegation; do not stop at this preparation.
+
+## Final public-route qualification, before paid screening
+
+Free run41234822920 at source`99ee2509c2b38a0c3e0729cf66b62baaba3e5533`
+passed736 native tests in211.082 seconds and17 ordinary-container controls.
+All54 raw artifact members and307 nested source entries over97 paths match the
+executed tree; retained in `evidence/e4b-route-qualified-run-41234822920/`.
+The pinned15,992,595,884-byte E4B checkpoint downloaded in264.648 seconds and
+completed independent readback in303.372 seconds total. The3,642,464,920-byte
+runtime and all56 public wheels passed exact hash/readback. The container was
+deleted with two independent absence observations. These remain CPU/preparation
+results, with zero actual E4B generations.
+
+All20 model messages/order/identifiers and tokenizer input hashes match the
+original E2B screening schedule. No E4B paid permit or start exists at this
+checkpoint. E2B run41236271328 is active and must finish result review and
+independent deletion first. The already-qualified E4B source remains fixed for
+any later conditional permit; documentation commits do not replace it.

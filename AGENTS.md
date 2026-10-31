@@ -1,5 +1,15 @@
 # Backtrace working agreement
 
+## Final E4B route qualification retained (2026-10-31 20:01 UTC)
+
+Read docs/small-model-e4b-screening-20261031.md. Free41234822920 at immutable
+source99ee2509c2b38a0c3e0729cf66b62baaba3e5533 passed736 native tests,17 controls,
+full E4B checkpoint readback and two cleanup absence observations.54 raw members
+and307 source entries are retained. All20 original messages/token hashes match
+E2B. No E4B paid permit/start yet; E2B41236271328 is active. Continue its actual
+result review and independent cleanup before activating the conditional E4B scope.
+Keep actual start source99ee fixed even if later documentation is committed.
+
 ## Conditional E4B route amendment (2026-10-31 UTC)
 
 The no-allocation E2B run41233521859 showed only excluded A40/EU-SE-1 within
