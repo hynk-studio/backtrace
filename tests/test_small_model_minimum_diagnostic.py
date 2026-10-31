@@ -74,7 +74,7 @@ w.child(os.getppid(),sys.argv[3])
             self.assertEqual(remote.diagnostic_decision(rows, False), 'CPU_CONTROLS_ONLY')
 
     def test_all_eight_patterns_have_conservative_predeclared_decisions(self):
-        expected = {(False, False, False): 'COMMON_PROVIDER_RUNTIME_PATH_STOP',
+        expected = {(False, False, False): 'ALL_PRIMARY_PROBES_FAILED_CAUSE_UNRESOLVED_STOP',
                     (True, False, False): 'WORKER_IDENTITY_LIMIT_LAYER',
                     (True, True, False): 'ADDED_FILTER_IMPLICATED_SYSCALL_UNRESOLVED',
                     (True, True, True): 'CUDA_PATH_WORKS_FAILURE_NOT_REPRODUCED'}

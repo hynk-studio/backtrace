@@ -23,6 +23,8 @@ ROOT=Path(__file__).resolve().parents[1]
 REVIEW='bt-001-small-model-minimum-20261027'
 START='bt-001-small-model-minimum-start-20261027'
 STATE_BRANCH='bt-001-small-model-minimum-state-20261027'
+REMOTE_MODULE='tools.small_model_minimum_remote'
+SUCCESS_STATUS='PASS_ACTUAL_HARDWARE_ONLY'
 NAMES={'authorization','owner','watch','claim','armed','heartbeat','watch-heartbeat','pod','done','owner-cleanup','watch-cleanup','replica-resource','replica-deleted'}
 MUTABLE={'heartbeat','watch-heartbeat'}
 CONTRACT={'scope':'HARDWARE_ONLY_OCI_V1','total_seconds':3000,'work_seconds':2580,
@@ -366,14 +368,14 @@ def owner(state,api,rid,me,prepared=None):
                 if process is None:
                     endpoint_hash=current;path=out/'endpoint.json';path.write_bytes(life.encoded(ep));path.chmod(0o600)
                     log=(out/'worker.log').open('xb')
-                    try:process=subprocess.Popen([sys.executable,'-m','tools.small_model_minimum_remote',str(prepared),str(path),str(out/'remote')],
+                    try:process=subprocess.Popen([sys.executable,'-m',REMOTE_MODULE,str(prepared),str(path),str(out/'remote')],
                         stdin=subprocess.DEVNULL,stdout=log,stderr=log,start_new_session=True,
                         env={'PATH':os.environ['PATH'],'LANG':'C.UTF-8','HOME':str(prepared)})
                     finally:log.close()
             if process is not None and process.poll() is not None:
                 result['remote']=json.loads((out/'remote/connected-receipt.json').read_bytes())
-                if process.returncode or result['remote']['status']!='PASS_ACTUAL_HARDWARE_ONLY':raise RuntimeError('hardware diagnostic failed')
-                result['status']='PASS_ACTUAL_HARDWARE_ONLY';break
+                if process.returncode or result['remote']['status']!=SUCCESS_STATUS:raise RuntimeError('hardware diagnostic failed')
+                result['status']=SUCCESS_STATUS;break
             sha=beat(state,'heartbeat',claim,sha);last=now
             time.sleep(30 if process is None else 90)
     except Exception as e:

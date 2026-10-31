@@ -1,7 +1,15 @@
 # Small abductive model: evidence before deployment
 
-Decision date: 2026-10-26; revised 2026-10-31 KST. Status: **GPU diagnosis pending; pretrained baseline, training and Augnes replay NOT RUN**.
+Decision date: 2026-10-26; revised 2026-10-31 KST. Status: **A/B/C recorded; added filter implicated in CUDA initialization, denied syscall unresolved; free code corrections qualified. Pretrained baseline, training and Augnes replay NOT RUN**.
 Refs [BT-001](https://github.com/hynk-studio/backtrace/issues/1).
+
+Current [diagnostic outcome](small-model-cuda-diagnostic-20261031.md): the one
+paid scope is consumed and cleaned up. A/B initialized CUDA but failed a later
+joint gate; C alone returned 304. Preserve the original failed run. A known
+UUID spelling defect and post-recording duplicate-write bug are corrected and
+verified by 679 native tests and 17 ordinary-container checks. Production
+filtering is unchanged. The denied operation and a
+supported remedy remain prerequisites to another same-route capability run.
 
 ## Active objective and delegated continuation (2026-10-31 KST)
 
@@ -69,14 +77,15 @@ No new SAE training, broad neuron search or parallel second project is justified
 
 ### Existing first-response path and remaining blocker
 
-`tools/small_model_minimum_remote.py:connected(..., comparison_only=True)` already
-collects A/B/C. The historical owner still launches hardware-minimum mode and
-expects `PASS_ACTUAL_HARDWARE_ONLY`. A narrow new scope/entry binding must select
-comparison mode and retain `DIAGNOSTIC_RECORDED` as measurement completion, never
-hardware success. Reuse the owner/watcher lifecycle and fixed limits.
+`tools/small_model_minimum_diagnostic.py` binds the existing owner/watcher to
+`connected(..., comparison_only=True)` and `DIAGNOSTIC_RECORDED`. Its paid
+comparison is recorded; the original wrapper failed on a duplicate exclusive
+receipt write. The corrected wrapper preserves the original receipt and adds
+a separate summary. Measurement completion still never means hardware success.
 
 Preserve original smoke inputs, prompts, assignment IDs and scorer. Select the
-existing E2B 18 assignments prospectively; leave E4B deferred. The native CUDA
+existing E2B 18 assignments prospectively; leave E4B deferred. These nine views
+come from one development family/episode, not nine independent episodes. The native CUDA
 collector in `tools/small_model_gpu.py` and raw collector in
 `tools/small_model_runner.py` are reusable, but the qualified OCI worker rejects
 pretrained/CUDA inference. The prepared cases are **not yet an executable provider
@@ -435,7 +444,7 @@ Do not claim counterfactual task resolution from an unexecuted recommendation.
 | Stage | Deliverable | Current status |
 | --- | --- | --- |
 | A0: goal and capability contract | Augnes-first plan; E2B first, E4B conditional; competition abandoned | Documented; no model result |
-| A1: actual baseline and early replay | Existing 18 E2B B0/B1 cases and 3–5 development replays | CUDA error 304 unresolved; free A/B/C collector qualified; pretrained baseline NOT RUN |
+| A1: actual baseline and early replay | Existing 18 E2B B0/B1 assignments and 3–5 development replays | Actual A/B/C implicated added filtering in initialization; exact syscall/remedy unresolved; free admission/receipt corrections qualified; pretrained baseline NOT RUN |
 | A2: optional training feasibility | Tiny update/save/reload and observed resource budget | NOT RUN |
 | A3: candidate screening | One-seed matched B2/S; bounded data/token ceilings | NOT RUN; B1 can bypass training for shadow screening |
 | A4: practical value | About 20 independent offline/shadow episodes, four flow comparisons | NOT RUN; does not require synthetic superiority |

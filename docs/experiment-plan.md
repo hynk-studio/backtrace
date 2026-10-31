@@ -11,7 +11,7 @@ controls; new families and three seeds are for confirmation, not entry to replay
 | Stage | Next result | Status |
 | --- | --- | --- |
 | A0 | Augnes-first goal, optional training and bounded scope | Plan aligned; no capability result |
-| A1 | One A/B/C CUDA diagnosis, then existing 18 E2B assignments and 3–5 development replays | A/B/C qualified on CPU in #40; GPU diagnosis and pretrained outputs NOT RUN |
+| A1 | One A/B/C CUDA diagnosis, then existing 18 E2B assignments and 3–5 development replays | Actual comparison recorded in #43; added filter implicated in initialization, denied syscall unresolved; pretrained outputs NOT RUN |
 | A2 | Optional tiny update, save/reload and measured training budget | NOT RUN |
 | A3 | One-seed matched B2/S screening, capped at 1,024 episodes or 1M effective tokens per arm | NOT RUN |
 | A4 | About 20 independent offline/shadow episodes, including additional main-model review comparator | NOT RUN; useful B1 can enter without training |
@@ -20,6 +20,10 @@ controls; new families and three seeds are for confirmation, not entry to replay
 The first delegated paid scope is one USD1 / 3,000-second CUDA diagnosis with
 USD0.50 reserve and independent cleanup. Preserve consumed permits; no top-up or
 automatic retry. A future affordable experiment is scoped from actual measurements.
+That one scope is now consumed and cleaned up. The [actual comparison](small-model-cuda-diagnostic-20261031.md)
+retains all three failed primary probes and the later wrapper failure. Free
+corrections address UUID spelling and an exclusive receipt write; they do not
+establish successful kernels or fix the unknown denied operation.
 The qualified OCI worker still rejects pretrained mode: prepared input cases do
 not imply an executable baseline. Reuse the existing collector after resolving
 that specific execution connection; do not build another orchestration framework.

@@ -103,7 +103,9 @@ def diagnostic_decision(rows, actual):
         return 'INCONCLUSIVE_STOP_SAME_ROUTE'
     if not actual:
         return 'CPU_CONTROLS_ONLY'
-    return {(False, False, False): 'COMMON_PROVIDER_RUNTIME_PATH_STOP',
+    # Failure labels may describe different stages (initialization versus
+    # identity/memory/kernel checks). They do not identify a common root cause.
+    return {(False, False, False): 'ALL_PRIMARY_PROBES_FAILED_CAUSE_UNRESOLVED_STOP',
             (True, False, False): 'WORKER_IDENTITY_LIMIT_LAYER',
             (True, True, False): 'ADDED_FILTER_IMPLICATED_SYSCALL_UNRESOLVED',
             (True, True, True): 'CUDA_PATH_WORKS_FAILURE_NOT_REPRODUCED'}.get(
