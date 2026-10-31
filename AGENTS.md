@@ -1,5 +1,23 @@
 # Backtrace working agreement
 
+## Consumed E2B completion transport failure (2026-10-31 UTC)
+
+Read docs/small-model-completion-result-20261031.md. Run41229949374 consumed
+source00e2b95e21a485e1789aebe8bc89c5df4fcc1495 and its single-use completion
+permit. The256MiB transfer timed out20.007s before runtime/model/training.
+All three assignments remain NOT_RUN; preserve the previous18 original answers.
+Both controllers proved Pod3fh2u98cnu9qbq deleted;18:49:04 inventory was empty,
+creditUSD1.9624763376, autopay off and zero hourly spend. Observed continuation
+spendUSD0.9435677963 remains subject to final billing. Preserve all raw failures,
+qualification and immutable state. Do not rerun the consumed start.
+
+Continue under the owner's delegation by investigating direct receipt of the
+already public, hash-pinned wheel/model assets in trusted preparation. Keep
+owner-generated files and private inputs on authenticated SSH; offline install,
+worker network denial, source hashes, deadlines and independent deletion remain.
+Qualify the new full path free before any fresh bounded allocation. E4B screening
+is a separate local candidate and has no start or permit yet.
+
 ## Actual eighteen-case screening and bounded completion (2026-10-31 UTC)
 
 Read docs/small-model-window-result-20261031.md and its retained raw/manual review.
