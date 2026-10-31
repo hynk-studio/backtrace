@@ -83,3 +83,9 @@ original E2B screening schedule. No E4B paid permit or start exists at this
 checkpoint. E2B run41236271328 is active and must finish result review and
 independent deletion first. The already-qualified E4B source remains fixed for
 any later conditional permit; documentation commits do not replace it.
+
+## Actual result retained
+
+Run41238159872 completed all20 responses and both independent deletions. See
+[the actual result](small-model-e4b-screening-result-20261031.md); preserve the
+qualified/paid source and consumed permit unchanged. Continue matched learning.

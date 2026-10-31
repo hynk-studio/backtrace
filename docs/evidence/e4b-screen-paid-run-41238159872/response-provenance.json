@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "assigned": 20,
+  "unicode_messages_and_input_tokens_identical_to_original_E2B": true,
+  "all_raw_wire_outputs_and_FINISHED_records_equal_collection": true,
+  "collection_sha256": "84d42638cc00bd094ea767ae0aaf7d3a13682b117c1bb2c1369135c312d76cd7",
+  "original_schedule_sha256": "faff4830334164b662bc4cf00e6c4034e2c27cc1a926ae37ee53adcb1f29715c"
+}

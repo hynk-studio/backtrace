@@ -1,5 +1,23 @@
 # Backtrace working agreement
 
+## Actual E4B result and continued matched learning (2026-10-31 UTC)
+
+Read docs/small-model-e4b-screening-result-20261031.md. Actual41238159872 at
+99ee2509c2b38a0c3e0729cf66b62baaba3e5533 completed all20 unchanged inputs;
+20 strict JSON/20 structural passes do not establish diagnostic or workflow value.
+Both controllers proved deletion, zero Pods/spend and autopay off;20:40 UTC balance
+USD1.7174565922, observed continuation spendingUSD1.1885875417 subject to billing.
+Preserve all80 raw members,242 source bindings, eight immutable state files and
+unblinded criterion reviews. The E4B permit/start is consumed and must not rerun.
+
+Continue a separate bounded E2B matched-learning candidate: strong prompt versus
+explicitly scoped forward-reasoning control versus specialist training, matched
+updates/supervised tokens/padded lengths, fresh development cases and fresh-process
+adapter reload. E2B actual training feasibility is established; useful learning,
+12GB training and Augnes added value are not. Qualify exact new source and budget
+before a fresh permit. No top-up, overlap, automatic retry, merge or Augnes write.
+
+
 ## Final E4B route qualification retained (2026-10-31 20:01 UTC)
 
 Read docs/small-model-e4b-screening-20261031.md. Free41234822920 at immutable

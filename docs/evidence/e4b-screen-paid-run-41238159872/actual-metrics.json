@@ -1,0 +1,105 @@
+{
+  "assigned": 20,
+  "completed": 20,
+  "strict_json": 20,
+  "explicit_structure_pass": 20,
+  "generated_tokens": 2408,
+  "generation_seconds": 129.09595044527669,
+  "median_generation_seconds": 7.638703553006053,
+  "maximum_generation_seconds": 10.350713683990762,
+  "peak_allocated_bytes": 15035538432,
+  "peak_reserved_bytes": 15103688704,
+  "model_load": {
+    "caps": 0,
+    "cuda": {
+      "bf16_matmul": true,
+      "bf16_sdpa": true,
+      "capability": [
+        8,
+        6
+      ],
+      "compiled_arches": [
+        "sm_50",
+        "sm_60",
+        "sm_70",
+        "sm_75",
+        "sm_80",
+        "sm_86",
+        "sm_90"
+      ],
+      "compiled_cuda": "12.6",
+      "device_nodes": [
+        "nvidia1"
+      ],
+      "free_bytes": 47330426880,
+      "name": "NVIDIA A40",
+      "no_cpu_fallback": true,
+      "total_bytes": 47699722240,
+      "uuid": "GPU-830ef1fb-363e-d705-ad1b-8b4265c678b1"
+    },
+    "load_peak_allocated_bytes": 14935227392,
+    "load_peak_reserved_bytes": 14992539648,
+    "load_seconds": 3.7617371790111065,
+    "mode": "pretrained_cuda",
+    "net_namespace": "net:[4026536346]",
+    "no_new_privs": "1",
+    "pid_namespace": "pid:[4026536330]",
+    "ready": true,
+    "uid": 65532
+  },
+  "account_after": {
+    "auto_pay": false,
+    "credit_balance_usd": "1.7174565922",
+    "observed_at": "2026-10-31T20:40:27Z",
+    "spend_per_hour_usd": "0"
+  },
+  "inventory_after": {
+    "complete_paginated_list": true,
+    "observed_at": "2026-10-31T20:40:37Z",
+    "pod_count": 0,
+    "resource_mutations": 0
+  },
+  "observed_cost_usd": "0.1365257444",
+  "continuation_observed_cost_usd": "1.1885875417",
+  "cost_limitation": "Late billing may adjust these observations; no controlled latency/cost superiority inference.",
+  "runtime_transfer": {
+    "elapsed_seconds": 23.172640168000044,
+    "expected": {
+      "bytes": 3642464920,
+      "files": 64,
+      "manifest_sha256": "5d5dde31ffeb013c60ea1215bac593595c40084d0a8009d3b450b8b1bfae975b",
+      "phase": "bootstrap",
+      "schema_version": 1,
+      "verified": true
+    },
+    "owner_delivery": {
+      "bytes": 36307012,
+      "files": 8,
+      "manifest_sha256": "d9d0068a42e96597b19fa778ad9ef6f96ebd40063bef13ab40c5758c6d6eb9db",
+      "phase": "bootstrap",
+      "schema_version": 1,
+      "verified": true
+    },
+    "public_seconds": 16.217084810021333
+  },
+  "asset_transfer": {
+    "elapsed_seconds": 63.376799812999934,
+    "expected": {
+      "bytes": 16024918358,
+      "files": 11,
+      "manifest_sha256": "b2b644e7435551ac333df5366b99b3c8b3b633d4c9e86432447058c130d49233",
+      "phase": "model",
+      "schema_version": 1,
+      "verified": true
+    },
+    "owner_delivery": {
+      "bytes": 96199,
+      "files": 3,
+      "manifest_sha256": "911b6e57bc88bb2154791e4c90f8ed63e886227a0d9cf3bba2e58356b21bff08",
+      "phase": "model",
+      "schema_version": 1,
+      "verified": true
+    },
+    "public_seconds": 59.004160005017184
+  }
+}

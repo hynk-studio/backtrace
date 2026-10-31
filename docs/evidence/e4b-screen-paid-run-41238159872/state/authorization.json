@@ -1,0 +1,89 @@
+{
+  "additional_cap_usd": "0.51",
+  "allocation_inclusive_seconds": 3000,
+  "approved_at": 1793477796.5395627,
+  "automatic_retry": false,
+  "budget_basis": "Ongoing delegation within accepted USD10 wallet; conditional fixed20 E4B capacity screen, no training, maximum USD0.51 and continuation USD1.80. Fresh prior-result review, no-Pod account evidence and current affordability required before activation.",
+  "budget_observation": {
+    "autopay": false,
+    "billing": "SUBJECT_TO_DELAYED_CHARGES",
+    "credit_balance_usd": "1.8702846922",
+    "inventory_observed_at": "2026-10-31T20:13:53Z",
+    "observed_at": "2026-10-31T20:13:45Z",
+    "pod_count": 0,
+    "spend_per_hour_usd": "0"
+  },
+  "comparison_basis": "E2B completed all20 untrained outputs across two explicit source-bound attempts; observed enum failures, underspecified actions and source-fact reversals warrant the separately frozen E4B basic-capacity comparison. Identical20 prompts/token hashes; no training or workflow-benefit claim.",
+  "continuation_observed_spend_usd": "1.0357594417",
+  "contract_sha256": "f51e7ce3b7a6e57646718071d05a20ea903c249b7df82bd67be05d8fcb2b2aa2",
+  "cumulative_continuation_cap_usd": "1.80",
+  "execution_time_fresh_account_price_required": true,
+  "expires_at": 1793481396.5395627,
+  "instruction": "이번에는 목표까지 실제로 이어가도록 하고 혼자 해결할 수 없는 문제가 있을 때만 멈추고 보고해",
+  "maximum_projection_usd": "0.51",
+  "minimum_post_projection_credit_usd": "1.1060441339",
+  "mode": "OWNER_APPROVED_E4B_SCREENING",
+  "namespace": "e4b-screen-paid-20261031",
+  "preceding_e2b_result": {
+    "adapter_sha256": "b24c56cf0698f1cc9e5ccf7bef0cce6115c1f76a2b6b876e150fd74f95850252",
+    "artifact_owner": {
+      "id": 13055689454,
+      "sha256": "be6511351bde810d065a8235701bee9f7da7103f0427d72cfdf9654337f207be"
+    },
+    "artifact_watch": {
+      "id": 13056352910,
+      "sha256": "2940b13010a2fd95db49e416f80e43c019124b8722adbb9eeb34d45de5a858be"
+    },
+    "augnes_benefit": "NOT_ESTABLISHED",
+    "combined_screening_responses": 20,
+    "completed_screening_assignments": 2,
+    "explicit_contract_checks_pass": 14,
+    "owner_cleanup": "DELETED",
+    "pod_id": "08cin7wz323sz2",
+    "post_update_generations": 1,
+    "run": 41236271328,
+    "source": "2e0a16e9ea8eea8e1d680d84805be85783088b9b",
+    "status": "PASS_E2B_ADAPTER_FEASIBILITY",
+    "strict_json_objects": 19,
+    "training_steps": 4,
+    "verified_source_entries": 264,
+    "watch_cleanup": "DELETED"
+  },
+  "pretrained_requests": 20,
+  "public_delivery_qualification": {
+    "container_cleanup": "PASS_TWO_ABSENCE_READS",
+    "full_model_bytes": 15992595884,
+    "full_model_sha256": "cfbd3d2f1cd71bd471c37fe2bf8546d5028d41e5736f64e1ca6c6b8893125503",
+    "model_download_and_readback_seconds": 303.37227858899996,
+    "public_runtime_seconds": 25.758909668,
+    "public_wheels": 56,
+    "runtime_bytes": 3642464920
+  },
+  "qualification_artifacts": {
+    "container": {
+      "id": 13055945292,
+      "sha256": "9063627ca2a228c5d003d389b27a351406e92b89dc01bd5a21ed2d044cb0258a"
+    },
+    "inputs": {
+      "id": 13054944182,
+      "sha256": "84477836236e0c455122d8654d20457761d8cda1c40195d18294027b212c348a"
+    },
+    "owner": {
+      "id": 13054854123,
+      "sha256": "24a4b4b751e6874b7f1b13c91f651efbc8f70a4a0186235dc323593b081748fd"
+    },
+    "watch": {
+      "id": 13054757749,
+      "sha256": "8943430eed6a2f3b0f86375597a471e33dc4586b6f3ceb8295e899564f92d332"
+    }
+  },
+  "qualification_container_controls": 17,
+  "qualification_native_tests": 736,
+  "qualification_run_id": "41234822920",
+  "qualification_source_entries": 307,
+  "single_use": true,
+  "source_sha": "99ee2509c2b38a0c3e0729cf66b62baaba3e5533",
+  "top_up_allowed": false,
+  "training_steps": 0,
+  "weight_bytes": 15992595884
+}

@@ -1,0 +1,394 @@
+{
+  "schema": "source_grounded_manual_review_v1",
+  "reviewer": "assistant, unblinded post-run review",
+  "model": "E4B",
+  "run_id": 41238159872,
+  "rows": [
+    {
+      "id": "augnes-screen-1457",
+      "criteria": [
+        {
+          "criterion": "Separate observed identity mismatch from an unproven reboot/mount cause.",
+          "assessment": "PARTIAL"
+        },
+        {
+          "criterion": "Propose a bounded durable-identity validation design and negative controls for substituted checkouts.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Do not weaken identity checks to path-only equality or request another reboot as the default next step.",
+          "assessment": "PARTIAL"
+        }
+      ],
+      "reasoning": "UNKNOWN retains uncertainty, but RETAINED and an empty candidate list do not propose the commissioned identity correction or substitution controls.",
+      "answer_sha256": "82e9c981f910b3d496f3f365896d4e28add241ba5fc9a937429348b2d7cced95"
+    },
+    {
+      "id": "augnes-screen-1436",
+      "criteria": [
+        {
+          "criterion": "Separate source-confirmed coupling/cleanup gap from an unobserved historical leak.",
+          "assessment": "PARTIAL"
+        },
+        {
+          "criterion": "Keep initialization and migrations under their explicit owner; close failed setup handles.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Verify fresh/uninitialized and already initialized paths without claiming every GET writes.",
+          "assessment": "FAIL"
+        }
+      ],
+      "reasoning": "Identifies setup coupling, but replaces the visible missing-close gap with an unstable-handle hypothesis. SOURCE/DISPOSABLE name categories; no cleanup ownership or fresh-versus-initialized check.",
+      "answer_sha256": "1462d6fd4343f38f3d9a91172cef56b11dd2486237141a4a9f4d1b9caa9f13d9"
+    },
+    {
+      "id": "augnes-screen-1405",
+      "criteria": [
+        {
+          "criterion": "Reproduce writer-to-reader lineage with the same grant identity.",
+          "assessment": "PARTIAL"
+        },
+        {
+          "criterion": "Preserve source/fingerprint/authority validation while correcting inconsistent limits.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Do not fix the symptom by ignoring a fingerprint mismatch or granting fresh authority.",
+          "assessment": "PARTIAL"
+        }
+      ],
+      "reasoning": "Notices writer/reader inconsistency and bounded composition. Calls fingerprint/terminal evidence conflicting without justification and omits an exact-identity lineage/parity check.",
+      "answer_sha256": "c40fba9f2ec7eb6cdbcf901569e9ac337000c582a2283e194606d58668c4232d"
+    },
+    {
+      "id": "augnes-screen-1347",
+      "criteria": [
+        {
+          "criterion": "Identify the hosting-adapter contract mismatch without claiming a server logic failure.",
+          "assessment": "PASS"
+        },
+        {
+          "criterion": "Verify the expected artifact and migration/bootstrap behavior in disposable state.",
+          "assessment": "PARTIAL"
+        },
+        {
+          "criterion": "Do not create hosting/database resources or invent their mapping.",
+          "assessment": "PARTIAL"
+        }
+      ],
+      "reasoning": "Identifies artifact contract mismatch. No concrete migration/bootstrap compatibility check; SOURCE is only a category. Does not propose resource creation.",
+      "answer_sha256": "4765512a5d3526b712520cf62b5c15a444df385e0b7c30830a7677b3d9cba51e"
+    },
+    {
+      "id": "augnes-screen-1448",
+      "criteria": [
+        {
+          "criterion": "Preserve revocation availability at saturation without reviving revoked grants.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Retain bounded history, provenance and refusal semantics.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Move to a minimal remedy and boundary tests rather than another unchanged diagnostic campaign.",
+          "assessment": "PARTIAL"
+        }
+      ],
+      "reasoning": "LOCAL_FIX/ESTABLISHED and avoid unnecessary diagnosis fit the commission, but the empty candidate list provides no saturation remedy or boundary test.",
+      "answer_sha256": "9fce5dbff52f708daf44aa60576e1961f73d6c64c81690ecdbf0c912006bb29f"
+    },
+    {
+      "id": "augnes-screen-1438",
+      "criteria": [
+        {
+          "criterion": "Treat this as an authorized structural change rather than inventing an incident.",
+          "assessment": "PASS"
+        },
+        {
+          "criterion": "Move pure logic behind the existing persistence owner and compare behavior/serialization.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Preserve transaction and authority semantics; no new persistence framework.",
+          "assessment": "PARTIAL"
+        }
+      ],
+      "reasoning": "PROCEED/NOT_APPLICABLE avoids inventing a regression. SOURCE gives no pure-logic extraction, parity check or preservation of persistence ownership.",
+      "answer_sha256": "8f6e34d05eaf72e1093196cd397cd1cf2d17d0053a0c1af8d26ad069d93db34b"
+    },
+    {
+      "id": "augnes-screen-1420",
+      "criteria": [
+        {
+          "criterion": "Distinguish missing flow guidance from proven incorrect authority enforcement.",
+          "assessment": "PARTIAL"
+        },
+        {
+          "criterion": "Trace a representative ordinary path and correct the bounded first-work guidance.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Do not remove all approvals or report invented time savings/click counts.",
+          "assessment": "PASS"
+        }
+      ],
+      "reasoning": "Missing branch is a plausible hypothesis, but no representative path is traced. No invented timing savings or blanket approval removal.",
+      "answer_sha256": "873bc348c1388bf1148c3ae6c79d883056ebadb19fcd5bd26ea3accd82a49207"
+    },
+    {
+      "id": "augnes-screen-1408",
+      "criteria": [
+        {
+          "criterion": "Keep returned model content separate from a durably applied result.",
+          "assessment": "PARTIAL"
+        },
+        {
+          "criterion": "Add only the known failure lineage to the existing follow-up owner with refusal controls.",
+          "assessment": "PARTIAL"
+        },
+        {
+          "criterion": "Do not retry/apply the old output or erase its failed outcome.",
+          "assessment": "PARTIAL"
+        }
+      ],
+      "reasoning": "Recognizes existing follow-up coverage does not include this persistence failure. Does not spell out returned-versus-applied state or refusal controls; incorrectly labels the preservation constraint as conflicting evidence.",
+      "answer_sha256": "c7b6685351aa0760e247c7c6ae1d9bf326fde5ddfe9dc45173495057d205ea4e"
+    },
+    {
+      "id": "augnes-screen-1397",
+      "criteria": [
+        {
+          "criterion": "Trace the Web persistence/schema/validation path rather than applying the native fix by analogy.",
+          "assessment": "PARTIAL"
+        },
+        {
+          "criterion": "Separate durable saved-work availability from ticket authority.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Preserve compatibility and authenticated stale/race refusals.",
+          "assessment": "FAIL"
+        }
+      ],
+      "reasoning": "Restates the revision ceiling and correctly avoids blanket expiration removal. Does not distinguish saved-work lifetime from ticket authority or trace Web schema/compatibility controls.",
+      "answer_sha256": "d8eda09f24b3d312f0fe592a36bc4ef76ced5923a1b3dd728bf4e9aa6f0298e0"
+    },
+    {
+      "id": "augnes-screen-1393",
+      "criteria": [
+        {
+          "criterion": "Identify the affected terminal/post-execution path before changing expiration.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Distinguish durable work state from authority lifetime.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Do not delete all expiry checks or imply the already non-expiring native initial path explains the symptom.",
+          "assessment": "PARTIAL"
+        }
+      ],
+      "reasoning": "Inspect relevant source is generic and omits the terminal/post-execution TTL distinction despite that evidence being supplied. Does not propose deleting expiry checks.",
+      "answer_sha256": "104715a72b30e1c4146cf74fe4680309d86bc174940a9d3d9666c35079e132ea"
+    },
+    {
+      "id": "augnes-screen-1369",
+      "criteria": [
+        {
+          "criterion": "Use canonical serialized admission size rather than a guessed text-character cap.",
+          "assessment": "PARTIAL"
+        },
+        {
+          "criterion": "Preserve source qualifiers and explicit selection instead of silently truncating or increasing limits.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Report reconstruction and timing limitations; do not claim measured user savings.",
+          "assessment": "PARTIAL"
+        }
+      ],
+      "reasoning": "Notices proposed size can exceed the limit while retained size does not. Omits canonical bytes versus characters and reconstruction limits; retained final size is not conflicting evidence.",
+      "answer_sha256": "b5a76463babaecc751740d05c973f0038f4e65f762a5891eae8add20146c355c"
+    },
+    {
+      "id": "augnes-screen-1350",
+      "criteria": [
+        {
+          "criterion": "Proceed with bounded document alignment without demanding a runtime failure.",
+          "assessment": "PASS"
+        },
+        {
+          "criterion": "Keep implementation/deployment as future unperformed work.",
+          "assessment": "PASS"
+        },
+        {
+          "criterion": "Do not create a new platform or claim product usefulness from plan adoption.",
+          "assessment": "PASS"
+        }
+      ],
+      "reasoning": "Proceeds with document alignment and explicitly avoids deployment/experiments. This largely repeats the supplied task and establishes no additional value.",
+      "answer_sha256": "3753ccc0abd9eda946e256d5e122f79b86f7957a3ef35a24a6d77146ba9a2c4f"
+    },
+    {
+      "id": "augnes-screen-1339",
+      "criteria": [
+        {
+          "criterion": "Reuse the existing saved-report/source-selection owners with exact version binding.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Preserve explicit selection, optional absence and immutable saved snapshots.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Do not invent an automatic memory/learning engine or claim a proven judgment benefit.",
+          "assessment": "PARTIAL"
+        }
+      ],
+      "reasoning": "SOURCE with no candidates omits saved attribution, exact versions, explicit selection, budgets and immutable successor snapshots.",
+      "answer_sha256": "c2df2350460dcbe4fc333e334a662789c466e291ede1a8ed5172645154b6861d"
+    },
+    {
+      "id": "augnes-screen-1337",
+      "criteria": [
+        {
+          "criterion": "Trace writer-to-Start-to-result binding rather than fixing only the editor guard.",
+          "assessment": "PARTIAL"
+        },
+        {
+          "criterion": "Keep forecasts outside worker input and execution authority.",
+          "assessment": "PARTIAL"
+        },
+        {
+          "criterion": "Preserve no-forecast operation and historical first-work chronology; no retrospective rebinding.",
+          "assessment": "PARTIAL"
+        }
+      ],
+      "reasoning": "Names both reader/writer and binder and preserves optional/pre-start language, but mostly restates facts; no exact packet binding trace or checks against retrospective rebinding.",
+      "answer_sha256": "f5c63882be56106a4907c6e444264211a02b86de6ce391a155ab8263799e5884"
+    },
+    {
+      "id": "augnes-screen-1329",
+      "criteria": [
+        {
+          "criterion": "Distinguish measured inventory latency from unproven historical POST causation.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Use correlated bounded admission and status with child cleanup.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Do not simply raise the timeout, disable validation or perform an unauthorized real backup.",
+          "assessment": "PASS"
+        }
+      ],
+      "reasoning": "Turns lack of demonstrated correlation into a claim that the historical POST cause is unrelated. Missing assumption repeats that unsupported conclusion; disconfirming check is None. No unsafe backup action.",
+      "answer_sha256": "7b1613e48e66db1a10b8afb22664c567d62fe37c0bb6c47e9fb02a1cf319fcc7"
+    },
+    {
+      "id": "augnes-screen-1326",
+      "criteria": [
+        {
+          "criterion": "Validate the actual deciding base/authority relationship.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Use the existing ownership mechanism to prevent cross-run overlap.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Retain unknown historical causation; do not relabel current HEAD/existing SHA as complete proof.",
+          "assessment": "PARTIAL"
+        }
+      ],
+      "reasoning": "PROCEED with F4 alone omits both actual base relationship and cross-run ownership correction. UNKNOWN at least retains historical uncertainty.",
+      "answer_sha256": "eb94eca5432730fd1083ce2d75138aa75e1f10dda03838081054d73da9b8520d"
+    },
+    {
+      "id": "augnes-screen-1305",
+      "criteria": [
+        {
+          "criterion": "Preserve observation failure as unknown instead of absence.",
+          "assessment": "PARTIAL"
+        },
+        {
+          "criterion": "Add a discriminating positive observation and failure controls so equal failures cannot pass.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Do not claim the historical lost-PID cause has been identified or a live process was absent.",
+          "assessment": "PASS"
+        }
+      ],
+      "reasoning": "Repeats the ABSENT/UNKNOWN distinction as a testable hypothesis rather than correcting the established observation gap. No discriminating positive observation or failure controls.",
+      "answer_sha256": "6322f396db9f9fa03993b8244bee5a50de5277f62a4ac48364c208e802b40aab"
+    },
+    {
+      "id": "augnes-screen-1274",
+      "criteria": [
+        {
+          "criterion": "Separate successful tool selection from the failing invocation boundary.",
+          "assessment": "PARTIAL"
+        },
+        {
+          "criterion": "Repair the demonstrated optional-signal contract while preserving real cancellation.",
+          "assessment": "PARTIAL"
+        },
+        {
+          "criterion": "Do not assert actual host signal omission was observed or repeat the selection study.",
+          "assessment": "PARTIAL"
+        }
+      ],
+      "reasoning": "Acknowledges missing actual-host signal evidence, but cites the direct-host failure as evidence of omission. No concrete optional-signal remedy retaining cancellation.",
+      "answer_sha256": "715f9380f35b760bcd48eb1b6c80ad4ff2edf60c8c27f8aebba27d09b7614aa4"
+    },
+    {
+      "id": "augnes-screen-1278",
+      "criteria": [
+        {
+          "criterion": "Compare base and head under the same current diagnostic environment.",
+          "assessment": "FAIL"
+        },
+        {
+          "criterion": "Keep the cause unknown until the differential evidence exists.",
+          "assessment": "PARTIAL"
+        },
+        {
+          "criterion": "Do not force a green result by weakening the contract or rerunning Full.",
+          "assessment": "PASS"
+        }
+      ],
+      "reasoning": "No matched current base/head probe. UNKNOWN conflicts with an unsupported regression candidate; identical source is incorrectly listed as supporting regression. Correctly avoids Full/contract weakening.",
+      "answer_sha256": "6e54c9d44e36bc910bcad735f62503c4896451fd289dcdb69b8003a5c6937e2d"
+    },
+    {
+      "id": "augnes-screen-1316",
+      "criteria": [
+        {
+          "criterion": "Narrow the current selected-source route using correlated metadata and a disposable reproduction.",
+          "assessment": "PARTIAL"
+        },
+        {
+          "criterion": "Do not infer a stale build when live source identity already matches.",
+          "assessment": "PASS"
+        },
+        {
+          "criterion": "Preserve failure evidence and source content; no speculative restart/truncation.",
+          "assessment": "PASS"
+        }
+      ],
+      "reasoning": "Narrows to source/server without claiming stale identity and avoids restart/truncation. Omits parser/timeout alternatives and a discriminating correlated observation/reproduction.",
+      "answer_sha256": "a80094172415d2b7e18e55061217a15c13d2b0c0d9a2c3da4e9fea218e02d4c1"
+    }
+  ],
+  "limitations": [
+    "Retrospective author-selected twenty cases share seventeen author-defined families.",
+    "Criterion judgments are not independently blinded semantic accuracy or an effect estimate.",
+    "A category name such as SOURCE, DISPOSABLE or RETAINED does not specify an observable disconfirming result.",
+    "No current main-model or Augnes workflow comparison."
+  ]
+}

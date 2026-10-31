@@ -1,0 +1,1955 @@
+{
+  "source_sha": "99ee2509c2b38a0c3e0729cf66b62baaba3e5533",
+  "local_source": "9d10ed11f99ce2e0d001f9e60955fda135b539e6",
+  "run_id": 41238159872,
+  "artifacts": {
+    "owner": {
+      "id": 13057350706,
+      "sha256": "db3803794ed4163855fa7759e24df95b104acfa03c5716b6a3f76e5698ffa081",
+      "local_zip": "/workspace/scratch/565575038e73/e4b-paid-owner.zip"
+    },
+    "watch": {
+      "id": 13057500227,
+      "sha256": "932718182a4cfc98648ec2021a4854ec1191c99dc19613af56aab8b5fe1147bd",
+      "local_zip": "/workspace/scratch/565575038e73/e4b-paid-watch.zip"
+    }
+  },
+  "raw_files": [
+    {
+      "role": "owner",
+      "path": "account-after.json",
+      "bytes": 25357,
+      "sha256": "93bb98fc3e28c0f511ab94a3de8200a758a90fd0a360d4c380b9d3a969bf49d9"
+    },
+    {
+      "role": "owner",
+      "path": "assignment-before-allocation.json",
+      "bytes": 4313,
+      "sha256": "b4017685ba3a73aa7925c41f377c9806dbef3fbcb2ef56cf31ed9120812088b0"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/receipt.json",
+      "bytes": 65518,
+      "sha256": "18dcc5544423615989f39261cbd9229135201f38f07658e64093476c0b4dba5e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/asset-transfer-progress.json",
+      "bytes": 2115,
+      "sha256": "d62ab093b343baa23696a2dd226416e034a99bcb2e5cc5ee4cd37dc4a3b6a72c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/asset-transfer-progress.json.owner.json",
+      "bytes": 1325,
+      "sha256": "28a9903935f01942dfb4793647fbdce138fb9a698cf4f3a67479c047af097f25"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/asset-transfer-progress.json.receiver.log",
+      "bytes": 30599,
+      "sha256": "1524a376b020248a695c512e275f684211179aad6ea6de07564a91e3e3d9167b"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/asset-transfer.json",
+      "bytes": 328,
+      "sha256": "11e26e84f8c3599b495a1c5004d564ff11ab9d0384b5e8aba305aa60590242c0"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/E4B-ready.json",
+      "bytes": 597,
+      "sha256": "f2318098521f18fa8736dabda822555cc29ca701d0f24a4d6f485c041f2de31a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/E4B-stderr.log",
+      "bytes": 13106,
+      "sha256": "e703bec8505164001e31237ee28eb16edaacd7d1686db6439b6e10a83d11d50b"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/assignment.json",
+      "bytes": 4962,
+      "sha256": "901c91d06b59b919f2c66c77602d9919063e5b65053d26a9752e4e33e093430a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/collection.json",
+      "bytes": 41577,
+      "sha256": "84d42638cc00bd094ea767ae0aaf7d3a13682b117c1bb2c1369135c312d76cd7"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/ledger.jsonl",
+      "bytes": 41457,
+      "sha256": "bfef44958a31c79d4adc5d8ca6578d110132737c6eec086980d7b5d455e6eeef"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0000.json",
+      "bytes": 858,
+      "sha256": "dd4890f3903d475667cf01af2feac21720980a4c8ddbdf2d8cda46d7cb299c70"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0001.json",
+      "bytes": 1797,
+      "sha256": "2c331e493ab3d33415ebb52d84b0223f4514046ab614511549153609df8f192c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0002.json",
+      "bytes": 1993,
+      "sha256": "4e577e3bd0f8f93dcc2e05f6cb80b00792db5ba0268b3a160c5f0846062b845e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0003.json",
+      "bytes": 1726,
+      "sha256": "e32fa2ebfc0aa12e71ff9d1379aea3ea62b57b7b4775601caad9c62898e109ec"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0004.json",
+      "bytes": 863,
+      "sha256": "ab059e152602637f130b0aebec33e08ee31cb3ac9c4c0d42b2de4a7d8135c2da"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0005.json",
+      "bytes": 866,
+      "sha256": "b5cf62e77f877efcb7cf8dddf72d308ab41bbe8cdb0848a84779732088bb9e21"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0006.json",
+      "bytes": 1714,
+      "sha256": "c1c02a16ff03ee712b48fda0fe2d1cde4b5fd8189adcba5f2c4feb81579b4a9d"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0007.json",
+      "bytes": 1801,
+      "sha256": "91507582a5067029ad977587e1780e862a31413aa3f947afaf88ed2f09835806"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0008.json",
+      "bytes": 1737,
+      "sha256": "e214d7d0e81f40bb6f6aa5df59a0ad9b903492c2b362a35365a1d6c80e4e0681"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0009.json",
+      "bytes": 899,
+      "sha256": "d3ef79e4924c12dca3f8ca2fe3760d9164653bf2180915fb2a84433bd95e2135"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0010.json",
+      "bytes": 1889,
+      "sha256": "9922ca405f58d5df27aa62684c637d1800abf4e66b5a767e6b0f4587637a1060"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0011.json",
+      "bytes": 1067,
+      "sha256": "9278f3424fdc6a4751106330ac30bbde7898fbdf61cb24db2319334beaa0309a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0012.json",
+      "bytes": 875,
+      "sha256": "6b9151410214828fcee8cb56031c45c6ced1cf980e54dd275346eb78ab872219"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0013.json",
+      "bytes": 2151,
+      "sha256": "9095f11c927470bb802b1dea52b229e53f4a909934b4caf0ccd5d9dc33aefa21"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0014.json",
+      "bytes": 1745,
+      "sha256": "9c7c1df35b8b88efad598e541747eb9d5c7c2af736ce554e5d1979a2ab3ab24d"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0015.json",
+      "bytes": 777,
+      "sha256": "cc9302642eaf6abeef39c4818719b8a4559ef01d2a281ffc0bbd6288dea94d21"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0016.json",
+      "bytes": 1617,
+      "sha256": "0126dae382d921698232b920d4c031200d66766dcaf70dd74e824392a077f1e0"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0017.json",
+      "bytes": 1905,
+      "sha256": "0692294a646d4895d0c093bc6e71afe8805d3b76db064541cc74007f7eedb459"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0018.json",
+      "bytes": 1568,
+      "sha256": "569124a2471248e7aa0db66319e3c85074fa0c8c41732521e004be80d200368e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collection/wire-0019.json",
+      "bytes": 1685,
+      "sha256": "d0db1d14f52ecfeabfef49138d0f80d33b60fc3b6b641dec755c2352ef5d9195"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collector.log",
+      "bytes": 44656,
+      "sha256": "9bfb3659f4c3dc217948b16e4eff1647fa07e8c7a033c5b9350086acf9f8d712"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/connected-receipt.json",
+      "bytes": 34675,
+      "sha256": "30c27104c8ec32e67ae3026455f007097e3090cee9e9c8bb153dec9f369351a2"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/A-checkpoint.json",
+      "bytes": 2032,
+      "sha256": "f3ec56c0cd971100dde2e1a9604e0121cd792e5f6a5d2355e1cb588f673790da"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/A-stderr.log",
+      "bytes": 1117,
+      "sha256": "5a98b6e46227859608e2d9d548f5a6314201407ddcfb6066ed982b372bd789a4"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/A-stdout.log",
+      "bytes": 921,
+      "sha256": "a49ce4ce1838e1e063dc49e247d78de2e673ef845cf09305a055a66d502e7d92"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/A-teardown.json",
+      "bytes": 2886,
+      "sha256": "7d14bbe53ae86e3c94310b84acd114a630a28fb190eaa68709b95e5f89e8d22e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/B-checkpoint.json",
+      "bytes": 4832,
+      "sha256": "9ed184d291e3fa8919b9becb687e85e381bddf1dfe84c6c828c83b7824c02dbb"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/B-stderr.log",
+      "bytes": 1148,
+      "sha256": "8586611ffb0f44e90039c115d760ea22a7ce66d2c4a1a330fda62c380f63460b"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/B-stdout.log",
+      "bytes": 921,
+      "sha256": "e3ed8780470e6690a26c0326195a398a9befad6a080e74bf37197e637e4442fa"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/B-teardown.json",
+      "bytes": 5686,
+      "sha256": "be7b0debf67b0ebe97c10eabc4f2ae92e84b25fc24aa432d5e397dce76632c6f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/C-checkpoint.json",
+      "bytes": 7632,
+      "sha256": "c69d7cbdfdd5c24bc06a47ef04b2377256f7c5a6d2bdc2b053cbf3025bd00f38"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/C-stderr.log",
+      "bytes": 1148,
+      "sha256": "f2bdadb29337219e5ce9087fd4d0707be11eb67052431c34b1043395143aefd1"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/C-stdout.log",
+      "bytes": 921,
+      "sha256": "3830b32ed871270b75bb104dc404bb988f1ae9fd87c1515a4cd6dd1abb700600"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/D-checkpoint.json",
+      "bytes": 10526,
+      "sha256": "2fc3651eb241ea542c9613aad0fd9f40887ad96531a776a2bfa009b54c85e05a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/C-teardown.json",
+      "bytes": 8485,
+      "sha256": "360975fb9c174f22a2f1b6514f0962c294cb2b8faa1e5713cb8ecaaf9ba23062"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/D-stderr.log",
+      "bytes": 1250,
+      "sha256": "ef80e86da350a65004309906c11086f3961f886d2eb4ca0407d92c6049092e26"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/D-stdout.log",
+      "bytes": 1025,
+      "sha256": "89d42151879e598ed11281d62b9ba64d2e32f34fdb64c40cf72084589b222dd7"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/D-teardown.json",
+      "bytes": 11380,
+      "sha256": "ee539eed98aab246170ac24d84d0b42d2e0f40163d7a97b7db0922d42916dc5c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/receipt.json",
+      "bytes": 11691,
+      "sha256": "5f1ead392854a5fb71888b90e06555396184b50850ebb06baaba42f2e2aa4657"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/started.json",
+      "bytes": 118,
+      "sha256": "c6978aad09d548a071e43991fdfb149312a497d39509a28d60d0d22f1c925499"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/receipt.json",
+      "bytes": 14362,
+      "sha256": "bfe3aa08244ebe343a6577d1506e7031721cc123c1a1f5b25900c27de21bd644"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/boundary-820825358986.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/boundary-memory-checkpoint.json",
+      "bytes": 3478,
+      "sha256": "45f2a98fc5f09e44b77e55c855e495bc96fdffc344d5a684d69380c43b87006f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/deadline-checkpoint.json",
+      "bytes": 7174,
+      "sha256": "6af6b3f64da583f54da9e86e1716858edbb0f978d22201ed3220fbd6e6032f88"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/deadline.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/initial-kernels-checkpoint.json",
+      "bytes": 4526,
+      "sha256": "3bdac0df11c56e1f505ebfc62301dcc048dd490d150d6222d4cc38d59c4e6bcc"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/kernels-828775257691.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/kernels-856234362427.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/kernels-874402724920.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/kernels-894517166214.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/memory-822933193536.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/receipt.json",
+      "bytes": 12349,
+      "sha256": "fa01a0ae114d56ac2c2c9e3dfb29c5ab8f17f1c6816c3cb84f3ec8e1008cbedb"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/supervisor-checkpoint.json",
+      "bytes": 12334,
+      "sha256": "ed5cf2fe8b32dff8df49836ccebd10c753b33a78d3a2a51161bcdea53352eb03"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/transport-checkpoint.json",
+      "bytes": 9753,
+      "sha256": "d5306271941ec9b2c7de3a965ed13d4f235a3489309244b2ae50942f8915aa33"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/transport.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/inference-teardown.json",
+      "bytes": 799,
+      "sha256": "da7dd3c3945c0137670aefb85f3180367ef427d6642037143d8db11b2b697a11"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/input-schedule.json",
+      "bytes": 57784,
+      "sha256": "312f4c7ac8aebdc798ab35759b19576fd0865fe223836606829aae9d09dddab1"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/install.log",
+      "bytes": 10564,
+      "sha256": "fb3c6c4966af7e01c4ed2278bfc30bb4e669b0a3b6cba66cc372c01995099333"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/installation-checkpoint.json",
+      "bytes": 7782,
+      "sha256": "d955eec6db9d6e3847eda4fa3df98814fb71297408d2835072c5bbdd0b8716f3"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/runtime-transfer-progress.json",
+      "bytes": 12117,
+      "sha256": "389e4b2fe8761083ca8c45c0738fb02b57deeb5e3e2baeb541f1372e296a91e8"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/runtime-transfer-progress.json.owner.json",
+      "bytes": 1847,
+      "sha256": "40038e361a93503e28c17f14d2af07cbff86c4d65c8a413b320343c9aeb7c41e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/runtime-transfer-progress.json.receiver.log",
+      "bytes": 27976,
+      "sha256": "58507219e3bff8e2dbe6cb9ba716387f6aff17962f498d8e25e891e077782bd0"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/worker.log",
+      "bytes": 33,
+      "sha256": "c803bce3e839f19b72a7c6ae6b0e3cc35de29aa173cfd950aa76aa01e00e30f8"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner.json",
+      "bytes": 65518,
+      "sha256": "18dcc5544423615989f39261cbd9229135201f38f07658e64093476c0b4dba5e"
+    },
+    {
+      "role": "owner",
+      "path": "owner-runtime.json",
+      "bytes": 10467,
+      "sha256": "3751d92c0342291ea7b681cf44f2c92a5c37f0c457dcbebde7e08df8683fa8d8"
+    },
+    {
+      "role": "owner",
+      "path": "preparation.json",
+      "bytes": 510,
+      "sha256": "826f51e3e0a1e9ef2222e6de539737f221a8baf872b58ecab9a89173b48e9c00"
+    },
+    {
+      "role": "watch",
+      "path": "minimum-watch.json",
+      "bytes": 500,
+      "sha256": "99b5983b9d790f9eb06f24fb31ccf89c198f7dfab5a66e5b58e959ba420a4b59"
+    }
+  ],
+  "verified_source_entries": 242,
+  "verified_source_paths": 97,
+  "source_bindings": [
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-container-cpu.yml",
+      "sha256": "52745e5f7a5ddc42796b094e450a5641090da68aebf6998c23503bb97961f249"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-cpu.yml",
+      "sha256": "e960267e3b69ad5b3c6562e7b3dd36d04451e621fd77519321a091b17295906a"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-diagnostic.yml",
+      "sha256": "6bb4a9e917ffe9e966404c12b05bd1cb7f42d13be19061858933203181eb24da"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-live.yml",
+      "sha256": "e2062c003c010bd8ac4a67ff7e39a066b44af2007b8e5f67186c82316b9ccf05"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-quote.yml",
+      "sha256": "f93cc9946f39cf3d814a24fc62c968cdc822b169167d3dd50c8f84813a8958c0"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-retry-cpu.yml",
+      "sha256": "acde46496d679685f4b54e3247c46e061e7c45c7c0bb81ef79a8a140f254a683"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-retry-live.yml",
+      "sha256": "4f9f9fc148c610084b8a388701a55776ab878d689f0f6d9212b152c0b024900e"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-retry-quote.yml",
+      "sha256": "6eeff6411ab8d6e967f9add1f7ba902ce5a519f5018332723e32065e6fcdcd8d"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-precheck-cpu.yml",
+      "sha256": "f13609448771bfada0e1750e52676608a2da1d700c89d28251f07e518f314a0f"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-pretrained.yml",
+      "sha256": "17157f790fa49f4a229cc0cb80a66825f823cf4d053c00ffbdd996c899cbcadf"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-provider-cpu.yml",
+      "sha256": "1314824b147395afaac6a4f8708f3c19004f441f8dc8617f6096526a82f4eaff"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-provider-owner.yml",
+      "sha256": "0bb06419810437a0bdce8efa15aab651c2d02748c9e469801cd0777393e245fc"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-provider-watch.yml",
+      "sha256": "8af1ae7416563c61d4c9e973ec2ddba7f97296b7be93369a34094a655fc6d197"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-baseline-protocol-v1.json",
+      "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-evaluation-protocol-v1.json",
+      "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/augnes-development-replay-rubric-20261031.json",
+      "sha256": "ccdb5185d775b2d34f0d7a4df205cf769b616d776f2212bd9dd7a42864839776"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/augnes-development-replays-20261031.json",
+      "sha256": "f87ed31e79c39d0314d62aa2cfe338c4e56864d1729b89f064e45d6e171e2c43"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/augnes-screening-packets-20261031.json",
+      "sha256": "e3a65c083be058c02c70a0ac041a006b0466631ef255033698bd7cf27d22b42e"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/augnes-screening-rubric-20261031.json",
+      "sha256": "cefcb7936085065abdba9d97ca6de0e504b081f33e3a9ad7efc4acc36b93fbd5"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/cloud-controller-requirements.txt",
+      "sha256": "6e8e0115d53ffb67b8a9001e0b4e3f06747fb470aad4bdcb23e8a864d4018bdc"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/evidence/e2b-run-41206950960/input-schedule.json",
+      "sha256": "1ebe1f9c97ff6009e5c09e80f54590460c364b36afe42029c11ed063273f35ff"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/evidence/window-paid-run-41225173224/owner/minimum-owner/remote/screening-input-schedule.json",
+      "sha256": "faff4830334164b662bc4cf00e6c4034e2c27cc1a926ae37ee53adcb1f29715c"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/evidence/window-paid-run-41225173224/recovered-screening-raw.json",
+      "sha256": "5779e37082e579c8aa1f2d2be8f5552d1a44142f8226e2f1370b62760354f655"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/research-reduced9-amendment-20261026.json",
+      "sha256": "ba9b235c84db383f2413bc7adeb03888de9fd0fc571e8e67cc8ae4f9057563c7"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-cpu-requirements.txt",
+      "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-gpu-requirements.txt",
+      "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-runtime-lock-v1.json",
+      "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/temporal-evaluation-protocol-v1.json",
+      "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/official_cloud_transport.py",
+      "sha256": "add4388cf0db14eefa15343c864b01f76eafeb6389b906e89f56824697c658d6"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/small_model_transport_control.py",
+      "sha256": "1ea88930166bfe91f073649ea07149c6e7f2331b3ed63f02c5ad015084ce98a4"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_private_delivery.py",
+      "sha256": "9d716ae24821bfeb69c9c0a51bc8f2b5cf074ef0e7325701cadd34e84c23f5de"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_augnes_screen.py",
+      "sha256": "127d973c8f48aa6081afb85c3a56fdfa1753e1df55be7e4dafad2dafc1dfa986"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_container.py",
+      "sha256": "ef05ed3f780c6a668c1ad2e31b2ba704521f94dcff3d03f9afff70d0567e2e4b"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_delivery.py",
+      "sha256": "eb44d97d469d7e17cadd1a54cdd353ca638a13a5ad6689ae678da5a231553837"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_e4b_screen.py",
+      "sha256": "f5dc305ccbdce1cbe4b17fa5c01c407aeaed16b5baa190f9b4cb087be6c29d01"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum.py",
+      "sha256": "cbe5a6a1e08fe39db75103755eb8a3030b46f88d190b734f4f01286286683a43"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum_diagnostic.py",
+      "sha256": "944470aab610f01f34af02518b6784a835198d43b7c21bc7f80081f64c02a018"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum_diagnostic_scope.py",
+      "sha256": "0fa54c0748ad010d7a2a03e64e5a5d45ba97f756f55c414995b3cb219349a1e0"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum_retry.py",
+      "sha256": "ca2a4d349efa03ae180e7b16608e41bc786503ac961fb48c6a3d7f89b4e76ce7"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum_trace.py",
+      "sha256": "2af1e607c12817b8d4227016c5e649aea939d1318a616ee2a86dad91ff57e94d"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_precheck.py",
+      "sha256": "21ad1e073cc9f83eca8e41034cff22371df7629188b07921b5ecdcc8d0ec4e47"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_pretrained.py",
+      "sha256": "333930ec49459fff592fd7fab3229f8c5a9a5aff3374cc0c2e2ab666c7caa749"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_provider.py",
+      "sha256": "242530d07de276c3b36eff5484fe0a15d6f457bd7705db63e14e54e03d71f94c"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_public_delivery.py",
+      "sha256": "4772027d663279ae95ef8476f2915e3c9e90b5545596aad61d4aa7a33ff8a933"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_training_inputs.py",
+      "sha256": "2392366c2b65a78059e864f03c08a6243643ec46c720735fde9fa0b2a3562da7"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_ssh_bootstrap.py",
+      "sha256": "bf20d657d9b3243c842178aa8549db15926e571972570048d6e60926fc9100bb"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_baseline.py",
+      "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_benchmark.py",
+      "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_scoring.py",
+      "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/augnes_screening_review.py",
+      "sha256": "1c2b3fa816834ff541ff1420d2d82a09e7420930402d29f371b2a798b9d8c45c"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_bootstrap.py",
+      "sha256": "b032f0d92bb042cb3388699fe230084c077fb78a59b4df86184f12feb6610487"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_inventory.py",
+      "sha256": "f4865ae92c7f41375a15ecf917e932562cca608ca7a1607d18d1b370bd0932ff"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_offer.py",
+      "sha256": "9387b91be560cf80a85a5bae8166acb7c35f7a61135042971d21cafdb76c3df5"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_probe.py",
+      "sha256": "bb89c097e7fe0c6bc56771e87695056d60c11f510502173105a102a25d48e22f"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_transport.py",
+      "sha256": "013d93fc8c1548bc7eaf4cf9a4f5a49608b7e16d537b192accf053151fbf5902"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/exact_teacher.py",
+      "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/free_container_cleanup.py",
+      "sha256": "3dc64f6fa013e992e8c02fa702330a14003cb2e7ab0d536e3dc0da80ce3e9466"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/private_delivery.py",
+      "sha256": "f010c41715e2548b86a4b3dfc009e22e57fcbf5a52429e4f7f1165632f1a4a40"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/research_entry.py",
+      "sha256": "9f3c753cb26f9ab4d22ef5a27d4c900bc109ea10cbc4447df97d58b337762d85"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/research_entry_contract.py",
+      "sha256": "1a4997a22bcb2bb9acd5dde8bfe916e987ae20131c9073610f2bb2e863908e47"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/research_entry_state.py",
+      "sha256": "b3858570800b87f36a2ebd99a4ebbf65295edf5756b1a7b6cf1d6c4c13316389"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/runpod_control.py",
+      "sha256": "09219477947e39b2c7c58b6e7e44f385bd5d1140cbdb7a47cddef3ab7f6cf400"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_augnes_screen.py",
+      "sha256": "66a0dbfaba0f20d4cbe5a1fd0e81167eba286592a496f184cbcdbe1732e110a7"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_container.py",
+      "sha256": "d87cc12a3dc39dd9c235956f1b7a5181b060e57c7e104a86aacc991977e20410"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_container_install.py",
+      "sha256": "e44a80ef7ca4c6611ea0536a76889efed5011fdea2bf27331acb21cc0aac5ecc"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_container_probe.py",
+      "sha256": "924cf57ec8868ea1acdaaaf7868f829071e7c34a16416c3db069b03e6642081b"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_container_worker.py",
+      "sha256": "b18582ac2af9785b63be236bc9f240ce021501275567106f877a4aa32efc1d91"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_delivery.py",
+      "sha256": "a5ca27f8e31e664515b957f48e3d39647c0ab453b6d8a761ffd41beaf624cd73"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_e4b_screen.py",
+      "sha256": "22653241cb5b24ee23ce84df4a9fdb2bd89ea4d90401e0ebe49f880bdc805190"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_e4b_screen_scope.py",
+      "sha256": "91d59fdfd6969837547ccfc9087297d3acf550c11130746ff3d9d0953230ab8a"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_gpu.py",
+      "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_lifecycle.py",
+      "sha256": "32f0cc0215c9c4098540b95a5fd1e3194af9764ba1f01d1317df0553875b4506"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_lifecycle_probe.py",
+      "sha256": "c8af61b707903398d29a883ce1c9525af93494cb71612b6d299bbac240b704ed"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum.py",
+      "sha256": "610e3cee55e560894784821dfe66e73a3c5753a59c43a3dde3a85aca1999e1bc"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_diagnostic.py",
+      "sha256": "bc9e8117ad0a4e76ec17bae4b8722b9955016a4909f31e64562e24e0a22624f7"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_probe.py",
+      "sha256": "8041139e22f2bfd3f556ee885ec43ce9833ba0fadc391d6805febab342803cc2"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_remote.py",
+      "sha256": "cdb9ffa6047e95b2f66dc221c5f798d7fea812909395bbdeb9669647b5220838"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_retry.py",
+      "sha256": "48c9512766d99e1bd5a75d6712fa2d0c643b7f65d5b5de22d2bc1786a1e6a3c4"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_trace.c",
+      "sha256": "d8e165e3d117ab2d1becae21fb9de4f456ad020621ccb901979a6712b6780c67"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_worker.py",
+      "sha256": "aa16575660cfc5d4935da66fb6a3c4da4ac6071033708cad318bc81f98f432de"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_precheck.py",
+      "sha256": "dafcfa6cc32d78204a102b7e73eb1be3eeb499a906a90a7390503134fa81a63d"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_pretrained.py",
+      "sha256": "fa6beafd653fd1e78990c2e0162c0ec31a08f7c900bbae4e28980b478981ea08"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_pretrained_scope.py",
+      "sha256": "8160e0fb2eb0aa6d96e22071f08ffaaba126c97165fbf50277810ab72066ba79"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_provider.py",
+      "sha256": "b5c9e0a0e7c9ac98a8dc8a6d24b20f5c45de9690483ae37b65196e30218a37c4"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_provider_probe.py",
+      "sha256": "467a96a5cd7131da46155f9c6a675718049c1547d3a5d950efff73ea1e9da8cd"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_public_delivery.py",
+      "sha256": "12d1a6e97a36d4bc12de3f0a7a50df1f7b9dc308701cc0b98ab951536f0fd34c"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_public_scope.py",
+      "sha256": "ff1b5e55cb48796d7c40098aa75364270bdfcb887892ad529d67b7fe68a8fe5b"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_readiness.py",
+      "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_remote_watch.py",
+      "sha256": "eec9864d54e0859399e5e9f9c9334f2c21809e470a015d57b65d7119f9657e82"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_resources.py",
+      "sha256": "1d763165c9af25461a50ae55665a18052d71c74698f1abdfd70eb81f77e367ca"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner.py",
+      "sha256": "71ab5e3106251bb17871c56615b47eec16ed90263916c957b1b4fea976862bb0"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner_probe.py",
+      "sha256": "dfbff0eabb1c72d914ee1528b059338261427ba0713425c264f2c5c4986e095a"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_training_inputs.py",
+      "sha256": "74d8d2a152c57e57ae941543a0230d9750e6508fc15b4c53d8a8d4210555f411"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_worker.py",
+      "sha256": "33cbaf3d0795327f5604a7f037ee0d370638419ffe3ed3279b48f3f2ad1e98ae"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/ssh_bootstrap.py",
+      "sha256": "b657ddd6f145f66f4e15f2d30a23d8870ae56aa7f60d396ae1f41de485916839"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_benchmark.py",
+      "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_scoring.py",
+      "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-baseline-protocol-v1.json",
+      "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-evaluation-protocol-v1.json",
+      "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-cpu-requirements.txt",
+      "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-gpu-requirements.txt",
+      "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-runtime-lock-v1.json",
+      "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/temporal-evaluation-protocol-v1.json",
+      "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_baseline.py",
+      "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_benchmark.py",
+      "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_scoring.py",
+      "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/exact_teacher.py",
+      "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_gpu.py",
+      "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_readiness.py",
+      "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner.py",
+      "sha256": "71ab5e3106251bb17871c56615b47eec16ed90263916c957b1b4fea976862bb0"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_worker.py",
+      "sha256": "33cbaf3d0795327f5604a7f037ee0d370638419ffe3ed3279b48f3f2ad1e98ae"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_benchmark.py",
+      "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_scoring.py",
+      "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-baseline-protocol-v1.json",
+      "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-evaluation-protocol-v1.json",
+      "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-cpu-requirements.txt",
+      "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-gpu-requirements.txt",
+      "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-runtime-lock-v1.json",
+      "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/temporal-evaluation-protocol-v1.json",
+      "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_baseline.py",
+      "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_benchmark.py",
+      "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_scoring.py",
+      "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/exact_teacher.py",
+      "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_gpu.py",
+      "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_readiness.py",
+      "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner.py",
+      "sha256": "71ab5e3106251bb17871c56615b47eec16ed90263916c957b1b4fea976862bb0"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_worker.py",
+      "sha256": "33cbaf3d0795327f5604a7f037ee0d370638419ffe3ed3279b48f3f2ad1e98ae"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_benchmark.py",
+      "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collection/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_scoring.py",
+      "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-container-cpu.yml",
+      "sha256": "52745e5f7a5ddc42796b094e450a5641090da68aebf6998c23503bb97961f249"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-cpu.yml",
+      "sha256": "e960267e3b69ad5b3c6562e7b3dd36d04451e621fd77519321a091b17295906a"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-diagnostic.yml",
+      "sha256": "6bb4a9e917ffe9e966404c12b05bd1cb7f42d13be19061858933203181eb24da"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-live.yml",
+      "sha256": "e2062c003c010bd8ac4a67ff7e39a066b44af2007b8e5f67186c82316b9ccf05"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-quote.yml",
+      "sha256": "f93cc9946f39cf3d814a24fc62c968cdc822b169167d3dd50c8f84813a8958c0"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-retry-cpu.yml",
+      "sha256": "acde46496d679685f4b54e3247c46e061e7c45c7c0bb81ef79a8a140f254a683"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-retry-live.yml",
+      "sha256": "4f9f9fc148c610084b8a388701a55776ab878d689f0f6d9212b152c0b024900e"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-retry-quote.yml",
+      "sha256": "6eeff6411ab8d6e967f9add1f7ba902ce5a519f5018332723e32065e6fcdcd8d"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-precheck-cpu.yml",
+      "sha256": "f13609448771bfada0e1750e52676608a2da1d700c89d28251f07e518f314a0f"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-pretrained.yml",
+      "sha256": "17157f790fa49f4a229cc0cb80a66825f823cf4d053c00ffbdd996c899cbcadf"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-provider-cpu.yml",
+      "sha256": "1314824b147395afaac6a4f8708f3c19004f441f8dc8617f6096526a82f4eaff"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-provider-owner.yml",
+      "sha256": "0bb06419810437a0bdce8efa15aab651c2d02748c9e469801cd0777393e245fc"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-provider-watch.yml",
+      "sha256": "8af1ae7416563c61d4c9e973ec2ddba7f97296b7be93369a34094a655fc6d197"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-baseline-protocol-v1.json",
+      "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-evaluation-protocol-v1.json",
+      "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/augnes-development-replay-rubric-20261031.json",
+      "sha256": "ccdb5185d775b2d34f0d7a4df205cf769b616d776f2212bd9dd7a42864839776"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/augnes-development-replays-20261031.json",
+      "sha256": "f87ed31e79c39d0314d62aa2cfe338c4e56864d1729b89f064e45d6e171e2c43"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/augnes-screening-packets-20261031.json",
+      "sha256": "e3a65c083be058c02c70a0ac041a006b0466631ef255033698bd7cf27d22b42e"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/augnes-screening-rubric-20261031.json",
+      "sha256": "cefcb7936085065abdba9d97ca6de0e504b081f33e3a9ad7efc4acc36b93fbd5"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/cloud-controller-requirements.txt",
+      "sha256": "6e8e0115d53ffb67b8a9001e0b4e3f06747fb470aad4bdcb23e8a864d4018bdc"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/evidence/e2b-run-41206950960/input-schedule.json",
+      "sha256": "1ebe1f9c97ff6009e5c09e80f54590460c364b36afe42029c11ed063273f35ff"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/evidence/window-paid-run-41225173224/owner/minimum-owner/remote/screening-input-schedule.json",
+      "sha256": "faff4830334164b662bc4cf00e6c4034e2c27cc1a926ae37ee53adcb1f29715c"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/evidence/window-paid-run-41225173224/recovered-screening-raw.json",
+      "sha256": "5779e37082e579c8aa1f2d2be8f5552d1a44142f8226e2f1370b62760354f655"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/research-reduced9-amendment-20261026.json",
+      "sha256": "ba9b235c84db383f2413bc7adeb03888de9fd0fc571e8e67cc8ae4f9057563c7"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-cpu-requirements.txt",
+      "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-gpu-requirements.txt",
+      "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-runtime-lock-v1.json",
+      "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/temporal-evaluation-protocol-v1.json",
+      "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/official_cloud_transport.py",
+      "sha256": "add4388cf0db14eefa15343c864b01f76eafeb6389b906e89f56824697c658d6"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/small_model_transport_control.py",
+      "sha256": "1ea88930166bfe91f073649ea07149c6e7f2331b3ed63f02c5ad015084ce98a4"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_private_delivery.py",
+      "sha256": "9d716ae24821bfeb69c9c0a51bc8f2b5cf074ef0e7325701cadd34e84c23f5de"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_augnes_screen.py",
+      "sha256": "127d973c8f48aa6081afb85c3a56fdfa1753e1df55be7e4dafad2dafc1dfa986"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_container.py",
+      "sha256": "ef05ed3f780c6a668c1ad2e31b2ba704521f94dcff3d03f9afff70d0567e2e4b"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_delivery.py",
+      "sha256": "eb44d97d469d7e17cadd1a54cdd353ca638a13a5ad6689ae678da5a231553837"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_e4b_screen.py",
+      "sha256": "f5dc305ccbdce1cbe4b17fa5c01c407aeaed16b5baa190f9b4cb087be6c29d01"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum.py",
+      "sha256": "cbe5a6a1e08fe39db75103755eb8a3030b46f88d190b734f4f01286286683a43"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum_diagnostic.py",
+      "sha256": "944470aab610f01f34af02518b6784a835198d43b7c21bc7f80081f64c02a018"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum_diagnostic_scope.py",
+      "sha256": "0fa54c0748ad010d7a2a03e64e5a5d45ba97f756f55c414995b3cb219349a1e0"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum_retry.py",
+      "sha256": "ca2a4d349efa03ae180e7b16608e41bc786503ac961fb48c6a3d7f89b4e76ce7"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum_trace.py",
+      "sha256": "2af1e607c12817b8d4227016c5e649aea939d1318a616ee2a86dad91ff57e94d"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_precheck.py",
+      "sha256": "21ad1e073cc9f83eca8e41034cff22371df7629188b07921b5ecdcc8d0ec4e47"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_pretrained.py",
+      "sha256": "333930ec49459fff592fd7fab3229f8c5a9a5aff3374cc0c2e2ab666c7caa749"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_provider.py",
+      "sha256": "242530d07de276c3b36eff5484fe0a15d6f457bd7705db63e14e54e03d71f94c"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_public_delivery.py",
+      "sha256": "4772027d663279ae95ef8476f2915e3c9e90b5545596aad61d4aa7a33ff8a933"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_training_inputs.py",
+      "sha256": "2392366c2b65a78059e864f03c08a6243643ec46c720735fde9fa0b2a3562da7"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_ssh_bootstrap.py",
+      "sha256": "bf20d657d9b3243c842178aa8549db15926e571972570048d6e60926fc9100bb"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_baseline.py",
+      "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_benchmark.py",
+      "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_scoring.py",
+      "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/augnes_screening_review.py",
+      "sha256": "1c2b3fa816834ff541ff1420d2d82a09e7420930402d29f371b2a798b9d8c45c"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_bootstrap.py",
+      "sha256": "b032f0d92bb042cb3388699fe230084c077fb78a59b4df86184f12feb6610487"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_inventory.py",
+      "sha256": "f4865ae92c7f41375a15ecf917e932562cca608ca7a1607d18d1b370bd0932ff"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_offer.py",
+      "sha256": "9387b91be560cf80a85a5bae8166acb7c35f7a61135042971d21cafdb76c3df5"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_probe.py",
+      "sha256": "bb89c097e7fe0c6bc56771e87695056d60c11f510502173105a102a25d48e22f"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_transport.py",
+      "sha256": "013d93fc8c1548bc7eaf4cf9a4f5a49608b7e16d537b192accf053151fbf5902"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/exact_teacher.py",
+      "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/free_container_cleanup.py",
+      "sha256": "3dc64f6fa013e992e8c02fa702330a14003cb2e7ab0d536e3dc0da80ce3e9466"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/private_delivery.py",
+      "sha256": "f010c41715e2548b86a4b3dfc009e22e57fcbf5a52429e4f7f1165632f1a4a40"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/research_entry.py",
+      "sha256": "9f3c753cb26f9ab4d22ef5a27d4c900bc109ea10cbc4447df97d58b337762d85"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/research_entry_contract.py",
+      "sha256": "1a4997a22bcb2bb9acd5dde8bfe916e987ae20131c9073610f2bb2e863908e47"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/research_entry_state.py",
+      "sha256": "b3858570800b87f36a2ebd99a4ebbf65295edf5756b1a7b6cf1d6c4c13316389"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/runpod_control.py",
+      "sha256": "09219477947e39b2c7c58b6e7e44f385bd5d1140cbdb7a47cddef3ab7f6cf400"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_augnes_screen.py",
+      "sha256": "66a0dbfaba0f20d4cbe5a1fd0e81167eba286592a496f184cbcdbe1732e110a7"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_container.py",
+      "sha256": "d87cc12a3dc39dd9c235956f1b7a5181b060e57c7e104a86aacc991977e20410"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_container_install.py",
+      "sha256": "e44a80ef7ca4c6611ea0536a76889efed5011fdea2bf27331acb21cc0aac5ecc"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_container_probe.py",
+      "sha256": "924cf57ec8868ea1acdaaaf7868f829071e7c34a16416c3db069b03e6642081b"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_container_worker.py",
+      "sha256": "b18582ac2af9785b63be236bc9f240ce021501275567106f877a4aa32efc1d91"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_delivery.py",
+      "sha256": "a5ca27f8e31e664515b957f48e3d39647c0ab453b6d8a761ffd41beaf624cd73"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_e4b_screen.py",
+      "sha256": "22653241cb5b24ee23ce84df4a9fdb2bd89ea4d90401e0ebe49f880bdc805190"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_e4b_screen_scope.py",
+      "sha256": "91d59fdfd6969837547ccfc9087297d3acf550c11130746ff3d9d0953230ab8a"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_gpu.py",
+      "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_lifecycle.py",
+      "sha256": "32f0cc0215c9c4098540b95a5fd1e3194af9764ba1f01d1317df0553875b4506"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_lifecycle_probe.py",
+      "sha256": "c8af61b707903398d29a883ce1c9525af93494cb71612b6d299bbac240b704ed"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum.py",
+      "sha256": "610e3cee55e560894784821dfe66e73a3c5753a59c43a3dde3a85aca1999e1bc"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_diagnostic.py",
+      "sha256": "bc9e8117ad0a4e76ec17bae4b8722b9955016a4909f31e64562e24e0a22624f7"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_probe.py",
+      "sha256": "8041139e22f2bfd3f556ee885ec43ce9833ba0fadc391d6805febab342803cc2"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_remote.py",
+      "sha256": "cdb9ffa6047e95b2f66dc221c5f798d7fea812909395bbdeb9669647b5220838"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_retry.py",
+      "sha256": "48c9512766d99e1bd5a75d6712fa2d0c643b7f65d5b5de22d2bc1786a1e6a3c4"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_trace.c",
+      "sha256": "d8e165e3d117ab2d1becae21fb9de4f456ad020621ccb901979a6712b6780c67"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_worker.py",
+      "sha256": "aa16575660cfc5d4935da66fb6a3c4da4ac6071033708cad318bc81f98f432de"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_precheck.py",
+      "sha256": "dafcfa6cc32d78204a102b7e73eb1be3eeb499a906a90a7390503134fa81a63d"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_pretrained.py",
+      "sha256": "fa6beafd653fd1e78990c2e0162c0ec31a08f7c900bbae4e28980b478981ea08"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_pretrained_scope.py",
+      "sha256": "8160e0fb2eb0aa6d96e22071f08ffaaba126c97165fbf50277810ab72066ba79"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_provider.py",
+      "sha256": "b5c9e0a0e7c9ac98a8dc8a6d24b20f5c45de9690483ae37b65196e30218a37c4"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_provider_probe.py",
+      "sha256": "467a96a5cd7131da46155f9c6a675718049c1547d3a5d950efff73ea1e9da8cd"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_public_delivery.py",
+      "sha256": "12d1a6e97a36d4bc12de3f0a7a50df1f7b9dc308701cc0b98ab951536f0fd34c"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_public_scope.py",
+      "sha256": "ff1b5e55cb48796d7c40098aa75364270bdfcb887892ad529d67b7fe68a8fe5b"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_readiness.py",
+      "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_remote_watch.py",
+      "sha256": "eec9864d54e0859399e5e9f9c9334f2c21809e470a015d57b65d7119f9657e82"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_resources.py",
+      "sha256": "1d763165c9af25461a50ae55665a18052d71c74698f1abdfd70eb81f77e367ca"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner.py",
+      "sha256": "71ab5e3106251bb17871c56615b47eec16ed90263916c957b1b4fea976862bb0"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner_probe.py",
+      "sha256": "dfbff0eabb1c72d914ee1528b059338261427ba0713425c264f2c5c4986e095a"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_training_inputs.py",
+      "sha256": "74d8d2a152c57e57ae941543a0230d9750e6508fc15b4c53d8a8d4210555f411"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_worker.py",
+      "sha256": "33cbaf3d0795327f5604a7f037ee0d370638419ffe3ed3279b48f3f2ad1e98ae"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/ssh_bootstrap.py",
+      "sha256": "b657ddd6f145f66f4e15f2d30a23d8870ae56aa7f60d396ae1f41de485916839"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_benchmark.py",
+      "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_scoring.py",
+      "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-baseline-protocol-v1.json",
+      "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-evaluation-protocol-v1.json",
+      "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-cpu-requirements.txt",
+      "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-gpu-requirements.txt",
+      "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-runtime-lock-v1.json",
+      "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "docs/temporal-evaluation-protocol-v1.json",
+      "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_baseline.py",
+      "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_benchmark.py",
+      "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_scoring.py",
+      "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/exact_teacher.py",
+      "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_gpu.py",
+      "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_readiness.py",
+      "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner.py",
+      "sha256": "71ab5e3106251bb17871c56615b47eec16ed90263916c957b1b4fea976862bb0"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_worker.py",
+      "sha256": "33cbaf3d0795327f5604a7f037ee0d370638419ffe3ed3279b48f3f2ad1e98ae"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_benchmark.py",
+      "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_scoring.py",
+      "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    }
+  ]
+}
