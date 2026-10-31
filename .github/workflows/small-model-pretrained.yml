@@ -1,0 +1,35 @@
+name: E2B checkpoint and original baseline preparation
+on:
+  push:
+    branches: [bt-001-e2b-baseline-20261031]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: e2b-baseline-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Reuse exact historical tokenization and verify full E2B bytes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local evidence
+          gh api /repos/hynk-studio/backtrace/actions/artifacts/12640353622/zip > .local/readiness.zip
+          python -m tools.small_model_pretrained prepare .local/e2b .local/readiness.zip > evidence/preparation.json 2> evidence/preparation.log
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: e2b-checkpoint-preparation-${{ github.sha }}
+          path: evidence/
+          retention-days: 14
