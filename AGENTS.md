@@ -1,5 +1,16 @@
 # Backtrace working agreement
 
+## Final adapter/screening affordability amendment (2026-10-31 UTC)
+
+The latest quote found both initially allowed regions out of stock. The final
+contract excludes only failed EU-SE-1, shortens total/work to 2,160/1,740 seconds,
+and permits at most USD0.504 projected spend. Cleanup/export remain300/120.
+The observed 48 GB L40 EUR-IS-2 scenario costs at most USD0.501 and fits the same
+cumulative USD1 ceiling after USD0.4954733666 observed spending. Select the
+cheapest fresh eligible other route; no top-up or cumulative budget increase.
+This supersedes the earlier 2,200/0.370/two-region draft numbers below. Exact-source
+qualification and a new unused permit still precede the one paid start.
+
 ## Prospective untrained twenty-case screening (2026-10-31 UTC)
 
 Before this adapter scope's still-uncreated paid start, add the frozen twenty

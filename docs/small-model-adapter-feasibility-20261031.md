@@ -99,3 +99,25 @@ of a historical cutoff. The separate rubric never enters the worker. Model
 responses propose decisions, not executed checks or fixes. Existing-flow and
 additional-main-model controls, matched cost comparison, specialist training and
 confirmation remain unexecuted; this is the small-model side of that comparison.
+
+## Final affordability/route amendment before qualification
+
+The 15:17:47 UTC account snapshot had no CA-MTL-1 or US-TX-1 stock, but offered
+48 GB L40 in EUR-IS-2 at USD0.82/hour, and other more costly routes. Restricting
+the scope to two absent regions would unnecessarily block authorized work. The
+final contract excludes only the observed failed EU-SE-1 route, retaining the
+existing fresh-price, >=40 GB product, hardware and memory checks. This does not
+claim that geography caused the transfer failure.
+
+Shorten the allocation-inclusive bound to **2,160 seconds**, with **1,740 work,
+300 cleanup and 120 export**. Maximum projection is **USD0.504**; the observed
+L40 scenario is (0.82+0.015)*2160/3600 = USD0.501. Together with USD0.4954733666
+already observed this remains below the existing cumulative USD1 ceiling. Fresh
+execution-time account and offers remain mandatory, and credit must stay above
+USD1.9060441339 after the maximum projection. No top-up or larger cumulative
+budget is introduced. The cheapest eligible non-EU-SE-1 offer wins; the stale
+snapshot is a planning observation, not availability or a guaranteed bill.
+
+This final amendment supersedes the earlier 2,200-second/0.370/two-region draft
+numbers above; all 44 requests, four updates and scientific controls are unchanged.
+No paid permit/start has been created. The final operational source must qualify.
