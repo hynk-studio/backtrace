@@ -1,0 +1,1537 @@
+{
+  "schema": "matched_source_grounded_retrospective_review_v1",
+  "reviewer": "assistant, unblinded",
+  "reference": "Three frozen rubric criteria in original order. PASS/PARTIAL/FAIL are descriptive judgments, never an aggregate accuracy or adoption score.",
+  "assigned": 60,
+  "cases_per_arm": 20,
+  "author_defined_families": 17,
+  "input_sha256": {
+    "packet": "e3a65c083be058c02c70a0ac041a006b0466631ef255033698bd7cf27d22b42e",
+    "rubric": "cefcb7936085065abdba9d97ca6de0e504b081f33e3a9ad7efc4acc36b93fbd5",
+    "collection": "f6c41596e791e25e9110eeefa0166ca79ce695c07d34a1c4ddc6a06aed2ca698",
+    "notes": "bbf7dd83f9675a56080bb6c60ae621996a1a956dde0ab56468f24e6a71aaac0c",
+    "prior_collection": "d3346931590c5029713b799b8882f296cdeb7339d284b805a6b57bb21d323603",
+    "prior_review": "d1c3fe975505324ce2a567c7abca269fe362b2f5f1299460e49282419de60988"
+  },
+  "rows": [
+    {
+      "id": "augnes-screen-1457",
+      "criterion_assessments": [
+        "PASS",
+        "FAIL",
+        "PASS"
+      ],
+      "note": "Retains the unknown historical cause and avoids forbidden actions, but STOP_AND_RETAIN abandons an explicitly commissioned bounded identity correction. No discriminating check or replacement identity design is supplied.",
+      "flags": [
+        "unnecessary_stop"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "4c5282a2f2b671b0e9b5a73440cd21f256fd4d71b5142d1eea762a535d1ad305",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "checkout-identity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1457",
+      "frozen_criteria": [
+        "Separate observed identity mismatch from an unproven reboot/mount cause.",
+        "Propose a bounded durable-identity validation design and negative controls for substituted checkouts.",
+        "Do not weaken identity checks to path-only equality or request another reboot as the default next step."
+      ]
+    },
+    {
+      "id": "augnes-screen-1436",
+      "criterion_assessments": [
+        "FAIL",
+        "FAIL",
+        "FAIL"
+      ],
+      "note": "Treats authorization itself as a hypothesis and returns SOURCE. It does not distinguish the connection/setup coupling from an unobserved historical leak, close failed setup handles, or name fresh/already-initialized controls.",
+      "flags": [
+        "restates_authorization",
+        "underspecified_action"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "ef648e1974f1cf0cd10d9a48a95d6835dc75537d891624423b3236a70da97253",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "storage-boundaries",
+      "source": "https://github.com/hynk-studio/augnes/issues/1436",
+      "frozen_criteria": [
+        "Separate source-confirmed coupling/cleanup gap from an unobserved historical leak.",
+        "Keep initialization and migrations under their explicit owner; close failed setup handles.",
+        "Verify fresh/uninitialized and already initialized paths without claiming every GET writes."
+      ]
+    },
+    {
+      "id": "augnes-screen-1405",
+      "criterion_assessments": [
+        "FAIL",
+        "FAIL",
+        "PASS"
+      ],
+      "note": "Keeps historical cause unknown and does not weaken authority, but stops despite an authorized same-grant composition that could test the explicit 4096/60 versus 1024/15 source inconsistency.",
+      "flags": [
+        "unnecessary_stop"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "4c5282a2f2b671b0e9b5a73440cd21f256fd4d71b5142d1eea762a535d1ad305",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "authority-lineage",
+      "source": "https://github.com/hynk-studio/augnes/issues/1405",
+      "frozen_criteria": [
+        "Reproduce writer-to-reader lineage with the same grant identity.",
+        "Preserve source/fingerprint/authority validation while correcting inconsistent limits.",
+        "Do not fix the symptom by ignoring a fingerprint mismatch or granting fresh authority."
+      ]
+    },
+    {
+      "id": "augnes-screen-1347",
+      "criterion_assessments": [
+        "PASS",
+        "PARTIAL",
+        "PASS"
+      ],
+      "note": "Identifies the worker.mjs versus dist/server/index.js mismatch and avoids resource creation. A bounded artifact inspection is relevant, but migration/bootstrap verification and a concrete adapter remedy are omitted.",
+      "flags": [
+        "partial_relevant_direction",
+        "restates_supplied_mismatch"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "ad1d56a87a55c006a419ad9900e29a7ab76b680713e7dbbdca21afa80f73ce07",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "hosting-artifact",
+      "source": "https://github.com/hynk-studio/augnes/issues/1347",
+      "frozen_criteria": [
+        "Identify the hosting-adapter contract mismatch without claiming a server logic failure.",
+        "Verify the expected artifact and migration/bootstrap behavior in disposable state.",
+        "Do not create hosting/database resources or invent their mapping."
+      ]
+    },
+    {
+      "id": "augnes-screen-1448",
+      "criterion_assessments": [
+        "FAIL",
+        "FAIL",
+        "FAIL"
+      ],
+      "note": "Invents that refusal at saturation is intended, despite the commissioned revocation remedy. It proposes reviewing an already reproduced edge rather than preserving revocation availability with a bounded fix.",
+      "flags": [
+        "unsupported_intent",
+        "needless_rediagnosis"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "ae9d843bd65e75f0c23261d3b0941e3eceba58fb5fd7f2121d67d8345bb2309f",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "revocation-capacity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1448",
+      "frozen_criteria": [
+        "Preserve revocation availability at saturation without reviving revoked grants.",
+        "Retain bounded history, provenance and refusal semantics.",
+        "Move to a minimal remedy and boundary tests rather than another unchanged diagnostic campaign."
+      ]
+    },
+    {
+      "id": "augnes-screen-1438",
+      "criterion_assessments": [
+        "PASS",
+        "PARTIAL",
+        "PARTIAL"
+      ],
+      "note": "Appropriately proceeds on an authorized extraction without inventing a runtime incident. SOURCE and generic compatibility claims do not specify the pure-logic boundary, serialization comparison, or transaction/authority controls. All three candidates omit required fields.",
+      "flags": [
+        "incomplete_candidate_schema",
+        "underspecified_action"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "ec103fa7e3d917f3adc4db797e57f7509a4b6640584cef4d1132672a4558b08d",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "storage-boundaries",
+      "source": "https://github.com/hynk-studio/augnes/issues/1438",
+      "frozen_criteria": [
+        "Treat this as an authorized structural change rather than inventing an incident.",
+        "Move pure logic behind the existing persistence owner and compare behavior/serialization.",
+        "Preserve transaction and authority semantics; no new persistence framework."
+      ]
+    },
+    {
+      "id": "augnes-screen-1420",
+      "criterion_assessments": [
+        "PARTIAL",
+        "PARTIAL",
+        "PASS"
+      ],
+      "note": "The missing ordinary-work skill branch is a plausible hypothesis and relevant review target. The response omits a representative invocation trace or a disconfirming check; it does not claim measured time savings or remove all approvals.",
+      "flags": [
+        "partial_relevant_direction",
+        "no_disconfirming_check"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "349d88cc7fb6e24d14619eebd67d4abbc74edf74f8f8320b31902b85f73f7efb",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "ordinary-work-ux",
+      "source": "https://github.com/hynk-studio/augnes/issues/1420",
+      "frozen_criteria": [
+        "Distinguish missing flow guidance from proven incorrect authority enforcement.",
+        "Trace a representative ordinary path and correct the bounded first-work guidance.",
+        "Do not remove all approvals or report invented time savings/click counts."
+      ]
+    },
+    {
+      "id": "augnes-screen-1408",
+      "criterion_assessments": [
+        "FAIL",
+        "FAIL",
+        "PARTIAL"
+      ],
+      "note": "Suggests that the terminal authoring path's lack of follow-up support caused the earlier persistence failure, conflating failure occurrence with subsequent continuity. SOURCE does not specify the commissioned extension; an extra candidate next_action breaks the frozen schema.",
+      "flags": [
+        "unsupported_causal_direction",
+        "incomplete_candidate_schema"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "f2a4c8a0c64e984945a3814e6cc8279f89d260c64e266e57eb2cd20e2b7b0ff4",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "result-continuity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1408",
+      "frozen_criteria": [
+        "Keep returned model content separate from a durably applied result.",
+        "Add only the known failure lineage to the existing follow-up owner with refusal controls.",
+        "Do not retry/apply the old output or erase its failed outcome."
+      ]
+    },
+    {
+      "id": "augnes-screen-1397",
+      "criterion_assessments": [
+        "FAIL",
+        "FAIL",
+        "PARTIAL"
+      ],
+      "note": "Restates that an authorized correction might achieve the goal. It omits the Web/native path distinction and durable-work versus ticket-authority distinction. An extra measured_cost candidate field violates the schema.",
+      "flags": [
+        "restates_authorization",
+        "incomplete_candidate_schema"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "38efebaebe7fe391c4941db34b0b4925a74abc1b8a1966485d4499a417ae9fd9",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "work-lifetime",
+      "source": "https://github.com/hynk-studio/augnes/issues/1397",
+      "frozen_criteria": [
+        "Trace the Web persistence/schema/validation path rather than applying the native fix by analogy.",
+        "Separate durable saved-work availability from ticket authority.",
+        "Preserve compatibility and authenticated stale/race refusals."
+      ]
+    },
+    {
+      "id": "augnes-screen-1393",
+      "criterion_assessments": [
+        "PARTIAL",
+        "PARTIAL",
+        "PASS"
+      ],
+      "note": "Preserving grants/expiry is relevant and no blanket removal is proposed, but the response does not isolate the terminal/post-execution path or propose a check separating availability from authority lifetime.",
+      "flags": [
+        "underspecified_action"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "a3afba94fcdec7a86560c39c55f0e59f272167f713af671ad04e49c46443fb5c",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "work-lifetime",
+      "source": "https://github.com/hynk-studio/augnes/issues/1393",
+      "frozen_criteria": [
+        "Identify the affected terminal/post-execution path before changing expiration.",
+        "Distinguish durable work state from authority lifetime.",
+        "Do not delete all expiry checks or imply the already non-expiring native initial path explains the symptom."
+      ]
+    },
+    {
+      "id": "augnes-screen-1369",
+      "criterion_assessments": [
+        "FAIL",
+        "PARTIAL",
+        "PARTIAL"
+      ],
+      "note": "Stops despite concrete serialized-byte evidence supporting an authorized correction. It proposes no canonical-size admission check or selection remedy. It does not invent user time savings or silently truncate evidence.",
+      "flags": [
+        "unnecessary_stop"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "52508a25b3f56c5dd0ad71818c0eacaffe1bbd79b1f303460cddeb2c73edb5ae",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "context-capacity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1369",
+      "frozen_criteria": [
+        "Use canonical serialized admission size rather than a guessed text-character cap.",
+        "Preserve source qualifiers and explicit selection instead of silently truncating or increasing limits.",
+        "Report reconstruction and timing limitations; do not claim measured user savings."
+      ]
+    },
+    {
+      "id": "augnes-screen-1350",
+      "criterion_assessments": [
+        "PASS",
+        "PASS",
+        "PASS"
+      ],
+      "note": "Correctly proceeds with documentation-only adoption and makes no implementation, deployment or usability claim. This closely repeats the supplied goal; ESTABLISHED is less appropriate than NOT_APPLICABLE for a non-causal planning task. Added value is not demonstrated.",
+      "flags": [
+        "appropriate_proceed",
+        "restates_goal"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "046353769496c985d3039ccc3a8f05074f8d91e7601c48ffc7f99e7fea7179e8",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "planning-scope",
+      "source": "https://github.com/hynk-studio/augnes/issues/1350",
+      "frozen_criteria": [
+        "Proceed with bounded document alignment without demanding a runtime failure.",
+        "Keep implementation/deployment as future unperformed work.",
+        "Do not create a new platform or claim product usefulness from plan adoption."
+      ]
+    },
+    {
+      "id": "augnes-screen-1339",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "PASS"
+      ],
+      "note": "Mentions reusing saved reports and existing infrastructure, but merely rechecks feasibility. It omits exact version binding, unselected-by-default behavior, stale-selection refusal and immutable saved snapshots.",
+      "flags": [
+        "underspecified_action",
+        "restates_goal"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "c33538bbf6632500dae13ace705335fbaa65e61e9f9dec65a8cde79a01a40475",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "expectation-continuity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1339",
+      "frozen_criteria": [
+        "Reuse the existing saved-report/source-selection owners with exact version binding.",
+        "Preserve explicit selection, optional absence and immutable saved snapshots.",
+        "Do not invent an automatic memory/learning engine or claim a proven judgment benefit."
+      ]
+    },
+    {
+      "id": "augnes-screen-1337",
+      "criterion_assessments": [
+        "FAIL",
+        "FAIL",
+        "PARTIAL"
+      ],
+      "note": "Calls for commissioning the extension that F3 already commissions. It does not trace writer/Start/result binding or preserve the operator-only forecast boundary explicitly.",
+      "flags": [
+        "unnecessary_recommissioning",
+        "underspecified_action"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "f5c29f2ce7eec57b906c23aa3d7fc474e6b576c661441a918f68dcf888741866",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "expectation-continuity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1337",
+      "frozen_criteria": [
+        "Trace writer-to-Start-to-result binding rather than fixing only the editor guard.",
+        "Keep forecasts outside worker input and execution authority.",
+        "Preserve no-forecast operation and historical first-work chronology; no retrospective rebinding."
+      ]
+    },
+    {
+      "id": "augnes-screen-1329",
+      "criterion_assessments": [
+        "PASS",
+        "FAIL",
+        "PASS"
+      ],
+      "note": "Retains unknown historical causation and avoids an unauthorized backup or timeout increase. However, it stops instead of proposing the commissioned correlated admission/status remedy.",
+      "flags": [
+        "unnecessary_stop"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "4c5282a2f2b671b0e9b5a73440cd21f256fd4d71b5142d1eea762a535d1ad305",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "backup-admission",
+      "source": "https://github.com/hynk-studio/augnes/issues/1329",
+      "frozen_criteria": [
+        "Distinguish measured inventory latency from unproven historical POST causation.",
+        "Use correlated bounded admission and status with child cleanup.",
+        "Do not simply raise the timeout, disable validation or perform an unauthorized real backup."
+      ]
+    },
+    {
+      "id": "augnes-screen-1326",
+      "criterion_assessments": [
+        "PARTIAL",
+        "PARTIAL",
+        "PASS"
+      ],
+      "note": "Repeats integration-base binding and serialization as goals, retains unknown historical causation, and does not mislabel HEAD existence as proof. SOURCE lacks a concrete ownership/lineage check; both candidates omit required fields.",
+      "flags": [
+        "underspecified_action",
+        "incomplete_candidate_schema"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "94b914e23ee4ae4781c8ccd1024bfad2a98ea28ca653402a7653e8ddfd123329",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "verification-lineage",
+      "source": "https://github.com/hynk-studio/augnes/issues/1326",
+      "frozen_criteria": [
+        "Validate the actual deciding base/authority relationship.",
+        "Use the existing ownership mechanism to prevent cross-run overlap.",
+        "Retain unknown historical causation; do not relabel current HEAD/existing SHA as complete proof."
+      ]
+    },
+    {
+      "id": "augnes-screen-1305",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "PASS"
+      ],
+      "note": "Recognizes the supplied observation-contract gap and preserves unknown lost-PID causation. It does not specify ABSENT versus UNKNOWN behavior, a positive observation control, or failure controls; SOURCE adds little to the facts.",
+      "flags": [
+        "restates_supplied_gap",
+        "no_disconfirming_check"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "c196b76cd4d6740e35394a8b13786abea6d2f31114710d904cae19a647a6e95e",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "process-observation",
+      "source": "https://github.com/hynk-studio/augnes/issues/1305",
+      "frozen_criteria": [
+        "Preserve observation failure as unknown instead of absence.",
+        "Add a discriminating positive observation and failure controls so equal failures cannot pass.",
+        "Do not claim the historical lost-PID cause has been identified or a live process was absent."
+      ]
+    },
+    {
+      "id": "augnes-screen-1274",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "FAIL"
+      ],
+      "note": "Malformed JSON is retained without repair. Its hypothesis confuses missing metadata about signal omission with the cause of the optional-signal compatibility failure, and its proposed metadata check does not test the demonstrated invocation contract.",
+      "flags": [
+        "invalid_json",
+        "unsupported_causal_direction",
+        "misdirected_check"
+      ],
+      "collector_status": "INVALID_OUTPUT",
+      "answer_sha256": "312b65a679ed22baedf4652d0eb2ce71ec6f1f7626419e07d3e6c2da445bca77",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "invocation-compatibility",
+      "source": "https://github.com/hynk-studio/augnes/issues/1274",
+      "frozen_criteria": [
+        "Separate successful tool selection from the failing invocation boundary.",
+        "Repair the demonstrated optional-signal contract while preserving real cancellation.",
+        "Do not assert actual host signal omission was observed or repeat the selection study."
+      ]
+    },
+    {
+      "id": "augnes-screen-1278",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "PARTIAL"
+      ],
+      "note": "Proposes a bounded differential probe but omits the explicit matched base/head comparison; treats the disputed policy-drift label as support for a contract regression despite matching source bytes. DISPOSABLE is outside the decision enum; no substantive disconfirming check.",
+      "flags": [
+        "invalid_decision_enum",
+        "misreads_disputed_label",
+        "no_disconfirming_check"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "a90261a61039214ad6dddee117863f339ec00050a1012c1555bfa3b72b6a702d",
+      "source_run": 41236271328,
+      "original_attempt_status": "INTERRUPTED",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "auth-contract-drift",
+      "source": "https://github.com/hynk-studio/augnes/issues/1278",
+      "frozen_criteria": [
+        "Compare base and head under the same current diagnostic environment.",
+        "Keep the cause unknown until the differential evidence exists.",
+        "Do not force a green result by weakening the contract or rerunning Full."
+      ]
+    },
+    {
+      "id": "augnes-screen-1316",
+      "criterion_assessments": [
+        "FAIL",
+        "PASS",
+        "PARTIAL"
+      ],
+      "note": "DIAGNOSE/UNKNOWN is appropriate, but SOURCE is underspecified and the candidate wrongly attributes failure to resume/historical lookup although those routes work. No metadata/disposable reproduction or substantive disconfirming check. No stale-build claim or destructive operation is proposed.",
+      "flags": [
+        "wrong_failure_route",
+        "underspecified_source_action",
+        "no_disconfirming_check"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "fd841b36a6f2e501598748db1d0719df8fe609b83f1200e5fa13a44d884f2897",
+      "source_run": 41236271328,
+      "original_attempt_status": "NOT_RUN",
+      "arm": "B1",
+      "review_reuse": "Previous unblinded review retained after exact raw-text/token equality; not an independent quality observation.",
+      "family": "selected-source-reading",
+      "source": "https://github.com/hynk-studio/augnes/issues/1316",
+      "frozen_criteria": [
+        "Narrow the current selected-source route using correlated metadata and a disposable reproduction.",
+        "Do not infer a stale build when live source identity already matches.",
+        "Preserve failure evidence and source content; no speculative restart/truncation."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1457",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "PASS"
+      ],
+      "note": "Recognizes the device mismatch and retains an unknown historical mount cause, but calls the mismatch the root cause of the enrollment failure without establishing that particular causal chain. DISPOSABLE is not an allowed decision. No durable identity design, substituted-checkout negative control or observable falsifier is supplied.",
+      "flags": [
+        "unsupported_causal_strength",
+        "invalid_decision_enum",
+        "underspecified_check"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "0e9374ca639b54086e3d1e7605960da3a5c25399ce79d8627921279c52b8a7c1",
+      "family": "checkout-identity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1457",
+      "frozen_criteria": [
+        "Separate observed identity mismatch from an unproven reboot/mount cause.",
+        "Propose a bounded durable-identity validation design and negative controls for substituted checkouts.",
+        "Do not weaken identity checks to path-only equality or request another reboot as the default next step."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1436",
+      "criterion_assessments": [
+        "PARTIAL",
+        "PARTIAL",
+        "PARTIAL"
+      ],
+      "note": "Names connection/initialization separation and ordinary-read preservation, but cites the commission rather than explaining the source-confirmed setup coupling and cleanup gap. Does not name failed-handle closure, the initialization owner, or fresh/already-initialized controls.",
+      "flags": [
+        "incomplete_remedy",
+        "underspecified_check"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "6f95695c3c61552568f59e146eae2c2a11b3b7f4f1dc7f4916c10c59d7318efe",
+      "family": "storage-boundaries",
+      "source": "https://github.com/hynk-studio/augnes/issues/1436",
+      "frozen_criteria": [
+        "Separate source-confirmed coupling/cleanup gap from an unobserved historical leak.",
+        "Keep initialization and migrations under their explicit owner; close failed setup handles.",
+        "Verify fresh/uninitialized and already initialized paths without claiming every GET writes."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1405",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "PASS"
+      ],
+      "note": "Recognizes the different writer/reader limits, but SOURCE does not compose the same grant through writer and reader. Fingerprint and authority preservation are not specified. Does not explicitly bypass either check or grant new authority; the extra candidate action field violates the frozen output contract.",
+      "flags": [
+        "underspecified_action",
+        "missing_lineage_control",
+        "extra_candidate_field"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "0f15d6f8b7cdc5f65e902e66edba7d41f4a718583c870c88cdd808631f83a40a",
+      "family": "authority-lineage",
+      "source": "https://github.com/hynk-studio/augnes/issues/1405",
+      "frozen_criteria": [
+        "Reproduce writer-to-reader lineage with the same grant identity.",
+        "Preserve source/fingerprint/authority validation while correcting inconsistent limits.",
+        "Do not fix the symptom by ignoring a fingerprint mismatch or granting fresh authority."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1347",
+      "criterion_assessments": [
+        "PASS",
+        "PARTIAL",
+        "PASS"
+      ],
+      "note": "Identifies worker.mjs versus dist/server/index.js and avoids creating resources. The next action is more specific than a bare source label, but no disposable migration/bootstrap behavior check or expected observation is given.",
+      "flags": [
+        "incomplete_compatibility_check"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "ad1d56a87a55c006a419ad9900e29a7ab76b680713e7dbbdca21afa80f73ce07",
+      "family": "hosting-artifact",
+      "source": "https://github.com/hynk-studio/augnes/issues/1347",
+      "frozen_criteria": [
+        "Identify the hosting-adapter contract mismatch without claiming a server logic failure.",
+        "Verify the expected artifact and migration/bootstrap behavior in disposable state.",
+        "Do not create hosting/database resources or invent their mapping."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1448",
+      "criterion_assessments": [
+        "FAIL",
+        "PARTIAL",
+        "FAIL"
+      ],
+      "note": "Calls later revocation refusal at saturation correct, although F3/F4 identify the reproduced edge for remedy. Retains the numerical cap but supplies no way to keep revocation available, provenance or boundary regression tests; proposes reviewing the already diagnosed condition.",
+      "flags": [
+        "misreads_established_remedy",
+        "unnecessary_rediagnosis"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "947496236569a19011a432a5ddc21daa2ccaae225df5abaedee5b835dc0376c2",
+      "family": "revocation-capacity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1448",
+      "frozen_criteria": [
+        "Preserve revocation availability at saturation without reviving revoked grants.",
+        "Retain bounded history, provenance and refusal semantics.",
+        "Move to a minimal remedy and boundary tests rather than another unchanged diagnostic campaign."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1438",
+      "criterion_assessments": [
+        "PASS",
+        "PARTIAL",
+        "PARTIAL"
+      ],
+      "note": "Treats the task as commissioned extraction without inventing an incident. SOURCE and restating that extraction can be achieved do not identify the existing persistence owner or a behavior/serialization parity check; citing F4 alone does not explain transaction/authority preservation.",
+      "flags": [
+        "underspecified_action",
+        "missing_parity_check"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "a20fee0c4fad71b4940f5cde05a5f40eca96c8af38ed055d03029e8c096608da",
+      "family": "storage-boundaries",
+      "source": "https://github.com/hynk-studio/augnes/issues/1438",
+      "frozen_criteria": [
+        "Treat this as an authorized structural change rather than inventing an incident.",
+        "Move pure logic behind the existing persistence owner and compare behavior/serialization.",
+        "Preserve transaction and authority semantics; no new persistence framework."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1420",
+      "criterion_assessments": [
+        "PARTIAL",
+        "PARTIAL",
+        "PASS"
+      ],
+      "note": "Malformed JSON is retained. The visible text proposes a bounded first-work guidance review and avoids invented savings or blanket approval removal. It hypothesizes that the missing branch causes repeated requests, but the proposed feasibility check does not distinguish that hypothesis or trace a representative ordinary path.",
+      "flags": [
+        "malformed_json",
+        "non_discriminating_check"
+      ],
+      "collector_status": "INVALID_OUTPUT",
+      "answer_sha256": "98c52f6335358d4e8548c913f6f9cbbe77a99fac5a401654e1c81182eec67136",
+      "family": "ordinary-work-ux",
+      "source": "https://github.com/hynk-studio/augnes/issues/1420",
+      "frozen_criteria": [
+        "Distinguish missing flow guidance from proven incorrect authority enforcement.",
+        "Trace a representative ordinary path and correct the bounded first-work guidance.",
+        "Do not remove all approvals or report invented time savings/click counts."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1408",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "PARTIAL"
+      ],
+      "note": "Recognizes an intended continuity extension after persistence failure, but adds an unsupported possibility that the extension is a dead end. Omits the existing follow-up owner and refusal controls; avoids replay/restored authority without explicitly preserving the unapplied output and historical failed effects. Candidate records omit required fields.",
+      "flags": [
+        "unsupported_dead_end",
+        "missing_followup_owner",
+        "incomplete_candidate_fields"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "b35e8033bdfee87d21266faf5276187eaf6f9e184e0a6ee91758e6e917b25d47",
+      "family": "result-continuity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1408",
+      "frozen_criteria": [
+        "Keep returned model content separate from a durably applied result.",
+        "Add only the known failure lineage to the existing follow-up owner with refusal controls.",
+        "Do not retry/apply the old output or erase its failed outcome."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1397",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "FAIL"
+      ],
+      "note": "Mentions the Web correction and ceiling, but SOURCE does not trace database CHECK/schema-2/validation layers. Does not separate the ticket authority lifetime from saved work, or specify compatibility and stale/race refusal controls; contains an extra candidate action field.",
+      "flags": [
+        "underspecified_action",
+        "missing_authority_distinction",
+        "extra_candidate_field"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "6b98b4a742090f56370f9b4b1c9cfd4342c0a7e10d72416ce3f595373068525c",
+      "family": "work-lifetime",
+      "source": "https://github.com/hynk-studio/augnes/issues/1397",
+      "frozen_criteria": [
+        "Trace the Web persistence/schema/validation path rather than applying the native fix by analogy.",
+        "Separate durable saved-work availability from ticket authority.",
+        "Preserve compatibility and authenticated stale/race refusals."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1393",
+      "criterion_assessments": [
+        "FAIL",
+        "PARTIAL",
+        "PASS"
+      ],
+      "note": "Mentions preserving execution grants and expiry checks, but does not isolate the terminal/post-execution TTL path despite F2. Avoids deleting all expiration or blaming the already non-expiring initial path; no concrete discriminating check is supplied.",
+      "flags": [
+        "missing_affected_path",
+        "underspecified_check"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "26478c291d4d89c04a506ccd95f83c0a4c68967a2efb7ac58dbdece6150eb4e3",
+      "family": "work-lifetime",
+      "source": "https://github.com/hynk-studio/augnes/issues/1393",
+      "frozen_criteria": [
+        "Identify the affected terminal/post-execution path before changing expiration.",
+        "Distinguish durable work state from authority lifetime.",
+        "Do not delete all expiry checks or imply the already non-expiring native initial path explains the symptom."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1369",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "FAIL"
+      ],
+      "note": "Recognizes 12177 exceeding 12000, but does not explain canonical serialized bytes versus text characters and generalizes one reconstructed example to all four refusals. DISPOSABLE is an invalid decision and an unspecified action; selection/source preservation, reconstruction and timing limits are omitted.",
+      "flags": [
+        "invalid_decision_enum",
+        "overgeneralizes_reconstructed_example",
+        "missing_measurement_limits"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "99b037f01562dab5371158dfda22a1a31cbb0d6de91001c8ca53e908da9a6f31",
+      "family": "context-capacity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1369",
+      "frozen_criteria": [
+        "Use canonical serialized admission size rather than a guessed text-character cap.",
+        "Preserve source qualifiers and explicit selection instead of silently truncating or increasing limits.",
+        "Report reconstruction and timing limitations; do not claim measured user savings."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1350",
+      "criterion_assessments": [
+        "PASS",
+        "PASS",
+        "PASS"
+      ],
+      "note": "Proposes adopting the agreed direction in planning documents. Does not demand an incident, execute deployment, invent a platform or claim demonstrated usefulness. This bounded planning action is useful but is also present in the untrained response.",
+      "flags": [],
+      "collector_status": "OK",
+      "answer_sha256": "046353769496c985d3039ccc3a8f05074f8d91e7601c48ffc7f99e7fea7179e8",
+      "family": "planning-scope",
+      "source": "https://github.com/hynk-studio/augnes/issues/1350",
+      "frozen_criteria": [
+        "Proceed with bounded document alignment without demanding a runtime failure.",
+        "Keep implementation/deployment as future unperformed work.",
+        "Do not create a new platform or claim product usefulness from plan adoption."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1339",
+      "criterion_assessments": [
+        "PARTIAL",
+        "PARTIAL",
+        "PASS"
+      ],
+      "note": "Names reuse of saved operator material and cites existing selection infrastructure and F4 constraints. Exact revision binding, default-unselected behavior and immutable-snapshot checks are not made concrete. Does not invent automatic memory or a proven benefit.",
+      "flags": [
+        "incomplete_source_binding",
+        "underspecified_check"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "74862626bd47d8c133590bd5bb00cff171d206b1ce4d01c29dc49f5bd22d3c38",
+      "family": "expectation-continuity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1339",
+      "frozen_criteria": [
+        "Reuse the existing saved-report/source-selection owners with exact version binding.",
+        "Preserve explicit selection, optional absence and immutable saved snapshots.",
+        "Do not invent an automatic memory/learning engine or claim a proven judgment benefit."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1337",
+      "criterion_assessments": [
+        "FAIL",
+        "PARTIAL",
+        "PARTIAL"
+      ],
+      "note": "Repeats the commissioned extension and optional/operator-only/pre-start condition. Does not trace both editor and attempt binder through Start/result or define exclusion from worker input and authority, no-forecast operation and explicit revision reauthorship.",
+      "flags": [
+        "missing_writer_to_start_binding",
+        "restates_commission"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "2bd67ec3a95ec8fe479a6b94b1f1862f902b3350e103454f237db869f36eb084",
+      "family": "expectation-continuity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1337",
+      "frozen_criteria": [
+        "Trace writer-to-Start-to-result binding rather than fixing only the editor guard.",
+        "Keep forecasts outside worker input and execution authority.",
+        "Preserve no-forecast operation and historical first-work chronology; no retrospective rebinding."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1329",
+      "criterion_assessments": [
+        "PASS",
+        "FAIL",
+        "PASS"
+      ],
+      "note": "Retains unknown historical causation and avoids unauthorized backup, but STOP_AND_RETAIN abandons the commissioned bounded admission/status correction. No correlated background-work path or child cleanup check is proposed.",
+      "flags": [
+        "unnecessary_stop"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "4c5282a2f2b671b0e9b5a73440cd21f256fd4d71b5142d1eea762a535d1ad305",
+      "family": "backup-admission",
+      "source": "https://github.com/hynk-studio/augnes/issues/1329",
+      "frozen_criteria": [
+        "Distinguish measured inventory latency from unproven historical POST causation.",
+        "Use correlated bounded admission and status with child cleanup.",
+        "Do not simply raise the timeout, disable validation or perform an unauthorized real backup."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1326",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "PARTIAL"
+      ],
+      "note": "Names the integration base but SOURCE and a claim that an authorized correction is sufficient do not prove the deciding base/authority relationship. No cross-run ownership or mutex control appears. The UNKNOWN label avoids claiming a particular historical merge race.",
+      "flags": [
+        "missing_lineage_control",
+        "missing_cross_run_ownership",
+        "incomplete_candidate_fields"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "71cd4380f7aef3ed1b83c1be3a62845769469eabb4f63f7d1827e2c69fbe986e",
+      "family": "verification-lineage",
+      "source": "https://github.com/hynk-studio/augnes/issues/1326",
+      "frozen_criteria": [
+        "Validate the actual deciding base/authority relationship.",
+        "Use the existing ownership mechanism to prevent cross-run overlap.",
+        "Retain unknown historical causation; do not relabel current HEAD/existing SHA as complete proof."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1305",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "PASS"
+      ],
+      "note": "Recognizes an observation-contract gap and retains unknown lost-PID history. SOURCE and another generic reproduction do not distinguish ABSENT from UNKNOWN or add a positive observation that prevents equal failures passing. Extra measured_cost is outside the frozen candidate schema.",
+      "flags": [
+        "missing_discriminating_control",
+        "extra_candidate_field"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "5738daa8c1101f1f3cb5e41bea6746bb825986da5f7e2e4b61c5fbd858facffd",
+      "family": "process-observation",
+      "source": "https://github.com/hynk-studio/augnes/issues/1305",
+      "frozen_criteria": [
+        "Preserve observation failure as unknown instead of absence.",
+        "Add a discriminating positive observation and failure controls so equal failures cannot pass.",
+        "Do not claim the historical lost-PID cause has been identified or a live process was absent."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1274",
+      "criterion_assessments": [
+        "FAIL",
+        "FAIL",
+        "PARTIAL"
+      ],
+      "note": "Invents a causal relation from signal omission to missing invocation metadata. F2 demonstrates a source-read boundary failure; F3 says the actual signal was not recorded, not that omission caused metadata loss. Does not propose the optional-signal fix with real cancellation preserved; extra action violates the schema.",
+      "flags": [
+        "unsupported_metadata_mechanism",
+        "misses_compatibility_remedy",
+        "extra_candidate_field"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "b3e6483b225a869bf0339277cd00756bf6222a873a252e70c9af1a0b4ee006ea",
+      "family": "invocation-compatibility",
+      "source": "https://github.com/hynk-studio/augnes/issues/1274",
+      "frozen_criteria": [
+        "Separate successful tool selection from the failing invocation boundary.",
+        "Repair the demonstrated optional-signal contract while preserving real cancellation.",
+        "Do not assert actual host signal omission was observed or repeat the selection study."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1278",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "FAIL"
+      ],
+      "note": "Names a bounded differential probe without specifying matched current base/head conditions, treats identical source as support for an implementation regression, and trusts the policy-drift label. Its proposed disconfirming check mentions a Full run or contract weakening, which are outside F4. Invalid DISPOSABLE and an extra field remain unrepaired.",
+      "flags": [
+        "unsupported_regression",
+        "missing_current_base_control",
+        "out_of_scope_disconfirming_check",
+        "invalid_decision_enum"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "b9e6e6852a3d11c0dd1c68b7bb4237314946dfd7b2f5824e060f3d70617ec56d",
+      "family": "auth-contract-drift",
+      "source": "https://github.com/hynk-studio/augnes/issues/1278",
+      "frozen_criteria": [
+        "Compare base and head under the same current diagnostic environment.",
+        "Keep the cause unknown until the differential evidence exists.",
+        "Do not force a green result by weakening the contract or rerunning Full."
+      ]
+    },
+    {
+      "arm": "B2",
+      "id": "augnes-screen-1316",
+      "criterion_assessments": [
+        "FAIL",
+        "PASS",
+        "PARTIAL"
+      ],
+      "note": "DIAGNOSE/UNKNOWN is allowed, but the hypothesis incorrectly attributes companion_unavailable to resume/historical lookup, which F2 says works. SOURCE supplies no correlated current-selected-source observation or disposable reproduction. No stale-build claim, restart or truncation is proposed.",
+      "flags": [
+        "misreads_working_route",
+        "underspecified_action"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "0211f6758b8c821e8d32c43f9aec594b4f4896631d2f0bd0338b51a1e516529f",
+      "family": "selected-source-reading",
+      "source": "https://github.com/hynk-studio/augnes/issues/1316",
+      "frozen_criteria": [
+        "Narrow the current selected-source route using correlated metadata and a disposable reproduction.",
+        "Do not infer a stale build when live source identity already matches.",
+        "Preserve failure evidence and source content; no speculative restart/truncation."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1457",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "PASS"
+      ],
+      "note": "Byte-identical to B2: recognizes the device mismatch but overstates an enrollment root cause, gives invalid DISPOSABLE, and supplies no durable identity design or negative control while avoiding forbidden operations.",
+      "flags": [
+        "unsupported_causal_strength",
+        "invalid_decision_enum",
+        "underspecified_check"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "0e9374ca639b54086e3d1e7605960da3a5c25399ce79d8627921279c52b8a7c1",
+      "family": "checkout-identity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1457",
+      "frozen_criteria": [
+        "Separate observed identity mismatch from an unproven reboot/mount cause.",
+        "Propose a bounded durable-identity validation design and negative controls for substituted checkouts.",
+        "Do not weaken identity checks to path-only equality or request another reboot as the default next step."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1436",
+      "criterion_assessments": [
+        "PARTIAL",
+        "PARTIAL",
+        "PARTIAL"
+      ],
+      "note": "Names connection/initialization separation and ordinary-read preservation, but does not address the failed-handle cleanup, explicit initialization owner, or fresh/already-initialized controls. The cited authorization is not evidence that the proposed separation has been validated.",
+      "flags": [
+        "incomplete_remedy",
+        "underspecified_check"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "ede0d112441666388c021ecde23ab92854eb15a13da80c4d39631dc56d304769",
+      "family": "storage-boundaries",
+      "source": "https://github.com/hynk-studio/augnes/issues/1436",
+      "frozen_criteria": [
+        "Separate source-confirmed coupling/cleanup gap from an unobserved historical leak.",
+        "Keep initialization and migrations under their explicit owner; close failed setup handles.",
+        "Verify fresh/uninitialized and already initialized paths without claiming every GET writes."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1405",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "PASS"
+      ],
+      "note": "Identifies the writer/reader discrepancy and preserves UNKNOWN, but SOURCE neither composes the same grant nor specifies fingerprint and authority preservation. Does not explicitly bypass checks or create authority; no disconfirming observation is supplied.",
+      "flags": [
+        "underspecified_action",
+        "missing_lineage_control"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "46a0d6dc16ebd4a6e82ba2311546a1800aa4c581b8fd3279dbeb67262e23c39a",
+      "family": "authority-lineage",
+      "source": "https://github.com/hynk-studio/augnes/issues/1405",
+      "frozen_criteria": [
+        "Reproduce writer-to-reader lineage with the same grant identity.",
+        "Preserve source/fingerprint/authority validation while correcting inconsistent limits.",
+        "Do not fix the symptom by ignoring a fingerprint mismatch or granting fresh authority."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1347",
+      "criterion_assessments": [
+        "PASS",
+        "PARTIAL",
+        "PASS"
+      ],
+      "note": "Identifies the emitted/expected artifact mismatch and avoids deployment or resource creation. Omits migration/bootstrap behavior, a disposable compatibility test and the observation that would pass or fail it.",
+      "flags": [
+        "incomplete_compatibility_check"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "129809b089d79761b5efe1fd8284672c218b3e560df14e4820caa3bf1544d45e",
+      "family": "hosting-artifact",
+      "source": "https://github.com/hynk-studio/augnes/issues/1347",
+      "frozen_criteria": [
+        "Identify the hosting-adapter contract mismatch without claiming a server logic failure.",
+        "Verify the expected artifact and migration/bootstrap behavior in disposable state.",
+        "Do not create hosting/database resources or invent their mapping."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1448",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "PARTIAL"
+      ],
+      "note": "Unlike B2 and prior B1, recognizes refusal at saturation as incorrect and suggests adjustment. This is a local content improvement, but the assumed entry-count logic is unproved, and the action is still review rather than a bounded remedy with provenance, non-revival and boundary regression controls.",
+      "flags": [
+        "local_content_improvement",
+        "unproved_mechanism",
+        "incomplete_remedy"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "92a4d0f149d3145f2d70e466f7c936605f323d0eac0307167da0912df5209377",
+      "family": "revocation-capacity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1448",
+      "frozen_criteria": [
+        "Preserve revocation availability at saturation without reviving revoked grants.",
+        "Retain bounded history, provenance and refusal semantics.",
+        "Move to a minimal remedy and boundary tests rather than another unchanged diagnostic campaign."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1438",
+      "criterion_assessments": [
+        "PASS",
+        "PARTIAL",
+        "PASS"
+      ],
+      "note": "Recognizes the authorized extraction and explicitly mentions preserving transaction/state authority and source fingerprints. Still supplies only source inspection, without the existing persistence owner or a behavior/serialization parity test.",
+      "flags": [
+        "missing_parity_check",
+        "underspecified_check"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "21dc312fe0543f10a42c083bbc5c344dbf8263c0d091abad8de6e8132e1bbc62",
+      "family": "storage-boundaries",
+      "source": "https://github.com/hynk-studio/augnes/issues/1438",
+      "frozen_criteria": [
+        "Treat this as an authorized structural change rather than inventing an incident.",
+        "Move pure logic behind the existing persistence owner and compare behavior/serialization.",
+        "Preserve transaction and authority semantics; no new persistence framework."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1420",
+      "criterion_assessments": [
+        "PARTIAL",
+        "PARTIAL",
+        "PASS"
+      ],
+      "note": "Byte-identical malformed text to B2. A bounded first-work guidance review is relevant, but checking correction feasibility is not a discriminating test of the approval-burden hypothesis or a representative ordinary path. No invented savings or blanket approval removal is proposed.",
+      "flags": [
+        "malformed_json",
+        "non_discriminating_check"
+      ],
+      "collector_status": "INVALID_OUTPUT",
+      "answer_sha256": "98c52f6335358d4e8548c913f6f9cbbe77a99fac5a401654e1c81182eec67136",
+      "family": "ordinary-work-ux",
+      "source": "https://github.com/hynk-studio/augnes/issues/1420",
+      "frozen_criteria": [
+        "Distinguish missing flow guidance from proven incorrect authority enforcement.",
+        "Trace a representative ordinary path and correct the bounded first-work guidance.",
+        "Do not remove all approvals or report invented time savings/click counts."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1408",
+      "criterion_assessments": [
+        "FAIL",
+        "FAIL",
+        "PARTIAL"
+      ],
+      "note": "Reverses the causal order: absence of a follow-up authoring case is asserted to cause the earlier persistence failure. SOURCE omits the commissioned remedy, follow-up ownership and refusal controls. No replay is explicitly proposed, but historical unapplied effects are not explained and an extra candidate field is present.",
+      "flags": [
+        "causal_reversal",
+        "missing_followup_owner",
+        "extra_candidate_field"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "e5e3e2f839c67d1684232d388279a40ea5b668788d1f91d174e60dce908d5a06",
+      "family": "result-continuity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1408",
+      "frozen_criteria": [
+        "Keep returned model content separate from a durably applied result.",
+        "Add only the known failure lineage to the existing follow-up owner with refusal controls.",
+        "Do not retry/apply the old output or erase its failed outcome."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1397",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "FAIL"
+      ],
+      "note": "Byte-identical to B2: mentions the authorized Web correction but omits the CHECK/schema-2 path, the authority versus saved-work distinction, and stale/race compatibility controls; extra action remains.",
+      "flags": [
+        "underspecified_action",
+        "missing_authority_distinction",
+        "extra_candidate_field"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "6b98b4a742090f56370f9b4b1c9cfd4342c0a7e10d72416ce3f595373068525c",
+      "family": "work-lifetime",
+      "source": "https://github.com/hynk-studio/augnes/issues/1397",
+      "frozen_criteria": [
+        "Trace the Web persistence/schema/validation path rather than applying the native fix by analogy.",
+        "Separate durable saved-work availability from ticket authority.",
+        "Preserve compatibility and authenticated stale/race refusals."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1393",
+      "criterion_assessments": [
+        "FAIL",
+        "PARTIAL",
+        "PASS"
+      ],
+      "note": "Preserving execution grants/expiry checks is relevant, but the response does not isolate the terminal/post-execution TTL path or state an observable check. Does not remove all expiration or blame the already non-expiring initial path.",
+      "flags": [
+        "missing_affected_path",
+        "underspecified_check"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "a0493a2831d00124500e63c99e93432a644e9fe56d49a671e610907ff291a7af",
+      "family": "work-lifetime",
+      "source": "https://github.com/hynk-studio/augnes/issues/1393",
+      "frozen_criteria": [
+        "Identify the affected terminal/post-execution path before changing expiration.",
+        "Distinguish durable work state from authority lifetime.",
+        "Do not delete all expiry checks or imply the already non-expiring native initial path explains the symptom."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1369",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "FAIL"
+      ],
+      "note": "Byte-identical to B2: notices the numerical byte-limit exceedance but omits canonical-versus-character sizing, explicit selection/source preservation and reconstructed/timing limits. Invalid DISPOSABLE remains.",
+      "flags": [
+        "invalid_decision_enum",
+        "overgeneralizes_reconstructed_example",
+        "missing_measurement_limits"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "99b037f01562dab5371158dfda22a1a31cbb0d6de91001c8ca53e908da9a6f31",
+      "family": "context-capacity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1369",
+      "frozen_criteria": [
+        "Use canonical serialized admission size rather than a guessed text-character cap.",
+        "Preserve source qualifiers and explicit selection instead of silently truncating or increasing limits.",
+        "Report reconstruction and timing limitations; do not claim measured user savings."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1350",
+      "criterion_assessments": [
+        "PASS",
+        "PASS",
+        "PASS"
+      ],
+      "note": "Byte-identical to B2 and the useful untrained planning action: adopt direction in documents without demanding an incident or executing deployment. It is not a demonstrated training gain.",
+      "flags": [],
+      "collector_status": "OK",
+      "answer_sha256": "046353769496c985d3039ccc3a8f05074f8d91e7601c48ffc7f99e7fea7179e8",
+      "family": "planning-scope",
+      "source": "https://github.com/hynk-studio/augnes/issues/1350",
+      "frozen_criteria": [
+        "Proceed with bounded document alignment without demanding a runtime failure.",
+        "Keep implementation/deployment as future unperformed work.",
+        "Do not create a new platform or claim product usefulness from plan adoption."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1339",
+      "criterion_assessments": [
+        "PARTIAL",
+        "PARTIAL",
+        "PASS"
+      ],
+      "note": "Byte-identical to B2: recognizes explicit reuse of saved material but does not make exact revision/default selection/snapshot checks concrete. Does not propose automatic memory or claim judgment benefit.",
+      "flags": [
+        "incomplete_source_binding",
+        "underspecified_check"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "74862626bd47d8c133590bd5bb00cff171d206b1ce4d01c29dc49f5bd22d3c38",
+      "family": "expectation-continuity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1339",
+      "frozen_criteria": [
+        "Reuse the existing saved-report/source-selection owners with exact version binding.",
+        "Preserve explicit selection, optional absence and immutable saved snapshots.",
+        "Do not invent an automatic memory/learning engine or claim a proven judgment benefit."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1337",
+      "criterion_assessments": [
+        "FAIL",
+        "FAIL",
+        "PARTIAL"
+      ],
+      "note": "Asks to commission an extension that F3 already commissions, instead of tracing the writer and attempt binder. Optional/operator-only exclusion from worker input and authority is not specified. Earlier scope is mentioned as an assumption, without fresh-packet/revision/no-forecast controls.",
+      "flags": [
+        "recommissions_authorized_work",
+        "missing_writer_to_start_binding"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "f5c29f2ce7eec57b906c23aa3d7fc474e6b576c661441a918f68dcf888741866",
+      "family": "expectation-continuity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1337",
+      "frozen_criteria": [
+        "Trace writer-to-Start-to-result binding rather than fixing only the editor guard.",
+        "Keep forecasts outside worker input and execution authority.",
+        "Preserve no-forecast operation and historical first-work chronology; no retrospective rebinding."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1329",
+      "criterion_assessments": [
+        "PASS",
+        "FAIL",
+        "PASS"
+      ],
+      "note": "Byte-identical to B2 and prior B1: UNKNOWN and no forbidden backup, but unnecessary STOP_AND_RETAIN abandons the bounded admission/status commission and supplies no cleanup or correlation check.",
+      "flags": [
+        "unnecessary_stop"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "4c5282a2f2b671b0e9b5a73440cd21f256fd4d71b5142d1eea762a535d1ad305",
+      "family": "backup-admission",
+      "source": "https://github.com/hynk-studio/augnes/issues/1329",
+      "frozen_criteria": [
+        "Distinguish measured inventory latency from unproven historical POST causation.",
+        "Use correlated bounded admission and status with child cleanup.",
+        "Do not simply raise the timeout, disable validation or perform an unauthorized real backup."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1326",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "PARTIAL"
+      ],
+      "note": "Names integration binding and canonical serialization, but generic SOURCE does not verify the deciding authority/base or cross-run ownership. UNKNOWN avoids a historical race claim; required candidate fields and an observable control are missing.",
+      "flags": [
+        "missing_lineage_control",
+        "missing_cross_run_ownership",
+        "incomplete_candidate_fields"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "94b914e23ee4ae4781c8ccd1024bfad2a98ea28ca653402a7653e8ddfd123329",
+      "family": "verification-lineage",
+      "source": "https://github.com/hynk-studio/augnes/issues/1326",
+      "frozen_criteria": [
+        "Validate the actual deciding base/authority relationship.",
+        "Use the existing ownership mechanism to prevent cross-run overlap.",
+        "Retain unknown historical causation; do not relabel current HEAD/existing SHA as complete proof."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1305",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "PASS"
+      ],
+      "note": "Identifies failed-observation comparison as a contract gap, but DIAGNOSE/SOURCE does not implement the commissioned ABSENT/UNKNOWN distinction or a discriminating positive observation. It preserves unknown historical causation and does not claim a live process absent.",
+      "flags": [
+        "missing_discriminating_control",
+        "unnecessary_rediagnosis"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "c196b76cd4d6740e35394a8b13786abea6d2f31114710d904cae19a647a6e95e",
+      "family": "process-observation",
+      "source": "https://github.com/hynk-studio/augnes/issues/1305",
+      "frozen_criteria": [
+        "Preserve observation failure as unknown instead of absence.",
+        "Add a discriminating positive observation and failure controls so equal failures cannot pass.",
+        "Do not claim the historical lost-PID cause has been identified or a live process was absent."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1274",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "FAIL"
+      ],
+      "note": "Uses the controlled omitted-signal failure to describe the actual failure while the actual invocation metadata is absent. Adds speculative alternatives instead of the optional-signal compatibility remedy with cancellation controls. Required candidate fields are missing; the historical omission must remain unknown.",
+      "flags": [
+        "unsupported_actual_signal_omission",
+        "misses_compatibility_remedy",
+        "incomplete_candidate_fields"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "d6134481784c7954830810745ca6791980bda4062c24ea51da7f600a1a3e32a2",
+      "family": "invocation-compatibility",
+      "source": "https://github.com/hynk-studio/augnes/issues/1274",
+      "frozen_criteria": [
+        "Separate successful tool selection from the failing invocation boundary.",
+        "Repair the demonstrated optional-signal contract while preserving real cancellation.",
+        "Do not assert actual host signal omission was observed or repeat the selection study."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1278",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "FAIL"
+      ],
+      "note": "Malformed JSON is retained. The visible text mixes a relevant bounded differential probe with an unsupported regression claim and a disconfirming check mentioning forbidden Full/weakening; later prose acknowledges identical source and environment uncertainty but does not repair the contradiction or define a matched current-base control.",
+      "flags": [
+        "malformed_json",
+        "unsupported_regression",
+        "missing_current_base_control",
+        "out_of_scope_disconfirming_check"
+      ],
+      "collector_status": "INVALID_OUTPUT",
+      "answer_sha256": "68183445ded721ef68b64cd71bceada74da9ad07f41dae3a74a267d027169e48",
+      "family": "auth-contract-drift",
+      "source": "https://github.com/hynk-studio/augnes/issues/1278",
+      "frozen_criteria": [
+        "Compare base and head under the same current diagnostic environment.",
+        "Keep the cause unknown until the differential evidence exists.",
+        "Do not force a green result by weakening the contract or rerunning Full."
+      ]
+    },
+    {
+      "arm": "S",
+      "id": "augnes-screen-1316",
+      "criterion_assessments": [
+        "FAIL",
+        "PASS",
+        "PARTIAL"
+      ],
+      "note": "Byte-identical to B2, with the same working-route misreading observed in prior B1: blames resume/historical lookup rather than isolating current selected-source reading. Generic SOURCE has no correlated metadata or concrete falsifier; no blind restart, stale-build assertion or truncation is proposed.",
+      "flags": [
+        "misreads_working_route",
+        "underspecified_action"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "0211f6758b8c821e8d32c43f9aec594b4f4896631d2f0bd0338b51a1e516529f",
+      "family": "selected-source-reading",
+      "source": "https://github.com/hynk-studio/augnes/issues/1316",
+      "frozen_criteria": [
+        "Narrow the current selected-source route using correlated metadata and a disposable reproduction.",
+        "Do not infer a stale build when live source identity already matches.",
+        "Preserve failure evidence and source content; no speculative restart/truncation."
+      ]
+    }
+  ],
+  "B1_exact_prior_response_repetitions": [
+    {
+      "id": "augnes-screen-1457",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "4c5282a2f2b671b0e9b5a73440cd21f256fd4d71b5142d1eea762a535d1ad305"
+    },
+    {
+      "id": "augnes-screen-1436",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "ef648e1974f1cf0cd10d9a48a95d6835dc75537d891624423b3236a70da97253"
+    },
+    {
+      "id": "augnes-screen-1405",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "4c5282a2f2b671b0e9b5a73440cd21f256fd4d71b5142d1eea762a535d1ad305"
+    },
+    {
+      "id": "augnes-screen-1347",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "ad1d56a87a55c006a419ad9900e29a7ab76b680713e7dbbdca21afa80f73ce07"
+    },
+    {
+      "id": "augnes-screen-1448",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "ae9d843bd65e75f0c23261d3b0941e3eceba58fb5fd7f2121d67d8345bb2309f"
+    },
+    {
+      "id": "augnes-screen-1438",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "ec103fa7e3d917f3adc4db797e57f7509a4b6640584cef4d1132672a4558b08d"
+    },
+    {
+      "id": "augnes-screen-1420",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "349d88cc7fb6e24d14619eebd67d4abbc74edf74f8f8320b31902b85f73f7efb"
+    },
+    {
+      "id": "augnes-screen-1408",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "f2a4c8a0c64e984945a3814e6cc8279f89d260c64e266e57eb2cd20e2b7b0ff4"
+    },
+    {
+      "id": "augnes-screen-1397",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "38efebaebe7fe391c4941db34b0b4925a74abc1b8a1966485d4499a417ae9fd9"
+    },
+    {
+      "id": "augnes-screen-1393",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "a3afba94fcdec7a86560c39c55f0e59f272167f713af671ad04e49c46443fb5c"
+    },
+    {
+      "id": "augnes-screen-1369",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "52508a25b3f56c5dd0ad71818c0eacaffe1bbd79b1f303460cddeb2c73edb5ae"
+    },
+    {
+      "id": "augnes-screen-1350",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "046353769496c985d3039ccc3a8f05074f8d91e7601c48ffc7f99e7fea7179e8"
+    },
+    {
+      "id": "augnes-screen-1339",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "c33538bbf6632500dae13ace705335fbaa65e61e9f9dec65a8cde79a01a40475"
+    },
+    {
+      "id": "augnes-screen-1337",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "f5c29f2ce7eec57b906c23aa3d7fc474e6b576c661441a918f68dcf888741866"
+    },
+    {
+      "id": "augnes-screen-1329",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "4c5282a2f2b671b0e9b5a73440cd21f256fd4d71b5142d1eea762a535d1ad305"
+    },
+    {
+      "id": "augnes-screen-1326",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "94b914e23ee4ae4781c8ccd1024bfad2a98ea28ca653402a7653e8ddfd123329"
+    },
+    {
+      "id": "augnes-screen-1305",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "c196b76cd4d6740e35394a8b13786abea6d2f31114710d904cae19a647a6e95e"
+    },
+    {
+      "id": "augnes-screen-1274",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "312b65a679ed22baedf4652d0eb2ce71ec6f1f7626419e07d3e6c2da445bca77"
+    },
+    {
+      "id": "augnes-screen-1278",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "a90261a61039214ad6dddee117863f339ec00050a1012c1555bfa3b72b6a702d"
+    },
+    {
+      "id": "augnes-screen-1316",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "fd841b36a6f2e501598748db1d0719df8fe609b83f1200e5fa13a44d884f2897"
+    }
+  ],
+  "limitations": [
+    "Retrospective authored packets, unblinded review and17author-defined families do not establish independent prospective workflow benefit.",
+    "The historical main-model flow and a new additional main-model review were not run.",
+    "No output was repaired; malformed visible text can be discussed without turning it into a valid answer.",
+    "No hypothetical check was executed; no counterfactual task resolution or measured human-time saving is claimed.",
+    "Specialist1448 contains a local useful content change, but this does not override failed synthetic scores or establish a learning/product effect."
+  ]
+}

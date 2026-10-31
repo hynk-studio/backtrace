@@ -1,5 +1,32 @@
 # Backtrace working agreement
 
+## Actual matched candidate complete; no supported learning gain (2026-10-31 UTC)
+
+Read docs/small-model-matched-result-20261031.md. Actual41242457133 at immutable
+49191f580d35984a52e53f0df3c80d52350aead7 completed348 responses and320 updates each
+for B2/S. Both90,256-byte adapters reproduce trained probe logits in distinct
+fresh evaluation processes. All432 raw members,372 source bindings over98 paths,
+348 wire/ledger identities and eight state blobs are retained and verified.
+
+Synthetic task-schema validity is B1 8/96, B2 0/96, S 0/96; all decision-regret
+endpoints retain maximum penalties. Augnes structural checks are14/20,9/20,12/20;
+all60 responses have unblinded source-grounded review, with no demonstrated added
+value. This is a negative one-seed candidate. Do not adopt, retrospectively tune
+or run paid confirmation; do not infer that every specialist approach fails.
+
+Owner and watcher independently deleted lo5msifkddry2s with two absence reads.
+At21:52:02 inventory has zero Pods; observed creditUSD1.4047911923, hourly spend0,
+autopay off. Observed continuation costUSD1.5012529416 is subject to billing lag.
+No paid resource is active. Preserve all consumed source/start/state/permit and
+prior failed attempts. No top-up, retry, overlap, main merge or Augnes write.
+
+The wider service-value comparison is genuinely blocked: all three Augnes routes
+again fail connection after execution, and no repair/restart tool is available.
+Current-flow and additional-main-model comparisons need a working local service/
+tunnel and current runtime identity. No credentials were created or inferred.
+The dated sections below describe earlier checkpoints, not current pending work.
+
+
 ## Exact matched candidate qualification passed (2026-10-31 UTC)
 
 Read docs/small-model-matched-qualification-20261031.md. Free41241191354 at

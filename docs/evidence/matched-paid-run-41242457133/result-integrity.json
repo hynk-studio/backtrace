@@ -1,0 +1,12 @@
+{
+  "status": "PASS_RETAINED_RESULT_INTEGRITY",
+  "raw_files": 432,
+  "immutable_state_files": 8,
+  "original_assigned": 348,
+  "task_scored": 288,
+  "manual_reviewed": 60,
+  "training_steps": 640,
+  "adapters": 2,
+  "code_since_qualified_source": "NO_EXECUTION_SOURCE_CHANGE; evidence and documentation only",
+  "native_tests": "744 already passed at exact executed source; not repeated for evidence-only retention."
+}

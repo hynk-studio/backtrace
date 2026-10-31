@@ -1,0 +1,21 @@
+{
+  "initial_credit": "1.7174565922",
+  "observed_final_credit": "1.4047911923",
+  "observed_allocation_cost": "0.3126653999",
+  "observed_continuation_cost": "1.5012529416",
+  "account": {
+    "auto_pay": false,
+    "credit_balance_usd": "1.4047911923",
+    "observed_at": "2026-10-31T21:51:52Z",
+    "spend_per_hour_usd": "0"
+  },
+  "inventory": {
+    "complete_paginated_list": true,
+    "observed_at": "2026-10-31T21:52:02Z",
+    "pod_count": 0,
+    "resource_mutations": 0
+  },
+  "independent_deletion_proofs": "state/owner-cleanup.json and state/watch-cleanup.json",
+  "billing_limit": "Observed credit change can lag provider billing; no final invoice claim.",
+  "new_allocation_decision": "No new allocation or confirmation: current candidate has no supported benefit."
+}

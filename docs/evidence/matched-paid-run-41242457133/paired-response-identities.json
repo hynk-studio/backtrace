@@ -1,0 +1,1281 @@
+{
+  "B1_vs_prior_twenty": [
+    {
+      "id": "augnes-screen-1457",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "4c5282a2f2b671b0e9b5a73440cd21f256fd4d71b5142d1eea762a535d1ad305"
+    },
+    {
+      "id": "augnes-screen-1436",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "ef648e1974f1cf0cd10d9a48a95d6835dc75537d891624423b3236a70da97253"
+    },
+    {
+      "id": "augnes-screen-1405",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "4c5282a2f2b671b0e9b5a73440cd21f256fd4d71b5142d1eea762a535d1ad305"
+    },
+    {
+      "id": "augnes-screen-1347",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "ad1d56a87a55c006a419ad9900e29a7ab76b680713e7dbbdca21afa80f73ce07"
+    },
+    {
+      "id": "augnes-screen-1448",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "ae9d843bd65e75f0c23261d3b0941e3eceba58fb5fd7f2121d67d8345bb2309f"
+    },
+    {
+      "id": "augnes-screen-1438",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "ec103fa7e3d917f3adc4db797e57f7509a4b6640584cef4d1132672a4558b08d"
+    },
+    {
+      "id": "augnes-screen-1420",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "349d88cc7fb6e24d14619eebd67d4abbc74edf74f8f8320b31902b85f73f7efb"
+    },
+    {
+      "id": "augnes-screen-1408",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "f2a4c8a0c64e984945a3814e6cc8279f89d260c64e266e57eb2cd20e2b7b0ff4"
+    },
+    {
+      "id": "augnes-screen-1397",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "38efebaebe7fe391c4941db34b0b4925a74abc1b8a1966485d4499a417ae9fd9"
+    },
+    {
+      "id": "augnes-screen-1393",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "a3afba94fcdec7a86560c39c55f0e59f272167f713af671ad04e49c46443fb5c"
+    },
+    {
+      "id": "augnes-screen-1369",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "52508a25b3f56c5dd0ad71818c0eacaffe1bbd79b1f303460cddeb2c73edb5ae"
+    },
+    {
+      "id": "augnes-screen-1350",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "046353769496c985d3039ccc3a8f05074f8d91e7601c48ffc7f99e7fea7179e8"
+    },
+    {
+      "id": "augnes-screen-1339",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "c33538bbf6632500dae13ace705335fbaa65e61e9f9dec65a8cde79a01a40475"
+    },
+    {
+      "id": "augnes-screen-1337",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "f5c29f2ce7eec57b906c23aa3d7fc474e6b576c661441a918f68dcf888741866"
+    },
+    {
+      "id": "augnes-screen-1329",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "4c5282a2f2b671b0e9b5a73440cd21f256fd4d71b5142d1eea762a535d1ad305"
+    },
+    {
+      "id": "augnes-screen-1326",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "94b914e23ee4ae4781c8ccd1024bfad2a98ea28ca653402a7653e8ddfd123329"
+    },
+    {
+      "id": "augnes-screen-1305",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "c196b76cd4d6740e35394a8b13786abea6d2f31114710d904cae19a647a6e95e"
+    },
+    {
+      "id": "augnes-screen-1274",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "312b65a679ed22baedf4652d0eb2ce71ec6f1f7626419e07d3e6c2da445bca77"
+    },
+    {
+      "id": "augnes-screen-1278",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "a90261a61039214ad6dddee117863f339ec00050a1012c1555bfa3b72b6a702d"
+    },
+    {
+      "id": "augnes-screen-1316",
+      "raw_text_and_tokens_identical": true,
+      "answer_sha256": "fd841b36a6f2e501598748db1d0719df8fe609b83f1200e5fa13a44d884f2897"
+    }
+  ],
+  "comparisons": {
+    "S_vs_B1": {
+      "assigned": 116,
+      "identical": 14,
+      "screening_identical": 5,
+      "rows": [
+        {
+          "id": "1aae19fb97efb2cf7f95b054be69299d78d9b97574fa1375a3dfbb198ac65938",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "871143134c5296b45972ade44debec47ab7fc95c41eb088cab9dff15c2cd7e2e",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "c6876d3573a99f0106d8f33561bb0875e4f5c49dbd55d1bd705ac5c4de6138a4",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "e0d20cbf4352631fc0961948f6dc5828992cb2ceaf30a8d2c508e201bf6c4033",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "4cfdd42a0282a44eee207aeb6df2e453550dfd1210db0082431cc20993988da5",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "2f60aa4cfa60ba99f3d98fd32960f36f69fc72eb5e979d1a849877cde7aa2233",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "0a891842dabe869bef11f6576e5ac677d64c6ad3142f2045f2e352d085746b8e",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "96bff5156a30390e83a2af9b3aac777678b40d6ff356d4503fada6944cc56d13",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "ddb82de082169dea755e105afc68296d675295bac052f441d0e2425a758b4dc3",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "6f74a80d957d27e450ee188b2bce686b27fa93d08ed8a5ca1ed28de3a20a98f6",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "b009417fd0a59244dd590290b90d1a8b65ad8cc23628226230677b0e6abf3dea",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "1633a34b27d6a2ae5aca3582e184e5aafdad83cdde2f80beab8dd829f3a35f74",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "6b97027569c6ed9d7ae97a57645b0e435e3a7c85464d763facbce6de3ca0ce02",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "64d16ee71ab3b0dbd71f437c4f714a59680dedc05f94e05c608c955712980b28",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "06ffce14fec8616d5b449da6cca995b37e8d39c9d5c634c7f1cb5f1867553f35",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "5c1a7a58aa28a79590f3ad7fa7463a44402e5bb7db0f9778fecce1aead39c5aa",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "cde44137e14408fd0670969febe0ec7f16f469001d458cfe4392b52671aeef29",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "5a2bd94d5ed13792b2d3c85aab95b24ffa4e42cebe0eea4a5a9a673ef213fae7",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "4be7763ba478b2605e1ed967edd7ff41da091c92cdb08a75e73ea6a1f9d6b94a",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "93fb1392118dc8f76b6307ae1cb4fd285b89e6c4e17913702808a5cd938ca9fb",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "63398920d3a5c56031864fdfc666a489214a0fc5ed65c0966ad424673b7adf3f",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "089bfba975fe9105b3a1379b1f4aba924ce9ddec7109e65c6f54fbe841d2cbf5",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "5bc0a8f8c159d8cd804c4c3ae541c49daae533cc73e3d36be7c1fa897b5255bf",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "23873e4056f56e2598c7e111ba3c21163eaae151cf8249e9809cd724b9276055",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "adebdf7d283d5aa1be047702dae6366b64735b0b5cfa3abfbbf1dcb3e31a2cd8",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "b3ed2ea3ac4d2d4f75c2da930a574778f1957e60a1744f1dab50d7dfa7e22b78",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "08a80b863dd68e85b30ea3d5bcd765631b3e82ab3886537f715f44eb53447de5",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "fbf71df182bf0df36b1520fddf06d4a61e407724be35ad508498d0277a205552",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "8186bc664d5e0ff725d63564adfb1288e6803ba820d088db90e766802345db79",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "cb94108bab1c2661e9dff6d132e48fe578152d081ad8100c254623ed69cba7bb",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "ee31b285814a2e914bfa06891a5ade5f164df428abb5de23815bea0131fa24bb",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "cb4c74608109d6178d352a71406262895a67648fae0806810f40832dbbee00f5",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "d824645efc5b98a54a0445430e7d8b228652066435c96323ca00eb1425babb5f",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "906bebb59371eef6922f8d5ba07bf8552268ddae74865470fdb00b5e276eee14",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "1cb124aba7eae97dca0b5fb84ed9ff3025d8e910f0d3381af4e9ebcb0d521dd6",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "5b1cbcb99c942a9a051080c62d8cbb641bec62699edd5a23745be816e60ae1c5",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "2f32330b6d8c3c6d70786c60dc35ada18e8dfa21e1cbcf1a1aa6180778085bb8",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "330c0ad691a14edffbfc615b907b9105c0854bc7a16fb735c09803f292112013",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "1a44d4a139f49b196c478656343aa791f8a23db035572229f810c6eeb1634578",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "0896408d075b894209ef4af499e8e1fbc4096bd8635725d66a90624ee19b89f5",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "0ef438533990961dde94e42ffdba25a02e8957b75963013b1bc9fb41422b7e26",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "9033df745805e394157612703d43fe97e89bc875b6e7fd8c65a3eefc92bebfea",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "5c58eb5164bc4dceeb2bfeb5a0095ab78c064a86b5b58d537a4a28c68288e504",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "5c093a9cc43a493f4ca9a65c039c961b94e7d39191758b24c428a6c49b9533b9",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "7c6d0b17c25c7c7cdba3d6728a0f60683a82cd1672ccfa24e2ad64b3f1452355",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "8a89967312eab141f13e9c33b6891756ea3175e48a067c10901cd0770edd1744",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "2543c31d93a6ee7227440c26623eb1f4ea4fcf5d8b20b9e05e7da7eb9954387d",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "e7bcbcf635a937b130de842414a12dbcd0a102a7aa08b1faf90014bcba9d45d6",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "fda3c8112fb6c9c73e6ed3d3ff7acddba0c73881ffb5040f656e95a9f573b8c6",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "fd440d259a699fada3f428f63454e17aac8dba0ec8a92aaffdb58963a15af45c",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "daa7d5284c9d86b5cee9aeb65611ae9c31f1927d07f0d2201e71ea1f4e615bd7",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "e2da25464319bde0bb4b762d47c8ef7caa6935a124fd6cdc20207f881881e002",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "05f3f06d39e54c769439abf9d34722d83ac4f93913acc3ed9ef3631bbe770591",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "c562fc96645ea6abaab9eca9be8f5010e203697dc3f376baa9f245723922521a",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "78c196e803aab460b2d3f9377e2144d3437208934afae39b6a01c6dcbb3e74f7",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "d6e1e890c97b975c33cec18e81828a5f21e93fea805af9c933b56d06ee704f5b",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "7dcae8a4b4c0da4756c6da162d9373f1ba150b74247f6e0525052c6b3420d354",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "2a67237fcf2d8fa455e550b7209f6910fb32bbf509526b864201544725be2536",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "ffa02c5da5f84054504dc8873be7334a616e1e576b66e8fc187ec2a297cb2e2c",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "cae777af49d24419903abb1ea6939b29245bcdfaf5c336a237d5b0dbd6591e3b",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "859a26ffc1bfc439645f9238972b771363c1196fbdcc44cd6ba639b0e167039a",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "8059fce12637197053075e5c44770e869d716d6364a48ae2b35a911bb427bfdd",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "20c5c96e874453277cea4fc0721f1fedbff73ac88ef7b3347df54306fb0977e8",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "43b15bb88f6005063378656bb3743a24c0607c438619ba358d66f71c2230b35d",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "bfd39628960cbde271c14dbf2de8cf57d4a9159aa3dadc3a883d16f8d1c3b6c9",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "c17960a2a5e2a66154b33ea2a81dc4df212010e9822d9ca057137f9f7d552cad",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "05a03e4f7a5ae0580609a4f152543eb9d6b46132a4a306ae5b90bed9df54d9bc",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "9e900b7cae20e31f59d15f42ed5af2535ad87089c3235088b26df6dfb6533432",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "4cdac24cce37c4ae324ccc4ef2dd7e735481bf8685817f033432b71d4c3c6e59",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "a5914aa2c0606bc0e9e29485744151f9c52852ade666f170243a22d47e78b1c1",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "0de7b7924fd51def9043066acb0caaf40e92387d3f6d6dcb00d18480ff4c5106",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "a2f755f5430b620c2c144f817001783e30cc576c792bfb507bca55b1c34c0aa7",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "8f0baa39b5e309198c5442f131a8c426eb22b39f4d77dec7550d6a7bd57190b5",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "29c1b95dc32a8202d129e539cb17a2af34cec562455a6296128908c264dcae24",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "3707d68e05eec206c87e210723ec812e7ef323f7997c2958e6405e0a1379568f",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "09296280af368480df117ab255c1cdfa411a95d09bf4d65364841a5f559a12c5",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "ce88459dfd495bc0d7c004d440c44965141c7015227c3d0e1075c071dd64d0e0",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "54e8a8c0a3c96f3171e716f22d3562c7b99d7bd99e26d666de510a8d1e02b491",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "8c85c4738a44d45a7df00a226c28cf4026c701a6b73677223a2b29ceb9f30738",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "a5a9e64a8b860b3b4920891c5c6ae50c5f0739101000d56278f2e6f75079e72d",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "4b13f76a5d6cc31f4f81b54b24e617dc038c057ae389f225cbdbd661a952b0cc",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "b934c406b3ff2ccdfd8d0dec82deba2f9907c6ad2c840e0a6de02658b580b505",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "ca96c10cad8f29bbe4e87393da554fbf422a2a3e40539247c8481f05b713861b",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "121e01b01bcf5c655c98db0de43ad47cb83715ffde57beef79587467fb648a1f",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "6334751af217aab3a2c9d402144c17806677f1ce5b47203bf5bb7643c2ad28a5",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "b9090d118e4e7caa551dda1360295b0f50eb910090557412f3afb6df3e27b43d",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "6767812001efe412888fcc7e757d8471e7050beaaffe5365cf5c1a376c7b57fb",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "2e3d636369fad5a7cc1c5e03c64d154e2dea5a342f99d29aeecbd3b801f9fd36",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "8aa5be876ac5e99f3b2c96af6e82cce3420b79be60a51b4fa3bdeebc9c465aef",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "d581965396d047a00fbe999b962197cbfd9e2f865008509cb8fec88edf10bf69",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "b44dc8c80b1e252f0d471b4a84a163ac21e674abfce18988e7100f9a09342012",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "5b60780575bf791799f0eea4fcc376f2bad58876ec4155d709a8b8df36e55e7e",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "c7fd546b87a3138121d914fd2ed1bc51cbb30ddb476c01697be8cf81e28a9a7a",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "ee62076654ef3c3f2aec44726e45d9ca443ae84dccb03c5b114d3ab2b770d725",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "8c83ed5c6093b61274a3d1849c671610b0485dd656ee87a48d499b57d9a30d38",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "14f7452df287abef7ee494bbd5bdb81fbd8b7628356de80590619c4652c4b615",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1457",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1436",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1405",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1347",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1448",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1438",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1420",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1408",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1397",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1393",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1369",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1350",
+          "screening": true,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "augnes-screen-1339",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1337",
+          "screening": true,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "augnes-screen-1329",
+          "screening": true,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "augnes-screen-1326",
+          "screening": true,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "augnes-screen-1305",
+          "screening": true,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "augnes-screen-1274",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1278",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1316",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        }
+      ]
+    },
+    "S_vs_B2": {
+      "assigned": 116,
+      "identical": 54,
+      "screening_identical": 8,
+      "rows": [
+        {
+          "id": "1aae19fb97efb2cf7f95b054be69299d78d9b97574fa1375a3dfbb198ac65938",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "871143134c5296b45972ade44debec47ab7fc95c41eb088cab9dff15c2cd7e2e",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "c6876d3573a99f0106d8f33561bb0875e4f5c49dbd55d1bd705ac5c4de6138a4",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "e0d20cbf4352631fc0961948f6dc5828992cb2ceaf30a8d2c508e201bf6c4033",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "4cfdd42a0282a44eee207aeb6df2e453550dfd1210db0082431cc20993988da5",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "2f60aa4cfa60ba99f3d98fd32960f36f69fc72eb5e979d1a849877cde7aa2233",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "0a891842dabe869bef11f6576e5ac677d64c6ad3142f2045f2e352d085746b8e",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "96bff5156a30390e83a2af9b3aac777678b40d6ff356d4503fada6944cc56d13",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "ddb82de082169dea755e105afc68296d675295bac052f441d0e2425a758b4dc3",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "6f74a80d957d27e450ee188b2bce686b27fa93d08ed8a5ca1ed28de3a20a98f6",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "b009417fd0a59244dd590290b90d1a8b65ad8cc23628226230677b0e6abf3dea",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "1633a34b27d6a2ae5aca3582e184e5aafdad83cdde2f80beab8dd829f3a35f74",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "6b97027569c6ed9d7ae97a57645b0e435e3a7c85464d763facbce6de3ca0ce02",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "64d16ee71ab3b0dbd71f437c4f714a59680dedc05f94e05c608c955712980b28",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "06ffce14fec8616d5b449da6cca995b37e8d39c9d5c634c7f1cb5f1867553f35",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "5c1a7a58aa28a79590f3ad7fa7463a44402e5bb7db0f9778fecce1aead39c5aa",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "cde44137e14408fd0670969febe0ec7f16f469001d458cfe4392b52671aeef29",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "5a2bd94d5ed13792b2d3c85aab95b24ffa4e42cebe0eea4a5a9a673ef213fae7",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "4be7763ba478b2605e1ed967edd7ff41da091c92cdb08a75e73ea6a1f9d6b94a",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "93fb1392118dc8f76b6307ae1cb4fd285b89e6c4e17913702808a5cd938ca9fb",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "63398920d3a5c56031864fdfc666a489214a0fc5ed65c0966ad424673b7adf3f",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "089bfba975fe9105b3a1379b1f4aba924ce9ddec7109e65c6f54fbe841d2cbf5",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "5bc0a8f8c159d8cd804c4c3ae541c49daae533cc73e3d36be7c1fa897b5255bf",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "23873e4056f56e2598c7e111ba3c21163eaae151cf8249e9809cd724b9276055",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "adebdf7d283d5aa1be047702dae6366b64735b0b5cfa3abfbbf1dcb3e31a2cd8",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "b3ed2ea3ac4d2d4f75c2da930a574778f1957e60a1744f1dab50d7dfa7e22b78",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "08a80b863dd68e85b30ea3d5bcd765631b3e82ab3886537f715f44eb53447de5",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "fbf71df182bf0df36b1520fddf06d4a61e407724be35ad508498d0277a205552",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "8186bc664d5e0ff725d63564adfb1288e6803ba820d088db90e766802345db79",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "cb94108bab1c2661e9dff6d132e48fe578152d081ad8100c254623ed69cba7bb",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "ee31b285814a2e914bfa06891a5ade5f164df428abb5de23815bea0131fa24bb",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "cb4c74608109d6178d352a71406262895a67648fae0806810f40832dbbee00f5",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "d824645efc5b98a54a0445430e7d8b228652066435c96323ca00eb1425babb5f",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "906bebb59371eef6922f8d5ba07bf8552268ddae74865470fdb00b5e276eee14",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "1cb124aba7eae97dca0b5fb84ed9ff3025d8e910f0d3381af4e9ebcb0d521dd6",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "5b1cbcb99c942a9a051080c62d8cbb641bec62699edd5a23745be816e60ae1c5",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "2f32330b6d8c3c6d70786c60dc35ada18e8dfa21e1cbcf1a1aa6180778085bb8",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "330c0ad691a14edffbfc615b907b9105c0854bc7a16fb735c09803f292112013",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "1a44d4a139f49b196c478656343aa791f8a23db035572229f810c6eeb1634578",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "0896408d075b894209ef4af499e8e1fbc4096bd8635725d66a90624ee19b89f5",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "0ef438533990961dde94e42ffdba25a02e8957b75963013b1bc9fb41422b7e26",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "9033df745805e394157612703d43fe97e89bc875b6e7fd8c65a3eefc92bebfea",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "5c58eb5164bc4dceeb2bfeb5a0095ab78c064a86b5b58d537a4a28c68288e504",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "5c093a9cc43a493f4ca9a65c039c961b94e7d39191758b24c428a6c49b9533b9",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "7c6d0b17c25c7c7cdba3d6728a0f60683a82cd1672ccfa24e2ad64b3f1452355",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "8a89967312eab141f13e9c33b6891756ea3175e48a067c10901cd0770edd1744",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "2543c31d93a6ee7227440c26623eb1f4ea4fcf5d8b20b9e05e7da7eb9954387d",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "e7bcbcf635a937b130de842414a12dbcd0a102a7aa08b1faf90014bcba9d45d6",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "fda3c8112fb6c9c73e6ed3d3ff7acddba0c73881ffb5040f656e95a9f573b8c6",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "fd440d259a699fada3f428f63454e17aac8dba0ec8a92aaffdb58963a15af45c",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "daa7d5284c9d86b5cee9aeb65611ae9c31f1927d07f0d2201e71ea1f4e615bd7",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "e2da25464319bde0bb4b762d47c8ef7caa6935a124fd6cdc20207f881881e002",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "05f3f06d39e54c769439abf9d34722d83ac4f93913acc3ed9ef3631bbe770591",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "c562fc96645ea6abaab9eca9be8f5010e203697dc3f376baa9f245723922521a",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "78c196e803aab460b2d3f9377e2144d3437208934afae39b6a01c6dcbb3e74f7",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "d6e1e890c97b975c33cec18e81828a5f21e93fea805af9c933b56d06ee704f5b",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "7dcae8a4b4c0da4756c6da162d9373f1ba150b74247f6e0525052c6b3420d354",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "2a67237fcf2d8fa455e550b7209f6910fb32bbf509526b864201544725be2536",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "ffa02c5da5f84054504dc8873be7334a616e1e576b66e8fc187ec2a297cb2e2c",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "cae777af49d24419903abb1ea6939b29245bcdfaf5c336a237d5b0dbd6591e3b",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "859a26ffc1bfc439645f9238972b771363c1196fbdcc44cd6ba639b0e167039a",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "8059fce12637197053075e5c44770e869d716d6364a48ae2b35a911bb427bfdd",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "20c5c96e874453277cea4fc0721f1fedbff73ac88ef7b3347df54306fb0977e8",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "43b15bb88f6005063378656bb3743a24c0607c438619ba358d66f71c2230b35d",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "bfd39628960cbde271c14dbf2de8cf57d4a9159aa3dadc3a883d16f8d1c3b6c9",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "c17960a2a5e2a66154b33ea2a81dc4df212010e9822d9ca057137f9f7d552cad",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "05a03e4f7a5ae0580609a4f152543eb9d6b46132a4a306ae5b90bed9df54d9bc",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "9e900b7cae20e31f59d15f42ed5af2535ad87089c3235088b26df6dfb6533432",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "4cdac24cce37c4ae324ccc4ef2dd7e735481bf8685817f033432b71d4c3c6e59",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "a5914aa2c0606bc0e9e29485744151f9c52852ade666f170243a22d47e78b1c1",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "0de7b7924fd51def9043066acb0caaf40e92387d3f6d6dcb00d18480ff4c5106",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "a2f755f5430b620c2c144f817001783e30cc576c792bfb507bca55b1c34c0aa7",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "8f0baa39b5e309198c5442f131a8c426eb22b39f4d77dec7550d6a7bd57190b5",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "29c1b95dc32a8202d129e539cb17a2af34cec562455a6296128908c264dcae24",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "3707d68e05eec206c87e210723ec812e7ef323f7997c2958e6405e0a1379568f",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "09296280af368480df117ab255c1cdfa411a95d09bf4d65364841a5f559a12c5",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "ce88459dfd495bc0d7c004d440c44965141c7015227c3d0e1075c071dd64d0e0",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "54e8a8c0a3c96f3171e716f22d3562c7b99d7bd99e26d666de510a8d1e02b491",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "8c85c4738a44d45a7df00a226c28cf4026c701a6b73677223a2b29ceb9f30738",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "a5a9e64a8b860b3b4920891c5c6ae50c5f0739101000d56278f2e6f75079e72d",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "4b13f76a5d6cc31f4f81b54b24e617dc038c057ae389f225cbdbd661a952b0cc",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "b934c406b3ff2ccdfd8d0dec82deba2f9907c6ad2c840e0a6de02658b580b505",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "ca96c10cad8f29bbe4e87393da554fbf422a2a3e40539247c8481f05b713861b",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "121e01b01bcf5c655c98db0de43ad47cb83715ffde57beef79587467fb648a1f",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "6334751af217aab3a2c9d402144c17806677f1ce5b47203bf5bb7643c2ad28a5",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "b9090d118e4e7caa551dda1360295b0f50eb910090557412f3afb6df3e27b43d",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "6767812001efe412888fcc7e757d8471e7050beaaffe5365cf5c1a376c7b57fb",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "2e3d636369fad5a7cc1c5e03c64d154e2dea5a342f99d29aeecbd3b801f9fd36",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "8aa5be876ac5e99f3b2c96af6e82cce3420b79be60a51b4fa3bdeebc9c465aef",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "d581965396d047a00fbe999b962197cbfd9e2f865008509cb8fec88edf10bf69",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "b44dc8c80b1e252f0d471b4a84a163ac21e674abfce18988e7100f9a09342012",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "5b60780575bf791799f0eea4fcc376f2bad58876ec4155d709a8b8df36e55e7e",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "c7fd546b87a3138121d914fd2ed1bc51cbb30ddb476c01697be8cf81e28a9a7a",
+          "screening": false,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "ee62076654ef3c3f2aec44726e45d9ca443ae84dccb03c5b114d3ab2b770d725",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "8c83ed5c6093b61274a3d1849c671610b0485dd656ee87a48d499b57d9a30d38",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "14f7452df287abef7ee494bbd5bdb81fbd8b7628356de80590619c4652c4b615",
+          "screening": false,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "augnes-screen-1457",
+          "screening": true,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "augnes-screen-1436",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1405",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1347",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1448",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1438",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1420",
+          "screening": true,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "augnes-screen-1408",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1397",
+          "screening": true,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "augnes-screen-1393",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1369",
+          "screening": true,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "augnes-screen-1350",
+          "screening": true,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "augnes-screen-1339",
+          "screening": true,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "augnes-screen-1337",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1329",
+          "screening": true,
+          "identical_raw_text_and_tokens": true
+        },
+        {
+          "id": "augnes-screen-1326",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1305",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1274",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1278",
+          "screening": true,
+          "identical_raw_text_and_tokens": false
+        },
+        {
+          "id": "augnes-screen-1316",
+          "screening": true,
+          "identical_raw_text_and_tokens": true
+        }
+      ]
+    }
+  },
+  "interpretation": "Exact repetition is a provenance observation, not independent quality replication or a statistical effect estimate."
+}
