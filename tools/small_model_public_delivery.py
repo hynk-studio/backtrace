@@ -219,13 +219,14 @@ def configured():
     finally:delivery.push=previous
 
 
-def qualify_model(prefix,output):
+def qualify_model(prefix,output,*,model="E2B"):
+    if model not in ("E2B","E4B"):raise ValueError("pinned checkpoint required")
     from tools import small_model_readiness as ready,small_model_minimum_remote as remote
-    row=ready.lock()['models']['E2B']['weights_metadata_only'][0]
+    row=ready.lock()['models'][model]['weights_metadata_only'][0]
     raw=json.dumps({'schema_version':1,'phase':'model','files':[{
-        'path':'models/E2B/model.safetensors','bytes':row['bytes'],'sha256':row['lfs']['oid']}]},sort_keys=True,separators=(',',':')).encode()+b'\n'
+        'path':'models/'+model+'/model.safetensors','bytes':row['bytes'],'sha256':row['lfs']['oid']}]},sort_keys=True,separators=(',',':')).encode()+b'\n'
     manifest=manifest_rows(raw,sha(raw));urls=select_public(manifest,public_catalog())
-    stage='/root/backtrace/public-e2b-qualification-staging';dest='/root/backtrace/public-e2b-qualification'
+    dest='/root/backtrace/public-'+model.lower()+'-qualification';stage=dest+'-staging'
     local_raw=json.dumps(dict(manifest,files=[]),sort_keys=True,separators=(',',':')).encode()+b'\n'
     remote.remote(prefix,'import pathlib,json;p=pathlib.Path('+repr(stage)+');p.mkdir(mode=0o700);(p/'+
         repr(MANIFEST_NAME)+').write_bytes('+repr(local_raw)+');print(json.dumps({}))')

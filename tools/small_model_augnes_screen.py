@@ -19,7 +19,8 @@ SYSTEM=('Return only one JSON object matching the supplied output contract, with
         'Preserve unknown causes, failed evidence and authorization boundaries. Do not execute actions.')
 
 
-def schedule(tokenizer):
+def schedule(tokenizer,model='E2B'):
+    if model not in ('E2B','E4B'):raise ValueError('pinned comparison model required')
     packet=json.loads(PACKET.read_bytes());rows=[]
     if len(packet['cases'])!=20 or len({c['id'] for c in packet['cases']})!=20:
         raise ValueError('exact twenty distinct issue episodes required')
@@ -29,7 +30,7 @@ def schedule(tokenizer):
         messages=[{'role':'system','content':SYSTEM},{'role':'user','content':json.dumps(payload,ensure_ascii=False)}]
         encoded=ready.encode(tokenizer,messages,4096)
         if encoded['overflow']:raise ValueError('screening input overflow')
-        rows.append({'model':'E2B','arm':'B1','id':case['id'],'messages':messages,
+        rows.append({'model':model,'arm':'B1','id':case['id'],'messages':messages,
                      'input_tokens':encoded['input_tokens'],'input_ids_sha256':encoded['token_ids_sha256']})
     return rows
 

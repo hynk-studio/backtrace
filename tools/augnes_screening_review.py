@@ -61,15 +61,16 @@ def inspect(record,case,rubric):
     return result
 
 
-def review(packet,rubric,collection):
+def review(packet,rubric,collection,*,model='E2B'):
+    if model not in ('E2B','E4B'):raise ValueError('pinned screening model required')
     expected=[c['id'] for c in packet['cases']]
     if (len(expected)!=20 or len(set(expected))!=20
             or [r['id'] for r in collection['records']]!=expected
-            or any(r['model']!='E2B' or r['arm']!='B1' for r in collection['records'])
+            or any(r['model']!=model or r['arm']!='B1' for r in collection['records'])
             or collection.get('training') is not False):
         raise ValueError('original twenty untrained assignments required, including missing outputs')
     rows=[inspect(r,c,rubric['cases'][c['id']]) for r,c in zip(collection['records'],packet['cases'])]
-    return {'schema':'augnes_screening_descriptive_checks_v1','assigned':20,
+    return {'schema':'augnes_screening_descriptive_checks_v1','assigned':20,'model':model,
         'author_defined_families':len({c['family'] for c in packet['cases']}),
         'constant_label_membership_controls':dict(Counter(
             label for c in packet['cases'] for label in rubric['cases'][c['id']]['acceptable_decisions'])),
@@ -87,8 +88,9 @@ def review(packet,rubric,collection):
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     for name in ('packet','rubric','collection','output'):p.add_argument(name,type=Path)
+    p.add_argument('--model',choices=['E2B','E4B'],default='E2B')
     a=p.parse_args();inputs={k:getattr(a,k).read_bytes() for k in ('packet','rubric','collection')}
-    result=review(*(strict(inputs[k]) for k in ('packet','rubric','collection')))
+    result=review(*(strict(inputs[k]) for k in ('packet','rubric','collection')),model=a.model)
     result['input_sha256']={k:hashlib.sha256(v).hexdigest() for k,v in inputs.items()}
     with a.output.open('x') as f:json.dump(result,f,ensure_ascii=False,indent=2);f.write('\n')
 

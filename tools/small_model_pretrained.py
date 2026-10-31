@@ -1,4 +1,4 @@
-"""Reuse the pinned E2B sources and original development assignments.
+"""Reuse pinned checkpoint sources and original development assignments.
 
 Preparation downloads the actual checkpoint without allocating a GPU. No labels
 or evaluator files are sent to a model. Execution is a later explicit entry.
@@ -259,7 +259,8 @@ def inspect_inputs(prepared,*,cuda_runtime=False):
         'packet_sha256':life.digest(REPLAY.read_bytes()),'pretrained_requests':0}
 
 
-def prepare(output, readiness_archive):
+def prepare(output, readiness_archive,*,model_name='E2B'):
+    if model_name not in ('E2B','E4B'):raise ValueError('pinned checkpoint required')
     output = Path(output).resolve(); output.mkdir(mode=0o700, parents=True, exist_ok=False)
     record = json.loads((ROOT/'docs/small-model-readiness-cpu-20261026.json').read_bytes())['artifact']
     raw = Path(readiness_archive).read_bytes()
@@ -274,16 +275,16 @@ def prepare(output, readiness_archive):
     ready.rebuild_packets(output/'packets')
     ready.prepare_scope(output/'packets',output/'tokenization.json',output/'scope',scope='smoke')
     plan,schedule,_ = runner.load_scope(output/'scope',output/'packets',output/'tokenization.json')
-    selected = [row for row in schedule if row['model']=='E2B']
+    selected = [row for row in schedule if row['model']==model_name]
     if len(selected)!=18 or {row['arm'] for row in selected}!={'B0','B1'}:
-        raise ValueError('original 18 E2B assignments required')
+        raise ValueError('original 18 checkpoint assignments required')
     ready.acquire_sources(output/'sources')
-    spec = ready.lock()['models']['E2B']; weight = spec['weights_metadata_only'][0]
+    spec = ready.lock()['models'][model_name]; weight = spec['weights_metadata_only'][0]
     if shutil.disk_usage(output).free < weight['bytes'] + 4*1024**3:
         raise RuntimeError('insufficient free disk before checkpoint acquisition')
-    model = output/'models/E2B'; model.mkdir(mode=0o700,parents=True)
+    model = output/'models'/model_name; model.mkdir(mode=0o700,parents=True)
     for name in ('config.json','generation_config.json'):
-        shutil.copyfile(output/'sources/E2B'/name,model/name)
+        shutil.copyfile(output/'sources'/model_name/name,model/name)
     destination = model/'model.safetensors'; started=time.monotonic(); size=0
     # The complete response is hash-checked against the previously pinned LFS OID.
     request=urllib.request.Request(spec['tensor_header']['url']+'?download=true')
@@ -294,10 +295,11 @@ def prepare(output, readiness_archive):
             if size>weight['bytes'] or time.monotonic()-started>900:
                 raise RuntimeError('checkpoint acquisition bound exceeded')
             stream.write(chunk)
-    verified=runner.verify_pretrained_directory('E2B',model)
+    verified=runner.verify_pretrained_directory(model_name,model)
     result={'status':'PASS_PRETRAINED_BYTES_NOT_INFERENCE','weights':verified,
         'assigned':len(selected),'independent_development_episodes':1,
-        'scope':'E2B_ONLY_FROM_ORIGINAL_SMOKE','excluded_model':'E4B_MEASURED_SEPARATELY',
+        'scope':model_name+'_ONLY_FROM_ORIGINAL_SMOKE',
+        'excluded_model':('E4B' if model_name=='E2B' else 'E2B')+'_MEASURED_SEPARATELY',
         'checkpoint_download_seconds':time.monotonic()-started,'pretrained_requests':0,
         'source_sha':__import__('os').environ.get('GITHUB_SHA')}
     life.write(output/'preparation.json',result); return result

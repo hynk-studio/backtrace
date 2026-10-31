@@ -1,5 +1,38 @@
 # Backtrace working agreement
 
+## Conditional E4B route amendment (2026-10-31 UTC)
+
+The no-allocation E2B run41233521859 showed only excluded A40/EU-SE-1 within
+the price bound. Public bulk delivery is now qualified, so remove only that
+transport-pair exclusion for this separate E4B candidate too. Keep the failed
+A6000/US-TX-1 create pair excluded and allUSD0.51/1.80, deadline, input and
+isolation bounds. Requalify exact source; no E4B permit/start exists. Wait for
+E2B actual results and resource reconciliation before any E4B allocation.
+
+## Conditional twenty-case E4B public-asset comparison (2026-10-31 UTC)
+
+Read docs/small-model-e4b-screening-20261031.md. Keep all20 original E2B messages
+and the same4096/768 per-request limits,60-second timeout and zero training.
+Retain all prior18 responses and failed completion records. E4B is a separate
+capacity comparison; the earlier failed24-slot E4B run remains unchanged.
+
+Reuse pinned public preparation from the direct E2B candidate: authenticated SSH
+owner files64MiB/90 seconds,600-second runtime and960-second model delivery,
+exact public hashes/readback, offline install and all worker isolation controls.
+The free ordinary container must receive/verify/delete the complete pinned E4B
+checkpoint. No model or paid start before fresh full native/container/input and
+owner/watcher qualification. Wait for every E2B allocation's independent cleanup
+and review its actual result before starting any E4B allocation.
+
+Review/start/state:bt-001-e4b-screen-20261031 / bt-001-e4b-screen-start-20261031 /
+bt-001-e4b-screen-state-20261031; namespace:e4b-screen-paid-20261031. Prospective
+one-allocation capUSD0.51, continuationUSD1.80 and credit floorUSD1.1060441339;
+3000/2580/300/120 second total/work/cleanup/export bounds. Current balance/price/
+inventory and a fresh single-use exact-source permit remain mandatory. The cap
+may block the proposal after actual E2B spending. No top-up, overlap, automatic
+retry, merge, Augnes write or model-benefit claim from infrastructure success.
+
+
 ## Public-transport route amendment after zero-allocation rejection (2026-10-31 UTC)
 
 Read docs/small-model-public-route-result-20261031.md. Run41233521859 issued zero
