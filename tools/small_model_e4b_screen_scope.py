@@ -21,14 +21,14 @@ STATE_BRANCH='bt-001-e4b-screen-state-20261031'
 NAMESPACE='e4b-screen-paid-20261031'
 WORKFLOW='.github/workflows/small-model-pretrained.yml'
 INSTRUCTION='이번에는 목표까지 실제로 이어가도록 하고 혼자 해결할 수 없는 문제가 있을 때만 멈추고 보고해'
-CONTRACT=dict(minimum.CONTRACT,scope='E4B_20_FIXED_AUGNES_SCREENING_V1',
+CONTRACT=dict(minimum.CONTRACT,scope='E4B_20_FIXED_AUGNES_PUBLIC_ROUTE_V2',
     weight_bytes=15992595884,pretrained_requests=20,training_steps=0,total_seconds=3000,work_seconds=2580,
     maximum_additional_usd='0.51',cumulative_continuation_cap_usd='1.80',
     minimum_post_projection_credit_usd='1.1060441339',
     ssh_receive_window_bytes=8388608,public_asset_delivery='PINNED_HTTPS_PREPARATION_ONLY_V1',
     owner_payload_maximum_bytes=64*1024**2,owner_payload_maximum_seconds=90,
     model_transfer_maximum_seconds=pretrained.MODEL_TRANSFER_SECONDS,
-    excluded_regions=[],excluded_routes=[{'gpu':'NVIDIA RTX A6000','region':'US-TX-1'},{'gpu':'NVIDIA A40','region':'EU-SE-1'}],
+    excluded_regions=[],excluded_routes=[{'gpu':'NVIDIA RTX A6000','region':'US-TX-1'}],
     cuda_socket_policy='UNIX_SEQPACKET_PASSIVE_BIND_LISTEN_NO_CONNECTIONS_V1',
     full_model_memory_admission='BOUNDED_ATTEMPT_PROVIDER_AND_VISIBLE_MEMORY_ONLY')
 OriginalState=minimum.State

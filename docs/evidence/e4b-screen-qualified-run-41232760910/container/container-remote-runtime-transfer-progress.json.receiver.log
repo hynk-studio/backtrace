@@ -1,0 +1,158 @@
+{"bytes": 0, "path": "wheels/accelerate-1.15.0-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 394295}
+{"bytes": 394295, "path": "wheels/accelerate-1.15.0-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.014435810000009042, "sha256": "97eacca0b73e45cb867dbf8c5d5d4dc32219544300e0c8992c7334dc2ef33cec"}
+{"bytes": 0, "path": "wheels/annotated_doc-0.0.5-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 5302}
+{"bytes": 5302, "path": "wheels/annotated_doc-0.0.5-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.06598504099997626, "sha256": "117bac03a25ede5df5440e855b32d556049ca169ead221505badf432fed4b101"}
+{"bytes": 0, "path": "wheels/anyio-4.15.1-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 132079}
+{"bytes": 132079, "path": "wheels/anyio-4.15.1-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.061529974999984915, "sha256": "6152fdbbf9a77fdec97731721bebf7c4c44f7c29b424b0065826173efc7ed101"}
+{"bytes": 0, "path": "wheels/click-8.5.0-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 125251}
+{"bytes": 125251, "path": "wheels/click-8.5.0-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.024779487999921912, "sha256": "255bc9599cf7748b4b1a446ccc735421bd08a2ae529a8b88597d3de5664ee360"}
+{"bytes": 0, "path": "wheels/cuda_bindings-12.9.10-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 7627380}
+{"bytes": 7627380, "path": "wheels/cuda_bindings-12.9.10-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.09916125100005502, "sha256": "420e44cfcd939cd69d6cfe8efc5f08b44850994cae399a49b9299a464324ce97"}
+{"bytes": 0, "path": "wheels/cuda_pathfinder-1.8.4-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 62594}
+{"bytes": 62594, "path": "wheels/cuda_pathfinder-1.8.4-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.021117305999950986, "sha256": "85a4e708c725d603f576042ef32781a3d1737c51e84c35fe361d2680191af65a"}
+{"bytes": 0, "path": "wheels/cuda_toolkit-12.6.3-py2.py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 2288}
+{"bytes": 2288, "path": "wheels/cuda_toolkit-12.6.3-py2.py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.058202636000032726, "sha256": "79d8605baeb6c2f695761e0efb54bc62dbc3c9e32eb0742df7669c07befaa8f7"}
+{"bytes": 0, "path": "wheels/filelock-4.2.4-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 162475}
+{"bytes": 162475, "path": "wheels/filelock-4.2.4-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.013399269000046843, "sha256": "301241438c57936ef93f4243a94f2559022268bfcf9b375a9a72eb0f8db8358e"}
+{"bytes": 0, "path": "wheels/fsspec-2026.9.0-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 221738}
+{"bytes": 221738, "path": "wheels/fsspec-2026.9.0-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.0117214540000532, "sha256": "8dd6e646e99ea382bd85f97a45e6b526a442d79423a7dc673f1e2756d05fcb5f"}
+{"bytes": 0, "path": "wheels/h11-0.16.0-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 37515}
+{"bytes": 37515, "path": "wheels/h11-0.16.0-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.04415642200001457, "sha256": "63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86"}
+{"bytes": 0, "path": "wheels/hf_xet-1.7.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 4212180}
+{"bytes": 4212180, "path": "wheels/hf_xet-1.7.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.025034523000044828, "sha256": "2814a6e999d13464c4d679b788cc5d784eb5a4edfc638a31f10e9a11ab531ef8"}
+{"bytes": 0, "path": "wheels/httpcore2-2.16.0-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 85070}
+{"bytes": 85070, "path": "wheels/httpcore2-2.16.0-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.025418868999963706, "sha256": "5c4358319f2602d984ad93182c9fee5160f22e9da7babdda870a5e7c4e2dc34f"}
+{"bytes": 0, "path": "wheels/httpx2-2.16.0-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 97880}
+{"bytes": 97880, "path": "wheels/httpx2-2.16.0-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.011368777000029695, "sha256": "fd2c5d7909e8d86fe92d53020c310ca0e4e431b838c207c5754b9bbf0308d49a"}
+{"bytes": 0, "path": "wheels/huggingface_hub-2.3.0-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 855161}
+{"bytes": 855161, "path": "wheels/huggingface_hub-2.3.0-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.08080262800001492, "sha256": "5da369600233568a126eb5578754935b2add9446b42d9e2fc0927d56840ac1a5"}
+{"bytes": 0, "path": "wheels/idna-3.20-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 69583}
+{"bytes": 69583, "path": "wheels/idna-3.20-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.012957825999933448, "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c"}
+{"bytes": 0, "path": "wheels/jinja2-3.1.6-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 134899}
+{"bytes": 134899, "path": "wheels/jinja2-3.1.6-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.18291026400004284, "sha256": "85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67"}
+{"bytes": 0, "path": "wheels/markdown_it_py-4.2.0-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 91687}
+{"bytes": 91687, "path": "wheels/markdown_it_py-4.2.0-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.011268599999993967, "sha256": "9f7ebbcd14fe59494226453aed97c1070d83f8d24b6fc3a3bcf9a38092641c4a"}
+{"bytes": 0, "path": "wheels/markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 22985}
+{"bytes": 22985, "path": "wheels/markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.01050531900000351, "sha256": "8e124f974786f831d6043728e38296969d3579db8896fe004682f5758e613581"}
+{"bytes": 0, "path": "wheels/mdurl-0.1.2-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 9979}
+{"bytes": 9979, "path": "wheels/mdurl-0.1.2-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.009361087000002044, "sha256": "84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8"}
+{"bytes": 0, "path": "wheels/mpmath-1.3.0-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 536198}
+{"bytes": 536198, "path": "wheels/mpmath-1.3.0-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.02169108500004313, "sha256": "a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c"}
+{"bytes": 0, "path": "wheels/networkx-3.6.1-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 2068504}
+{"bytes": 2068504, "path": "wheels/networkx-3.6.1-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.02267503799998849, "sha256": "d47fbf302e7d9cbbb9e2555a0d267983d2aa476bac30e90dfbe5669bd57f3762"}
+{"bytes": 0, "path": "wheels/numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 16727283}
+{"bytes": 16727283, "path": "wheels/numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.05959843599998749, "sha256": "fbde6962867ee75b48b0ee29b2b9372ec5d617799dbaf38e82dc0596f2f7738a"}
+{"bytes": 0, "path": "wheels/nvidia_cublas_cu12-12.6.4.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 393138322}
+{"bytes": 67108864, "path": "wheels/nvidia_cublas_cu12-12.6.4.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 393138322}
+{"bytes": 134217728, "path": "wheels/nvidia_cublas_cu12-12.6.4.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 393138322}
+{"bytes": 201326592, "path": "wheels/nvidia_cublas_cu12-12.6.4.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 393138322}
+{"bytes": 268435456, "path": "wheels/nvidia_cublas_cu12-12.6.4.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 393138322}
+{"bytes": 335544320, "path": "wheels/nvidia_cublas_cu12-12.6.4.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 393138322}
+{"bytes": 393138322, "path": "wheels/nvidia_cublas_cu12-12.6.4.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 1.4798323420000088, "sha256": "08ed2686e9875d01b58e3cb379c6896df8e76c75e0d4a7f7dace3d7b6d9ef8eb"}
+{"bytes": 0, "path": "wheels/nvidia_cuda_cupti_cu12-12.6.80-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 8917980}
+{"bytes": 8917980, "path": "wheels/nvidia_cuda_cupti_cu12-12.6.80-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.0473192790000212, "sha256": "6768bad6cab4f19e8292125e5f1ac8aa7d1718704012a0e3272a6f61c4bce132"}
+{"bytes": 0, "path": "wheels/nvidia_cuda_nvrtc_cu12-12.6.85-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 23649944}
+{"bytes": 23649944, "path": "wheels/nvidia_cuda_nvrtc_cu12-12.6.85-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.08792058300002736, "sha256": "800927308ccc5dd6246d3f61f7fcef2ed7ec4e59e199090d360d3293f78bd5a2"}
+{"bytes": 0, "path": "wheels/nvidia_cuda_runtime_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 897690}
+{"bytes": 897690, "path": "wheels/nvidia_cuda_runtime_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.03376700900003016, "sha256": "ba3b56a4f896141e25e19ab287cd71e52a6a0f4b29d0d31609f60e3b4d5219b7"}
+{"bytes": 0, "path": "wheels/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 706758467}
+{"bytes": 67108864, "path": "wheels/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 706758467}
+{"bytes": 134217728, "path": "wheels/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 706758467}
+{"bytes": 201326592, "path": "wheels/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 706758467}
+{"bytes": 268435456, "path": "wheels/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 706758467}
+{"bytes": 335544320, "path": "wheels/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 706758467}
+{"bytes": 402653184, "path": "wheels/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 706758467}
+{"bytes": 469762048, "path": "wheels/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 706758467}
+{"bytes": 536870912, "path": "wheels/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 706758467}
+{"bytes": 603979776, "path": "wheels/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 706758467}
+{"bytes": 671088640, "path": "wheels/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 706758467}
+{"bytes": 706758467, "path": "wheels/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 3.283308715999965, "sha256": "949452be657fa16687d0930933f032835951ef0892b37d2d53824d1a84dc97a8"}
+{"bytes": 0, "path": "wheels/nvidia_cufft_cu12-11.3.0.4-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 200221632}
+{"bytes": 67108864, "path": "wheels/nvidia_cufft_cu12-11.3.0.4-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 200221632}
+{"bytes": 134217728, "path": "wheels/nvidia_cufft_cu12-11.3.0.4-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 200221632}
+{"bytes": 200221632, "path": "wheels/nvidia_cufft_cu12-11.3.0.4-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.6528511299999309, "sha256": "ccba62eb9cef5559abd5e0d54ceed2d9934030f51163df018532142a8ec533e5"}
+{"bytes": 0, "path": "wheels/nvidia_cufile_cu12-1.11.1.6-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 1142103}
+{"bytes": 1142103, "path": "wheels/nvidia_cufile_cu12-1.11.1.6-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.03157431500005714, "sha256": "cc23469d1c7e52ce6c1d55253273d32c565dd22068647f3aa59b3c6b005bf159"}
+{"bytes": 0, "path": "wheels/nvidia_curand_cu12-10.3.7.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 56279010}
+{"bytes": 56279010, "path": "wheels/nvidia_curand_cu12-10.3.7.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.23028373199997532, "sha256": "a42cd1344297f70b9e39a1e4f467a4e1c10f1da54ff7a85c12197f6c652c8bdf"}
+{"bytes": 0, "path": "wheels/nvidia_cusolver_cu12-11.7.1.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 158229790}
+{"bytes": 67108864, "path": "wheels/nvidia_cusolver_cu12-11.7.1.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 158229790}
+{"bytes": 134217728, "path": "wheels/nvidia_cusolver_cu12-11.7.1.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 158229790}
+{"bytes": 158229790, "path": "wheels/nvidia_cusolver_cu12-11.7.1.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.4799918069999194, "sha256": "e9e49843a7707e42022babb9bcfa33c29857a93b88020c4e4434656a655b698c"}
+{"bytes": 0, "path": "wheels/nvidia_cusparse_cu12-12.5.4.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 216561367}
+{"bytes": 67108864, "path": "wheels/nvidia_cusparse_cu12-12.5.4.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 216561367}
+{"bytes": 134217728, "path": "wheels/nvidia_cusparse_cu12-12.5.4.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 216561367}
+{"bytes": 201326592, "path": "wheels/nvidia_cusparse_cu12-12.5.4.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 216561367}
+{"bytes": 216561367, "path": "wheels/nvidia_cusparse_cu12-12.5.4.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.8570455799999763, "sha256": "7556d9eca156e18184b94947ade0fba5bb47d69cec46bf8660fd2c71a4b48b73"}
+{"bytes": 0, "path": "wheels/nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 287193691}
+{"bytes": 67108864, "path": "wheels/nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 287193691}
+{"bytes": 134217728, "path": "wheels/nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 287193691}
+{"bytes": 201326592, "path": "wheels/nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 287193691}
+{"bytes": 268435456, "path": "wheels/nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 287193691}
+{"bytes": 287193691, "path": "wheels/nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 1.144401630999937, "sha256": "f1bb701d6b930d5a7cea44c19ceb973311500847f81b634d802b7b539dc55623"}
+{"bytes": 0, "path": "wheels/nvidia_nccl_cu12-2.29.3-py3-none-manylinux_2_18_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 289760316}
+{"bytes": 67108864, "path": "wheels/nvidia_nccl_cu12-2.29.3-py3-none-manylinux_2_18_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 289760316}
+{"bytes": 134217728, "path": "wheels/nvidia_nccl_cu12-2.29.3-py3-none-manylinux_2_18_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 289760316}
+{"bytes": 201326592, "path": "wheels/nvidia_nccl_cu12-2.29.3-py3-none-manylinux_2_18_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 289760316}
+{"bytes": 268435456, "path": "wheels/nvidia_nccl_cu12-2.29.3-py3-none-manylinux_2_18_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 289760316}
+{"bytes": 289760316, "path": "wheels/nvidia_nccl_cu12-2.29.3-py3-none-manylinux_2_18_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 1.198158520999982, "sha256": "35ad42e7d5d722a83c36a3a478e281c20a5646383deaf1b9ed1a9ab7d61bed53"}
+{"bytes": 0, "path": "wheels/nvidia_nvjitlink_cu12-12.6.85-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 19744971}
+{"bytes": 19744971, "path": "wheels/nvidia_nvjitlink_cu12-12.6.85-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.08524838799996814, "sha256": "eedc36df9e88b682efe4309aa16b5b4e78c2407eac59e8c10a6a47535164369a"}
+{"bytes": 0, "path": "wheels/nvidia_nvshmem_cu12-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 139103095}
+{"bytes": 67108864, "path": "wheels/nvidia_nvshmem_cu12-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 139103095}
+{"bytes": 134217728, "path": "wheels/nvidia_nvshmem_cu12-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 139103095}
+{"bytes": 139103095, "path": "wheels/nvidia_nvshmem_cu12-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.3754869960000633, "sha256": "042f2500f24c021db8a06c5eec2539027d57460e1c1a762055a6554f72c369bd"}
+{"bytes": 0, "path": "wheels/nvidia_nvtx_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 89276}
+{"bytes": 89276, "path": "wheels/nvidia_nvtx_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.016516443000000436, "sha256": "b90bed3df379fa79afbd21be8e04a0314336b8ae16768b58f2d34cb1d04cd7d2"}
+{"bytes": 0, "path": "wheels/packaging-26.3-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 129956}
+{"bytes": 129956, "path": "wheels/packaging-26.3-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.00894406899999467, "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c"}
+{"bytes": 0, "path": "wheels/pip-25.0.1-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 1841526}
+{"bytes": 1841526, "path": "wheels/pip-25.0.1-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.10253608799996528, "sha256": "c46efd13b6aa8279f33f2864459c8ce587ea6a1a59ee20de055868d8f7688f7f"}
+{"bytes": 0, "path": "wheels/psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 155560}
+{"bytes": 155560, "path": "wheels/psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.01334286200005863, "sha256": "076a2d2f923fd4821644f5ba89f059523da90dc9014e85f8e45a5774ca5bc6f9"}
+{"bytes": 0, "path": "wheels/pygments-2.21.0-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 1250147}
+{"bytes": 1250147, "path": "wheels/pygments-2.21.0-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.016849544000024252, "sha256": "2363c69b61c4a97c838da3b130dcd6468f4848992b21a82f2a63ec34377137d9"}
+{"bytes": 0, "path": "wheels/pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 807870}
+{"bytes": 807870, "path": "wheels/pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.01471024500006024, "sha256": "ba1cc08a7ccde2d2ec775841541641e4548226580ab850948cbfda66a1befcdc"}
+{"bytes": 0, "path": "wheels/regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 807783}
+{"bytes": 807783, "path": "wheels/regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.07938871699991523, "sha256": "39ab5894d971f9ac68baa6eca5c50387db579cfcacf36ae8df3feceb1815e6d0"}
+{"bytes": 0, "path": "wheels/rich-15.0.0-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 310654}
+{"bytes": 310654, "path": "wheels/rich-15.0.0-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.011553860000049099, "sha256": "33bd4ef74232fb73fe9279a257718407f169c09b78a87ad3d296f548e27de0bb"}
+{"bytes": 0, "path": "wheels/safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 516040}
+{"bytes": 516040, "path": "wheels/safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.015887592000012773, "sha256": "fd6f3f93c9a0a7cc2788ee63fb763353d4bd2e89b0751bc78fcf7dda00bea774"}
+{"bytes": 0, "path": "wheels/setuptools-78.1.0-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 1256108}
+{"bytes": 1256108, "path": "wheels/setuptools-78.1.0-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.01703177299998515, "sha256": "3e386e96793c8702ae83d17b853fb93d3e09ef82ec62722e61da5cd22376dcd8"}
+{"bytes": 0, "path": "wheels/shellingham-1.5.4-py2.py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 9755}
+{"bytes": 9755, "path": "wheels/shellingham-1.5.4-py2.py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.03176594700005353, "sha256": "7ecfff8f2fd72616f7481040475a65b2bf8af90a56c89140852d1120324e8686"}
+{"bytes": 0, "path": "wheels/sympy-1.14.0-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 6299353}
+{"bytes": 6299353, "path": "wheels/sympy-1.14.0-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.13304144400001405, "sha256": "e091cc3e99d2141a0ba2847328f5479b05d94a6635cb96148ccb3f34671bd8f5"}
+{"bytes": 0, "path": "wheels/tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 3396193}
+{"bytes": 3396193, "path": "wheels/tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.021324509999999464, "sha256": "376851d22bcf9d650a5c3090bb83e6cf9e895fbf0595369fa4cd43c1f69b5f87"}
+{"bytes": 0, "path": "wheels/torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 843744582}
+{"bytes": 67108864, "path": "wheels/torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 843744582}
+{"bytes": 134217728, "path": "wheels/torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 843744582}
+{"bytes": 201326592, "path": "wheels/torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 843744582}
+{"bytes": 268435456, "path": "wheels/torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 843744582}
+{"bytes": 335544320, "path": "wheels/torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 843744582}
+{"bytes": 402653184, "path": "wheels/torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 843744582}
+{"bytes": 469762048, "path": "wheels/torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 843744582}
+{"bytes": 536870912, "path": "wheels/torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 843744582}
+{"bytes": 603979776, "path": "wheels/torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 843744582}
+{"bytes": 671088640, "path": "wheels/torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 843744582}
+{"bytes": 738197504, "path": "wheels/torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 843744582}
+{"bytes": 805306368, "path": "wheels/torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 843744582}
+{"bytes": 843744582, "path": "wheels/torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 4.362417260000029, "sha256": "8695f3c6b7966d44560275b90c5c28e5091ba33ddbb1ab33b2173782ca1e9145"}
+{"bytes": 0, "path": "wheels/tqdm-4.70.1-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 80199}
+{"bytes": 80199, "path": "wheels/tqdm-4.70.1-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.09101916099996288, "sha256": "c293e525e6fef9c20e8728fd4612df02a0aa31bb5fe91ecd93e123b1b7bffa73"}
+{"bytes": 0, "path": "wheels/transformers-5.20.2-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 12844921}
+{"bytes": 12844921, "path": "wheels/transformers-5.20.2-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.08076149300006819, "sha256": "7ae75dbc1fb3922aff1b6c97b9e5479d6cf26fd86a8866bfb71324190479f807"}
+{"bytes": 0, "path": "wheels/triton-3.7.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 197149381}
+{"bytes": 67108864, "path": "wheels/triton-3.7.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 197149381}
+{"bytes": 134217728, "path": "wheels/triton-3.7.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 197149381}
+{"bytes": 197149381, "path": "wheels/triton-3.7.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.9676806080000233, "sha256": "225910e79149807de74a0ca63160aa285956a8d64a2951d558997c57e2584ae1"}
+{"bytes": 0, "path": "wheels/truststore-0.10.5-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 19017}
+{"bytes": 19017, "path": "wheels/truststore-0.10.5-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.01087177099998371, "sha256": "9aaaedaefaf06d8b206278cf8b5012bc897f485a874503501e12d776df78951c"}
+{"bytes": 0, "path": "wheels/typer-0.27.3-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 123312}
+{"bytes": 123312, "path": "wheels/typer-0.27.3-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.011966139000037401, "sha256": "e50022f28b82a86313e54501317a1db64bf8f8d036ff8cfe5ca7e47675454aff"}
+{"bytes": 0, "path": "wheels/typing_extensions-4.16.0-py3-none-any.whl", "phase": "PUBLIC_DOWNLOAD", "total_bytes": 45571}
+{"bytes": 45571, "path": "wheels/typing_extensions-4.16.0-py3-none-any.whl", "phase": "PUBLIC_VERIFIED", "seconds": 0.022131975999968745, "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"}

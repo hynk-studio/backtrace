@@ -16,12 +16,12 @@ from tools import small_model_container as container
 from tools import small_model_public_delivery as public
 
 REVIEW='bt-001-e2b-direct-20261031'
-START='bt-001-e2b-direct-start-20261031'
-STATE_BRANCH='bt-001-e2b-direct-state-20261031'
-NAMESPACE='e2b-direct-paid-20261031'
+START='bt-001-e2b-public-route-start-20261031'
+STATE_BRANCH='bt-001-e2b-public-route-state-20261031'
+NAMESPACE='e2b-public-route-paid-20261031'
 WORKFLOW='.github/workflows/small-model-pretrained.yml'
 INSTRUCTION='이번에는 목표까지 실제로 이어가도록 하고 혼자 해결할 수 없는 문제가 있을 때만 멈추고 보고해'
-CONTRACT=dict(minimum.CONTRACT,scope='E2B_REMAINING2_ADAPTER4_PUBLIC_ASSETS_V1',
+CONTRACT=dict(minimum.CONTRACT,scope='E2B_REMAINING2_ADAPTER4_PUBLIC_ASSETS_ROUTE_V2',
     weight_bytes=10246621918,pretrained_requests=3,training_steps=4,total_seconds=2020,work_seconds=1600,
     maximum_additional_usd='0.47',cumulative_continuation_cap_usd='1.45',
     minimum_post_projection_credit_usd='1.4560441339',
@@ -30,7 +30,7 @@ CONTRACT=dict(minimum.CONTRACT,scope='E2B_REMAINING2_ADAPTER4_PUBLIC_ASSETS_V1',
     ssh_receive_window_bytes=8388608,public_asset_delivery='PINNED_HTTPS_PREPARATION_ONLY_V1',owner_payload_maximum_bytes=64*1024**2,
     owner_payload_maximum_seconds=90,
     excluded_regions=[],
-    excluded_routes=[{'gpu':'NVIDIA RTX A6000','region':'US-TX-1'},{'gpu':'NVIDIA A40','region':'EU-SE-1'}],
+    excluded_routes=[{'gpu':'NVIDIA RTX A6000','region':'US-TX-1'}],
     cuda_socket_policy='UNIX_SEQPACKET_PASSIVE_BIND_LISTEN_NO_CONNECTIONS_V1',
     full_model_memory_admission='BOUNDED_ATTEMPT_PROVIDER_AND_VISIBLE_MEMORY_ONLY')
 OriginalState=minimum.State
@@ -39,8 +39,8 @@ original_choose=minimum.choose
 
 
 def choose(snapshot,now):
-    # Keep the create exclusion and avoid the most recently failed transport pair.
-    # This does not attribute a universal network fault to either region.
+    # Public bulk delivery materially changes the failed A40 SSH transport path.
+    # Keep the unrelated create exclusion; no regional reliability is inferred.
     routed=dict(snapshot,offers=[r for r in snapshot['offers'] if r['region'] not in CONTRACT['excluded_regions']
         and {'gpu':r['gpu'],'region':r['region']} not in CONTRACT['excluded_routes']])
     offer=original_choose(routed,now)

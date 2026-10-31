@@ -52,8 +52,11 @@ owner/watcher qualification must pass before a fresh single-use permit. Do not
 start while any E2B completion allocation is active, its independent cleanup is
 unresolved or its result has not been reviewed. Recheck actual balance, full
 inventory and fresh price at execution; the cumulative cap may block the proposal
-depending on actual E2B completion cost. Exclude A40/EU-SE-1 and A6000/US-TX-1
-consumed failed pairs without claiming a universal regional cause.
+depending on actual E2B completion cost. Retain the A6000/US-TX-1 failed-create
+pair exclusion. After E2B run41233521859 was rejected before any allocation,
+remove only the A40/EU-SE-1 transport exclusion: public bulk delivery materially
+changes the historical failing path. This does not prove provider throughput;
+fresh full qualification and the existing bounds still apply.
 
 Retain all20 assigned outcomes, including malformed, interrupted and unstarted
 slots. Apply the same frozen structural checks and criterion-level manual review;
