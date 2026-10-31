@@ -1,5 +1,39 @@
 # Backtrace working agreement
 
+## Post-E4B transfer failure (2026-10-31 UTC)
+
+E4B run 41210831659 failed at common runtime transfer to EU-SE-1, before any
+installation/CUDA/model output. Both controllers independently confirmed deletion;
+zero Pods/spend, autopay off and USD 2.4105707673 were observed at 14:59:29 UTC.
+Observed continuation spend is USD 0.4954733666, subject to final billing.
+The adapter scope now selects only CA-MTL-1 or US-TX-1, keeping all transfer,
+allocation and cleanup limits. This prospective route change is not proof of the
+timeout's underlying cause. Source e7964dbc137824652d348092699ae6f6d39df122 passed
+691 native tests and the numerical CPU update/save/reload control, but the changed
+route contract needs renewed exact-source qualification before its one paid start.
+No E4B repeat, merge, top-up or Augnes write is included. Continue to actual model
+and learning evidence under the owner's current delegation.
+
+## Tiny E2B adapter continuation (2026-10-31 UTC)
+
+Read `docs/small-model-adapter-feasibility-20261031.md`. The owner's continued
+authorization includes the plan's small update/save/reload feasibility work.
+Prepare and qualify four train-only updates plus the original 24 generations
+on `bt-001-e2b-adapter-20261031`, stacked on Draft #46. E4B actual run
+41210831659 is separate and must complete independent deletion before any new
+allocation. No permit exists for this adapter source until exact-source free
+qualification and an affordable fresh account/price observation are complete.
+
+Use the same owner/watcher with a shorter 2,200-second allocation-inclusive
+claim, USD 0.370 maximum projection and the remaining cumulative USD 1 cap.
+Preserve 300-second cleanup and 120-second export allowances. Training is four
+SGD updates on one rank-4 query adapter, with frozen base weights and train-only
+exact targets. Persist actual bytes, loss/gradient/change and save/reload evidence.
+Do not claim specialist learning from four updates; matched B2/S, fresh screening
+and untouched confirmation remain separate. No merge, top-up, overlapping GPU,
+Augnes write or production integration. Continue to the next evidence-supported
+step under the current delegation.
+
 ## Active E4B capacity scope (2026-10-31 UTC)
 
 Work on `bt-001-e4b-comparison-20261031`, stacked on Draft #45. Read

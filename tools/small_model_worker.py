@@ -22,6 +22,113 @@ def send(value):
     sys.stdout.buffer.flush()
 
 
+def adapter_feasibility(model, tokenizer, specification):
+    """Four train-only SGD updates on one query projection; implementation evidence."""
+    import base64
+    import math
+    import tempfile
+    import torch
+    from safetensors.torch import save_file, load_file
+    expected={'schema','rows','rank','steps','seed','learning_rate','maximum_tokens'}
+    if (set(specification)!=expected or specification['schema']!='tiny_lora_feasibility_v1'
+            or specification['rank']!=4 or specification['steps']!=4
+            or specification['seed']!=17 or specification['learning_rate']!=0.01
+            or specification['maximum_tokens']!=2048 or len(specification['rows'])!=4):
+        raise ValueError('fixed four-update feasibility contract required')
+    rows=specification['rows']; encoded=[]
+    device=next(model.parameters()).device
+    for row in rows:
+        if (set(row)!={'id','messages','answer'} or not re.fullmatch('[0-9a-f]{64}',row['id'])
+                or not isinstance(row['messages'],list) or not isinstance(row['answer'],str)):
+            raise ValueError('bounded training row required')
+        json.loads(row['answer'])
+        prompt=tokenizer.apply_chat_template(row['messages'],tokenize=True,return_dict=True,
+            add_generation_prompt=True,enable_thinking=False,truncation=False,padding=False)['input_ids']
+        answer=tokenizer.encode(row['answer'],add_special_tokens=False)+[106]
+        if not 0<len(prompt)<len(prompt)+len(answer)<=2048:
+            raise ValueError('training sequence overflow')
+        encoded.append((prompt,answer))
+    if len({r['id'] for r in rows})!=4:raise ValueError('distinct training inputs required')
+    model.eval();model.requires_grad_(False)
+    candidates=[(name,module) for name,module in model.named_modules()
+                if name.endswith('.q_proj') and isinstance(module,torch.nn.Linear)]
+    if not candidates:raise ValueError('linear query projection absent')
+    name,projection=candidates[-1]
+    rank=4
+    if 4*rank*(projection.in_features+projection.out_features)>450_000:
+        raise ValueError('bounded adapter exceeds artifact allowance')
+    torch.manual_seed(17)
+    class Delta(torch.nn.Module):
+        def __init__(self):
+            super().__init__();self.enabled=True
+            self.a=torch.nn.Parameter(torch.empty(rank,projection.in_features,device=device,dtype=torch.float32))
+            self.b=torch.nn.Parameter(torch.zeros(projection.out_features,rank,device=device,dtype=torch.float32))
+            torch.nn.init.kaiming_uniform_(self.a,a=math.sqrt(5))
+        def hook(self,module,args,output):
+            if not self.enabled:return output
+            update=torch.nn.functional.linear(torch.nn.functional.linear(args[0].float(),self.a),self.b)
+            return output+update.to(output.dtype)  # alpha/rank = 1, no dropout.
+    delta=Delta();handle=projection.register_forward_hook(delta.hook)
+    model.add_module('_backtrace_adapter',delta)
+    original={k:v.detach().clone() for k,v in delta.state_dict().items()}
+    def logits():
+        ids=torch.tensor([encoded[0][0]],device=device,dtype=torch.long)
+        with torch.no_grad():
+            return model(input_ids=ids,attention_mask=torch.ones_like(ids),
+                         use_cache=False,logits_to_keep=1).logits.detach().float().cpu()
+    before=logits();losses=[];gradients=[];started=time.monotonic()
+    if device.type=='cuda':torch.cuda.reset_peak_memory_stats()
+    for prompt,answer in encoded:
+        ids=torch.tensor([prompt+answer],device=device,dtype=torch.long)
+        labels=torch.tensor([[-100]*len(prompt)+answer],device=device,dtype=torch.long)
+        for parameter in delta.parameters():parameter.grad=None
+        loss=model(input_ids=ids,attention_mask=torch.ones_like(ids),labels=labels,use_cache=False).loss
+        if not torch.isfinite(loss):raise ValueError('nonfinite training loss')
+        loss.backward()
+        if any(p.grad is None or not torch.isfinite(p.grad).all() for p in delta.parameters()):
+            raise ValueError('missing or nonfinite adapter gradient')
+        norm=torch.nn.utils.clip_grad_norm_(delta.parameters(),1.0,error_if_nonfinite=True)
+        with torch.no_grad():
+            for parameter in delta.parameters():parameter.add_(parameter.grad,alpha=-0.01)
+        losses.append(float(loss.detach()));gradients.append(float(norm))
+    changed=[k for k,v in delta.state_dict().items() if not torch.equal(v,original[k])]
+    if not changed:raise ValueError('adapter did not change')
+    trained=logits();delta.enabled=False;disabled=logits();delta.enabled=True
+    if not torch.equal(before,disabled):raise ValueError('disabled adapter changed base behavior')
+    difference=float((trained-disabled).abs().max())
+    if not difference>0:raise ValueError('no observable adapter-on/off logit difference')
+    with tempfile.TemporaryDirectory(prefix='backtrace-adapter-') as directory:
+        path=Path(directory)/'adapter.safetensors'
+        save_file({k:v.detach().cpu().contiguous() for k,v in delta.state_dict().items()},str(path))
+        raw=path.read_bytes()
+        if len(raw)>524288:raise ValueError('adapter export too large')
+        restored=load_file(str(path),device='cpu')
+        if set(restored)!=set(original):raise ValueError('saved adapter key mismatch')
+        with torch.no_grad():
+            for parameter in delta.parameters():parameter.zero_()
+            for k,v in delta.state_dict().items():v.copy_(restored[k].to(device))
+    reloaded=logits()
+    if not torch.equal(trained,reloaded):raise ValueError('save/reload logits differ at zero tolerance')
+    if device.type=='cuda':torch.cuda.synchronize()
+    result={'status':'PASS_TINY_UPDATE_SAVE_RELOAD_ONLY','training_steps':4,'rank':rank,
+        'optimizer':'SGD','learning_rate':0.01,'seed':17,'target_module':name,
+        'trainable_parameters':sum(p.numel() for p in delta.parameters()),
+        'training_input_sha256':hashlib.sha256(canonical(specification)).hexdigest(),
+        'sequence_tokens':[len(p)+len(a) for p,a in encoded],
+        'supervised_tokens':[len(a) for p,a in encoded], 'losses':losses,'gradient_norms':gradients,
+        'changed_tensors':changed,'adapter_on_off_max_logit_difference':difference,
+        'disabled_base_max_logit_difference':0.0,'save_reload_max_logit_difference':0.0,
+        'before_first_token':int(before.argmax(-1).item()),'after_first_token':int(trained.argmax(-1).item()),
+        'seconds':time.monotonic()-started,'adapter_bytes':len(raw),
+        'adapter_sha256':hashlib.sha256(raw).hexdigest(),'adapter_safetensors_base64':base64.b64encode(raw).decode(),
+        'capability_claim':'NOT_ESTABLISHED',
+        **({'peak_allocated_bytes':torch.cuda.max_memory_allocated(),
+            'peak_reserved_bytes':torch.cuda.max_memory_reserved()} if device.type=='cuda' else {})}
+    # Keep the trained adapter enabled for the separately assigned generation.
+    for parameter in delta.parameters():parameter.grad=None
+    return result
+
+
 def cuda_check(job):
     """Actual single-device kernels; never treats import success as GPU success."""
     import torch
@@ -98,13 +205,21 @@ def main():
         if cuda_mode and any(p.device.type!='cuda' or p.device.index!=0 for p in model.parameters()):
             raise RuntimeError('CPU/meta/offloaded parameter found')
     if cuda_mode:torch.cuda.synchronize()
+    load_metrics=({'cuda':gpu,'load_seconds':time.monotonic()-load_started,
+        'load_peak_allocated_bytes':torch.cuda.max_memory_allocated(),
+        'load_peak_reserved_bytes':torch.cuda.max_memory_reserved()} if cuda_mode else {})
+    adaptation=None
+    if 'adapter_feasibility' in job:
+        if job['mode'] not in ('pretrained_cuda','random_fixture'):
+            raise ValueError('adapter requires a model and explicit bounded job')
+        adaptation=adapter_feasibility(model,tokenizer,job['adapter_feasibility'])
+    if cuda_mode:torch.cuda.synchronize()
     status = dict(line.split(':', 1) for line in Path('/proc/self/status').read_text().splitlines() if ':' in line)
     send({'ready': True, 'mode': job['mode'], 'uid': os.getuid(),
           'caps': int(status['CapEff'].strip(), 16), 'no_new_privs': status['NoNewPrivs'].strip(),
           'pid_namespace': os.readlink('/proc/self/ns/pid'), 'net_namespace': os.readlink('/proc/self/ns/net'),
-          **({'cuda':gpu,'load_seconds':time.monotonic()-load_started,
-              'load_peak_allocated_bytes':torch.cuda.max_memory_allocated(),
-              'load_peak_reserved_bytes':torch.cuda.max_memory_reserved()} if cuda_mode else {})})
+          **({'adapter_feasibility':adaptation} if adaptation else {}),
+          **load_metrics})
     count = 0
     while True:
         raw = sys.stdin.buffer.readline(65537)

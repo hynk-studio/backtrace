@@ -130,14 +130,14 @@ def choose(snapshot,now):
         if not r['stock_eligible'] or r.get('pricing_status')!='OBSERVED' or r['reported_gpu_gb']<40:continue
         # Nominal 24 GB products can report less than the fixed 24 GiB floor.
         compute=provider.money(r['compute_usd_per_hour']);hourly=compute+Decimal('.015')
-        maximum=hourly*Decimal(3000)/3600
-        if (not 0<=now-control.timestamp(r['observed_at'])<=300 or compute*Decimal(3000)/3600>Decimal('.90')
+        maximum=hourly*Decimal(CONTRACT['total_seconds'])/3600
+        if (not 0<=now-control.timestamp(r['observed_at'])<=300 or compute*Decimal(CONTRACT['total_seconds'])/3600>Decimal('.90')
                 or maximum>1 or balance-maximum<Decimal('.50')):continue
         choices.append((hourly,r))
     if not choices:raise ValueError('no fresh affordable >=40GB product meets the reported-24GiB hardware floor')
     hourly,row=min(choices,key=lambda p:(p[0],p[1]['gpu'],p[1]['region']))
     return dict(row,costs={'compute_per_hour':str(provider.money(row['compute_usd_per_hour'])),
-        'storage_per_hour':'.015','hourly_all_in_projection':str(hourly),'maximum_projection':str(hourly*Decimal(3000)/3600),
+        'storage_per_hour':'.015','hourly_all_in_projection':str(hourly),'maximum_projection':str(hourly*Decimal(CONTRACT['total_seconds'])/3600),
         'initial_balance':str(balance),'additional_cap':'1.00','credit_reserve':'.50'})
 
 
@@ -196,7 +196,7 @@ def check_claim(claim,state,run_id):
             or claim.get('actual') is not state.actual or claim.get('owner_boot')==claim.get('watch_boot')
             or not re.fullmatch('backtrace-small-minimum-[0-9a-f]{32}',claim.get('name',''))):
         raise StateError('exact source/role/resource claim required')
-    if state.actual and any(claim.get(k)!=v for k,v in {'total_seconds':3000,'cleanup_seconds':300,'poll_seconds':90,'unknown_create_seconds':90}.items()):
+    if state.actual and any(claim.get(k)!=v for k,v in {'total_seconds':CONTRACT['total_seconds'],'cleanup_seconds':CONTRACT['cleanup_seconds'],'poll_seconds':90,'unknown_create_seconds':90}.items()):
         raise StateError('paid deadline contract changed')
     if (life.finite(claim['requested_at'])<=0 or
             any(not re.fullmatch('[0-9a-f]{64}',claim[k]) for k in ('owner_boot','watch_boot'))):
@@ -206,7 +206,7 @@ def check_claim(claim,state,run_id):
 
 def work_alarm(seconds):
     """Interrupt blocked owner work at the remaining allocation work deadline."""
-    if not 0<life.finite(seconds)<=2580:raise TimeoutError('no hardware work allowance remains')
+    if not 0<life.finite(seconds)<=CONTRACT['work_seconds']:raise TimeoutError('no hardware work allowance remains')
     if signal.getitimer(signal.ITIMER_REAL)!=(0.0,0.0):raise ValueError('unshared owner deadline timer required')
     def expired(signum,frame):raise TimeoutError('allocation-inclusive work deadline')
     previous=signal.signal(signal.SIGALRM,expired)
@@ -320,7 +320,7 @@ def owner(state,api,rid,me,prepared=None):
             'owner_boot':me['boot_sha256'],'watch_boot':peer['boot_sha256'],'contract_sha256':life.digest(CONTRACT),
             'name':request['name'],'gpu':offer['gpu'],'region':offer['region'],'costs':offer['costs'],
             'request_sha256':life.digest(request),'requested_at':time.time(),
-            'total_seconds':3000 if state.actual else 180,'cleanup_seconds':300 if state.actual else 45,
+            'total_seconds':CONTRACT['total_seconds'] if state.actual else 180,'cleanup_seconds':CONTRACT['cleanup_seconds'] if state.actual else 45,
             'poll_seconds':90 if state.actual else 2,'unknown_create_seconds':90 if state.actual else 10}
         state.write('claim',claim);result['claim']=claim;sha=beat(state,'heartbeat',claim)
         end=time.monotonic()+30
@@ -332,7 +332,7 @@ def owner(state,api,rid,me,prepared=None):
         if state.actual:
             validate_permit(permit,state.source,time.time());choose(snap,time.time())
             if time.time()-claim['requested_at']>=60 or api.list():raise ValueError('claim expired or account no longer idle')
-            clear_alarm=work_alarm(2580-(time.time()-claim['requested_at']))
+            clear_alarm=work_alarm(CONTRACT['work_seconds']-(time.time()-claim['requested_at']))
         possible=True;result['provider_create_requests']=1 if state.actual else 0
         result['create_attempted']=True
         created=api.create(request)  # Exactly one call. No retries on any response.
@@ -354,7 +354,7 @@ def owner(state,api,rid,me,prepared=None):
         wall0=time.time();mono0=time.monotonic();last=wall0;endpoint_hash=None
         while True:
             now=time.time();elapsed=now-claim['requested_at']
-            if now<last or elapsed>=2580 or time.monotonic()-mono0>=2580-(wall0-claim['requested_at']):raise TimeoutError('allocation-inclusive work stop')
+            if now<last or elapsed>=CONTRACT['work_seconds'] or time.monotonic()-mono0>=CONTRACT['work_seconds']-(wall0-claim['requested_at']):raise TimeoutError('allocation-inclusive work stop')
             if not fresh(state.read('watch-heartbeat'),claim,time.time(),240):raise StateError('independent watcher heartbeat lost')
             require_run(state,rid);pod=api.get(pod_id)
             if not resource_matches(pod,claim):raise StateError('assigned hardware or price mismatch')
