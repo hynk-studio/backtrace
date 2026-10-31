@@ -1,5 +1,28 @@
 # Backtrace working agreement
 
+## Conditional twenty-case E4B public-asset comparison (2026-10-31 UTC)
+
+Read docs/small-model-e4b-screening-20261031.md. Keep all20 original E2B messages
+and the same4096/768 per-request limits,60-second timeout and zero training.
+Retain all prior18 responses and failed completion records. E4B is a separate
+capacity comparison; the earlier failed24-slot E4B run remains unchanged.
+
+Reuse pinned public preparation from the direct E2B candidate: authenticated SSH
+owner files64MiB/90 seconds,600-second runtime and960-second model delivery,
+exact public hashes/readback, offline install and all worker isolation controls.
+The free ordinary container must receive/verify/delete the complete pinned E4B
+checkpoint. No model or paid start before fresh full native/container/input and
+owner/watcher qualification. Wait for every E2B allocation's independent cleanup
+and review its actual result before starting any E4B allocation.
+
+Review/start/state:bt-001-e4b-screen-20261031 / bt-001-e4b-screen-start-20261031 /
+bt-001-e4b-screen-state-20261031; namespace:e4b-screen-paid-20261031. Prospective
+one-allocation capUSD0.51, continuationUSD1.80 and credit floorUSD1.1060441339;
+3000/2580/300/120 second total/work/cleanup/export bounds. Current balance/price/
+inventory and a fresh single-use exact-source permit remain mandatory. The cap
+may block the proposal after actual E2B spending. No top-up, overlap, automatic
+retry, merge, Augnes write or model-benefit claim from infrastructure success.
+
 ## Fixed E2B completion through pinned public preparation (2026-10-31 UTC)
 
 Read docs/small-model-public-delivery-20261031.md. The consumed all-SSH completion
