@@ -1,6 +1,6 @@
 {
-  "schema": "augnes_retrospective_screening_draft_v1",
-  "status": "DRAFT_NOT_EXECUTED",
+  "schema": "augnes_retrospective_screening_v1",
+  "status": "FROZEN_BEFORE_MODEL_EXECUTION",
   "limitations": [
     "Twenty distinct issue episodes, with shared source/problem families; not twenty proven statistically independent observations.",
     "Author-selected retrospective descriptions after reading later issue histories; not blinded, held-out or prospective.",

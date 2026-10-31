@@ -1,0 +1,149 @@
+{
+  "source_repository": "hynk-studio/augnes",
+  "public_repository": true,
+  "retrieved_date_utc": "2026-10-31",
+  "historical_timestamp_attestation": false,
+  "purpose": "Retain exact issue bodies used to author the retrospective packets; never delivered to the model.",
+  "issues": [
+    {
+      "issue": 1457,
+      "url": "https://github.com/hynk-studio/augnes/issues/1457",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1457.json",
+      "file_sha256": "29eaf54642be69849c1ced06b7e8321cab98de6a1be5235028b4dfc4da3105f2",
+      "body_sha256": "69e2a446af8f7ce3b9d62aa6344cef2390763a5a0928f1ffbeab79879bf7c2be"
+    },
+    {
+      "issue": 1436,
+      "url": "https://github.com/hynk-studio/augnes/issues/1436",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1436.json",
+      "file_sha256": "f83c2a70f269e6424b45b94177049b2742b3415fcb4206b8ddabd96e2c49509a",
+      "body_sha256": "d323f80e78f73cb9a16f489e43b05658d41794feb45d7149342adf3253843f7c"
+    },
+    {
+      "issue": 1405,
+      "url": "https://github.com/hynk-studio/augnes/issues/1405",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1405.json",
+      "file_sha256": "f82c8b214370418d66a13bd0ed1c16233bc581704f29c1d602030fb88a11b1c8",
+      "body_sha256": "4c41227d0b8a62b93eabd56ce28dd1e366da0a871194f026da5396a6106251fb"
+    },
+    {
+      "issue": 1347,
+      "url": "https://github.com/hynk-studio/augnes/issues/1347",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1347.json",
+      "file_sha256": "ea4e180b18cd3d2767c14dcc4f76e3516191472826f185bb0713a26d923b0466",
+      "body_sha256": "4812d1bed7705aa9fa2b751cb99d6f146570256299e5fe2d324a2786d5e0ac0d"
+    },
+    {
+      "issue": 1448,
+      "url": "https://github.com/hynk-studio/augnes/issues/1448",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1448.json",
+      "file_sha256": "8c6605bda580d96aeb7f4eeaef3f79dac2590379d8f536086f8de40f22442b39",
+      "body_sha256": "09229739044d5e81f838502e4a27035419f858755998cee22ee90136362120bb"
+    },
+    {
+      "issue": 1438,
+      "url": "https://github.com/hynk-studio/augnes/issues/1438",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1438.json",
+      "file_sha256": "3778f11dbabb3480d58218a03d2dadbb8c2aaf8ca0fb3c2ed6f0028bb4b32232",
+      "body_sha256": "91088256b20e22d5fcdcd425f1794d2f20607b9986f2e4b2f093ac0057dbca7e"
+    },
+    {
+      "issue": 1420,
+      "url": "https://github.com/hynk-studio/augnes/issues/1420",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1420.json",
+      "file_sha256": "21293400b7b95080a9a47e74e9e9e20d29a667791c82000022ecdf360290c0ac",
+      "body_sha256": "8e6be39d9457d77dd481d3331c68f3988c5643944af048a668ea858a5028e596"
+    },
+    {
+      "issue": 1408,
+      "url": "https://github.com/hynk-studio/augnes/issues/1408",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1408.json",
+      "file_sha256": "2b3470e39a98c505d3796e124b633941f642feca14938432f8140452f25590e8",
+      "body_sha256": "7b0fd341471327571b5492aa6cf99b6cb370ca59cf843f8cf495ea24212131ea"
+    },
+    {
+      "issue": 1397,
+      "url": "https://github.com/hynk-studio/augnes/issues/1397",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1397.json",
+      "file_sha256": "6eff61d9772615fcd22efe9b59fd6ada9bb1ad34ab0b37a2fe30c4de8de31024",
+      "body_sha256": "4d857e5d87d3c71920adc6673c8ff43fbbb0ff261685c1897162b1f64745d6c8"
+    },
+    {
+      "issue": 1393,
+      "url": "https://github.com/hynk-studio/augnes/issues/1393",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1393.json",
+      "file_sha256": "e3ad8bd1d5573a641a1377b384d243f307d057b8bdee127790c5c9d058a6a39b",
+      "body_sha256": "6bad166a52c0be57f855c4f22eafbd1ea9f5b80605dc5441fd6b41f54271a772"
+    },
+    {
+      "issue": 1369,
+      "url": "https://github.com/hynk-studio/augnes/issues/1369",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1369.json",
+      "file_sha256": "f7db6334f068b0301690368921300c0846a875067bf4377ff6eca8980f75e146",
+      "body_sha256": "4ef13d0791d4fefa2a693d3f2fd924e8adde8b893602db3865c9731dc2f761ae"
+    },
+    {
+      "issue": 1350,
+      "url": "https://github.com/hynk-studio/augnes/issues/1350",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1350.json",
+      "file_sha256": "1d8e84294fcb9e4ff0213bdf597eeb068db605510dee6890b43f7dce1c2efa38",
+      "body_sha256": "abf1805770614ccf97dcfae3d6e815a21ae34b1e834cf7ea52ef550a2d650653"
+    },
+    {
+      "issue": 1339,
+      "url": "https://github.com/hynk-studio/augnes/issues/1339",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1339.json",
+      "file_sha256": "88e7c700d44667b97af11916c2e603528a26c0a453f39182260a4a16e9c9296e",
+      "body_sha256": "4d09cafe13166276bf2d9b54c900ff6a759484d04346a3e3abe46f6a0cd92433"
+    },
+    {
+      "issue": 1337,
+      "url": "https://github.com/hynk-studio/augnes/issues/1337",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1337.json",
+      "file_sha256": "8b8a28513895aa0e0d52aab8dc7ad7103733821da209a121b17e1bb3bf035b62",
+      "body_sha256": "6016d29ffb72d885f79891ec06c832e36b3b047b11911533466220e0e285b875"
+    },
+    {
+      "issue": 1329,
+      "url": "https://github.com/hynk-studio/augnes/issues/1329",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1329.json",
+      "file_sha256": "1e6423282e002cced099459afa635f39cb99c21672e9ad25fa86160c44afbb57",
+      "body_sha256": "fbef2110ffeaf2b4ffb9218cc39165538f6e14c9c6ce0f7e83e1f7c102df1e7e"
+    },
+    {
+      "issue": 1326,
+      "url": "https://github.com/hynk-studio/augnes/issues/1326",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1326.json",
+      "file_sha256": "7f4b6284436489a7830c2c029e776d33f9d01086b02c53e2693dc817fa89b33b",
+      "body_sha256": "9992fd8ac36d4059dda8d7c585dcc21a7ec487d2f6473dda560ea52ff13210a4"
+    },
+    {
+      "issue": 1305,
+      "url": "https://github.com/hynk-studio/augnes/issues/1305",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1305.json",
+      "file_sha256": "176f44b52d0938a109bce85edd6e4905fda83b25e1c458d7d66db6d0f541abcc",
+      "body_sha256": "445fe44800fa850843ec9e778276cedff6ba9a8a0a008fee602fd66c84aabed5"
+    },
+    {
+      "issue": 1274,
+      "url": "https://github.com/hynk-studio/augnes/issues/1274",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1274.json",
+      "file_sha256": "c5ed34a0798715a0884e2444b490e6707097a5c681c84d983e43f300d0f0db4b",
+      "body_sha256": "2a3eee9a466753d24082c2d4b3ffb3fb2a3e85d4b86234ef35b0938616ef8633"
+    },
+    {
+      "issue": 1278,
+      "url": "https://github.com/hynk-studio/augnes/issues/1278",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1278.json",
+      "file_sha256": "2cec79ce03b055ef7b7c579533c3ba48852e9edf22d0be80da47319b7ac6e662",
+      "body_sha256": "7028fdf9f8b5dba39e47a839bcfc88c68326e8b523d0945f54f82cbf0420a62d"
+    },
+    {
+      "issue": 1316,
+      "url": "https://github.com/hynk-studio/augnes/issues/1316",
+      "path": "docs/evidence/augnes-screening-sources-20261031/1316.json",
+      "file_sha256": "233cff157584f637658ea396ef895371bd2ac1ec02edcc03e0d0594561a19866",
+      "body_sha256": "c64943365383ffbdbb44531718c10010dcff5155b1e2500d2d7d37de3892b283"
+    }
+  ]
+}
