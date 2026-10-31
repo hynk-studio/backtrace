@@ -1,5 +1,29 @@
 # Backtrace working agreement
 
+## Fixed E2B completion through pinned public preparation (2026-10-31 UTC)
+
+Read docs/small-model-public-delivery-20261031.md. The consumed all-SSH completion
+failed before runtime/model. Both cleanup proofs and zero-Pod inventory are
+retained. Continue with unchanged two screening inputs, four train-only updates
+and one original post-update generation through a new versioned transport.
+
+Only already public, hash-pinned wheel/tokenizer/model bytes may use trusted
+preparation HTTPS. Owner-created files remain authenticated SSH,64MiB/90 seconds;
+runtime/model each600 seconds. Preserve offline installation, worker network and
+credential denial, all hardware/identity controls, raw evidence and independent
+cleanup. Full public runtime and full E2B checkpoint receipt/readback/deletion
+must pass free ordinary-container qualification first. Never run this transport
+inside the isolated model worker or give it provider credentials.
+
+New review/start/state:bt-001-e2b-direct-20261031 / bt-001-e2b-direct-start-20261031 /
+bt-001-e2b-direct-state-20261031; namespace:e2b-direct-paid-20261031. Under continued
+delegation within the acceptedUSD10 wallet, prospectively cap one allocation at
+USD0.47, continuationUSD1.45 and projected credit floorUSD1.4560441339. Retain
+2020/1600/300/120 second bounds, fresh source-bound qualification/permit and live
+account/price/inventory admission. Exclude A40/EU-SE-1 and A6000/US-TX-1 pairs.
+No automatic retry, top-up, overlap, merge or Augnes write. Preserve all historical
+records. E4B remains a separate local candidate; feasibility is not model benefit.
+
 ## Consumed E2B completion transport failure (2026-10-31 UTC)
 
 Read docs/small-model-completion-result-20261031.md. Run41229949374 consumed
