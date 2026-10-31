@@ -71,12 +71,15 @@ def review(packet,rubric,collection):
     rows=[inspect(r,c,rubric['cases'][c['id']]) for r,c in zip(collection['records'],packet['cases'])]
     return {'schema':'augnes_screening_descriptive_checks_v1','assigned':20,
         'author_defined_families':len({c['family'] for c in packet['cases']}),
+        'constant_label_membership_controls':dict(Counter(
+            label for c in packet['cases'] for label in rubric['cases'][c['id']]['acceptable_decisions'])),
         'collector_coverage':dict(Counter(r['collector_status'] for r in rows)),
         'strict_json_objects':sum(r['strict_json_object'] for r in rows),
         'explicit_contract_checks_pass':sum(r['explicit_contract_checks_pass'] for r in rows),
         'rows':rows,'limitations':packet['limitations']+[
             'Reference IDs verify existence only, not whether the cited fact supports the claim.',
             'An acceptable decision enum alone is not correct reasoning or useful added value.',
+            'Always choosing LOCAL_FIX is in the retrospective acceptable set for 18/20 cases; label membership is highly imbalanced.',
             'This report does not repair fences, omitted fields or malformed responses.',
             'No aggregate semantic accuracy, effect size or workflow benefit is inferred.']}
 
