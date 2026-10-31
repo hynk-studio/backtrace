@@ -121,3 +121,21 @@ snapshot is a planning observation, not availability or a guaranteed bill.
 This final amendment supersedes the earlier 2,200-second/0.370/two-region draft
 numbers above; all 44 requests, four updates and scientific controls are unchanged.
 No paid permit/start has been created. The final operational source must qualify.
+
+## Immediate failure metadata, without changing cleanup
+
+Paid source `d0ab1cbc2548c69425d9c97ab697c0cecd89392d` was qualified by
+41214688322 and consumed its single-use start in run 41215557845. That source,
+start, permit and state remain immutable. The review continuation records only
+the local exception type and, for a ProviderError, the numeric HTTP status in
+`done.json` before cleanup. Arbitrary exception text, response bodies, credentials
+and URLs are excluded from that early state record. This addresses the observed
+delay in diagnosing an attempt with no acknowledged resource ID.
+
+The full unknown-create reconciliation window, independent watcher and one-create
+limit are unchanged. A status code is not proof that no resource was created or
+that capacity caused the failure. The new focused regression verifies metadata
+is present before reconciliation, the failure body stays absent from state, the
+claim digest matches, no worker starts, one create is attempted, and cleanup is
+still called with `possible_create=True`. All 18 minimum-controller tests pass
+locally. This source change does not authorize another allocation.

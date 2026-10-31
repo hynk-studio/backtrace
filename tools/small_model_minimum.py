@@ -387,11 +387,19 @@ def owner(state,api,rid,me,prepared=None):
         import traceback
         result.update(status='FAIL',error_type=type(e).__name__,error=str(e)[:700],
             frames=[{'file':Path(f.filename).name,'function':f.name,'line':f.lineno} for f in traceback.extract_tb(e.__traceback__)][-8:])
+        # Publish only local exception metadata before potentially long unknown-
+        # create reconciliation. Never copy arbitrary messages/provider bodies
+        # into durable state, and never use this diagnostic to shorten cleanup.
+        result['failure']={'type':type(e).__name__}
+        if isinstance(e,control.ProviderError) and e.http_status is not None:
+            result['failure']['http_status']=e.http_status
     finally:
         if clear_alarm:clear_alarm()
         prior.stop(process)
         if claim:
-            with contextlib.suppress(Exception):state.write('done',{'claim_sha256':life.digest(claim),'provider_create_requests':int(possible),'at':time.time()})
+            done={'claim_sha256':life.digest(claim),'provider_create_requests':int(possible),'at':time.time()}
+            if 'failure' in result:done['failure']=result['failure']
+            with contextlib.suppress(Exception):state.write('done',done)
             result['cleanup']=prior.reconcile(api,claim,pod_id,possible_create=possible)
             with contextlib.suppress(Exception):state.write('owner-cleanup',result['cleanup'])
             if result['cleanup']['status'] not in ('DELETED','NO_RESOURCE_OBSERVED'):result['status']='CLEANUP_UNRESOLVED'

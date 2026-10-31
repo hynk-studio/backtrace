@@ -145,7 +145,7 @@ class MinimumTests(unittest.TestCase):
         self.assertEqual(len(observations),1)
         self.assertEqual(api.create.call_count,1)
 
-    def run_paid_owner_fixture(self,metadata,*,running=False):
+    def run_paid_owner_fixture(self,metadata,*,running=False,create_error=None):
         """Execute the owner state machine with delayed provider snapshots, no I/O."""
         start=time.time();clock=[start];records={};spawn_times=[]
         state=mock.Mock(source=SOURCE,namespace='minimum-paid-20261027',actual=True)
@@ -164,7 +164,7 @@ class MinimumTests(unittest.TestCase):
             return (records[name],'d'*40) if name in records else None
         state.read.side_effect=read;state.write.side_effect=write
         api=mock.Mock();api.list.return_value=[]
-        api.create.side_effect=lambda r:{'id':'owned','name':r['name']}
+        api.create.side_effect=create_error or (lambda r:{'id':'owned','name':r['name']})
         samples=iter(metadata);last=[None]
         def get(pod_id):
             last[0]=next(samples,last[0]);c=records['claim']
@@ -175,6 +175,16 @@ class MinimumTests(unittest.TestCase):
         api.get.side_effect=get
         def sleep(seconds):clock[0]+=seconds
         process=mock.Mock(returncode=0);process.poll.return_value=None if running else 0
+        def reconcile_result(*args,**kwargs):
+            if create_error:
+                self.assertIsNone(args[2])
+                self.assertTrue(kwargs['possible_create'])
+                self.assertEqual(records['done']['provider_create_requests'],1)
+                self.assertEqual(records['done']['failure'],
+                    {'type':'ProviderError','http_status':400})
+                self.assertNotIn('private-body-fixture',json.dumps(records['done']))
+                self.assertEqual(records['done']['claim_sha256'],life.digest(records['claim']))
+            return {'status':'DELETED','absence_reads':2}
         with tempfile.TemporaryDirectory() as td:
             root=Path(td);(root/'keys').mkdir();(root/'keys/initializer.json').write_text('{}')
             def launch(argv,**kwargs):
@@ -192,12 +202,19 @@ class MinimumTests(unittest.TestCase):
                     mock.patch.object(m.time,'sleep',side_effect=sleep),\
                     mock.patch.object(m.subprocess,'Popen',side_effect=launch) as spawn,\
                     mock.patch.object(cleanup,'stop'),\
-                    mock.patch.object(cleanup,'reconcile',return_value={'status':'DELETED','absence_reads':2}) as reconcile:
+                    mock.patch.object(cleanup,'reconcile',side_effect=reconcile_result) as reconcile:
                 result=m.owner(state,api,'123',{'boot_sha256':'a'*64},root)
             reconcile.assert_called_once()
         self.assertEqual(api.create.call_count,1)
         self.assertEqual(result['cleanup']['status'],'DELETED')
         return result,spawn,spawn_times
+
+    def test_create_error_metadata_precedes_full_unknown_create_cleanup_without_retry(self):
+        result,spawn,times=self.run_paid_owner_fixture([],create_error=
+            m.control.ProviderError('private-body-fixture',http_status=400))
+        self.assertEqual(result['status'],'FAIL')
+        self.assertEqual(result['failure'],{'type':'ProviderError','http_status':400})
+        spawn.assert_not_called();self.assertEqual(times,[])
 
     @staticmethod
     def ready_metadata():
