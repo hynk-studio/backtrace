@@ -1,174 +1,105 @@
-"""CPU protocol/decision controls; none of these are observed CUDA results."""
-import copy
-import itertools
 import json
 import os
 from pathlib import Path
-import shutil
-import subprocess
-import sys
 import tempfile
+import time
 import unittest
 from unittest import mock
 
-from tools import small_model_minimum_remote as remote
-from tools import small_model_minimum_worker as worker
+from tools import small_model_minimum as minimum
+from tools import small_model_minimum_diagnostic as diagnostic
+
+SOURCE='a'*40
 
 
-def observations(passed=(True, True, False)):
-    common = {'limits': {'RLIMIT_CORE': [0, 0]}, 'python': '3.12.14',
-              'executable': '/opt/backtrace/venv/bin/python', 'cuda_visible_devices': 'GPU-fixture',
-              'environment_sha256': 'fixture', 'Groups': '', 'NoNewPrivs': '1',
-              'CapEff': '0', 'CapPrm': '0', 'CapBnd': '0', 'Seccomp': '2'}
-    rows = {}
-    for case, success in zip('ABC', passed):
-        uid = '0' if case == 'A' else '65532'
-        identity = dict(common, Uid=' '.join([uid]*4), Gid=' '.join([uid]*4),
-                        Seccomp_filters='2' if case == 'C' else '1')
-        rows[case] = {'exit_code': 0, 'before': {'case': case, 'phase': 'BEFORE_CUDA', 'identity': identity},
-                     'result': {'case': case, 'phase': 'RESULT', 'cuda_libraries': {},
-                                'status': 'PASS_ACTUAL_CUDA_KERNELS' if success else 'FAIL'}}
-    return rows
+def permit():
+    now=time.time()
+    return {'source_sha':SOURCE,'contract_sha256':minimum.life.digest(diagnostic.CONTRACT),
+        'authorization_id':diagnostic.AUTHORIZATION_ID,'namespace':diagnostic.PAID_NAMESPACE,
+        'instruction':diagnostic.INSTRUCTION,'mode':'OWNER_APPROVED_CUDA_COMPARISON',
+        'single_use':True,'automatic_retry':False,'top_up_allowed':False,
+        'additional_cap_usd':'1.00','allocation_inclusive_seconds':3000,
+        'weight_download_bytes':0,'pretrained_requests':0,'training_steps':0,
+        'qualification_run_id':'123','approved_at':now-1,'expires_at':now+3600}
 
 
-class DiagnosticTests(unittest.TestCase):
-    @unittest.skipUnless(sys.platform == 'linux' and os.geteuid() == 0, 'root Linux boundary control')
-    def test_real_child_changes_only_the_requested_identity_and_filter_boundary(self):
-        """Real processes/kernel controls with a visibly authored CPU payload."""
-        if list(Path('/dev').glob('nvidia[0-9]*')):
-            self.skipTest('CPU-only control')
-        source = Path(__file__).resolve().parents[1]/'tools'
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory); root.chmod(0o755)
-            shutil.copyfile(source/'small_model_container_worker.py', root/'launcher.py')
-            (root/'job.json').write_text(json.dumps({'gpu': {'uuid': 'GPU-fixture', 'device_basename': 'nvidia999999'}}))
-            (root/'worker.py').write_text('''import socket
-def cuda_check(config):
-    try:
-        connection=socket.socket();connection.close();code=0
-    except OSError as exc:code=exc.errno
-    raise RuntimeError('AUTHORED_CPU_SOCKET_ERRNO='+str(code))
-''')
-            for path in root.iterdir(): path.chmod(0o444)
-            program = '''import importlib.util,os,sys
-from pathlib import Path
-spec=importlib.util.spec_from_file_location('minimum',sys.argv[1])
-w=importlib.util.module_from_spec(spec);spec.loader.exec_module(w)
-w.ROOT=Path(sys.argv[2])
-w.Path=lambda p: w.ROOT/'job.json' if str(p)=='/job.json' else Path(p)
-w.child(os.getppid(),sys.argv[3])
-'''
-            rows = {}
-            for case in 'ABC':
-                completed = subprocess.run([sys.executable, '-I', '-c', program,
-                    str(source/'small_model_minimum_worker.py'), str(root), 'diagnostic-'+case.lower()],
-                    capture_output=True, text=True, timeout=10)
-                self.assertEqual(completed.returncode, 0, completed.stderr)
-                before = json.loads(next(line.removeprefix('BACKTRACE_CUDA_BEFORE ') for line in
-                    completed.stderr.splitlines() if line.startswith('BACKTRACE_CUDA_BEFORE ')))
-                result = json.loads(completed.stdout)
-                self.assertEqual(result['status'], 'FAIL')
-                expected_errno = 1 if case == 'C' else 0
-                self.assertEqual(result['error'], 'AUTHORED_CPU_SOCKET_ERRNO='+str(expected_errno))
-                rows[case] = {'before': before, 'result': result, 'exit_code': 0}
-            self.assertEqual(remote.diagnostic_decision(rows, False), 'CPU_CONTROLS_ONLY')
+class DiagnosticScopeTests(unittest.TestCase):
+    def test_prior_permits_and_widened_paid_scopes_are_rejected(self):
+        p=permit();self.assertIs(diagnostic.validate_permit(p,SOURCE,time.time()),p)
+        for k,v in [('mode','OWNER_APPROVED_HARDWARE_MINIMUM'),('source_sha','b'*40),
+                ('namespace','minimum-retry-paid-20261027'),('automatic_retry',True),
+                ('single_use',1),('training_steps',False),('pretrained_requests',1),
+                ('weight_download_bytes',1),('additional_cap_usd','2.00'),
+                ('allocation_inclusive_seconds',3001),('top_up_allowed',True),
+                ('approved_at',float('nan')),('expires_at',time.time()-1)]:
+            with self.subTest(key=k),self.assertRaises(ValueError):
+                diagnostic.validate_permit(dict(p,**{k:v}),SOURCE,time.time())
 
-    def test_all_eight_patterns_have_conservative_predeclared_decisions(self):
-        expected = {(False, False, False): 'COMMON_PROVIDER_RUNTIME_PATH_STOP',
-                    (True, False, False): 'WORKER_IDENTITY_LIMIT_LAYER',
-                    (True, True, False): 'ADDED_FILTER_IMPLICATED_SYSCALL_UNRESOLVED',
-                    (True, True, True): 'CUDA_PATH_WORKS_FAILURE_NOT_REPRODUCED'}
-        for pattern in itertools.product((False, True), repeat=3):
-            with self.subTest(pattern=pattern):
-                self.assertEqual(remote.diagnostic_decision(observations(pattern), True),
-                    expected.get(pattern, 'NONMONOTONIC_INCONCLUSIVE_STOP_SAME_ROUTE'))
-                self.assertEqual(remote.diagnostic_decision(observations(pattern), False), 'CPU_CONTROLS_ONLY')
+    def test_new_state_never_reads_or_writes_a_consumed_scope(self):
+        original=(minimum.STATE_BRANCH,minimum.CONTRACT,minimum.REMOTE_MODULE,minimum.SUCCESS_STATUS)
+        with diagnostic.configured():
+            state=minimum.State('fixture',SOURCE,True)
+            with mock.patch.object(state,'request',return_value=None) as request:
+                state.initialize();state.read('authorization')
+            self.assertEqual(request.call_args_list[0].args[1],'/git/ref/heads/'+diagnostic.STATE_BRANCH)
+            self.assertIn('/minimum/'+diagnostic.PAID_NAMESPACE+'/',request.call_args_list[2].args[1])
+            self.assertEqual(minimum.REMOTE_MODULE,'tools.small_model_minimum_diagnostic')
+            self.assertEqual(minimum.SUCCESS_STATUS,'DIAGNOSTIC_RECORDED')
+            with self.assertRaises(ValueError):state.write('authorization',{})
+            with self.assertRaises(ValueError):state.write('claim',{},'b'*40)
+        self.assertEqual((minimum.STATE_BRANCH,minimum.CONTRACT,minimum.REMOTE_MODULE,minimum.SUCCESS_STATUS),original)
 
-    def test_invalid_boundary_or_changed_runtime_cannot_implicate_filter(self):
-        for field, value in [('Uid', '0 0 0 0'), ('Gid', '0 0 0 0'), ('Groups', '0'),
-                             ('CapEff', '1'), ('NoNewPrivs', '0'), ('Seccomp_filters', '1'),
-                             ('python', 'different'), ('limits', {}), ('environment_sha256', 'different')]:
-            rows = observations(); rows['C']['before']['identity'][field] = value
-            with self.subTest(field=field):
-                self.assertEqual(remote.diagnostic_decision(rows, True), 'INCOMPARABLE_STOP_SAME_ROUTE')
+    def test_only_the_matching_successful_free_source_qualifies(self):
+        state=mock.Mock(source=SOURCE,actual=True)
+        row={'head_sha':SOURCE,'head_branch':diagnostic.REVIEW,'run_attempt':1,
+            'event':'push','status':'completed','conclusion':'success','path':diagnostic.WORKFLOW}
+        state.run.return_value=row;diagnostic.require_qualification(state,permit())
+        for k,v in [('head_sha','b'*40),('run_attempt',2),('head_branch',diagnostic.START),
+                ('conclusion','failure'),('path','.github/workflows/small-model-minimum-retry-cpu.yml')]:
+            state.run.return_value=dict(row,**{k:v})
+            with self.subTest(key=k),self.assertRaises(ValueError):diagnostic.require_qualification(state,permit())
+        live=dict(row,head_branch=diagnostic.START,status='in_progress')
+        state.run.return_value=live;diagnostic.require_run(state,'123')
+        state.run.return_value=dict(live,run_attempt=2)
+        with self.assertRaises(ValueError):diagnostic.require_run(state,'123')
 
-    def test_eof_timeout_and_nonzero_exit_are_not_cuda_failure_evidence(self):
-        for change in ('missing', 'exception', 'exit', 'incomplete', 'unknown_status'):
-            rows = observations()
-            if change == 'missing': del rows['C']
-            if change == 'exception': rows['C']['error'] = {'type': 'TimeoutError'}
-            if change == 'exit': rows['C']['exit_code'] = 137
-            if change == 'incomplete': del rows['C']['before']
-            if change == 'unknown_status': rows['C']['result']['status'] = 'INCOMPLETE'
-            with self.subTest(change=change):
-                self.assertEqual(remote.diagnostic_decision(rows, True), 'INCONCLUSIVE_STOP_SAME_ROUTE')
+    def test_absent_current_authorization_stops_before_provider_or_preparation(self):
+        p=permit();p['authorization_id']='hardware-minimum-retry-20261027-one'
+        env={'GITHUB_REF_NAME':diagnostic.START,'GITHUB_RUN_ATTEMPT':'1','GITHUB_SHA':SOURCE,
+             'GITHUB_RUN_ID':'123','GITHUB_TOKEN':'fixture'}
+        previous=os.umask(0o077)
+        try:
+            with mock.patch.dict(os.environ,env),mock.patch.object(diagnostic.State,'initialize'),\
+                    mock.patch.object(diagnostic.State,'read',return_value=(p,'b'*40)),\
+                    mock.patch.object(diagnostic,'require_run'),\
+                    mock.patch.object(minimum.control,'RunpodAPI') as api,\
+                    mock.patch.object(diagnostic.remote,'prepare') as prepare:
+                with self.assertRaises(ValueError):diagnostic.main('owner',True)
+                api.assert_not_called();prepare.assert_not_called()
+        finally:os.umask(previous)
 
-    def test_missing_post_failure_mapping_is_not_a_starting_environment_confound(self):
-        rows = observations()
-        rows['B']['result']['cuda_libraries'] = {'/lib/libcuda.so.1': {'sha256': 'fixed'}}
-        self.assertEqual(remote.diagnostic_decision(rows, True), 'ADDED_FILTER_IMPLICATED_SYSCALL_UNRESOLVED')
-        rows['C']['result']['cuda_libraries'] = {'/lib/libcuda.so.1': {'sha256': 'changed'}}
-        self.assertEqual(remote.diagnostic_decision(rows, True), 'INCOMPARABLE_STOP_SAME_ROUTE')
+    def test_consumed_claim_cannot_create_another_gpu(self):
+        state=mock.Mock(source=SOURCE,actual=True);state.read.return_value=({'existing':True},'b'*40)
+        api=mock.Mock()
+        with tempfile.TemporaryDirectory() as td,diagnostic.configured(),\
+                mock.patch.object(minimum,'ROOT',Path(td)),mock.patch.object(minimum,'sources',return_value={}):
+            result=minimum.owner(state,api,'123',{'boot_sha256':'a'*64})
+        self.assertEqual(result['status'],'FAIL');api.create.assert_not_called()
 
-    def test_cuda_exception_preserves_checkpoint_and_failure_in_separate_streams(self):
-        import contextlib
-        import io
-        out, err = io.StringIO(), io.StringIO()
-        fake = mock.Mock(); fake.cuda_check.side_effect = RuntimeError('CUDA error 304 fixture')
-        with mock.patch.object(worker, 'module', return_value=fake), mock.patch.object(worker, 'diagnostic_identity', return_value={'fixture': True}), \
-                contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
-            worker.diagnostic_cuda({'gpu': {'device_basename': 'nvidia999999'}}, 'diagnostic-c')
-        result = json.loads(out.getvalue())
-        self.assertEqual(result['status'], 'FAIL'); self.assertIn('304', result['error'])
-        self.assertTrue(err.getvalue().startswith('BACKTRACE_CUDA_BEFORE '))
-        self.assertIn('RuntimeError: CUDA error 304 fixture', err.getvalue())
-
-    def collect(self, directory, *, timeout=False, survived=False):
-        rows = observations(); channels = []
-        def channel(command, log):
-            case = Path(log).stem[0]
-            Path(log).write_text('BACKTRACE_CUDA_BEFORE '+json.dumps(rows[case]['before'])+'\noriginal stderr\n')
-            obj = mock.Mock(partial=b'partial' if timeout and case == 'B' else json.dumps(rows[case]['result']).encode()+b'\n')
-            obj.read.return_value = rows[case]['result']; obj.close.return_value = 0
-            if timeout and case == 'B': obj.read.side_effect = TimeoutError('bounded timeout')
-            channels.append(obj); return obj
-        with mock.patch.object(remote.container, 'ContainerChannel', side_effect=channel), \
-                mock.patch.object(remote, 'state', return_value={'same_process_alive': survived}):
-            result = remote.diagnose(['ssh'], Path(directory)/'comparison', actual=False)
-        return result, channels
-
-    def test_partial_failure_preserves_raw_output_and_does_not_erase_other_cases(self):
-        with tempfile.TemporaryDirectory() as directory:
-            result, channels = self.collect(directory, timeout=True)
-            self.assertEqual(list(result['cases']), list('ABC'))
-            self.assertEqual(result['cases']['B']['error']['type'], 'TimeoutError')
-            self.assertEqual(result['decision'], 'INCONCLUSIVE_STOP_SAME_ROUTE')
-            self.assertEqual((Path(directory)/'comparison/B-stdout.log').read_bytes(), b'partial')
-            self.assertEqual(json.loads((Path(directory)/'comparison/receipt.json').read_bytes()), result)
-            for channel in channels: channel.close.assert_called_once()
-
-    def test_unconfirmed_teardown_stops_before_next_case(self):
-        with tempfile.TemporaryDirectory() as directory:
-            result, channels = self.collect(directory, survived=True)
-            self.assertEqual(list(result['cases']), ['A'])
-            self.assertEqual(len(channels), 1)
-            self.assertEqual(result['decision'], 'INCONCLUSIVE_STOP_SAME_ROUTE')
-
-    def test_diagnostic_cannot_expand_per_case_deadline_or_select_model(self):
-        for mode in ('diagnostic-a', 'diagnostic-b', 'diagnostic-c'):
-            self.assertIn(mode, remote.command(['ssh'], mode, 30, False)[-1])
-            with self.assertRaises(ValueError): remote.command(['ssh'], mode, 31, True)
-        with self.assertRaises(ValueError): remote.command(['ssh'], 'pretrained_cuda', 30, True)
-
-    def test_comparison_entry_does_not_repeat_memory_or_interruption_campaign(self):
-        with tempfile.TemporaryDirectory() as directory, \
-                mock.patch.object(remote, 'remote', return_value={'fixture': True}), \
-                mock.patch.object(remote, 'diagnose', return_value={'decision': 'CPU_CONTROLS_ONLY'}) as diagnose, \
-                mock.patch.object(remote.container, 'ContainerChannel') as channel:
-            result = remote.exercise(['ssh'], directory, actual=False, comparison_only=True)
-            self.assertEqual(result['status'], 'DIAGNOSTIC_RECORDED')
-            self.assertEqual(result['cuda_comparison']['decision'], 'CPU_CONTROLS_ONLY')
-            diagnose.assert_called_once(); channel.assert_not_called()
+    def test_recorded_gpu_failure_is_not_relabelled_as_hardware_success(self):
+        for decision in ('COMMON_PROVIDER_RUNTIME_PATH_STOP','INCONCLUSIVE_STOP_SAME_ROUTE',
+                'ADDED_FILTER_IMPLICATED_SYSCALL_UNRESOLVED','CUDA_PATH_WORKS_FAILURE_NOT_REPRODUCED'):
+            with self.subTest(decision=decision),tempfile.TemporaryDirectory() as td:
+                root=Path(td);ep=root/'endpoint.json';ep.write_text('{}')
+                result={'status':'DIAGNOSTIC_RECORDED','diagnostics':{'cuda_comparison':{'decision':decision}}}
+                with mock.patch.object(diagnostic.remote,'connected',return_value=result) as connected:
+                    recorded=diagnostic.measure(root,ep,root)
+                self.assertEqual(connected.call_args.kwargs,{'actual':True,'comparison_only':True})
+                self.assertEqual(recorded['status'],'DIAGNOSTIC_RECORDED')
+                self.assertEqual(recorded['measurement_decision'],decision)
+                self.assertIs(recorded['hardware_qualified'],False)
+                self.assertIs(recorded['model_baseline_run'],False)
+                self.assertEqual(json.loads((root/'connected-receipt.json').read_text()),recorded)
 
 
-if __name__ == '__main__': unittest.main()
+if __name__=='__main__':unittest.main()
