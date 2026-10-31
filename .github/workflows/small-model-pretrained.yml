@@ -7,7 +7,8 @@ permissions:
   actions: read
 concurrency:
   group: small-e2b-baseline-cpu-${{ github.ref }}
-  cancel-in-progress: false
+  # Superseded review commits are free replicas. Never cancel a paid start.
+  cancel-in-progress: ${{ github.ref_name == 'bt-001-e2b-adapter-20261031' }}
 jobs:
   container:
     if: github.ref_name == 'bt-001-e2b-adapter-20261031'
