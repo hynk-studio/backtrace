@@ -1,0 +1,134 @@
+{
+  "status": "NO_MODEL_EXECUTION",
+  "assigned": 21,
+  "training_steps": 0,
+  "reason": "common runtime transfer timed out before install/CUDA/checkpoint/inference",
+  "records": [
+    {
+      "id": "augnes-screen-1457",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1436",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1405",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1347",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1448",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1438",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1420",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1408",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1397",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1393",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1369",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1350",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1339",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1337",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1329",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1326",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1305",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1274",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1278",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "augnes-screen-1316",
+      "model": "E2B",
+      "arm": "B1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "097751cfe4dadf3a1940ca8083093ce8adeae80ca328118f66b73c2bf3570204",
+      "model": "E2B",
+      "arm": "B0",
+      "status": "NOT_RUN"
+    }
+  ]
+}
