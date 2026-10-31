@@ -41,7 +41,12 @@ def qualify(wheels,transport,output,*,extra=None):
             result['connected']=remote.connected(root,{'host':'127.0.0.1','port':port},output/'remote',actual=False)
             if result['connected']['status']!='PASS_FREE_HARDWARE_PATH_CONTROLS':raise RuntimeError('free hardware entry failed')
             if extra is not None:
-                result['extra']=extra(remote.prefix_for(root,'127.0.0.1',port),output)
+                # connected() already wrote and used this authenticated host file.
+                # Do not call the exclusive host-material creator a second time.
+                prefix=remote.delivery.ssh_command('127.0.0.1',port,root/'keys/owner-key',
+                    root/'keys/known-hosts','/root/backtrace/runtime',
+                    life.digest((root/'runtime-manifest.json').read_bytes()))[:-1]
+                result['extra']=extra(prefix,output)
             result['status']='PASS_FREE_MINIMUM_ENTRY'
     except Exception as e:
         result.update(status='FAIL',error_type=type(e).__name__,error=str(e)[:500],

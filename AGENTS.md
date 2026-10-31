@@ -1,5 +1,27 @@
 # Backtrace working agreement
 
+## Active E2B measurement continuation (2026-10-31 KST)
+
+The owner's current autonomous-continuation instruction remains active. Work on
+`bt-001-e2b-baseline-20261031`, Draft #45 stacked on #44; do not merge the stack.
+Actual trace source `4a346b70a42ce1d64c3971e87ff1a42be3862b58` and its start/state
+refs are immutable. Run 41200242706 owns that one diagnostic allocation and its
+independent cleanup. Do not launch E2B until that resource is confirmed deleted,
+the observed CUDA cause has a supported correction, and the exact E2B source has
+passed free native/container/input qualification.
+
+Read `docs/small-model-e2b-continuation-20261031.md`. The actual E2B checkpoint is
+accessible and byte-verified. Collect the original 18 assignments plus B0/B1 for
+three retrospective Augnes episodes through the existing owner/watcher. Preserve
+all raw outcomes and denominators. The replay rubric was authored with historical
+outcome knowledge and is development-only; #1549 is a commission, not a proven fix.
+No training, E4B inference, Augnes writes, merge or top-up is included. The new
+scope enforces the remaining cumulative USD 1 budget against the starting credit
+USD 2.9060441339. Hidden host memory ancestry remains unattested; the new route is
+a bounded ordinary-container attempt, not a claim that the earlier native-host
+memory gate passed. Continue to actual measurement and interpretation; a Draft
+PR, successful download or infrastructure test is not goal completion.
+
 ## Active continuation and denied-call trace (2026-10-31 KST)
 
 The owner explicitly instructed continued work to the actual small-model/Augnes

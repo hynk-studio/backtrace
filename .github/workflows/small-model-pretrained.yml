@@ -117,6 +117,7 @@ jobs:
           name: small-e2b-baseline-cpu-owner-${{ github.sha }}-${{ github.run_attempt }}
           path: |
             evidence/**/*.json
+            evidence/**/*.jsonl
             evidence/**/*.log
             !evidence/**/endpoint.json
             !evidence/**/collector-input.json

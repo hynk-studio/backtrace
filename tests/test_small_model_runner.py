@@ -152,6 +152,14 @@ class LocalTests(unittest.TestCase):
         self.assertEqual(len(schedule),36)
         self.assertEqual([(s['model'],s['arm']) for s in schedule[:4]],[('E2B','B0'),('E2B','B1')]*2)
         self.assertEqual(schedule[0]['id'],schedule[1]['id'])
+        selected=[r for r in schedule if r['model']=='E2B']
+        missing={'mode':'pretrained_cuda','coverage':{'NOT_RUN':18},'source_hashes':run.source_hashes(),
+            'records':[dict(model=r['model'],arm=r['arm'],id=r['id'],status='NOT_RUN') for r in selected]}
+        scored=run.evaluate(plan,selected,missing)
+        self.assertEqual(scored['excluded_models'],['E4B'])
+        self.assertEqual(set(scored['scores']),{'E2B'})
+        self.assertEqual(sum(group['assigned'] for arm in scored['scores']['E2B'].values()
+                             for group in arm.values()),18)
         for change in [lambda p:p.update(total_requests=35),lambda p:p['selection'].pop(),
                        lambda p:p['models']['E2B'].update(revision='0'*40),
                        lambda p:p['input_tokens_per_model'].update(E2B=1),

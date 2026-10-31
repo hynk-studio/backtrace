@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 import tempfile
+import subprocess
+import sys
 import time
 import unittest
 from unittest import mock
@@ -10,6 +12,30 @@ from tools import small_model_minimum as minimum
 
 
 class PretrainedTests(unittest.TestCase):
+    def test_only_observed_socket_shape_is_created_and_cannot_communicate(self):
+        code="""import ctypes,errno,json,socket,os
+from tools.small_model_container_worker import restrict_syscalls
+restrict_syscalls();s=socket.socket(socket.AF_UNIX,socket.SOCK_SEQPACKET|socket.SOCK_CLOEXEC,0);r={}
+lib=ctypes.CDLL(None,use_errno=True)
+def bare_socket():
+ fd=lib.syscall(41,1,5,0)
+ if fd<0:raise OSError(ctypes.get_errno(),'raw socket')
+ os.close(fd)
+for name,fn in [('connect',lambda:s.connect('/tmp/backtrace-not-a-server')),
+ ('bind',lambda:s.bind('/tmp/backtrace-must-not-bind')),('listen',lambda:s.listen(1)),
+ ('sendmsg',lambda:s.sendmsg([b'x'])),('sendto',lambda:s.sendto(b'x','/tmp/backtrace-not-a-server')),
+ ('inet',lambda:socket.socket()),('unix_stream',lambda:socket.socket(socket.AF_UNIX)),
+ ('unix_no_cloexec',bare_socket),
+ ('socketpair',socket.socketpair)]:
+ try:fn()
+ except OSError as e:r[name]=e.errno==errno.EPERM
+ else:r[name]=False
+s.close();print(json.dumps(r))
+"""
+        p=subprocess.run([sys.executable,'-c',code],capture_output=True,text=True,timeout=10)
+        self.assertEqual(p.returncode,0,p.stderr)
+        self.assertEqual(len(json.loads(p.stdout)),9);self.assertTrue(all(json.loads(p.stdout).values()))
+
     def test_no_failed_partial_or_cpu_hardware_record_authorizes_a_job(self):
         good={'status':'PASS_ACTUAL_HARDWARE_ONLY','actual_gpu':True,
               'checks':{'boundary':True,'deadline':True},'initial_gpu':{'uuid':'fixture'}}
@@ -28,7 +54,8 @@ class PretrainedTests(unittest.TestCase):
             self.assertEqual(b0['messages'][1],b1['messages'][1])
             self.assertNotEqual(b0['messages'][0],b1['messages'][0])
             payload=json.loads(b0['messages'][1]['content'])
-            self.assertEqual(set(payload),{'id','cutoff','facts','question','output_contract'})
+            self.assertEqual(set(payload),{'id','cutoff','facts','question','goal','constraints','prior_claims','allowed_checks','output_contract'})
+            self.assertEqual(payload['facts'][0]['id'],'F1')
             self.assertNotIn('historical_action',b0['messages'][1]['content'])
             self.assertNotIn('expected_decision',b0['messages'][1]['content'])
 

@@ -1,30 +1,102 @@
 {
   "schema": "augnes_retrospective_development_v1",
-  "limitations": ["Three author-selected historical episodes; not a held-out or prospective test", "Packets and rubric were authored with knowledge of subsequent history", "No model response may change Augnes, execute an action, or establish historical causation", "Historical human actions are descriptive comparators, not matched randomized controls"],
-  "output_contract": {"decision": "DIAGNOSE | LOCAL_FIX | STOP_AND_RETAIN | BROAD_REWRITE | RERUN | ESCALATE", "cause_status": "ESTABLISHED | HYPOTHESIS | UNKNOWN", "evidence": ["facts from the supplied packet"], "next_action": "one bounded action or justified stop", "avoid": ["unsupported conclusions or actions"]},
+  "limitations": [
+    "Three author-selected historical episodes; not a held-out or prospective test",
+    "Packets and rubric were authored with knowledge of subsequent history",
+    "No model response may change Augnes, execute an action, or establish historical causation",
+    "Historical human actions are descriptive comparators, not matched randomized controls"
+  ],
+  "output_contract": {
+    "decision": "DIAGNOSE | LOCAL_FIX | STOP_AND_RETAIN | BROAD_REWRITE | RERUN | ESCALATE",
+    "cause_status": "ESTABLISHED | HYPOTHESIS | UNKNOWN",
+    "evidence": [
+      "facts from the supplied packet"
+    ],
+    "next_action": "one bounded action or justified stop",
+    "avoid": [
+      "unsupported conclusions or actions"
+    ],
+    "candidates": "Zero to three objects with hypothesis, support_fact_ids, conflicting_fact_ids, missing_assumptions, and disconfirming_check. Use zero if more diagnosis is unjustified."
+  },
   "cases": [
     {
       "id": "augnes-1282-get-cancellation",
       "source": "https://github.com/hynk-studio/augnes/blob/bbb7dee536817fe4b7f28f5353a1d88f56c7e44d/docs/verification/ISSUE_1282_HOST_ROUND_TRIP_DIAGNOSTICS.md",
       "cutoff": "Source-owner audit before new hook/body/effect instrumentation; exclude prospective #1316/#1394/#1512 changes",
-      "facts": ["A retained browser failure contains an unmarked GET, HTTP 404 and cancellation. Its consumer, body settlement and effect lifecycle were not identified.", "One supporting run did not reproduce the failure. Older #1257 did not establish the abort cause either.", "The delegated-work hook owns automatic initial GET and refresh/poll GETs. Its existing effect cleanup aborts on dependency change or unmount.", "A separately marked browserFetchJson probe is the other known GET owner. The direct host action issues POST.", "CDP alone cannot observe the hook's JSON await or React cleanup. Existing request acceptance, deadlines, polling and navigation must remain unchanged."],
-      "question": "What should the next engineering action be, and what causal conclusion is justified now?"
+      "facts": [
+        "A retained browser failure contains an unmarked GET, HTTP 404 and cancellation. Its consumer, body settlement and effect lifecycle were not identified.",
+        "One supporting run did not reproduce the failure. Older #1257 did not establish the abort cause either.",
+        "The delegated-work hook owns automatic initial GET and refresh/poll GETs. Its existing effect cleanup aborts on dependency change or unmount.",
+        "A separately marked browserFetchJson probe is the other known GET owner. The direct host action issues POST.",
+        "CDP alone cannot observe the hook's JSON await or React cleanup. Existing request acceptance, deadlines, polling and navigation must remain unchanged."
+      ],
+      "question": "What should the next engineering action be, and what causal conclusion is justified now?",
+      "goal": "Choose the next step for the unidentified cancelled GET without changing acceptance.",
+      "constraints": [
+        "Preserve original failure and existing application behavior and verification acceptance.",
+        "A recommendation is not permission to execute a Browser run."
+      ],
+      "prior_claims": [],
+      "allowed_checks": [
+        {
+          "check": "Inspect retained source/trace and propose bounded observation of actual fetch owner, body settlement and effect/controller cleanup.",
+          "cost": "Source review is low relative effort; new instrumentation/run cost is unmeasured."
+        }
+      ]
     },
     {
       "id": "augnes-1481-nonrecurrence",
       "source": "https://github.com/hynk-studio/augnes/issues/1481",
       "source_head": "f81d8157114ad452e6c285c85ab2f9d2b45b0b0a",
       "cutoff": "2026-10-19 commissioned request observation complete; before the later separately authorized Full exception",
-      "facts": ["The original exact-head Full result was 9 PASS, 1 Browser FAIL and 6 NOT_RUN. It remains non-deciding.", "Controlled held-request timeout and navigation examples can produce Invalid InterceptionId, but their event ordering does not demonstrate the historical failure's cause.", "One bounded ordinary Browser diagnostic on unchanged source exited naturally with code 0 in 96.632 seconds under the unchanged 180-second bound. All 28 original assertion groups were reached; no terminal errors or observation drops were recorded.", "Two capacity requests lacked Network settlement before closure. A passive observer can affect timing; this single run is not a matched overhead experiment.", "There is no demonstrated behavioral repair, source edit or new candidate. Historical causes remain unknown. The diagnostic allowance is consumed and no further Full has been authorized at this cutoff."],
-      "question": "What should happen next to this investigation and how should the prior failure and new observation be reported?"
+      "facts": [
+        "The original exact-head Full result was 9 PASS, 1 Browser FAIL and 6 NOT_RUN. It remains non-deciding.",
+        "Controlled held-request timeout and navigation examples can produce Invalid InterceptionId, but their event ordering does not demonstrate the historical failure's cause.",
+        "One bounded ordinary Browser diagnostic on unchanged source exited naturally with code 0 in 96.632 seconds under the unchanged 180-second bound. All 28 original assertion groups were reached; no terminal errors or observation drops were recorded.",
+        "Two capacity requests lacked Network settlement before closure. A passive observer can affect timing; this single run is not a matched overhead experiment.",
+        "There is no demonstrated behavioral repair, source edit or new candidate. Historical causes remain unknown. The diagnostic allowance is consumed and no further Full has been authorized at this cutoff."
+      ],
+      "question": "What should happen next to this investigation and how should the prior failure and new observation be reported?",
+      "goal": "Decide whether further diagnosis or behavioral repair is justified by the one new observation.",
+      "constraints": [
+        "The diagnostic allowance is consumed. No new Full has been authorized at this cutoff.",
+        "Preserve the original failed evidence and unknown historical causes."
+      ],
+      "prior_claims": [
+        "Controlled timeout/navigation examples establish possible mechanisms, not attribution to the original failure."
+      ],
+      "allowed_checks": [
+        {
+          "check": "Review retained observations and prepare a candid disposition for independent review.",
+          "cost": "Review effort unmeasured; additional executable run allowance is zero."
+        }
+      ]
     },
     {
       "id": "augnes-1549-readiness-imports",
       "source": "https://github.com/hynk-studio/augnes/issues/1549",
       "source_head": "cc9b68037e3b7158fd85acdcefb10bfd342e9632",
       "cutoff": "Problem and observed boundary only; exclude the issue's commissioned implementation instructions",
-      "facts": ["Reading local model readiness imports the shared invocation gateway and OpenAI Responses adapter before any model invocation.", "Project Home reaches that gateway indirectly through strategic review and stateless review/planner owners.", "A fresh-process observation loaded 20 operational-reentry, governed-actor or research-fixture modules before any actual model call.", "The broader security/refactoring plan already records product/research coupling as follow-up work. The current task is the local-read boundary.", "Readiness results, synchronous compatibility exports, current-binding checks, refusal semantics and credential/model-value non-disclosure must stay unchanged. Actual provider calls are outside this task."],
-      "question": "Choose a bounded correction and a verification method that can distinguish removing unwanted import coupling from accidentally disabling readiness behavior."
+      "facts": [
+        "Reading local model readiness imports the shared invocation gateway and OpenAI Responses adapter before any model invocation.",
+        "Project Home reaches that gateway indirectly through strategic review and stateless review/planner owners.",
+        "A fresh-process observation loaded 20 operational-reentry, governed-actor or research-fixture modules before any actual model call.",
+        "The broader security/refactoring plan already records product/research coupling as follow-up work. The current task is the local-read boundary.",
+        "Readiness results, synchronous compatibility exports, current-binding checks, refusal semantics and credential/model-value non-disclosure must stay unchanged. Actual provider calls are outside this task."
+      ],
+      "question": "Choose a bounded correction and a verification method that can distinguish removing unwanted import coupling from accidentally disabling readiness behavior.",
+      "goal": "Keep local readiness reads useful while removing unnecessary invocation/research loading.",
+      "constraints": [
+        "Preserve synchronous APIs, readiness values, refusal/current-binding checks and non-disclosure.",
+        "No actual model/provider request; no full gateway redesign."
+      ],
+      "prior_claims": [],
+      "allowed_checks": [
+        {
+          "check": "Inspect import paths and propose bounded local module-boundary changes plus fresh-process/positive controls.",
+          "cost": "Local development and review effort unmeasured; provider-call budget zero."
+        }
+      ]
     }
   ]
 }

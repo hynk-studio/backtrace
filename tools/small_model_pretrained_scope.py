@@ -132,7 +132,7 @@ if __name__=='__main__':
         result=probe.qualify(*map(Path,args[1:]),extra=free_entry)
     elif len(args)==3:
         result=remote.connected(Path(args[0]),json.loads(Path(args[1]).read_bytes()),Path(args[2]),
-            actual=True,after_hardware=pretrained.after_hardware)
+            actual=True,after_hardware=pretrained.after_hardware,compare_before_hardware=True)
     else:
         role,mode=args
         if role not in ('owner','watch') or mode not in ('free','paid'):raise ValueError('explicit role and mode required')

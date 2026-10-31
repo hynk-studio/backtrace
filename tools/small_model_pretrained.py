@@ -30,7 +30,8 @@ def replay_schedule(tokenizer):
     neutral='Return only a JSON object matching the supplied output contract. Use only the supplied historical facts. Recommend a next action; do not execute it.'
     strong=neutral+' Separate observation from inference. Consider competing explanations and missing evidence. Choose the smallest action that would distinguish them; stop when further action is unjustified. Preserve unknown causes, failed evidence and authorization boundaries.'
     for case in packet['cases']:
-        payload={k:case[k] for k in ('id','cutoff','facts','question')}
+        payload={k:case[k] for k in ('id','cutoff','facts','question','goal','constraints','prior_claims','allowed_checks')}
+        payload['facts']=[{'id':'F'+str(i+1),'observation':fact} for i,fact in enumerate(payload['facts'])]
         payload['output_contract']=packet['output_contract']
         for arm,prompt in [('B0',neutral),('B1',strong)]:
             messages=[{'role':'system','content':prompt},{'role':'user','content':json.dumps(payload,ensure_ascii=False)}]

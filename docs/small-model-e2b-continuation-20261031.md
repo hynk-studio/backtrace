@@ -45,3 +45,46 @@ There is no top-up, automatic allocation retry, training or E4B inference.
 
 Pretrained results and replay utility are NOT YET OBSERVED. CUDA diagnosis and
 free preparation are intermediate evidence, not completion of the research goal.
+
+Free run 41200575512 reproduced checkpoint acquisition and input tokenization,
+then exposed the evaluator's assumption that both E2B and E4B were assigned.
+The E2B-only path reached an empty E4B scoring set and refused. The correction
+records E4B as excluded instead of inventing zero assignments or model scores;
+a regression retains all 18 original E2B assignments, including NOT_RUN entries.
+The first failed free run remains historical. Local Work execution ran 686 tests
+with the same six failures, ten errors and four skips as the pre-existing host
+restrictions; focused new checks pass. Native Linux remains the deciding check.
+That source passed 686 native tests and all original container controls, then
+the added pretrained-negative control attempted to recreate the already pinned
+SSH known-hosts file. The fix reuses the authenticated file established by
+`connected()`; it does not relax host-key checking. Container deletion was confirmed
+twice despite the failure. The negative pretrained control still needs execution.
+
+Actual trace run 41200242706 completed at the immutable #44 source
+`4a346b70a42ce1d64c3971e87ff1a42be3862b58`: A and B passed BF16 CUDA kernels,
+while C and D failed initialization. D recorded four denied syscall 41 calls,
+all `socket(AF_UNIX, SOCK_SEQPACKET | SOCK_CLOEXEC, 0)`. It recorded no truncated
+trace and exited normally. Signal-masked process calls remain explicitly untraced.
+The raw classifier remains unchanged; see the preserved
+[result and original streams](small-model-cuda-trace-result-20261031.json).
+
+The evidence-supported correction permits exactly that unconnected descriptor
+shape. `connect`, `bind`, `listen`, `accept`, `sendto`, `sendmsg`, `socketpair`,
+other socket families/types/flags/protocols, process creation and privilege changes
+remain denied. A sequenced-packet Unix socket is connection-oriented; creating
+its descriptor alone does not establish a communication channel. The kernel
+regression tests creation plus nine prohibited operations. The Work host denies
+even the allowed socket before our filter, so that positive test cannot pass
+locally; native Linux qualification must establish it. No tracing or CUDA
+initialization is moved before the production restriction boundary.
+
+The next bounded allocation first runs the corrected A/B/C/D comparison. If
+the corrected C does not pass, it preserves the next denial trace and deletes
+the resource before any model work. On pass, it proceeds on that same allocation
+through full interruption checks and E2B collection. There is no blind retry.
+
+The trace allocation `x2m4fgfibwim9t` was deleted; owner and watcher each observed
+absence twice. At 12:30:38 UTC the complete inventory contained zero Pods, hourly
+spend was zero, autopay was off and credit was USD 2.8022904793. Observed decrease
+from this continuation's starting balance is USD 0.1037536546, not final billing.
+The remaining cumulative budget supports the capped USD 0.505 next allocation.
