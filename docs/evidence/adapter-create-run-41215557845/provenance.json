@@ -1,0 +1,57 @@
+{
+  "source": "d0ab1cbc2548c69425d9c97ab697c0cecd89392d",
+  "tree": "633947afb524febe5fa6bc5f6d2a01ddddf0570c",
+  "paid_run": 41215557845,
+  "qualification_run": 41214688322,
+  "result": "CREATE_HTTP_400_NO_MODEL_EXECUTION",
+  "artifacts": [
+    {
+      "role": "owner",
+      "id": 13047829615,
+      "sha256": "89f7a2fb2cdce089f658d325cabf2107ae8ca993ea440d06a42934a48df830a5",
+      "bytes": 21707,
+      "members": {
+        "assignment-before-allocation.json": {
+          "sha256": "cf2ca2d397ab45e48d73d2ff92be1df42dc1410b7433f5a79bff80a0acd8cbb0",
+          "bytes": 11430
+        },
+        "account-after.json": {
+          "sha256": "4c290d63446b37cb0da9d662d51004defb62e3fdc864eafed1e6909bf5083ed6",
+          "bytes": 23788
+        },
+        "minimum-owner/receipt.json": {
+          "sha256": "02261736b154d18a13baf27286be4d2fd145e6ca559d729a0ab5808b08c1a4ad",
+          "bytes": 28430
+        },
+        "minimum-owner.json": {
+          "sha256": "02261736b154d18a13baf27286be4d2fd145e6ca559d729a0ab5808b08c1a4ad",
+          "bytes": 28430
+        },
+        "owner-runtime.json": {
+          "sha256": "271260c6c73d4b6ad1664a792985ce4f19009fee390f183de643967559d8405b",
+          "bytes": 10467
+        },
+        "preparation.json": {
+          "sha256": "dbb874260ba31e449646ba36a3cafe448b78b673d8638162fa7f7e11a776b13a",
+          "bytes": 511
+        }
+      }
+    },
+    {
+      "role": "watch",
+      "id": 13049420506,
+      "sha256": "28fd531fecb1ff17858fd24f87ad40f651c4f9fac468ff9eba653151da1ab77d",
+      "bytes": 653,
+      "members": {
+        "minimum-watch.json": {
+          "sha256": "7b1f7275549833033fe963da2c94992a53aeba9b3668251bc5cc9899aad0f4d4",
+          "bytes": 1631
+        }
+      }
+    }
+  ],
+  "source_hash_entries_verified": 180,
+  "unique_source_paths_verified": 82,
+  "claim_sha256": "67135d9a5d580b894080f564b6f52b3a9459f0ca4047f47f52e76441f6b743fd",
+  "independent_absence_proofs_verified": true
+}
