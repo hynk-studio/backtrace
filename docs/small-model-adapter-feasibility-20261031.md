@@ -1,5 +1,9 @@
 # E2B twenty-case untrained screening and tiny adapter probe
 
+**Current prospective continuation:** the focused 21-request/1,640-second scope
+below supersedes the earlier unexecuted proposals for a *new* start. Consumed
+run 41215557845 retains its original 44 assignments and 2,160-second contract.
+
 This is the plan's actual update/save/reload step, not a specialist-benefit test.
 The measured E2B baseline failed its synthetic response contract; the E4B capacity
 comparison run 41210831659 failed during its 3.64 GB common runtime transfer to
@@ -139,3 +143,53 @@ is present before reconciliation, the failure body stays absent from state, the
 claim digest matches, no worker starts, one create is attempted, and cleanup is
 still called with `possible_create=True`. All 18 minimum-controller tests pass
 locally. This source change does not authorize another allocation.
+
+## Focused next route: twenty decisions, four updates, one generation
+
+At 15:58:32 UTC the read-only account observation remained USD2.4105707673,
+zero hourly spend, autopay off and zero Pods in the complete 15:58:38 inventory.
+This early empty inventory is **not** final absence proof for the unacknowledged
+create in run41215557845; both original controllers continue their full window.
+The newly observed alternative 48GB L40S routes cost USD1.09/hour, while the
+previously attempted RTX A6000/US-TX-1 pair still appeared in quotes. A quote is
+not a reservation, successful create or diagnosis of that attempt's failure.
+
+The next source excludes that exact pair and EU-SE-1. It is a prospective
+alternative-route preparation; no new allocation occurs until both cleanup
+receipts and the previous error/account record have been reviewed. The request
+structure that previously created an A40 remains unchanged. Do not infer a
+capacity cause from an unclassified HTTP failure.
+
+Prioritize the complete unchanged 20-case untrained collection, then the unchanged
+four-update/save/reload check. After the update, collect only the first original
+E2B/B0 development request to verify ordinary generation still works. Preserve
+that message and decoding exactly; do not score it as a selected learning test.
+The original baseline's 24 responses and this failed attempt's 44 assignments
+remain separate. No outputs from the new twenty-case or adapter work informed
+this reduction. Training targets, train/development separation, model bytes,
+screening prompts/rubric, worker isolation and original scientific scorer stay
+unchanged. Twenty-one generation requests are assigned; four updates are allowed.
+
+The shorter allocation-inclusive maximum is **1,640 seconds**:1,220 work,
+300 cleanup and120 export. The existing outer deadline overrides both collectors.
+The one-generation collector is bounded at240 seconds including a180-second
+load/update handshake; the screening retains its900-second limit. Incomplete
+coverage remains incomplete. The previous successful A40 scope used about959
+seconds before cleanup, including150.7 seconds for24 generations; this observation
+does not guarantee the new route's transfer or throughput. The reduced workload
+is a bounded feasibility attempt, with no deadline extension or automatic retry.
+
+Projection on the observed L40S is (1.09+0.015)*1640/3600 = USD0.5033888889.
+With USD0.4954733666 observed continuation spending this totals USD0.9988622555,
+under the unchanged cumulative USD1 ceiling. Fresh price/account admission,
+maximum projection USD0.504 and minimum post-projection credit USD1.9060441339
+still apply. A new first-attempt exact-source free qualification, unused permit,
+`bt-001-e2b-screen-probe-start-20261031`,
+`bt-001-e2b-screen-probe-state-20261031` and
+`e2b-screen-probe-paid-20261031` namespace are required. Existing source/start/state
+identities remain immutable. No new paid permit/start exists at this amendment.
+
+Focused local validation ran30 tests successfully after updating two obsolete
+fixture expectations (one missing GPU field and the earlier duration). The first
+local iteration's one error/one failure were test-fixture mismatches, not provider
+or model evidence. The native full suite/container/input checks remain required.

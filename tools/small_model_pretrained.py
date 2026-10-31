@@ -4,7 +4,6 @@ Preparation downloads the actual checkpoint without allocating a GPU. No labels
 or evaluator files are sent to a model. Execution is a later explicit entry.
 """
 import hashlib
-from collections import Counter
 import json
 import os
 from pathlib import Path
@@ -59,8 +58,9 @@ def prepare_runtime(root):
             else:shutil.copyfile(origin/name,target/name)
     (Path(root)/'assets-manifest.json').write_bytes(container.manifest(assets,'model'))
     life.write(Path(root)/'pretrained-preparation.json',{'weights':verified,
-        'replay_packet_sha256':life.digest(REPLAY.read_bytes()),'assigned_original':18,'assigned_replay':6,
-        'training_steps':0,'untrained_screening_assigned':20,'evaluator_delivered':False})
+        'replay_packet_sha256':life.digest(REPLAY.read_bytes()),'assigned_original':1,'assigned_replay':0,
+        'training_steps':0,'planned_training_steps':4,
+        'untrained_screening_assigned':20,'evaluator_delivered':False})
     return initializer
 
 
@@ -123,8 +123,8 @@ print(json.dumps({'bytes':sum(p.stat().st_size for p in dst.rglob('*') if p.is_f
         raise RuntimeError('untrained twenty-case screening incomplete; preserve all assignments')
     try:
         with (output/'collector.log').open('xb') as log:
-            p=subprocess.run([str(python),'-m','tools.small_model_pretrained','collect',str(spec),str(output)],
-                stdout=log,stderr=log,timeout=1560,env={'PATH':os.environ['PATH'],'LANG':'C.UTF-8','HOME':str(root),
+            p=subprocess.run([str(python),'-m','tools.small_model_pretrained','collect-probe',str(spec),str(output)],
+                stdout=log,stderr=log,timeout=300,env={'PATH':os.environ['PATH'],'LANG':'C.UTF-8','HOME':str(root),
                     'HF_HUB_OFFLINE':'1','TRANSFORMERS_OFFLINE':'1','TOKENIZERS_PARALLELISM':'false'})
     finally:
         preserve_collection(output)
@@ -133,21 +133,20 @@ print(json.dumps({'bytes':sum(p.stat().st_size for p in dst.rglob('*') if p.is_f
     life.write(output/'inference-teardown.json',stopped)
     if stopped['worker']['same_process_alive'] or p.returncode:raise RuntimeError('inference collector or cleanup failed')
     collection=json.loads((output/'collection/collection.json').read_bytes())
-    # Evaluation needs only standard-library modules after the model is gone.
-    plan,schedule,_=runner.load_scope(ROOT/'.local/e2b/scope',ROOT/'.local/e2b/packets',ROOT/'.local/e2b/tokenization.json')
+    # One original development input only verifies generation after the update.
+    # The original 24-response baseline remains separate and unchanged; this is
+    # not a tiny selected subset from which a learning score can be estimated.
+    _,schedule,_=runner.load_scope(ROOT/'.local/e2b/scope',ROOT/'.local/e2b/packets',ROOT/'.local/e2b/tokenization.json')
     selected=[r for r in schedule if r['model']=='E2B']
-    original=dict(collection,records=collection['records'][:18],assigned=18,
-        coverage=dict(Counter(r['status'] for r in collection['records'][:18])))
-    scores=runner.evaluate(plan,selected,original)
-    life.write(output/'adapter-development-scores.json',scores)
+    if (collection['assigned']!=1 or len(collection['records'])!=1 or any(
+            collection['records'][0][k]!=selected[0][k] for k in ('id','model','arm'))):
+        raise RuntimeError('single fixed post-update generation required')
     adaptation=collection.get('worker_handshakes',{}).get('E2B',{}).get('adapter_feasibility',{})
     if adaptation.get('status')!='PASS_TINY_UPDATE_SAVE_RELOAD_ONLY' or adaptation.get('training_steps')!=4:
         raise RuntimeError('actual four-update save/reload evidence absent')
     life.write(output/'adapter-feasibility.json',adaptation)
-    life.write(output/'replay-returns.json',{'limitations':json.loads(REPLAY.read_bytes())['limitations'],
-        'records':collection['records'][18:],'rubric_sha256':life.digest((ROOT/'docs/augnes-development-replay-rubric-20261031.json').read_bytes())})
     return {'status':'PASS_E2B_ADAPTER_FEASIBILITY' if collection['status']=='COMPLETED' else 'INCOMPLETE_E2B_COLLECTION',
-        'assigned':44,'adapter_assigned':24,'untrained_screening_assigned':20,
+        'assigned':21,'adapter_assigned':1,'untrained_screening_assigned':20,
         'untrained_screening_coverage':screen['coverage'],
         'coverage':collection['coverage'],'collection_status':collection['status'],
         'training_steps':adaptation['training_steps'],'capability_claim':'IMPLEMENTATION_ONLY',
@@ -165,23 +164,24 @@ print(json.dumps(r))
     return {'worker':stopped,'gpu':remote.inventory(prefix,gpu_uuid)}
 
 
-def collect(spec_path,output):
+def collect(spec_path,output,*,probe_only=False):
     from transformers import AutoTokenizer
     spec=json.loads(Path(spec_path).read_bytes());output=Path(output)
     prepared=ROOT/'.local/e2b'
     tokenizer=AutoTokenizer.from_pretrained(prepared/'sources/E2B',local_files_only=True,trust_remote_code=False)
     _,schedule,_=runner.load_scope(prepared/'scope',prepared/'packets',prepared/'tokenization.json')
-    selected=[r for r in schedule if r['model']=='E2B']+replay_schedule(tokenizer)
+    selected=[r for r in schedule if r['model']=='E2B']
+    selected=selected[:1] if probe_only else selected+replay_schedule(tokenizer)
     life.write(output/'input-schedule.json',{'requests':selected,'packet_sha256':life.digest(REPLAY.read_bytes())})
     def factory(name,directory):
         if name!='E2B':raise ValueError('E2B only')
         command=spec['prefix']+[shlex.join(['/usr/bin/env','-i','PATH=/usr/bin:/bin','LANG=C.UTF-8',
             'LD_LIBRARY_PATH=/opt/backtrace/python/lib','/opt/backtrace/venv/bin/python','-I',
-            '/opt/backtrace/launcher.py','run','E2B-pretrained','1500','pretrained'])]
+            '/opt/backtrace/launcher.py','run','E2B-pretrained','240' if probe_only else '1500','pretrained'])]
         return container.ContainerChannel(command,directory/'E2B-stderr.log')
     factory.gpu_uuid=spec['gpu_uuid'];factory.training_requested=True
     return runner.collect(selected,ROOT/'.local/e2b-collection',factory,{'E2B':tokenizer},mode='pretrained_cuda',
-        max_new_tokens=4096,total_seconds=1500,startup_seconds=180,request_seconds=90)
+        max_new_tokens=4096,total_seconds=240 if probe_only else 1500,startup_seconds=180,request_seconds=90)
 
 
 def preserve_collection(output):
@@ -220,8 +220,11 @@ def inspect_inputs(prepared,*,cuda_runtime=False):
     return {'status':'PASS_INPUTS_NOT_INFERENCE','identical_e2b_comparison_messages':True,
         'training_inputs':training.verify_tokens(tokenizer),
         'untrained_screening_assignments':[{k:v for k,v in r.items() if k!='messages'} for r in screening.schedule(tokenizer)],
-        'original_assigned':len(original),'replay_assigned':len(replays),
-        'assigned_before_allocation':[{**{k:v for k,v in r.items() if k!='messages'},'initial_status':'NOT_RUN'} for r in original+replays],
+        'original_assigned':1,'replay_assigned':0,
+        'historical_original_count':len(original),'historical_replay_count':len(replays),
+        'assigned_before_allocation':[{**{k:v for k,v in r.items() if k!='messages'},'initial_status':'NOT_RUN'}
+            for r in screening.schedule(tokenizer)+original[:1]],
+        'historical_comparison_not_assigned':[{k:v for k,v in r.items() if k!='messages'} for r in original[1:]+replays],
         'replays':[{k:v for k,v in r.items() if k!='messages'} for r in replays],
         'packet_sha256':life.digest(REPLAY.read_bytes()),'pretrained_requests':0}
 
@@ -273,6 +276,7 @@ def prepare(output, readiness_archive):
 if __name__=='__main__':
     if sys.argv[1]=='prepare':result=prepare(sys.argv[2],sys.argv[3])
     elif sys.argv[1]=='collect':result=collect(sys.argv[2],sys.argv[3])
+    elif sys.argv[1]=='collect-probe':result=collect(sys.argv[2],sys.argv[3],probe_only=True)
     elif sys.argv[1]=='collect-screening':result=screening.collect(sys.argv[2],sys.argv[3])
     elif sys.argv[1]=='inspect-inputs':result=inspect_inputs(sys.argv[2])
     elif sys.argv[1]=='plan-gpu-inputs':result=inspect_inputs(sys.argv[2],cuda_runtime=True)

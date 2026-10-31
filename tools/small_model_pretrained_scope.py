@@ -15,14 +15,15 @@ from tools import small_model_minimum_probe as probe, small_model_pretrained as 
 from tools import small_model_container as container
 
 REVIEW='bt-001-e2b-adapter-20261031'
-START='bt-001-e2b-adapter-start-20261031'
-STATE_BRANCH='bt-001-e2b-adapter-state-20261031'
-NAMESPACE='e2b-adapter-paid-20261031'
+START='bt-001-e2b-screen-probe-start-20261031'
+STATE_BRANCH='bt-001-e2b-screen-probe-state-20261031'
+NAMESPACE='e2b-screen-probe-paid-20261031'
 WORKFLOW='.github/workflows/small-model-pretrained.yml'
 INSTRUCTION='이번에는 목표까지 실제로 이어가도록 하고 혼자 해결할 수 없는 문제가 있을 때만 멈추고 보고해'
-CONTRACT=dict(minimum.CONTRACT,scope='E2B_SCREEN20_PLUS_ADAPTER4_GENERATIONS24_V1',
-    weight_bytes=10246621918,pretrained_requests=44,training_steps=4,total_seconds=2160,work_seconds=1740,
+CONTRACT=dict(minimum.CONTRACT,scope='E2B_SCREEN20_PLUS_ADAPTER4_SINGLE_GENERATION_V1',
+    weight_bytes=10246621918,pretrained_requests=21,training_steps=4,total_seconds=1640,work_seconds=1220,
     excluded_regions=['EU-SE-1'],
+    excluded_routes=[{'gpu':'NVIDIA RTX A6000','region':'US-TX-1'}],
     cuda_socket_policy='UNIX_SEQPACKET_PASSIVE_BIND_LISTEN_NO_CONNECTIONS_V1',
     full_model_memory_admission='BOUNDED_ATTEMPT_PROVIDER_AND_VISIBLE_MEMORY_ONLY')
 OriginalState=minimum.State
@@ -34,7 +35,8 @@ def choose(snapshot,now):
     # EU-SE-1 timed out during the common runtime transfer in run 41210831659.
     # Exclude that route; the fresh cheapest other affordable >=40 GB route wins;
     # this is a prospective route change, not proof of the timeout's cause.
-    routed=dict(snapshot,offers=[r for r in snapshot['offers'] if r['region'] not in CONTRACT['excluded_regions']])
+    routed=dict(snapshot,offers=[r for r in snapshot['offers'] if r['region'] not in CONTRACT['excluded_regions']
+        and {'gpu':r['gpu'],'region':r['region']} not in CONTRACT['excluded_routes']])
     offer=original_choose(routed,now)
     projected=Decimal(offer['costs']['maximum_projection'])
     if (projected>Decimal('0.504')
@@ -63,9 +65,9 @@ def sources():
 def validate_permit(value,source,now):
     expected={'source_sha':source,'contract_sha256':minimum.life.digest(CONTRACT),
         'namespace':NAMESPACE,'instruction':INSTRUCTION,'mode':'OWNER_APPROVED_E2B_ADAPTER_FEASIBILITY',
-        'additional_cap_usd':'1.00','allocation_inclusive_seconds':2160,'single_use':True,
+        'additional_cap_usd':'1.00','allocation_inclusive_seconds':1640,'single_use':True,
         'automatic_retry':False,'top_up_allowed':False,'weight_bytes':10246621918,
-        'pretrained_requests':44,'training_steps':4}
+        'pretrained_requests':21,'training_steps':4}
     if not isinstance(value,dict) or any(type(value.get(k)) is not type(v) or value[k]!=v for k,v in expected.items()):
         raise ValueError('fresh source-bound E2B permit required')
     if (not re.fullmatch('[1-9][0-9]+',str(value.get('qualification_run_id','')))

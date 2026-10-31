@@ -1,5 +1,30 @@
 # Backtrace working agreement
 
+## Prospective focused screening/probe route (2026-10-31 UTC)
+
+Paid run 41215557845 at d0ab1cbc2548c69425d9c97ab697c0cecd89392d has
+reported one create attempt without a recorded Pod ID. At this amendment it is
+still in mandatory unknown-create cleanup; do not allocate until both controllers
+finish and the actual error/account evidence is reviewed. Preserve its original
+44-assignment scope, source, start and state unchanged.
+
+Prepare/free-qualify the next review source for 20 unchanged untrained Augnes
+packets, the same four train-only updates, and just the first original B0
+generation afterward. That one generation checks post-update execution, not
+learning quality; no 24-case learning comparison is claimed. This reduction is
+prospective, before any outputs from the 20-case/adapter scope. It permits a
+1,640-second total / 1,220-second work window with the existing 300/120 cleanup
+and export reserves. L40S at USD1.09/hour plus0.015 projects USD0.5033888889,
+within the unchanged USD0.504 projection and cumulative USD1/credit-floor gates.
+
+Exclude EU-SE-1 and the unacknowledged RTX A6000/US-TX-1 pair. This changes routes
+without claiming a cause for either failure. Use fresh exact-source qualification,
+then a new unused source-bound permit/start/state only if final error review
+supports proceeding. New start/state are bt-001-e2b-screen-probe-start-20261031
+and bt-001-e2b-screen-probe-state-20261031; namespace e2b-screen-probe-paid-20261031.
+No overlap, automatic retry, top-up, merge or Augnes write. Continue actual
+measurement and interpretation under the owner's ongoing delegation.
+
 ## Final adapter/screening affordability amendment (2026-10-31 UTC)
 
 The latest quote found both initially allowed regions out of stock. The final

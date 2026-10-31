@@ -56,5 +56,27 @@ class ScreeningTests(unittest.TestCase):
             self.assertFalse(observed['worker']['same_process_alive'])
         with self.assertRaises(ValueError):entry.check_stopped([],'unknown','fixture')
 
+    def test_post_update_probe_keeps_only_first_original_message_and_short_deadline(self):
+        import sys,types
+        module=types.ModuleType('transformers');module.AutoTokenizer=Mock()
+        rows=[{'id':str(i),'model':'E2B','arm':'B0','messages':[{'role':'user','content':str(i)}]}
+              for i in range(3)]
+        with tempfile.TemporaryDirectory(dir=screen.ROOT/'.local') as td:
+            root=Path(td);(root/'.local').mkdir();spec=root/'spec.json'
+            spec.write_text(json.dumps({'prefix':['fixture'],'gpu_uuid':'fixture'}))
+            with patch.object(entry,'ROOT',root),patch.dict(sys.modules,{'transformers':module}),\
+                    patch.object(entry.runner,'load_scope',return_value=({},rows,{})),\
+                    patch.object(entry,'replay_schedule') as replay,\
+                    patch.object(entry.runner,'collect',return_value={'status':'COMPLETED'}) as collect,\
+                    patch.object(entry.container,'ContainerChannel') as channel:
+                entry.collect(spec,root,probe_only=True)
+                args,kw=collect.call_args
+                self.assertEqual(args[0],rows[:1]);replay.assert_not_called()
+                factory=args[2];self.assertTrue(factory.training_requested)
+                factory('E2B',root)
+                self.assertIn('E2B-pretrained 240 pretrained',channel.call_args.args[0][-1])
+                self.assertEqual(kw['total_seconds'],240)
+                self.assertEqual(kw['max_new_tokens'],4096)
+
 
 if __name__=='__main__':unittest.main()
