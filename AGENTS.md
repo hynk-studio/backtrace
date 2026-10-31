@@ -1,5 +1,23 @@
 # Backtrace working agreement
 
+## Historical-source isolation and final billing adjustment (2026-10-31 UTC)
+
+Free run41222934662 ran684 native tests and failed with25 errors because the edited
+transport helper belongs to the historical R012 protocol's105 frozen files.
+Its exact four artifacts are preserved under docs/evidence/window-free-run-41222934662.
+Restore the original helper/bootstrap/delivery bytes; do not repin or weaken the
+historical protocol. Current changes use tools/small_model_delivery.py and
+tests/small_model_transport_control.py, with the8MiB bootstrap setting scoped and
+restored on exit. All105 historical identities and80 focused local checks now pass.
+
+Later billing showed creditUSD2.1716099885, zero Pods/spend and autopay off at
+17:07 UTC. Continuation spend isUSD0.7344341454. Before any new permit/start,
+reduce the prospective window scope to1550/1130/300/120 total/work/cleanup/export
+seconds, maximum projectionUSD0.261 and unchanged credit floorUSD1.9060441339.
+TheUSD0.59/hour plus0.015 scenario projectsUSD0.2604861111. Keep all21 assignments,
+four updates,8MiB window,256MiB/12-second gate and fresh native qualification.
+This supersedes the1720/1300/0.290 draft below, which was never paid or permitted.
+
 ## Measured window correction and bounded model continuation (2026-10-31 UTC)
 
 Read docs/small-model-transfer-window-20261031.md. Free run41222020645 measured

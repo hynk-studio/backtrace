@@ -11,7 +11,7 @@ import time
 
 from tools import small_model_container as container, small_model_gpu as gpu
 from tools import small_model_runner as runner, small_model_lifecycle as life
-from tools import ssh_bootstrap as ssh, private_delivery as delivery, runpod_control as control
+from tools import ssh_bootstrap as ssh, small_model_delivery as delivery, runpod_control as control
 
 ROOT=Path(__file__).resolve().parents[1]
 

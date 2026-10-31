@@ -45,11 +45,11 @@ The short payload is never a model input. The same gate runs in free qualificati
 The prospective E2B scope keeps the exact20 untrained B1 Augnes inputs, four
 train-only updates and first original B0 generation. No output has been received
 for those scopes, and no prompt/denominator/target is changed. Total/work limits
-are1,720/1,300 seconds, with the unchanged300/120-second cleanup/export reserves.
-Maximum projection isUSD0.290; minimum post-projection credit remains
+are1,550/1,130 seconds, with the unchanged300/120-second cleanup/export reserves.
+Maximum projection isUSD0.261; minimum post-projection credit remains
 USD1.9060441339, preserving the current cumulativeUSD1 continuation ceiling.
-At the last observed balanceUSD2.1973672941, aUSD0.59/hour GPU plusUSD0.015/hour
-storage projectsUSD0.2890555556. A more expensive or unfunded fresh quote is
+At the latest observed balanceUSD2.1716099885, aUSD0.59/hour GPU plusUSD0.015/hour
+storage projectsUSD0.2604861111. A more expensive or unfunded fresh quote is
 refused before create. The USD0.50 absolute reserve and no-top-up rule remain.
 
 The new start/state are `bt-001-e2b-window-start-20261031` and
@@ -68,3 +68,35 @@ full native run; the local focused rerun explicitly omitted it. Actual inference
 CUDA backward/update/save-reload, matched B2/S learning, additional main-model
 review and workflow benefit remain unmeasured. Continue through actual outcomes;
 this transport correction alone does not complete the objective.
+
+## Preserved qualification failure and final affordability revision
+
+The initial correction sourceb9a7abb0c104b7689107f7345636b66151f6a793
+failed free run41222934662:684 tests ran in178.190 seconds with25 errors
+from historical runtime-identity validation. The transport control helper was
+one of the R012 protocol's105 frozen source files. Do not repin the historical
+protocol or skip its checks. The current correction restores the historical
+helper, SSH bootstrap and delivery files byte-for-byte. It uses a versioned
+`tools/small_model_delivery.py` and `tests/small_model_transport_control.py`;
+its8MiB bootstrap setting exists only within the scoped context, restored on exit.
+Both original and current delivery versions retain their stream regression tests.
+The original105-file protocol validation now passes.
+
+[All four failed-qualification artifacts](evidence/window-free-run-41222934662/provenance.json)
+are preserved, including original test errors, free owner/watch receipts and
+checkpoint/input verification. Their ZIP/member bytes and170 nested source hashes
+across85 unique paths match that source. No paid allocation occurred.
+
+The17:07:50 account observation showed delayed billing:USD2.1716099885 credit,
+zero spend and autopay off; the17:07:57 inventory had zero Pods. Relative to the
+pre-L40S balance, the observed decrease is nowUSD0.2389607788; continuation
+spend isUSD0.7344341454. The superseded1,720-second/USD0.290 draft would no
+longer fit the unchanged credit floor. Before any new permit, shorten total/work
+to1,550/1,130 seconds and cap projection atUSD0.261. The actualUSD0.59/hour
+scenario projectsUSD0.2604861111. All21 assignments and four planned updates
+remain unchanged; incomplete outcomes stay incomplete. A fresh check can still
+refuse a price or balance change.
+
+After isolation,77 focused transport/historical-protocol/target/contract checks
+and three collector-scope/probe/permit checks pass locally, as do preflight and
+diff checks. The full exact-source native qualification must run again.

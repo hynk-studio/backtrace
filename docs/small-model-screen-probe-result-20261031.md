@@ -42,3 +42,9 @@ must test that hypothesis before a changed paid route. Preserve the failed
 source/start/permit and all denominators. Do not repeat this unchanged transfer,
 extend its running limits, weaken authentication, or count preparation as model
 evidence. The practical-model objective remains incomplete.
+
+A later17:07:50 read in free run41222934662 observedUSD2.1716099885 credit
+with zero Pods/spend. The observed decrease for this L40S attempt therefore
+rose toUSD0.2389607788, and continuation spend toUSD0.7344341454. The earlier
+post-delete observation above is retained as observed, not presented as final
+billing. See the [later observation](evidence/window-free-run-41222934662/provenance.json).

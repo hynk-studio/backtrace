@@ -1,0 +1,94 @@
+{
+  "source": "b9a7abb0c104b7689107f7345636b66151f6a793",
+  "tree": "b35945f601c081daa17b142483505531e6c8574b",
+  "run": 41222934662,
+  "result": "NATIVE_TESTS_FAILED_HISTORICAL_SOURCE_IDENTITY",
+  "native_tests": 684,
+  "errors": 25,
+  "native_seconds": 178.19,
+  "paid_allocations": 0,
+  "source_hash_entries_verified": 170,
+  "unique_source_paths_verified": 85,
+  "account": {
+    "auto_pay": false,
+    "credit_balance_usd": "2.1716099885",
+    "observed_at": "2026-10-31T17:07:50Z",
+    "spend_per_hour_usd": "0"
+  },
+  "inventory": {
+    "complete_paginated_list": true,
+    "observed_at": "2026-10-31T17:07:57Z",
+    "pod_count": 0,
+    "resource_mutations": 0
+  },
+  "artifacts": [
+    {
+      "role": "container",
+      "id": 13050024503,
+      "sha256": "4fdf3f722a0a4968f4ecb8e37274765a3f3fa05d52fe147e38cb6a5fcaaa75b3",
+      "members": {
+        "tests.log": {
+          "sha256": "219ec83f03f759bb3447bd0862c117616fdeaa631cc569047ca72be9bb8132f0",
+          "bytes": 140129
+        }
+      }
+    },
+    {
+      "role": "owner",
+      "id": 13050453629,
+      "sha256": "2101a58a64ae9d9c26b39056c354ce50be643de2b15f5e8b48273565f5638a82",
+      "members": {
+        "account-after.json": {
+          "sha256": "28e8bb1acdea1ed12d3948db70630af5f8cec573e968b71ecff52af978d1f9a2",
+          "bytes": 24841
+        },
+        "minimum-owner/receipt.json": {
+          "sha256": "576114fc84ad05fa368657d8a3fa7de0162a31ae25cb17b8c8d9aec5c5e87adc",
+          "bytes": 11085
+        },
+        "minimum-owner.json": {
+          "sha256": "576114fc84ad05fa368657d8a3fa7de0162a31ae25cb17b8c8d9aec5c5e87adc",
+          "bytes": 11085
+        }
+      }
+    },
+    {
+      "role": "watch",
+      "id": 13050044199,
+      "sha256": "72e44489b7fa4e2e4f0e2f3186481d18f445a02fb7b4a014ea016aec16ebaf20",
+      "members": {
+        "minimum-watch.json": {
+          "sha256": "033b2c74b2d48da0a0c883d140e5d4b7a3ecaeba8f55c260f76161e43a42c978",
+          "bytes": 672
+        }
+      }
+    },
+    {
+      "role": "inputs",
+      "id": 13050782541,
+      "sha256": "9943de4f1bf5889a15327c777318549e74d6f037c5c84424533793c91701c901",
+      "members": {
+        "dependency-download.log": {
+          "sha256": "eeb2e5267d9a5a1ba9dcf9e7fa874b2ca6e22d0d8e998937392dac3e7a67dff1",
+          "bytes": 10907
+        },
+        "dependency-install.log": {
+          "sha256": "d37a06770f6e9acffa3fdf721caf7426070cb68b1db2baab8374eda4043a9a70",
+          "bytes": 5824
+        },
+        "input-verification.json": {
+          "sha256": "8caa03677c2e5d635183c06197e2ff07bc6b47b50db172b75b10d3f1b4f1642a",
+          "bytes": 14805
+        },
+        "preparation.json": {
+          "sha256": "e97dfdc58067ae0d67280fcd4c49aebba5d78e3b15826652f2b93307f13ea60c",
+          "bytes": 504
+        },
+        "preparation.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    }
+  ]
+}

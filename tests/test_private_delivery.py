@@ -157,43 +157,6 @@ class PrivateDeliveryTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             delivery.push(self.source, self.manifest_path, wrong, 10)
 
-    def test_progress_retains_verified_transfer_without_payload(self):
-        command=[sys.executable,'-I',delivery.__file__,'receive',str(self.dest),self.sha,'--progress']
-        report=self.root/'progress.json'
-        delivery.push(self.source,self.manifest_path,command,10,diagnostics=report)
-        observed=json.loads(report.read_bytes())
-        self.assertEqual(observed['status'],'PASS')
-        events=observed['progress']['events']
-        self.assertTrue(any(r['role']=='sender' and r['bytes']==len(self.content) for r in events))
-        self.assertTrue(any(r['role']=='receiver' and r['phase']=='COMMITTED'
-                            and r['bytes']==len(self.content) for r in events))
-        self.assertNotIn('private fixture',report.read_text())
-        self.assertEqual(report.stat().st_mode&0o777,0o600)
-
-    def test_progress_survives_receiver_timeout_and_preserves_exception(self):
-        report=self.root/'timeout.json'
-        hanging=[sys.executable,'-I','-c','import time; time.sleep(30)']
-        with self.assertRaises(subprocess.TimeoutExpired):
-            delivery.push(self.source,self.manifest_path,hanging,.2,diagnostics=report)
-        observed=json.loads(report.read_bytes())
-        self.assertEqual(observed['error_type'],'TimeoutExpired')
-        self.assertEqual(observed['phase'],'RECEIVER_COMPLETION')
-        self.assertNotEqual(observed['receiver_exit_code'],0)
-        self.assertFalse(any(r['role']=='receiver' for r in observed['progress']['events']))
-        # A failed diagnostic write must not replace the actual timeout.
-        with self.assertRaises(subprocess.TimeoutExpired):
-            delivery.push(self.source,self.manifest_path,hanging,.1,diagnostics=report)
-
-    def test_progress_discards_untyped_or_arbitrary_stderr(self):
-        valid={'role':'sender','phase':'STREAM','bytes':1,'total_bytes':2,'elapsed_seconds':.1}
-        rows=[valid,dict(valid,phase={}),dict(valid,bytes=-1),dict(valid,elapsed_seconds=float('nan')),
-              dict(valid,private_payload='must-not-export')]
-        raw=b'private stderr must not export\n'+b''.join(
-            (delivery.PROGRESS_PREFIX+json.dumps(r)+'\n').encode() for r in rows)
-        observed=delivery.progress_records(io.BytesIO(raw))
-        self.assertEqual(observed['events'],[valid])
-        self.assertNotIn('must-not-export',json.dumps(observed))
-
     def test_ssh_pins_host_and_disables_ambient_configuration(self):
         key, hosts = self.root / 'key', self.root / 'known_hosts'
         key.touch(); hosts.touch()

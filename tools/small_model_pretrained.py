@@ -18,7 +18,7 @@ import zipfile
 from tools import small_model_readiness as ready, small_model_runner as runner
 from tools import small_model_lifecycle as life
 from tools import small_model_minimum_remote as remote, small_model_container as container
-from tools import private_delivery as delivery, small_model_gpu as gpu
+from tools import small_model_delivery as delivery, small_model_gpu as gpu
 from tools import small_model_training_inputs as training
 from tools import small_model_augnes_screen as screening
 

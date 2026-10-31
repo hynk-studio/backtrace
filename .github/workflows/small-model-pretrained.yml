@@ -48,7 +48,7 @@ jobs:
           PYBUILD
       - name: Compare SSH receive windows under identical free imposed latency
         run: |
-          sudo "$(command -v python)" tests/official_cloud_transport.py .local/transport-build/dropbear-DROPBEAR_2026.94/dropbear .local/transport-build/dropbear-DROPBEAR_2026.94/dropbearkey actions-20261019 --window-control > evidence/transport-window-control.json 2> evidence/transport-window-control.log
+          sudo "$(command -v python)" tests/small_model_transport_control.py .local/transport-build/dropbear-DROPBEAR_2026.94/dropbear .local/transport-build/dropbear-DROPBEAR_2026.94/dropbearkey actions-20261019 --window-control > evidence/transport-window-control.json 2> evidence/transport-window-control.log
       - name: Exercise the exact hardware entry in a free ordinary container
         if: github.ref_name == 'bt-001-e2b-adapter-20261031'
         run: |

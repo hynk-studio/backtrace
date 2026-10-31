@@ -1,5 +1,12 @@
 # E2B twenty-case untrained screening and tiny adapter probe
 
+Current continuation: [measured transport correction](small-model-transfer-window-20261031.md).
+The original44-request create rejection and21-request runtime-transfer failure
+remain immutable failed attempts, with no actual training or new model outputs.
+The prospective current scope preserves21 requests/four updates, uses a new
+window namespace, and has1,550 total/1,130 work seconds withUSD0.261 maximum
+projection. The earlier scope sections below are retained history.
+
 **Current prospective continuation:** the focused 21-request/1,640-second scope
 below supersedes the earlier unexecuted proposals for a *new* start. Consumed
 run 41215557845 retains its original 44 assignments and 2,160-second contract.

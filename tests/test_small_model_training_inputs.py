@@ -31,14 +31,14 @@ class TrainingInputTests(unittest.TestCase):
             {'gpu':'NVIDIA RTX A6000','region':'US-TX-1'},
             {'gpu':'NVIDIA A40','region':'CA-MTL-1'},
             {'gpu':'NVIDIA L40S','region':'US-TX-1'}]
-        snapshot={'offers':offers,'account':{'credit_balance_usd':'2.1973672941'}}
+        snapshot={'offers':offers,'account':{'credit_balance_usd':'2.1716099885'}}
         def select(value,now):
             self.assertEqual(value['offers'],[offers[0]]+offers[2:])
-            return {'region':'CA-MTL-1','costs':{'maximum_projection':'0.290'}}
+            return {'region':'CA-MTL-1','costs':{'maximum_projection':'0.261'}}
         with patch.object(scope,'original_choose',select):
             self.assertEqual(scope.choose(snapshot,1)['region'],'CA-MTL-1')
             with self.assertRaises(ValueError):
-                scope.choose(dict(snapshot,account={'credit_balance_usd':'2.195'}),1)
+                scope.choose(dict(snapshot,account={'credit_balance_usd':'2.166'}),1)
         self.assertEqual(snapshot['offers'],offers)
 
     def test_four_targets_are_exact_train_partition_records_without_evaluation_overlap(self):
@@ -67,15 +67,15 @@ class TrainingInputTests(unittest.TestCase):
 
     def test_shorter_paid_claim_uses_bound_contract_and_keeps_cleanup_budget(self):
         with scope.configured():
-            self.assertEqual(minimum.CONTRACT['total_seconds'],1720)
-            self.assertEqual(minimum.CONTRACT['work_seconds'],1300)
+            self.assertEqual(minimum.CONTRACT['total_seconds'],1550)
+            self.assertEqual(minimum.CONTRACT['work_seconds'],1130)
             self.assertEqual(minimum.CONTRACT['cleanup_seconds'],300)
             self.assertEqual(minimum.CONTRACT['export_seconds'],120)
             state=minimum.State('fixture','a'*40,True)
             claim={'source_sha':state.source,'contract_sha256':minimum.life.digest(minimum.CONTRACT),
                 'namespace':state.namespace,'run_id':'123','actual':True,'owner_boot':'a'*64,
                 'watch_boot':'b'*64,'name':'backtrace-small-minimum-'+'c'*32,'requested_at':1,
-                'total_seconds':1720,'cleanup_seconds':300,'poll_seconds':90,'unknown_create_seconds':90}
+                'total_seconds':1550,'cleanup_seconds':300,'poll_seconds':90,'unknown_create_seconds':90}
             self.assertIs(minimum.check_claim(claim,state,123),claim)
             with self.assertRaises(minimum.StateError):minimum.check_claim(dict(claim,total_seconds=3000),state,123)
 

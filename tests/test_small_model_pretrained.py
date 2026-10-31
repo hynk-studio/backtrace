@@ -135,15 +135,15 @@ s.close();print(json.dumps(r))
         now=time.time();source='a'*40
         p={'source_sha':source,'contract_sha256':minimum.life.digest(scope.CONTRACT),
             'namespace':scope.NAMESPACE,'instruction':scope.INSTRUCTION,'mode':'OWNER_APPROVED_E2B_ADAPTER_FEASIBILITY',
-            'additional_cap_usd':'1.00','allocation_inclusive_seconds':1720,'single_use':True,
+            'additional_cap_usd':'1.00','allocation_inclusive_seconds':1550,'single_use':True,
             'automatic_retry':False,'top_up_allowed':False,'weight_bytes':10246621918,
             'pretrained_requests':21,'training_steps':4,'qualification_run_id':'123',
-            'approved_at':now-1,'expires_at':now+3600,'continuation_observed_spend_usd':'0.7086768398',
-            'maximum_projection_usd':'0.290'}
+            'approved_at':now-1,'expires_at':now+3600,'continuation_observed_spend_usd':'0.7344341454',
+            'maximum_projection_usd':'0.261'}
         self.assertIs(scope.validate_permit(p,source,now),p)
         for key,value in [('source_sha','b'*40),('pretrained_requests',45),('training_steps',1),
                 ('automatic_retry',True),('single_use',1),('namespace','cuda-trace-paid-20261031'),
-                ('continuation_observed_spend_usd','0.711')]:
+                ('continuation_observed_spend_usd','0.74')]:
             with self.subTest(key=key),self.assertRaises(ValueError):
                 scope.validate_permit(dict(p,**{key:value}),source,now)
 

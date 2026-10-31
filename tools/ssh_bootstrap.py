@@ -102,7 +102,7 @@ assert not keys.is_symlink()
 keys.write_text(os.environ['BT_SSH_PUBLIC_KEY']+'\n');keys.chmod(0o600)
 env={'PATH':'/usr/bin:/bin','HOME':'/root','LANG':'C.UTF-8'}
 env.update({k:os.environ[k] for k in ('LD_LIBRARY_PATH','CUDA_VISIBLE_DEVICES') if k in os.environ})
-os.execve(binary,[str(binary),'-F','-e','-j','-k','-G','root','-W','8388608','-D',str(ssh),'-p','22','-r',str(host),'-P',str(root/'sshd.pid')],env)
+os.execve(binary,[str(binary),'-F','-e','-j','-k','-G','root','-W','1048576','-D',str(ssh),'-p','22','-r',str(host),'-P',str(root/'sshd.pid')],env)
 '''
 
 
