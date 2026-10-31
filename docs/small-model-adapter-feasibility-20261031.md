@@ -2,8 +2,16 @@
 
 This is the plan's actual update/save/reload step, not a specialist-benefit test.
 The measured E2B baseline failed its synthetic response contract; the E4B capacity
-comparison is running separately. Its resource must be proved deleted before any
-new allocation. Neither outcome establishes whether specialist training helps.
+comparison run 41210831659 failed during its 3.64 GB common runtime transfer to
+EU-SE-1, before installation, CUDA or model work. Both controllers proved deletion;
+zero Pods/spend and USD 2.4105707673 were observed at 14:59:29 UTC. No E4B response
+exists. Neither outcome establishes whether specialist training helps.
+
+The next scope permits only CA-MTL-1 (the successful E2B route) or US-TX-1 (a
+separate quoted route), retaining the existing 600-second runtime-transfer limit.
+This changes the failed route without attributing its timeout to distance,
+bandwidth or host I/O; those causes were not measured. Renew exact-source free
+qualification after this selection change. Do not retry the E4B allocation.
 
 Reuse the same pinned E2B checkpoint, BF16/SDPA worker, exact-source qualification
 and owner/watcher. Freeze four supervised updates before execution: the first

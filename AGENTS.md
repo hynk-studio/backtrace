@@ -1,5 +1,19 @@
 # Backtrace working agreement
 
+## Post-E4B transfer failure (2026-10-31 UTC)
+
+E4B run 41210831659 failed at common runtime transfer to EU-SE-1, before any
+installation/CUDA/model output. Both controllers independently confirmed deletion;
+zero Pods/spend, autopay off and USD 2.4105707673 were observed at 14:59:29 UTC.
+Observed continuation spend is USD 0.4954733666, subject to final billing.
+The adapter scope now selects only CA-MTL-1 or US-TX-1, keeping all transfer,
+allocation and cleanup limits. This prospective route change is not proof of the
+timeout's underlying cause. Source e7964dbc137824652d348092699ae6f6d39df122 passed
+691 native tests and the numerical CPU update/save/reload control, but the changed
+route contract needs renewed exact-source qualification before its one paid start.
+No E4B repeat, merge, top-up or Augnes write is included. Continue to actual model
+and learning evidence under the owner's current delegation.
+
 ## Tiny E2B adapter continuation (2026-10-31 UTC)
 
 Read `docs/small-model-adapter-feasibility-20261031.md`. The owner's continued

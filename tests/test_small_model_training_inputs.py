@@ -1,5 +1,6 @@
 import json
 import unittest
+from unittest.mock import patch
 from tools import small_model_training_inputs as training
 from tools import abductive_benchmark as base, temporal_benchmark as temporal
 from tools import abductive_scoring as score, small_model_readiness as ready
@@ -7,6 +8,16 @@ from tools import small_model_pretrained_scope as scope, small_model_minimum as 
 
 
 class TrainingInputTests(unittest.TestCase):
+    def test_paid_offer_excludes_timed_out_route_without_mutating_account_evidence(self):
+        offers=[{'region':'EU-SE-1'},{'region':'US-TX-1'},{'region':'CA-MTL-1'}]
+        snapshot={'offers':offers,'account':{'credit_balance_usd':'2.41'}}
+        def select(value,now):
+            self.assertEqual(value['offers'],offers[1:])
+            return {'region':'US-TX-1','costs':{'maximum_projection':'0.370'}}
+        with patch.object(scope,'original_choose',select):
+            self.assertEqual(scope.choose(snapshot,1)['region'],'US-TX-1')
+        self.assertEqual(snapshot['offers'],offers)
+
     def test_four_targets_are_exact_train_partition_records_without_evaluation_overlap(self):
         spec=training.specification();self.assertEqual(len(spec['rows']),4)
         family=min(f for f,(split,_) in base.catalog().items() if split=='train')
