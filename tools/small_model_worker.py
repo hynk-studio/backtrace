@@ -129,6 +129,192 @@ def adapter_feasibility(model, tokenizer, specification):
     return result
 
 
+def candidate_delta(model):
+    """Separate bounded candidate path; the historical four-update path is unchanged."""
+    import math
+    import torch
+    model.eval();model.requires_grad_(False)
+    if hasattr(model,'_backtrace_candidate_adapter') or hasattr(model,'_backtrace_adapter'):
+        raise ValueError('candidate requires an untouched base instance')
+    candidates=[(n,m) for n,m in model.named_modules()
+                if n.endswith('.q_proj') and isinstance(m,torch.nn.Linear)]
+    if not candidates:raise ValueError('linear query projection absent')
+    name,projection=candidates[-1]
+    if 4*4*(projection.in_features+projection.out_features)>450_000:
+        raise ValueError('candidate adapter export bound exceeded')
+    device=next(model.parameters()).device
+    torch.manual_seed(17)
+    class Delta(torch.nn.Module):
+        def __init__(self):
+            super().__init__();self.enabled=True
+            self.a=torch.nn.Parameter(torch.empty(4,projection.in_features,device=device,dtype=torch.float32))
+            self.b=torch.nn.Parameter(torch.zeros(projection.out_features,4,device=device,dtype=torch.float32))
+            torch.nn.init.kaiming_uniform_(self.a,a=math.sqrt(5))
+        def hook(self,module,args,output):
+            if not self.enabled:return output
+            update=torch.nn.functional.linear(torch.nn.functional.linear(args[0].float(),self.a),self.b)
+            return output+update.to(output.dtype)
+    delta=Delta();projection.register_forward_hook(delta.hook)
+    model.add_module('_backtrace_candidate_adapter',delta)
+    return name,delta,device
+
+
+def candidate_prompt(tokenizer,messages):
+    ids=tokenizer.apply_chat_template(messages,tokenize=True,return_dict=True,
+        add_generation_prompt=True,enable_thinking=False,truncation=False,padding=False)['input_ids']
+    if not 0<len(ids)<3072:raise ValueError('bounded candidate prompt required')
+    return ids
+
+
+def candidate_logits(model,ids,device):
+    import torch
+    tensor=torch.tensor([ids],device=device,dtype=torch.long)
+    with torch.no_grad():
+        result=model(input_ids=tensor,attention_mask=torch.ones_like(tensor),
+            use_cache=False,logits_to_keep=1).logits.detach().float().cpu().contiguous()
+    if not torch.isfinite(result).all():raise ValueError('nonfinite probe logits')
+    return result
+
+
+def candidate_train(model,tokenizer,spec):
+    """320 paired-mask SGD updates; emit each finished update before the final receipt."""
+    import base64
+    import tempfile
+    import torch
+    from safetensors.torch import save_file,load_file
+    keys={'schema','arm','rows','rank','steps','seed','learning_rate','maximum_tokens'}
+    if (set(spec)!=keys or spec['schema']!='matched_candidate_adapter_v1' or spec['arm'] not in ('B2','S')
+            or spec['rank']!=4 or spec['steps']!=320 or spec['seed']!=17
+            or spec['learning_rate']!=0.01 or spec['maximum_tokens']!=3072
+            or not isinstance(spec['rows'],list) or len(spec['rows'])!=320):
+        raise ValueError('fixed matched candidate training contract required')
+    rowkeys={'id','messages','answer','padded_tokens','supervised_positions',
+             'prompt_tokens','answer_tokens','sequence_sha256'}
+    encoded=[];seen=set()
+    for row in spec['rows']:
+        if (set(row)!=rowkeys or not re.fullmatch('[0-9a-f]{64}',row['id']) or row['id'] in seen
+                or not isinstance(row['answer'],str) or not isinstance(row['messages'],list)):
+            raise ValueError('distinct bounded candidate row required')
+        seen.add(row['id']);json.loads(row['answer'])
+        prompt=candidate_prompt(tokenizer,row['messages'])
+        answer=tokenizer.encode(row['answer'],add_special_tokens=False)+[106]
+        positions=row['supervised_positions'];padded=row['padded_tokens']
+        if (type(padded) is not int or not len(prompt)+len(answer)<=padded<=3072
+                or len(prompt)!=row['prompt_tokens'] or len(answer)!=row['answer_tokens']
+                or hashlib.sha256(canonical(prompt+answer)).hexdigest()!=row['sequence_sha256']
+                or not isinstance(positions,list) or not positions
+                or any(type(i) is not int for i in positions) or positions!=sorted(set(positions))
+                or positions[0]<0 or positions[-1]!=len(answer)-1):
+            raise ValueError('candidate token identity, padding or mask mismatch')
+        encoded.append((prompt,answer,set(positions),padded))
+    if sum(len(p)+len(a) for p,a,_,_ in encoded)>1_000_000:
+        raise ValueError('effective training token ceiling exceeded')
+    name,delta,device=candidate_delta(model)
+    original={k:v.detach().clone() for k,v in delta.state_dict().items()}
+    probe=encoded[0][0];before=candidate_logits(model,probe,device)
+    losses=[];gradients=[];started=time.monotonic()
+    if device.type=='cuda':torch.cuda.reset_peak_memory_stats()
+    for step,(prompt,answer,positions,padded) in enumerate(encoded,1):
+        padding=padded-len(prompt)-len(answer)
+        ids=torch.tensor([prompt+answer+[0]*padding],device=device,dtype=torch.long)
+        mask=torch.tensor([[1]*(padded-padding)+[0]*padding],device=device,dtype=torch.long)
+        labels=torch.tensor([[-100]*len(prompt)+[v if i in positions else -100 for i,v in enumerate(answer)]
+                             +[-100]*padding],device=device,dtype=torch.long)
+        for parameter in delta.parameters():parameter.grad=None
+        loss=model(input_ids=ids,attention_mask=mask,labels=labels,use_cache=False).loss
+        if not torch.isfinite(loss):raise ValueError('nonfinite candidate loss')
+        loss.backward()
+        if any(p.grad is None or not torch.isfinite(p.grad).all() for p in delta.parameters()):
+            raise ValueError('missing or nonfinite candidate gradient')
+        norm=torch.nn.utils.clip_grad_norm_(delta.parameters(),1.0,error_if_nonfinite=True)
+        with torch.no_grad():
+            for parameter in delta.parameters():parameter.add_(parameter.grad,alpha=-0.01)
+        losses.append(float(loss.detach()));gradients.append(float(norm))
+        print(json.dumps({'phase':'CANDIDATE_UPDATE_FINISHED','arm':spec['arm'],'step':step,
+            'id':spec['rows'][step-1]['id'],'loss':losses[-1],'gradient_norm':gradients[-1],
+            'supervised_tokens':len(positions),'elapsed_seconds':time.monotonic()-started}),file=sys.stderr,flush=True)
+    for parameter in delta.parameters():parameter.grad=None
+    changed=[k for k,v in delta.state_dict().items() if not torch.equal(v,original[k])]
+    if set(changed)!={'a','b'}:raise ValueError('both candidate matrices must change')
+    trained=candidate_logits(model,probe,device);delta.enabled=False
+    disabled=candidate_logits(model,probe,device);delta.enabled=True
+    if not torch.equal(before,disabled):raise ValueError('candidate altered frozen base')
+    difference=float((trained-disabled).abs().max())
+    if not difference>0:raise ValueError('candidate has no observable logit change')
+    with tempfile.TemporaryDirectory(prefix='backtrace-candidate-') as directory:
+        path=Path(directory)/'adapter.safetensors'
+        save_file({k:v.detach().cpu().contiguous() for k,v in delta.state_dict().items()},str(path))
+        raw=path.read_bytes()
+        if len(raw)>524288:raise ValueError('candidate adapter export too large')
+        restored=load_file(str(path),device='cpu')
+        if set(restored)!=set(original):raise ValueError('candidate tensor keys differ')
+        with torch.no_grad():
+            for parameter in delta.parameters():parameter.zero_()
+            for k,v in delta.state_dict().items():v.copy_(restored[k].to(device))
+    reloaded=candidate_logits(model,probe,device)
+    if not torch.equal(trained,reloaded):raise ValueError('candidate same-instance reload differs')
+    if device.type=='cuda':torch.cuda.synchronize()
+    return {'status':'PASS_MATCHED_CANDIDATE_TRAINING','arm':spec['arm'],'training_steps':320,
+        'updates_in_worker':320,'rank':4,'seed':17,'learning_rate':0.01,'optimizer':'SGD',
+        'target_module':name,'trainable_parameters':sum(p.numel() for p in delta.parameters()),
+        'training_input_sha256':hashlib.sha256(canonical(spec)).hexdigest(),
+        'sequence_tokens':[len(p)+len(a) for p,a,_,_ in encoded],
+        'padded_tokens':[n for _,_,_,n in encoded],'supervised_tokens':[len(m) for _,_,m,_ in encoded],
+        'losses':losses,'gradient_norms':gradients,'changed_tensors':changed,
+        'adapter_on_off_max_logit_difference':difference,'disabled_base_max_logit_difference':0.0,
+        'save_reload_max_logit_difference':0.0,'seconds':time.monotonic()-started,
+        'adapter_bytes':len(raw),'adapter_sha256':hashlib.sha256(raw).hexdigest(),
+        'adapter_safetensors_base64':base64.b64encode(raw).decode(),
+        'probe_messages':spec['rows'][0]['messages'],'probe_input_ids_sha256':hashlib.sha256(canonical(probe)).hexdigest(),
+        'trained_probe_logits_sha256':hashlib.sha256(trained.numpy().tobytes()).hexdigest(),
+        'capability_claim':'NOT_ESTABLISHED',**({'peak_allocated_bytes':torch.cuda.max_memory_allocated(),
+        'peak_reserved_bytes':torch.cuda.max_memory_reserved()} if device.type=='cuda' else {})}
+
+
+def candidate_restore(model,tokenizer,spec):
+    """Fresh model/process reload, bound to the original training probe and artifact."""
+    import base64
+    import tempfile
+    import torch
+    from safetensors.torch import load_file
+    keys={'schema','arm','training_steps','training_input_sha256','adapter_bytes','adapter_sha256',
+          'adapter_safetensors_base64','target_module','probe_messages','probe_input_ids_sha256',
+          'trained_probe_logits_sha256'}
+    if (set(spec)!=keys or spec['schema']!='matched_candidate_restore_v1'
+            or spec['arm'] not in ('B2','S') or spec['training_steps']!=320
+            or type(spec['adapter_bytes']) is not int or not 0<spec['adapter_bytes']<=524288
+            or not isinstance(spec['adapter_safetensors_base64'],str)
+            or len(spec['adapter_safetensors_base64'])>700000
+            or any(not re.fullmatch('[0-9a-f]{64}',spec[k]) for k in
+                ('training_input_sha256','adapter_sha256','probe_input_ids_sha256','trained_probe_logits_sha256'))):
+        raise ValueError('bounded candidate restore contract required')
+    raw=base64.b64decode(spec['adapter_safetensors_base64'],validate=True)
+    if len(raw)!=spec['adapter_bytes'] or hashlib.sha256(raw).hexdigest()!=spec['adapter_sha256']:
+        raise ValueError('candidate adapter identity mismatch')
+    probe=candidate_prompt(tokenizer,spec['probe_messages'])
+    if hashlib.sha256(canonical(probe)).hexdigest()!=spec['probe_input_ids_sha256']:
+        raise ValueError('candidate reload probe mismatch')
+    name,delta,device=candidate_delta(model)
+    if name!=spec['target_module']:raise ValueError('candidate target module mismatch')
+    with tempfile.TemporaryDirectory(prefix='backtrace-restore-') as directory:
+        path=Path(directory)/'adapter.safetensors';path.write_bytes(raw)
+        values=load_file(str(path),device='cpu')
+    if set(values)!={'a','b'}:raise ValueError('candidate tensor keys mismatch')
+    with torch.no_grad():
+        for k,v in delta.state_dict().items():
+            if values[k].dtype!=torch.float32 or values[k].shape!=v.shape or not torch.isfinite(values[k]).all():
+                raise ValueError('candidate tensor dtype, shape or values mismatch')
+            v.copy_(values[k].to(device))
+    observed=hashlib.sha256(candidate_logits(model,probe,device).numpy().tobytes()).hexdigest()
+    if observed!=spec['trained_probe_logits_sha256']:raise ValueError('fresh candidate reload logits mismatch')
+    delta.requires_grad_(False)
+    return {'status':'PASS_FRESH_PROCESS_CANDIDATE_RELOAD','arm':spec['arm'],
+        'training_steps':320,'updates_in_worker':0,'adapter_bytes':len(raw),
+        'adapter_sha256':spec['adapter_sha256'],'training_input_sha256':spec['training_input_sha256'],
+        'target_module':name,'probe_input_ids_sha256':spec['probe_input_ids_sha256'],
+        'observed_probe_logits_sha256':observed,'capability_claim':'NOT_ESTABLISHED'}
+
+
 def cuda_check(job):
     """Actual single-device kernels; never treats import success as GPU success."""
     import torch
@@ -208,17 +394,25 @@ def main():
     load_metrics=({'cuda':gpu,'load_seconds':time.monotonic()-load_started,
         'load_peak_allocated_bytes':torch.cuda.max_memory_allocated(),
         'load_peak_reserved_bytes':torch.cuda.max_memory_reserved()} if cuda_mode else {})
-    adaptation=None
+    adaptation=None;candidate=None
+    if sum(k in job for k in ('adapter_feasibility','candidate_training','candidate_restore'))>1:
+        raise ValueError('one explicit adapter operation per worker required')
     if 'adapter_feasibility' in job:
         if job['mode'] not in ('pretrained_cuda','random_fixture'):
             raise ValueError('adapter requires a model and explicit bounded job')
         adaptation=adapter_feasibility(model,tokenizer,job['adapter_feasibility'])
+    for operation,function in (('candidate_training',candidate_train),('candidate_restore',candidate_restore)):
+        if operation in job:
+            if job['mode'] not in ('pretrained_cuda','random_fixture'):
+                raise ValueError('candidate operation requires a qualified model job')
+            candidate=function(model,tokenizer,job[operation])
     if cuda_mode:torch.cuda.synchronize()
     status = dict(line.split(':', 1) for line in Path('/proc/self/status').read_text().splitlines() if ':' in line)
     send({'ready': True, 'mode': job['mode'], 'uid': os.getuid(),
           'caps': int(status['CapEff'].strip(), 16), 'no_new_privs': status['NoNewPrivs'].strip(),
           'pid_namespace': os.readlink('/proc/self/ns/pid'), 'net_namespace': os.readlink('/proc/self/ns/net'),
           **({'adapter_feasibility':adaptation} if adaptation else {}),
+          **({'candidate_adapter':candidate} if candidate else {}),
           **load_metrics})
     count = 0
     while True:

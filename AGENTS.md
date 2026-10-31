@@ -1,5 +1,25 @@
 # Backtrace working agreement
 
+## Matched E2B learning candidate (2026-10-31 UTC)
+
+Read docs/small-model-matched-candidate-20261031.md. E2B actual four-update
+feasibility and E4B20-response screening are complete, with both allocations
+deleted. Continue one bounded B1/B2/S candidate:320 updates per trained arm,
+64 training episodes,96 fresh development episodes and20 fixed Augnes packets
+per arm (348 generations total). Preserve matched masks/padding, original
+missing-output denominators, raw adapters and fresh-process reload evidence.
+One seed and a narrow forward-probability B2 are candidate evidence, not proof
+of specialist advantage or current Augnes value. Do not stop at preparation.
+
+New scope:matched-candidate-paid-20261031; review/start/state branches use
+bt-001-matched-candidate[-start|-state]-20261031. Before any allocation require
+full exact-source native/container/input qualification and a fresh permit. Bound
+one allocation atUSD0.90, continuationUSD2.30, credit floorUSD0.6060441339,
+5340/4920/300/120 seconds total/work/cleanup/export. Fresh current stock/price/
+balance and no active Pod are mandatory. No top-up, retry, overlap, merge or
+Augnes write. Preserve all consumed prior sources/starts/results unchanged.
+
+
 ## Actual E2B completion; E4B comparison active (2026-10-31 20:19 UTC)
 
 Read docs/small-model-public-completion-result-20261031.md. Run41236271328 completed
