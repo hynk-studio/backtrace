@@ -1,0 +1,187 @@
+name: E2B original baseline and Augnes development replays
+on:
+  push:
+    branches: [bt-001-e2b-baseline-20261031, bt-001-e2b-listener-start-20261031]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: small-e2b-baseline-cpu-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  container:
+    if: github.ref_name == 'bt-001-e2b-baseline-20261031'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Full exact-source native tests and preflight
+        run: |
+          set -euo pipefail
+          mkdir -p evidence .local
+          if ! command -v bwrap >/dev/null; then sudo apt-get update && sudo apt-get install -y bubblewrap; fi
+          sudo "$(command -v python)" -m unittest discover -s tests -v > evidence/tests.log 2>&1
+          python tools/backtrace.py preflight > evidence/preflight.json
+          git diff --check
+      - name: Prepare pinned CUDA wheels and transport before any allocation
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
+          python -m pip download --no-cache-dir --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cu126 -r docs/small-model-gpu-requirements.txt -d .local/cuda-wheels
+          python - <<'PYBUILD'
+          from pathlib import Path
+          import json
+          from tools.cloud_transport import build
+          root=Path('.local/transport-build');result=build(root)
+          (root/'receipt.json').write_text(json.dumps(result,sort_keys=True))
+          PYBUILD
+      - name: Exercise the exact hardware entry in a free ordinary container
+        run: |
+          sudo --preserve-env=GITHUB_SHA,GITHUB_RUN_ID "$(command -v python)" -m tools.small_model_pretrained_scope qualify .local/cuda-wheels .local/transport-build .local/minimum-qualification > evidence/container.json 2> evidence/container-stderr.log
+      - name: Preserve bounded qualification evidence
+        if: always()
+        run: |
+          sudo python - <<'PYSAVE'
+          from pathlib import Path
+          import shutil
+          root=Path('.local/minimum-qualification')
+          for p in root.rglob('*'):
+              if p.is_file() and not p.is_symlink() and p.suffix in ('.json','.log') and p.stat().st_size<16*1024**2:
+                  shutil.copyfile(p,Path('evidence')/('container-'+str(p.relative_to(root)).replace('/','-')))
+          for p in Path('evidence').iterdir():p.chmod(0o644)
+          PYSAVE
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: small-e2b-baseline-container-${{ github.sha }}-${{ github.run_attempt }}
+          path: evidence/
+          retention-days: 14
+  owner:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 85
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Install pinned owner controller dependencies
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
+      - name: Prepare pinned CUDA wheels and transport before any allocation
+        if: github.ref_name == 'bt-001-e2b-listener-start-20261031'
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
+          python -m pip download --no-cache-dir --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cu126 -r docs/small-model-gpu-requirements.txt -d .local/cuda-wheels
+          python - <<'PYBUILD'
+          from pathlib import Path
+          import json
+          from tools.cloud_transport import build
+          root=Path('.local/transport-build');result=build(root)
+          (root/'receipt.json').write_text(json.dumps(result,sort_keys=True))
+          PYBUILD
+      - name: Prepare checkpoint, original assignments and tokenizer runtime before allocation
+        if: github.ref_name == 'bt-001-e2b-listener-start-20261031'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p evidence .local
+          gh api /repos/hynk-studio/backtrace/actions/artifacts/12640353622/zip > .local/readiness.zip
+          python -m tools.small_model_pretrained prepare .local/e2b .local/readiness.zip > evidence/preparation.json
+          python -m venv .local/model-runtime
+          .local/model-runtime/bin/python -m pip install --no-index --no-deps --only-binary=:all: --require-hashes --find-links .local/cuda-wheels -r docs/small-model-gpu-requirements.txt
+          .local/model-runtime/bin/python -m tools.small_model_gpu check-runtime > evidence/owner-runtime.json
+          .local/model-runtime/bin/python -m tools.small_model_pretrained plan-gpu-inputs .local/e2b > evidence/assignment-before-allocation.json
+      - name: Run bounded scope (free replica or authorized E2B collection)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
+        run: |
+          mode=free
+          if [ "$GITHUB_REF_NAME" = bt-001-e2b-listener-start-20261031 ]; then mode=paid; fi
+          python -m tools.small_model_pretrained_scope owner "$mode"
+      - name: Preserve current account and quotes (read only)
+        if: always()
+        env:
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
+        run: python -m tools.small_model_provider evidence/account-after.json
+      - name: Preserve original collector checkpoints after interruption
+        if: always()
+        run: python -m tools.small_model_pretrained preserve evidence/minimum-owner/remote
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: small-e2b-baseline-cpu-owner-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            evidence/**/*.json
+            evidence/**/*.jsonl
+            evidence/**/*.log
+            !evidence/**/endpoint.json
+            !evidence/**/collector-input.json
+          retention-days: 14
+  watch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 85
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Run bounded scope (free replica or authorized E2B collection)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
+        run: |
+          mode=free
+          if [ "$GITHUB_REF_NAME" = bt-001-e2b-listener-start-20261031 ]; then mode=paid; fi
+          python -m tools.small_model_pretrained_scope watch "$mode"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: small-e2b-baseline-cpu-watch-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            evidence/**/*.json
+            evidence/**/*.log
+            !evidence/**/endpoint.json
+          retention-days: 14
+
+  prepare:
+    if: github.ref_name == 'bt-001-e2b-baseline-20261031'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+      - name: Reuse exact historical tokenization and verify full E2B bytes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local evidence
+          gh api /repos/hynk-studio/backtrace/actions/artifacts/12640353622/zip > .local/readiness.zip
+          python -m tools.small_model_pretrained prepare .local/e2b .local/readiness.zip > evidence/preparation.json 2> evidence/preparation.log
+      - name: Reproduce original and replay inputs with the pinned tokenizer
+        run: |
+          python -m venv .local/runtime
+          .local/runtime/bin/python -m pip download --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cpu -r docs/small-model-cpu-requirements.txt -d .local/wheels > evidence/dependency-download.log 2>&1
+          .local/runtime/bin/python -m pip install --no-index --find-links .local/wheels --require-hashes -r docs/small-model-cpu-requirements.txt > evidence/dependency-install.log 2>&1
+          .local/runtime/bin/python -m tools.small_model_pretrained inspect-inputs .local/e2b > evidence/input-verification.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: e2b-checkpoint-preparation-${{ github.sha }}
+          path: evidence/
+          retention-days: 14

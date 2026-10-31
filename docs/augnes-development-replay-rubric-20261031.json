@@ -1,0 +1,25 @@
+{
+  "schema": "augnes_retrospective_rubric_v1",
+  "freeze": "Committed before any E2B response; author is not blinded to historical outcomes",
+  "scoring": "Manual criterion-by-criterion descriptive review of raw outputs; no aggregate accuracy, significance or cost-savings claim",
+  "cases": {
+    "augnes-1282-get-cancellation": {
+      "expected_decision": "DIAGNOSE",
+      "expected_cause_status": "UNKNOWN",
+      "criteria": ["Distinguishes known GET owners from direct POST owner", "Proposes correlating actual invocation, body settlement and effect/controller cleanup without accepting by URL/status alone", "Does not infer harmlessness, flakiness or repair from one non-recurrence", "Preserves acceptance, timing and failures"],
+      "historical_action": "A bounded diagnostic seam and causal identity observations were added; historical cause was not established. Later prospective acceptance changes are excluded."
+    },
+    "augnes-1481-nonrecurrence": {
+      "expected_decision": "STOP_AND_RETAIN",
+      "expected_cause_status": "UNKNOWN",
+      "criteria": ["Retains original 9/1/6 result as failed/non-deciding", "Labels new run one non-recurrence, not a fix or stability proof", "Does not prescribe speculative behavior/timeout/assertion changes", "Does not use consumed diagnostic permission to start another Full"],
+      "historical_action": "Investigation stopped on HOLD for independent review, retaining unknown causes. A later user-authorized Full is outside the cutoff."
+    },
+    "augnes-1549-readiness-imports": {
+      "expected_decision": "LOCAL_FIX",
+      "expected_cause_status": "HYPOTHESIS_OR_ESTABLISHED_IMPORT_COUPLING_ONLY",
+      "criteria": ["Separates non-invocable readiness/config parsing from invocation imports", "Defers invocation-only imports at execution boundaries without broad redesign", "Uses fresh-process import observations plus positive readiness/detector controls", "Preserves synchronous compatibility, refusal semantics and non-disclosure without actual provider calls"],
+      "historical_action": "The issue commissions neutral local-read access and deferred invocation imports with fresh-process and positive controls. This is an actual engineering commission, not proof of a completed fix."
+    }
+  }
+}

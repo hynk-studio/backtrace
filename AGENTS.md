@@ -1,5 +1,75 @@
 # Backtrace working agreement
 
+## Actual E2B result and conditional E4B continuation (2026-10-31 UTC)
+
+Read `docs/small-model-e2b-result-20261031.md`. Run 41206950960 at immutable
+source `67f1b855d8bb2d5cffbe27087bce178e226e303d` completed 24 real E2B
+responses after A/B/C/D and full actual hardware checks passed. Both controllers
+proved deletion. All 18 synthetic task responses were invalid under the frozen
+contract; the three retrospective replays showed partial restraint/local-fix
+directions but unsupported hypotheses and poor format following. No useful
+training or workflow advantage is established. At 14:11:48 UTC zero Pods, zero
+spend, autopay off and USD 2.5524651839 were observed; cumulative continuation
+spend is USD 0.3535789500, subject to final billing.
+
+Continue the plan's conditional E4B capacity comparison through the same worker
+and owner/watcher, on the deferred original 18 assignments plus the identical
+three B0/B1 replays. Use a new review/start/state namespace and exact-source free
+qualification; preserve all E2B inputs, raw outputs, source and consumed permit.
+Next maximum projection USD 0.505 still fits the cumulative USD 1 cap. This is a
+new evidence-supported scope under the owner's ongoing delegation, not a blind
+repeat. No training, merge, top-up or Augnes writes are included in that scope.
+Continue after interpretation toward the active goal; another passing workflow
+or PR is not completion.
+
+## Current passive-listener correction (2026-10-31 KST)
+
+The current autonomous-continuation instruction remains active. First E2B attempt
+41203845196 at immutable source `13f98c34cb90de7d9265af74d8153aecb78b9d1b`
+failed before model work: A/B actual kernels passed; C/D CUDA initialization
+failed; D recorded two connect and two bind denials. All 24 assignments remain
+NOT_RUN. Read `docs/small-model-e2b-execution-20261031.md` and its retained raw
+evidence. Both controllers proved deletion. At 13:22:25 UTC there were zero Pods,
+zero spend, autopay off and USD 2.7145033478; cumulative observed continuation
+spend is USD 0.1915407861.
+
+Continue the evidence-supported bind/listen correction on Draft #45. Keep connect,
+accept, send, all other socket shapes and inherited socket descriptors blocked.
+The candidate permits a passive Unix sequenced-packet listener; it does not claim
+address-string filtering. Its native kernel test must prove that a queued peer
+cannot be accepted or read through the listener. No CUDA initialization is moved
+before restrictions and no privileged namespace is added.
+
+Fresh free qualification must precede the new `e2b-listener-paid-20261031`
+namespace and `bt-001-e2b-listener-start-20261031` start. The previous E2B and trace
+source/start refs, permits, failures and state remain immutable. Reuse the same
+owner/watcher, affordable scope and 24 inputs, without a blind repeat or new
+orchestration layer. The existing cumulative USD 1 ceiling and reserve still
+cover the next USD 0.505 maximum projection. Continue through actual evidence and
+interpretation; another diagnostic, passing test or Draft PR is not completion.
+
+## Active E2B measurement continuation (2026-10-31 KST)
+
+The owner's current autonomous-continuation instruction remains active. Work on
+`bt-001-e2b-baseline-20261031`, Draft #45 stacked on #44; do not merge the stack.
+Actual trace source `4a346b70a42ce1d64c3971e87ff1a42be3862b58` and its start/state
+refs are immutable. Run 41200242706 owns that one diagnostic allocation and its
+independent cleanup. Do not launch E2B until that resource is confirmed deleted,
+the observed CUDA cause has a supported correction, and the exact E2B source has
+passed free native/container/input qualification.
+
+Read `docs/small-model-e2b-continuation-20261031.md`. The actual E2B checkpoint is
+accessible and byte-verified. Collect the original 18 assignments plus B0/B1 for
+three retrospective Augnes episodes through the existing owner/watcher. Preserve
+all raw outcomes and denominators. The replay rubric was authored with historical
+outcome knowledge and is development-only; #1549 is a commission, not a proven fix.
+No training, E4B inference, Augnes writes, merge or top-up is included. The new
+scope enforces the remaining cumulative USD 1 budget against the starting credit
+USD 2.9060441339. Hidden host memory ancestry remains unattested; the new route is
+a bounded ordinary-container attempt, not a claim that the earlier native-host
+memory gate passed. Continue to actual measurement and interpretation; a Draft
+PR, successful download or infrastructure test is not goal completion.
+
 ## Active continuation and denied-call trace (2026-10-31 KST)
 
 The owner explicitly instructed continued work to the actual small-model/Augnes

@@ -440,6 +440,8 @@ def evaluate(plan,schedule,collection):
             for i,p in payloads.items()}
     reports={}
     for model in ready.MODELS:
+        if not any(r['model']==model for r in schedule):
+            continue  # A prespecified E2B-only scope has no E4B denominator.
         reports[model]={}
         for arm in ('B0','B1'):
             records=[r for r in collection['records'] if r['model']==model and r['arm']==arm]
@@ -457,6 +459,7 @@ def evaluate(plan,schedule,collection):
                     'received':len(received),'assigned':len(chosen)}
             reports[model][arm]=group
     return {'status':'DESCRIPTIVE_PIPELINE_ONLY','mode':collection['mode'],'coverage':collection['coverage'],
+        'excluded_models':[model for model in ready.MODELS if model not in reports],
         'scores':reports,'interpretation':'Assigned-denominator scores include protocol penalties for missing execution. They are not model accuracy when execution is incomplete. Received-only metrics exclude unexecuted cases; paired metrics require complete assigned episodes.',
         'confidence_intervals':'NOT_COMPUTED','capability_claim':'NOT_ESTABLISHED'}
 

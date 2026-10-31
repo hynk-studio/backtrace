@@ -41,6 +41,11 @@ def sources():
     return dict(container.sources(),**{str(p.relative_to(ROOT)):life.digest(p.read_bytes()) for p in extra})
 
 
+def prepare_runtime(prepared):
+    from tools.small_model_minimum_remote import prepare
+    return prepare(prepared,ROOT/'.local/cuda-wheels',ROOT/'.local/transport-build')
+
+
 class State(Wire):
     def __init__(self,token,source,actual,**kw):
         if not re.fullmatch('[0-9a-f]{40}',source):raise ValueError('immutable source required')
@@ -402,9 +407,8 @@ def main(role,actual):
         p=validate_permit(state.read('authorization')[0],source,time.time());require_qualification(state,p)
     prepared=None
     if role=='owner' and actual:
-        from tools.small_model_minimum_remote import prepare
         prepared=(ROOT/'.local/minimum-prepared').resolve()
-        prepare(prepared,ROOT/'.local/cuda-wheels',ROOT/'.local/transport-build')
+        prepare_runtime(prepared)
     me=identity(state,role,rid)
     api=control.RunpodAPI(os.environ['RUNPOD_API_KEY'].strip()) if actual else ReplicaAPI(state)
     return watch(state,api,rid,me) if role=='watch' else owner(state,api,rid,me,prepared)

@@ -1,0 +1,942 @@
+{
+  "account_after": {
+    "account": {
+      "auto_pay": false,
+      "credit_balance_usd": "2.8022904793",
+      "observed_at": "2026-10-31T12:30:29Z",
+      "spend_per_hour_usd": "0"
+    },
+    "account_idle": true,
+    "inventory": {
+      "complete_paginated_list": true,
+      "observed_at": "2026-10-31T12:30:38Z",
+      "pod_count": 0,
+      "resource_mutations": 0
+    }
+  },
+  "artifact": {
+    "id": 13042447743,
+    "members": {
+      "account-after.json": {
+        "bytes": 25877,
+        "sha256": "e82be16adecc1ddd0c009967ecbc3470ba3a72add57c89665a0d613169998196"
+      },
+      "minimum-owner.json": {
+        "bytes": 51210,
+        "sha256": "80b899011edab0a75a8452f9a7f6b193cf98b67c257ab2b6b27b82f5517368e7"
+      },
+      "minimum-owner/receipt.json": {
+        "bytes": 51210,
+        "sha256": "80b899011edab0a75a8452f9a7f6b193cf98b67c257ab2b6b27b82f5517368e7"
+      },
+      "minimum-owner/remote/connected-receipt.json": {
+        "bytes": 22317,
+        "sha256": "a588d4819575c7844284b7aff92a6f49b3a506e24e3efca86c0fc514d52dd540"
+      },
+      "minimum-owner/remote/diagnostic-summary.json": {
+        "bytes": 249,
+        "sha256": "7965b673d7ef20547088635b6bd26b972155b1381b062d1d623b715644f88e4c"
+      },
+      "minimum-owner/remote/diagnostics/cuda-comparison/A-checkpoint.json": {
+        "bytes": 2032,
+        "sha256": "266f3d16cc40b2f92ffb7ea23afc8ad3df77c7688f1737a962b5b962b87c2f93"
+      },
+      "minimum-owner/remote/diagnostics/cuda-comparison/A-stderr.log": {
+        "bytes": 1117,
+        "sha256": "089556d87e12eb351719585d81e011129ff223c6c7f376f653b6f75c0f3d87c6"
+      },
+      "minimum-owner/remote/diagnostics/cuda-comparison/A-stdout.log": {
+        "bytes": 921,
+        "sha256": "746073d3055eadcf95f310b4a986b9bd4d7b6d9bb27ea8bb252fb725e3f48b3e"
+      },
+      "minimum-owner/remote/diagnostics/cuda-comparison/A-teardown.json": {
+        "bytes": 2884,
+        "sha256": "7c7c5b50acbc0fbb8b8b71df05a1554f8b09429d7735cc51de8bd0724f5dadad"
+      },
+      "minimum-owner/remote/diagnostics/cuda-comparison/B-checkpoint.json": {
+        "bytes": 4830,
+        "sha256": "de48b16e8678d77f7fe60e3e296893c0830118b4560e2d57567b70831d0152a7"
+      },
+      "minimum-owner/remote/diagnostics/cuda-comparison/B-stderr.log": {
+        "bytes": 1148,
+        "sha256": "accd850c2c370bfe830baa1f0d1ea628f401b3cedc9bba29d7373c4b2c08ab97"
+      },
+      "minimum-owner/remote/diagnostics/cuda-comparison/B-stdout.log": {
+        "bytes": 921,
+        "sha256": "22e9d86bf44bafebf1160e6eb73316dfcd359a9cdd91ead18e389775703ed93c"
+      },
+      "minimum-owner/remote/diagnostics/cuda-comparison/B-teardown.json": {
+        "bytes": 5682,
+        "sha256": "395184648bf4877fcd03c5ceeaa1bac2c082549b0f50bc145a94f9bb7fea4e27"
+      },
+      "minimum-owner/remote/diagnostics/cuda-comparison/C-checkpoint.json": {
+        "bytes": 7111,
+        "sha256": "0a8cbc1b89911213af24a9a8e52a45372deb3947ce1534149be8121ed2cccb91"
+      },
+      "minimum-owner/remote/diagnostics/cuda-comparison/C-stderr.log": {
+        "bytes": 1700,
+        "sha256": "05c1d6dbf339d98b276ddb1a2055a1a3fbc581950217a8c2cb49e79153cff41d"
+      },
+      "minimum-owner/remote/diagnostics/cuda-comparison/C-stdout.log": {
+        "bytes": 640,
+        "sha256": "7ef9610dd705ea5c9472642263c9715e2bb1a31076892bb368610135ed6223cb"
+      },
+      "minimum-owner/remote/diagnostics/cuda-comparison/C-teardown.json": {
+        "bytes": 7965,
+        "sha256": "b15bf696c43f23d591160aa33c0496a1ca1be9f9e0bdc047aec0a93394282ec3"
+      },
+      "minimum-owner/remote/diagnostics/cuda-comparison/D-checkpoint.json": {
+        "bytes": 9489,
+        "sha256": "4967a6012d32d43df0b0e02b5afdae10d04347ea25e024615b9ba5253ee551d7"
+      },
+      "minimum-owner/remote/diagnostics/cuda-comparison/D-stderr.log": {
+        "bytes": 2036,
+        "sha256": "323f62f08b483f373a4bb2fc2403f0f5d12df17529fb1fde784b6aaa4d8b9c2b"
+      },
+      "minimum-owner/remote/diagnostics/cuda-comparison/D-stdout.log": {
+        "bytes": 744,
+        "sha256": "d6d6449d9a72a7ddabf6ef3ca8cc6e74fc081528a34e2004f93117ec3f22a472"
+      },
+      "minimum-owner/remote/diagnostics/cuda-comparison/D-teardown.json": {
+        "bytes": 10343,
+        "sha256": "cd58abb95fdf44d5984a8efd7afbec99de6a8d167bead18baf4329316c48b906"
+      },
+      "minimum-owner/remote/diagnostics/cuda-comparison/receipt.json": {
+        "bytes": 10817,
+        "sha256": "71820320df943dd5bc5aa494307444c4ba6e7c3258dc0a065f75721823e79aca"
+      },
+      "minimum-owner/remote/diagnostics/cuda-comparison/started.json": {
+        "bytes": 118,
+        "sha256": "c6978aad09d548a071e43991fdfb149312a497d39509a28d60d0d22f1c925499"
+      },
+      "minimum-owner/remote/diagnostics/receipt.json": {
+        "bytes": 14512,
+        "sha256": "4b0c73349acd44fed19b2735fb6fa55d582f4f9dc35eaf3af34ecbd1028ce622"
+      },
+      "minimum-owner/remote/install.log": {
+        "bytes": 10564,
+        "sha256": "fb3c6c4966af7e01c4ed2278bfc30bb4e669b0a3b6cba66cc372c01995099333"
+      },
+      "minimum-owner/remote/installation-checkpoint.json": {
+        "bytes": 7782,
+        "sha256": "13fba259eaa3ef646b816a6e4a1a9fee9747f96630b94e22d8d4a9fb8cdd0fd6"
+      },
+      "minimum-owner/worker.log": {
+        "bytes": 34,
+        "sha256": "3b92ba154c3f026de6ab1f42f14770e99c07e61428ceeea1184c79036cb20600"
+      }
+    },
+    "sha256": "f8ab1e19457e3983fe7ebd0bec2fc06d145136c698f3b0186f51f163dcd7635f"
+  },
+  "cleanup": {
+    "absence_reads": 2,
+    "claim_sha256": "c24fbb1fb5f4a9bf8b27482525f1d47ff79ada686f670b2af4cad43103b4f247",
+    "completed_at": 1793449828.1652467,
+    "history": [
+      {
+        "at": 1793449646.5440006,
+        "id": "x2m4fgfibwim9t",
+        "state": "DELETE_SENT"
+      },
+      {
+        "at": 1793449737.4596858,
+        "id": "x2m4fgfibwim9t",
+        "state": "ABSENT"
+      },
+      {
+        "at": 1793449828.1652455,
+        "id": "x2m4fgfibwim9t",
+        "state": "ABSENT"
+      }
+    ],
+    "pod_id": "x2m4fgfibwim9t",
+    "started_at": 1793449644.5547135,
+    "status": "DELETED"
+  },
+  "comparison": {
+    "actual_gpu": true,
+    "automatic_retry": false,
+    "cases": {
+      "A": {
+        "before": {
+          "case": "A",
+          "identity": {
+            "CapBnd": "00000000a80425fb",
+            "CapEff": "00000000a80425fb",
+            "CapPrm": "00000000a80425fb",
+            "Gid": "0\t0\t0\t0",
+            "Groups": "0",
+            "NoNewPrivs": "0",
+            "Seccomp": "2",
+            "Seccomp_filters": "1",
+            "Uid": "0\t0\t0\t0",
+            "cuda_visible_devices": "GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34",
+            "environment_sha256": "a0037cb0dad9909336395fdf6b63f16fd1b709b045562e5f3d0d9ce7eca89a7c",
+            "executable": "/opt/backtrace/venv/bin/python",
+            "limits": {
+              "RLIMIT_AS": [
+                -1,
+                -1
+              ],
+              "RLIMIT_CORE": [
+                0,
+                0
+              ],
+              "RLIMIT_FSIZE": [
+                1048576,
+                1048576
+              ],
+              "RLIMIT_NOFILE": [
+                1024,
+                524288
+              ],
+              "RLIMIT_NPROC": [
+                -1,
+                -1
+              ]
+            },
+            "python": "3.12.14"
+          },
+          "phase": "BEFORE_CUDA"
+        },
+        "exit_code": 0,
+        "idle_after": {
+          "device_basename": "nvidia5",
+          "driver_version": "595.91.07",
+          "mig": "N/A",
+          "minimum_total_bytes": 25769803776,
+          "name": "NVIDIA A40",
+          "nodes": [
+            {
+              "major": 195,
+              "minor": 254,
+              "mode": 438,
+              "path": "/dev/nvidia-modeset"
+            },
+            {
+              "major": 505,
+              "minor": 0,
+              "mode": 438,
+              "path": "/dev/nvidia-uvm"
+            },
+            {
+              "major": 505,
+              "minor": 1,
+              "mode": 438,
+              "path": "/dev/nvidia-uvm-tools"
+            },
+            {
+              "major": 195,
+              "minor": 5,
+              "mode": 438,
+              "path": "/dev/nvidia5"
+            },
+            {
+              "major": 195,
+              "minor": 255,
+              "mode": 438,
+              "path": "/dev/nvidiactl"
+            }
+          ],
+          "nvidia_smi_xml_sha256": "13d8ceba821fd50d30febd4951d56480f4dd5e0d7be7068285083ccc5c22cd61",
+          "reported_total_bytes": 48305799168,
+          "uuid": "GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34"
+        },
+        "primary_checkpoint": {
+          "case": "A",
+          "gpu": {
+            "bf16_matmul": true,
+            "bf16_sdpa": true,
+            "capability": [
+              8,
+              6
+            ],
+            "compiled_arches": [
+              "sm_50",
+              "sm_60",
+              "sm_70",
+              "sm_75",
+              "sm_80",
+              "sm_86",
+              "sm_90"
+            ],
+            "compiled_cuda": "12.6",
+            "device_nodes": [
+              "nvidia5"
+            ],
+            "free_bytes": 46748860416,
+            "name": "NVIDIA A40",
+            "no_cpu_fallback": true,
+            "total_bytes": 47699722240,
+            "uuid": "GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34"
+          },
+          "phase": "RESULT",
+          "status": "PASS_ACTUAL_CUDA_KERNELS"
+        },
+        "result": {
+          "case": "A",
+          "cuda_libraries": {
+            "/opt/backtrace/venv/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12": {
+              "sha256": "095296727cfb5f51e5b3ae69a3cb88cbd7b6592f314ace0fdfc4e1d758c2aa85"
+            },
+            "/usr/lib/x86_64-linux-gnu/libcuda.so.595.91.07": {
+              "sha256": "4839b5da17cd8f58a8e9c57e97c9b61f3c41be7934479f48afc983416b2492c3"
+            }
+          },
+          "device_open": {
+            "nvidia-uvm": 0,
+            "nvidia5": 0,
+            "nvidiactl": 0
+          },
+          "gpu": {
+            "bf16_matmul": true,
+            "bf16_sdpa": true,
+            "capability": [
+              8,
+              6
+            ],
+            "compiled_arches": [
+              "sm_50",
+              "sm_60",
+              "sm_70",
+              "sm_75",
+              "sm_80",
+              "sm_86",
+              "sm_90"
+            ],
+            "compiled_cuda": "12.6",
+            "device_nodes": [
+              "nvidia5"
+            ],
+            "free_bytes": 46748860416,
+            "name": "NVIDIA A40",
+            "no_cpu_fallback": true,
+            "total_bytes": 47699722240,
+            "uuid": "GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34"
+          },
+          "phase": "RESULT",
+          "status": "PASS_ACTUAL_CUDA_KERNELS",
+          "supplemental_after_probe": {
+            "cuInit_return": 0,
+            "cudaGetDeviceCount_return": 0,
+            "device_count": 1
+          }
+        },
+        "teardown": {
+          "elapsed_seconds": 2.91868036496453,
+          "exit_code": 0,
+          "mode": "diagnostic-a",
+          "pid": 167,
+          "process_state": "ABSENT",
+          "reason": "TRANSPORT_EOF",
+          "same_process_alive": false,
+          "start_ticks": "101287956",
+          "supervisor_pid": 166
+        }
+      },
+      "B": {
+        "before": {
+          "case": "B",
+          "identity": {
+            "CapBnd": "0000000000000000",
+            "CapEff": "0000000000000000",
+            "CapPrm": "0000000000000000",
+            "Gid": "65532\t65532\t65532\t65532",
+            "Groups": "",
+            "NoNewPrivs": "1",
+            "Seccomp": "2",
+            "Seccomp_filters": "1",
+            "Uid": "65532\t65532\t65532\t65532",
+            "cuda_visible_devices": "GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34",
+            "environment_sha256": "a0037cb0dad9909336395fdf6b63f16fd1b709b045562e5f3d0d9ce7eca89a7c",
+            "executable": "/opt/backtrace/venv/bin/python",
+            "limits": {
+              "RLIMIT_AS": [
+                -1,
+                -1
+              ],
+              "RLIMIT_CORE": [
+                0,
+                0
+              ],
+              "RLIMIT_FSIZE": [
+                1048576,
+                1048576
+              ],
+              "RLIMIT_NOFILE": [
+                1024,
+                524288
+              ],
+              "RLIMIT_NPROC": [
+                -1,
+                -1
+              ]
+            },
+            "python": "3.12.14"
+          },
+          "phase": "BEFORE_CUDA"
+        },
+        "exit_code": 0,
+        "idle_after": {
+          "device_basename": "nvidia5",
+          "driver_version": "595.91.07",
+          "mig": "N/A",
+          "minimum_total_bytes": 25769803776,
+          "name": "NVIDIA A40",
+          "nodes": [
+            {
+              "major": 195,
+              "minor": 254,
+              "mode": 438,
+              "path": "/dev/nvidia-modeset"
+            },
+            {
+              "major": 505,
+              "minor": 0,
+              "mode": 438,
+              "path": "/dev/nvidia-uvm"
+            },
+            {
+              "major": 505,
+              "minor": 1,
+              "mode": 438,
+              "path": "/dev/nvidia-uvm-tools"
+            },
+            {
+              "major": 195,
+              "minor": 5,
+              "mode": 438,
+              "path": "/dev/nvidia5"
+            },
+            {
+              "major": 195,
+              "minor": 255,
+              "mode": 438,
+              "path": "/dev/nvidiactl"
+            }
+          ],
+          "nvidia_smi_xml_sha256": "62c622267e0c99c593a76219c08f0c628a4b49cb2f2de55db436d1b5f6cde648",
+          "reported_total_bytes": 48305799168,
+          "uuid": "GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34"
+        },
+        "primary_checkpoint": {
+          "case": "B",
+          "gpu": {
+            "bf16_matmul": true,
+            "bf16_sdpa": true,
+            "capability": [
+              8,
+              6
+            ],
+            "compiled_arches": [
+              "sm_50",
+              "sm_60",
+              "sm_70",
+              "sm_75",
+              "sm_80",
+              "sm_86",
+              "sm_90"
+            ],
+            "compiled_cuda": "12.6",
+            "device_nodes": [
+              "nvidia5"
+            ],
+            "free_bytes": 46748860416,
+            "name": "NVIDIA A40",
+            "no_cpu_fallback": true,
+            "total_bytes": 47699722240,
+            "uuid": "GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34"
+          },
+          "phase": "RESULT",
+          "status": "PASS_ACTUAL_CUDA_KERNELS"
+        },
+        "result": {
+          "case": "B",
+          "cuda_libraries": {
+            "/opt/backtrace/venv/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12": {
+              "sha256": "095296727cfb5f51e5b3ae69a3cb88cbd7b6592f314ace0fdfc4e1d758c2aa85"
+            },
+            "/usr/lib/x86_64-linux-gnu/libcuda.so.595.91.07": {
+              "sha256": "4839b5da17cd8f58a8e9c57e97c9b61f3c41be7934479f48afc983416b2492c3"
+            }
+          },
+          "device_open": {
+            "nvidia-uvm": 0,
+            "nvidia5": 0,
+            "nvidiactl": 0
+          },
+          "gpu": {
+            "bf16_matmul": true,
+            "bf16_sdpa": true,
+            "capability": [
+              8,
+              6
+            ],
+            "compiled_arches": [
+              "sm_50",
+              "sm_60",
+              "sm_70",
+              "sm_75",
+              "sm_80",
+              "sm_86",
+              "sm_90"
+            ],
+            "compiled_cuda": "12.6",
+            "device_nodes": [
+              "nvidia5"
+            ],
+            "free_bytes": 46748860416,
+            "name": "NVIDIA A40",
+            "no_cpu_fallback": true,
+            "total_bytes": 47699722240,
+            "uuid": "GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34"
+          },
+          "phase": "RESULT",
+          "status": "PASS_ACTUAL_CUDA_KERNELS",
+          "supplemental_after_probe": {
+            "cuInit_return": 0,
+            "cudaGetDeviceCount_return": 0,
+            "device_count": 1
+          }
+        },
+        "teardown": {
+          "elapsed_seconds": 2.42952090408653,
+          "exit_code": 0,
+          "mode": "diagnostic-b",
+          "pid": 182,
+          "process_state": "ABSENT",
+          "reason": "TRANSPORT_EOF",
+          "same_process_alive": false,
+          "start_ticks": "101288532",
+          "supervisor_pid": 181
+        }
+      },
+      "C": {
+        "before": {
+          "case": "C",
+          "identity": {
+            "CapBnd": "0000000000000000",
+            "CapEff": "0000000000000000",
+            "CapPrm": "0000000000000000",
+            "Gid": "65532\t65532\t65532\t65532",
+            "Groups": "",
+            "NoNewPrivs": "1",
+            "Seccomp": "2",
+            "Seccomp_filters": "2",
+            "Uid": "65532\t65532\t65532\t65532",
+            "cuda_visible_devices": "GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34",
+            "environment_sha256": "a0037cb0dad9909336395fdf6b63f16fd1b709b045562e5f3d0d9ce7eca89a7c",
+            "executable": "/opt/backtrace/venv/bin/python",
+            "limits": {
+              "RLIMIT_AS": [
+                -1,
+                -1
+              ],
+              "RLIMIT_CORE": [
+                0,
+                0
+              ],
+              "RLIMIT_FSIZE": [
+                1048576,
+                1048576
+              ],
+              "RLIMIT_NOFILE": [
+                1024,
+                524288
+              ],
+              "RLIMIT_NPROC": [
+                -1,
+                -1
+              ]
+            },
+            "python": "3.12.14"
+          },
+          "phase": "BEFORE_CUDA"
+        },
+        "exit_code": 0,
+        "idle_after": {
+          "device_basename": "nvidia5",
+          "driver_version": "595.91.07",
+          "mig": "N/A",
+          "minimum_total_bytes": 25769803776,
+          "name": "NVIDIA A40",
+          "nodes": [
+            {
+              "major": 195,
+              "minor": 254,
+              "mode": 438,
+              "path": "/dev/nvidia-modeset"
+            },
+            {
+              "major": 505,
+              "minor": 0,
+              "mode": 438,
+              "path": "/dev/nvidia-uvm"
+            },
+            {
+              "major": 505,
+              "minor": 1,
+              "mode": 438,
+              "path": "/dev/nvidia-uvm-tools"
+            },
+            {
+              "major": 195,
+              "minor": 5,
+              "mode": 438,
+              "path": "/dev/nvidia5"
+            },
+            {
+              "major": 195,
+              "minor": 255,
+              "mode": 438,
+              "path": "/dev/nvidiactl"
+            }
+          ],
+          "nvidia_smi_xml_sha256": "eeab69ebecb7e27987878797973572f36d377ec8034728572cf5b1831fb8df31",
+          "reported_total_bytes": 48305799168,
+          "uuid": "GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34"
+        },
+        "primary_checkpoint": {
+          "case": "C",
+          "error": "CUDA 12.6 device unavailable; CPU fallback forbidden",
+          "error_type": "RuntimeError",
+          "phase": "RESULT",
+          "status": "FAIL"
+        },
+        "result": {
+          "case": "C",
+          "cuda_libraries": {
+            "/opt/backtrace/venv/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12": {
+              "sha256": "095296727cfb5f51e5b3ae69a3cb88cbd7b6592f314ace0fdfc4e1d758c2aa85"
+            },
+            "/usr/lib/x86_64-linux-gnu/libcuda.so.595.91.07": {
+              "sha256": "4839b5da17cd8f58a8e9c57e97c9b61f3c41be7934479f48afc983416b2492c3"
+            }
+          },
+          "device_open": {
+            "nvidia-uvm": 0,
+            "nvidia5": 0,
+            "nvidiactl": 0
+          },
+          "error": "CUDA 12.6 device unavailable; CPU fallback forbidden",
+          "error_type": "RuntimeError",
+          "phase": "RESULT",
+          "status": "FAIL",
+          "supplemental_after_probe": {
+            "cuInit_return": 304,
+            "cudaGetDeviceCount_return": 304,
+            "device_count": null
+          }
+        },
+        "teardown": {
+          "elapsed_seconds": 2.0624978179112077,
+          "exit_code": 0,
+          "mode": "diagnostic-c",
+          "pid": 197,
+          "process_state": "ABSENT",
+          "reason": "TRANSPORT_EOF",
+          "same_process_alive": false,
+          "start_ticks": "101289063",
+          "supervisor_pid": 196
+        }
+      },
+      "D": {
+        "before": {
+          "case": "D",
+          "identity": {
+            "CapBnd": "0000000000000000",
+            "CapEff": "0000000000000000",
+            "CapPrm": "0000000000000000",
+            "Gid": "65532\t65532\t65532\t65532",
+            "Groups": "",
+            "NoNewPrivs": "1",
+            "Seccomp": "2",
+            "Seccomp_filters": "2",
+            "Uid": "65532\t65532\t65532\t65532",
+            "cuda_visible_devices": "GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34",
+            "environment_sha256": "a0037cb0dad9909336395fdf6b63f16fd1b709b045562e5f3d0d9ce7eca89a7c",
+            "executable": "/opt/backtrace/venv/bin/python",
+            "limits": {
+              "RLIMIT_AS": [
+                -1,
+                -1
+              ],
+              "RLIMIT_CORE": [
+                0,
+                0
+              ],
+              "RLIMIT_FSIZE": [
+                1048576,
+                1048576
+              ],
+              "RLIMIT_NOFILE": [
+                1024,
+                524288
+              ],
+              "RLIMIT_NPROC": [
+                -1,
+                -1
+              ]
+            },
+            "python": "3.12.14"
+          },
+          "phase": "BEFORE_CUDA"
+        },
+        "exit_code": 0,
+        "idle_after": {
+          "device_basename": "nvidia5",
+          "driver_version": "595.91.07",
+          "mig": "N/A",
+          "minimum_total_bytes": 25769803776,
+          "name": "NVIDIA A40",
+          "nodes": [
+            {
+              "major": 195,
+              "minor": 254,
+              "mode": 438,
+              "path": "/dev/nvidia-modeset"
+            },
+            {
+              "major": 505,
+              "minor": 0,
+              "mode": 438,
+              "path": "/dev/nvidia-uvm"
+            },
+            {
+              "major": 505,
+              "minor": 1,
+              "mode": 438,
+              "path": "/dev/nvidia-uvm-tools"
+            },
+            {
+              "major": 195,
+              "minor": 5,
+              "mode": 438,
+              "path": "/dev/nvidia5"
+            },
+            {
+              "major": 195,
+              "minor": 255,
+              "mode": 438,
+              "path": "/dev/nvidiactl"
+            }
+          ],
+          "nvidia_smi_xml_sha256": "9dab31a8580279c4931884819b3d792b9708cb76e216b769ff1fb8c4576e455c",
+          "reported_total_bytes": 48305799168,
+          "uuid": "GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34"
+        },
+        "primary_checkpoint": {
+          "case": "D",
+          "error": "CUDA 12.6 device unavailable; CPU fallback forbidden",
+          "error_type": "RuntimeError",
+          "phase": "RESULT",
+          "status": "FAIL"
+        },
+        "result": {
+          "case": "D",
+          "cuda_libraries": {
+            "/opt/backtrace/venv/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12": {
+              "sha256": "095296727cfb5f51e5b3ae69a3cb88cbd7b6592f314ace0fdfc4e1d758c2aa85"
+            },
+            "/usr/lib/x86_64-linux-gnu/libcuda.so.595.91.07": {
+              "sha256": "4839b5da17cd8f58a8e9c57e97c9b61f3c41be7934479f48afc983416b2492c3"
+            }
+          },
+          "denial_trace": {
+            "count": 4,
+            "diagnostic_only": true,
+            "log_limit": 64,
+            "syscalls_remain_denied": true
+          },
+          "device_open": {
+            "nvidia-uvm": 0,
+            "nvidia5": 0,
+            "nvidiactl": 0
+          },
+          "error": "CUDA 12.6 device unavailable; CPU fallback forbidden",
+          "error_type": "RuntimeError",
+          "phase": "RESULT",
+          "status": "FAIL",
+          "supplemental_after_probe": {
+            "cuInit_return": 304,
+            "cudaGetDeviceCount_return": 304,
+            "device_count": null
+          }
+        },
+        "teardown": {
+          "elapsed_seconds": 2.0404173930874094,
+          "exit_code": 0,
+          "mode": "diagnostic-d",
+          "pid": 209,
+          "process_state": "ABSENT",
+          "reason": "TRANSPORT_EOF",
+          "same_process_alive": false,
+          "start_ticks": "101289553",
+          "supervisor_pid": 208
+        }
+      }
+    },
+    "decision": "ADDED_FILTER_IMPLICATED_SYSCALL_UNRESOLVED",
+    "denied_syscall_trace": {
+      "case": "D",
+      "complete": true,
+      "instrumentation_changes_signal_delivery": true,
+      "not_a_filter_correction": true,
+      "records": [
+        {
+          "args": [
+            1,
+            524293,
+            0,
+            1,
+            0,
+            115
+          ],
+          "errno": 1,
+          "syscall": 41
+        },
+        {
+          "args": [
+            1,
+            524293,
+            0,
+            0,
+            0,
+            140726967309394
+          ],
+          "errno": 1,
+          "syscall": 41
+        },
+        {
+          "args": [
+            1,
+            524293,
+            0,
+            1,
+            0,
+            115
+          ],
+          "errno": 1,
+          "syscall": 41
+        },
+        {
+          "args": [
+            1,
+            524293,
+            0,
+            0,
+            0,
+            140726967310594
+          ],
+          "errno": 1,
+          "syscall": 41
+        }
+      ],
+      "records_truncated": false,
+      "total_denials": 4,
+      "untraced_signal_sensitive_syscalls": [
+        56,
+        57,
+        58,
+        59,
+        322,
+        435
+      ]
+    }
+  },
+  "not_final_billing": true,
+  "observed_credit_delta_usd": "0.1037536546",
+  "pretrained_inference": false,
+  "raw_streams": {
+    "A": {
+      "stderr": "BACKTRACE_CUDA_BEFORE {\"case\": \"A\", \"phase\": \"BEFORE_CUDA\", \"identity\": {\"Uid\": \"0\\t0\\t0\\t0\", \"Gid\": \"0\\t0\\t0\\t0\", \"Groups\": \"0\", \"CapEff\": \"00000000a80425fb\", \"CapPrm\": \"00000000a80425fb\", \"CapBnd\": \"00000000a80425fb\", \"NoNewPrivs\": \"0\", \"Seccomp\": \"2\", \"Seccomp_filters\": \"1\", \"limits\": {\"RLIMIT_CORE\": [0, 0], \"RLIMIT_FSIZE\": [1048576, 1048576], \"RLIMIT_NOFILE\": [1024, 524288], \"RLIMIT_AS\": [-1, -1], \"RLIMIT_NPROC\": [-1, -1]}, \"python\": \"3.12.14\", \"executable\": \"/opt/backtrace/venv/bin/python\", \"cuda_visible_devices\": \"GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34\", \"environment_sha256\": \"a0037cb0dad9909336395fdf6b63f16fd1b709b045562e5f3d0d9ce7eca89a7c\"}}\nBACKTRACE_CUDA_PRIMARY {\"case\": \"A\", \"phase\": \"RESULT\", \"status\": \"PASS_ACTUAL_CUDA_KERNELS\", \"gpu\": {\"uuid\": \"GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34\", \"name\": \"NVIDIA A40\", \"capability\": [8, 6], \"total_bytes\": 47699722240, \"free_bytes\": 46748860416, \"compiled_cuda\": \"12.6\", \"compiled_arches\": [\"sm_50\", \"sm_60\", \"sm_70\", \"sm_75\", \"sm_80\", \"sm_86\", \"sm_90\"], \"bf16_matmul\": true, \"bf16_sdpa\": true, \"device_nodes\": [\"nvidia5\"], \"no_cpu_fallback\": true}}\n",
+      "stdout": "{\"case\": \"A\", \"phase\": \"RESULT\", \"status\": \"PASS_ACTUAL_CUDA_KERNELS\", \"gpu\": {\"uuid\": \"GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34\", \"name\": \"NVIDIA A40\", \"capability\": [8, 6], \"total_bytes\": 47699722240, \"free_bytes\": 46748860416, \"compiled_cuda\": \"12.6\", \"compiled_arches\": [\"sm_50\", \"sm_60\", \"sm_70\", \"sm_75\", \"sm_80\", \"sm_86\", \"sm_90\"], \"bf16_matmul\": true, \"bf16_sdpa\": true, \"device_nodes\": [\"nvidia5\"], \"no_cpu_fallback\": true}, \"supplemental_after_probe\": {\"cuInit_return\": 0, \"cudaGetDeviceCount_return\": 0, \"device_count\": 1}, \"device_open\": {\"nvidia5\": 0, \"nvidiactl\": 0, \"nvidia-uvm\": 0}, \"cuda_libraries\": {\"/opt/backtrace/venv/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12\": {\"sha256\": \"095296727cfb5f51e5b3ae69a3cb88cbd7b6592f314ace0fdfc4e1d758c2aa85\"}, \"/usr/lib/x86_64-linux-gnu/libcuda.so.595.91.07\": {\"sha256\": \"4839b5da17cd8f58a8e9c57e97c9b61f3c41be7934479f48afc983416b2492c3\"}}}\n"
+    },
+    "B": {
+      "stderr": "BACKTRACE_CUDA_BEFORE {\"case\": \"B\", \"phase\": \"BEFORE_CUDA\", \"identity\": {\"Uid\": \"65532\\t65532\\t65532\\t65532\", \"Gid\": \"65532\\t65532\\t65532\\t65532\", \"Groups\": \"\", \"CapEff\": \"0000000000000000\", \"CapPrm\": \"0000000000000000\", \"CapBnd\": \"0000000000000000\", \"NoNewPrivs\": \"1\", \"Seccomp\": \"2\", \"Seccomp_filters\": \"1\", \"limits\": {\"RLIMIT_CORE\": [0, 0], \"RLIMIT_FSIZE\": [1048576, 1048576], \"RLIMIT_NOFILE\": [1024, 524288], \"RLIMIT_AS\": [-1, -1], \"RLIMIT_NPROC\": [-1, -1]}, \"python\": \"3.12.14\", \"executable\": \"/opt/backtrace/venv/bin/python\", \"cuda_visible_devices\": \"GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34\", \"environment_sha256\": \"a0037cb0dad9909336395fdf6b63f16fd1b709b045562e5f3d0d9ce7eca89a7c\"}}\nBACKTRACE_CUDA_PRIMARY {\"case\": \"B\", \"phase\": \"RESULT\", \"status\": \"PASS_ACTUAL_CUDA_KERNELS\", \"gpu\": {\"uuid\": \"GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34\", \"name\": \"NVIDIA A40\", \"capability\": [8, 6], \"total_bytes\": 47699722240, \"free_bytes\": 46748860416, \"compiled_cuda\": \"12.6\", \"compiled_arches\": [\"sm_50\", \"sm_60\", \"sm_70\", \"sm_75\", \"sm_80\", \"sm_86\", \"sm_90\"], \"bf16_matmul\": true, \"bf16_sdpa\": true, \"device_nodes\": [\"nvidia5\"], \"no_cpu_fallback\": true}}\n",
+      "stdout": "{\"case\": \"B\", \"phase\": \"RESULT\", \"status\": \"PASS_ACTUAL_CUDA_KERNELS\", \"gpu\": {\"uuid\": \"GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34\", \"name\": \"NVIDIA A40\", \"capability\": [8, 6], \"total_bytes\": 47699722240, \"free_bytes\": 46748860416, \"compiled_cuda\": \"12.6\", \"compiled_arches\": [\"sm_50\", \"sm_60\", \"sm_70\", \"sm_75\", \"sm_80\", \"sm_86\", \"sm_90\"], \"bf16_matmul\": true, \"bf16_sdpa\": true, \"device_nodes\": [\"nvidia5\"], \"no_cpu_fallback\": true}, \"supplemental_after_probe\": {\"cuInit_return\": 0, \"cudaGetDeviceCount_return\": 0, \"device_count\": 1}, \"device_open\": {\"nvidia5\": 0, \"nvidiactl\": 0, \"nvidia-uvm\": 0}, \"cuda_libraries\": {\"/opt/backtrace/venv/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12\": {\"sha256\": \"095296727cfb5f51e5b3ae69a3cb88cbd7b6592f314ace0fdfc4e1d758c2aa85\"}, \"/usr/lib/x86_64-linux-gnu/libcuda.so.595.91.07\": {\"sha256\": \"4839b5da17cd8f58a8e9c57e97c9b61f3c41be7934479f48afc983416b2492c3\"}}}\n"
+    },
+    "C": {
+      "stderr": "BACKTRACE_CUDA_BEFORE {\"case\": \"C\", \"phase\": \"BEFORE_CUDA\", \"identity\": {\"Uid\": \"65532\\t65532\\t65532\\t65532\", \"Gid\": \"65532\\t65532\\t65532\\t65532\", \"Groups\": \"\", \"CapEff\": \"0000000000000000\", \"CapPrm\": \"0000000000000000\", \"CapBnd\": \"0000000000000000\", \"NoNewPrivs\": \"1\", \"Seccomp\": \"2\", \"Seccomp_filters\": \"2\", \"limits\": {\"RLIMIT_CORE\": [0, 0], \"RLIMIT_FSIZE\": [1048576, 1048576], \"RLIMIT_NOFILE\": [1024, 524288], \"RLIMIT_AS\": [-1, -1], \"RLIMIT_NPROC\": [-1, -1]}, \"python\": \"3.12.14\", \"executable\": \"/opt/backtrace/venv/bin/python\", \"cuda_visible_devices\": \"GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34\", \"environment_sha256\": \"a0037cb0dad9909336395fdf6b63f16fd1b709b045562e5f3d0d9ce7eca89a7c\"}}\n/opt/backtrace/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:188: UserWarning: CUDA initialization: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 304: OS call failed or operation not supported on this OS (Triggered internally at /__w/pytorch/pytorch/c10/cuda/CUDAFunctions.cpp:119.)\n  return torch._C._cuda_getDeviceCount() > 0\nTraceback (most recent call last):\n  File \"/opt/backtrace/minimum.py\", line 45, in diagnostic_cuda\n    result['gpu'] = worker.cuda_check(config)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/backtrace/worker.py\", line 29, in cuda_check\n    raise RuntimeError('CUDA 12.6 device unavailable; CPU fallback forbidden')\nRuntimeError: CUDA 12.6 device unavailable; CPU fallback forbidden\nBACKTRACE_CUDA_PRIMARY {\"case\": \"C\", \"phase\": \"RESULT\", \"status\": \"FAIL\", \"error_type\": \"RuntimeError\", \"error\": \"CUDA 12.6 device unavailable; CPU fallback forbidden\"}\n",
+      "stdout": "{\"case\": \"C\", \"phase\": \"RESULT\", \"status\": \"FAIL\", \"error_type\": \"RuntimeError\", \"error\": \"CUDA 12.6 device unavailable; CPU fallback forbidden\", \"supplemental_after_probe\": {\"cuInit_return\": 304, \"cudaGetDeviceCount_return\": 304, \"device_count\": null}, \"device_open\": {\"nvidia5\": 0, \"nvidiactl\": 0, \"nvidia-uvm\": 0}, \"cuda_libraries\": {\"/opt/backtrace/venv/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12\": {\"sha256\": \"095296727cfb5f51e5b3ae69a3cb88cbd7b6592f314ace0fdfc4e1d758c2aa85\"}, \"/usr/lib/x86_64-linux-gnu/libcuda.so.595.91.07\": {\"sha256\": \"4839b5da17cd8f58a8e9c57e97c9b61f3c41be7934479f48afc983416b2492c3\"}}}\n"
+    },
+    "D": {
+      "stderr": "BACKTRACE_CUDA_BEFORE {\"case\": \"D\", \"phase\": \"BEFORE_CUDA\", \"identity\": {\"Uid\": \"65532\\t65532\\t65532\\t65532\", \"Gid\": \"65532\\t65532\\t65532\\t65532\", \"Groups\": \"\", \"CapEff\": \"0000000000000000\", \"CapPrm\": \"0000000000000000\", \"CapBnd\": \"0000000000000000\", \"NoNewPrivs\": \"1\", \"Seccomp\": \"2\", \"Seccomp_filters\": \"2\", \"limits\": {\"RLIMIT_CORE\": [0, 0], \"RLIMIT_FSIZE\": [1048576, 1048576], \"RLIMIT_NOFILE\": [1024, 524288], \"RLIMIT_AS\": [-1, -1], \"RLIMIT_NPROC\": [-1, -1]}, \"python\": \"3.12.14\", \"executable\": \"/opt/backtrace/venv/bin/python\", \"cuda_visible_devices\": \"GPU-3d98b2fd-3ea6-20f7-1e6e-5b9a2ab7ad34\", \"environment_sha256\": \"a0037cb0dad9909336395fdf6b63f16fd1b709b045562e5f3d0d9ce7eca89a7c\"}}\nBACKTRACE_SECCOMP_DENIAL {\"syscall\":41,\"errno\":1,\"args\":[1,524293,0,1,0,115]}\nBACKTRACE_SECCOMP_DENIAL {\"syscall\":41,\"errno\":1,\"args\":[1,524293,0,0,0,140726967309394]}\n/opt/backtrace/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:188: UserWarning: CUDA initialization: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 304: OS call failed or operation not supported on this OS (Triggered internally at /__w/pytorch/pytorch/c10/cuda/CUDAFunctions.cpp:119.)\n  return torch._C._cuda_getDeviceCount() > 0\nTraceback (most recent call last):\n  File \"/opt/backtrace/minimum.py\", line 45, in diagnostic_cuda\n    result['gpu'] = worker.cuda_check(config)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/backtrace/worker.py\", line 29, in cuda_check\n    raise RuntimeError('CUDA 12.6 device unavailable; CPU fallback forbidden')\nRuntimeError: CUDA 12.6 device unavailable; CPU fallback forbidden\nBACKTRACE_CUDA_PRIMARY {\"case\": \"D\", \"phase\": \"RESULT\", \"status\": \"FAIL\", \"error_type\": \"RuntimeError\", \"error\": \"CUDA 12.6 device unavailable; CPU fallback forbidden\"}\nBACKTRACE_SECCOMP_DENIAL {\"syscall\":41,\"errno\":1,\"args\":[1,524293,0,1,0,115]}\nBACKTRACE_SECCOMP_DENIAL {\"syscall\":41,\"errno\":1,\"args\":[1,524293,0,0,0,140726967310594]}\n",
+      "stdout": "{\"case\": \"D\", \"phase\": \"RESULT\", \"status\": \"FAIL\", \"error_type\": \"RuntimeError\", \"error\": \"CUDA 12.6 device unavailable; CPU fallback forbidden\", \"supplemental_after_probe\": {\"cuInit_return\": 304, \"cudaGetDeviceCount_return\": 304, \"device_count\": null}, \"device_open\": {\"nvidia5\": 0, \"nvidiactl\": 0, \"nvidia-uvm\": 0}, \"cuda_libraries\": {\"/opt/backtrace/venv/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12\": {\"sha256\": \"095296727cfb5f51e5b3ae69a3cb88cbd7b6592f314ace0fdfc4e1d758c2aa85\"}, \"/usr/lib/x86_64-linux-gnu/libcuda.so.595.91.07\": {\"sha256\": \"4839b5da17cd8f58a8e9c57e97c9b61f3c41be7934479f48afc983416b2492c3\"}}, \"denial_trace\": {\"count\": 4, \"log_limit\": 64, \"syscalls_remain_denied\": true, \"diagnostic_only\": true}}\n"
+    }
+  },
+  "run_id": 41200242706,
+  "source_hashes": {
+    ".github/workflows/small-model-container-cpu.yml": "52745e5f7a5ddc42796b094e450a5641090da68aebf6998c23503bb97961f249",
+    ".github/workflows/small-model-minimum-cpu.yml": "e960267e3b69ad5b3c6562e7b3dd36d04451e621fd77519321a091b17295906a",
+    ".github/workflows/small-model-minimum-diagnostic.yml": "6bb4a9e917ffe9e966404c12b05bd1cb7f42d13be19061858933203181eb24da",
+    ".github/workflows/small-model-minimum-live.yml": "e2062c003c010bd8ac4a67ff7e39a066b44af2007b8e5f67186c82316b9ccf05",
+    ".github/workflows/small-model-minimum-quote.yml": "f93cc9946f39cf3d814a24fc62c968cdc822b169167d3dd50c8f84813a8958c0",
+    ".github/workflows/small-model-minimum-retry-cpu.yml": "acde46496d679685f4b54e3247c46e061e7c45c7c0bb81ef79a8a140f254a683",
+    ".github/workflows/small-model-minimum-retry-live.yml": "4f9f9fc148c610084b8a388701a55776ab878d689f0f6d9212b152c0b024900e",
+    ".github/workflows/small-model-minimum-retry-quote.yml": "6eeff6411ab8d6e967f9add1f7ba902ce5a519f5018332723e32065e6fcdcd8d",
+    ".github/workflows/small-model-precheck-cpu.yml": "f13609448771bfada0e1750e52676608a2da1d700c89d28251f07e518f314a0f",
+    ".github/workflows/small-model-provider-cpu.yml": "1314824b147395afaac6a4f8708f3c19004f441f8dc8617f6096526a82f4eaff",
+    ".github/workflows/small-model-provider-owner.yml": "0bb06419810437a0bdce8efa15aab651c2d02748c9e469801cd0777393e245fc",
+    ".github/workflows/small-model-provider-watch.yml": "8af1ae7416563c61d4c9e973ec2ddba7f97296b7be93369a34094a655fc6d197",
+    "docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5",
+    "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f",
+    "docs/cloud-controller-requirements.txt": "6e8e0115d53ffb67b8a9001e0b4e3f06747fb470aad4bdcb23e8a864d4018bdc",
+    "docs/research-reduced9-amendment-20261026.json": "ba9b235c84db383f2413bc7adeb03888de9fd0fc571e8e67cc8ae4f9057563c7",
+    "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0",
+    "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89",
+    "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937",
+    "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7",
+    "tests/test_small_model_container.py": "ef05ed3f780c6a668c1ad2e31b2ba704521f94dcff3d03f9afff70d0567e2e4b",
+    "tests/test_small_model_minimum.py": "ab75e74c29c21b92db67b737090da99beade002c55b456afc53dfccfa39051b9",
+    "tests/test_small_model_minimum_diagnostic.py": "944470aab610f01f34af02518b6784a835198d43b7c21bc7f80081f64c02a018",
+    "tests/test_small_model_minimum_diagnostic_scope.py": "0fa54c0748ad010d7a2a03e64e5a5d45ba97f756f55c414995b3cb219349a1e0",
+    "tests/test_small_model_minimum_retry.py": "ca2a4d349efa03ae180e7b16608e41bc786503ac961fb48c6a3d7f89b4e76ce7",
+    "tests/test_small_model_minimum_trace.py": "2af1e607c12817b8d4227016c5e649aea939d1318a616ee2a86dad91ff57e94d",
+    "tests/test_small_model_precheck.py": "21ad1e073cc9f83eca8e41034cff22371df7629188b07921b5ecdcc8d0ec4e47",
+    "tests/test_small_model_provider.py": "242530d07de276c3b36eff5484fe0a15d6f457bd7705db63e14e54e03d71f94c",
+    "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118",
+    "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794",
+    "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7",
+    "tools/cloud_bootstrap.py": "b032f0d92bb042cb3388699fe230084c077fb78a59b4df86184f12feb6610487",
+    "tools/cloud_inventory.py": "f4865ae92c7f41375a15ecf917e932562cca608ca7a1607d18d1b370bd0932ff",
+    "tools/cloud_offer.py": "9387b91be560cf80a85a5bae8166acb7c35f7a61135042971d21cafdb76c3df5",
+    "tools/cloud_probe.py": "bb89c097e7fe0c6bc56771e87695056d60c11f510502173105a102a25d48e22f",
+    "tools/cloud_transport.py": "013d93fc8c1548bc7eaf4cf9a4f5a49608b7e16d537b192accf053151fbf5902",
+    "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314",
+    "tools/free_container_cleanup.py": "3dc64f6fa013e992e8c02fa702330a14003cb2e7ab0d536e3dc0da80ce3e9466",
+    "tools/private_delivery.py": "f010c41715e2548b86a4b3dfc009e22e57fcbf5a52429e4f7f1165632f1a4a40",
+    "tools/research_entry.py": "9f3c753cb26f9ab4d22ef5a27d4c900bc109ea10cbc4447df97d58b337762d85",
+    "tools/research_entry_contract.py": "1a4997a22bcb2bb9acd5dde8bfe916e987ae20131c9073610f2bb2e863908e47",
+    "tools/research_entry_state.py": "b3858570800b87f36a2ebd99a4ebbf65295edf5756b1a7b6cf1d6c4c13316389",
+    "tools/runpod_control.py": "09219477947e39b2c7c58b6e7e44f385bd5d1140cbdb7a47cddef3ab7f6cf400",
+    "tools/small_model_container.py": "d87cc12a3dc39dd9c235956f1b7a5181b060e57c7e104a86aacc991977e20410",
+    "tools/small_model_container_install.py": "e44a80ef7ca4c6611ea0536a76889efed5011fdea2bf27331acb21cc0aac5ecc",
+    "tools/small_model_container_probe.py": "924cf57ec8868ea1acdaaaf7868f829071e7c34a16416c3db069b03e6642081b",
+    "tools/small_model_container_worker.py": "42963b3c9889c89669cfc51206687856d4e0f260b698c8fc005bfedaae1ba419",
+    "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903",
+    "tools/small_model_lifecycle.py": "32f0cc0215c9c4098540b95a5fd1e3194af9764ba1f01d1317df0553875b4506",
+    "tools/small_model_lifecycle_probe.py": "c8af61b707903398d29a883ce1c9525af93494cb71612b6d299bbac240b704ed",
+    "tools/small_model_minimum.py": "8eaa7543ce2c677c8fb420f6acc45f658384d170bff710246ef9a7016b307ead",
+    "tools/small_model_minimum_diagnostic.py": "bc9e8117ad0a4e76ec17bae4b8722b9955016a4909f31e64562e24e0a22624f7",
+    "tools/small_model_minimum_probe.py": "8ffef411118334316d569f6b5c302e243d1f2a45e7e9dbad71cc7c175a777a94",
+    "tools/small_model_minimum_remote.py": "4fd3aa6b61d39f87141106f44e65e20b034e92d5f58f9c49700d4fe3702c7417",
+    "tools/small_model_minimum_retry.py": "48c9512766d99e1bd5a75d6712fa2d0c643b7f65d5b5de22d2bc1786a1e6a3c4",
+    "tools/small_model_minimum_trace.c": "d8e165e3d117ab2d1becae21fb9de4f456ad020621ccb901979a6712b6780c67",
+    "tools/small_model_minimum_worker.py": "aa16575660cfc5d4935da66fb6a3c4da4ac6071033708cad318bc81f98f432de",
+    "tools/small_model_precheck.py": "dafcfa6cc32d78204a102b7e73eb1be3eeb499a906a90a7390503134fa81a63d",
+    "tools/small_model_provider.py": "b5c9e0a0e7c9ac98a8dc8a6d24b20f5c45de9690483ae37b65196e30218a37c4",
+    "tools/small_model_provider_probe.py": "467a96a5cd7131da46155f9c6a675718049c1547d3a5d950efff73ea1e9da8cd",
+    "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c",
+    "tools/small_model_remote_watch.py": "eec9864d54e0859399e5e9f9c9334f2c21809e470a015d57b65d7119f9657e82",
+    "tools/small_model_resources.py": "1d763165c9af25461a50ae55665a18052d71c74698f1abdfd70eb81f77e367ca",
+    "tools/small_model_runner.py": "ed7436caa9421bc4a166ccca63ac2602fd527dab2bbe44010acabad0095e33df",
+    "tools/small_model_runner_probe.py": "dfbff0eabb1c72d914ee1528b059338261427ba0713425c264f2c5c4986e095a",
+    "tools/small_model_worker.py": "bf74915403c76fa9701bad7ed8184e2f3e6c6d8ffefddb6a5a0ef218e768fd54",
+    "tools/ssh_bootstrap.py": "b657ddd6f145f66f4e15f2d30a23d8870ae56aa7f60d396ae1f41de485916839",
+    "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a",
+    "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+  },
+  "source_sha": "4a346b70a42ce1d64c3971e87ff1a42be3862b58",
+  "status": "DIAGNOSTIC_RECORDED"
+}

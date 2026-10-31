@@ -1,0 +1,811 @@
+{
+  "allocation_requests": 0,
+  "observation": {
+    "account": {
+      "auto_pay": false,
+      "credit_balance_usd": "2.5524651839",
+      "observed_at": "2026-10-31T14:11:41Z",
+      "spend_per_hour_usd": "0"
+    },
+    "account_idle": true,
+    "allocation_requests": 0,
+    "candidate_gpus": [
+      {
+        "id": "NVIDIA RTX A5000",
+        "memoryInGb": 24,
+        "secureCloud": true,
+        "securePrice": 0.27
+      },
+      {
+        "id": "NVIDIA GeForce RTX 3090",
+        "memoryInGb": 24,
+        "secureCloud": true,
+        "securePrice": 0.5
+      },
+      {
+        "id": "NVIDIA A40",
+        "memoryInGb": 48,
+        "secureCloud": true,
+        "securePrice": 0.59
+      },
+      {
+        "id": "NVIDIA L4",
+        "memoryInGb": 24,
+        "secureCloud": true,
+        "securePrice": 0.59
+      },
+      {
+        "id": "NVIDIA RTX A6000",
+        "memoryInGb": 48,
+        "secureCloud": true,
+        "securePrice": 0.59
+      },
+      {
+        "id": "NVIDIA L40",
+        "memoryInGb": 48,
+        "secureCloud": true,
+        "securePrice": 0.82
+      },
+      {
+        "id": "NVIDIA GeForce RTX 4090",
+        "memoryInGb": 24,
+        "secureCloud": true,
+        "securePrice": 0.89
+      },
+      {
+        "id": "NVIDIA L40S",
+        "memoryInGb": 48,
+        "secureCloud": true,
+        "securePrice": 1.09
+      }
+    ],
+    "excluded_or_unqueried_pairs": 6,
+    "hardware_capabilities": "NOT_OBSERVED",
+    "inventory": {
+      "complete_paginated_list": true,
+      "observed_at": "2026-10-31T14:11:48Z",
+      "pod_count": 0,
+      "resource_mutations": 0
+    },
+    "launch_enabled": false,
+    "maximum_pairs": 32,
+    "offers": [
+      {
+        "broad_stock": {
+          "available": true,
+          "status": "Low"
+        },
+        "compute_usd_per_hour": "0.5",
+        "compute_within_proposal": true,
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": 125,
+          "minVcpu": 32,
+          "stockStatus": "Low",
+          "supportPublicIp": null,
+          "uninterruptablePrice": 0.5
+        },
+        "gpu": "NVIDIA GeForce RTX 3090",
+        "observed_at": "2026-10-31T14:11:42Z",
+        "pricing_status": "OBSERVED",
+        "proposed_3000s_compute_and_storage_usd": "0.4291666666666666666666666667",
+        "proposed_3000s_compute_usd": "0.4166666666666666666666666667",
+        "region": "EU-CZ-1",
+        "reported_gpu_gb": 24,
+        "stock_eligible": true,
+        "storage_projection_usd_per_hour": "0.015"
+      },
+      {
+        "broad_stock": {
+          "available": true,
+          "status": "High"
+        },
+        "compute_usd_per_hour": "0.59",
+        "compute_within_proposal": true,
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": 50,
+          "minVcpu": 9,
+          "stockStatus": "High",
+          "supportPublicIp": null,
+          "uninterruptablePrice": 0.59
+        },
+        "gpu": "NVIDIA A40",
+        "observed_at": "2026-10-31T14:11:42Z",
+        "pricing_status": "OBSERVED",
+        "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+        "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+        "region": "EU-SE-1",
+        "reported_gpu_gb": 48,
+        "stock_eligible": true,
+        "storage_projection_usd_per_hour": "0.015"
+      },
+      {
+        "broad_stock": {
+          "available": true,
+          "status": "Low"
+        },
+        "compute_usd_per_hour": "0.59",
+        "compute_within_proposal": true,
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": 71,
+          "minVcpu": 18,
+          "stockStatus": "Low",
+          "supportPublicIp": null,
+          "uninterruptablePrice": 0.59
+        },
+        "gpu": "NVIDIA L4",
+        "observed_at": "2026-10-31T14:11:42Z",
+        "pricing_status": "OBSERVED",
+        "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+        "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+        "region": "EU-RO-1",
+        "reported_gpu_gb": 24,
+        "stock_eligible": true,
+        "storage_projection_usd_per_hour": "0.015"
+      },
+      {
+        "broad_stock": {
+          "available": true,
+          "status": "Low"
+        },
+        "compute_usd_per_hour": "0.59",
+        "compute_within_proposal": true,
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": 50,
+          "minVcpu": 9,
+          "stockStatus": "Low",
+          "supportPublicIp": null,
+          "uninterruptablePrice": 0.59
+        },
+        "gpu": "NVIDIA RTX A6000",
+        "observed_at": "2026-10-31T14:11:42Z",
+        "pricing_status": "OBSERVED",
+        "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+        "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+        "region": "EU-SE-1",
+        "reported_gpu_gb": 48,
+        "stock_eligible": true,
+        "storage_projection_usd_per_hour": "0.015"
+      },
+      {
+        "broad_stock": {
+          "available": true,
+          "status": "Low"
+        },
+        "compute_usd_per_hour": "1.09",
+        "compute_within_proposal": false,
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": 117,
+          "minVcpu": 32,
+          "stockStatus": "Low",
+          "supportPublicIp": null,
+          "uninterruptablePrice": 1.09
+        },
+        "gpu": "NVIDIA L40S",
+        "observed_at": "2026-10-31T14:11:43Z",
+        "pricing_status": "OBSERVED",
+        "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333",
+        "proposed_3000s_compute_usd": "0.9083333333333333333333333333",
+        "region": "EU-NL-1",
+        "reported_gpu_gb": 48,
+        "stock_eligible": true,
+        "storage_projection_usd_per_hour": "0.015"
+      },
+      {
+        "broad_stock": {
+          "available": false,
+          "status": null
+        },
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": null,
+          "minVcpu": null,
+          "stockStatus": null,
+          "supportPublicIp": null,
+          "uninterruptablePrice": null
+        },
+        "gpu": "NVIDIA RTX A5000",
+        "observed_at": "2026-10-31T14:11:43Z",
+        "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+        "region": "EU-SE-1",
+        "reported_gpu_gb": 24,
+        "stock_eligible": false
+      },
+      {
+        "broad_stock": {
+          "available": false,
+          "status": null
+        },
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": null,
+          "minVcpu": null,
+          "stockStatus": null,
+          "supportPublicIp": null,
+          "uninterruptablePrice": null
+        },
+        "gpu": "NVIDIA RTX A6000",
+        "observed_at": "2026-10-31T14:11:43Z",
+        "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+        "region": "EU-RO-1",
+        "reported_gpu_gb": 48,
+        "stock_eligible": false
+      },
+      {
+        "broad_stock": {
+          "available": false,
+          "status": null
+        },
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": null,
+          "minVcpu": null,
+          "stockStatus": null,
+          "supportPublicIp": null,
+          "uninterruptablePrice": null
+        },
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "observed_at": "2026-10-31T14:11:43Z",
+        "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+        "region": "EU-CZ-1",
+        "reported_gpu_gb": 24,
+        "stock_eligible": false
+      },
+      {
+        "broad_stock": {
+          "available": false,
+          "status": null
+        },
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": null,
+          "minVcpu": null,
+          "stockStatus": null,
+          "supportPublicIp": null,
+          "uninterruptablePrice": null
+        },
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "observed_at": "2026-10-31T14:11:43Z",
+        "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+        "region": "EU-RO-1",
+        "reported_gpu_gb": 24,
+        "stock_eligible": false
+      },
+      {
+        "broad_stock": {
+          "available": true,
+          "status": "Low"
+        },
+        "compute_usd_per_hour": "0.59",
+        "compute_within_proposal": true,
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": 50,
+          "minVcpu": 9,
+          "stockStatus": "Low",
+          "supportPublicIp": null,
+          "uninterruptablePrice": 0.59
+        },
+        "gpu": "NVIDIA A40",
+        "observed_at": "2026-10-31T14:11:44Z",
+        "pricing_status": "OBSERVED",
+        "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+        "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+        "region": "CA-MTL-1",
+        "reported_gpu_gb": 48,
+        "stock_eligible": true,
+        "storage_projection_usd_per_hour": "0.015"
+      },
+      {
+        "broad_stock": {
+          "available": true,
+          "status": "Low"
+        },
+        "compute_usd_per_hour": "0.59",
+        "compute_within_proposal": true,
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": 55,
+          "minVcpu": 14,
+          "stockStatus": "Low",
+          "supportPublicIp": null,
+          "uninterruptablePrice": 0.59
+        },
+        "gpu": "NVIDIA L4",
+        "observed_at": "2026-10-31T14:11:44Z",
+        "pricing_status": "OBSERVED",
+        "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+        "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+        "region": "EUR-IS-1",
+        "reported_gpu_gb": 24,
+        "stock_eligible": true,
+        "storage_projection_usd_per_hour": "0.015"
+      },
+      {
+        "broad_stock": {
+          "available": true,
+          "status": "Low"
+        },
+        "compute_usd_per_hour": "0.59",
+        "compute_within_proposal": true,
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": 100,
+          "minVcpu": 12,
+          "stockStatus": "Low",
+          "supportPublicIp": null,
+          "uninterruptablePrice": 0.59
+        },
+        "gpu": "NVIDIA L4",
+        "observed_at": "2026-10-31T14:11:44Z",
+        "pricing_status": "OBSERVED",
+        "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+        "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+        "region": "EUR-IS-2",
+        "reported_gpu_gb": 24,
+        "stock_eligible": true,
+        "storage_projection_usd_per_hour": "0.015"
+      },
+      {
+        "broad_stock": {
+          "available": true,
+          "status": "Low"
+        },
+        "compute_usd_per_hour": "0.59",
+        "compute_within_proposal": true,
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": 86,
+          "minVcpu": 16,
+          "stockStatus": "Low",
+          "supportPublicIp": null,
+          "uninterruptablePrice": 0.59
+        },
+        "gpu": "NVIDIA L4",
+        "observed_at": "2026-10-31T14:11:44Z",
+        "pricing_status": "OBSERVED",
+        "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+        "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+        "region": "US-MO-2",
+        "reported_gpu_gb": 24,
+        "stock_eligible": true,
+        "storage_projection_usd_per_hour": "0.015"
+      },
+      {
+        "broad_stock": {
+          "available": true,
+          "status": "Low"
+        },
+        "compute_usd_per_hour": "0.59",
+        "compute_within_proposal": true,
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": 62,
+          "minVcpu": 16,
+          "stockStatus": "Low",
+          "supportPublicIp": null,
+          "uninterruptablePrice": 0.59
+        },
+        "gpu": "NVIDIA RTX A6000",
+        "observed_at": "2026-10-31T14:11:44Z",
+        "pricing_status": "OBSERVED",
+        "proposed_3000s_compute_and_storage_usd": "0.5041666666666666666666666667",
+        "proposed_3000s_compute_usd": "0.4916666666666666666666666667",
+        "region": "US-TX-1",
+        "reported_gpu_gb": 48,
+        "stock_eligible": true,
+        "storage_projection_usd_per_hour": "0.015"
+      },
+      {
+        "broad_stock": {
+          "available": true,
+          "status": "Low"
+        },
+        "compute_usd_per_hour": "0.89",
+        "compute_within_proposal": true,
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": 62,
+          "minVcpu": 16,
+          "stockStatus": "Low",
+          "supportPublicIp": null,
+          "uninterruptablePrice": 0.89
+        },
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "observed_at": "2026-10-31T14:11:45Z",
+        "pricing_status": "OBSERVED",
+        "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667",
+        "proposed_3000s_compute_usd": "0.7416666666666666666666666667",
+        "region": "EUR-IS-1",
+        "reported_gpu_gb": 24,
+        "stock_eligible": true,
+        "storage_projection_usd_per_hour": "0.015"
+      },
+      {
+        "broad_stock": {
+          "available": true,
+          "status": "Low"
+        },
+        "compute_usd_per_hour": "0.89",
+        "compute_within_proposal": true,
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": 41,
+          "minVcpu": 21,
+          "stockStatus": "Low",
+          "supportPublicIp": null,
+          "uninterruptablePrice": 0.89
+        },
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "observed_at": "2026-10-31T14:11:45Z",
+        "pricing_status": "OBSERVED",
+        "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667",
+        "proposed_3000s_compute_usd": "0.7416666666666666666666666667",
+        "region": "US-IL-1",
+        "reported_gpu_gb": 24,
+        "stock_eligible": true,
+        "storage_projection_usd_per_hour": "0.015"
+      },
+      {
+        "broad_stock": {
+          "available": true,
+          "status": "Low"
+        },
+        "compute_usd_per_hour": "1.09",
+        "compute_within_proposal": false,
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": 102,
+          "minVcpu": 16,
+          "stockStatus": "Low",
+          "supportPublicIp": null,
+          "uninterruptablePrice": 1.09
+        },
+        "gpu": "NVIDIA L40S",
+        "observed_at": "2026-10-31T14:11:45Z",
+        "pricing_status": "OBSERVED",
+        "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333",
+        "proposed_3000s_compute_usd": "0.9083333333333333333333333333",
+        "region": "EUR-IS-2",
+        "reported_gpu_gb": 48,
+        "stock_eligible": true,
+        "storage_projection_usd_per_hour": "0.015"
+      },
+      {
+        "broad_stock": {
+          "available": true,
+          "status": "Low"
+        },
+        "compute_usd_per_hour": "1.09",
+        "compute_within_proposal": false,
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": 94,
+          "minVcpu": 16,
+          "stockStatus": "Low",
+          "supportPublicIp": null,
+          "uninterruptablePrice": 1.09
+        },
+        "gpu": "NVIDIA L40S",
+        "observed_at": "2026-10-31T14:11:45Z",
+        "pricing_status": "OBSERVED",
+        "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333",
+        "proposed_3000s_compute_usd": "0.9083333333333333333333333333",
+        "region": "OC-AU-1",
+        "reported_gpu_gb": 48,
+        "stock_eligible": true,
+        "storage_projection_usd_per_hour": "0.015"
+      },
+      {
+        "broad_stock": {
+          "available": true,
+          "status": "Low"
+        },
+        "compute_usd_per_hour": "1.09",
+        "compute_within_proposal": false,
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": 188,
+          "minVcpu": 16,
+          "stockStatus": "Low",
+          "supportPublicIp": null,
+          "uninterruptablePrice": 1.09
+        },
+        "gpu": "NVIDIA L40S",
+        "observed_at": "2026-10-31T14:11:45Z",
+        "pricing_status": "OBSERVED",
+        "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333",
+        "proposed_3000s_compute_usd": "0.9083333333333333333333333333",
+        "region": "US-TX-4",
+        "reported_gpu_gb": 48,
+        "stock_eligible": true,
+        "storage_projection_usd_per_hour": "0.015"
+      },
+      {
+        "broad_stock": {
+          "available": false,
+          "status": null
+        },
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": null,
+          "minVcpu": null,
+          "stockStatus": null,
+          "supportPublicIp": null,
+          "uninterruptablePrice": null
+        },
+        "gpu": "NVIDIA RTX A5000",
+        "observed_at": "2026-10-31T14:11:46Z",
+        "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+        "region": "CA-MTL-1",
+        "reported_gpu_gb": 24,
+        "stock_eligible": false
+      },
+      {
+        "broad_stock": {
+          "available": false,
+          "status": null
+        },
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": null,
+          "minVcpu": null,
+          "stockStatus": null,
+          "supportPublicIp": null,
+          "uninterruptablePrice": null
+        },
+        "gpu": "NVIDIA RTX A5000",
+        "observed_at": "2026-10-31T14:11:46Z",
+        "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+        "region": "US-CA-2",
+        "reported_gpu_gb": 24,
+        "stock_eligible": false
+      },
+      {
+        "broad_stock": {
+          "available": false,
+          "status": null
+        },
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": null,
+          "minVcpu": null,
+          "stockStatus": null,
+          "supportPublicIp": null,
+          "uninterruptablePrice": null
+        },
+        "gpu": "NVIDIA RTX A5000",
+        "observed_at": "2026-10-31T14:11:46Z",
+        "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+        "region": "US-IL-1",
+        "reported_gpu_gb": 24,
+        "stock_eligible": false
+      },
+      {
+        "broad_stock": {
+          "available": false,
+          "status": null
+        },
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": null,
+          "minVcpu": null,
+          "stockStatus": null,
+          "supportPublicIp": null,
+          "uninterruptablePrice": null
+        },
+        "gpu": "NVIDIA GeForce RTX 3090",
+        "observed_at": "2026-10-31T14:11:46Z",
+        "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+        "region": "EUR-IS-2",
+        "reported_gpu_gb": 24,
+        "stock_eligible": false
+      },
+      {
+        "broad_stock": {
+          "available": false,
+          "status": null
+        },
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": null,
+          "minVcpu": null,
+          "stockStatus": null,
+          "supportPublicIp": null,
+          "uninterruptablePrice": null
+        },
+        "gpu": "NVIDIA A40",
+        "observed_at": "2026-10-31T14:11:46Z",
+        "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+        "region": "US-MO-1",
+        "reported_gpu_gb": 48,
+        "stock_eligible": false
+      },
+      {
+        "broad_stock": {
+          "available": false,
+          "status": null
+        },
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": null,
+          "minVcpu": null,
+          "stockStatus": null,
+          "supportPublicIp": null,
+          "uninterruptablePrice": null
+        },
+        "gpu": "NVIDIA L4",
+        "observed_at": "2026-10-31T14:11:47Z",
+        "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+        "region": "US-GA-2",
+        "reported_gpu_gb": 24,
+        "stock_eligible": false
+      },
+      {
+        "broad_stock": {
+          "available": false,
+          "status": null
+        },
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": null,
+          "minVcpu": null,
+          "stockStatus": null,
+          "supportPublicIp": null,
+          "uninterruptablePrice": null
+        },
+        "gpu": "NVIDIA RTX A6000",
+        "observed_at": "2026-10-31T14:11:47Z",
+        "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+        "region": "US-KS-2",
+        "reported_gpu_gb": 48,
+        "stock_eligible": false
+      },
+      {
+        "broad_stock": {
+          "available": false,
+          "status": null
+        },
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": null,
+          "minVcpu": null,
+          "stockStatus": null,
+          "supportPublicIp": null,
+          "uninterruptablePrice": null
+        },
+        "gpu": "NVIDIA L40",
+        "observed_at": "2026-10-31T14:11:47Z",
+        "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+        "region": "EUR-IS-2",
+        "reported_gpu_gb": 48,
+        "stock_eligible": false
+      },
+      {
+        "broad_stock": {
+          "available": false,
+          "status": null
+        },
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": null,
+          "minVcpu": null,
+          "stockStatus": null,
+          "supportPublicIp": null,
+          "uninterruptablePrice": null
+        },
+        "gpu": "NVIDIA L40",
+        "observed_at": "2026-10-31T14:11:47Z",
+        "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+        "region": "US-KS-2",
+        "reported_gpu_gb": 48,
+        "stock_eligible": false
+      },
+      {
+        "broad_stock": {
+          "available": false,
+          "status": null
+        },
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": null,
+          "minVcpu": null,
+          "stockStatus": null,
+          "supportPublicIp": null,
+          "uninterruptablePrice": null
+        },
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "observed_at": "2026-10-31T14:11:47Z",
+        "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+        "region": "CA-MTL-3",
+        "reported_gpu_gb": 24,
+        "stock_eligible": false
+      },
+      {
+        "broad_stock": {
+          "available": false,
+          "status": null
+        },
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": null,
+          "minVcpu": null,
+          "stockStatus": null,
+          "supportPublicIp": null,
+          "uninterruptablePrice": null
+        },
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "observed_at": "2026-10-31T14:11:48Z",
+        "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+        "region": "EUR-IS-2",
+        "reported_gpu_gb": 24,
+        "stock_eligible": false
+      },
+      {
+        "broad_stock": {
+          "available": false,
+          "status": null
+        },
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": null,
+          "minVcpu": null,
+          "stockStatus": null,
+          "supportPublicIp": null,
+          "uninterruptablePrice": null
+        },
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "observed_at": "2026-10-31T14:11:48Z",
+        "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+        "region": "EUR-NO-1",
+        "reported_gpu_gb": 24,
+        "stock_eligible": false
+      },
+      {
+        "broad_stock": {
+          "available": false,
+          "status": null
+        },
+        "exact_quote": {
+          "availableGpuCounts": null,
+          "minMemory": null,
+          "minVcpu": null,
+          "stockStatus": null,
+          "supportPublicIp": null,
+          "uninterruptablePrice": null
+        },
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "observed_at": "2026-10-31T14:11:48Z",
+        "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE",
+        "region": "US-CA-2",
+        "reported_gpu_gb": 24,
+        "stock_eligible": false
+      }
+    ],
+    "proposal_funded": true,
+    "quote_constraints": {
+      "container_disk_gb": 100,
+      "gpu_count": 1,
+      "minimum_cuda": "12.8",
+      "minimum_gpu_gb": 24,
+      "minimum_ram_gb": 32,
+      "minimum_vcpu": 8,
+      "public_ip": true,
+      "secure_cloud": true,
+      "volume_gb": 0
+    },
+    "schema": "small-model-provider-read-v1",
+    "settings_changed": false,
+    "stage": "COMPLETE",
+    "status": "PASS_READ_ONLY",
+    "storage_basis": "Published USD0.10/GB/month; USD0.015/hour for 100GB rounds up a 28-day month. Projection, not a provider quote; taxes/other charges not established."
+  },
+  "resource_mutations": 0,
+  "run_id": "41206950960",
+  "source_sha": "67f1b855d8bb2d5cffbe27087bce178e226e303d",
+  "status": "PASS"
+}

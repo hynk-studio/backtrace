@@ -320,7 +320,7 @@ print(json.dumps(r))
     life.write(output/'receipt.json',result);return result
 
 
-def connected(root,endpoint,output,*,actual,comparison_only=False):
+def connected(root,endpoint,output,*,actual,comparison_only=False,after_hardware=None,compare_before_hardware=False):
     root=Path(root);output=Path(output);output.mkdir(mode=0o700,parents=True,exist_ok=True)
     result={'status':'INCOMPLETE','actual_gpu':actual}
     try:
@@ -336,8 +336,18 @@ def connected(root,endpoint,output,*,actual,comparison_only=False):
                 stdout=subprocess.PIPE,stderr=log,timeout=1100,env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8'})
         if p.returncode:raise RuntimeError('exact offline install failed')
         result['installation']=json.loads(p.stdout);life.write(output/'installation-checkpoint.json',result)
+        if compare_before_hardware:
+            if not actual or comparison_only:raise ValueError('actual correction comparison required')
+            result['correction_comparison']=exercise(prefix,output/'correction-comparison',actual=True,comparison_only=True)
+            if result['correction_comparison']['cuda_comparison']['decision']!='CUDA_PATH_WORKS_FAILURE_NOT_REPRODUCED':
+                raise RuntimeError('corrected CUDA path did not pass; preserve trace and stop before model')
         result['diagnostics']=exercise(prefix,output/'diagnostics',actual=actual,comparison_only=comparison_only)
         result['status']=result['diagnostics']['status']
+        if after_hardware is not None:
+            if not actual or comparison_only or result['status']!='PASS_ACTUAL_HARDWARE_ONLY':
+                raise ValueError('actual complete hardware qualification required before inference')
+            result['inference']=after_hardware(root,endpoint,prefix,output,result['diagnostics'])
+            result['status']=result['inference']['status']
     except Exception as e:
         import traceback
         result.update(status='FAIL',error_type=type(e).__name__,error=str(e)[:1500],
