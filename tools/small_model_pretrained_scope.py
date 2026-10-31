@@ -15,14 +15,19 @@ from tools import small_model_minimum_probe as probe, small_model_pretrained as 
 from tools import small_model_container as container
 
 REVIEW='bt-001-e2b-adapter-20261031'
-START='bt-001-e2b-window-start-20261031'
-STATE_BRANCH='bt-001-e2b-window-state-20261031'
-NAMESPACE='e2b-window-paid-20261031'
+START='bt-001-e2b-completion-start-20261031'
+STATE_BRANCH='bt-001-e2b-completion-state-20261031'
+NAMESPACE='e2b-completion-paid-20261031'
 WORKFLOW='.github/workflows/small-model-pretrained.yml'
 INSTRUCTION='이번에는 목표까지 실제로 이어가도록 하고 혼자 해결할 수 없는 문제가 있을 때만 멈추고 보고해'
-CONTRACT=dict(minimum.CONTRACT,scope='E2B_SCREEN20_ADAPTER4_WINDOW8M_V1',
-    weight_bytes=10246621918,pretrained_requests=21,training_steps=4,total_seconds=1550,work_seconds=1130,
-    ssh_receive_window_bytes=8388608,transfer_probe_bytes=256*1024**2,transfer_probe_maximum_seconds=12,
+CONTRACT=dict(minimum.CONTRACT,scope='E2B_REMAINING2_ADAPTER4_V1',
+    weight_bytes=10246621918,pretrained_requests=3,training_steps=4,total_seconds=2020,work_seconds=1600,
+    maximum_additional_usd='0.35',cumulative_continuation_cap_usd='1.30',
+    minimum_post_projection_credit_usd='1.6060441339',
+    prior_screening_run=41225173224,prior_finished_assignments=18,
+    incomplete_assignment_ids=['augnes-screen-1278','augnes-screen-1316'],
+    ssh_receive_window_bytes=8388608,transfer_probe_bytes=256*1024**2,
+    transfer_probe_maximum_seconds=pretrained.TRANSFER_PROBE_MAXIMUM_SECONDS,
     excluded_regions=[],
     excluded_routes=[{'gpu':'NVIDIA RTX A6000','region':'US-TX-1'}],
     cuda_socket_policy='UNIX_SEQPACKET_PASSIVE_BIND_LISTEN_NO_CONNECTIONS_V1',
@@ -40,10 +45,10 @@ def choose(snapshot,now):
         and {'gpu':r['gpu'],'region':r['region']} not in CONTRACT['excluded_routes']])
     offer=original_choose(routed,now)
     projected=Decimal(offer['costs']['maximum_projection'])
-    if (projected>Decimal('0.261')
-            or Decimal(snapshot['account']['credit_balance_usd'])-projected<Decimal('1.9060441339')):
+    if (projected>Decimal('0.35')
+            or Decimal(snapshot['account']['credit_balance_usd'])-projected<Decimal('1.6060441339')):
         raise ValueError('fresh offer exceeds remaining cumulative continuation budget')
-    return offer
+    return dict(offer,costs=dict(offer['costs'],additional_cap='0.35'))
 
 
 class State(OriginalState):
@@ -60,6 +65,7 @@ def sources():
         'tests/official_cloud_transport.py','tests/small_model_transport_control.py','tools/small_model_delivery.py','tests/test_small_model_delivery.py',
         'tests/test_private_delivery.py','tests/test_ssh_bootstrap.py',
         'docs/augnes-screening-packets-20261031.json','docs/augnes-screening-rubric-20261031.json',
+        'docs/evidence/window-paid-run-41225173224/recovered-screening-raw.json',
         'docs/augnes-development-replays-20261031.json','docs/augnes-development-replay-rubric-20261031.json',
         'docs/evidence/e2b-run-41206950960/input-schedule.json')
     return dict(original_sources(),**{p:minimum.life.digest((minimum.ROOT/p).read_bytes()) for p in extra})
@@ -68,18 +74,20 @@ def sources():
 def validate_permit(value,source,now):
     expected={'source_sha':source,'contract_sha256':minimum.life.digest(CONTRACT),
         'namespace':NAMESPACE,'instruction':INSTRUCTION,'mode':'OWNER_APPROVED_E2B_ADAPTER_FEASIBILITY',
-        'additional_cap_usd':'1.00','allocation_inclusive_seconds':1550,'single_use':True,
+        'additional_cap_usd':'0.35','allocation_inclusive_seconds':2020,'single_use':True,
         'automatic_retry':False,'top_up_allowed':False,'weight_bytes':10246621918,
-        'pretrained_requests':21,'training_steps':4}
+        'pretrained_requests':3,'training_steps':4}
     if not isinstance(value,dict) or any(type(value.get(k)) is not type(v) or value[k]!=v for k,v in expected.items()):
         raise ValueError('fresh source-bound E2B permit required')
     if (not re.fullmatch('[1-9][0-9]+',str(value.get('qualification_run_id','')))
             or not 0<=now-minimum.life.finite(value['approved_at'])<86400
             or not now<minimum.life.finite(value['expires_at'])<=value['approved_at']+86400):
         raise ValueError('current complete qualification required')
-    # Enforce the cumulative cap from this continuation, including prior trace.
+    # Prospectively bounded completion inside the existing prepaid wallet.
+    # The former assistant-selected USD1 continuation envelope remains historical.
     spent=minimum.provider.money(value['continuation_observed_spend_usd'])
-    if spent<0 or spent+minimum.provider.money(value['maximum_projection_usd'])>1:
+    projected=minimum.provider.money(value['maximum_projection_usd'])
+    if spent<0 or projected<0 or projected>Decimal('0.35') or spent+projected>Decimal('1.30'):
         raise ValueError('cumulative continuation cap exceeded')
     return value
 

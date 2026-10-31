@@ -1,0 +1,299 @@
+{
+  "schema": "augnes_screening_descriptive_checks_v1",
+  "assigned": 20,
+  "author_defined_families": 17,
+  "constant_label_membership_controls": {
+    "LOCAL_FIX": 18,
+    "DIAGNOSE": 8,
+    "PROCEED": 2
+  },
+  "collector_coverage": {
+    "OK": 17,
+    "INVALID_OUTPUT": 1,
+    "INTERRUPTED": 1,
+    "NOT_RUN": 1
+  },
+  "strict_json_objects": 17,
+  "explicit_contract_checks_pass": 13,
+  "rows": [
+    {
+      "id": "augnes-screen-1457",
+      "family": "checkout-identity",
+      "collector_status": "OK",
+      "strict_json_object": true,
+      "explicit_contract_checks_pass": true,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [],
+      "decision": "STOP_AND_RETAIN",
+      "cause_status": "UNKNOWN",
+      "candidate_count": 0,
+      "decision_in_retrospective_acceptable_set": false
+    },
+    {
+      "id": "augnes-screen-1436",
+      "family": "storage-boundaries",
+      "collector_status": "OK",
+      "strict_json_object": true,
+      "explicit_contract_checks_pass": true,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [],
+      "decision": "PROCEED",
+      "cause_status": "HYPOTHESIS",
+      "candidate_count": 1,
+      "decision_in_retrospective_acceptable_set": false
+    },
+    {
+      "id": "augnes-screen-1405",
+      "family": "authority-lineage",
+      "collector_status": "OK",
+      "strict_json_object": true,
+      "explicit_contract_checks_pass": true,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [],
+      "decision": "STOP_AND_RETAIN",
+      "cause_status": "UNKNOWN",
+      "candidate_count": 0,
+      "decision_in_retrospective_acceptable_set": false
+    },
+    {
+      "id": "augnes-screen-1347",
+      "family": "hosting-artifact",
+      "collector_status": "OK",
+      "strict_json_object": true,
+      "explicit_contract_checks_pass": true,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [],
+      "decision": "LOCAL_FIX",
+      "cause_status": "UNKNOWN",
+      "candidate_count": 1,
+      "decision_in_retrospective_acceptable_set": true
+    },
+    {
+      "id": "augnes-screen-1448",
+      "family": "revocation-capacity",
+      "collector_status": "OK",
+      "strict_json_object": true,
+      "explicit_contract_checks_pass": true,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [],
+      "decision": "PROCEED",
+      "cause_status": "HYPOTHESIS",
+      "candidate_count": 1,
+      "decision_in_retrospective_acceptable_set": false
+    },
+    {
+      "id": "augnes-screen-1438",
+      "family": "storage-boundaries",
+      "collector_status": "OK",
+      "strict_json_object": true,
+      "explicit_contract_checks_pass": false,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [
+        "candidate_0_fields",
+        "candidate_1_fields",
+        "candidate_2_fields"
+      ],
+      "decision": "PROCEED",
+      "cause_status": "ESTABLISHED",
+      "candidate_count": 3,
+      "decision_in_retrospective_acceptable_set": true
+    },
+    {
+      "id": "augnes-screen-1420",
+      "family": "ordinary-work-ux",
+      "collector_status": "OK",
+      "strict_json_object": true,
+      "explicit_contract_checks_pass": true,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [],
+      "decision": "LOCAL_FIX",
+      "cause_status": "HYPOTHESIS",
+      "candidate_count": 1,
+      "decision_in_retrospective_acceptable_set": true
+    },
+    {
+      "id": "augnes-screen-1408",
+      "family": "result-continuity",
+      "collector_status": "OK",
+      "strict_json_object": true,
+      "explicit_contract_checks_pass": false,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [
+        "candidate_0_fields"
+      ],
+      "decision": "DIAGNOSE",
+      "cause_status": "UNKNOWN",
+      "candidate_count": 1,
+      "decision_in_retrospective_acceptable_set": false
+    },
+    {
+      "id": "augnes-screen-1397",
+      "family": "work-lifetime",
+      "collector_status": "OK",
+      "strict_json_object": true,
+      "explicit_contract_checks_pass": false,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [
+        "candidate_0_fields"
+      ],
+      "decision": "PROCEED",
+      "cause_status": "UNKNOWN",
+      "candidate_count": 1,
+      "decision_in_retrospective_acceptable_set": false
+    },
+    {
+      "id": "augnes-screen-1393",
+      "family": "work-lifetime",
+      "collector_status": "OK",
+      "strict_json_object": true,
+      "explicit_contract_checks_pass": true,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [],
+      "decision": "PROCEED",
+      "cause_status": "UNKNOWN",
+      "candidate_count": 0,
+      "decision_in_retrospective_acceptable_set": false
+    },
+    {
+      "id": "augnes-screen-1369",
+      "family": "context-capacity",
+      "collector_status": "OK",
+      "strict_json_object": true,
+      "explicit_contract_checks_pass": true,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [],
+      "decision": "STOP_AND_RETAIN",
+      "cause_status": "ESTABLISHED",
+      "candidate_count": 0,
+      "decision_in_retrospective_acceptable_set": false
+    },
+    {
+      "id": "augnes-screen-1350",
+      "family": "planning-scope",
+      "collector_status": "OK",
+      "strict_json_object": true,
+      "explicit_contract_checks_pass": true,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [],
+      "decision": "PROCEED",
+      "cause_status": "ESTABLISHED",
+      "candidate_count": 0,
+      "decision_in_retrospective_acceptable_set": true
+    },
+    {
+      "id": "augnes-screen-1339",
+      "family": "expectation-continuity",
+      "collector_status": "OK",
+      "strict_json_object": true,
+      "explicit_contract_checks_pass": true,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [],
+      "decision": "PROCEED",
+      "cause_status": "ESTABLISHED",
+      "candidate_count": 0,
+      "decision_in_retrospective_acceptable_set": false
+    },
+    {
+      "id": "augnes-screen-1337",
+      "family": "expectation-continuity",
+      "collector_status": "OK",
+      "strict_json_object": true,
+      "explicit_contract_checks_pass": true,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [],
+      "decision": "PROCEED",
+      "cause_status": "UNKNOWN",
+      "candidate_count": 1,
+      "decision_in_retrospective_acceptable_set": false
+    },
+    {
+      "id": "augnes-screen-1329",
+      "family": "backup-admission",
+      "collector_status": "OK",
+      "strict_json_object": true,
+      "explicit_contract_checks_pass": true,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [],
+      "decision": "STOP_AND_RETAIN",
+      "cause_status": "UNKNOWN",
+      "candidate_count": 0,
+      "decision_in_retrospective_acceptable_set": false
+    },
+    {
+      "id": "augnes-screen-1326",
+      "family": "verification-lineage",
+      "collector_status": "OK",
+      "strict_json_object": true,
+      "explicit_contract_checks_pass": false,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [
+        "candidate_0_fields",
+        "candidate_1_fields"
+      ],
+      "decision": "PROCEED",
+      "cause_status": "UNKNOWN",
+      "candidate_count": 2,
+      "decision_in_retrospective_acceptable_set": false
+    },
+    {
+      "id": "augnes-screen-1305",
+      "family": "process-observation",
+      "collector_status": "OK",
+      "strict_json_object": true,
+      "explicit_contract_checks_pass": true,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [],
+      "decision": "DIAGNOSE",
+      "cause_status": "UNKNOWN",
+      "candidate_count": 1,
+      "decision_in_retrospective_acceptable_set": false
+    },
+    {
+      "id": "augnes-screen-1274",
+      "family": "invocation-compatibility",
+      "collector_status": "INVALID_OUTPUT",
+      "strict_json_object": false,
+      "explicit_contract_checks_pass": false,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [
+        "collector_INVALID_OUTPUT",
+        "not_strict_json"
+      ]
+    },
+    {
+      "id": "augnes-screen-1278",
+      "family": "auth-contract-drift",
+      "collector_status": "INTERRUPTED",
+      "strict_json_object": false,
+      "explicit_contract_checks_pass": false,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [
+        "collector_INTERRUPTED",
+        "not_strict_json"
+      ]
+    },
+    {
+      "id": "augnes-screen-1316",
+      "family": "selected-source-reading",
+      "collector_status": "NOT_RUN",
+      "strict_json_object": false,
+      "explicit_contract_checks_pass": false,
+      "semantic_quality": "REQUIRES_SOURCE_GROUNDED_REVIEW",
+      "issues": [
+        "collector_NOT_RUN",
+        "not_strict_json"
+      ]
+    }
+  ],
+  "limitations": [
+    "Twenty distinct issue episodes, with shared source/problem families; not twenty proven statistically independent observations.",
+    "Author-selected retrospective descriptions after reading later issue histories; not blinded, held-out or prospective.",
+    "Only selected problem-cutoff facts enter model inputs. Source issue bodies are mutable; their observed hashes are provenance, not archival proof of a historical timestamp.",
+    "No new checks are executed by a model response. Historical actions and costs do not constitute matched main-model controls.",
+    "Reference IDs verify existence only, not whether the cited fact supports the claim.",
+    "An acceptable decision enum alone is not correct reasoning or useful added value.",
+    "Always choosing LOCAL_FIX is in the retrospective acceptable set for 18/20 cases; label membership is highly imbalanced.",
+    "This report does not repair fences, omitted fields or malformed responses.",
+    "No aggregate semantic accuracy, effect size or workflow benefit is inferred."
+  ]
+}

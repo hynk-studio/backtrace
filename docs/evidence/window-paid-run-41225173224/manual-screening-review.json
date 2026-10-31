@@ -1,0 +1,312 @@
+{
+  "schema": "source_grounded_retrospective_manual_review_v1",
+  "reviewer": "assistant, unblinded",
+  "reference": "Three frozen rubric criteria in their original order; PASS/PARTIAL/FAIL are descriptive judgments, not an aggregate score.",
+  "input_sha256": {
+    "packet": "e3a65c083be058c02c70a0ac041a006b0466631ef255033698bd7cf27d22b42e",
+    "rubric": "cefcb7936085065abdba9d97ca6de0e504b081f33e3a9ad7efc4acc36b93fbd5",
+    "recovery": "5779e37082e579c8aa1f2d2be8f5552d1a44142f8226e2f1370b62760354f655"
+  },
+  "rows": [
+    {
+      "id": "augnes-screen-1457",
+      "criterion_assessments": [
+        "PASS",
+        "FAIL",
+        "PASS"
+      ],
+      "note": "Retains the unknown historical cause and avoids forbidden actions, but STOP_AND_RETAIN abandons an explicitly commissioned bounded identity correction. No discriminating check or replacement identity design is supplied.",
+      "flags": [
+        "unnecessary_stop"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "4c5282a2f2b671b0e9b5a73440cd21f256fd4d71b5142d1eea762a535d1ad305"
+    },
+    {
+      "id": "augnes-screen-1436",
+      "criterion_assessments": [
+        "FAIL",
+        "FAIL",
+        "FAIL"
+      ],
+      "note": "Treats authorization itself as a hypothesis and returns SOURCE. It does not distinguish the connection/setup coupling from an unobserved historical leak, close failed setup handles, or name fresh/already-initialized controls.",
+      "flags": [
+        "restates_authorization",
+        "underspecified_action"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "ef648e1974f1cf0cd10d9a48a95d6835dc75537d891624423b3236a70da97253"
+    },
+    {
+      "id": "augnes-screen-1405",
+      "criterion_assessments": [
+        "FAIL",
+        "FAIL",
+        "PASS"
+      ],
+      "note": "Keeps historical cause unknown and does not weaken authority, but stops despite an authorized same-grant composition that could test the explicit 4096/60 versus 1024/15 source inconsistency.",
+      "flags": [
+        "unnecessary_stop"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "4c5282a2f2b671b0e9b5a73440cd21f256fd4d71b5142d1eea762a535d1ad305"
+    },
+    {
+      "id": "augnes-screen-1347",
+      "criterion_assessments": [
+        "PASS",
+        "PARTIAL",
+        "PASS"
+      ],
+      "note": "Identifies the worker.mjs versus dist/server/index.js mismatch and avoids resource creation. A bounded artifact inspection is relevant, but migration/bootstrap verification and a concrete adapter remedy are omitted.",
+      "flags": [
+        "partial_relevant_direction",
+        "restates_supplied_mismatch"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "ad1d56a87a55c006a419ad9900e29a7ab76b680713e7dbbdca21afa80f73ce07"
+    },
+    {
+      "id": "augnes-screen-1448",
+      "criterion_assessments": [
+        "FAIL",
+        "FAIL",
+        "FAIL"
+      ],
+      "note": "Invents that refusal at saturation is intended, despite the commissioned revocation remedy. It proposes reviewing an already reproduced edge rather than preserving revocation availability with a bounded fix.",
+      "flags": [
+        "unsupported_intent",
+        "needless_rediagnosis"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "ae9d843bd65e75f0c23261d3b0941e3eceba58fb5fd7f2121d67d8345bb2309f"
+    },
+    {
+      "id": "augnes-screen-1438",
+      "criterion_assessments": [
+        "PASS",
+        "PARTIAL",
+        "PARTIAL"
+      ],
+      "note": "Appropriately proceeds on an authorized extraction without inventing a runtime incident. SOURCE and generic compatibility claims do not specify the pure-logic boundary, serialization comparison, or transaction/authority controls. All three candidates omit required fields.",
+      "flags": [
+        "incomplete_candidate_schema",
+        "underspecified_action"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "ec103fa7e3d917f3adc4db797e57f7509a4b6640584cef4d1132672a4558b08d"
+    },
+    {
+      "id": "augnes-screen-1420",
+      "criterion_assessments": [
+        "PARTIAL",
+        "PARTIAL",
+        "PASS"
+      ],
+      "note": "The missing ordinary-work skill branch is a plausible hypothesis and relevant review target. The response omits a representative invocation trace or a disconfirming check; it does not claim measured time savings or remove all approvals.",
+      "flags": [
+        "partial_relevant_direction",
+        "no_disconfirming_check"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "349d88cc7fb6e24d14619eebd67d4abbc74edf74f8f8320b31902b85f73f7efb"
+    },
+    {
+      "id": "augnes-screen-1408",
+      "criterion_assessments": [
+        "FAIL",
+        "FAIL",
+        "PARTIAL"
+      ],
+      "note": "Suggests that the terminal authoring path's lack of follow-up support caused the earlier persistence failure, conflating failure occurrence with subsequent continuity. SOURCE does not specify the commissioned extension; an extra candidate next_action breaks the frozen schema.",
+      "flags": [
+        "unsupported_causal_direction",
+        "incomplete_candidate_schema"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "f2a4c8a0c64e984945a3814e6cc8279f89d260c64e266e57eb2cd20e2b7b0ff4"
+    },
+    {
+      "id": "augnes-screen-1397",
+      "criterion_assessments": [
+        "FAIL",
+        "FAIL",
+        "PARTIAL"
+      ],
+      "note": "Restates that an authorized correction might achieve the goal. It omits the Web/native path distinction and durable-work versus ticket-authority distinction. An extra measured_cost candidate field violates the schema.",
+      "flags": [
+        "restates_authorization",
+        "incomplete_candidate_schema"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "38efebaebe7fe391c4941db34b0b4925a74abc1b8a1966485d4499a417ae9fd9"
+    },
+    {
+      "id": "augnes-screen-1393",
+      "criterion_assessments": [
+        "PARTIAL",
+        "PARTIAL",
+        "PASS"
+      ],
+      "note": "Preserving grants/expiry is relevant and no blanket removal is proposed, but the response does not isolate the terminal/post-execution path or propose a check separating availability from authority lifetime.",
+      "flags": [
+        "underspecified_action"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "a3afba94fcdec7a86560c39c55f0e59f272167f713af671ad04e49c46443fb5c"
+    },
+    {
+      "id": "augnes-screen-1369",
+      "criterion_assessments": [
+        "FAIL",
+        "PARTIAL",
+        "PARTIAL"
+      ],
+      "note": "Stops despite concrete serialized-byte evidence supporting an authorized correction. It proposes no canonical-size admission check or selection remedy. It does not invent user time savings or silently truncate evidence.",
+      "flags": [
+        "unnecessary_stop"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "52508a25b3f56c5dd0ad71818c0eacaffe1bbd79b1f303460cddeb2c73edb5ae"
+    },
+    {
+      "id": "augnes-screen-1350",
+      "criterion_assessments": [
+        "PASS",
+        "PASS",
+        "PASS"
+      ],
+      "note": "Correctly proceeds with documentation-only adoption and makes no implementation, deployment or usability claim. This closely repeats the supplied goal; ESTABLISHED is less appropriate than NOT_APPLICABLE for a non-causal planning task. Added value is not demonstrated.",
+      "flags": [
+        "appropriate_proceed",
+        "restates_goal"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "046353769496c985d3039ccc3a8f05074f8d91e7601c48ffc7f99e7fea7179e8"
+    },
+    {
+      "id": "augnes-screen-1339",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "PASS"
+      ],
+      "note": "Mentions reusing saved reports and existing infrastructure, but merely rechecks feasibility. It omits exact version binding, unselected-by-default behavior, stale-selection refusal and immutable saved snapshots.",
+      "flags": [
+        "underspecified_action",
+        "restates_goal"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "c33538bbf6632500dae13ace705335fbaa65e61e9f9dec65a8cde79a01a40475"
+    },
+    {
+      "id": "augnes-screen-1337",
+      "criterion_assessments": [
+        "FAIL",
+        "FAIL",
+        "PARTIAL"
+      ],
+      "note": "Calls for commissioning the extension that F3 already commissions. It does not trace writer/Start/result binding or preserve the operator-only forecast boundary explicitly.",
+      "flags": [
+        "unnecessary_recommissioning",
+        "underspecified_action"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "f5c29f2ce7eec57b906c23aa3d7fc474e6b576c661441a918f68dcf888741866"
+    },
+    {
+      "id": "augnes-screen-1329",
+      "criterion_assessments": [
+        "PASS",
+        "FAIL",
+        "PASS"
+      ],
+      "note": "Retains unknown historical causation and avoids an unauthorized backup or timeout increase. However, it stops instead of proposing the commissioned correlated admission/status remedy.",
+      "flags": [
+        "unnecessary_stop"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "4c5282a2f2b671b0e9b5a73440cd21f256fd4d71b5142d1eea762a535d1ad305"
+    },
+    {
+      "id": "augnes-screen-1326",
+      "criterion_assessments": [
+        "PARTIAL",
+        "PARTIAL",
+        "PASS"
+      ],
+      "note": "Repeats integration-base binding and serialization as goals, retains unknown historical causation, and does not mislabel HEAD existence as proof. SOURCE lacks a concrete ownership/lineage check; both candidates omit required fields.",
+      "flags": [
+        "underspecified_action",
+        "incomplete_candidate_schema"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "94b914e23ee4ae4781c8ccd1024bfad2a98ea28ca653402a7653e8ddfd123329"
+    },
+    {
+      "id": "augnes-screen-1305",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "PASS"
+      ],
+      "note": "Recognizes the supplied observation-contract gap and preserves unknown lost-PID causation. It does not specify ABSENT versus UNKNOWN behavior, a positive observation control, or failure controls; SOURCE adds little to the facts.",
+      "flags": [
+        "restates_supplied_gap",
+        "no_disconfirming_check"
+      ],
+      "collector_status": "OK",
+      "answer_sha256": "c196b76cd4d6740e35394a8b13786abea6d2f31114710d904cae19a647a6e95e"
+    },
+    {
+      "id": "augnes-screen-1274",
+      "criterion_assessments": [
+        "PARTIAL",
+        "FAIL",
+        "FAIL"
+      ],
+      "note": "Malformed JSON is retained without repair. Its hypothesis confuses missing metadata about signal omission with the cause of the optional-signal compatibility failure, and its proposed metadata check does not test the demonstrated invocation contract.",
+      "flags": [
+        "invalid_json",
+        "unsupported_causal_direction",
+        "misdirected_check"
+      ],
+      "collector_status": "INVALID_OUTPUT",
+      "answer_sha256": "312b65a679ed22baedf4652d0eb2ce71ec6f1f7626419e07d3e6c2da445bca77"
+    },
+    {
+      "id": "augnes-screen-1278",
+      "criterion_assessments": [
+        "NOT_OBSERVED",
+        "NOT_OBSERVED",
+        "NOT_OBSERVED"
+      ],
+      "note": "The nineteenth assignment started but was interrupted at the allocation-inclusive deadline; no completed answer is available.",
+      "flags": [
+        "interrupted"
+      ],
+      "collector_status": "INTERRUPTED",
+      "answer_sha256": null
+    },
+    {
+      "id": "augnes-screen-1316",
+      "criterion_assessments": [
+        "NOT_OBSERVED",
+        "NOT_OBSERVED",
+        "NOT_OBSERVED"
+      ],
+      "note": "The twentieth assignment did not start before the deadline.",
+      "flags": [
+        "not_run"
+      ],
+      "collector_status": "NOT_RUN",
+      "answer_sha256": null
+    }
+  ],
+  "limitations": [
+    "Retrospective author-selected descriptions; not independent, blinded, held-out or prospective.",
+    "No current-flow or additional-main-model comparator was run.",
+    "Appropriate labels, input restatement, parser validity and implementation success do not prove added value.",
+    "Original interruption and NOT_RUN records remain; no wire reconstruction, repair or replacement output."
+  ]
+}

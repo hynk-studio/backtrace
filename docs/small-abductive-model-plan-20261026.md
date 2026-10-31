@@ -1,5 +1,18 @@
 # Small abductive model: evidence before deployment
 
+Current measurement update (2026-10-31 UTC): the [window result](small-model-window-result-20261031.md)
+contains18 real untrained Augnes responses, one interrupted and one unstarted
+slot, with independent Pod deletion.17 responses are strict JSON and13 meet the
+explicit field contract; the manual review finds frequent unnecessary stops,
+restatement and unsupported causal directions. Actual utility is not established.
+Complete only the two unfinished original inputs, then the unchanged four-update
+implementation probe, in the bounded2020-second/USD0.35 scope documented there.
+The new prospective continuation ceiling isUSD1.30 inside the existing prepaid
+wallet; this supersedes the earlier assistant-set USD1 total-continuation envelope.
+Historical caps/receipts remain unchanged. Two current local Augnes connections
+are unavailable; no main-model comparison has run.
+
+
 Decision date: 2026-10-26; revised 2026-10-31 UTC. Status: **actual E2B baseline
 and three Augnes development replays completed; all18 synthetic responses invalid;
 replay content mixed. Later E4B and twenty-case/update attempts did not reach model

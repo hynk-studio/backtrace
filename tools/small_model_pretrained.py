@@ -24,6 +24,7 @@ from tools import small_model_augnes_screen as screening
 
 ROOT = Path(__file__).resolve().parents[1]
 REPLAY = ROOT/'docs/augnes-development-replays-20261031.json'
+TRANSFER_PROBE_MAXIMUM_SECONDS = 15
 
 
 def replay_schedule(tokenizer):
@@ -60,7 +61,8 @@ def prepare_runtime(root):
     life.write(Path(root)/'pretrained-preparation.json',{'weights':verified,
         'replay_packet_sha256':life.digest(REPLAY.read_bytes()),'assigned_original':1,'assigned_replay':0,
         'training_steps':0,'planned_training_steps':4,
-        'untrained_screening_assigned':20,'evaluator_delivered':False})
+        'untrained_screening_assigned':2,'prior_finished_assignments':18,
+        'prior_screening_run':41225173224,'evaluator_delivered':False})
     return initializer
 
 
@@ -92,8 +94,8 @@ def transfer_probe(root,endpoint,prefix,output):
     if receipt.get('bytes')!=256*1024**2 or receipt.get('verified') is not True:
         raise RuntimeError('complete short transfer readback absent')
     elapsed=time.monotonic()-started
-    result={'status':'PASS' if elapsed<=12 else 'SLOW_STOP_BEFORE_RUNTIME',
-        'bytes':256*1024**2,'seconds':elapsed,'maximum_seconds':12,'receipt':receipt,
+    result={'status':'PASS' if elapsed<=TRANSFER_PROBE_MAXIMUM_SECONDS else 'SLOW_STOP_BEFORE_RUNTIME',
+        'bytes':256*1024**2,'seconds':elapsed,'maximum_seconds':TRANSFER_PROBE_MAXIMUM_SECONDS,'receipt':receipt,
         'model_requests':0,'retries':0,'full_payload_completion':'NOT_ESTABLISHED'}
     life.write(output/'transfer-probe.json',result)
     if result['status']!='PASS':raise RuntimeError('short transfer too slow for bounded full-model attempt')
@@ -133,7 +135,7 @@ print(json.dumps({'bytes':sum(p.stat().st_size for p in dst.rglob('*') if p.is_f
         'qualified_manifest_sha256':life.digest(manifest.read_bytes())})
     spec=output/'collector-input.json';life.write(spec,{'prefix':prefix,'gpu_uuid':job['gpu']['uuid']})
     python=ROOT/'.local/model-runtime/bin/python'
-    # Preserve an untrained practical baseline before the separate training probe.
+    # Complete the two unfinished original slots before the separate training probe.
     try:
         with (output/'screening-collector.log').open('xb') as log:
             p=subprocess.run([str(python),'-m','tools.small_model_pretrained','collect-screening',str(spec),str(output)],
@@ -145,8 +147,9 @@ print(json.dumps({'bytes':sum(p.stat().st_size for p in dst.rglob('*') if p.is_f
     if stopped['worker']['same_process_alive'] or p.returncode:
         raise RuntimeError('untrained screening collector or cleanup failed')
     screen=json.loads((output/'augnes-screening/collection.json').read_bytes())
-    if screen['status']!='COMPLETED' or screen['training']:
-        raise RuntimeError('untrained twenty-case screening incomplete; preserve all assignments')
+    if (screen['status']!='COMPLETED' or screen['training'] or screen['assigned']!=2
+            or tuple(r['id'] for r in screen['records'])!=screening.REMAINING_IDS):
+        raise RuntimeError('two-slot completion incomplete; preserve all original attempts')
     try:
         with (output/'collector.log').open('xb') as log:
             p=subprocess.run([str(python),'-m','tools.small_model_pretrained','collect-probe',str(spec),str(output)],
@@ -172,7 +175,8 @@ print(json.dumps({'bytes':sum(p.stat().st_size for p in dst.rglob('*') if p.is_f
         raise RuntimeError('actual four-update save/reload evidence absent')
     life.write(output/'adapter-feasibility.json',adaptation)
     return {'status':'PASS_E2B_ADAPTER_FEASIBILITY' if collection['status']=='COMPLETED' else 'INCOMPLETE_E2B_COLLECTION',
-        'assigned':21,'adapter_assigned':1,'untrained_screening_assigned':20,
+        'assigned':3,'adapter_assigned':1,'untrained_screening_assigned':2,
+        'prior_screening_run':41225173224,'prior_finished_assignments':18,
         'untrained_screening_coverage':screen['coverage'],
         'coverage':collection['coverage'],'collection_status':collection['status'],
         'training_steps':adaptation['training_steps'],'capability_claim':'IMPLEMENTATION_ONLY',
@@ -245,11 +249,11 @@ def inspect_inputs(prepared,*,cuda_runtime=False):
     runner.evaluate(plan,original,missing)
     return {'status':'PASS_INPUTS_NOT_INFERENCE','identical_e2b_comparison_messages':True,
         'training_inputs':training.verify_tokens(tokenizer),
-        'untrained_screening_assignments':[{k:v for k,v in r.items() if k!='messages'} for r in screening.schedule(tokenizer)],
+        'untrained_screening_assignments':[{k:v for k,v in r.items() if k!='messages'} for r in screening.assigned_schedule(tokenizer)],
         'original_assigned':1,'replay_assigned':0,
         'historical_original_count':len(original),'historical_replay_count':len(replays),
         'assigned_before_allocation':[{**{k:v for k,v in r.items() if k!='messages'},'initial_status':'NOT_RUN'}
-            for r in screening.schedule(tokenizer)+original[:1]],
+            for r in screening.assigned_schedule(tokenizer)+original[:1]],
         'historical_comparison_not_assigned':[{k:v for k,v in r.items() if k!='messages'} for r in original[1:]+replays],
         'replays':[{k:v for k,v in r.items() if k!='messages'} for r in replays],
         'packet_sha256':life.digest(REPLAY.read_bytes()),'pretrained_requests':0}

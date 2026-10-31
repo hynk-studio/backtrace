@@ -1,0 +1,44 @@
+{
+  "source_sha": "a90e47bc98da44d8492acd0577cb40728de3b15c",
+  "state_branch": "bt-001-e2b-window-state-20261031",
+  "namespace": "e2b-window-paid-20261031",
+  "claim_sha256": "d216e2a10ce64135fcc2fb7c06cb69068aa26b4e537aeb8f4c8c0ac532da6701",
+  "items": [
+    {
+      "name": "authorization",
+      "github_blob_sha": "9ecd1829483b25a19b68ff9ff48831d9d9a51a46",
+      "bytes": 2015,
+      "sha256": "dcf471344a537e99fe8748fae2efd13c037c54b207c20bd9d0ba94f1bea7e01a"
+    },
+    {
+      "name": "claim",
+      "github_blob_sha": "8c6df2ef649b45c62fb14c2a3ac3038e4795a1c9",
+      "bytes": 921,
+      "sha256": "d216e2a10ce64135fcc2fb7c06cb69068aa26b4e537aeb8f4c8c0ac532da6701"
+    },
+    {
+      "name": "pod",
+      "github_blob_sha": "02164b0454f131f8e65f8d99e63da526d5ea8bc4",
+      "bytes": 166,
+      "sha256": "40be25f39823e7faa8e408c1f6658aa638420c6a881282ed50b02309c735a2a6"
+    },
+    {
+      "name": "done",
+      "github_blob_sha": "f2a12aefa9537b415a3e568785a747a7b1b90aff",
+      "bytes": 227,
+      "sha256": "85f31ce7a98c6a5d78c74841dea95fd78bbb0228b36b6fe528606518ec54eda3"
+    },
+    {
+      "name": "owner-cleanup",
+      "github_blob_sha": "47465f65b2c7666abf5effdbeaba62036ed78f44",
+      "bytes": 478,
+      "sha256": "15f82d2bba3917da8287a43822f14197ccdfde42906bfe1a1faec898ff835fb7"
+    },
+    {
+      "name": "watch-cleanup",
+      "github_blob_sha": "8ce228d3757c964e5577a73e88182aa6e6e7f013",
+      "bytes": 553,
+      "sha256": "131f6f5285ae685e79f47d28846453277c59e12634767a650d75a094c380cfbc"
+    }
+  ]
+}

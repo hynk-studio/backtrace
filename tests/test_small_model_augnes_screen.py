@@ -31,7 +31,7 @@ class ScreeningTests(unittest.TestCase):
             root=Path(td);(root/'.local').mkdir();spec=root/'spec.json'
             spec.write_text(json.dumps({'prefix':['fixture'],'gpu_uuid':'fixture'}))
             with patch.object(screen,'ROOT',root),patch.dict(sys.modules,{'transformers':module}),\
-                    patch.object(screen,'schedule',return_value=[{'model':'E2B','arm':'B1','id':'fixture'}]),\
+                    patch.object(screen,'assigned_schedule',return_value=[{'model':'E2B','arm':'B1','id':'fixture'}]),\
                     patch.object(screen.runner,'collect',return_value={'status':'INCOMPLETE'}) as collect,\
                     patch.object(screen.container,'ContainerChannel') as channel:
                 self.assertEqual(screen.collect(spec,root)['status'],'INCOMPLETE')
@@ -46,6 +46,27 @@ class ScreeningTests(unittest.TestCase):
                 self.assertEqual(screen.preserve(root)['files'],1)
                 self.assertEqual((root/'augnes-screening/collection.json').read_bytes(),
                                  (source/'collection.json').read_bytes())
+
+    def test_completion_keeps_exact_inputs_and_does_not_retry_invalid_finished_answer(self):
+        encoded={'overflow':False,'input_tokens':100,'token_ids_sha256':'a'*64}
+        with patch.object(screen.ready,'encode',return_value=encoded):
+            original=screen.schedule(Mock());selected=screen.assigned_schedule(Mock())
+        self.assertEqual(selected,original[-2:])
+        self.assertEqual(tuple(r['id'] for r in selected),screen.REMAINING_IDS)
+        self.assertNotIn('augnes-screen-1274',[r['id'] for r in selected])
+
+    def test_completion_refuses_changed_evidence_or_a_finished_selected_slot(self):
+        encoded={'overflow':False,'input_tokens':100,'token_ids_sha256':'a'*64}
+        with tempfile.TemporaryDirectory() as td:
+            path=Path(td)/'recovery.json';raw=screen.RECOVERY.read_bytes();path.write_bytes(raw+b' ')
+            with patch.object(screen,'RECOVERY',path),self.assertRaises(ValueError):
+                screen.assigned_schedule(Mock())
+            changed=json.loads(raw);changed['records'][-1]['status']='OK'
+            path.write_text(json.dumps(changed))
+            with patch.object(screen,'RECOVERY',path),\
+                    patch.object(screen,'RECOVERY_SHA256',screen.life.digest(path.read_bytes())),\
+                    patch.object(screen.ready,'encode',return_value=encoded),self.assertRaises(ValueError):
+                screen.assigned_schedule(Mock())
 
     def test_teardown_observes_requested_worker_then_gpu(self):
         with patch.object(entry.remote,'remote',return_value={'same_process_alive':False}) as remote,\

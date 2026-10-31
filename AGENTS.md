@@ -1,5 +1,39 @@
 # Backtrace working agreement
 
+## Actual eighteen-case screening and bounded completion (2026-10-31 UTC)
+
+Read docs/small-model-window-result-20261031.md and its retained raw/manual review.
+Paid run41225173224 at a90e47bc98da44d8492acd0577cb40728de3b15c completed18
+untrained responses;17 strict JSON,13 explicit structural checks. Slot1278 was
+interrupted and1316 NOT_RUN; no adapter update or post-update generation ran.
+Both full transfers and actual CUDA/isolation checks passed. The1130-second work
+window ended before the assigned work completed. Both independent controllers
+proved deletion;18:04:39 inventory was empty and creditUSD1.982478345 with autopay
+and hourly spend off. Observed continuation spendingUSD0.9235657889 is subject to
+final billing. Preserve all original answers, including the malformed1274 output.
+
+Under the owner's continued delegation and existing prepaidUSD10 wallet, prepare
+one new completion scope: only1278/1316 with identical messages/token hashes,
+the unchanged four train-only updates and first original B0 post-update generation.
+Bind selection to retained recovery SHA256
+5779e37082e579c8aa1f2d2be8f5552d1a44142f8226e2f1370b62760354f655.
+The former assistant-set USD1 continuation envelope remains historical. The new
+prospective finite limits areUSD0.35 for this allocation,USD1.30 cumulative in
+this continuation andUSD1.6060441339 projected credit floor, with no top-up.
+Use2020/1600/300/120 total/work/cleanup/export seconds;USD0.605 hourly projects
+USD0.3394722222. The15-second256MiB throughput gate fits the longer work window;
+retain20-second probe and600-second full-transfer timeouts,8MiB window and all
+hardware/identity/isolation checks. Do not infer throughput guarantees.
+
+Review branch stays bt-001-e2b-adapter-20261031. New unused start/state are
+bt-001-e2b-completion-start-20261031 / bt-001-e2b-completion-state-20261031,
+namespace e2b-completion-paid-20261031. Require exact-source native qualification,
+new source-bound permit and fresh balance/price before start. No overlap,
+automatic retry, merge or Augnes write. Preserve original incomplete attempts;
+a later20-episode union must retain provenance and both1278 attempts. Complete
+actual measurement and interpretation under the current delegation.
+
+
 ## Historical-source isolation and final billing adjustment (2026-10-31 UTC)
 
 Free run41222934662 ran684 native tests and failed with25 errors because the edited

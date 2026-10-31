@@ -9,6 +9,9 @@ from tools import small_model_container as container, small_model_lifecycle as l
 
 ROOT=Path(__file__).resolve().parents[1]
 PACKET=ROOT/'docs/augnes-screening-packets-20261031.json'
+RECOVERY=ROOT/'docs/evidence/window-paid-run-41225173224/recovered-screening-raw.json'
+RECOVERY_SHA256='5779e37082e579c8aa1f2d2be8f5552d1a44142f8226e2f1370b62760354f655'
+REMAINING_IDS=('augnes-screen-1278','augnes-screen-1316')
 SYSTEM=('Return only one JSON object matching the supplied output contract, without markdown. '
         'Use only the supplied historical facts. Separate observation from inference. '
         'Consider competing explanations and missing evidence only when diagnosis is useful. '
@@ -31,6 +34,18 @@ def schedule(tokenizer):
     return rows
 
 
+def assigned_schedule(tokenizer):
+    """Complete only missing original slots; never select by answer quality."""
+    raw=RECOVERY.read_bytes()
+    if life.digest(raw)!=RECOVERY_SHA256:raise ValueError('original recovery identity changed')
+    recovery=json.loads(raw);rows=schedule(tokenizer)
+    if ([r['id'] for r in recovery['records']]!=[r['id'] for r in rows]
+            or recovery['assigned']!=20 or recovery['status']!='RECOVERED_INCOMPLETE'
+            or tuple(r['id'] for r in recovery['records'] if r['status'] in ('INTERRUPTED','NOT_RUN'))!=REMAINING_IDS):
+        raise ValueError('original incomplete denominator changed')
+    return [r for r in rows if r['id'] in REMAINING_IDS]
+
+
 def preserve(output):
     source=ROOT/'.local/augnes-screening-collection';target=Path(output)/'augnes-screening';count=0
     if source.exists():
@@ -45,7 +60,7 @@ def collect(spec_path,output):
     from transformers import AutoTokenizer
     spec=json.loads(Path(spec_path).read_bytes())
     tokenizer=AutoTokenizer.from_pretrained(ROOT/'.local/e2b/sources/E2B',local_files_only=True,trust_remote_code=False)
-    rows=schedule(tokenizer)
+    rows=assigned_schedule(tokenizer)
     life.write(Path(output)/'screening-input-schedule.json',{'requests':rows,'packet_sha256':life.digest(PACKET.read_bytes())})
     def factory(name,directory):
         if name!='E2B':raise ValueError('E2B only')

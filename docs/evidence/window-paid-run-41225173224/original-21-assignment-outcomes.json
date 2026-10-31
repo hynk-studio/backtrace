@@ -1,0 +1,136 @@
+{
+  "schema": "original_assignment_outcomes_v1",
+  "run_id": 41225173224,
+  "source_sha": "a90e47bc98da44d8492acd0577cb40728de3b15c",
+  "assigned": 21,
+  "training_steps": 0,
+  "records": [
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1457",
+      "status": "OK"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1436",
+      "status": "OK"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1405",
+      "status": "OK"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1347",
+      "status": "OK"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1448",
+      "status": "OK"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1438",
+      "status": "OK"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1420",
+      "status": "OK"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1408",
+      "status": "OK"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1397",
+      "status": "OK"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1393",
+      "status": "OK"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1369",
+      "status": "OK"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1350",
+      "status": "OK"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1339",
+      "status": "OK"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1337",
+      "status": "OK"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1329",
+      "status": "OK"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1326",
+      "status": "OK"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1305",
+      "status": "OK"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1274",
+      "status": "INVALID_OUTPUT"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1278",
+      "status": "INTERRUPTED"
+    },
+    {
+      "model": "E2B",
+      "arm": "B1",
+      "id": "augnes-screen-1316",
+      "status": "NOT_RUN"
+    },
+    {
+      "model": "E2B",
+      "arm": "B0",
+      "id": "097751cfe4dadf3a1940ca8083093ce8adeae80ca328118f66b73c2bf3570204",
+      "status": "NOT_RUN"
+    }
+  ],
+  "provenance": "First20 from original fsynced-ledger recovery; post-update slot NOT_RUN because incomplete first collection prevented later training worker startup."
+}

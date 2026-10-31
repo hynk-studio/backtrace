@@ -1,0 +1,375 @@
+{
+  "schema": "retained_github_qualification_v1",
+  "run_id": 41223908260,
+  "source_sha": "a90e47bc98da44d8492acd0577cb40728de3b15c",
+  "source_tree": "6cf12d2cc75ad87e3bdb587e0700f4a3b39bf5bd",
+  "qualification_status": "PASS",
+  "source_hash_entries_verified": 280,
+  "source_unique_paths_verified": 88,
+  "native_tests": 716,
+  "native_seconds": 212.409,
+  "container_controls": 17,
+  "artifacts": [
+    {
+      "kind": "container",
+      "artifact_id": 13051666534,
+      "archive_sha256": "19027fada03d7537d2e818dfcbbde59c6872039568528fce1d7b78b74011642e",
+      "members": [
+        {
+          "original_member": "container-adapter-cpu-control.json",
+          "saved": "container-container-adapter-cpu-control.json",
+          "bytes": 952,
+          "sha256": "1c4aca7910d3f96b7b5ef64fee63f83d4435730598974ee7f88c881234511bb7"
+        },
+        {
+          "original_member": "container-image.log",
+          "saved": "container-container-image.log",
+          "bytes": 1302,
+          "sha256": "61d35816a437bfbec81868764a83e3dfdda4d7ddace35bd19cd8ac5ecba29221"
+        },
+        {
+          "original_member": "container-pretrained-missing-gpu.log",
+          "saved": "container-container-pretrained-missing-gpu.log",
+          "bytes": 957,
+          "sha256": "8cd22da557dda34a2b9cb9c17e17e436d2fa25a870f7d96fd2d47917696e3e23"
+        },
+        {
+          "original_member": "container-receipt.json",
+          "saved": "container-container-receipt.json",
+          "bytes": 50911,
+          "sha256": "3b63b202cfbcd05708ca9238daa613c7f57768fcf46de3f9708e59fef1083faa"
+        },
+        {
+          "original_member": "container-remote-connected-receipt.json",
+          "saved": "container-container-remote-connected-receipt.json",
+          "bytes": 19283,
+          "sha256": "0708579b936ab0d70417c6f78aebacc5a43a8d166c3411e2cbf38437124eb5c2"
+        },
+        {
+          "original_member": "container-remote-diagnostics-boundary-825596514900.log",
+          "saved": "container-container-remote-diagnostics-boundary-825596514900.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "original_member": "container-remote-diagnostics-boundary-memory-checkpoint.json",
+          "saved": "container-container-remote-diagnostics-boundary-memory-checkpoint.json",
+          "bytes": 2989,
+          "sha256": "8f4eaf522d72a89fbf6c99089bf26eb844f99d39afe0cd9f8001223e67b225ba"
+        },
+        {
+          "original_member": "container-remote-diagnostics-cuda-comparison-A-checkpoint.json",
+          "saved": "container-container-remote-diagnostics-cuda-comparison-A-checkpoint.json",
+          "bytes": 1457,
+          "sha256": "01e898094badc0654503f4cbef5cbbbc7b0649ffbbb97e9c75300b00400fb0b9"
+        },
+        {
+          "original_member": "container-remote-diagnostics-cuda-comparison-A-stderr.log",
+          "saved": "container-container-remote-diagnostics-cuda-comparison-A-stderr.log",
+          "bytes": 1225,
+          "sha256": "0ecb3d3d7207f626ae1a8ca54b0ae0fc52954c78f321e5377719fbd1d420fcd3"
+        },
+        {
+          "original_member": "container-remote-diagnostics-cuda-comparison-A-stdout.log",
+          "saved": "container-container-remote-diagnostics-cuda-comparison-A-stdout.log",
+          "bytes": 578,
+          "sha256": "c21be636bb50ea9a3ff53c831f21e05c8467353fc7b2aa39c4805d7cb39bab42"
+        },
+        {
+          "original_member": "container-remote-diagnostics-cuda-comparison-A-teardown.json",
+          "saved": "container-container-remote-diagnostics-cuda-comparison-A-teardown.json",
+          "bytes": 1671,
+          "sha256": "afdfc8604e48be82ce2fa6118d489ae12f2684dc85b23b3871635dc5d4706305"
+        },
+        {
+          "original_member": "container-remote-diagnostics-cuda-comparison-B-checkpoint.json",
+          "saved": "container-container-remote-diagnostics-cuda-comparison-B-checkpoint.json",
+          "bytes": 3041,
+          "sha256": "0eed936eed3e1377fdfe282c3b0eb3adb07195282e49a84df2fab6991c78510a"
+        },
+        {
+          "original_member": "container-remote-diagnostics-cuda-comparison-B-stderr.log",
+          "saved": "container-container-remote-diagnostics-cuda-comparison-B-stderr.log",
+          "bytes": 1256,
+          "sha256": "d230bd3a3ae59ec239ca266a853949483c91d81f669fa0c19ca5439a9d053f86"
+        },
+        {
+          "original_member": "container-remote-diagnostics-cuda-comparison-B-stdout.log",
+          "saved": "container-container-remote-diagnostics-cuda-comparison-B-stdout.log",
+          "bytes": 578,
+          "sha256": "4a26dfd2bf58adef9ea42db3af08ca993b91376c9c86fa1c09eaa8e877d68fb4"
+        },
+        {
+          "original_member": "container-remote-diagnostics-cuda-comparison-B-teardown.json",
+          "saved": "container-container-remote-diagnostics-cuda-comparison-B-teardown.json",
+          "bytes": 3254,
+          "sha256": "6d3344a6711dc7f1556fb825b831d0b91ff0526cd933760271351c0c85095f4d"
+        },
+        {
+          "original_member": "container-remote-diagnostics-cuda-comparison-C-checkpoint.json",
+          "saved": "container-container-remote-diagnostics-cuda-comparison-C-checkpoint.json",
+          "bytes": 4624,
+          "sha256": "0238d92ceca6c59e7a175c9f31e2f4c6353ce764dcda851b08d97967833b0531"
+        },
+        {
+          "original_member": "container-remote-diagnostics-cuda-comparison-C-stderr.log",
+          "saved": "container-container-remote-diagnostics-cuda-comparison-C-stderr.log",
+          "bytes": 1256,
+          "sha256": "f031bbf2e137f5b93a7139efe985347425fbd86a72edcc6f67419c91e3182a24"
+        },
+        {
+          "original_member": "container-remote-diagnostics-cuda-comparison-C-stdout.log",
+          "saved": "container-container-remote-diagnostics-cuda-comparison-C-stdout.log",
+          "bytes": 578,
+          "sha256": "7d998ac90cf12b2d77d1787ab501051d776a7f0a21e2eb2767490bcb7a6a1412"
+        },
+        {
+          "original_member": "container-remote-diagnostics-cuda-comparison-C-teardown.json",
+          "saved": "container-container-remote-diagnostics-cuda-comparison-C-teardown.json",
+          "bytes": 4838,
+          "sha256": "f0ca77c94c51606080e92c84b40f04b71b105c0b0e74ec7afab5d5933b4a1540"
+        },
+        {
+          "original_member": "container-remote-diagnostics-cuda-comparison-D-checkpoint.json",
+          "saved": "container-container-remote-diagnostics-cuda-comparison-D-checkpoint.json",
+          "bytes": 6303,
+          "sha256": "938a77885c93575b96baca6369636c252cf30302e347f8cc0406537d0a466564"
+        },
+        {
+          "original_member": "container-remote-diagnostics-cuda-comparison-D-stderr.log",
+          "saved": "container-container-remote-diagnostics-cuda-comparison-D-stderr.log",
+          "bytes": 1256,
+          "sha256": "2d786a3571fa37ead308b550d1abd1040782f78e30a707c22fd99f803488502a"
+        },
+        {
+          "original_member": "container-remote-diagnostics-cuda-comparison-D-stdout.log",
+          "saved": "container-container-remote-diagnostics-cuda-comparison-D-stdout.log",
+          "bytes": 682,
+          "sha256": "527bfade87c5e776f70eb33fc5a0f34a9ef8844ea5679ce9697581173f86805f"
+        },
+        {
+          "original_member": "container-remote-diagnostics-cuda-comparison-D-teardown.json",
+          "saved": "container-container-remote-diagnostics-cuda-comparison-D-teardown.json",
+          "bytes": 6516,
+          "sha256": "a5d3ec92713df814e2afa723e1a8a1ccf1a5c8d5dd856d0bc304b14e0b63dd5d"
+        },
+        {
+          "original_member": "container-remote-diagnostics-cuda-comparison-receipt.json",
+          "saved": "container-container-remote-diagnostics-cuda-comparison-receipt.json",
+          "bytes": 6730,
+          "sha256": "6eef534608c3e01f335f0d4e99c643aee6d6be6cec0b432a589ebd6c9567a451"
+        },
+        {
+          "original_member": "container-remote-diagnostics-cuda-comparison-started.json",
+          "saved": "container-container-remote-diagnostics-cuda-comparison-started.json",
+          "bytes": 119,
+          "sha256": "e68bcac9e62ef4bf46da48e96379832d70b88ca758b6692825b77370c11bf204"
+        },
+        {
+          "original_member": "container-remote-diagnostics-deadline-checkpoint.json",
+          "saved": "container-container-remote-diagnostics-deadline-checkpoint.json",
+          "bytes": 10269,
+          "sha256": "d65c09ab71820e34013f415b968c011150dae1351de92cfa697f1cb2c111e1bd"
+        },
+        {
+          "original_member": "container-remote-diagnostics-deadline.log",
+          "saved": "container-container-remote-diagnostics-deadline.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "original_member": "container-remote-diagnostics-memory-825869073559.log",
+          "saved": "container-container-remote-diagnostics-memory-825869073559.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "original_member": "container-remote-diagnostics-missing-gpu.log",
+          "saved": "container-container-remote-diagnostics-missing-gpu.log",
+          "bytes": 553,
+          "sha256": "24ef69744a82d01f871bb642e7869d1446bfaa2b7dbf3a3d5de9ac98ee66661e"
+        },
+        {
+          "original_member": "container-remote-diagnostics-receipt.json",
+          "saved": "container-container-remote-diagnostics-receipt.json",
+          "bytes": 11106,
+          "sha256": "b7156c89c42c92811c792300dcd3e26d0e353a78233229dbceb3bebae0e52f22"
+        },
+        {
+          "original_member": "container-remote-diagnostics-supervisor-checkpoint.json",
+          "saved": "container-container-remote-diagnostics-supervisor-checkpoint.json",
+          "bytes": 11084,
+          "sha256": "61b427d04abc699f95b8c0d8497c953353b49691b5c74996e552f81fc43c57e8"
+        },
+        {
+          "original_member": "container-remote-diagnostics-supervisor.log",
+          "saved": "container-container-remote-diagnostics-supervisor.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "original_member": "container-remote-diagnostics-transport-checkpoint.json",
+          "saved": "container-container-remote-diagnostics-transport-checkpoint.json",
+          "bytes": 10673,
+          "sha256": "77b256d2c011dd6771e9ae08097496788deefc1e865f069f2d20dcc50be3c9ff"
+        },
+        {
+          "original_member": "container-remote-diagnostics-transport.log",
+          "saved": "container-container-remote-diagnostics-transport.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "original_member": "container-remote-install.log",
+          "saved": "container-container-remote-install.log",
+          "bytes": 10564,
+          "sha256": "fb3c6c4966af7e01c4ed2278bfc30bb4e669b0a3b6cba66cc372c01995099333"
+        },
+        {
+          "original_member": "container-remote-installation-checkpoint.json",
+          "saved": "container-container-remote-installation-checkpoint.json",
+          "bytes": 8141,
+          "sha256": "8b78195c34d6711c452a8dacedb2535ee0fc53afc41e34507782fdf748029a92"
+        },
+        {
+          "original_member": "container-remote-runtime-transfer-progress.json",
+          "saved": "container-container-remote-runtime-transfer-progress.json",
+          "bytes": 55948,
+          "sha256": "329098552b7e88f90987edff460bac1bd4dd8c51740f248dde67258bb16aff90"
+        },
+        {
+          "original_member": "container-remote-transfer-probe-checkpoint.json",
+          "saved": "container-container-remote-transfer-probe-checkpoint.json",
+          "bytes": 513,
+          "sha256": "9a1dfdd0f3fd3f300c70fbf2e457cd88156e6cca6b056f7a9ee6c66e7051ef96"
+        },
+        {
+          "original_member": "container-remote-transfer-probe-progress.json",
+          "saved": "container-container-remote-transfer-probe-progress.json",
+          "bytes": 5106,
+          "sha256": "1f3fb334452d572ee173e4e5f9071939cfb880145c9411e3a79e866518e831dc"
+        },
+        {
+          "original_member": "container-remote-transfer-probe.json",
+          "saved": "container-container-remote-transfer-probe.json",
+          "bytes": 341,
+          "sha256": "d0b68a367826755dc8c27f7b05b7ef0b03e20ff004ccc29995b9e372654588ea"
+        },
+        {
+          "original_member": "container-stderr.log",
+          "saved": "container-container-stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "original_member": "container.json",
+          "saved": "container-container.json",
+          "bytes": 38,
+          "sha256": "dfd929dc663a3b5e6505e5b8ba0c90e50d44e0e74ab2ec9418fda4337210fdcc"
+        },
+        {
+          "original_member": "preflight.json",
+          "saved": "container-preflight.json",
+          "bytes": 167,
+          "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+        },
+        {
+          "original_member": "tests.log",
+          "saved": "container-tests.log",
+          "bytes": 121435,
+          "sha256": "0323efbc3274ef02100f9b266345c46275f894f8f6cc0f08397f98beee60edaf"
+        },
+        {
+          "original_member": "transport-window-control.json",
+          "saved": "container-transport-window-control.json",
+          "bytes": 2296,
+          "sha256": "81b873aaa6944d67d630fec2ac6cafc5728511765bde57583177d6fce26237a0"
+        },
+        {
+          "original_member": "transport-window-control.log",
+          "saved": "container-transport-window-control.log",
+          "bytes": 1530,
+          "sha256": "3adeb59a6ecb2118cf17d9c1fc0f05f67fa43151daab0ad0d6302be8d8271e6f"
+        }
+      ]
+    },
+    {
+      "kind": "owner",
+      "artifact_id": 13051150623,
+      "archive_sha256": "327e76c51a1ea05a7d543e23549ebad39c7f3c8a7d719867be75f7abe7d340ec",
+      "members": [
+        {
+          "original_member": "account-after.json",
+          "saved": "owner-account-after.json",
+          "bytes": 24041,
+          "sha256": "c8181adc0d4182dacc697bb2bbe87b72124fcaef11054bda033998864af43839"
+        },
+        {
+          "original_member": "minimum-owner/receipt.json",
+          "saved": "owner-minimum-owner__receipt.json",
+          "bytes": 11396,
+          "sha256": "4c9ff433036f6bd002e8ab782ff789e520320fd49a2942e89ccdd5727e10ae3f"
+        },
+        {
+          "original_member": "minimum-owner.json",
+          "saved": "owner-minimum-owner.json",
+          "bytes": 11396,
+          "sha256": "4c9ff433036f6bd002e8ab782ff789e520320fd49a2942e89ccdd5727e10ae3f"
+        }
+      ]
+    },
+    {
+      "kind": "watch",
+      "artifact_id": 13051225467,
+      "archive_sha256": "4e6fc9975d9d714a9a3105ba00b5b3f6356671c39bb706f50358763ad0a1a915",
+      "members": [
+        {
+          "original_member": "minimum-watch.json",
+          "saved": "watch-minimum-watch.json",
+          "bytes": 673,
+          "sha256": "de8c134d5bf1ae1b34053fcd3d28c5105a8b388bdb9702662182a5e3c628c0d2"
+        }
+      ]
+    },
+    {
+      "kind": "inputs",
+      "artifact_id": 13050779057,
+      "archive_sha256": "2c89677fba4fcd3f95f501aaca4d91256f7723a9acd51694484a84193d96cdc1",
+      "members": [
+        {
+          "original_member": "dependency-download.log",
+          "saved": "inputs-dependency-download.log",
+          "bytes": 10915,
+          "sha256": "96735f73e9b42b11c90723240deb518d741c38d868031493ad2d51ff4bdd0e44"
+        },
+        {
+          "original_member": "dependency-install.log",
+          "saved": "inputs-dependency-install.log",
+          "bytes": 5824,
+          "sha256": "d37a06770f6e9acffa3fdf721caf7426070cb68b1db2baab8374eda4043a9a70"
+        },
+        {
+          "original_member": "input-verification.json",
+          "saved": "inputs-input-verification.json",
+          "bytes": 14805,
+          "sha256": "8caa03677c2e5d635183c06197e2ff07bc6b47b50db172b75b10d3f1b4f1642a"
+        },
+        {
+          "original_member": "preparation.json",
+          "saved": "inputs-preparation.json",
+          "bytes": 510,
+          "sha256": "003629d1035bdd1a6eaf623adfd523231380eccb26d07853fad12485967a70a0"
+        },
+        {
+          "original_member": "preparation.log",
+          "saved": "inputs-preparation.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "model_inference": "NOT_RUN",
+  "gpu_training": "NOT_RUN",
+  "capability_claim": "NOT_ESTABLISHED"
+}
