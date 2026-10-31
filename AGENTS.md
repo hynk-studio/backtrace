@@ -1,5 +1,16 @@
 # Backtrace working agreement
 
+## E4B comparison outcome (2026-10-31 UTC)
+
+Read `docs/small-model-e4b-result-20261031.md`. Run 41210831659 failed during
+the common runtime transfer to EU-SE-1, before installation, CUDA or model work.
+All 24 E4B requests are NOT_RUN. Both controllers independently proved deletion;
+zero Pods/spend, autopay off and USD 2.4105707673 were observed at 14:59:29 UTC.
+Preserve immutable source/start/state, raw failure and both cleanup receipts.
+Do not repeat this E4B allocation. Continue the separately prepared E2B tiny
+adapter scope on Draft #47 with a prospectively changed route and fresh complete
+source qualification. The user's ongoing delegation remains active.
+
 ## Active E4B capacity scope (2026-10-31 UTC)
 
 Work on `bt-001-e4b-comparison-20261031`, stacked on Draft #45. Read

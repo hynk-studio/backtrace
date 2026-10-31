@@ -2,16 +2,18 @@
 
 Decision date: 2026-10-26; revised 2026-10-31 UTC. Status: **actual E2B baseline
 and three Augnes development replays completed; synthetic responses all invalid;
-replay content mixed. Conditional E4B comparison is next. Training and practical
-workflow comparisons remain NOT_RUN**. Refs [BT-001](https://github.com/hynk-studio/backtrace/issues/1).
+replay content mixed. E4B failed before measurement during runtime transfer.
+Tiny E2B training is being qualified; practical workflow comparisons remain
+NOT_RUN**. Refs [BT-001](https://github.com/hynk-studio/backtrace/issues/1).
 
 The [actual result](small-model-e2b-result-20261031.md) records 24 responses from
 run 41206950960 after the passive bind/listen correction. All 18 frozen synthetic
 responses failed task validation under both B0 and B1. The three retrospective
 Augnes cases show some appropriate stop/local-fix directions, but unsupported
 hypotheses and output-format failures. Both controllers proved deletion. The
-conditional E4B comparator now addresses an observed basic-capability question;
-no specialist benefit or production usefulness is established. Historical failed
+conditional E4B attempt produced no capability evidence; its
+[transfer failure and cleanup](small-model-e4b-result-20261031.md) are retained.
+No specialist benefit or production usefulness is established. Historical failed
 attempts remain in the [execution record](small-model-e2b-execution-20261031.md).
 
 ## Active objective and delegated continuation (2026-10-31 KST)
