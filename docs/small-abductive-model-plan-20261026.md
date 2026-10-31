@@ -1,9 +1,90 @@
 # Small abductive model: evidence before deployment
 
-Decision date: 2026-10-26. Status: **A1 CPU instruments implemented; training and deployment NOT RUN**.
+Decision date: 2026-10-26; revised 2026-10-31 KST. Status: **GPU diagnosis pending; pretrained baseline, training and Augnes replay NOT RUN**.
 Refs [BT-001](https://github.com/hynk-studio/backtrace/issues/1).
 
-## Current operating decision (2026-10-27 KST)
+## Active objective and delegated continuation (2026-10-31 KST)
+
+The owner authorized continued work toward the proposed goal. Produce evidence
+that a small diagnostic model improves Augnes's next decision: maintain or revise
+an assessment, choose one useful check, proceed, stop or defer. Proceeding without
+further diagnosis can be correct. Limit explanations to three candidates with
+source-grounded support, conflicts and missing assumptions. Inputs distinguish
+current goals, constraints, observations, prior model claims, allowed checks and
+costs. Outputs remain review candidates, without automatic execution, Perspective
+promotion or product deployment.
+
+[Owner decision #41](https://github.com/hynk-studio/backtrace/issues/41) abandons
+Kaggle competition work, submission, packaging and leaderboard optimization.
+Historical results and protocols stay intact. Start with the prepared E2B. E4B is
+a conditional capacity comparator if the executable E2B path exposes inadequate
+basic capability; its 18 deferred assignments are not E2B failures. One E2B result
+cannot establish a verdict on all small models.
+
+The new instruction supersedes historical preparation-only approval stops for
+the necessary bounded next step. Implement, test and open reviewable PRs without
+repeated routine confirmation. The first paid step remains **one CUDA diagnostic,
+at most USD 1 and 3,000 allocation-inclusive seconds, USD 0.50 credit reserve**.
+Bind a fresh single-use permit to qualified source and refresh balance/price.
+No top-up, automatic second allocation or reuse of consumed scopes. A later
+experiment needs an affordable scope based on actual measurements; delegation is
+not an unlimited budget. Preserve independent cleanup and all failure evidence.
+Do not merge the historical Draft stack merely to advance research.
+
+| Step | Bounded deliverable | Decision enabled |
+| --- | --- | --- |
+| 1 | This plan alignment | Remove obsolete competition and early-replay gates |
+| 2 | One existing A/B/C GPU comparison | Identify a failing layer or stop same-route rental |
+| 3 | Existing 18 E2B assignments (9 development cases × B0/B1), plus 3–5 time-cutoff Augnes replays | Observe real responses, validity, latency/memory and diagnostic value |
+| 4 | Tiny real update/save/reload; then one seed each of B2 and S | Separate implementation feasibility from possible specialist benefit |
+| 5 | About 20 independent offline/shadow episodes | Compare decisions and cost against the existing flow and additional main-model review |
+| 6 | New untouched families/cases and three training seeds for the selected claim | Confirm only the benefit supported by screening |
+
+Step 3 may go directly to step 5 with useful B1 outputs; training is optional.
+Early replay does not wait for synthetic superiority, broader generators, power
+analysis or final test sealing. Initial B2/S training ceilings are **1,024 episodes
+or 1,000,000 effective training tokens per arm, whichever comes first**, using
+existing generators. Screen on about 100 fresh development cases, explicitly
+reporting any reused structures. One seed selects candidates only. Match token
+budgets, context-length distributions, updates and checkpoint rules. Start with
+competing explanations, disconfirmation, duplicate/stale/retracted evidence versus
+state change, and justified proceed/stop decisions.
+
+Measure requested capability separately from appropriate diagnostic initiation:
+neutral instructions on both diagnosis-needed and no-diagnosis cases suffice;
+no autonomous caller is needed. For Augnes value, compare existing flow, one
+additional main-model review, untrained small-model suggestions and (if available)
+specialist suggestions. Match **additional cost ceilings per episode**; report
+latency, tokens, checks and reviewer effort separately. Do not claim all resource
+measures are simultaneously matched. Keep future outcomes out of inputs. An
+unexecuted check remains a proposal, not a resolved task.
+
+Activation steering is an optional sequential experiment only after repeated
+evidence that strong instructions elicit useful capability which neutral
+instructions underuse. Try one fixed additive direction, at most two layers ×
+three strengths on development data, then freeze one setting. Compare no
+intervention and equal-norm random directions on held-out episodes; control answer
+tokens, length and difficulty. Stop for style-only changes or needless diagnosis.
+No new SAE training, broad neuron search or parallel second project is justified.
+
+### Existing first-response path and remaining blocker
+
+`tools/small_model_minimum_remote.py:connected(..., comparison_only=True)` already
+collects A/B/C. The historical owner still launches hardware-minimum mode and
+expects `PASS_ACTUAL_HARDWARE_ONLY`. A narrow new scope/entry binding must select
+comparison mode and retain `DIAGNOSTIC_RECORDED` as measurement completion, never
+hardware success. Reuse the owner/watcher lifecycle and fixed limits.
+
+Preserve original smoke inputs, prompts, assignment IDs and scorer. Select the
+existing E2B 18 assignments prospectively; leave E4B deferred. The native CUDA
+collector in `tools/small_model_gpu.py` and raw collector in
+`tools/small_model_runner.py` are reusable, but the qualified OCI worker rejects
+pretrained/CUDA inference. The prepared cases are **not yet an executable provider
+baseline**. After diagnosis, make only the necessary collector connection and
+qualify real model loading, memory, output collection and cleanup. Random CPU
+outputs never count as pretrained evidence.
+
+## Historical CUDA preparation and retained evidence (2026-10-27 KST)
 
 **Infrastructure expansion is paused. The next question is where CUDA fails.**
 The [last hardware attempt](small-model-minimum-retry-20261027.md) passed actual
@@ -141,7 +222,7 @@ strong prompting and matched general-reasoning training?** A separate question
 is whether that improvement helps an Augnes workflow at acceptable resource cost.
 Passing the first does not answer the second.
 
-Kaggle submission is an optional later transfer decision. The incomplete coding
+Kaggle submission is abandoned in the active plan (owner decision #41). The incomplete coding
 pilot and its traces remain evidence, but extending that campaign is no longer
 the next milestone. Historical protocols, outcomes and consumed compute scopes
 are preserved. This plan changes no Augnes runtime or durable state.
@@ -323,13 +404,14 @@ posterior error alone is not real-world calibration.
 | Decision | Required evidence |
 | --- | --- |
 | Implementation works | Actual gradient update; adapter tensors change; save/reload reproduces outputs within declared tolerance; adapter-on/off comparison; measured memory and execution time. No capability claim. |
-| Specialist learning on E1 | S improves both posterior error and decision regret by at least 10% relative to B1 and B2; paired family-level 95% intervals exclude no improvement for both comparisons; all three seed point estimates have the same direction. Near-zero comparator error is a ceiling result, not permission to divide by zero. |
+| Specialist learning on E1 | Decision regret is primary; posterior error is secondary. Freeze a worthwhile effect and uncertainty rule against B1/B2 using development variance/cost, before fresh confirmatory data. Use three seeds and family-level uncertainty. Near-zero comparator error is a ceiling, not permission to divide by zero. |
 | Generalizes beyond E1 | Positive E2/E3 results under their separately frozen prediction/coverage/revision rubrics; report each layer and distribution shift. E1 alone cannot pass this gate. |
-| Candidate for Augnes shadow use | Prior gates plus source-grounded replay evidence; no material regression in contradiction handling, unsupported claims, abstention or general instruction/schema following. Use a one-percentage-point non-inferiority margin for binary guardrail error rates, with uncertainty reported; insufficient precision remains inconclusive. |
+| Candidate for bounded offline/shadow screening | Usable actual outputs and source-grounded development replay; no synthetic-superiority prerequisite. Report contradiction handling, unsupported claims, needless checks/deferral and schema following with uncertainty. About 20 episodes cannot establish one-percentage-point non-inferiority. |
 | Candidate for product integration | Fresh prospective shadow results show useful check selection or better supported hypotheses at the fixed review/cost budget, beyond the existing workflow. Validate the actual deployment artifact and resource envelope; a replay-only gain is insufficient. |
 
-The E1 promotion rule is a conjunction: all named comparisons/endpoints must
-pass, and none may be substituted after viewing results. A separate positive
+The old dual 10% improvement / one-percentage-point margin remains in history,
+not an early-replay gate. Freeze confirmatory thresholds before test access; never
+relax them after seeing results. A separate positive
 claim about any exploratory metric or either model needs appropriate multiplicity
 handling or a fresh confirmatory test. Do not pick a model after inspecting its
 test result and call that same result independent confirmation.
@@ -341,11 +423,10 @@ checks or automatic abstention must not inflate success. Report risk versus
 coverage and the cost of deferral. Freeze the detailed E2/E3 rubric during A1;
 until it exists, broad abductive competence cannot be certified.
 
-E4 compares the existing Augnes workflow, the same workflow with an untrained
-small model, and the workflow with the specialist. Randomize and blind output
+E4 compares the existing Augnes workflow, one additional main-model review, an
+untrained small-model suggestion and a specialist if available. Randomize and blind output
 labels where feasible; retain disagreements and use source-grounded review,
-not an LLM judge as the sole authority. Fix the reviewer-effort and inspection
-budget. Measure useful hypotheses/checks, unnecessary checks, unsupported claims,
+not an LLM judge as the sole authority. Fix the additional-cost ceiling; report reviewer effort and inspection cost. Measure useful hypotheses/checks, unnecessary checks, unsupported claims,
 revision after disconfirmation, and accepted versus rejected suggestions.
 Do not claim counterfactual task resolution from an unexecuted recommendation.
 
@@ -353,29 +434,23 @@ Do not claim counterfactual task resolution from an unexecuted recommendation.
 
 | Stage | Deliverable | Current status |
 | --- | --- | --- |
-| A0: goal and capability contract | This plan; E2B/E4B candidates; Kaggle optional | Documented in this change; no model result |
-| A1: evaluation before training | Expanded teacher, E2/E3 rubric, leakage checks, frozen data/metrics; development baselines and sample-size calculation | PARTIAL: CPU instruments and CUDA-package CPU compatibility qualified; pretrained baselines, physical GPU/outer lifecycle, broader E2/real-language transfer, power analysis and final test sealing pending |
-| A2: training feasibility | Pinned training environment; tiny update/save/reload; actual memory/throughput and bounded training proposal | NOT RUN |
-| A3: controlled training and confirmation | B0/B1/B2/S evidence within each size; three-seed confirmation; untouched evaluation and negative results | NOT RUN |
-| A4: Augnes candidate assessment | Time-cutoff case replay, fresh shadow cases, quantized artifact and device measurements | NOT RUN |
-| A5: separate adoption/submission decisions | Choose E2B, E4B, a solver-assisted alternative or neither; independently reconsider Kaggle | NOT DECIDED |
+| A0: goal and capability contract | Augnes-first plan; E2B first, E4B conditional; competition abandoned | Documented; no model result |
+| A1: actual baseline and early replay | Existing 18 E2B B0/B1 cases and 3–5 development replays | CUDA error 304 unresolved; free A/B/C collector qualified; pretrained baseline NOT RUN |
+| A2: optional training feasibility | Tiny update/save/reload and observed resource budget | NOT RUN |
+| A3: candidate screening | One-seed matched B2/S; bounded data/token ceilings | NOT RUN; B1 can bypass training for shadow screening |
+| A4: practical value | About 20 independent offline/shadow episodes, four flow comparisons | NOT RUN; does not require synthetic superiority |
+| A5: confirmation and adoption judgment | Fresh families, three seeds where learning is claimed, measured deployment artifact | NOT RUN; no Kaggle decision remains |
 
-Extend the existing teacher and add only the loader/scoring/training components
-needed for these measurements; do not rebuild the agent or provider framework.
-Implement shared CPU data/scoring first. Use E2B to debug the training path on
-development fixtures, then reuse the machinery for E4B. Do not condition whether
-E4B is studied solely on a favorable E2B test result: differences in capacity are
-part of the question. If resources only support screening, label the unperformed
-confirmatory work rather than claiming both sizes were validated.
+Add only components required for the next measurement; do not rebuild agent or
+provider frameworks. E4B is conditional on an identified capacity question. Keep
+unperformed confirmation explicit; exploratory success does not qualify deployment.
 
 For potential use on the owner's RTX 4070 SUPER 12GB, measure inference peak
 VRAM/RAM, cold load, p50/p95 latency, output validity, long-input degradation and
 concurrent-work headroom at realistic context lengths. The device is a target,
 not an observed runtime in this session. Record quality loss after quantization.
 Training need not use the deployment device; fit and throughput are unmeasured.
-Kaggle's quantized checkpoint and adapter loader require a separate exact-runtime
-attachment test only if the competition path is pursued. They do not block the
-independent Augnes research path.
+Kaggle-specific loader/attachment work is outside the active research plan.
 
 ## Provenance and scope
 
@@ -403,6 +478,7 @@ implementations are linked above with their own scope and validation. The
 readiness stage executes tiny random CPU models only; none executes pretrained
 evaluation, authorizes paid training, publishes private Augnes cases or changes
 another repo.
-Any paid run needs a concrete qualified, affordable, bounded scope; previous
+Within the current delegated continuation, any paid run needs a concrete
+qualified, affordable, bounded scope; previous
 permits stay consumed. Current credit is not a demonstration that this full
 evaluation program is funded. No merger, issue closure or submission follows.
