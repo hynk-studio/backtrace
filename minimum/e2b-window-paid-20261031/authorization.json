@@ -1,0 +1,52 @@
+{
+  "source_sha": "a90e47bc98da44d8492acd0577cb40728de3b15c",
+  "contract_sha256": "8f3e1cf467b2ea09427983c359ffee3937c7213a5631c2f9d154bebe268bd04e",
+  "namespace": "e2b-window-paid-20261031",
+  "instruction": "이번에는 목표까지 실제로 이어가도록 하고 혼자 해결할 수 없는 문제가 있을 때만 멈추고 보고해",
+  "mode": "OWNER_APPROVED_E2B_ADAPTER_FEASIBILITY",
+  "additional_cap_usd": "1.00",
+  "allocation_inclusive_seconds": 1550,
+  "single_use": true,
+  "automatic_retry": false,
+  "top_up_allowed": false,
+  "weight_bytes": 10246621918,
+  "pretrained_requests": 21,
+  "training_steps": 4,
+  "qualification_run_id": "41223908260",
+  "continuation_observed_spend_usd": "0.7344341454",
+  "maximum_projection_usd": "0.261",
+  "approved_at": 1793468041.173,
+  "expires_at": 1793471641.173,
+  "qualification_artifacts": {
+    "container": {
+      "id": 13051666534,
+      "sha256": "19027fada03d7537d2e818dfcbbde59c6872039568528fce1d7b78b74011642e"
+    },
+    "owner": {
+      "id": 13051150623,
+      "sha256": "327e76c51a1ea05a7d543e23549ebad39c7f3c8a7d719867be75f7abe7d340ec"
+    },
+    "watch": {
+      "id": 13051225467,
+      "sha256": "4e6fc9975d9d714a9a3105ba00b5b3f6356671c39bb706f50358763ad0a1a915"
+    },
+    "inputs": {
+      "id": 13050779057,
+      "sha256": "2c89677fba4fcd3f95f501aaca4d91256f7723a9acd51694484a84193d96cdc1"
+    }
+  },
+  "qualification_native_tests": 716,
+  "qualification_container_controls": 17,
+  "qualification_transfer_probe_seconds": 2.7616868090000253,
+  "qualification_window_elapsed_ratio": 4.937915422134952,
+  "prior_attempt": {
+    "run": 41219228584,
+    "source": "dc5ab2b96f5b51da67ff9c74c0acd2f063fc7322",
+    "error": "600-second common-runtime transfer timeout before install/CUDA/model/training",
+    "owner_cleanup": "DELETED",
+    "watch_cleanup": "DELETED",
+    "evidence_commit": "d524af6df0e46894267f4032d9c34e1e0f5d97b3"
+  },
+  "free_window_control_run": 41222020645,
+  "execution_time_fresh_account_price_required": true
+}
