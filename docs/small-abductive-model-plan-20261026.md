@@ -1,3 +1,11 @@
+Current checkpoint,2026-10-31 20:19 UTC: actual E2B four-update/save-reload and
+all20 untrained screening outputs now exist across explicit preserved attempts.
+See [the actual completion result](small-model-public-completion-result-20261031.md).
+There are19 strict JSON/14 explicit structural passes; no measured learning or
+Augnes benefit. Same-instance adapter reload works, with14.706GB peak allocated.
+E4B fixed20 run41238159872 is in preparation. Matched B2/S and current-flow/main-
+model comparisons remain outstanding; the three live Augnes routes are unavailable.
+
 # Small abductive model: evidence before deployment
 
 Current measurement update (2026-10-31 UTC): the [window result](small-model-window-result-20261031.md)

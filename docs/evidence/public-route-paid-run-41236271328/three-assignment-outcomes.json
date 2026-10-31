@@ -1,0 +1,47 @@
+{
+  "schema": "original_three_assignment_outcomes_v1",
+  "assigned": 3,
+  "records": [
+    {
+      "id": "augnes-screen-1278",
+      "arm": "B1",
+      "model": "E2B",
+      "status": "OK",
+      "training": false,
+      "source_run": 41236271328,
+      "input_tokens": 562,
+      "input_ids_sha256": "7b85c563e1d65aab174032a9ed5386823ef3922c57e94bf93dd8815ebd896dc5",
+      "wire_sha256": "a698629ff0c49cf0f6b7610495d9b1373c7613f4dc1d39e6eff31518e2399765",
+      "generated_tokens": 163,
+      "worker_seconds": 7.430328764952719
+    },
+    {
+      "id": "augnes-screen-1316",
+      "arm": "B1",
+      "model": "E2B",
+      "status": "OK",
+      "training": false,
+      "source_run": 41236271328,
+      "input_tokens": 541,
+      "input_ids_sha256": "7a54aa7bf924ea8d0f80a79aa54dd5f741b3ed9900f3d3325f0c0736c1bfacfc",
+      "wire_sha256": "0dc3cae6d051f16296bce1799b04175ddb7588fb4103157efd6ba38dfe61b529",
+      "generated_tokens": 126,
+      "worker_seconds": 5.215196587028913
+    },
+    {
+      "id": "097751cfe4dadf3a1940ca8083093ce8adeae80ca328118f66b73c2bf3570204",
+      "arm": "B0",
+      "model": "E2B",
+      "status": "OK",
+      "training": true,
+      "source_run": 41236271328,
+      "input_tokens": 1058,
+      "input_ids_sha256": "713ddb650b79e8c851c48e4f4f38a37d0b54e0fa76bfa0bf67fc41e376eede1f",
+      "wire_sha256": "782be76764252989860f4502231637131ffde72224ad15b0bb7ca9bf7f3f2860",
+      "generated_tokens": 26,
+      "worker_seconds": 1.494266519905068
+    }
+  ],
+  "original_twenty_one_attempt_unchanged": true,
+  "training_steps": 4
+}

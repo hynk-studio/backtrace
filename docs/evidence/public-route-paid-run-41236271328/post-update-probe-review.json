@@ -1,0 +1,18 @@
+{
+  "schema": "single_post_update_implementation_probe_review_v1",
+  "id": "097751cfe4dadf3a1940ca8083093ce8adeae80ca328118f66b73c2bf3570204",
+  "source_run": 41236271328,
+  "training_steps": 4,
+  "assigned": 1,
+  "original_answer_sha256": "9fd3d4fe00d4b58bee4a6b86240ade7718345e47e14057bceb47af533785f62b",
+  "score": {
+    "response_status": "INVALID",
+    "losses": {
+      "status_error": 1.0,
+      "posterior_mae": 1.0,
+      "normalized_decision_regret": 1.0,
+      "evidence_selection_error": 1.0
+    }
+  },
+  "interpretation": "Generation succeeds after four updates, but the response omits active_evidence_ids and all hypothesis probabilities. This single probe is not a controlled learning-effect measurement."
+}

@@ -1,5 +1,26 @@
 # Backtrace working agreement
 
+## Actual E2B completion; E4B comparison active (2026-10-31 20:19 UTC)
+
+Read docs/small-model-public-completion-result-20261031.md. Run41236271328 completed
+all3 assigned generations and4 actual CUDA updates/save-reload at immutable2e0a.
+Both controllers deleted08cin7wz323sz2;20:13:53 inventory is empty. Initial credit
+USD1.8702846922/costUSD0.0738796843 remain subject to delayed billing.72 raw members,
+264 source entries, all three wire/ledger/input identities, eight state blobs and
+90256-byte adapter SHA b24c56cf0698f1cc9e5ccf7bef0cce6115c1f76a2b6b876e150fd74f95850252
+are verified and retained. Four updates took1.158s;14.706GB peak allocated exceeds
+12GB. Same-instance reload passed; one post-update output is task-invalid.
+
+Twenty untrained outputs across two explicit runs contain19 strict JSON/14 frozen
+structural passes; no semantic accuracy or Augnes benefit is established. Preserve
+original failed/interrupted/malformed outcomes. E4B41238159872 at99ee is now in
+pre-allocation preparation under its separate qualified scope and fresh permit.
+Continue it through actual outputs, both deletions and source-grounded review.
+Then use actual capacity/training measurements to scope matched B2/S screening;
+first qualify and bound any new actual source. Current Augnes routes are unavailable,
+but this does not turn an intermediate implementation result into the research goal.
+No top-up, overlapping allocation, automatic retry, merge or Augnes write.
+
 ## Qualified public route is executing (2026-10-31 20:00 UTC)
 
 Read docs/small-model-public-route-result-20261031.md. Earlier41233521859 is fully
