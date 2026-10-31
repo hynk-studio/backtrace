@@ -1,0 +1,21 @@
+{
+  "additional_cap_usd": "1.00",
+  "allocation_inclusive_seconds": 3000,
+  "approved_at": 1793428403.103049,
+  "authorization_id": "cuda-diagnostic-20261031-one",
+  "automatic_retry": false,
+  "contract_sha256": "51aec78aaaf99ee617c3d6e277499f819615ea87b9b76ccb59dd875c61aba8eb",
+  "credit_reserve_usd": "0.50",
+  "expires_at": 1793450003.103049,
+  "instruction": "지금부터는 네가 알아서 작업을 계속 이어가도록 허가할게. 목표까지 지속 진행해",
+  "mode": "OWNER_APPROVED_CUDA_COMPARISON",
+  "namespace": "cuda-diagnostic-paid-20261031",
+  "pretrained_requests": 0,
+  "qualification_run_id": "41176425912",
+  "qualification_url": "https://github.com/hynk-studio/backtrace/actions/runs/41176425912",
+  "single_use": true,
+  "source_sha": "7082d5d0756ba627eeff73ed467f0a3d29c4fe7b",
+  "top_up_allowed": false,
+  "training_steps": 0,
+  "weight_download_bytes": 0
+}
