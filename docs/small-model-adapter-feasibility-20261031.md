@@ -65,3 +65,11 @@ screen; it supplies no specialist-learning, unseen-problem, Augnes-utility or
 deployment claim. Failure must remain evidence and may motivate only a supported
 correction. Do not stop the delegated research merely because a PR or this tiny
 implementation probe finishes.
+
+Free route qualification 41213087074 rejected the watcher at workflow admission;
+the old error omitted the rejected metadata, so its precise cause is unknown.
+No provider allocation occurred. Preserve that failure separately. The next
+source retains admission metadata and waits at most 20 seconds only for a
+matching queued first-attempt run to become in_progress; wrong identities,
+terminal states and repeated attempts still fail. This is a prospective bounded
+robustness correction, not an attribution of the prior rejection.

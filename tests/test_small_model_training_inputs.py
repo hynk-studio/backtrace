@@ -1,6 +1,7 @@
 import json
 import unittest
 from unittest.mock import patch
+from types import SimpleNamespace
 from tools import small_model_training_inputs as training
 from tools import abductive_benchmark as base, temporal_benchmark as temporal
 from tools import abductive_scoring as score, small_model_readiness as ready
@@ -8,6 +9,23 @@ from tools import small_model_pretrained_scope as scope, small_model_minimum as 
 
 
 class TrainingInputTests(unittest.TestCase):
+    def test_run_admission_waits_only_for_matching_queued_metadata(self):
+        good={'head_sha':'a'*40,'head_branch':scope.REVIEW,'run_attempt':1,
+              'event':'push','path':scope.WORKFLOW,'status':'in_progress'}
+        state=SimpleNamespace(source='a'*40,actual=False)
+        with patch('time.sleep') as sleep:
+            from unittest.mock import Mock
+            state.run=Mock(side_effect=[dict(good,status='queued'),good])
+            scope.require_run(state,123);sleep.assert_called_once_with(2)
+            for bad in [dict(good,status='completed'),dict(good,head_sha='b'*40,status='queued'),
+                        dict(good,run_attempt=2,status='queued')]:
+                state.run=Mock(return_value=bad)
+                with self.assertRaisesRegex(ValueError,'head_sha'):scope.require_run(state,123)
+                self.assertEqual(state.run.call_count,1)
+            state.run=Mock(return_value=dict(good,status='queued'))
+            with self.assertRaisesRegex(ValueError,'queued'):scope.require_run(state,123)
+            self.assertEqual(state.run.call_count,11)
+
     def test_paid_offer_excludes_timed_out_route_without_mutating_account_evidence(self):
         offers=[{'region':'EU-SE-1'},{'region':'US-TX-1'},{'region':'CA-MTL-1'}]
         snapshot={'offers':offers,'account':{'credit_balance_usd':'2.41'}}

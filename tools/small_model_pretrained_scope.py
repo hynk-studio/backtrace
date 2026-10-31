@@ -78,11 +78,19 @@ def validate_permit(value,source,now):
 
 
 def require_run(state,rid):
-    row=state.run(rid)
-    if (row['head_sha']!=state.source or row['head_branch']!=(START if state.actual else REVIEW)
-            or row['run_attempt']!=1 or row['status']!='in_progress'
-            or row['event']!='push' or row['path']!=WORKFLOW):
-        raise ValueError('exact first E2B workflow required')
+    expected={'head_sha':state.source,'head_branch':START if state.actual else REVIEW,
+              'run_attempt':1,'event':'push','path':WORKFLOW}
+    # The API can lag the already-running job. Retry only a matching queued run,
+    # never a different source, path, attempt or terminal status; retain metadata
+    # if admission still fails so the rejection is diagnosable without a rerun.
+    for attempt in range(11):
+        row=state.run(rid)
+        observed={k:row.get(k) for k in (*expected,'status')}
+        if all(row.get(k)==v for k,v in expected.items()):
+            if row.get('status')=='in_progress':return
+            if row.get('status')=='queued' and attempt<10:
+                time.sleep(2);continue
+        raise ValueError('exact first E2B workflow required: '+json.dumps(observed,sort_keys=True))
 
 
 def require_qualification(state,permit):

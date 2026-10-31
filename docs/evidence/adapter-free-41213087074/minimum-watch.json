@@ -1,0 +1,1 @@
+{"error":"exact first E2B workflow required","error_type":"ValueError","frames":[{"file":"small_model_pretrained_scope.py","function":"<module>","line":162},{"file":"small_model_minimum.py","function":"main","line":405},{"file":"small_model_pretrained_scope.py","function":"require_run","line":85}],"status":"BLOCKED"}

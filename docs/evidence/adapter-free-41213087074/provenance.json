@@ -1,0 +1,9 @@
+{
+  "run_id": 41213087074,
+  "source_sha": "c79c4eff2db2b3555679bbf82d56a65b9cad6c7f",
+  "artifact_id": 13047201855,
+  "zip_sha256": "f3bb7c8067d23d273f28a646db305d0618dbaf1cdd7fb137ed3bdc44f4aca6c4",
+  "actual_provider_create": 0,
+  "specific_rejected_run_metadata": "NOT_RETAINED",
+  "cause": "UNKNOWN"
+}
