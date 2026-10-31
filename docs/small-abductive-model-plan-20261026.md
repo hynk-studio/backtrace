@@ -1,19 +1,18 @@
 # Small abductive model: evidence before deployment
 
-Decision date: 2026-10-26; revised 2026-10-31 KST. Status: **actual CUDA
-A/B kernels pass; C/D initialization still fails after socket-creation correction;
-bind/listen candidate is being qualified. Pretrained baseline, training and
-Augnes replay remain NOT_RUN**. Refs [BT-001](https://github.com/hynk-studio/backtrace/issues/1).
+Decision date: 2026-10-26; revised 2026-10-31 UTC. Status: **actual E2B baseline
+and three Augnes development replays completed; synthetic responses all invalid;
+replay content mixed. Conditional E4B comparison is next. Training and practical
+workflow comparisons remain NOT_RUN**. Refs [BT-001](https://github.com/hynk-studio/backtrace/issues/1).
 
-The [current execution record](small-model-e2b-execution-20261031.md) preserves
-first E2B attempt 41203845196 and the preceding denied-call trace. The initial
-trace identified Unix sequenced-packet socket creation. Allowing that exact shape
-exposed connect/bind denials; it was insufficient. The next candidate permits only
-passive bind/listen while keeping connect/accept/send and other socket shapes
-blocked. Its justification and limits are explicit. Both failed resources were
-independently deleted. All 24 planned assignments remain NOT_RUN; infrastructure
-progress is not a small-model result. The owner's continuation instruction remains
-active for the next qualified, affordable measurement.
+The [actual result](small-model-e2b-result-20261031.md) records 24 responses from
+run 41206950960 after the passive bind/listen correction. All 18 frozen synthetic
+responses failed task validation under both B0 and B1. The three retrospective
+Augnes cases show some appropriate stop/local-fix directions, but unsupported
+hypotheses and output-format failures. Both controllers proved deletion. The
+conditional E4B comparator now addresses an observed basic-capability question;
+no specialist benefit or production usefulness is established. Historical failed
+attempts remain in the [execution record](small-model-e2b-execution-20261031.md).
 
 ## Active objective and delegated continuation (2026-10-31 KST)
 
@@ -448,7 +447,7 @@ Do not claim counterfactual task resolution from an unexecuted recommendation.
 | Stage | Deliverable | Current status |
 | --- | --- | --- |
 | A0: goal and capability contract | Augnes-first plan; E2B first, E4B conditional; competition abandoned | Documented; no model result |
-| A1: actual baseline and early replay | Existing 18 E2B B0/B1 assignments and 3–5 development replays | Actual A/B/C implicated added filtering in initialization; exact syscall/remedy unresolved; free admission/receipt corrections qualified; pretrained baseline NOT RUN |
+| A1: actual baseline and early replay | Existing 18 E2B B0/B1 assignments and 3–5 development replays | Completed E2B 18 assignments plus six responses for three replays; all synthetic task outputs invalid, replay content mixed. Conditional E4B comparison next |
 | A2: optional training feasibility | Tiny update/save/reload and observed resource budget | NOT RUN |
 | A3: candidate screening | One-seed matched B2/S; bounded data/token ceilings | NOT RUN; B1 can bypass training for shadow screening |
 | A4: practical value | About 20 independent offline/shadow episodes, four flow comparisons | NOT RUN; does not require synthetic superiority |

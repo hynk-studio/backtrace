@@ -1,5 +1,9 @@
 # E2B first measured baseline and Augnes development replay
 
+The subsequent listener-corrected attempt completed actual inference. Read the
+[measured result and retained evidence](small-model-e2b-result-20261031.md).
+The failed attempt and preparation chronology below remain historical records.
+
 The first attempt failed before model transfer/inference. A/B passed actual
 CUDA kernels; corrected C/D still failed initialization. The new trace identified
 two `connect` and two `bind` denials. All 24 assignments remain NOT_RUN. Both

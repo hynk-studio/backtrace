@@ -1,5 +1,27 @@
 # Backtrace working agreement
 
+## Actual E2B result and conditional E4B continuation (2026-10-31 UTC)
+
+Read `docs/small-model-e2b-result-20261031.md`. Run 41206950960 at immutable
+source `67f1b855d8bb2d5cffbe27087bce178e226e303d` completed 24 real E2B
+responses after A/B/C/D and full actual hardware checks passed. Both controllers
+proved deletion. All 18 synthetic task responses were invalid under the frozen
+contract; the three retrospective replays showed partial restraint/local-fix
+directions but unsupported hypotheses and poor format following. No useful
+training or workflow advantage is established. At 14:11:48 UTC zero Pods, zero
+spend, autopay off and USD 2.5524651839 were observed; cumulative continuation
+spend is USD 0.3535789500, subject to final billing.
+
+Continue the plan's conditional E4B capacity comparison through the same worker
+and owner/watcher, on the deferred original 18 assignments plus the identical
+three B0/B1 replays. Use a new review/start/state namespace and exact-source free
+qualification; preserve all E2B inputs, raw outputs, source and consumed permit.
+Next maximum projection USD 0.505 still fits the cumulative USD 1 cap. This is a
+new evidence-supported scope under the owner's ongoing delegation, not a blind
+repeat. No training, merge, top-up or Augnes writes are included in that scope.
+Continue after interpretation toward the active goal; another passing workflow
+or PR is not completion.
+
 ## Current passive-listener correction (2026-10-31 KST)
 
 The current autonomous-continuation instruction remains active. First E2B attempt

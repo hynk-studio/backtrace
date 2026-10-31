@@ -1,0 +1,344 @@
+{
+  "source": "67f1b855d8bb2d5cffbe27087bce178e226e303d",
+  "tree": "76586788a1156c388d342fd010cb708f1af5bc34",
+  "qualification_run": 41206225683,
+  "paid_run": 41206950960,
+  "post_deletion_rescore": "EXACT_MATCH",
+  "all_24_wire_identity_token_ids_text": "MATCH",
+  "artifacts": [
+    {
+      "id": 13045593226,
+      "sha256": "3cf77e40c69e5f68030365b0a0cc9a4f12f70c1f4e8330d4067e912061c0fb4d",
+      "bytes": 147729,
+      "members": {
+        "account-after.json": {
+          "sha256": "fd2ee027406f8470a8cef0960a5fd8d87a5a82a8a4249c4db2ffca6f2e4ac2c1",
+          "bytes": 24846
+        },
+        "assignment-before-allocation.json": {
+          "sha256": "9d42f2c5e5c1974ac43eb2d562213803b86144be7b4b1a40c235b87f2f557769",
+          "bytes": 6932
+        },
+        "minimum-owner/receipt.json": {
+          "sha256": "3e1d8ea9bd2155e686c150d7f916559950022c289f76bc5778773dc2fea00067",
+          "bytes": 66002
+        },
+        "minimum-owner/remote/asset-transfer.json": {
+          "sha256": "a4a81d323c6dfe2dc811b900c1976daec177d815683993e202e2b65234672a7d",
+          "bytes": 328
+        },
+        "minimum-owner/remote/baseline-scores.json": {
+          "sha256": "be68b39a2f77e0b4181cc25b186a2309bd742618b9f4e55f2d6e4f1e8df23458",
+          "bytes": 22222
+        },
+        "minimum-owner/remote/collection/E2B-ready.json": {
+          "sha256": "08494d7ff64cd344ec3688a3130f3c3d1e781c9b8dfdaf80c68141778f58c798",
+          "bytes": 595
+        },
+        "minimum-owner/remote/collection/E2B-stderr.log": {
+          "sha256": "1ddecce5791431180d39b0db1480cbe60f425dfe27483bdd4c2478f6c37aa2b2",
+          "bytes": 12341
+        },
+        "minimum-owner/remote/collection/assignment.json": {
+          "sha256": "67e2db5fc0eba77a5094662bcc58ae6b6b4f57836d997678e21968e4a977b749",
+          "bytes": 6492
+        },
+        "minimum-owner/remote/collection/collection.json": {
+          "sha256": "bef4866b72195537ddb7b0bf9bd10a236b6d15df1731d78389c164c96779f9b2",
+          "bytes": 51479
+        },
+        "minimum-owner/remote/collection/ledger.jsonl": {
+          "sha256": "a0d43b6619560d9eb20885fb576b03d28aef5ff5d01146b0740e785e5a7ad2b8",
+          "bytes": 52746
+        },
+        "minimum-owner/remote/collection/wire-0000.json": {
+          "sha256": "42669743b89b0632e3191c173db5efb0ad28ea4ba008aeed43c2e195f1addf14",
+          "bytes": 618
+        },
+        "minimum-owner/remote/collection/wire-0001.json": {
+          "sha256": "41332187e8be9ac5196e55bd1624eb425e2b66af232434dcddc055eff0a739dd",
+          "bytes": 618
+        },
+        "minimum-owner/remote/collection/wire-0002.json": {
+          "sha256": "5b1820f8730a1785e8f70dccdd9b0f64ea06880760942765d005db99ef8526b0",
+          "bytes": 616
+        },
+        "minimum-owner/remote/collection/wire-0003.json": {
+          "sha256": "c4c5353e2a17e62379fc9aaf92481fa8efc4c4021f046c4f745e9e174a222666",
+          "bytes": 618
+        },
+        "minimum-owner/remote/collection/wire-0004.json": {
+          "sha256": "4d206520a267e325c4653925de85f6b58269ae0870c40be2a3a236b89afaa41d",
+          "bytes": 807
+        },
+        "minimum-owner/remote/collection/wire-0005.json": {
+          "sha256": "055fdbbf969c55daaf4488ea7d31e103ccf247093da66187d60e08c4fd7a6bf3",
+          "bytes": 807
+        },
+        "minimum-owner/remote/collection/wire-0006.json": {
+          "sha256": "a5f66935f60af92c1fbae39d944a9eb13cfb80742fe1c3bae702f10cbce1984e",
+          "bytes": 782
+        },
+        "minimum-owner/remote/collection/wire-0007.json": {
+          "sha256": "275170ab71fb2df7210836fc0bd2653205357f91112b319f85f186c56475f5a1",
+          "bytes": 618
+        },
+        "minimum-owner/remote/collection/wire-0008.json": {
+          "sha256": "3f61c41c68ac32a0b1b4062d5f6a609ce7054101351f2b949f8a35f4f93b02ea",
+          "bytes": 617
+        },
+        "minimum-owner/remote/collection/wire-0009.json": {
+          "sha256": "edcdc7dafbfd163077edcee3fb78c60123dadbad9e78eca05d37bcc3355cd96f",
+          "bytes": 806
+        },
+        "minimum-owner/remote/collection/wire-0010.json": {
+          "sha256": "31bbbeba864d936c1c6a10ff0cce7f7bd1a394df3fb6e1d9f9e31b06094bb611",
+          "bytes": 2752
+        },
+        "minimum-owner/remote/collection/wire-0011.json": {
+          "sha256": "c75576a3540eacdbb50ff2f6f3c07033dee04b8747105972552d911a3684fb6c",
+          "bytes": 2877
+        },
+        "minimum-owner/remote/collection/wire-0012.json": {
+          "sha256": "bdd90382f12c87e01429010c97a7c27aaf565ae58aee4b2a42ac8c3770d18ebd",
+          "bytes": 808
+        },
+        "minimum-owner/remote/collection/wire-0013.json": {
+          "sha256": "79ed96cf7aac85e1ab78649757cf3c6ff0fdf7aaad3d160a8fa6717ecc036bb8",
+          "bytes": 808
+        },
+        "minimum-owner/remote/collection/wire-0014.json": {
+          "sha256": "eeb37c093e1e0d74743ef37e174215bc8ea1fb703bad6d57c902e9de38b1904b",
+          "bytes": 617
+        },
+        "minimum-owner/remote/collection/wire-0015.json": {
+          "sha256": "e1e20ebe6f196f046605cc4dbcefe174c88ed936f61e912909ce6c7e60a91496",
+          "bytes": 784
+        },
+        "minimum-owner/remote/collection/wire-0016.json": {
+          "sha256": "eca2190557e3af5ffd823feae16124c9ed05f1def515c94f618ce290975356ef",
+          "bytes": 807
+        },
+        "minimum-owner/remote/collection/wire-0017.json": {
+          "sha256": "ea9517b6f77daf3e231b7923a8ca707c190a5b122ae7a9c81fd3ade1f99bd371",
+          "bytes": 808
+        },
+        "minimum-owner/remote/collection/wire-0018.json": {
+          "sha256": "63d70f864239c3901e7b6c68b759b9f016e84d3f499b2a6ce65d18e22b89f668",
+          "bytes": 2899
+        },
+        "minimum-owner/remote/collection/wire-0019.json": {
+          "sha256": "42627fd827ac5b039eca6a33b9fd74ecb541b27c0214539c9cbd36cb01f48490",
+          "bytes": 2067
+        },
+        "minimum-owner/remote/collection/wire-0020.json": {
+          "sha256": "e4aba8403cfa08efa01f3d448c4b0763b0ad55d337c53e9005e2eb5c4976aac9",
+          "bytes": 4230
+        },
+        "minimum-owner/remote/collection/wire-0021.json": {
+          "sha256": "361f11226a1744ea601922bdd5aba991cfc2506c057fdb134e6bf7ad7685204b",
+          "bytes": 4246
+        },
+        "minimum-owner/remote/collection/wire-0022.json": {
+          "sha256": "dba278e91d66c823de580797ba269ae7f83e0606f08adb05dfdf6a740bd7752f",
+          "bytes": 3259
+        },
+        "minimum-owner/remote/collection/wire-0023.json": {
+          "sha256": "c54b897bcb24ff663b0e0623058ed00fbe33f57dd1f6c9c3f56e9edeed7c8803",
+          "bytes": 3503
+        },
+        "minimum-owner/remote/collector.log": {
+          "sha256": "0b29398507d5f21ef23496a280eba68afbb875b2fa051e2a0f62c43a26915478",
+          "bytes": 55335
+        },
+        "minimum-owner/remote/connected-receipt.json": {
+          "sha256": "3dfbea30160a0b6bc8aec5123a8a624ee1a260d37f3d0a3d5741e0ef0d2b35b3",
+          "bytes": 34844
+        },
+        "minimum-owner/remote/correction-comparison/cuda-comparison/A-checkpoint.json": {
+          "sha256": "7c323716c4e5550fef441664f87002c9521787cd35fbc1899c413fc67d560b29",
+          "bytes": 2032
+        },
+        "minimum-owner/remote/correction-comparison/cuda-comparison/A-stderr.log": {
+          "sha256": "6d9b577d0d146a1889fc2281fb2b76697d49e2f7c2cd5534c544fcde21aed464",
+          "bytes": 1117
+        },
+        "minimum-owner/remote/correction-comparison/cuda-comparison/A-stdout.log": {
+          "sha256": "209f448a6ceecf37448be8c8675e657ca15290c96f427e7a3a5f9863672d5e3b",
+          "bytes": 921
+        },
+        "minimum-owner/remote/correction-comparison/cuda-comparison/A-teardown.json": {
+          "sha256": "000dda918c8ad8b5c25338ba7d9bd843809aec06882a4315e1f5842fdc9ff4ea",
+          "bytes": 2885
+        },
+        "minimum-owner/remote/correction-comparison/cuda-comparison/B-checkpoint.json": {
+          "sha256": "e0774c0a049a3e37617a3b2ffa4c0319edccf163dc7243f182068bfb25307a96",
+          "bytes": 4831
+        },
+        "minimum-owner/remote/correction-comparison/cuda-comparison/B-stderr.log": {
+          "sha256": "056f46055bb402922ce80c82563d478919c33bdf2bab4f2f8167e7749f0c97d8",
+          "bytes": 1148
+        },
+        "minimum-owner/remote/correction-comparison/cuda-comparison/B-stdout.log": {
+          "sha256": "54f3f1d3dd5cde16148a6aa425f8e9aa4a59a139cf240122b43c16ba179aa98d",
+          "bytes": 921
+        },
+        "minimum-owner/remote/correction-comparison/cuda-comparison/B-teardown.json": {
+          "sha256": "cb1b6e0affb5533bf5a4cdc1e815e3b58c74ed1ee8771b366ac28a895e87090a",
+          "bytes": 5685
+        },
+        "minimum-owner/remote/correction-comparison/cuda-comparison/C-checkpoint.json": {
+          "sha256": "f161d8cc8ce15f17c07910ccb7ba9010dd8d33fb833e7e9a38d449016c510d11",
+          "bytes": 7631
+        },
+        "minimum-owner/remote/correction-comparison/cuda-comparison/C-stderr.log": {
+          "sha256": "317464da1eb87ff56dca818ec02416c80ff707a58719a208fc781ac63f4046f7",
+          "bytes": 1148
+        },
+        "minimum-owner/remote/correction-comparison/cuda-comparison/C-stdout.log": {
+          "sha256": "ab1b65e4bb70bcd29cc3a964595060b4f1608513aa562cbc91210d0041b29cb0",
+          "bytes": 921
+        },
+        "minimum-owner/remote/correction-comparison/cuda-comparison/C-teardown.json": {
+          "sha256": "1bc89976114c8050dfc5a777cbd71b08586ee50db543ca0ce1fcf1bfcd7addbe",
+          "bytes": 8484
+        },
+        "minimum-owner/remote/correction-comparison/cuda-comparison/D-checkpoint.json": {
+          "sha256": "cad67f538e74dffc3d99c910ae30ca78cc5372f601cb1903bbe1110036dc886a",
+          "bytes": 10525
+        },
+        "minimum-owner/remote/correction-comparison/cuda-comparison/D-stderr.log": {
+          "sha256": "52bb26316dcc9bcad2a93444f48ca06fb9ce459c369f3377872aa9ad3e5b2e98",
+          "bytes": 1250
+        },
+        "minimum-owner/remote/correction-comparison/cuda-comparison/D-stdout.log": {
+          "sha256": "94fcf136a085386ff718c3a73fd867089a327e89a8e4fd9b44e1918b3ea71f1e",
+          "bytes": 1025
+        },
+        "minimum-owner/remote/correction-comparison/cuda-comparison/D-teardown.json": {
+          "sha256": "c80f6537f94ae8f652548400096e52ecaf86911650a02568d899c8bfeeddfa9e",
+          "bytes": 11379
+        },
+        "minimum-owner/remote/correction-comparison/cuda-comparison/receipt.json": {
+          "sha256": "5be10ba1f1c850747135783dfa43ab7e761bb2632c4a9b59af25e93cac52ae2f",
+          "bytes": 11690
+        },
+        "minimum-owner/remote/correction-comparison/cuda-comparison/started.json": {
+          "sha256": "c6978aad09d548a071e43991fdfb149312a497d39509a28d60d0d22f1c925499",
+          "bytes": 118
+        },
+        "minimum-owner/remote/correction-comparison/receipt.json": {
+          "sha256": "aec328364862e229e33f4b3b4f1e9a67b13b424322a779fca7b87153b0b53445",
+          "bytes": 14363
+        },
+        "minimum-owner/remote/diagnostics/boundary-809998568473.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "minimum-owner/remote/diagnostics/boundary-memory-checkpoint.json": {
+          "sha256": "8ae3389afbbc33a5d226fe2b1175284c573162f5c52a1e76d759909783134001",
+          "bytes": 3480
+        },
+        "minimum-owner/remote/diagnostics/deadline-checkpoint.json": {
+          "sha256": "6fd43482b436a0ae005be82231042923ff61820eb8ffdee79dd61caff8fae5b6",
+          "bytes": 7176
+        },
+        "minimum-owner/remote/diagnostics/deadline.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "minimum-owner/remote/diagnostics/initial-kernels-checkpoint.json": {
+          "sha256": "a9d98dcd4bf3ad110dada747de6279edbb0a306188427423abb9595f3a8477f3",
+          "bytes": 4528
+        },
+        "minimum-owner/remote/diagnostics/kernels-815275368989.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "minimum-owner/remote/diagnostics/kernels-835577958092.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "minimum-owner/remote/diagnostics/kernels-843201238158.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "minimum-owner/remote/diagnostics/kernels-851591960205.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "minimum-owner/remote/diagnostics/memory-810529445395.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "minimum-owner/remote/diagnostics/receipt.json": {
+          "sha256": "eb1ab70071b9bcac88abc0beca8e90d0bf6c6ecae25faed7d6182cbc1e34bf60",
+          "bytes": 12351
+        },
+        "minimum-owner/remote/diagnostics/supervisor-checkpoint.json": {
+          "sha256": "3e05e3856740e10eacfe13125b11327bb8948bdbf18e1c3d9d92edbd6c8ae337",
+          "bytes": 12336
+        },
+        "minimum-owner/remote/diagnostics/supervisor.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "minimum-owner/remote/diagnostics/transport-checkpoint.json": {
+          "sha256": "52cb1e65efdc5325c5b6f4c23d5cb95d0a2de69c6199cdfc83864efaee0d3b74",
+          "bytes": 9755
+        },
+        "minimum-owner/remote/diagnostics/transport.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "minimum-owner/remote/inference-teardown.json": {
+          "sha256": "6119e943032d005ff715c2758ae9c341622bbd40ffa3975562436f7609e81b83",
+          "bytes": 800
+        },
+        "minimum-owner/remote/input-schedule.json": {
+          "sha256": "1ebe1f9c97ff6009e5c09e80f54590460c364b36afe42029c11ed063273f35ff",
+          "bytes": 103405
+        },
+        "minimum-owner/remote/install.log": {
+          "sha256": "fb3c6c4966af7e01c4ed2278bfc30bb4e669b0a3b6cba66cc372c01995099333",
+          "bytes": 10564
+        },
+        "minimum-owner/remote/replay-returns.json": {
+          "sha256": "80ccc2b04bf85b2ad440f4fa115f1bb0fa6fb4bf7e2d7257d090375a1930f93b",
+          "bytes": 28715
+        },
+        "minimum-owner/remote/installation-checkpoint.json": {
+          "sha256": "833cccb6c518d29feb6bf27a0b74e03da825a9d95540d60ddc99d926b5d7b21f",
+          "bytes": 7782
+        },
+        "minimum-owner/worker.log": {
+          "sha256": "1e78b5457b450785883a8e725e9b7d255e30e375657d4e2d03f3fb876d89c78e",
+          "bytes": 34
+        },
+        "minimum-owner.json": {
+          "sha256": "3e1d8ea9bd2155e686c150d7f916559950022c289f76bc5778773dc2fea00067",
+          "bytes": 66002
+        },
+        "owner-runtime.json": {
+          "sha256": "4887fa0b198395f5cceb4c0271ea4f27361ec0d6de543f2eb5d559c243ea2e3c",
+          "bytes": 10467
+        },
+        "preparation.json": {
+          "sha256": "4338f70fdadf3ab961bd58cd32d862f10b62387c8038809aa5ef0ff1e785908f",
+          "bytes": 503
+        }
+      }
+    },
+    {
+      "id": 13045795802,
+      "sha256": "1f9bf80b18ad563738713f8a6c1a297cec8ee747d3504e1fe29e38e7dac56c7e",
+      "bytes": 465,
+      "members": {
+        "minimum-watch.json": {
+          "sha256": "7232ba442be3f457338d700f3bcb4de8a3a918f34f4aa399b06a276532539d6c",
+          "bytes": 499
+        }
+      }
+    }
+  ]
+}
