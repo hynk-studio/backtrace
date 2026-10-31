@@ -1,0 +1,19 @@
+{
+  "source_sha": "4a346b70a42ce1d64c3971e87ff1a42be3862b58",
+  "contract_sha256": "0f94d3fffca7fad5930e4e83968dd947283f91884508506a8cdc73636a6ca939",
+  "authorization_id": "cuda-trace-20261031-one",
+  "namespace": "cuda-trace-paid-20261031",
+  "instruction": "이번에는 목표까지 실제로 이어가도록 하고 혼자 해결할 수 없는 문제가 있을 때만 멈추고 보고해",
+  "mode": "OWNER_APPROVED_CUDA_COMPARISON",
+  "additional_cap_usd": "1.00",
+  "allocation_inclusive_seconds": 3000,
+  "single_use": true,
+  "automatic_retry": false,
+  "top_up_allowed": false,
+  "weight_download_bytes": 0,
+  "pretrained_requests": 0,
+  "training_steps": 0,
+  "qualification_run_id": "41199575506",
+  "approved_at": 1793448879.1435049,
+  "expires_at": 1793452479.1435049
+}
