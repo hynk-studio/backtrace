@@ -1,5 +1,18 @@
 # Backtrace working agreement
 
+## Exact matched candidate qualification passed (2026-10-31 UTC)
+
+Read docs/small-model-matched-qualification-20261031.md. Free41241191354 at
+49191f580d35984a52e53f0df3c80d52350aead7 passed744 native tests,17 isolation
+controls, both320-step numerical CPU controls and full checkpoint readback.
+All56 raw members and326 source entries over98 paths are retained. Actual pinned
+training totals match320 updates/21,754 supervised tokens/343,722 padded tokens
+per arm; all348 evaluation inputs passed. This remains free implementation/input
+evidence. Actual GPU training, fresh-process reload and learning remain unrun.
+Keep this source fixed for the fresh bounded single-use permit/start. Continue
+through actual collection, independent deletion and post-deletion case scoring.
+
+
 ## Matched E2B learning candidate (2026-10-31 UTC)
 
 Read docs/small-model-matched-candidate-20261031.md. E2B actual four-update

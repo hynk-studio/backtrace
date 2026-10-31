@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-31T21:02:56.602577+00:00",
+  "source_sha": "49191f580d35984a52e53f0df3c80d52350aead7",
+  "primary": "normalized decision regret, compared separately to B1 and B2",
+  "secondary": "posterior error and invalid response counts",
+  "revision_scope": "final snapshot only; no duplicate-invariance or update-direction claim",
+  "confirmation": "not assigned; one seed and eight development families",
+  "paid_start": false,
+  "curriculum_description": {
+    "row_kinds": {
+      "common_format": 64,
+      "reasoning": 256
+    },
+    "specialist_reasoning_target_status": {
+      "OK": 206,
+      "INCONSISTENT_EVIDENCE": 16,
+      "MODEL_MISMATCH": 34
+    },
+    "target_differences": {
+      "temporal_revision:different": 52,
+      "inference:different": 37,
+      "revision:different": 64,
+      "abduction:same": 27,
+      "inference:same": 27,
+      "temporal_revision:same": 12,
+      "abduction:different": 37
+    },
+    "control_interpretation": "Both arms share bookkeeping/consistency and format supervision; probability objectives differ only where the target distribution changes."
+  },
+  "training_control": "B2 specifically forward probability and bookkeeping, with different instructions and residual unpadded-token differences",
+  "current_Augnes_baseline": "unavailable: all three connected routes returned connection failure at20:57:47Z"
+}
