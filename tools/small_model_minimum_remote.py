@@ -179,7 +179,7 @@ def diagnose(prefix, output, *, actual, trace=False):
         total = receipt['cases'].get('D', {}).get('result', {}).get('denial_trace', {}).get('count')
         receipt['denied_syscall_trace'].update(total_denials=total,
             records_truncated=total is None or total > len(records),
-            clone3_enosys_fallback_traced=False)
+            untraced_signal_sensitive_syscalls=[56,57,58,59,322,435])
     life.write(output/'receipt.json', receipt)
     return receipt
 
@@ -282,7 +282,7 @@ print(json.dumps(r))
         if not checks['missing_gpu_rejected']:raise AssertionError('missing GPU not rejected at exact kernel gate')
         result['cuda_comparison_cpu'] = diagnose(prefix, output/'cuda-comparison', actual=False, trace=True)
         checks['cuda_comparison_cpu'] = (result['cuda_comparison_cpu']['decision'] == 'CPU_CONTROLS_ONLY'
-            and all(row['result']['status'] == 'FAIL' and 'CPU fallback forbidden' in row['result'].get('error', '')
+            and all(row.get('result',{}).get('status') == 'FAIL' and 'CPU fallback forbidden' in row.get('result',{}).get('error', '')
                     for row in result['cuda_comparison_cpu']['cases'].values()))
         if not checks['cuda_comparison_cpu']:raise AssertionError('CPU comparison logging/boundaries failed')
     result['interruptions']={}

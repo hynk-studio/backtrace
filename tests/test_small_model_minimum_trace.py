@@ -48,7 +48,7 @@ print(json.dumps(result))
 ''')
         self.assertEqual(result,{'socket':1,'unix':1,'fork':1,'exec':1,'thread':True,
                                  'clone3_return':-1,'clone3_errno':38})
-        self.assertEqual([r['syscall'] for r in records],[41,41,56,59])
+        self.assertEqual([r['syscall'] for r in records],[41,41])
         self.assertEqual([r['args'][0] for r in records[:2]],[2,1])
         self.assertTrue(all(r['errno']==1 for r in records))
 

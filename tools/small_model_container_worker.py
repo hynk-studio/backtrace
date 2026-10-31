@@ -49,14 +49,17 @@ def restrict_syscalls(*, trace_denials=False):
     denied = (41,42,43,44,46,49,50,53,57,58,59,101,155,161,165,166,
               272,288,299,304,307,308,310,311,321,322,323,425,426,427,438)
     for nr in denied:
-        rows += [(0x15,0,1,nr),(0x06,0,0,deny_action|errno.EPERM)]
+        # libc can block SIGSYS across spawn/fork/exec. Preserve literal ERRNO
+        # for those calls; trapping them may kill an otherwise handled failure.
+        action = 0x00050000 if nr in (57,58,59,322) else deny_action
+        rows += [(0x15,0,1,nr),(0x06,0,0,action|errno.EPERM)]
     # glibc uses clone3 when present, then safely falls back to clone on ENOSYS.
     # Keep clone3's ENOSYS return literal even in trace mode: pthread creation
     # temporarily blocks SIGSYS, so trapping this compatibility fallback kills it.
     rows += [(0x15,0,1,435),(0x06,0,0,0x00050000|errno.ENOSYS),
              (0x15,0,7,56),(0x20,0,0,16),(0x54,0,0,0x10900),
              (0x15,0,3,0x10900),(0x20,0,0,16),(0x54,0,0,0x7e0200ff),
-             (0x15,1,0,0),(0x06,0,0,deny_action|errno.EPERM),
+             (0x15,1,0,0),(0x06,0,0,0x00050000|errno.EPERM),
              (0x06,0,0,0x7fff0000)]
     array = (Filter*len(rows))(*(Filter(*r) for r in rows))
     program = Program(len(rows), array)
