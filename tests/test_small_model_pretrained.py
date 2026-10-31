@@ -4,6 +4,7 @@ import tempfile
 import subprocess
 import sys
 import time
+import types
 import unittest
 from unittest import mock
 
@@ -12,6 +13,33 @@ from tools import small_model_minimum as minimum
 
 
 class PretrainedTests(unittest.TestCase):
+    def test_real_collector_uses_allowed_local_path_and_preserves_raw_checkpoints(self):
+        from tests.test_small_model_runner import FakeChannel,Tokenizer,request
+        class ModelFixture(FakeChannel):
+            def read(self,deadline):
+                return dict(super().read(deadline),mode='pretrained_cuda',cuda={'uuid':'fixture','no_cpu_fallback':True})
+            def exchange(self,req,deadline):
+                result=super().exchange(req,deadline)
+                result['cuda_metrics']={'peak_allocated_bytes':1,'peak_reserved_bytes':2,'post_free_bytes':2,'total_bytes':4}
+                self.partial=entry.runner.exact.canonical(result);return result
+        module=types.ModuleType('transformers')
+        module.AutoTokenizer=mock.Mock();module.AutoTokenizer.from_pretrained.return_value=Tokenizer()
+        with tempfile.TemporaryDirectory(dir=minimum.ROOT/'.local') as td:
+            root=Path(td);(root/'.local').mkdir();output=root/'evidence';output.mkdir()
+            spec=root/'collector.json';spec.write_text(json.dumps({'prefix':['fixture'],'gpu_uuid':'fixture'}))
+            with mock.patch.object(entry,'ROOT',root),mock.patch.dict(sys.modules,{'transformers':module}),\
+                    mock.patch.object(entry.runner,'load_scope',return_value=({},[request()],None)),\
+                    mock.patch.object(entry,'replay_schedule',return_value=[]),\
+                    mock.patch.object(entry.container,'ContainerChannel',return_value=ModelFixture()):
+                result=entry.collect(spec,output)
+                self.assertEqual(result['status'],'COMPLETED');self.assertEqual(result['assigned'],1)
+                self.assertFalse((output/'collection').exists())
+                saved=entry.preserve_collection(output)
+                self.assertGreater(saved['files'],3)
+                self.assertEqual((root/'.local/e2b-collection/ledger.jsonl').read_bytes(),
+                                 (output/'collection/ledger.jsonl').read_bytes())
+                self.assertTrue((output/'collection/wire-0000.json').exists())
+
     def test_only_observed_socket_shape_is_created_and_cannot_communicate(self):
         code="""import ctypes,errno,json,socket,os
 from tools.small_model_container_worker import restrict_syscalls

@@ -88,3 +88,12 @@ absence twice. At 12:30:38 UTC the complete inventory contained zero Pods, hourl
 spend was zero, autopay was off and credit was USD 2.8022904793. Observed decrease
 from this continuation's starting balance is USD 0.1037536546, not final billing.
 The remaining cumulative budget supports the capped USD 0.505 next allocation.
+
+Integration review found that the reused collector accepts only paths beneath
+repository `.local`, while the provider receipt directory is under `evidence`.
+Collection now uses its original admitted local root; original raw checkpoints
+are copied for export in both the child-finalization path and an always-run
+workflow step. A real collector/fixture-channel regression catches this wiring
+error without a model or paid allocation. All 24 input assignments are also
+validated and retained before provider allocation, so a hardware refusal cannot
+erase the planned denominator.

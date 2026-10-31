@@ -92,10 +92,13 @@ print(json.dumps({'bytes':sum(p.stat().st_size for p in dst.rglob('*') if p.is_f
     life.write(output/'asset-transfer.json',{'transfer':transfer,'installation':installed})
     spec=output/'collector-input.json';life.write(spec,{'prefix':prefix,'gpu_uuid':job['gpu']['uuid']})
     python=ROOT/'.local/model-runtime/bin/python'
-    with (output/'collector.log').open('xb') as log:
-        p=subprocess.run([str(python),'-m','tools.small_model_pretrained','collect',str(spec),str(output)],
-            stdout=log,stderr=log,timeout=1560,env={'PATH':os.environ['PATH'],'LANG':'C.UTF-8','HOME':str(root),
-                'HF_HUB_OFFLINE':'1','TRANSFORMERS_OFFLINE':'1','TOKENIZERS_PARALLELISM':'false'})
+    try:
+        with (output/'collector.log').open('xb') as log:
+            p=subprocess.run([str(python),'-m','tools.small_model_pretrained','collect',str(spec),str(output)],
+                stdout=log,stderr=log,timeout=1560,env={'PATH':os.environ['PATH'],'LANG':'C.UTF-8','HOME':str(root),
+                    'HF_HUB_OFFLINE':'1','TRANSFORMERS_OFFLINE':'1','TOKENIZERS_PARALLELISM':'false'})
+    finally:
+        preserve_collection(output)
     # An observed idle GPU and absent worker are required before evaluation.
     stopped=remote.remote(prefix,"""import json,pathlib
 r=json.loads(pathlib.Path('/root/backtrace/E2B-pretrained-state.json').read_bytes())
@@ -137,13 +140,25 @@ def collect(spec_path,output):
             '/opt/backtrace/launcher.py','run','E2B-pretrained','1500','pretrained'])]
         return container.ContainerChannel(command,directory/'E2B-stderr.log')
     factory.gpu_uuid=spec['gpu_uuid']
-    return runner.collect(selected,output/'collection',factory,{'E2B':tokenizer},mode='pretrained_cuda',
+    return runner.collect(selected,ROOT/'.local/e2b-collection',factory,{'E2B':tokenizer},mode='pretrained_cuda',
         max_new_tokens=4096,total_seconds=1500,startup_seconds=180,request_seconds=90)
 
 
-def inspect_inputs(prepared):
+def preserve_collection(output):
+    source=ROOT/'.local/e2b-collection';target=Path(output)/'collection';count=0
+    if source.exists():
+        target.mkdir(parents=True,exist_ok=True)
+        for p in source.iterdir():
+            if p.is_file() and not p.is_symlink() and p.suffix in ('.json','.jsonl','.log') and p.stat().st_size<=16*1024**2:
+                shutil.copyfile(p,target/p.name);count+=1
+    return {'files':count}
+
+
+def inspect_inputs(prepared,*,cuda_runtime=False):
     from transformers import AutoTokenizer
-    prepared=Path(prepared);ready.check_packages()
+    prepared=Path(prepared)
+    if cuda_runtime:gpu.check_runtime()
+    else:ready.check_packages()
     tokenizer=AutoTokenizer.from_pretrained(prepared/'sources/E2B',local_files_only=True,trust_remote_code=False)
     plan,schedule,_=runner.load_scope(prepared/'scope',prepared/'packets',prepared/'tokenization.json')
     original=[r for r in schedule if r['model']=='E2B'];replays=replay_schedule(tokenizer)
@@ -156,6 +171,7 @@ def inspect_inputs(prepared):
         'coverage':{'NOT_RUN':18},'records':[dict(model=r['model'],arm=r['arm'],id=r['id'],status='NOT_RUN') for r in original]}
     runner.evaluate(plan,original,missing)
     return {'status':'PASS_INPUTS_NOT_INFERENCE','original_assigned':len(original),'replay_assigned':len(replays),
+        'assigned_before_allocation':[{**{k:v for k,v in r.items() if k!='messages'},'initial_status':'NOT_RUN'} for r in original+replays],
         'replays':[{k:v for k,v in r.items() if k!='messages'} for r in replays],
         'packet_sha256':life.digest(REPLAY.read_bytes()),'pretrained_requests':0}
 
@@ -208,5 +224,7 @@ if __name__=='__main__':
     if sys.argv[1]=='prepare':result=prepare(sys.argv[2],sys.argv[3])
     elif sys.argv[1]=='collect':result=collect(sys.argv[2],sys.argv[3])
     elif sys.argv[1]=='inspect-inputs':result=inspect_inputs(sys.argv[2])
+    elif sys.argv[1]=='plan-gpu-inputs':result=inspect_inputs(sys.argv[2],cuda_runtime=True)
+    elif sys.argv[1]=='preserve':result=preserve_collection(sys.argv[2])
     else:raise ValueError('explicit preparation or collection required')
     print(json.dumps(result,sort_keys=True))

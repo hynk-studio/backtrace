@@ -98,6 +98,7 @@ jobs:
           python -m venv .local/model-runtime
           .local/model-runtime/bin/python -m pip install --no-index --no-deps --only-binary=:all: --require-hashes --find-links .local/cuda-wheels -r docs/small-model-gpu-requirements.txt
           .local/model-runtime/bin/python -m tools.small_model_gpu check-runtime > evidence/owner-runtime.json
+          .local/model-runtime/bin/python -m tools.small_model_pretrained plan-gpu-inputs .local/e2b > evidence/assignment-before-allocation.json
       - name: Run bounded scope (free replica or authorized E2B collection)
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -111,6 +112,9 @@ jobs:
         env:
           RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
         run: python -m tools.small_model_provider evidence/account-after.json
+      - name: Preserve original collector checkpoints after interruption
+        if: always()
+        run: python -m tools.small_model_pretrained preserve evidence/minimum-owner/remote
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
