@@ -1,0 +1,20 @@
+{
+  "source_sha": "3a1126d8e436c3d6bea8ab08f805e167f51c1dad",
+  "contract_sha256": "c565051b795bf6a179408ccc967d8669ebd7f13578ceb0af2a5f2727634a6d0b",
+  "namespace": "e4b-comparison-paid-20261031",
+  "instruction": "이번에는 목표까지 실제로 이어가도록 하고 혼자 해결할 수 없는 문제가 있을 때만 멈추고 보고해",
+  "mode": "OWNER_APPROVED_E4B_DEVELOPMENT",
+  "additional_cap_usd": "1.00",
+  "allocation_inclusive_seconds": 3000,
+  "single_use": true,
+  "automatic_retry": false,
+  "top_up_allowed": false,
+  "weight_bytes": 15992595884,
+  "pretrained_requests": 24,
+  "training_steps": 0,
+  "qualification_run_id": "41210020000",
+  "approved_at": 1793457289.7196016,
+  "expires_at": 1793460889.7196019,
+  "continuation_observed_spend_usd": "0.3535789500",
+  "maximum_projection_usd": "0.505"
+}
