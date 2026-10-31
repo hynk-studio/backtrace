@@ -98,6 +98,9 @@ for p in dst.rglob('*'):
  if p.is_symlink():raise ValueError('asset symlink')
  p.chmod(0o755 if p.is_dir() else 0o444)
 dst.chmod(0o755)
+# The root supervisor copies only the selected job to /job.json. Other jobs,
+# including the later training targets, are not readable by either worker.
+(dst/'jobs').chmod(0o700)
 print(json.dumps({'bytes':sum(p.stat().st_size for p in dst.rglob('*') if p.is_file()),'model':'E2B'}))
 """,60)
     life.write(output/'asset-transfer.json',{'transfer':transfer,'installation':installed,

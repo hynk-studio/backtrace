@@ -128,6 +128,7 @@ def free_entry(prefix,output):
 r=pathlib.Path('/opt/backtrace/assets')
 for x in ('models/E2B','tokenizers/E2B','jobs'):(r/x).mkdir(mode=0o755,parents=True,exist_ok=True)
 p=r/'jobs/E2B-pretrained.json';p.write_text("""+repr(json.dumps(job))+""");p.chmod(0o444)
+(r/'jobs').chmod(0o700)
 print('{}')
 """)
     log=Path(output)/'pretrained-missing-gpu.log'
