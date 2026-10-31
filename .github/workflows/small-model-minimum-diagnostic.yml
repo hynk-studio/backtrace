@@ -73,7 +73,8 @@ jobs:
         with:
           python-version: '3.12.14'
       - name: Install pinned owner controller dependencies
-        run: python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
       - name: Prepare pinned CUDA wheels and transport before any allocation
         if: github.ref_name == 'bt-001-cuda-diagnostic-start-20261031'
         run: |
