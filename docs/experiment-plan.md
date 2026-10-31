@@ -1,22 +1,30 @@
 # Backtrace research sequence
 
-## Current priority: specialist capability and potential Augnes use
+## Current priority: Augnes decision value (2026-10-31 KST)
 
-On 26 October the owner clarified that rapid completion is not the objective.
-The first objective is reliable evidence of a small abductive model's capability,
-with potential Augnes deployment considered during evaluation. Follow the
-[small-model plan](small-abductive-model-plan-20261026.md): E2B and E4B are
-candidates, with strong prompt and matched general-reasoning training controls,
-new held-out families, repeated seeds and a separate Augnes transfer assessment.
+The owner abandoned Kaggle competition work in [#41](https://github.com/hynk-studio/backtrace/issues/41)
+and authorized continued work toward the revised [small-model plan](small-abductive-model-plan-20261026.md).
+Start with E2B and evaluate actual next-decision usefulness early. E4B is a
+conditional capacity comparison. Keep strong-prompt and matched general-training
+controls; new families and three seeds are for confirmation, not entry to replay.
 
 | Stage | Next result | Status |
 | --- | --- | --- |
-| A0 | Goal and input/output contract | Documented; no capability result |
-| A1 | Expanded teacher, frozen evaluation/rubrics and development baselines | CPU instruments qualified; actual transport/device/8 GiB RAM checks observed, CUDA initialization blocked by error 304; pretrained baselines, GPU kernels, broader E2/real-language transfer, power analysis and final sealing pending |
-| A2 | Actual tiny update, save/reload, resource measurements | NOT RUN |
-| A3 | Controlled E2B/E4B training and confirmatory evaluation | NOT RUN |
-| A4 | Augnes time-cutoff replay, prospective shadow cases and device validation | NOT RUN |
-| A5 | Independent adoption and Kaggle-submission decisions | NOT DECIDED |
+| A0 | Augnes-first goal, optional training and bounded scope | Plan aligned; no capability result |
+| A1 | One A/B/C CUDA diagnosis, then existing 18 E2B assignments and 3–5 development replays | A/B/C qualified on CPU in #40; GPU diagnosis and pretrained outputs NOT RUN |
+| A2 | Optional tiny update, save/reload and measured training budget | NOT RUN |
+| A3 | One-seed matched B2/S screening, capped at 1,024 episodes or 1M effective tokens per arm | NOT RUN |
+| A4 | About 20 independent offline/shadow episodes, including additional main-model review comparator | NOT RUN; useful B1 can enter without training |
+| A5 | Claim-specific confirmation and separate adoption judgment | NOT RUN; competition abandoned |
+
+The first delegated paid scope is one USD1 / 3,000-second CUDA diagnosis with
+USD0.50 reserve and independent cleanup. Preserve consumed permits; no top-up or
+automatic retry. A future affordable experiment is scoped from actual measurements.
+The qualified OCI worker still rejects pretrained mode: prepared input cases do
+not imply an executable baseline. Reuse the existing collector after resolving
+that specific execution connection; do not build another orchestration framework.
+
+The dated paragraphs below preserve how the current blocker was reached.
 
 Provider follow-up on 2026-10-27 verified authenticated live reads, current
 balance/filtered quotes, byte-bound exact-image payload delivery and a bounded
@@ -96,7 +104,7 @@ checkpoints.
 Actual pretrained loading and GPU isolation/measurements
 remain required. Preparing or tokenizing
 5,760 requests per backbone is not running them or authorizing that grid.
-Kaggle is optional, and extending the historical coding campaign is deferred.
+Kaggle competition work is abandoned; the coding campaign below is historical.
 The new training path does not depend on positive R2 results or Kaggle attachment.
 
 The sections below preserve the original question, evidence and procedures:

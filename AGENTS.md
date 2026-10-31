@@ -1,5 +1,27 @@
 # Backtrace working agreement
 
+## Current work: Augnes-first continuation (2026-10-31 KST)
+
+The owner authorized autonomous continuation toward the revised small-model goal.
+This instruction supersedes old preparation-only stopping points below. Follow
+`docs/small-abductive-model-plan-20261026.md` and issue #41: competition abandoned;
+E2B first; 18 B0/B1 assignments plus 3–5 early development-only Augnes replays;
+optional bounded training and roughly 20-case offline/shadow screening before
+claim-specific confirmation. Strong prompting may bypass training. E4B is a
+conditional capacity comparator. No synthetic-superiority prerequisite for replay.
+
+Keep PR-centered reviewable changes. The next paid action is one diagnostic using
+the existing A/B/C collector and owner/watcher: USD1 / 3,000 seconds / USD0.50
+reserve, no top-up or automatic reallocation. The user's continuation instruction
+is current authority for this bounded next step; do not request routine permission
+again. Bind a fresh permit to qualified source and current affordable prices.
+Historical claims, start refs, evidence and qualified source stay immutable. Stop
+same-route rental if the comparison is inconclusive or supplies no supported
+correction. Later experiments need measured affordable scopes, not unlimited spend.
+No production deployment or automatic Perspective change. Do not merge the old
+Draft stack just to make progress. Report measured results, unresolved questions
+and the next decision; infrastructure tests are not model capability evidence.
+
 ## Current work selection: CUDA cause isolation (2026-10-27 KST)
 
 The owner corrected the workflow: stop infrastructure expansion and prioritize
