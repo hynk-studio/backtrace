@@ -1,0 +1,60 @@
+{
+  "source_sha": "00e2b95e21a485e1789aebe8bc89c5df4fcc1495",
+  "contract_sha256": "0e58145c247504bc1acd77e8d8b9270992311679f9d3211d9e64ed84a088282c",
+  "namespace": "e2b-completion-paid-20261031",
+  "instruction": "이번에는 목표까지 실제로 이어가도록 하고 혼자 해결할 수 없는 문제가 있을 때만 멈추고 보고해",
+  "mode": "OWNER_APPROVED_E2B_ADAPTER_FEASIBILITY",
+  "additional_cap_usd": "0.35",
+  "allocation_inclusive_seconds": 2020,
+  "single_use": true,
+  "automatic_retry": false,
+  "top_up_allowed": false,
+  "weight_bytes": 10246621918,
+  "pretrained_requests": 3,
+  "training_steps": 4,
+  "qualification_run_id": "41228857384",
+  "continuation_observed_spend_usd": "0.9235657889",
+  "maximum_projection_usd": "0.35",
+  "cumulative_continuation_cap_usd": "1.30",
+  "minimum_post_projection_credit_usd": "1.6060441339",
+  "approved_at": 1793471557.03,
+  "expires_at": 1793475157.03,
+  "qualification_native_tests": 718,
+  "qualification_container_controls": 17,
+  "qualification_artifacts": {
+    "container": {
+      "id": 13052579932,
+      "sha256": "8b19cf614baa09c755895052ffcaa03ad85a7e33f797473644e4739039a1b918"
+    },
+    "owner": {
+      "id": 13052612158,
+      "sha256": "fbfc9043e6f9daedaec742186560a20de95c8e7f21fd56d98c9ce6b046d7ea9b"
+    },
+    "watch": {
+      "id": 13052269320,
+      "sha256": "d2679437333347998cdfad314a53cead6dc453eb0a1fd59c81e7347fea2117c6"
+    },
+    "inputs": {
+      "id": 13053166446,
+      "sha256": "31ea0924a8674cb40861aeb2a58b3fda177d2aa94453977ce9481f8f640b7c6f"
+    }
+  },
+  "prior_attempt": {
+    "run": 41225173224,
+    "source": "a90e47bc98da44d8492acd0577cb40728de3b15c",
+    "finished_screening_assignments": 18,
+    "interrupted": "augnes-screen-1278",
+    "not_run": "augnes-screen-1316",
+    "training_steps": 0,
+    "owner_cleanup": "DELETED",
+    "watch_cleanup": "DELETED",
+    "preserved_evidence_commit": "00e2b95e21a485e1789aebe8bc89c5df4fcc1495"
+  },
+  "remaining_screening_ids": [
+    "augnes-screen-1278",
+    "augnes-screen-1316"
+  ],
+  "recovery_sha256": "5779e37082e579c8aa1f2d2be8f5552d1a44142f8226e2f1370b62760354f655",
+  "budget_basis": "Ongoing owner delegation within the previously accepted prepaid USD10 wallet; prospectively disclosed finite completion scope; no top-up or modification of historical consumed contracts.",
+  "execution_time_fresh_account_price_required": true
+}
