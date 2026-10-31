@@ -420,7 +420,9 @@ def collect(schedule, output, worker_factory, tokenizers, *, mode, max_new_token
             'wall_seconds':time.monotonic()-started,'source_hashes':source_hashes(),
             'pretrained_capability_claim':'NOT_ESTABLISHED',
             'gpu_requested':mode in ('pretrained_cuda','random_cuda_fixture'),
-            'gpu_run':any('cuda' in hello for hello in hellos.values()),'training':False}
+            'gpu_run':any('cuda' in hello for hello in hellos.values()),
+            'training_requested':getattr(worker_factory,'training_requested',False),
+            'training':any(h.get('adapter_feasibility',{}).get('training_steps',0)>0 for h in hellos.values())}
         base.private_write(output/'collection.json',exact.canonical(report))
     return report
 
