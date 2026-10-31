@@ -1,0 +1,1788 @@
+{
+  "schema": "unchanged_validator_first_failure_observations_v1",
+  "note": "Describes first rejected condition only; does not repair answers or replace original scoring. VALID means schema-valid, not exact or useful.",
+  "arms": {
+    "B1": {
+      "counts": {
+        "ValueError: unexpected schema fields": 64,
+        "VALID": 8,
+        "ValueError: numeric probability required": 3,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 40 (char 39)": 8,
+        "ValueError: unknown outcome action": 1,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 82 (char 81)": 1,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 39 (char 38)": 2,
+        "JSONDecodeError: Expecting value: line 1 column 11 (char 10)": 3,
+        "ValueError: exclusive root-assignment distribution must sum to one": 4,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 80 (char 79)": 1,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 55 (char 54)": 1
+      },
+      "cases": [
+        {
+          "id": "1aae19fb97efb2cf7f95b054be69299d78d9b97574fa1375a3dfbb198ac65938",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "871143134c5296b45972ade44debec47ab7fc95c41eb088cab9dff15c2cd7e2e",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "c6876d3573a99f0106d8f33561bb0875e4f5c49dbd55d1bd705ac5c4de6138a4",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "VALID"
+        },
+        {
+          "id": "e0d20cbf4352631fc0961948f6dc5828992cb2ceaf30a8d2c508e201bf6c4033",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "4cfdd42a0282a44eee207aeb6df2e453550dfd1210db0082431cc20993988da5",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "2f60aa4cfa60ba99f3d98fd32960f36f69fc72eb5e979d1a849877cde7aa2233",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "0a891842dabe869bef11f6576e5ac677d64c6ad3142f2045f2e352d085746b8e",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "96bff5156a30390e83a2af9b3aac777678b40d6ff356d4503fada6944cc56d13",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: numeric probability required"
+        },
+        {
+          "id": "ddb82de082169dea755e105afc68296d675295bac052f441d0e2425a758b4dc3",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "6f74a80d957d27e450ee188b2bce686b27fa93d08ed8a5ca1ed28de3a20a98f6",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "VALID"
+        },
+        {
+          "id": "b009417fd0a59244dd590290b90d1a8b65ad8cc23628226230677b0e6abf3dea",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "1633a34b27d6a2ae5aca3582e184e5aafdad83cdde2f80beab8dd829f3a35f74",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 40 (char 39)"
+        },
+        {
+          "id": "6b97027569c6ed9d7ae97a57645b0e435e3a7c85464d763facbce6de3ca0ce02",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unknown outcome action"
+        },
+        {
+          "id": "64d16ee71ab3b0dbd71f437c4f714a59680dedc05f94e05c608c955712980b28",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: numeric probability required"
+        },
+        {
+          "id": "06ffce14fec8616d5b449da6cca995b37e8d39c9d5c634c7f1cb5f1867553f35",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "5c1a7a58aa28a79590f3ad7fa7463a44402e5bb7db0f9778fecce1aead39c5aa",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "cde44137e14408fd0670969febe0ec7f16f469001d458cfe4392b52671aeef29",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: numeric probability required"
+        },
+        {
+          "id": "5a2bd94d5ed13792b2d3c85aab95b24ffa4e42cebe0eea4a5a9a673ef213fae7",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 40 (char 39)"
+        },
+        {
+          "id": "4be7763ba478b2605e1ed967edd7ff41da091c92cdb08a75e73ea6a1f9d6b94a",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "93fb1392118dc8f76b6307ae1cb4fd285b89e6c4e17913702808a5cd938ca9fb",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "63398920d3a5c56031864fdfc666a489214a0fc5ed65c0966ad424673b7adf3f",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "VALID"
+        },
+        {
+          "id": "089bfba975fe9105b3a1379b1f4aba924ce9ddec7109e65c6f54fbe841d2cbf5",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "5bc0a8f8c159d8cd804c4c3ae541c49daae533cc73e3d36be7c1fa897b5255bf",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "23873e4056f56e2598c7e111ba3c21163eaae151cf8249e9809cd724b9276055",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "adebdf7d283d5aa1be047702dae6366b64735b0b5cfa3abfbbf1dcb3e31a2cd8",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 82 (char 81)"
+        },
+        {
+          "id": "b3ed2ea3ac4d2d4f75c2da930a574778f1957e60a1744f1dab50d7dfa7e22b78",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 39 (char 38)"
+        },
+        {
+          "id": "08a80b863dd68e85b30ea3d5bcd765631b3e82ab3886537f715f44eb53447de5",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 40 (char 39)"
+        },
+        {
+          "id": "fbf71df182bf0df36b1520fddf06d4a61e407724be35ad508498d0277a205552",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "8186bc664d5e0ff725d63564adfb1288e6803ba820d088db90e766802345db79",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "cb94108bab1c2661e9dff6d132e48fe578152d081ad8100c254623ed69cba7bb",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "ee31b285814a2e914bfa06891a5ade5f164df428abb5de23815bea0131fa24bb",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "cb4c74608109d6178d352a71406262895a67648fae0806810f40832dbbee00f5",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "d824645efc5b98a54a0445430e7d8b228652066435c96323ca00eb1425babb5f",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "VALID"
+        },
+        {
+          "id": "906bebb59371eef6922f8d5ba07bf8552268ddae74865470fdb00b5e276eee14",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "1cb124aba7eae97dca0b5fb84ed9ff3025d8e910f0d3381af4e9ebcb0d521dd6",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "5b1cbcb99c942a9a051080c62d8cbb641bec62699edd5a23745be816e60ae1c5",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting value: line 1 column 11 (char 10)"
+        },
+        {
+          "id": "2f32330b6d8c3c6d70786c60dc35ada18e8dfa21e1cbcf1a1aa6180778085bb8",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "330c0ad691a14edffbfc615b907b9105c0854bc7a16fb735c09803f292112013",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "1a44d4a139f49b196c478656343aa791f8a23db035572229f810c6eeb1634578",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "0896408d075b894209ef4af499e8e1fbc4096bd8635725d66a90624ee19b89f5",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "0ef438533990961dde94e42ffdba25a02e8957b75963013b1bc9fb41422b7e26",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "9033df745805e394157612703d43fe97e89bc875b6e7fd8c65a3eefc92bebfea",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "5c58eb5164bc4dceeb2bfeb5a0095ab78c064a86b5b58d537a4a28c68288e504",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "5c093a9cc43a493f4ca9a65c039c961b94e7d39191758b24c428a6c49b9533b9",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: exclusive root-assignment distribution must sum to one"
+        },
+        {
+          "id": "7c6d0b17c25c7c7cdba3d6728a0f60683a82cd1672ccfa24e2ad64b3f1452355",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 40 (char 39)"
+        },
+        {
+          "id": "8a89967312eab141f13e9c33b6891756ea3175e48a067c10901cd0770edd1744",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "2543c31d93a6ee7227440c26623eb1f4ea4fcf5d8b20b9e05e7da7eb9954387d",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "e7bcbcf635a937b130de842414a12dbcd0a102a7aa08b1faf90014bcba9d45d6",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 40 (char 39)"
+        },
+        {
+          "id": "fda3c8112fb6c9c73e6ed3d3ff7acddba0c73881ffb5040f656e95a9f573b8c6",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "fd440d259a699fada3f428f63454e17aac8dba0ec8a92aaffdb58963a15af45c",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "daa7d5284c9d86b5cee9aeb65611ae9c31f1927d07f0d2201e71ea1f4e615bd7",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "e2da25464319bde0bb4b762d47c8ef7caa6935a124fd6cdc20207f881881e002",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "05f3f06d39e54c769439abf9d34722d83ac4f93913acc3ed9ef3631bbe770591",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "c562fc96645ea6abaab9eca9be8f5010e203697dc3f376baa9f245723922521a",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "78c196e803aab460b2d3f9377e2144d3437208934afae39b6a01c6dcbb3e74f7",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 40 (char 39)"
+        },
+        {
+          "id": "d6e1e890c97b975c33cec18e81828a5f21e93fea805af9c933b56d06ee704f5b",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "7dcae8a4b4c0da4756c6da162d9373f1ba150b74247f6e0525052c6b3420d354",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "2a67237fcf2d8fa455e550b7209f6910fb32bbf509526b864201544725be2536",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: exclusive root-assignment distribution must sum to one"
+        },
+        {
+          "id": "ffa02c5da5f84054504dc8873be7334a616e1e576b66e8fc187ec2a297cb2e2c",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "cae777af49d24419903abb1ea6939b29245bcdfaf5c336a237d5b0dbd6591e3b",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting value: line 1 column 11 (char 10)"
+        },
+        {
+          "id": "859a26ffc1bfc439645f9238972b771363c1196fbdcc44cd6ba639b0e167039a",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "8059fce12637197053075e5c44770e869d716d6364a48ae2b35a911bb427bfdd",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "20c5c96e874453277cea4fc0721f1fedbff73ac88ef7b3347df54306fb0977e8",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "43b15bb88f6005063378656bb3743a24c0607c438619ba358d66f71c2230b35d",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "bfd39628960cbde271c14dbf2de8cf57d4a9159aa3dadc3a883d16f8d1c3b6c9",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "c17960a2a5e2a66154b33ea2a81dc4df212010e9822d9ca057137f9f7d552cad",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "05a03e4f7a5ae0580609a4f152543eb9d6b46132a4a306ae5b90bed9df54d9bc",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 40 (char 39)"
+        },
+        {
+          "id": "9e900b7cae20e31f59d15f42ed5af2535ad87089c3235088b26df6dfb6533432",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: exclusive root-assignment distribution must sum to one"
+        },
+        {
+          "id": "4cdac24cce37c4ae324ccc4ef2dd7e735481bf8685817f033432b71d4c3c6e59",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "a5914aa2c0606bc0e9e29485744151f9c52852ade666f170243a22d47e78b1c1",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "VALID"
+        },
+        {
+          "id": "0de7b7924fd51def9043066acb0caaf40e92387d3f6d6dcb00d18480ff4c5106",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "a2f755f5430b620c2c144f817001783e30cc576c792bfb507bca55b1c34c0aa7",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "8f0baa39b5e309198c5442f131a8c426eb22b39f4d77dec7550d6a7bd57190b5",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "29c1b95dc32a8202d129e539cb17a2af34cec562455a6296128908c264dcae24",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "3707d68e05eec206c87e210723ec812e7ef323f7997c2958e6405e0a1379568f",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "VALID"
+        },
+        {
+          "id": "09296280af368480df117ab255c1cdfa411a95d09bf4d65364841a5f559a12c5",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: exclusive root-assignment distribution must sum to one"
+        },
+        {
+          "id": "ce88459dfd495bc0d7c004d440c44965141c7015227c3d0e1075c071dd64d0e0",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "54e8a8c0a3c96f3171e716f22d3562c7b99d7bd99e26d666de510a8d1e02b491",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting value: line 1 column 11 (char 10)"
+        },
+        {
+          "id": "8c85c4738a44d45a7df00a226c28cf4026c701a6b73677223a2b29ceb9f30738",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "VALID"
+        },
+        {
+          "id": "a5a9e64a8b860b3b4920891c5c6ae50c5f0739101000d56278f2e6f75079e72d",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 40 (char 39)"
+        },
+        {
+          "id": "4b13f76a5d6cc31f4f81b54b24e617dc038c057ae389f225cbdbd661a952b0cc",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "b934c406b3ff2ccdfd8d0dec82deba2f9907c6ad2c840e0a6de02658b580b505",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "ca96c10cad8f29bbe4e87393da554fbf422a2a3e40539247c8481f05b713861b",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "121e01b01bcf5c655c98db0de43ad47cb83715ffde57beef79587467fb648a1f",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "VALID"
+        },
+        {
+          "id": "6334751af217aab3a2c9d402144c17806677f1ce5b47203bf5bb7643c2ad28a5",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "b9090d118e4e7caa551dda1360295b0f50eb910090557412f3afb6df3e27b43d",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "6767812001efe412888fcc7e757d8471e7050beaaffe5365cf5c1a376c7b57fb",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 39 (char 38)"
+        },
+        {
+          "id": "2e3d636369fad5a7cc1c5e03c64d154e2dea5a342f99d29aeecbd3b801f9fd36",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "8aa5be876ac5e99f3b2c96af6e82cce3420b79be60a51b4fa3bdeebc9c465aef",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 80 (char 79)"
+        },
+        {
+          "id": "d581965396d047a00fbe999b962197cbfd9e2f865008509cb8fec88edf10bf69",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "b44dc8c80b1e252f0d471b4a84a163ac21e674abfce18988e7100f9a09342012",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "5b60780575bf791799f0eea4fcc376f2bad58876ec4155d709a8b8df36e55e7e",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "c7fd546b87a3138121d914fd2ed1bc51cbb30ddb476c01697be8cf81e28a9a7a",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "ee62076654ef3c3f2aec44726e45d9ca443ae84dccb03c5b114d3ab2b770d725",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "8c83ed5c6093b61274a3d1849c671610b0485dd656ee87a48d499b57d9a30d38",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 55 (char 54)"
+        },
+        {
+          "id": "14f7452df287abef7ee494bbd5bdb81fbd8b7628356de80590619c4652c4b615",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        }
+      ]
+    },
+    "B2": {
+      "counts": {
+        "ValueError: unexpected schema fields": 58,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 76 (char 75)": 2,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)": 13,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 69 (char 68)": 1,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 70 (char 69)": 3,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 71 (char 70)": 6,
+        "ValueError: unknown decision mode": 5,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 61 (char 60)": 3,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 155 (char 154)": 1,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 55 (char 54)": 2,
+        "JSONDecodeError: Expecting ',' delimiter: line 2 column 20 (char 82)": 1,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 59 (char 58)": 1
+      },
+      "cases": [
+        {
+          "id": "1aae19fb97efb2cf7f95b054be69299d78d9b97574fa1375a3dfbb198ac65938",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "871143134c5296b45972ade44debec47ab7fc95c41eb088cab9dff15c2cd7e2e",
+          "task": "temporal_revision",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 76 (char 75)"
+        },
+        {
+          "id": "c6876d3573a99f0106d8f33561bb0875e4f5c49dbd55d1bd705ac5c4de6138a4",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "e0d20cbf4352631fc0961948f6dc5828992cb2ceaf30a8d2c508e201bf6c4033",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "4cfdd42a0282a44eee207aeb6df2e453550dfd1210db0082431cc20993988da5",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "2f60aa4cfa60ba99f3d98fd32960f36f69fc72eb5e979d1a849877cde7aa2233",
+          "task": "temporal_revision",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 76 (char 75)"
+        },
+        {
+          "id": "0a891842dabe869bef11f6576e5ac677d64c6ad3142f2045f2e352d085746b8e",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "96bff5156a30390e83a2af9b3aac777678b40d6ff356d4503fada6944cc56d13",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 69 (char 68)"
+        },
+        {
+          "id": "ddb82de082169dea755e105afc68296d675295bac052f441d0e2425a758b4dc3",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "6f74a80d957d27e450ee188b2bce686b27fa93d08ed8a5ca1ed28de3a20a98f6",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "b009417fd0a59244dd590290b90d1a8b65ad8cc23628226230677b0e6abf3dea",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "1633a34b27d6a2ae5aca3582e184e5aafdad83cdde2f80beab8dd829f3a35f74",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "6b97027569c6ed9d7ae97a57645b0e435e3a7c85464d763facbce6de3ca0ce02",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "64d16ee71ab3b0dbd71f437c4f714a59680dedc05f94e05c608c955712980b28",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 70 (char 69)"
+        },
+        {
+          "id": "06ffce14fec8616d5b449da6cca995b37e8d39c9d5c634c7f1cb5f1867553f35",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "5c1a7a58aa28a79590f3ad7fa7463a44402e5bb7db0f9778fecce1aead39c5aa",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "cde44137e14408fd0670969febe0ec7f16f469001d458cfe4392b52671aeef29",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 70 (char 69)"
+        },
+        {
+          "id": "5a2bd94d5ed13792b2d3c85aab95b24ffa4e42cebe0eea4a5a9a673ef213fae7",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 71 (char 70)"
+        },
+        {
+          "id": "4be7763ba478b2605e1ed967edd7ff41da091c92cdb08a75e73ea6a1f9d6b94a",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unknown decision mode"
+        },
+        {
+          "id": "93fb1392118dc8f76b6307ae1cb4fd285b89e6c4e17913702808a5cd938ca9fb",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "63398920d3a5c56031864fdfc666a489214a0fc5ed65c0966ad424673b7adf3f",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "089bfba975fe9105b3a1379b1f4aba924ce9ddec7109e65c6f54fbe841d2cbf5",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "5bc0a8f8c159d8cd804c4c3ae541c49daae533cc73e3d36be7c1fa897b5255bf",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "23873e4056f56e2598c7e111ba3c21163eaae151cf8249e9809cd724b9276055",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "adebdf7d283d5aa1be047702dae6366b64735b0b5cfa3abfbbf1dcb3e31a2cd8",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 61 (char 60)"
+        },
+        {
+          "id": "b3ed2ea3ac4d2d4f75c2da930a574778f1957e60a1744f1dab50d7dfa7e22b78",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 155 (char 154)"
+        },
+        {
+          "id": "08a80b863dd68e85b30ea3d5bcd765631b3e82ab3886537f715f44eb53447de5",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "fbf71df182bf0df36b1520fddf06d4a61e407724be35ad508498d0277a205552",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "8186bc664d5e0ff725d63564adfb1288e6803ba820d088db90e766802345db79",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "cb94108bab1c2661e9dff6d132e48fe578152d081ad8100c254623ed69cba7bb",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "ee31b285814a2e914bfa06891a5ade5f164df428abb5de23815bea0131fa24bb",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "cb4c74608109d6178d352a71406262895a67648fae0806810f40832dbbee00f5",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "d824645efc5b98a54a0445430e7d8b228652066435c96323ca00eb1425babb5f",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "906bebb59371eef6922f8d5ba07bf8552268ddae74865470fdb00b5e276eee14",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "1cb124aba7eae97dca0b5fb84ed9ff3025d8e910f0d3381af4e9ebcb0d521dd6",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "5b1cbcb99c942a9a051080c62d8cbb641bec62699edd5a23745be816e60ae1c5",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "2f32330b6d8c3c6d70786c60dc35ada18e8dfa21e1cbcf1a1aa6180778085bb8",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 71 (char 70)"
+        },
+        {
+          "id": "330c0ad691a14edffbfc615b907b9105c0854bc7a16fb735c09803f292112013",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "1a44d4a139f49b196c478656343aa791f8a23db035572229f810c6eeb1634578",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "0896408d075b894209ef4af499e8e1fbc4096bd8635725d66a90624ee19b89f5",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "0ef438533990961dde94e42ffdba25a02e8957b75963013b1bc9fb41422b7e26",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "9033df745805e394157612703d43fe97e89bc875b6e7fd8c65a3eefc92bebfea",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "5c58eb5164bc4dceeb2bfeb5a0095ab78c064a86b5b58d537a4a28c68288e504",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "5c093a9cc43a493f4ca9a65c039c961b94e7d39191758b24c428a6c49b9533b9",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 61 (char 60)"
+        },
+        {
+          "id": "7c6d0b17c25c7c7cdba3d6728a0f60683a82cd1672ccfa24e2ad64b3f1452355",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "8a89967312eab141f13e9c33b6891756ea3175e48a067c10901cd0770edd1744",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "2543c31d93a6ee7227440c26623eb1f4ea4fcf5d8b20b9e05e7da7eb9954387d",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "e7bcbcf635a937b130de842414a12dbcd0a102a7aa08b1faf90014bcba9d45d6",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 55 (char 54)"
+        },
+        {
+          "id": "fda3c8112fb6c9c73e6ed3d3ff7acddba0c73881ffb5040f656e95a9f573b8c6",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "fd440d259a699fada3f428f63454e17aac8dba0ec8a92aaffdb58963a15af45c",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "daa7d5284c9d86b5cee9aeb65611ae9c31f1927d07f0d2201e71ea1f4e615bd7",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 71 (char 70)"
+        },
+        {
+          "id": "e2da25464319bde0bb4b762d47c8ef7caa6935a124fd6cdc20207f881881e002",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "05f3f06d39e54c769439abf9d34722d83ac4f93913acc3ed9ef3631bbe770591",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "c562fc96645ea6abaab9eca9be8f5010e203697dc3f376baa9f245723922521a",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "78c196e803aab460b2d3f9377e2144d3437208934afae39b6a01c6dcbb3e74f7",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "d6e1e890c97b975c33cec18e81828a5f21e93fea805af9c933b56d06ee704f5b",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "7dcae8a4b4c0da4756c6da162d9373f1ba150b74247f6e0525052c6b3420d354",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 71 (char 70)"
+        },
+        {
+          "id": "2a67237fcf2d8fa455e550b7209f6910fb32bbf509526b864201544725be2536",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "ffa02c5da5f84054504dc8873be7334a616e1e576b66e8fc187ec2a297cb2e2c",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "cae777af49d24419903abb1ea6939b29245bcdfaf5c336a237d5b0dbd6591e3b",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "859a26ffc1bfc439645f9238972b771363c1196fbdcc44cd6ba639b0e167039a",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unknown decision mode"
+        },
+        {
+          "id": "8059fce12637197053075e5c44770e869d716d6364a48ae2b35a911bb427bfdd",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unknown decision mode"
+        },
+        {
+          "id": "20c5c96e874453277cea4fc0721f1fedbff73ac88ef7b3347df54306fb0977e8",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "43b15bb88f6005063378656bb3743a24c0607c438619ba358d66f71c2230b35d",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "bfd39628960cbde271c14dbf2de8cf57d4a9159aa3dadc3a883d16f8d1c3b6c9",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "c17960a2a5e2a66154b33ea2a81dc4df212010e9822d9ca057137f9f7d552cad",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "05a03e4f7a5ae0580609a4f152543eb9d6b46132a4a306ae5b90bed9df54d9bc",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "9e900b7cae20e31f59d15f42ed5af2535ad87089c3235088b26df6dfb6533432",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "4cdac24cce37c4ae324ccc4ef2dd7e735481bf8685817f033432b71d4c3c6e59",
+          "task": "temporal_revision",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 2 column 20 (char 82)"
+        },
+        {
+          "id": "a5914aa2c0606bc0e9e29485744151f9c52852ade666f170243a22d47e78b1c1",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "0de7b7924fd51def9043066acb0caaf40e92387d3f6d6dcb00d18480ff4c5106",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unknown decision mode"
+        },
+        {
+          "id": "a2f755f5430b620c2c144f817001783e30cc576c792bfb507bca55b1c34c0aa7",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "8f0baa39b5e309198c5442f131a8c426eb22b39f4d77dec7550d6a7bd57190b5",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "29c1b95dc32a8202d129e539cb17a2af34cec562455a6296128908c264dcae24",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "3707d68e05eec206c87e210723ec812e7ef323f7997c2958e6405e0a1379568f",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "09296280af368480df117ab255c1cdfa411a95d09bf4d65364841a5f559a12c5",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 61 (char 60)"
+        },
+        {
+          "id": "ce88459dfd495bc0d7c004d440c44965141c7015227c3d0e1075c071dd64d0e0",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "54e8a8c0a3c96f3171e716f22d3562c7b99d7bd99e26d666de510a8d1e02b491",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "8c85c4738a44d45a7df00a226c28cf4026c701a6b73677223a2b29ceb9f30738",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "a5a9e64a8b860b3b4920891c5c6ae50c5f0739101000d56278f2e6f75079e72d",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 55 (char 54)"
+        },
+        {
+          "id": "4b13f76a5d6cc31f4f81b54b24e617dc038c057ae389f225cbdbd661a952b0cc",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 71 (char 70)"
+        },
+        {
+          "id": "b934c406b3ff2ccdfd8d0dec82deba2f9907c6ad2c840e0a6de02658b580b505",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "ca96c10cad8f29bbe4e87393da554fbf422a2a3e40539247c8481f05b713861b",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "121e01b01bcf5c655c98db0de43ad47cb83715ffde57beef79587467fb648a1f",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "6334751af217aab3a2c9d402144c17806677f1ce5b47203bf5bb7643c2ad28a5",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "b9090d118e4e7caa551dda1360295b0f50eb910090557412f3afb6df3e27b43d",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "6767812001efe412888fcc7e757d8471e7050beaaffe5365cf5c1a376c7b57fb",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 70 (char 69)"
+        },
+        {
+          "id": "2e3d636369fad5a7cc1c5e03c64d154e2dea5a342f99d29aeecbd3b801f9fd36",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "8aa5be876ac5e99f3b2c96af6e82cce3420b79be60a51b4fa3bdeebc9c465aef",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 59 (char 58)"
+        },
+        {
+          "id": "d581965396d047a00fbe999b962197cbfd9e2f865008509cb8fec88edf10bf69",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unknown decision mode"
+        },
+        {
+          "id": "b44dc8c80b1e252f0d471b4a84a163ac21e674abfce18988e7100f9a09342012",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "5b60780575bf791799f0eea4fcc376f2bad58876ec4155d709a8b8df36e55e7e",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "c7fd546b87a3138121d914fd2ed1bc51cbb30ddb476c01697be8cf81e28a9a7a",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "ee62076654ef3c3f2aec44726e45d9ca443ae84dccb03c5b114d3ab2b770d725",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 71 (char 70)"
+        },
+        {
+          "id": "8c83ed5c6093b61274a3d1849c671610b0485dd656ee87a48d499b57d9a30d38",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "14f7452df287abef7ee494bbd5bdb81fbd8b7628356de80590619c4652c4b615",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        }
+      ]
+    },
+    "S": {
+      "counts": {
+        "ValueError: unexpected schema fields": 63,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)": 13,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 76 (char 75)": 1,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 69 (char 68)": 1,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 70 (char 69)": 3,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 55 (char 54)": 3,
+        "ValueError: unknown decision mode": 4,
+        "JSONDecodeError: Expecting value: line 1 column 11 (char 10)": 2,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 71 (char 70)": 2,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 61 (char 60)": 1,
+        "ValueError: exclusive root-assignment distribution must sum to one": 1,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 72 (char 71)": 1,
+        "JSONDecodeError: Expecting ',' delimiter: line 1 column 59 (char 58)": 1
+      },
+      "cases": [
+        {
+          "id": "1aae19fb97efb2cf7f95b054be69299d78d9b97574fa1375a3dfbb198ac65938",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "871143134c5296b45972ade44debec47ab7fc95c41eb088cab9dff15c2cd7e2e",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "c6876d3573a99f0106d8f33561bb0875e4f5c49dbd55d1bd705ac5c4de6138a4",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "e0d20cbf4352631fc0961948f6dc5828992cb2ceaf30a8d2c508e201bf6c4033",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "4cfdd42a0282a44eee207aeb6df2e453550dfd1210db0082431cc20993988da5",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "2f60aa4cfa60ba99f3d98fd32960f36f69fc72eb5e979d1a849877cde7aa2233",
+          "task": "temporal_revision",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 76 (char 75)"
+        },
+        {
+          "id": "0a891842dabe869bef11f6576e5ac677d64c6ad3142f2045f2e352d085746b8e",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "96bff5156a30390e83a2af9b3aac777678b40d6ff356d4503fada6944cc56d13",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 69 (char 68)"
+        },
+        {
+          "id": "ddb82de082169dea755e105afc68296d675295bac052f441d0e2425a758b4dc3",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "6f74a80d957d27e450ee188b2bce686b27fa93d08ed8a5ca1ed28de3a20a98f6",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "b009417fd0a59244dd590290b90d1a8b65ad8cc23628226230677b0e6abf3dea",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "1633a34b27d6a2ae5aca3582e184e5aafdad83cdde2f80beab8dd829f3a35f74",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "6b97027569c6ed9d7ae97a57645b0e435e3a7c85464d763facbce6de3ca0ce02",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "64d16ee71ab3b0dbd71f437c4f714a59680dedc05f94e05c608c955712980b28",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 70 (char 69)"
+        },
+        {
+          "id": "06ffce14fec8616d5b449da6cca995b37e8d39c9d5c634c7f1cb5f1867553f35",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "5c1a7a58aa28a79590f3ad7fa7463a44402e5bb7db0f9778fecce1aead39c5aa",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "cde44137e14408fd0670969febe0ec7f16f469001d458cfe4392b52671aeef29",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 70 (char 69)"
+        },
+        {
+          "id": "5a2bd94d5ed13792b2d3c85aab95b24ffa4e42cebe0eea4a5a9a673ef213fae7",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 55 (char 54)"
+        },
+        {
+          "id": "4be7763ba478b2605e1ed967edd7ff41da091c92cdb08a75e73ea6a1f9d6b94a",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unknown decision mode"
+        },
+        {
+          "id": "93fb1392118dc8f76b6307ae1cb4fd285b89e6c4e17913702808a5cd938ca9fb",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "63398920d3a5c56031864fdfc666a489214a0fc5ed65c0966ad424673b7adf3f",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "089bfba975fe9105b3a1379b1f4aba924ce9ddec7109e65c6f54fbe841d2cbf5",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "5bc0a8f8c159d8cd804c4c3ae541c49daae533cc73e3d36be7c1fa897b5255bf",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "23873e4056f56e2598c7e111ba3c21163eaae151cf8249e9809cd724b9276055",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "adebdf7d283d5aa1be047702dae6366b64735b0b5cfa3abfbbf1dcb3e31a2cd8",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting value: line 1 column 11 (char 10)"
+        },
+        {
+          "id": "b3ed2ea3ac4d2d4f75c2da930a574778f1957e60a1744f1dab50d7dfa7e22b78",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "08a80b863dd68e85b30ea3d5bcd765631b3e82ab3886537f715f44eb53447de5",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "fbf71df182bf0df36b1520fddf06d4a61e407724be35ad508498d0277a205552",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "8186bc664d5e0ff725d63564adfb1288e6803ba820d088db90e766802345db79",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "cb94108bab1c2661e9dff6d132e48fe578152d081ad8100c254623ed69cba7bb",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "ee31b285814a2e914bfa06891a5ade5f164df428abb5de23815bea0131fa24bb",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "cb4c74608109d6178d352a71406262895a67648fae0806810f40832dbbee00f5",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "d824645efc5b98a54a0445430e7d8b228652066435c96323ca00eb1425babb5f",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "906bebb59371eef6922f8d5ba07bf8552268ddae74865470fdb00b5e276eee14",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "1cb124aba7eae97dca0b5fb84ed9ff3025d8e910f0d3381af4e9ebcb0d521dd6",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "5b1cbcb99c942a9a051080c62d8cbb641bec62699edd5a23745be816e60ae1c5",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "2f32330b6d8c3c6d70786c60dc35ada18e8dfa21e1cbcf1a1aa6180778085bb8",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 71 (char 70)"
+        },
+        {
+          "id": "330c0ad691a14edffbfc615b907b9105c0854bc7a16fb735c09803f292112013",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "1a44d4a139f49b196c478656343aa791f8a23db035572229f810c6eeb1634578",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "0896408d075b894209ef4af499e8e1fbc4096bd8635725d66a90624ee19b89f5",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "0ef438533990961dde94e42ffdba25a02e8957b75963013b1bc9fb41422b7e26",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "9033df745805e394157612703d43fe97e89bc875b6e7fd8c65a3eefc92bebfea",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "5c58eb5164bc4dceeb2bfeb5a0095ab78c064a86b5b58d537a4a28c68288e504",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "5c093a9cc43a493f4ca9a65c039c961b94e7d39191758b24c428a6c49b9533b9",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 61 (char 60)"
+        },
+        {
+          "id": "7c6d0b17c25c7c7cdba3d6728a0f60683a82cd1672ccfa24e2ad64b3f1452355",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "8a89967312eab141f13e9c33b6891756ea3175e48a067c10901cd0770edd1744",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "2543c31d93a6ee7227440c26623eb1f4ea4fcf5d8b20b9e05e7da7eb9954387d",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "e7bcbcf635a937b130de842414a12dbcd0a102a7aa08b1faf90014bcba9d45d6",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 55 (char 54)"
+        },
+        {
+          "id": "fda3c8112fb6c9c73e6ed3d3ff7acddba0c73881ffb5040f656e95a9f573b8c6",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "fd440d259a699fada3f428f63454e17aac8dba0ec8a92aaffdb58963a15af45c",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "daa7d5284c9d86b5cee9aeb65611ae9c31f1927d07f0d2201e71ea1f4e615bd7",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting value: line 1 column 11 (char 10)"
+        },
+        {
+          "id": "e2da25464319bde0bb4b762d47c8ef7caa6935a124fd6cdc20207f881881e002",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "05f3f06d39e54c769439abf9d34722d83ac4f93913acc3ed9ef3631bbe770591",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "c562fc96645ea6abaab9eca9be8f5010e203697dc3f376baa9f245723922521a",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "78c196e803aab460b2d3f9377e2144d3437208934afae39b6a01c6dcbb3e74f7",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "d6e1e890c97b975c33cec18e81828a5f21e93fea805af9c933b56d06ee704f5b",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "7dcae8a4b4c0da4756c6da162d9373f1ba150b74247f6e0525052c6b3420d354",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 55 (char 54)"
+        },
+        {
+          "id": "2a67237fcf2d8fa455e550b7209f6910fb32bbf509526b864201544725be2536",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "ffa02c5da5f84054504dc8873be7334a616e1e576b66e8fc187ec2a297cb2e2c",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "cae777af49d24419903abb1ea6939b29245bcdfaf5c336a237d5b0dbd6591e3b",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "859a26ffc1bfc439645f9238972b771363c1196fbdcc44cd6ba639b0e167039a",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "8059fce12637197053075e5c44770e869d716d6364a48ae2b35a911bb427bfdd",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unknown decision mode"
+        },
+        {
+          "id": "20c5c96e874453277cea4fc0721f1fedbff73ac88ef7b3347df54306fb0977e8",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "43b15bb88f6005063378656bb3743a24c0607c438619ba358d66f71c2230b35d",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "bfd39628960cbde271c14dbf2de8cf57d4a9159aa3dadc3a883d16f8d1c3b6c9",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "c17960a2a5e2a66154b33ea2a81dc4df212010e9822d9ca057137f9f7d552cad",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "05a03e4f7a5ae0580609a4f152543eb9d6b46132a4a306ae5b90bed9df54d9bc",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "9e900b7cae20e31f59d15f42ed5af2535ad87089c3235088b26df6dfb6533432",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "4cdac24cce37c4ae324ccc4ef2dd7e735481bf8685817f033432b71d4c3c6e59",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "a5914aa2c0606bc0e9e29485744151f9c52852ade666f170243a22d47e78b1c1",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "0de7b7924fd51def9043066acb0caaf40e92387d3f6d6dcb00d18480ff4c5106",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unknown decision mode"
+        },
+        {
+          "id": "a2f755f5430b620c2c144f817001783e30cc576c792bfb507bca55b1c34c0aa7",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "8f0baa39b5e309198c5442f131a8c426eb22b39f4d77dec7550d6a7bd57190b5",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "29c1b95dc32a8202d129e539cb17a2af34cec562455a6296128908c264dcae24",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "3707d68e05eec206c87e210723ec812e7ef323f7997c2958e6405e0a1379568f",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "09296280af368480df117ab255c1cdfa411a95d09bf4d65364841a5f559a12c5",
+          "task": "abduction",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: exclusive root-assignment distribution must sum to one"
+        },
+        {
+          "id": "ce88459dfd495bc0d7c004d440c44965141c7015227c3d0e1075c071dd64d0e0",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "54e8a8c0a3c96f3171e716f22d3562c7b99d7bd99e26d666de510a8d1e02b491",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "8c85c4738a44d45a7df00a226c28cf4026c701a6b73677223a2b29ceb9f30738",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "a5a9e64a8b860b3b4920891c5c6ae50c5f0739101000d56278f2e6f75079e72d",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "4b13f76a5d6cc31f4f81b54b24e617dc038c057ae389f225cbdbd661a952b0cc",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 72 (char 71)"
+        },
+        {
+          "id": "b934c406b3ff2ccdfd8d0dec82deba2f9907c6ad2c840e0a6de02658b580b505",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "ca96c10cad8f29bbe4e87393da554fbf422a2a3e40539247c8481f05b713861b",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "121e01b01bcf5c655c98db0de43ad47cb83715ffde57beef79587467fb648a1f",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 60 (char 59)"
+        },
+        {
+          "id": "6334751af217aab3a2c9d402144c17806677f1ce5b47203bf5bb7643c2ad28a5",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "b9090d118e4e7caa551dda1360295b0f50eb910090557412f3afb6df3e27b43d",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "6767812001efe412888fcc7e757d8471e7050beaaffe5365cf5c1a376c7b57fb",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 70 (char 69)"
+        },
+        {
+          "id": "2e3d636369fad5a7cc1c5e03c64d154e2dea5a342f99d29aeecbd3b801f9fd36",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "8aa5be876ac5e99f3b2c96af6e82cce3420b79be60a51b4fa3bdeebc9c465aef",
+          "task": "abduction",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 59 (char 58)"
+        },
+        {
+          "id": "d581965396d047a00fbe999b962197cbfd9e2f865008509cb8fec88edf10bf69",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unknown decision mode"
+        },
+        {
+          "id": "b44dc8c80b1e252f0d471b4a84a163ac21e674abfce18988e7100f9a09342012",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "5b60780575bf791799f0eea4fcc376f2bad58876ec4155d709a8b8df36e55e7e",
+          "task": "revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "c7fd546b87a3138121d914fd2ed1bc51cbb30ddb476c01697be8cf81e28a9a7a",
+          "task": "temporal_revision",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "ee62076654ef3c3f2aec44726e45d9ca443ae84dccb03c5b114d3ab2b770d725",
+          "task": "inference",
+          "collector_status": "INVALID_OUTPUT",
+          "first_validation_result": "JSONDecodeError: Expecting ',' delimiter: line 1 column 71 (char 70)"
+        },
+        {
+          "id": "8c83ed5c6093b61274a3d1849c671610b0485dd656ee87a48d499b57d9a30d38",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        },
+        {
+          "id": "14f7452df287abef7ee494bbd5bdb81fbd8b7628356de80590619c4652c4b615",
+          "task": "inference",
+          "collector_status": "OK",
+          "first_validation_result": "ValueError: unexpected schema fields"
+        }
+      ]
+    }
+  }
+}

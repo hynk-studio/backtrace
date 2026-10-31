@@ -1,0 +1,21 @@
+{
+  "row_kinds": {
+    "common_format": 64,
+    "reasoning": 256
+  },
+  "specialist_reasoning_target_status": {
+    "OK": 206,
+    "INCONSISTENT_EVIDENCE": 16,
+    "MODEL_MISMATCH": 34
+  },
+  "target_differences": {
+    "temporal_revision:different": 52,
+    "inference:different": 37,
+    "revision:different": 64,
+    "abduction:same": 27,
+    "inference:same": 27,
+    "temporal_revision:same": 12,
+    "abduction:different": 37
+  },
+  "control_interpretation": "Both arms share bookkeeping/consistency and format supervision; probability objectives differ only where the target distribution changes."
+}

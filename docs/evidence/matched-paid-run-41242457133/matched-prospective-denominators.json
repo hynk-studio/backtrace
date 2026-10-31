@@ -1,0 +1,103 @@
+{
+  "observed_before_result": true,
+  "at": 1793481990.8107147,
+  "assigned": 96,
+  "tasks": {
+    "inference": {
+      "assigned": 24,
+      "family_counts": {
+        "497eabeff907a687570ea9f8eb7f4295700eba028f73f52e0092d15747177966": 3,
+        "36f1e883154d24a1bdc596ee24bc0c4d9d0e0ed808e8b331e10703df5d95c4a3": 3,
+        "72e7f93dde09767ab21033b1b4b6b9e0dd091ef46a41f3e76f79d5e397e8424d": 3,
+        "697c574fec30cfb058aaf0d0ae4cc8bc1e4913ec105e8d23270322d2a4f12240": 3,
+        "36b394ac6e3a53dfb9b207e7b41e752e5efb5af32804b357023d77cee4dd0f7b": 3,
+        "60aad18dcf0d81e43225aecd718d40f29311b8e05eedf04fce387ac3a3d34673": 3,
+        "5a0de7e6c90b8a6a380cac031214978be8c016debbfa96587086916208828325": 3,
+        "4680732072e2a58ab0ed8b5da0cd85d93cc31f47b2e3dbc0b0f2e63f757baba6": 3
+      },
+      "reference_status": {
+        "INCONSISTENT_EVIDENCE": 4,
+        "OK": 17,
+        "MODEL_MISMATCH": 3
+      },
+      "metric_denominators": {
+        "status_error": 24,
+        "posterior_mae": 17,
+        "normalized_decision_regret": 17
+      }
+    },
+    "abduction": {
+      "assigned": 24,
+      "family_counts": {
+        "697c574fec30cfb058aaf0d0ae4cc8bc1e4913ec105e8d23270322d2a4f12240": 3,
+        "36b394ac6e3a53dfb9b207e7b41e752e5efb5af32804b357023d77cee4dd0f7b": 3,
+        "4680732072e2a58ab0ed8b5da0cd85d93cc31f47b2e3dbc0b0f2e63f757baba6": 3,
+        "72e7f93dde09767ab21033b1b4b6b9e0dd091ef46a41f3e76f79d5e397e8424d": 3,
+        "60aad18dcf0d81e43225aecd718d40f29311b8e05eedf04fce387ac3a3d34673": 3,
+        "5a0de7e6c90b8a6a380cac031214978be8c016debbfa96587086916208828325": 3,
+        "36f1e883154d24a1bdc596ee24bc0c4d9d0e0ed808e8b331e10703df5d95c4a3": 3,
+        "497eabeff907a687570ea9f8eb7f4295700eba028f73f52e0092d15747177966": 3
+      },
+      "reference_status": {
+        "OK": 17,
+        "MODEL_MISMATCH": 5,
+        "INCONSISTENT_EVIDENCE": 2
+      },
+      "metric_denominators": {
+        "status_error": 24,
+        "posterior_mae": 17,
+        "hypothesis_precision_error": 17,
+        "hypothesis_recall_error": 17,
+        "forward_prediction_mae": 17
+      }
+    },
+    "revision": {
+      "assigned": 24,
+      "family_counts": {
+        "4680732072e2a58ab0ed8b5da0cd85d93cc31f47b2e3dbc0b0f2e63f757baba6": 3,
+        "697c574fec30cfb058aaf0d0ae4cc8bc1e4913ec105e8d23270322d2a4f12240": 3,
+        "497eabeff907a687570ea9f8eb7f4295700eba028f73f52e0092d15747177966": 3,
+        "5a0de7e6c90b8a6a380cac031214978be8c016debbfa96587086916208828325": 3,
+        "36b394ac6e3a53dfb9b207e7b41e752e5efb5af32804b357023d77cee4dd0f7b": 3,
+        "72e7f93dde09767ab21033b1b4b6b9e0dd091ef46a41f3e76f79d5e397e8424d": 3,
+        "36f1e883154d24a1bdc596ee24bc0c4d9d0e0ed808e8b331e10703df5d95c4a3": 3,
+        "60aad18dcf0d81e43225aecd718d40f29311b8e05eedf04fce387ac3a3d34673": 3
+      },
+      "reference_status": {
+        "OK": 24
+      },
+      "metric_denominators": {
+        "status_error": 24,
+        "posterior_mae": 24,
+        "normalized_decision_regret": 24,
+        "evidence_selection_error": 24
+      }
+    },
+    "temporal_revision": {
+      "assigned": 24,
+      "family_counts": {
+        "5a0de7e6c90b8a6a380cac031214978be8c016debbfa96587086916208828325": 3,
+        "697c574fec30cfb058aaf0d0ae4cc8bc1e4913ec105e8d23270322d2a4f12240": 3,
+        "36b394ac6e3a53dfb9b207e7b41e752e5efb5af32804b357023d77cee4dd0f7b": 3,
+        "60aad18dcf0d81e43225aecd718d40f29311b8e05eedf04fce387ac3a3d34673": 3,
+        "4680732072e2a58ab0ed8b5da0cd85d93cc31f47b2e3dbc0b0f2e63f757baba6": 3,
+        "72e7f93dde09767ab21033b1b4b6b9e0dd091ef46a41f3e76f79d5e397e8424d": 3,
+        "36f1e883154d24a1bdc596ee24bc0c4d9d0e0ed808e8b331e10703df5d95c4a3": 3,
+        "497eabeff907a687570ea9f8eb7f4295700eba028f73f52e0092d15747177966": 3
+      },
+      "reference_status": {
+        "MODEL_MISMATCH": 5,
+        "OK": 19
+      },
+      "metric_denominators": {
+        "status_error": 24,
+        "evidence_selection_error": 24,
+        "posterior_mae": 19,
+        "normalized_decision_regret": 19,
+        "past_posterior_mae": 19,
+        "current_posterior_mae": 19,
+        "change_posterior_mae": 19
+      }
+    }
+  }
+}

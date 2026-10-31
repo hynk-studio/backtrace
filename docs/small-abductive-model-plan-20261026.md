@@ -1,4 +1,43 @@
 Current checkpoint,2026-10-31 20:19 UTC: actual E2B four-update/save-reload and
+
+## Current result: matched candidate complete, practical comparison blocked
+
+Read [the actual matched result](small-model-matched-result-20261031.md).
+Run41242457133 completed348 responses and640 actual updates, with byte-verified
+adapter export and distinct-process reload. B1/B2/S synthetic task-valid counts
+are8/96,0/96,0/96 and decision-regret penalties remain1 throughout. Twenty Augnes
+cases per arm do not establish added value. This candidate is negative; do not
+adopt it or perform confirmation of an unsupported gain. Both controllers proved
+GPU deletion;21:52:02 inventory is empty and observed creditUSD1.4047911923.
+
+Actual tiny-update feasibility and the matched learning experiment are complete.
+Current Augnes-flow and additional-main-model comparison remains unrun because
+all three service connections again failed after execution. No integration repair
+operation is available here. Restore the local service/tunnel before that step.
+Earlier dated checkpoints below are historical. Reserved labels remain untouched;
+one seed, narrow B2, final snapshots and unblinded retrospective packets constrain
+interpretation. No broad specialist impossibility or deployment benefit is claimed.
+
+
+## Matched E2B learning candidate (2026-10-31 UTC)
+
+Read docs/small-model-matched-candidate-20261031.md. E2B actual four-update
+feasibility and E4B20-response screening are complete, with both allocations
+deleted. Continue one bounded B1/B2/S candidate:320 updates per trained arm,
+64 training episodes,96 fresh development episodes and20 fixed Augnes packets
+per arm (348 generations total). Preserve matched masks/padding, original
+missing-output denominators, raw adapters and fresh-process reload evidence.
+One seed and a narrow forward-probability B2 are candidate evidence, not proof
+of specialist advantage or current Augnes value. Do not stop at preparation.
+
+New scope:matched-candidate-paid-20261031; review/start/state branches use
+bt-001-matched-candidate[-start|-state]-20261031. Before any allocation require
+full exact-source native/container/input qualification and a fresh permit. Bound
+one allocation atUSD0.90, continuationUSD2.30, credit floorUSD0.6060441339,
+5340/4920/300/120 seconds total/work/cleanup/export. Fresh current stock/price/
+balance and no active Pod are mandatory. No top-up, retry, overlap, merge or
+Augnes write. Preserve all consumed prior sources/starts/results unchanged.
+
 all20 untrained screening outputs now exist across explicit preserved attempts.
 See [the actual completion result](small-model-public-completion-result-20261031.md).
 There are19 strict JSON/14 explicit structural passes; no measured learning or
@@ -471,12 +510,12 @@ Do not claim counterfactual task resolution from an unexecuted recommendation.
 
 | Stage | Deliverable | Current status |
 | --- | --- | --- |
-| A0: goal and capability contract | Augnes-first plan; E2B first, E4B conditional; competition abandoned | Documented; no model result |
-| A1: actual baseline and early replay | Existing 18 E2B B0/B1 assignments and 3–5 development replays | Completed E2B 18 assignments plus six responses for three replays; all synthetic task outputs invalid, replay content mixed. Conditional E4B comparison next |
-| A2: optional training feasibility | Tiny update/save/reload and observed resource budget | NOT RUN |
-| A3: candidate screening | One-seed matched B2/S; bounded data/token ceilings | NOT RUN; B1 can bypass training for shadow screening |
-| A4: practical value | About 20 independent offline/shadow episodes, four flow comparisons | NOT RUN; does not require synthetic superiority |
-| A5: confirmation and adoption judgment | Fresh families, three seeds where learning is claimed, measured deployment artifact | NOT RUN; no Kaggle decision remains |
+| A0: goal and capability contract | Augnes-first plan; E2B first, E4B conditional; competition abandoned | Documented; actual baseline, feasibility and candidate results now retained |
+| A1: actual baseline and early replay | Original baseline/replays and fixed twenty-case screen | Complete: E2B twenty responses across explicitly linked attempts; E4B twenty responses; mixed diagnostic content and no demonstrated workflow benefit |
+| A2: optional training feasibility | Tiny update/save/reload and observed resource budget | Complete: four-update actual test, then320 updates per matched arm with distinct-process reload; training peaks exceed12GB |
+| A3: candidate screening | One-seed matched B2/S; bounded data/token ceilings | Complete, negative candidate:348 responses; B1/B2/S task validity8/0/0 of96; no specialist benefit established |
+| A4: practical value | Fresh shadow episodes and current-flow/main-model comparisons | Blocked by all three Augnes connections failing; retrospective small-model packets are not this comparison |
+| A5: confirmation and adoption judgment | Fresh families, three seeds where learning is claimed, measured deployment artifact | Not triggered for the failed candidate; no deployment adoption or Kaggle task |
 
 Add only components required for the next measurement; do not rebuild agent or
 provider frameworks. E4B is conditional on an identified capacity question. Keep

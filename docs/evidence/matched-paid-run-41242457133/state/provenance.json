@@ -1,0 +1,34 @@
+{
+  "authorization": {
+    "git_blob": "512812963180a43994c660f3ded0963281b22592",
+    "sha256": "96f37ba378b547e81457de2a2cb10e2be5962bebeb48f78f3f14c4314efa20de"
+  },
+  "owner": {
+    "git_blob": "1f73c94bd93359aef0e3e66c81520e0e30cfb295",
+    "sha256": "33093707717b40082e5231591d0f23c11497894ad564b4f4f8a8521468cf31d8"
+  },
+  "watch": {
+    "git_blob": "57b5da2807e8390ae25fd1db90ec78af74456ff4",
+    "sha256": "a8aba219372eda20c42ce7ed8143a612cfde54db1abeb0677179a62ede6a26cc"
+  },
+  "claim": {
+    "git_blob": "9ff76d918a79c34ebc0b9d0ad0efa940e85c1ca7",
+    "sha256": "528a2751b3a106a3700023691ca961c9458b9c3d1c743a05c1decd30b78e939f"
+  },
+  "pod": {
+    "git_blob": "f5b8ed589d7a1f936f4e7a6fbd46548f9ab0f4f2",
+    "sha256": "478efc4935140dc2c73e43ea3a5b50e8bd7545e7c35b1092ba81193f85f35adf"
+  },
+  "done": {
+    "git_blob": "10a2120da2724968c69bf188cad59a1de92960f3",
+    "sha256": "b9c40bc4431dfa97251a7f2be6d752728509c642c53d356ecf4d3b51c11f62fd"
+  },
+  "owner-cleanup": {
+    "git_blob": "c59a403f9686be7e55adcef3257cc23afc6a03cb",
+    "sha256": "c9c5f147a4024afd1a4a983ecb6c64b6cba63d5d83e38951f4d125b3eebd0194"
+  },
+  "watch-cleanup": {
+    "git_blob": "3317bafad0d14df951f63751927a2005e65b2f0a",
+    "sha256": "4b829aed7cf8d2664970a86f4337c32688cf7106048245c59fd4380228e39ff2"
+  }
+}

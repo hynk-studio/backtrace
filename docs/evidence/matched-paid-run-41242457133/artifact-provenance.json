@@ -1,0 +1,4847 @@
+{
+  "source_sha": "49191f580d35984a52e53f0df3c80d52350aead7",
+  "local_source": "54a9fa4c937beff969124af73d63683e50faecd1",
+  "run_id": 41242457133,
+  "artifacts": {
+    "owner": {
+      "id": 13059491588,
+      "sha256": "1a19e536fe85138959a65566520e9387176a6f522b743e1dd48bf52da504ceae",
+      "local_zip": "/workspace/scratch/565575038e73/matched-paid-owner.zip"
+    },
+    "watch": {
+      "id": 13059371993,
+      "sha256": "c8d7e7cf1d710b3d1a86c0d67617d49b5cb436d6d59c289fd22990864794971e",
+      "local_zip": "/workspace/scratch/565575038e73/matched-paid-watch.zip"
+    }
+  },
+  "raw_files": [
+    {
+      "role": "owner",
+      "path": "account-after.json",
+      "bytes": 22761,
+      "sha256": "f815d1bcc1c46890aba33967d1ae780df1362ac3e24854011aa87ee7c842bc54"
+    },
+    {
+      "role": "owner",
+      "path": "assignment-before-allocation.json",
+      "bytes": 291251,
+      "sha256": "a178dd38eeb3826132e015c6b568dbed79e9b87bbd0a51797845f902ebc0e611"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/receipt.json",
+      "bytes": 69943,
+      "sha256": "9d89037ddb468eecfed4639303c12c763daa9ab371ac094326561eb014c1f186"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/B1-evaluation-teardown.json",
+      "bytes": 799,
+      "sha256": "c798ea8f9fa1ed65a31c58b4b13b0023c10077a13d386f28b82d5daf833db8ed"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/B2-evaluation-teardown.json",
+      "bytes": 800,
+      "sha256": "dd915946b9a3652ae674b90ed19dd9cad0ac350451b08af4ec52c29ebd1e75f4"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/B2-restore-installation.json",
+      "bytes": 281,
+      "sha256": "d45a66b6684caa98a6df2a747c6325193fd613b539ef3879e0cea7b832972584"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/B2-restore-transfer.json",
+      "bytes": 1336,
+      "sha256": "80d1a9b704896dfcc4541ce668a2633117fa11281a764fa29c291e24246d8301"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/B2-training-ready.json",
+      "bytes": 138660,
+      "sha256": "07c4eec4237e0300e2d72f47b22d5296f0c069825db7ee56ed015e9f8b088445"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/B2-training-stderr.log",
+      "bytes": 97835,
+      "sha256": "9293113d3c35c2a14c88a1bcb1a90730f30e99b73e806a57c726f193e59d9d5b"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/B2-training-teardown.json",
+      "bytes": 799,
+      "sha256": "e930a71c3875c9d37d38dd5721b49afecffa6d83b231e5b39f055d6dff0bf4b7"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/S-evaluation-teardown.json",
+      "bytes": 800,
+      "sha256": "ee4a832bb7c425922501ed7979edf3c04122dfa5d21b4c202817b1f038e279ea"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/S-restore-installation.json",
+      "bytes": 281,
+      "sha256": "02efc5144be383ed4831a1c66eb38d83b93cbd99c93a6e8eae36ad866b07b15c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/S-restore-transfer.json",
+      "bytes": 1336,
+      "sha256": "e70b22e222c5086af0fac8244eeb18ae717a8df4a253913ad0328eb67024bbfd"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/S-training-ready.json",
+      "bytes": 138632,
+      "sha256": "2b8d73ee2107ce36996329395b8f68fc7e851d85ba991ea57f71b02f43ffe82f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/S-training-stderr.log",
+      "bytes": 97427,
+      "sha256": "76b2bf41fcf0c77482ea160b1627ba709949c787b25242479e12b64c19fd7282"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/S-training-teardown.json",
+      "bytes": 798,
+      "sha256": "0f85aa60ce3083a5307e163583a018f02902192f43f69d9f2fc6319ea318b61f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/all-assignment-outcomes.json",
+      "bytes": 436416,
+      "sha256": "f6c41596e791e25e9110eeefa0166ca79ce695c07d34a1c4ddc6a06aed2ca698"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/asset-transfer-progress.json",
+      "bytes": 2112,
+      "sha256": "393d86905de92585653d0d3702f221afdd9e4aa778426170780eec7991d39851"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/asset-transfer-progress.json.owner.json",
+      "bytes": 1344,
+      "sha256": "425a0791554a6e59b4b42ae352e9fe7add0c7ad9c81b5aec693156ffbe157bae"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/asset-transfer-progress.json.receiver.log",
+      "bytes": 20361,
+      "sha256": "804d05a3535c589d17fff1688499e1fe3873c9d431fc32bb239b0e4e7115b353"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/asset-transfer.json",
+      "bytes": 328,
+      "sha256": "404afd088c181a01dee7150450f8ebfcc22b58ca88d6565de7a6070f212c934d"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/E2B-ready.json",
+      "bytes": 595,
+      "sha256": "b4e095645413dee0d8587b266e175ca236b58a479fe59908f3c3ac1f380a53b8"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/assignment.json",
+      "bytes": 24607,
+      "sha256": "6d5ecb4d8dedd2cde6ac99f83b13daa526df35fee67f1818d32c1a92c36b4376"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/E2B-stderr.log",
+      "bytes": 12177,
+      "sha256": "ff3649221a2f29c31b956c733510a133aa27a5bc46b124480e6e6bc598802ab6"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/collection.json",
+      "bytes": 148964,
+      "sha256": "3d3455e319b3e7bb13a30fe6a3bf70dfd459c0bbeb446866297e49a48f883409"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/ledger.jsonl",
+      "bytes": 165081,
+      "sha256": "d924d64b183d67e009b0259a5fab1271b6a540497eb9300d404dab0e6ccb2869"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0000.json",
+      "bytes": 807,
+      "sha256": "714461806a3b2b2a5f3abc12f78a2d9ab38f38b684117be183869fa420ec0fa9"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0001.json",
+      "bytes": 618,
+      "sha256": "9538585c3364b223d51e761d785b8d587976ed8706a8b73979c6a43a55e76425"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0002.json",
+      "bytes": 1404,
+      "sha256": "1f121d4dd7f34084c5c6a11d42f164ed075c05f73a6cad78548307e67736dadd"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0003.json",
+      "bytes": 783,
+      "sha256": "407b8d7d183e8747cc06a472da44f42c3e298ece7dfe7f50a127fb1146a460bc"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0005.json",
+      "bytes": 617,
+      "sha256": "ce0d4c1eb2be6a25374cc2fc886eced0484d5450fd5d12a09a21cc570238317d"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0004.json",
+      "bytes": 618,
+      "sha256": "bcb47b51a34cba5af36e59d2048a30ce37892ea865a43cff0582d5aa646e4524"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0006.json",
+      "bytes": 783,
+      "sha256": "f54814bc13acb70ecb07a48c51a09fcc48531a2abb248aa6ffbf2f5f59909917"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0007.json",
+      "bytes": 2910,
+      "sha256": "9195e9a80e1c44b30ca758acfd407024ba0beac5bcc4b033ad7326d331202f8a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0008.json",
+      "bytes": 808,
+      "sha256": "7c222f3adf2547d02ecc194c87d7600eb3524388d0ebc16a9cd894e31e639aee"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0009.json",
+      "bytes": 1548,
+      "sha256": "7dcc9b979c1490957555387fbf29d87e444414078dd52b9b71dec7801ab7eb7e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0010.json",
+      "bytes": 782,
+      "sha256": "67307ec8624fbf3a097ba1cd6ef5225de4061300ec9aff0200384e8271de9962"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0011.json",
+      "bytes": 703,
+      "sha256": "5612a46a5b7e117d3b3f115cbb04b1a0d118d1d6bd449082299e67f01b444c37"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0012.json",
+      "bytes": 1203,
+      "sha256": "b86778a20f50244bf705c2b7ffd5000fdd2462c1511353f842a34c661d2a8fc3"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0013.json",
+      "bytes": 3300,
+      "sha256": "e7ce3bd4e0032dbf7d4b961fe67337c00135e9887914bc62d581cf14ec33565a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0014.json",
+      "bytes": 783,
+      "sha256": "9c1c5f94bcf6ea8c3475147809d9fb6e59524f046a97f8972cdf7e4012082858"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0015.json",
+      "bytes": 783,
+      "sha256": "05c8c2d1879aa769ad501b302bf2cdd46dcd96d89e0cfee4276b05d5532c975c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0016.json",
+      "bytes": 2716,
+      "sha256": "8ac1f9cce10315c706df884fd0a8354f7c6a745df3c44418038759a150203877"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0017.json",
+      "bytes": 702,
+      "sha256": "4ad25f8e10cece438c9c39f7ea37dadf0b1f8b0ae7c8a683b3ab307e8b3909ef"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0018.json",
+      "bytes": 808,
+      "sha256": "da694d87dc4d449eb0a5fb5da7d452eb7265fc6a4c538681ec7af4862acf66f4"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0019.json",
+      "bytes": 618,
+      "sha256": "d4f66780d2a54fba80bcbc30e5042b6f3f18747f278d5439ab7887f4b35c7c3d"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0020.json",
+      "bytes": 1707,
+      "sha256": "b3a3fcd8446c7302347607392a83a545409e923f2901c708bd53197a09e84ac1"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0021.json",
+      "bytes": 784,
+      "sha256": "e43b703c9b9bc8bde009d9e27f265bb723db7108ff5a558f4ba9764be3c10c43"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0022.json",
+      "bytes": 784,
+      "sha256": "6d44920c99d72b45b042ff009b5ed66384302e69e1aa868fe41557120125711f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0025.json",
+      "bytes": 688,
+      "sha256": "dd07d833d1ca2dc4216b49d0395960a0af46a73c8d2197e661b4fa83976ca718"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0024.json",
+      "bytes": 866,
+      "sha256": "b7409ae50322d640b5816feb15d26b8f4cb2ff85a783cb40129569fbe2a52198"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0023.json",
+      "bytes": 617,
+      "sha256": "4252ec354fb9553d9674dd56001d71d41994ac58e2fa2f0d49f5a04d2b78d36a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0026.json",
+      "bytes": 704,
+      "sha256": "7b45339d433c58eb41607859f0ac554c1093def82abe3cfbe78c795c8f9a875b"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0028.json",
+      "bytes": 807,
+      "sha256": "c12db5a99514a555ac4ae3ef0627f34e7681fabb4d386a97454824a56b37e265"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0027.json",
+      "bytes": 784,
+      "sha256": "24f529ae934ea25d5fb36152a324b3c3099941e46a16dcec5b44e3ffc5aba28a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0030.json",
+      "bytes": 617,
+      "sha256": "c4313f24d30262a058ab931a735608c2546e91e5a68ba8d2d546c1a6197da68e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0029.json",
+      "bytes": 618,
+      "sha256": "1a4406292718fcdd60ebd53e6a8d981df06854837b5846e54048ec21003c6433"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0031.json",
+      "bytes": 784,
+      "sha256": "ff815697638dc90b01385fecec47dde4be2c24c23ba34c0dbc29c45669612b85"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0032.json",
+      "bytes": 1609,
+      "sha256": "b80d4765fb9d45e7f4bec4cf707e3b5705a301375fb8b0e631c85b85d32b855d"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0033.json",
+      "bytes": 807,
+      "sha256": "30ceb1c10b2ede784e34cc3a8088ddab882b8cd1a20ed971596e4fda138fc0ff"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0034.json",
+      "bytes": 783,
+      "sha256": "1b03700480d30e2cee15680cebe2aae4c8b331b33683e425a5865aa4f70daf1a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0035.json",
+      "bytes": 921,
+      "sha256": "823d19e6d49e6680886294e987ecfda72e3361f9ed60b63bfe5d6a0a9ec57cfa"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0036.json",
+      "bytes": 1512,
+      "sha256": "4154019d834194d6d1809c8edddd077c514c60a1c7a696cc3b3fe372fb4c9c18"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0038.json",
+      "bytes": 617,
+      "sha256": "5daa8bb153c91d45901ec732b941e14c985aab2214db6c18af02132049f8b033"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0037.json",
+      "bytes": 784,
+      "sha256": "e108228c5d8318a7dc87c0057c5c531e1a00cae1b47d08567d56edbcaa29a873"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0039.json",
+      "bytes": 618,
+      "sha256": "d3e9e352dafc1b0ec8c8fad36ebe35d324e2c788cc6f9889b4858b62c6bf818a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0040.json",
+      "bytes": 808,
+      "sha256": "dc9cf195471bfcc8e983cd33d77f6a8b641754328e5f9617ab1aba5393d18564"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0041.json",
+      "bytes": 618,
+      "sha256": "8c5f7e48f8b8949bdf74598a3218c8390176dec3e8f167bdd0f61d4217bdff02"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0043.json",
+      "bytes": 911,
+      "sha256": "2a57ade8ce30638be51eb083c13ecafec8b1a10ff8e13cd99642c38974274354"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0042.json",
+      "bytes": 807,
+      "sha256": "a8cadaf84c69143ca79dee41910af1a9c010a207ef51f65766dcdb754ec628e8"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0044.json",
+      "bytes": 694,
+      "sha256": "2362f2136ac8537c6c87a9e0a0dd8ca60bda8d58ba2338ffa9ea21194f208f3b"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0045.json",
+      "bytes": 807,
+      "sha256": "5ce5faeaa115d8b63ee1e66b5a176daef15caa1af84e9feaed8c696a53b8fc9a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0046.json",
+      "bytes": 782,
+      "sha256": "bc89bbbcfedf3340f02f556a03d2fadb10b8138846b93db568b400ac83580bfe"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0047.json",
+      "bytes": 695,
+      "sha256": "95678aed0ebcda6de4b4221279dabe8b07a139cfe7af8cbfcf532fd1def2377e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0048.json",
+      "bytes": 783,
+      "sha256": "81ea8d5d7250fbc52e77f3d17be8177bd34474e886d417940706bfeee6875713"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0049.json",
+      "bytes": 782,
+      "sha256": "77d148cd357b4c857c3a21c94d03c7e2e5581d778766c6804a4eb4c398bc30f2"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0050.json",
+      "bytes": 1448,
+      "sha256": "7ec84798706bd6979127c0e86735601d2b87c03dbed3237b57eaa043ebc3e704"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0051.json",
+      "bytes": 781,
+      "sha256": "b8bd969d1ca8e070ac3214ee6c5d0263cad062fe760604e34700c3060739f06a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0052.json",
+      "bytes": 826,
+      "sha256": "b184a89e3dba1a3fef6a202885c61bb5c51948b4bfb56cb00f89a17cae6bb4c1"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0053.json",
+      "bytes": 783,
+      "sha256": "2d54c08779152ae3a6d57f31977a26483231070e921b485806df6d770c65c30d"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0054.json",
+      "bytes": 695,
+      "sha256": "000d8ad0c161f613a3b2e0696dfdd4d5c9d613dbb20375a42235a7a8c00612dc"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0055.json",
+      "bytes": 783,
+      "sha256": "b3e3cbeed3d8ad9c0e49ba895516388fef8d384668dea4dc317f07ff0d3761ab"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0056.json",
+      "bytes": 719,
+      "sha256": "567e3a9188701f4611bad38dcceff4be5b071addc9c1fdb50ebe5162a1614333"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0057.json",
+      "bytes": 925,
+      "sha256": "ba82ac5082aed24fe4971c91e82190d1837f198183de5176735a68b5e0a8c915"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0058.json",
+      "bytes": 618,
+      "sha256": "972b5b81340d3797867c257dc5d0f1a73bbe2ad0c60e814a081237b7361de50f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0059.json",
+      "bytes": 928,
+      "sha256": "52a346f78077b0c3c93f22f92fe51aa66c73ad057ea5c74caec3f16ce80d7080"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0060.json",
+      "bytes": 808,
+      "sha256": "e7901ae96546c30712f36ef964185c3e146dfe9dd11d8a50d2569e78c05c3bf0"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0061.json",
+      "bytes": 618,
+      "sha256": "bf7164cc66df8a1ca5db5b0aeb550a8297c41808a70feea58bbde8f2963da64f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0062.json",
+      "bytes": 808,
+      "sha256": "7f36533aa12c11d40f6ca4e85e66f2cc18a9a3eb074d6191bbea84c8208817ae"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0063.json",
+      "bytes": 618,
+      "sha256": "7bf75b8a822b2032aabf69657382c2e4b97afd2e103ea1f3412f3a5a8788f838"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0064.json",
+      "bytes": 808,
+      "sha256": "40a3008a3aac2f0ffe81f7b8959a14df1c570e67c06b8f2eccfd87d66d008be4"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0065.json",
+      "bytes": 617,
+      "sha256": "e68929847a56d555bc7b59ec3689f76c502fe35a475e286e6aee1579dc7197df"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0066.json",
+      "bytes": 1106,
+      "sha256": "506a7a6df01e05ce469c8fd2a4b4a20160da3535085dd8b7c7a876c452124254"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0067.json",
+      "bytes": 926,
+      "sha256": "1c3525bd9c06ad669a670ece5bb4e7f4947f764c92f46a08e30df0dca5ec0cd8"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0068.json",
+      "bytes": 807,
+      "sha256": "2422a34ab8d12675239e7287fd5e25ae958a3f14bf2ed7fbb5bbbdc63a093475"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0069.json",
+      "bytes": 1528,
+      "sha256": "01281f97fcd33d1b36a2f998bb17c44c10a46401f82f5faca4007629305c9640"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0070.json",
+      "bytes": 807,
+      "sha256": "6b4acf0b54115c0fa0a665a8a75bea3c1d49d5f35fb9afaaa66a771caa610bc0"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0071.json",
+      "bytes": 783,
+      "sha256": "7a2713c2401a2fd16ca59e2f720d2da64533dfc29316b77507b71ee08a709eb1"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0072.json",
+      "bytes": 808,
+      "sha256": "3a843ae8a1b55da724d6c884a1e9e08bedd2b1b930bdca2495f7f81855a9dac6"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0073.json",
+      "bytes": 783,
+      "sha256": "64da8656c5ddfb7c6519b5cdc4232f6572c45d238f6e8882e0cc293d3ce848ba"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0074.json",
+      "bytes": 1516,
+      "sha256": "fbda6a58ca0e2d52ed679e490e6316bc8c6c396678d83331e15a40a81984e31a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0075.json",
+      "bytes": 863,
+      "sha256": "eb15e4df447656e53cdda6cf5640279f5fc9061a3aaa0966464cf711fe1b26b4"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0076.json",
+      "bytes": 784,
+      "sha256": "953985424a62c9991f66cec6ebd539ee99edaf266a2bf0efa2ad29aabd8054fa"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0077.json",
+      "bytes": 921,
+      "sha256": "1a591b20dd7e1234182d189758c01cb57102bd9655864a1600db9fa189b24505"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0078.json",
+      "bytes": 1405,
+      "sha256": "1536450ee80881fc44d9c39c43289a8b84029d567bd098f2c6d1f68f3cb0f804"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0079.json",
+      "bytes": 694,
+      "sha256": "48e8466768639473942b0a167455360fa2b647c985cd012bd09b9a98763c0b72"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0080.json",
+      "bytes": 1448,
+      "sha256": "40d92fd1f870d708a1235c7ec8dc3a5aa7d85d3acde3d59e9885162adaffbf57"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0081.json",
+      "bytes": 782,
+      "sha256": "e8f944246e8096f6e7331eafef03275c89c1450ff69fb3f1ecd8cbe59f55749e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0082.json",
+      "bytes": 618,
+      "sha256": "cbbd3648cb29fea6469a7e76bcea5f0b6afa28204add5e04c161e2fa8a5cc663"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0083.json",
+      "bytes": 1654,
+      "sha256": "2a45fe19397bc7052ad7e8e300d50ee2f32597cca85fa488e8c7af89b713350b"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0084.json",
+      "bytes": 783,
+      "sha256": "04d3de10581df441a1787921db8c9446cd392a5f56fb3b10a185c6b143f965f0"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0085.json",
+      "bytes": 618,
+      "sha256": "c367cf99410ed15793f4f475d1ce1df5420a3d87ed9f9f1374cfcbb0c82c5d96"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0086.json",
+      "bytes": 687,
+      "sha256": "c2ee5f8e6397e5fbef00bbf9de9e204aeec11399bfa1e52f75134100aed28012"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0087.json",
+      "bytes": 783,
+      "sha256": "28c5d1ec86a3890bf704542e83a8245d34abcfa37868a503e8deabd56239b31b"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0088.json",
+      "bytes": 984,
+      "sha256": "3ef67e02782fd9fae7895f824cc0129c3a2f7feb587132ee1a97b77c04874f3f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0090.json",
+      "bytes": 784,
+      "sha256": "9926dd008aaafad1a98379ea3a65e66dc311e56409de1b8f578e0c787ddc970a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0089.json",
+      "bytes": 808,
+      "sha256": "ca7c432d01633f441cb36b065d6fe01ec5c987861cd9ed01f1d717586f6ca4e9"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0091.json",
+      "bytes": 783,
+      "sha256": "e66bcac39b70f36ced126cb1195061e8cb335c71397eef755ad3bb873e7954de"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0092.json",
+      "bytes": 618,
+      "sha256": "fce65f85c369f9e9bb4cac2ce965f65718fc278838be361509def01e5d193d8c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0093.json",
+      "bytes": 800,
+      "sha256": "f9c108ff471690a0fae5388e6a0d938149f1ff00cced3f61348ade9377e223f2"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0094.json",
+      "bytes": 794,
+      "sha256": "5e8ff04afd25019d74c4a568b048fdde858884762249d71b430247982c893c3c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0095.json",
+      "bytes": 783,
+      "sha256": "fde63f54ad6486956805776fbd99d178726a601b623bb2797ec28e3ca82d7fc9"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0096.json",
+      "bytes": 936,
+      "sha256": "cb8cb018bc4fc6fd40193de7f070210966f3df5144f8e762e11178d126d40d6e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0097.json",
+      "bytes": 1488,
+      "sha256": "3406ae9b2bc3ab3f03b3521050632231a312e13f75ccd6ddcf25ac22aec44893"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0098.json",
+      "bytes": 935,
+      "sha256": "58348c48f15adbd4d948166618750262b0bce81093e3899ca76f2c7c77340ab3"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0099.json",
+      "bytes": 1843,
+      "sha256": "99a88fae003d2616a48f5ee36c3f5840cb5564f69492038ba895f6d5c2f204cd"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0100.json",
+      "bytes": 2129,
+      "sha256": "ee3af12eb0187fafecc070926fcc461f9e61b0d2b3b848242d83f608048b3c08"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0101.json",
+      "bytes": 2020,
+      "sha256": "e58888c782c66107cea07a92ae3ecb84b7cada014cac4810945ebd5b4d89be41"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0102.json",
+      "bytes": 1595,
+      "sha256": "df28239f55f5aa87902dfb70c954d7f4401481f1cd290b46c1eccbd85cc3fe17"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0103.json",
+      "bytes": 1920,
+      "sha256": "f1a689018fac9c272b125c789d4abcd21e329de9c26f2a1c845e109c97b3d150"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0104.json",
+      "bytes": 1756,
+      "sha256": "44a98820161663d020422a677b474d32adffa55d0c587aff9c9b5220e23eda28"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0105.json",
+      "bytes": 1035,
+      "sha256": "96e9398dd725952d4c082f830e8f0bc3f7a126482d47c2ede00ce9420dea1d0e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0107.json",
+      "bytes": 971,
+      "sha256": "39a92bcdb402403f393f62b97063439311e5b1a1a4c43da901979e0ae3d71456"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0106.json",
+      "bytes": 944,
+      "sha256": "365becc29e9b3fa6cd1bddd77821d68b6692b5da84d5331f4dd5679c5739a545"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0108.json",
+      "bytes": 1146,
+      "sha256": "c1f30ed53c5a475b57498f6fa403abc2d877713989c8c691ef9dce9887939952"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0109.json",
+      "bytes": 1886,
+      "sha256": "503b090153b9c17ed5ad1e61052754d7f1be601810f51e92fcfa82d4648c8365"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0110.json",
+      "bytes": 936,
+      "sha256": "c21f68980e9d223717ce45d16f33f891e415a54618999f4f5c6bcf3956c7f512"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0111.json",
+      "bytes": 1738,
+      "sha256": "ad7e8485d50acff0466c5297158de3e87623cb45c417afbcebfced44f3d62961"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0112.json",
+      "bytes": 1667,
+      "sha256": "b7a94338b6b2bd18c6a90d7297ad2568f7cd8cd7155a8e134ea81d380e765914"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0113.json",
+      "bytes": 1855,
+      "sha256": "cd0cfc4ba71c3a65ff6b3aa6741b92a4572d1017a32673d84e0790507084551c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0114.json",
+      "bytes": 1924,
+      "sha256": "7db7fce11530ee4ecaa899f6cc33be620d698a1a1184aabb0e9f72b27ff0c963"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B1/wire-0115.json",
+      "bytes": 1546,
+      "sha256": "37d56ca6f46704a5a386a5a425233d22164dca8c4718698971b9208eeac40beb"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/E2B-ready.json",
+      "bytes": 1193,
+      "sha256": "87a44d2babc8ee77bb9f30990a6da6ebee7a70dd26161824e986bee62175cb31"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/E2B-stderr.log",
+      "bytes": 12263,
+      "sha256": "669e5bfc7c8a6a0981391cabf254358aa2cdd194f2cdc92a8d5d7d9dcfa4bd14"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/assignment.json",
+      "bytes": 24607,
+      "sha256": "75d71425b944294bf3816cc248b62ea8b13be5eb9575ac91baf3500991bac3c5"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/collection.json",
+      "bytes": 140422,
+      "sha256": "cef762f1c6735863c9ecb2fe1fdbeb120df0c301d1dbe661053cf552d47fdc1f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/ledger.jsonl",
+      "bytes": 155942,
+      "sha256": "6227b14218859db7ee1f9adafb7be0a07fa6c0b2f7ca3bd488acb98a328bf952"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0000.json",
+      "bytes": 912,
+      "sha256": "a48e17a2fb879b9b0fc9c879875c685cb7afa2b1131f83e4fe89342770f21b4d"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0001.json",
+      "bytes": 1091,
+      "sha256": "85c43ba49375702b5ba79398f86cb95f7b7292f70f0be572b45fd1a99fc48c11"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0002.json",
+      "bytes": 889,
+      "sha256": "44f56574c0342009ebdff7577dd3a92787c08b5a255181e2d0e28d2f86d76689"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0003.json",
+      "bytes": 564,
+      "sha256": "5a406b5fca7c3325649716fd206ee590d5e398cce0234f602106f7a6cba9bc97"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0004.json",
+      "bytes": 807,
+      "sha256": "9cfcbfc4dbc4604c9be6b40c133113198197a5274b7bb0e369d0fec21d0a436a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0005.json",
+      "bytes": 978,
+      "sha256": "9ace54f1e929f5c09fb2b5d39a70033afe877514338f0e30c0a3e8ed9be9be64"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0006.json",
+      "bytes": 701,
+      "sha256": "41ba77ddb6796c6aecd0dda38ea9039b943503bea2b7828f1ad7344293f0b552"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0007.json",
+      "bytes": 938,
+      "sha256": "e298a11f65975d0799f5d0d915c0aaae3e277e8cb92647d6a9ea7920a9441ada"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0008.json",
+      "bytes": 624,
+      "sha256": "7d3542060588f4a9649be0236d055fe8ba59c4150039b5091850108f90043fb3"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0009.json",
+      "bytes": 1337,
+      "sha256": "3bc97de44c22d81f87b360055a7b61a0fdf15422994abe0b1f8724c478c3aac9"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0010.json",
+      "bytes": 562,
+      "sha256": "79bbe177521606708d38bb3fbdecf153851d2b584a02eeca9f15ad6fc528518b"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0011.json",
+      "bytes": 670,
+      "sha256": "21e8f32e84683c265c15e69107f62774e4d6773d99a674bd683eeb3113141c6a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0012.json",
+      "bytes": 669,
+      "sha256": "ddbac38762d58f1bdabe00c49cf0b9fecdfeef34a17c6ec3b09638bd3ad155ff"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0013.json",
+      "bytes": 2695,
+      "sha256": "2f0a4ebd76b379fe4a794abe9e46aa19181e5c8cb23e21be48c798f340245feb"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0014.json",
+      "bytes": 562,
+      "sha256": "acd7fac8816b809cd01ca532c5ba4d09faba77d6e44305589c7980538c65fd3d"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0015.json",
+      "bytes": 563,
+      "sha256": "ec8c77f4364264288fa4b08b59b91c994e2e3d9183f5964c39733215517d9be8"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0016.json",
+      "bytes": 835,
+      "sha256": "873a7d545b515826acc3993034f3cb7517b6879244b1fdbde965bbab08d87a3c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0017.json",
+      "bytes": 654,
+      "sha256": "3c7a60a889dd9e3505fe8348b25827375619e19b68ec41d958fea30ac3adb352"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0018.json",
+      "bytes": 1285,
+      "sha256": "9a3a418b898c255a5268d1fe85df8690a7ea451388117307aae7f51ac4677c8e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0020.json",
+      "bytes": 954,
+      "sha256": "0065deb315437b12dab4ab60416f60bc2b08336410b3f926a877f117e88b7055"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0019.json",
+      "bytes": 671,
+      "sha256": "c9e4e5282c243c6f4d0c6769dc17199c86321cd90b291b14828e6fd7565ad3d8"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0022.json",
+      "bytes": 564,
+      "sha256": "a1549f97b87d4e66ae2d2428d8a6088f3c098a930081e08c434c3d9122c1461a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0021.json",
+      "bytes": 564,
+      "sha256": "0a12e37469041b33adaefcab68b084733a2aeab2b08ef3699e2c9a24d0d202e5"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0023.json",
+      "bytes": 798,
+      "sha256": "5a47148aa2c7d66521499d1a98ef0f8604137140254ba82efdc9d464cca6161d"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0024.json",
+      "bytes": 746,
+      "sha256": "41664e8bc5a1bf3b611427472c2f422a29b1011046f366dea6c72080be3d063c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0025.json",
+      "bytes": 899,
+      "sha256": "b63ac0ba77757e102998c8fe8a1359e3379e1584d32c0577b221a2bb55700947"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0026.json",
+      "bytes": 701,
+      "sha256": "32c1e4602ef266bf32e2e67625a1aacc93ccb363ad99caef2d292308b069a60c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0027.json",
+      "bytes": 564,
+      "sha256": "59cda42bd721cca9287ca2d581725fe0e5784e82acad4cea878d169aacd20a99"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0028.json",
+      "bytes": 752,
+      "sha256": "13a0ea4341e0710b15e19cd226aea77b1c5bc50823eb41c8bcb221a047111d53"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0029.json",
+      "bytes": 564,
+      "sha256": "ba70c6ff4b9402fd6c8a1cbe4aaaf130137e1238f45ec35a58d4394da0f94050"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0030.json",
+      "bytes": 568,
+      "sha256": "5054f32c08142138862f296ea359cc6d9b55ad153d8aa0b9266b00e8e479538a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0031.json",
+      "bytes": 834,
+      "sha256": "d3706552617eb96d8bd019559da7971a22467e1cd5ee0b38547f05d7ed55e404"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0032.json",
+      "bytes": 929,
+      "sha256": "df20c0d5678ac2b2399ec92c59d441637ad5eaed6bfda2e892489546a03fd6ad"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0033.json",
+      "bytes": 713,
+      "sha256": "366c46201101a8b862e44d8024c0e00f9fbb727275fbe780f16bc5f7b936fe52"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0034.json",
+      "bytes": 564,
+      "sha256": "922925769fee3bb6a6bf9739b0052f991f3745057947ba1ffe50e9447483cec6"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0035.json",
+      "bytes": 889,
+      "sha256": "42c09b79c48bbefb07e808dc5ad42853fe14692b841893c3fb75e5c4312ec9d3"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0036.json",
+      "bytes": 2342,
+      "sha256": "5cff52a3d6be6405ed3dc445d91baef07f15bff5b5754f43cd72144dd656bfba"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0037.json",
+      "bytes": 701,
+      "sha256": "55a7503c4d18eb598d74322be4007f4a8f641364a8a35e0721344cc0f7a83814"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0038.json",
+      "bytes": 619,
+      "sha256": "c1dfda358f63e147a190a0271366c62672b60ec21c080bc590abfd367069292d"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0039.json",
+      "bytes": 570,
+      "sha256": "8a4c871186cd230637df0ac6a474badbf25fc51da664bd395380a4d8e6c4c319"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0040.json",
+      "bytes": 918,
+      "sha256": "0df995a1d04001d0c4eb1950e20140db4e010c0125647a690fa049397bb2e3ff"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0041.json",
+      "bytes": 796,
+      "sha256": "00a2872a178727b916f58ef23efaa19f4592a420d2104c6efcb936bd85c43931"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0042.json",
+      "bytes": 798,
+      "sha256": "5d418951e5f8c67d4581735122c9d592b65140d41bce1d5b29d4e971901bc9a6"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0043.json",
+      "bytes": 747,
+      "sha256": "7579f9dd3e09a39977e29fb97d9ca0f33466fdb6e7705240959099a5b6cef9e0"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0044.json",
+      "bytes": 617,
+      "sha256": "87b3a0b3213b88bc02c1461e7d65f8ae65d49958d52b32e3ae8aa0dadabd7764"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0045.json",
+      "bytes": 689,
+      "sha256": "7662a73a6447866a3dd87a2062fd271c73ef0112d9318b0267a80ceb58315562"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0046.json",
+      "bytes": 1099,
+      "sha256": "559eb76fad68d939b8aa46b5c60537ac4ed25abda4859499ffa3a3997adb5728"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0047.json",
+      "bytes": 648,
+      "sha256": "4209ea30d3e6153309657c0e70bf33ec23f6f6ca447a2ffc6bc2e8cda1a9d326"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0048.json",
+      "bytes": 563,
+      "sha256": "317c233f6b2fca41565d095ae6ce9fe9db5887ebfbde7e2cd197637c3964ac0a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0049.json",
+      "bytes": 909,
+      "sha256": "b418f6f2eba916869aeed9c1aa68d5041c8d1d15ce1bf67e14dcb87bb1d95893"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0050.json",
+      "bytes": 938,
+      "sha256": "80f534ee0a4e22b4283a2cb89dae6ee0b33e5b74825e07ca199dbed8da6538ba"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0051.json",
+      "bytes": 701,
+      "sha256": "d70ed61ab74eb90b19bdf14c0b42e91ad953d19457e641635dde38e4c5a9e67c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0052.json",
+      "bytes": 819,
+      "sha256": "f167a1abe9c3cf047ab1a7a0dafc9785b62fd2d2678de106cbc26ae5498c9637"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0053.json",
+      "bytes": 700,
+      "sha256": "b8ec2c3a4f7c8f4f4dfcfe269d7e07d7057508b052f7ca5200fc0d211624919a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0054.json",
+      "bytes": 832,
+      "sha256": "050ba3b2f714ad96884a12a0175a12aeb01ab531d0ba0bfaeebdcac93bb8dc84"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0055.json",
+      "bytes": 564,
+      "sha256": "f711f08d717851759c366a8bb66ce589a04437e2a39097d003f963833d26e2d4"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0056.json",
+      "bytes": 654,
+      "sha256": "fed9a6ce365a24216f35b180fffea2112c3452de2ca4342bc9386204f1f8d2a2"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0057.json",
+      "bytes": 1321,
+      "sha256": "272bca1ecb7212096b1d18af7ad57a33c719d46ddf0a0c587bedb8392414bc3b"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0058.json",
+      "bytes": 564,
+      "sha256": "56a57b2c36f07ff1f744b49e472db9b100bd6456f8c987abafb1730a89e94855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0059.json",
+      "bytes": 930,
+      "sha256": "930e9ed3d413322e5b0d656b937d069b4791c70a7fcdf33d372778c7b47e66e7"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0060.json",
+      "bytes": 1226,
+      "sha256": "672325805b82fcc74cc9a7dd81fe1bf3dad1bfe0d2b071de3e8aca87b8a68c56"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0061.json",
+      "bytes": 1290,
+      "sha256": "91aa48c9d3875bf962eb7ab97d3418dbbc27940a844a7f25625c8745a9c35f68"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0062.json",
+      "bytes": 570,
+      "sha256": "97e51a49e87e5263b6d8ee7adad7187334838d6b7668fd225f49ffb1e7beaaeb"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0063.json",
+      "bytes": 570,
+      "sha256": "f3b632602fd47eccf199209f6f6a3d7c20ef696bda01c8e9f0e34c3e2696d2f2"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0064.json",
+      "bytes": 688,
+      "sha256": "5dc84ce08ad6c113a019168974383ba261bfabecbbc1d1647b5ed3262b68164e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0065.json",
+      "bytes": 564,
+      "sha256": "f92ccc72a8ea711cb79889cc7aa356c3e9d0f6be23fe198f1c276209e77b85b4"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0066.json",
+      "bytes": 670,
+      "sha256": "07e0d69938f4dfe496cb142738b299330766f9dfd3fc27770f2f868261167ab9"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0067.json",
+      "bytes": 794,
+      "sha256": "d19d56503e0e35deba2efc7de2fe470389b68b737cb520f15cc8fe2434860642"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0068.json",
+      "bytes": 780,
+      "sha256": "4871f8eeaa3bd5817e7c707cc689555f5eaf3e79fdaa3deb611cd3fe87387175"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0069.json",
+      "bytes": 866,
+      "sha256": "e5a83490e8e32a10941ce7872d1489861435651cb82fa4cb6d715009adf3d43f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0070.json",
+      "bytes": 1166,
+      "sha256": "da4972760ea1d7db5e1e5f7b666731fa9a72dcf7f00f258721a0953dd819148a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0071.json",
+      "bytes": 564,
+      "sha256": "3283dbeb1caf13ded80c76427df592b6a52f481b2cbe4c388a13b117883dd982"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0072.json",
+      "bytes": 569,
+      "sha256": "4ea5467df168fb1651ef0b04cd3601e22771ebaf14abd95df3165b47e83971d5"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0074.json",
+      "bytes": 833,
+      "sha256": "87d69d0fff9aa78b0cfd47164dda22a83d60d09608d2b2dd0b9d4b781acf82ac"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0073.json",
+      "bytes": 564,
+      "sha256": "4a98ef608a9f196c461a2b0f7d3fe38d652e06f7978d316af697ebed87bbaec6"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0076.json",
+      "bytes": 564,
+      "sha256": "a59722a0f77d81daa37256eb1c4c70cbb44a43610d991de2b89e9d5505914001"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0075.json",
+      "bytes": 746,
+      "sha256": "5e98df5f800293d25945b76fbb7fbe955116815af1a60fe5284c952eb28f17b5"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0077.json",
+      "bytes": 889,
+      "sha256": "aa261a4ea1080e5e61d7e804ca1f3449968ae3eaa745f3672dc418c7a49d1f90"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0078.json",
+      "bytes": 866,
+      "sha256": "bb7f1b254f4cc968d16c69d5beb3ad4dac9fd88f6bf9bac2c14272b94f7e729a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0079.json",
+      "bytes": 648,
+      "sha256": "d09025b88b5c3e390250b2940d801c1b8500967ba15d90c18f5e1c90295a2289"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0080.json",
+      "bytes": 955,
+      "sha256": "290598ff5dfcf37e8ed63c36121554a17644bffc8d6ec9c9e7425b6302c7cddf"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0082.json",
+      "bytes": 671,
+      "sha256": "24b383a74803358e98a053b5c056912c5fcfbc19dcda1e309e6ab98be96c1d31"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0081.json",
+      "bytes": 564,
+      "sha256": "eeba82a0327cc08c26dd2a6196cfd980689929be671e27b5e794fcd6ef1296ed"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0083.json",
+      "bytes": 930,
+      "sha256": "0f348c8cf5144ac1dea5cd9e173c298d171334347f4df1997c87b72ef2542488"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0084.json",
+      "bytes": 564,
+      "sha256": "c2b13622646a0ab207db75f62847503ee1e842a9243437e94ec16a90f2e020fc"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0085.json",
+      "bytes": 564,
+      "sha256": "953637f4ebed012cab1c40b60fabc44fff450ecd41bef5fab66fb8e55ab574ab"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0086.json",
+      "bytes": 687,
+      "sha256": "2cef0b5ef14dd72dbb85924b84818480bc8d41b5eacf77dc356bcbe74b944404"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0087.json",
+      "bytes": 564,
+      "sha256": "09338af41cdf7af3e37fb9fa90928116a85b7893bb05295def95b21829f5b9d8"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0088.json",
+      "bytes": 825,
+      "sha256": "2533ba59015151d9d4e4eb07fb2d08632096ec985e0f8d37cc5cf616b0932692"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0089.json",
+      "bytes": 1291,
+      "sha256": "bed229d9c7e79a5803555b2984a2a9b450cca1ce5509c0e25028e9e6ae8bff89"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0090.json",
+      "bytes": 1495,
+      "sha256": "703de38fa7c855c7ab13d22a233ee5e99b13d3d5eac8740fc9a65c8e0fb8feae"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0092.json",
+      "bytes": 871,
+      "sha256": "39649672f45c8133f0fa72ceeb9ec0c870d667d96d0581a30553b53e7509a5e9"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0091.json",
+      "bytes": 564,
+      "sha256": "2183a056b257ce36095c76a4d3fee87eb54f443bfc372262921f79850ac72351"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0093.json",
+      "bytes": 757,
+      "sha256": "c1f81e952cd5190fa9bf4e3f15c949df249ae4c54e853a932041d73abac27fe8"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0094.json",
+      "bytes": 700,
+      "sha256": "fd2f8d94dcb0bc9b290547c1d0b5035e21843311b44d0003de5541a0d5e3453b"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0095.json",
+      "bytes": 671,
+      "sha256": "b6ac9f08d7ff5e3b347b1311466618513dfe65bdd346de4aad3fa00e3ebe8f9b"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0096.json",
+      "bytes": 1828,
+      "sha256": "e2c13457ee4df3b047ae76cd536a827c17fcca49619fa73fa8695b40b0cefb79"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0097.json",
+      "bytes": 1751,
+      "sha256": "93b3d0ed07a92e47e1aa5e49a16e9787fa379b7f5865b4213e53e2980ea2eab1"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0098.json",
+      "bytes": 1801,
+      "sha256": "a7c248b2337bc349ec55e2b19c499834c19cbd05be83fdd7875e1bcb9072fa46"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0099.json",
+      "bytes": 1842,
+      "sha256": "1918ba04b45687d02e36df86a8f8b676122529d6caac4dcec4f50a7c8a7a0afa"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0100.json",
+      "bytes": 1752,
+      "sha256": "9e14d60b3eff1ee7551b5149d9226802c27693a08d63e911c66217db5cc92c79"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0101.json",
+      "bytes": 1827,
+      "sha256": "7be08d1ae5e7148932f73de674f52625eecaecc2c5d20bb3013eb369ff6dba6c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0102.json",
+      "bytes": 2077,
+      "sha256": "20037d8cbcd355b002871760f8cbd89a98fd96a9f9133473bc9d87213d4b8c7c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0103.json",
+      "bytes": 2452,
+      "sha256": "50e30f525ebf10f69bf380b3764c44d994b394a80a14e2334c26880036e533fd"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0104.json",
+      "bytes": 1753,
+      "sha256": "360928481df571157a66c052326c201c104e7380548b0d66cbc57ccd12c5c677"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0105.json",
+      "bytes": 1019,
+      "sha256": "bab4c1c532803cf73074c9bac744fa7a256ae1b4f79367ade77f7c3332f3388d"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0106.json",
+      "bytes": 1550,
+      "sha256": "9d217b266577076664385465cf80f559dc9515c74c379c7463f20f6a859ffa7a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0107.json",
+      "bytes": 971,
+      "sha256": "5daae1d6fe4d6b895ebcd4cc4b46765a50249d12b22d5b4d20cbfeeed29e8deb"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0108.json",
+      "bytes": 1189,
+      "sha256": "49ec2133751ec6def5ac017e3e75f3c1724462de670e59f84b7c6c440c5342d1"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0109.json",
+      "bytes": 2260,
+      "sha256": "0f0bd1d009bbe60158ed90b1ed3dc79a60b0076f23a465c2be908054f85498a4"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0111.json",
+      "bytes": 1595,
+      "sha256": "4f8d3e1805fc74437ac28ea512dad47eb46dcda4baef80a021654b5a3efa18ed"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0110.json",
+      "bytes": 935,
+      "sha256": "3308c18021be4b279767852cd57d4ab30c869040abf799b8600183f400b4c393"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0112.json",
+      "bytes": 1593,
+      "sha256": "eaa1165c6962191ec129535b2bd6bf2a08d00354091ddb449fafcd7b1fb8c20a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0113.json",
+      "bytes": 1970,
+      "sha256": "28a14c33a00d048e06189288725665ecd55a28c6f482812e7d8b33cca72d47a8"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0114.json",
+      "bytes": 2416,
+      "sha256": "ee4f50ac0cf8ac1f4852045bc036dc30f254ef4bdb8a37306bd5add2224fd47e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/B2/wire-0115.json",
+      "bytes": 1544,
+      "sha256": "d07ed58b488fd0fce113a68d6bd6e1374be2019ca6292586a582c451304d1c30"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/E2B-ready.json",
+      "bytes": 1192,
+      "sha256": "576c3edc0b3dfcc942e22508ec5b65221549ba55f1a6762bf61cf31a8abf82f1"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/E2B-stderr.log",
+      "bytes": 12253,
+      "sha256": "ec6518a4034b45ca1a9c6a0604e15e6bc6d012e6634fb0c46a3d74da8f8ca894"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/assignment.json",
+      "bytes": 24491,
+      "sha256": "b3177139e09d6ea55db8f40090562fae721736d1c30438d4c3e06ff2c990dc12"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/collection.json",
+      "bytes": 146885,
+      "sha256": "4c993e2939de373cfaf18b9bfa14b783f2c69f0410ddf66f148edc0b57c7326b"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/ledger.jsonl",
+      "bytes": 162291,
+      "sha256": "11f5a2e81bc291106f95a6f16c3eb3df6a4014fd34d52a5521cf30ffe0f5ff32"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0000.json",
+      "bytes": 688,
+      "sha256": "5ff3de6d37fa318fcf9a70bf79359d0a8993239e4823abecc4e77fa1b481f494"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0001.json",
+      "bytes": 688,
+      "sha256": "d36327bd8af3f32a4eafb2b66888a7a3c18b6b926e7e30d50995ce6c8e7a3716"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0002.json",
+      "bytes": 890,
+      "sha256": "6d5814e645094b38015463fd020a3de8b57f8991cabc5f1ce45a30fd75f0e516"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0003.json",
+      "bytes": 666,
+      "sha256": "be95409aae8325bdef68ef1302c2635e3aaba5b7ebfa845228a4a0988506983c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0004.json",
+      "bytes": 688,
+      "sha256": "7f816c4b88cb5fe57c10c108ea5f5ed572516c1dbb6f44e81f86a82c315aa3a2"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0005.json",
+      "bytes": 978,
+      "sha256": "a13c0470f2f755c06173d0211936fee5177f9771a655168e4ee4b419e7ed1efc"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0006.json",
+      "bytes": 701,
+      "sha256": "db54a77dc7e9a442bbfa724ec7d8704c7ebe1a66d123cb79e72e404732659a28"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0007.json",
+      "bytes": 938,
+      "sha256": "2c54a928134f6055242d62487872124bdf21580300f5fb9635527f31f5838a19"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0008.json",
+      "bytes": 569,
+      "sha256": "37a54769fd16d511e663e803145977948cf44f3153ccbbf617fec0f816b2b14e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0009.json",
+      "bytes": 1336,
+      "sha256": "22f4ae8db3753b9585bb4a65551991c389b43535a9de3dbb5c4cfe6b6d9e0d38"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0010.json",
+      "bytes": 783,
+      "sha256": "e49eb8da9d9c5b3dedea5cd811e5cb6efa9e487cdf3b7b473cf7f2b2d8e1e49a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0011.json",
+      "bytes": 670,
+      "sha256": "9d867d9b79fb0835d51d4a4dc3a4c488ffb51b1f5c70a119bbdaf80bb71356d4"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0012.json",
+      "bytes": 670,
+      "sha256": "488086b747589ec923e3d2a614d3159565c3b94c3d9022dc6b53ecc37db0d69a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0013.json",
+      "bytes": 979,
+      "sha256": "cf2191f567a3248ad52fdf853fbf69fa60929fcff925d86e0fa0f4b3ea97260c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0014.json",
+      "bytes": 883,
+      "sha256": "ed1c09e969b948e67af9996edf2a326f6d665de42e5496765370a4cdddf97008"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0015.json",
+      "bytes": 570,
+      "sha256": "0d054acadbdafcf6b918a32e09699946f72d9148971935ad23d9c37f22e85e8a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0016.json",
+      "bytes": 835,
+      "sha256": "63c1c3fc8c6733faa5a30315f911c431b9f37ee787cfa54a658d5c09f9afc797"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0017.json",
+      "bytes": 656,
+      "sha256": "a579c1cd67ee093539d0f47ffb2af65ff61c988d863f18b1c8905254412cebea"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0018.json",
+      "bytes": 950,
+      "sha256": "c538b1461792ab675917bfd3686f56bb5a9b97427db848f284acf7612f266477"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0019.json",
+      "bytes": 671,
+      "sha256": "b1881f62a2e33a3d7ef17fd22d4627cc586004d61a4dc708bf54633f47089d93"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0020.json",
+      "bytes": 953,
+      "sha256": "694bf7926fcf0b70782647dae9cc60f3d106ea84132237269187465ad6776baa"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0021.json",
+      "bytes": 784,
+      "sha256": "1434629c8c43105ae80b4dc849de1135223f48f48ce78aaeb34eca2bccdad21c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0022.json",
+      "bytes": 570,
+      "sha256": "3e39c9f9c392c23230ff8047c7746fec7c1aa87dd5adf24190a2e824da8683c9"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0023.json",
+      "bytes": 688,
+      "sha256": "5532c3468df066d0db99ac637cb000cc109f2f81bdd4d9701f657875da982d20"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0024.json",
+      "bytes": 841,
+      "sha256": "14d612f0d1bcf2b2efacfa3f3b43d535ae1a075e7a79a2f9cd33143375551eb8"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0025.json",
+      "bytes": 914,
+      "sha256": "79367ce172fa57d4c54d1afaae943de568ce3c3bcca8397af76ae50f93e8c0ad"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0026.json",
+      "bytes": 701,
+      "sha256": "7228341a4e84f31be53df871973a9d0f99a8064fa614bc36626e98ccf43bf57f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0027.json",
+      "bytes": 570,
+      "sha256": "f1c306ada33af5c8d3695f0554340d21e6d439e43d46dd4f9214f369b4d162ef"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0028.json",
+      "bytes": 752,
+      "sha256": "a7ec64b8959bd04ab5146ebda72e9dc452e61436c9b0460c5445d05412a57fe5"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0030.json",
+      "bytes": 570,
+      "sha256": "ba0cafc5b45704c3e06647d895bd960e7dd90ef3079a0107fcea41c2eb054dcb"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0029.json",
+      "bytes": 570,
+      "sha256": "1e55b9caf24e99cd4250e11b1f8a2de5e930b9cdb1f834e38687787c9a63fa7c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0031.json",
+      "bytes": 932,
+      "sha256": "f05b41d715ec2dcf0ed27462a24f08788f328a2e0c14da3a83c13ffdedbdd3b6"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0032.json",
+      "bytes": 930,
+      "sha256": "9bf16c6c67665f984cac96e30c1d649139c6b85b286c6d8e5366f4f61cc007bd"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0033.json",
+      "bytes": 713,
+      "sha256": "45e78054f6595b9f06ce9bbd721b23f6d0a76c01ee07a2bab91bdb42c4a20578"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0034.json",
+      "bytes": 564,
+      "sha256": "fb0bba7cac7930cbb57195ce7cb35494558bd94a348d8c75566fa86f4267f5fa"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0035.json",
+      "bytes": 890,
+      "sha256": "957d2b0d38f6d5d3e3c7b88f955b50441cd48e71204afc1d2f0eee1f9d697246"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0037.json",
+      "bytes": 1243,
+      "sha256": "2ee460c4af624d65141bb59dae6cd5caf57bf3c3155a13762aa293f5cc50f5bb"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0038.json",
+      "bytes": 670,
+      "sha256": "24bdc4417aac7236167606beb6b0e278c2b1fcddea4d3d8932ccec55e6a8421f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0036.json",
+      "bytes": 2342,
+      "sha256": "f411b17115028d97a7e3391c20ad18c21db0925a1b5e24e5c1f261851b3abf2d"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0039.json",
+      "bytes": 570,
+      "sha256": "52feeed65b32b3c2e23e74b3831c3bb759133be229f1c47e69edc43f217ddc05"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0040.json",
+      "bytes": 917,
+      "sha256": "99d556b6ebc4c828728d294fba2f4491a9a4a1621a6476adb3c0631a017e676f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0041.json",
+      "bytes": 798,
+      "sha256": "55cd5251516e874b38c19d1428eae79256b72109ab3c0961e868dc45dcb03b69"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0042.json",
+      "bytes": 798,
+      "sha256": "d5b4ed806112f77fe22acc864f5853e02abafbe756fbfec35729bdd7f998d9d3"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0043.json",
+      "bytes": 746,
+      "sha256": "e6d39eb8862de0180e3daccae1052a510638ac1ea2473582374f145af2e85ff1"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0044.json",
+      "bytes": 670,
+      "sha256": "43c0a2dbb61e9c2a3cdc7fc49c09d8de357fd42b4ddf20a14a64225d95c29d81"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0045.json",
+      "bytes": 688,
+      "sha256": "76ed0eedd0939d4260b420250e91fdcaaf24a7617c4dd6cc48bd444139d19453"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0046.json",
+      "bytes": 831,
+      "sha256": "3f7c97b3fdcc518db93fbcc31dd36d67dab821f68f0021af432e955bc3c4e0cf"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0047.json",
+      "bytes": 648,
+      "sha256": "eab4127257f45d6dac13c0fc45ce8ba821594aeac6f8053721c44079c333b69a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0048.json",
+      "bytes": 570,
+      "sha256": "4d52c51f42913c3d3c5ee568f98b714231fddc8c65b137fc672c0b34b6fe6f28"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0049.json",
+      "bytes": 831,
+      "sha256": "98511d6e3c4a337a655ae9975aa7a7c616bf8ddaa935ee834ceeb73089aafd3f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0050.json",
+      "bytes": 2628,
+      "sha256": "88160dd6e0483ba894813e1ec56544e7df404ec005ee3bca95bcdf7da4055a1e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0051.json",
+      "bytes": 700,
+      "sha256": "b4f54c8d1bcbb22bff9d3f081c8c0037a097371e6180856b97c4ef9bb846aecc"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0052.json",
+      "bytes": 817,
+      "sha256": "5b911bff2e5aa0690457d5e88e423c9df4c925f31b74816a6dca91e81a7879b9"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0053.json",
+      "bytes": 915,
+      "sha256": "8ce1186e75e3095aeeef587f0eab629545dd432379715e766ed18dddc8764e98"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0054.json",
+      "bytes": 858,
+      "sha256": "8de6f8a8ce8f63d690d143607e4638395907672f1e16cb351e955f00bac9948c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0055.json",
+      "bytes": 783,
+      "sha256": "6904963abde76ff49799b9f035f4c52f7c59d48a1fd19f8cba65b4c6b85b3cc1"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0056.json",
+      "bytes": 656,
+      "sha256": "fcc130476360a52ac06162da5f4bc080d252ac951ed4b163bf757546dca9462c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0057.json",
+      "bytes": 1321,
+      "sha256": "eaec86d7140e086ff255ca2f1b452fe439482d691d7df7237e636487a1a9b10b"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0059.json",
+      "bytes": 930,
+      "sha256": "caa55dabdb145d63cad00b5f5b272ebf0a23e3de4969ac5497724f0d55f85c66"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0058.json",
+      "bytes": 618,
+      "sha256": "831005527241dcef45b9d7d70cc050f8276bcc4ee8506326cade3986a4af3f1e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0060.json",
+      "bytes": 832,
+      "sha256": "8db356175fac138a85f3629b30e78bd3e6a72b71d1fdc7c995be4c6e890debff"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0062.json",
+      "bytes": 570,
+      "sha256": "e8c61e81300e13d076aefaffadf380bab67a0925f345f5b90af72897f75e43a4"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0063.json",
+      "bytes": 569,
+      "sha256": "62b6a8efe1b6201bf8a4da65005576390cb1bc40296e72aca1c199a55a20577a"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0061.json",
+      "bytes": 1290,
+      "sha256": "4b284d498cf032522a871caa6e484ad8f2e087c00a6e674ca8b259355c32e0fc"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0064.json",
+      "bytes": 691,
+      "sha256": "dd3163688d978fe97d14771384c3449f6ec1a48798eba58d607d2c2edc224530"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0065.json",
+      "bytes": 578,
+      "sha256": "f69782ae6034d14ee55d28fab7243a771ffe90206a169e6f15a13d4ecebbb234"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0066.json",
+      "bytes": 671,
+      "sha256": "0366755ea692e2a410355f8ef1e2c671446ecc1651479207a74069fea9817732"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0067.json",
+      "bytes": 794,
+      "sha256": "3aca36d36dca225858df502cc74c4c53a08575fa6d43f8f2c274fe02512e7c43"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0068.json",
+      "bytes": 765,
+      "sha256": "e69db1571ad83ceb020d652c45f8bf7a53c21a87f3a2a3b12c7504247efdaa10"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0070.json",
+      "bytes": 1165,
+      "sha256": "8954cf8a213af23cf667c88396802db5f8110714a4d24b9f4eee46a1c77ceea3"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0069.json",
+      "bytes": 866,
+      "sha256": "7e9d8adb82cdc6db8372545434d65cce7ccad09af9785861b9548c65e31a3eb2"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0071.json",
+      "bytes": 783,
+      "sha256": "d67716b9897d2475c17207fe01b36d2ad538ca435f01e244ef15dce93992538c"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0072.json",
+      "bytes": 570,
+      "sha256": "39ae067cfe9efaee9550bf2a79bf0241fa4b62382c6cc27bba9c6933340d062d"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0074.json",
+      "bytes": 833,
+      "sha256": "025755f8a59ef59bf7cbf9e59a96cf27e356dbc7da331bcd033f521364e9ddc7"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0073.json",
+      "bytes": 783,
+      "sha256": "d69335c1dd43dd20aca2ecca16e621f81f456c6ed256a891a98b69a0f9649c4f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0075.json",
+      "bytes": 863,
+      "sha256": "3a515997e58e3ec9962be5d6e95d901ae0f461fa4c8237a76bd875d6066f053f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0076.json",
+      "bytes": 784,
+      "sha256": "e9524eae0b4ca82ddce8296263fb6ad562974c1b26745cf1f283ffac75dce30e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0077.json",
+      "bytes": 858,
+      "sha256": "2df4d70c7f139a22945ade7970cf986e9ffc069c46988d14a6a2478f9d74b90e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0078.json",
+      "bytes": 865,
+      "sha256": "24847cb3d324c05d4fc9bfaf3a53341a4c956881a536f64779d97d57108cbbcd"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0079.json",
+      "bytes": 824,
+      "sha256": "e4184f0ba1e4888efdab7afa47d2f46fd2b9d91b0c5a1dbf7f9e3e70f985d4b8"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0080.json",
+      "bytes": 2559,
+      "sha256": "e4d410dc7d7a977828cc9b512a5e0a5a06c387067c7a12253025ecf9a81e3383"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0081.json",
+      "bytes": 570,
+      "sha256": "069e31801793abd73aced501a8a36f662d230e1a8a74b67ace1b985a554f23d1"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0082.json",
+      "bytes": 670,
+      "sha256": "8cda72984c5ccbdb5a29ea438371428d96fd41164df9ab11c7f2c39840a17d9b"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0084.json",
+      "bytes": 783,
+      "sha256": "5e518a97b1f00187d57a140ce4239ad4a672c0bbf27706ac5b85aa690ce360a7"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0085.json",
+      "bytes": 670,
+      "sha256": "55b86bc954b142e3c4dd71bdbce1571f2ec7996313297c911eba0e5e2f45e752"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0083.json",
+      "bytes": 930,
+      "sha256": "2b76a0f50961e58f320f4dc1d9a61a119a6e93e99e210e9e1d19581620abf93f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0086.json",
+      "bytes": 740,
+      "sha256": "3d6ef94e8c4ce72a30f8326adf63248d43b07a24eaf882a1d52e5b775d546964"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0087.json",
+      "bytes": 619,
+      "sha256": "9f0816c5a441925ff0e269aace9da27f3ca80a1b250cfdbae0c3d83ef7ce9193"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0088.json",
+      "bytes": 826,
+      "sha256": "83db6c332c97c0a6e4a93bb139dd5a835bddc7eeff69371d304ede3a26fc6109"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0090.json",
+      "bytes": 865,
+      "sha256": "d3761994061651e5508c1ff363045ad655d6373912c8a3a44e41f88b0435960d"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0089.json",
+      "bytes": 1290,
+      "sha256": "b79a0447790fb867b2586804dbc8e36958b9f437eb19c6e047cb398f27471706"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0091.json",
+      "bytes": 564,
+      "sha256": "ba6df0e85ab850c68951cc062b97e412e3ca24a0f859b1644612d90b204ebe49"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0092.json",
+      "bytes": 569,
+      "sha256": "8df744ea1e74ce2dc0c80defd6ffebc85baf23a39e5779797c8db6118998b18e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0093.json",
+      "bytes": 757,
+      "sha256": "a64e4273bcbca1fceb9a367901cace2681936df2c5ea9ec273f7127abb7adf75"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0094.json",
+      "bytes": 700,
+      "sha256": "7ce4b97ceb163250365267bf8df9bbd4d88be06df86998308cab26b6f60abdc8"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0095.json",
+      "bytes": 671,
+      "sha256": "cecf66cc604e1770ac19fd9c8f7754dbd7336931ccaa0fc796af13e7ed16273d"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0096.json",
+      "bytes": 1828,
+      "sha256": "ed1aaad5b0a52d815f594e4f8b1a0cefefe65bac9dac0f39d687f3ee0756f748"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0097.json",
+      "bytes": 1749,
+      "sha256": "5cdf961915a5618af89b0a802c3b898faa61333090b086d02040044b0222bd37"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0098.json",
+      "bytes": 1729,
+      "sha256": "60487dbe6f53330da5ddf411b1efcda467f47e3ec01692293c79b46f3963f8f7"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0099.json",
+      "bytes": 2021,
+      "sha256": "db2b7b4fa4a6968a0b1512f51b1f83d820a8162cee45aad3deec65fee422b14f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0100.json",
+      "bytes": 2216,
+      "sha256": "ee9a5a271362222e4bbedd0d3c077b68df9911b7ea65805398e09f00912a6967"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0101.json",
+      "bytes": 2198,
+      "sha256": "18bb4242246a14d0c1c2d13e147fd258c210071a907f89029898e5be6d858cee"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0102.json",
+      "bytes": 2077,
+      "sha256": "75dab168fa9a39249adbf2d891caecd9d2993521dcd1e0b8d4ecae87ef5dafad"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0103.json",
+      "bytes": 1990,
+      "sha256": "3b8ef8b9109029e81010d1d02b5c3cfa6e61d5a6ca31bad7653b67f938285af2"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0104.json",
+      "bytes": 1752,
+      "sha256": "002888a2b4b96b531206df2f9a2e602e23d31c22b92469ce249ac7eb06903c81"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0105.json",
+      "bytes": 1021,
+      "sha256": "e3010eb6bddcec0cdfcf9b2091adc1ae637c75935e6c5bdee7114defc2a87b76"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0106.json",
+      "bytes": 1549,
+      "sha256": "ab8d3eed06777ae06a1a466be83800e6feaf0edeb9662cfeca5af9702bf1c238"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0107.json",
+      "bytes": 971,
+      "sha256": "7f0036b17cfb584131d5f5e5fa8766f4db18e1d2e9476219b9050f7c2fc79dff"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0108.json",
+      "bytes": 1189,
+      "sha256": "e7b538b33ab339e41341f92c493bd4daf31711608d0861d0d66ac3ed1af5985e"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0109.json",
+      "bytes": 1886,
+      "sha256": "d7a067bf28985b0c88987ad3d6d1a83b0780c39fce7ca61a9146c74885550206"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0110.json",
+      "bytes": 936,
+      "sha256": "b4a71955d534e7431af183356608aaeb9d5f0dd4cf6b8562563184b51ac09d29"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0111.json",
+      "bytes": 1738,
+      "sha256": "ad160221dc2e5d38cf8e805e3d4dfa670c23ea96346a88bb4642c2bfdeeb0124"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0112.json",
+      "bytes": 1667,
+      "sha256": "f5133577d4c0615df5531cb8714e001f68a9ff394f17ef761d6d2930581af084"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0113.json",
+      "bytes": 1956,
+      "sha256": "619adbaa4b651754f0bf029afccedc2690693b4a2aacfffc05f89650a10b7de9"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0114.json",
+      "bytes": 4329,
+      "sha256": "1a51bd65c2b0ee2954da303b7e97ede97feda198efc7790abc86189e6f8434b9"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collections/S/wire-0115.json",
+      "bytes": 1544,
+      "sha256": "641d8b3ff5007e50cf1be0d34a6a0437337fbff10fc892f24343ee9c782fb711"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/collector.log",
+      "bytes": 192,
+      "sha256": "ecd9a67e15601fb02c9e1385645ff957295e80aecc4f679a11cda38c3af71ff8"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/connected-receipt.json",
+      "bytes": 36789,
+      "sha256": "098844b132fce2995833d8580938b2cb126d2ced2bf1bc8198f6e2d39b544bf0"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/A-checkpoint.json",
+      "bytes": 2032,
+      "sha256": "d8926cf73965d69637636737e8579644f9c6d5ac28c9812a0fb73ff92ecb4e74"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/A-stderr.log",
+      "bytes": 1117,
+      "sha256": "5b150366c9f19f9c73e91ec8ac953b0e86b918fed4c434d1796bb0f58cd69e10"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/A-stdout.log",
+      "bytes": 921,
+      "sha256": "ebb6474fb9c44156951d61de3d4a23fef544beceee6c21870b78ba33f3c99962"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/B-checkpoint.json",
+      "bytes": 4832,
+      "sha256": "fce59fae53c1ad5733c942c9485c22576cd7a58b006f71d819f2d49ad87492d1"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/B-stderr.log",
+      "bytes": 1148,
+      "sha256": "8ae1fedfb755ee7e1c8f420c4470ee71e106c52ad508a987f7113a2349398b70"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/A-teardown.json",
+      "bytes": 2886,
+      "sha256": "75d192d953e689683e51940fe9500a5684788e80516ebef1422e45aac4a06ff4"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/B-stdout.log",
+      "bytes": 921,
+      "sha256": "582933ae74c5cd29f88af348b47ed60651634b391552e250296a872ab87945c9"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/B-teardown.json",
+      "bytes": 5685,
+      "sha256": "872217c0970ce1ecab33bba25a34ec37425ddf6e9c416324e77ccb27d6da48e1"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/C-checkpoint.json",
+      "bytes": 7631,
+      "sha256": "e55d653fadf6ac0efb0197201bf64e908624b1846fe3e6309bfdaa011ab01673"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/C-stderr.log",
+      "bytes": 1148,
+      "sha256": "db9c828eb45ff7c232961ab534d3955ef62290816b5424fd110cdff9271d0529"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/C-stdout.log",
+      "bytes": 921,
+      "sha256": "6b7ff37b92b06f74196da3983ae28a7c4aa79ee08e1bc6d13f582ece14b1e8e8"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/D-checkpoint.json",
+      "bytes": 10525,
+      "sha256": "2038e205089dc13d29c85a7736d7d86383fdb3db1a69ac3b8cf3ffd3a187b232"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/D-stderr.log",
+      "bytes": 1250,
+      "sha256": "8eebabe74d466e4fcdf8b33e27979a71ffe94ad952e4fde1829e4261cc9be25b"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/C-teardown.json",
+      "bytes": 8484,
+      "sha256": "4c3a1e27b9bdff9d20ca33e76b2d674ae2457c42439981767a9badebe4725dea"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/D-stdout.log",
+      "bytes": 1025,
+      "sha256": "87ef091305dd30a4ae29291eb293e3c9adb266db19801516a55de0be5763c147"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/D-teardown.json",
+      "bytes": 11379,
+      "sha256": "5d5956faa8216684f995c67d8f44dc7898c510703281346017d718ffc1ee392f"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/receipt.json",
+      "bytes": 11690,
+      "sha256": "bcc233010e429b8998b5dfab7b02266d3f1f773f05225b03cfe08948edb8ef44"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/cuda-comparison/started.json",
+      "bytes": 118,
+      "sha256": "c6978aad09d548a071e43991fdfb149312a497d39509a28d60d0d22f1c925499"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/correction-comparison/receipt.json",
+      "bytes": 15383,
+      "sha256": "e2bec6a4f8a35e4bce52caa6fd4552fc09b8c60cd6ab35253d2ff4276789d9bb"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/boundary-728460251648.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/boundary-memory-checkpoint.json",
+      "bytes": 4501,
+      "sha256": "8fb1469ae66831443f1a88c2e47d658025378dab9ac816a1032deff388cfaa14"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/deadline-checkpoint.json",
+      "bytes": 8196,
+      "sha256": "2e2e8a80ee74f6ebff30145a1b3c1f4e2fe825ce36fe5dafac8188ed009dc924"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/deadline.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/initial-kernels-checkpoint.json",
+      "bytes": 5549,
+      "sha256": "9d4da0fd53e00dad7925b130a6c2bb31b2566f4ae7b1426d95a049acaa170cde"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/kernels-735741691692.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/kernels-762366604199.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/kernels-778266322143.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/kernels-795729671842.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/memory-730194613586.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/receipt.json",
+      "bytes": 13371,
+      "sha256": "deed11e42d6d3d44267b9e5ac1a6cf0c2025700bfce9833366e7089cbc0ccbc0"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/supervisor-checkpoint.json",
+      "bytes": 13356,
+      "sha256": "27abe714258544dcf65b069c8711868a2233fb3e8c0a6b1f0497b0cbb6931ce2"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/transport-checkpoint.json",
+      "bytes": 10775,
+      "sha256": "e6c971877c57798ce5afe8b0e1aca9ddb87b533bcb9188e15ce8ae5d5ab80528"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/diagnostics/transport.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/input-schedule.json",
+      "bytes": 1595575,
+      "sha256": "03cedfd3e1028dc2e5f24ea097cc67adf60a0fb3482b04c3895a4e69ad304658"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/install.log",
+      "bytes": 10564,
+      "sha256": "fb3c6c4966af7e01c4ed2278bfc30bb4e669b0a3b6cba66cc372c01995099333"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/installation-checkpoint.json",
+      "bytes": 7782,
+      "sha256": "6ef1929a73111e75f24c888d137b6b3e92020370444276c7e18a3624e2a603f8"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/matched-result.json",
+      "bytes": 180,
+      "sha256": "e7d4e83c437cd077af1757d866eb5526a7f7efb719a5f9af93eb3b6174d447fe"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/runtime-transfer-progress.json",
+      "bytes": 12114,
+      "sha256": "43521ed614e4ec64946e56ed7d3a79edd32c3770528d4432dc61a6c4bf6f16b0"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/runtime-transfer-progress.json.owner.json",
+      "bytes": 1850,
+      "sha256": "11b0d6d8cb26667368f6e4b372ccfea71fb9953ecd1836bc8453fe76bd65a263"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/remote/runtime-transfer-progress.json.receiver.log",
+      "bytes": 27973,
+      "sha256": "8a57a6d900d0285e1e52a8267fcae9de3331c50d812bdd7fbd797fee171d8b76"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner/worker.log",
+      "bytes": 48,
+      "sha256": "7d9a29e0877dbc97e5c756a35a11c1f6c5fa1ef7ffab71f68d23f1ba09804e02"
+    },
+    {
+      "role": "owner",
+      "path": "minimum-owner.json",
+      "bytes": 69943,
+      "sha256": "9d89037ddb468eecfed4639303c12c763daa9ab371ac094326561eb014c1f186"
+    },
+    {
+      "role": "owner",
+      "path": "owner-runtime.json",
+      "bytes": 10467,
+      "sha256": "52eacd148d3053d3f16d97ac05c860c821f922d92589cf7eca9e1f642309c6a4"
+    },
+    {
+      "role": "owner",
+      "path": "preparation.json",
+      "bytes": 510,
+      "sha256": "51402ffd8aed6031a0603d60dc82f4eb73caf8da790c5f869c5edaf33df1cfed"
+    },
+    {
+      "role": "watch",
+      "path": "minimum-watch.json",
+      "bytes": 498,
+      "sha256": "a03948de7901b76bdbd09967d39750bfff238cf35a16ccf2c8803b4427b510ed"
+    }
+  ],
+  "verified_source_entries": 372,
+  "verified_source_paths": 98,
+  "source_bindings": [
+    {
+      "member": "owner/assignment-before-allocation.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-baseline-protocol-v1.json",
+      "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+    },
+    {
+      "member": "owner/assignment-before-allocation.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-evaluation-protocol-v1.json",
+      "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+    },
+    {
+      "member": "owner/assignment-before-allocation.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-cpu-requirements.txt",
+      "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+    },
+    {
+      "member": "owner/assignment-before-allocation.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-gpu-requirements.txt",
+      "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+    },
+    {
+      "member": "owner/assignment-before-allocation.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-runtime-lock-v1.json",
+      "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+    },
+    {
+      "member": "owner/assignment-before-allocation.json",
+      "pointer": "/source_hashes",
+      "path": "docs/temporal-evaluation-protocol-v1.json",
+      "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+    },
+    {
+      "member": "owner/assignment-before-allocation.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_baseline.py",
+      "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+    },
+    {
+      "member": "owner/assignment-before-allocation.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_benchmark.py",
+      "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+    },
+    {
+      "member": "owner/assignment-before-allocation.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_scoring.py",
+      "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+    },
+    {
+      "member": "owner/assignment-before-allocation.json",
+      "pointer": "/source_hashes",
+      "path": "tools/exact_teacher.py",
+      "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    {
+      "member": "owner/assignment-before-allocation.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_gpu.py",
+      "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+    },
+    {
+      "member": "owner/assignment-before-allocation.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_readiness.py",
+      "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+    },
+    {
+      "member": "owner/assignment-before-allocation.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner.py",
+      "sha256": "60932ca4057fae460caf874b22f5cc74bcd03a3a543c9bde8e5aa944a25263b6"
+    },
+    {
+      "member": "owner/assignment-before-allocation.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_worker.py",
+      "sha256": "7a1d874ed1f53ff100e480464bb41862250b6c231ca51fc51451085c4bbc0275"
+    },
+    {
+      "member": "owner/assignment-before-allocation.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_benchmark.py",
+      "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+    },
+    {
+      "member": "owner/assignment-before-allocation.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_scoring.py",
+      "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-container-cpu.yml",
+      "sha256": "52745e5f7a5ddc42796b094e450a5641090da68aebf6998c23503bb97961f249"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-matched.yml",
+      "sha256": "d36272e1c7935a4d081f119df9d7d390302a5a28a23e6cb0f3d2a6eccb61b898"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-cpu.yml",
+      "sha256": "e960267e3b69ad5b3c6562e7b3dd36d04451e621fd77519321a091b17295906a"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-diagnostic.yml",
+      "sha256": "6bb4a9e917ffe9e966404c12b05bd1cb7f42d13be19061858933203181eb24da"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-live.yml",
+      "sha256": "e2062c003c010bd8ac4a67ff7e39a066b44af2007b8e5f67186c82316b9ccf05"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-quote.yml",
+      "sha256": "f93cc9946f39cf3d814a24fc62c968cdc822b169167d3dd50c8f84813a8958c0"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-retry-cpu.yml",
+      "sha256": "acde46496d679685f4b54e3247c46e061e7c45c7c0bb81ef79a8a140f254a683"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-retry-live.yml",
+      "sha256": "4f9f9fc148c610084b8a388701a55776ab878d689f0f6d9212b152c0b024900e"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-retry-quote.yml",
+      "sha256": "6eeff6411ab8d6e967f9add1f7ba902ce5a519f5018332723e32065e6fcdcd8d"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-precheck-cpu.yml",
+      "sha256": "f13609448771bfada0e1750e52676608a2da1d700c89d28251f07e518f314a0f"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-provider-cpu.yml",
+      "sha256": "1314824b147395afaac6a4f8708f3c19004f441f8dc8617f6096526a82f4eaff"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-provider-owner.yml",
+      "sha256": "0bb06419810437a0bdce8efa15aab651c2d02748c9e469801cd0777393e245fc"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-provider-watch.yml",
+      "sha256": "8af1ae7416563c61d4c9e973ec2ddba7f97296b7be93369a34094a655fc6d197"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-baseline-protocol-v1.json",
+      "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-evaluation-protocol-v1.json",
+      "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/augnes-development-replay-rubric-20261031.json",
+      "sha256": "ccdb5185d775b2d34f0d7a4df205cf769b616d776f2212bd9dd7a42864839776"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/augnes-development-replays-20261031.json",
+      "sha256": "f87ed31e79c39d0314d62aa2cfe338c4e56864d1729b89f064e45d6e171e2c43"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/augnes-screening-packets-20261031.json",
+      "sha256": "e3a65c083be058c02c70a0ac041a006b0466631ef255033698bd7cf27d22b42e"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/augnes-screening-rubric-20261031.json",
+      "sha256": "cefcb7936085065abdba9d97ca6de0e504b081f33e3a9ad7efc4acc36b93fbd5"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/cloud-controller-requirements.txt",
+      "sha256": "6e8e0115d53ffb67b8a9001e0b4e3f06747fb470aad4bdcb23e8a864d4018bdc"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/evidence/e2b-run-41206950960/input-schedule.json",
+      "sha256": "1ebe1f9c97ff6009e5c09e80f54590460c364b36afe42029c11ed063273f35ff"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/evidence/window-paid-run-41225173224/recovered-screening-raw.json",
+      "sha256": "5779e37082e579c8aa1f2d2be8f5552d1a44142f8226e2f1370b62760354f655"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/research-reduced9-amendment-20261026.json",
+      "sha256": "ba9b235c84db383f2413bc7adeb03888de9fd0fc571e8e67cc8ae4f9057563c7"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-cpu-requirements.txt",
+      "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-gpu-requirements.txt",
+      "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-matched-candidate-20261031.md",
+      "sha256": "6d60dd7fb184821921abbe250513e8764a1b1c12c165d35fa2aed442ae007782"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-runtime-lock-v1.json",
+      "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "docs/temporal-evaluation-protocol-v1.json",
+      "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/official_cloud_transport.py",
+      "sha256": "add4388cf0db14eefa15343c864b01f76eafeb6389b906e89f56824697c658d6"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/small_model_transport_control.py",
+      "sha256": "1ea88930166bfe91f073649ea07149c6e7f2331b3ed63f02c5ad015084ce98a4"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_private_delivery.py",
+      "sha256": "9d716ae24821bfeb69c9c0a51bc8f2b5cf074ef0e7325701cadd34e84c23f5de"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_augnes_screen.py",
+      "sha256": "127d973c8f48aa6081afb85c3a56fdfa1753e1df55be7e4dafad2dafc1dfa986"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_container.py",
+      "sha256": "ef05ed3f780c6a668c1ad2e31b2ba704521f94dcff3d03f9afff70d0567e2e4b"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_delivery.py",
+      "sha256": "eb44d97d469d7e17cadd1a54cdd353ca638a13a5ad6689ae678da5a231553837"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_matched.py",
+      "sha256": "9e8bcf55eae4d63a790aa0379a32382f15a528e98cd9588b4162527c53ae0974"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_matched_data.py",
+      "sha256": "4d0f08c94845fd9f4e2b91b98e55ae26f1492a1fb0b37f3808c81ae776ab4d6b"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum.py",
+      "sha256": "cbe5a6a1e08fe39db75103755eb8a3030b46f88d190b734f4f01286286683a43"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum_diagnostic.py",
+      "sha256": "944470aab610f01f34af02518b6784a835198d43b7c21bc7f80081f64c02a018"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum_diagnostic_scope.py",
+      "sha256": "0fa54c0748ad010d7a2a03e64e5a5d45ba97f756f55c414995b3cb219349a1e0"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum_retry.py",
+      "sha256": "ca2a4d349efa03ae180e7b16608e41bc786503ac961fb48c6a3d7f89b4e76ce7"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum_trace.py",
+      "sha256": "2af1e607c12817b8d4227016c5e649aea939d1318a616ee2a86dad91ff57e94d"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_precheck.py",
+      "sha256": "21ad1e073cc9f83eca8e41034cff22371df7629188b07921b5ecdcc8d0ec4e47"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_pretrained.py",
+      "sha256": "333930ec49459fff592fd7fab3229f8c5a9a5aff3374cc0c2e2ab666c7caa749"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_provider.py",
+      "sha256": "242530d07de276c3b36eff5484fe0a15d6f457bd7705db63e14e54e03d71f94c"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_public_delivery.py",
+      "sha256": "4772027d663279ae95ef8476f2915e3c9e90b5545596aad61d4aa7a33ff8a933"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_training_inputs.py",
+      "sha256": "2392366c2b65a78059e864f03c08a6243643ec46c720735fde9fa0b2a3562da7"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_ssh_bootstrap.py",
+      "sha256": "bf20d657d9b3243c842178aa8549db15926e571972570048d6e60926fc9100bb"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_baseline.py",
+      "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_benchmark.py",
+      "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_scoring.py",
+      "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_bootstrap.py",
+      "sha256": "b032f0d92bb042cb3388699fe230084c077fb78a59b4df86184f12feb6610487"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_inventory.py",
+      "sha256": "f4865ae92c7f41375a15ecf917e932562cca608ca7a1607d18d1b370bd0932ff"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_offer.py",
+      "sha256": "9387b91be560cf80a85a5bae8166acb7c35f7a61135042971d21cafdb76c3df5"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_probe.py",
+      "sha256": "bb89c097e7fe0c6bc56771e87695056d60c11f510502173105a102a25d48e22f"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_transport.py",
+      "sha256": "013d93fc8c1548bc7eaf4cf9a4f5a49608b7e16d537b192accf053151fbf5902"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/exact_teacher.py",
+      "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/free_container_cleanup.py",
+      "sha256": "3dc64f6fa013e992e8c02fa702330a14003cb2e7ab0d536e3dc0da80ce3e9466"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/private_delivery.py",
+      "sha256": "f010c41715e2548b86a4b3dfc009e22e57fcbf5a52429e4f7f1165632f1a4a40"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/research_entry.py",
+      "sha256": "9f3c753cb26f9ab4d22ef5a27d4c900bc109ea10cbc4447df97d58b337762d85"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/research_entry_contract.py",
+      "sha256": "1a4997a22bcb2bb9acd5dde8bfe916e987ae20131c9073610f2bb2e863908e47"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/research_entry_state.py",
+      "sha256": "b3858570800b87f36a2ebd99a4ebbf65295edf5756b1a7b6cf1d6c4c13316389"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/runpod_control.py",
+      "sha256": "09219477947e39b2c7c58b6e7e44f385bd5d1140cbdb7a47cddef3ab7f6cf400"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_augnes_screen.py",
+      "sha256": "05696c60d0dd7ee42e89b4d429feb5479b724a97efaca436ed8456b02fc44209"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_container.py",
+      "sha256": "d87cc12a3dc39dd9c235956f1b7a5181b060e57c7e104a86aacc991977e20410"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_container_install.py",
+      "sha256": "e44a80ef7ca4c6611ea0536a76889efed5011fdea2bf27331acb21cc0aac5ecc"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_container_probe.py",
+      "sha256": "924cf57ec8868ea1acdaaaf7868f829071e7c34a16416c3db069b03e6642081b"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_container_worker.py",
+      "sha256": "b18582ac2af9785b63be236bc9f240ce021501275567106f877a4aa32efc1d91"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_delivery.py",
+      "sha256": "a5ca27f8e31e664515b957f48e3d39647c0ab453b6d8a761ffd41beaf624cd73"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_gpu.py",
+      "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_lifecycle.py",
+      "sha256": "32f0cc0215c9c4098540b95a5fd1e3194af9764ba1f01d1317df0553875b4506"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_lifecycle_probe.py",
+      "sha256": "c8af61b707903398d29a883ce1c9525af93494cb71612b6d299bbac240b704ed"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_matched.py",
+      "sha256": "90c90061b32ba521fd40b94277bd6283285588a6254e827fac50fdd3799d1db3"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_matched_data.py",
+      "sha256": "cf1a516562dc5659663b07d592a62d57349bd2061a967dfe7a12da60f72257a4"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_matched_scope.py",
+      "sha256": "833ac3e64fbf3036e5b397a4c2741ef9695db73261ab0634ad77299b17c01bfe"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum.py",
+      "sha256": "610e3cee55e560894784821dfe66e73a3c5753a59c43a3dde3a85aca1999e1bc"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_diagnostic.py",
+      "sha256": "bc9e8117ad0a4e76ec17bae4b8722b9955016a4909f31e64562e24e0a22624f7"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_probe.py",
+      "sha256": "8041139e22f2bfd3f556ee885ec43ce9833ba0fadc391d6805febab342803cc2"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_remote.py",
+      "sha256": "cdb9ffa6047e95b2f66dc221c5f798d7fea812909395bbdeb9669647b5220838"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_retry.py",
+      "sha256": "48c9512766d99e1bd5a75d6712fa2d0c643b7f65d5b5de22d2bc1786a1e6a3c4"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_trace.c",
+      "sha256": "d8e165e3d117ab2d1becae21fb9de4f456ad020621ccb901979a6712b6780c67"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_worker.py",
+      "sha256": "aa16575660cfc5d4935da66fb6a3c4da4ac6071033708cad318bc81f98f432de"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_precheck.py",
+      "sha256": "dafcfa6cc32d78204a102b7e73eb1be3eeb499a906a90a7390503134fa81a63d"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_pretrained.py",
+      "sha256": "bfb6d9f1d58915ec0f2f2c01fdf89a78961295a6d3cbd800c9aec75ff72864d7"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_pretrained_scope.py",
+      "sha256": "8160e0fb2eb0aa6d96e22071f08ffaaba126c97165fbf50277810ab72066ba79"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_provider.py",
+      "sha256": "b5c9e0a0e7c9ac98a8dc8a6d24b20f5c45de9690483ae37b65196e30218a37c4"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_provider_probe.py",
+      "sha256": "467a96a5cd7131da46155f9c6a675718049c1547d3a5d950efff73ea1e9da8cd"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_public_delivery.py",
+      "sha256": "33ffaefe1b03a77413bd24584cb75ea92ab1052994a9e1b68c7e6ff9e7ce9e98"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_public_scope.py",
+      "sha256": "ff1b5e55cb48796d7c40098aa75364270bdfcb887892ad529d67b7fe68a8fe5b"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_readiness.py",
+      "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_remote_watch.py",
+      "sha256": "eec9864d54e0859399e5e9f9c9334f2c21809e470a015d57b65d7119f9657e82"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_resources.py",
+      "sha256": "1d763165c9af25461a50ae55665a18052d71c74698f1abdfd70eb81f77e367ca"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner.py",
+      "sha256": "60932ca4057fae460caf874b22f5cc74bcd03a3a543c9bde8e5aa944a25263b6"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner_probe.py",
+      "sha256": "dfbff0eabb1c72d914ee1528b059338261427ba0713425c264f2c5c4986e095a"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_training_inputs.py",
+      "sha256": "74d8d2a152c57e57ae941543a0230d9750e6508fc15b4c53d8a8d4210555f411"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_worker.py",
+      "sha256": "7a1d874ed1f53ff100e480464bb41862250b6c231ca51fc51451085c4bbc0275"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/ssh_bootstrap.py",
+      "sha256": "b657ddd6f145f66f4e15f2d30a23d8870ae56aa7f60d396ae1f41de485916839"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_benchmark.py",
+      "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+    },
+    {
+      "member": "owner/minimum-owner/receipt.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_scoring.py",
+      "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B1/source_hashes",
+      "path": "docs/abductive-baseline-protocol-v1.json",
+      "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B1/source_hashes",
+      "path": "docs/abductive-evaluation-protocol-v1.json",
+      "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B1/source_hashes",
+      "path": "docs/small-model-cpu-requirements.txt",
+      "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B1/source_hashes",
+      "path": "docs/small-model-gpu-requirements.txt",
+      "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B1/source_hashes",
+      "path": "docs/small-model-runtime-lock-v1.json",
+      "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B1/source_hashes",
+      "path": "docs/temporal-evaluation-protocol-v1.json",
+      "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B1/source_hashes",
+      "path": "tools/abductive_baseline.py",
+      "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B1/source_hashes",
+      "path": "tools/abductive_benchmark.py",
+      "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B1/source_hashes",
+      "path": "tools/abductive_scoring.py",
+      "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B1/source_hashes",
+      "path": "tools/exact_teacher.py",
+      "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B1/source_hashes",
+      "path": "tools/small_model_gpu.py",
+      "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B1/source_hashes",
+      "path": "tools/small_model_readiness.py",
+      "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B1/source_hashes",
+      "path": "tools/small_model_runner.py",
+      "sha256": "60932ca4057fae460caf874b22f5cc74bcd03a3a543c9bde8e5aa944a25263b6"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B1/source_hashes",
+      "path": "tools/small_model_worker.py",
+      "sha256": "7a1d874ed1f53ff100e480464bb41862250b6c231ca51fc51451085c4bbc0275"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B1/source_hashes",
+      "path": "tools/temporal_benchmark.py",
+      "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B1/source_hashes",
+      "path": "tools/temporal_scoring.py",
+      "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B2/source_hashes",
+      "path": "docs/abductive-baseline-protocol-v1.json",
+      "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B2/source_hashes",
+      "path": "docs/abductive-evaluation-protocol-v1.json",
+      "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B2/source_hashes",
+      "path": "docs/small-model-cpu-requirements.txt",
+      "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B2/source_hashes",
+      "path": "docs/small-model-gpu-requirements.txt",
+      "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B2/source_hashes",
+      "path": "docs/small-model-runtime-lock-v1.json",
+      "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B2/source_hashes",
+      "path": "docs/temporal-evaluation-protocol-v1.json",
+      "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B2/source_hashes",
+      "path": "tools/abductive_baseline.py",
+      "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B2/source_hashes",
+      "path": "tools/abductive_benchmark.py",
+      "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B2/source_hashes",
+      "path": "tools/abductive_scoring.py",
+      "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B2/source_hashes",
+      "path": "tools/exact_teacher.py",
+      "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B2/source_hashes",
+      "path": "tools/small_model_gpu.py",
+      "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B2/source_hashes",
+      "path": "tools/small_model_readiness.py",
+      "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B2/source_hashes",
+      "path": "tools/small_model_runner.py",
+      "sha256": "60932ca4057fae460caf874b22f5cc74bcd03a3a543c9bde8e5aa944a25263b6"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B2/source_hashes",
+      "path": "tools/small_model_worker.py",
+      "sha256": "7a1d874ed1f53ff100e480464bb41862250b6c231ca51fc51451085c4bbc0275"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B2/source_hashes",
+      "path": "tools/temporal_benchmark.py",
+      "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/B2/source_hashes",
+      "path": "tools/temporal_scoring.py",
+      "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/S/source_hashes",
+      "path": "docs/abductive-baseline-protocol-v1.json",
+      "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/S/source_hashes",
+      "path": "docs/abductive-evaluation-protocol-v1.json",
+      "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/S/source_hashes",
+      "path": "docs/small-model-cpu-requirements.txt",
+      "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/S/source_hashes",
+      "path": "docs/small-model-gpu-requirements.txt",
+      "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/S/source_hashes",
+      "path": "docs/small-model-runtime-lock-v1.json",
+      "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/S/source_hashes",
+      "path": "docs/temporal-evaluation-protocol-v1.json",
+      "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/S/source_hashes",
+      "path": "tools/abductive_baseline.py",
+      "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/S/source_hashes",
+      "path": "tools/abductive_benchmark.py",
+      "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/S/source_hashes",
+      "path": "tools/abductive_scoring.py",
+      "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/S/source_hashes",
+      "path": "tools/exact_teacher.py",
+      "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/S/source_hashes",
+      "path": "tools/small_model_gpu.py",
+      "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/S/source_hashes",
+      "path": "tools/small_model_readiness.py",
+      "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/S/source_hashes",
+      "path": "tools/small_model_runner.py",
+      "sha256": "60932ca4057fae460caf874b22f5cc74bcd03a3a543c9bde8e5aa944a25263b6"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/S/source_hashes",
+      "path": "tools/small_model_worker.py",
+      "sha256": "7a1d874ed1f53ff100e480464bb41862250b6c231ca51fc51451085c4bbc0275"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/S/source_hashes",
+      "path": "tools/temporal_benchmark.py",
+      "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+    },
+    {
+      "member": "owner/minimum-owner/remote/all-assignment-outcomes.json",
+      "pointer": "/collections/S/source_hashes",
+      "path": "tools/temporal_scoring.py",
+      "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-baseline-protocol-v1.json",
+      "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-evaluation-protocol-v1.json",
+      "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-cpu-requirements.txt",
+      "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-gpu-requirements.txt",
+      "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-runtime-lock-v1.json",
+      "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/temporal-evaluation-protocol-v1.json",
+      "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_baseline.py",
+      "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_benchmark.py",
+      "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_scoring.py",
+      "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/exact_teacher.py",
+      "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_gpu.py",
+      "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_readiness.py",
+      "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner.py",
+      "sha256": "60932ca4057fae460caf874b22f5cc74bcd03a3a543c9bde8e5aa944a25263b6"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_worker.py",
+      "sha256": "7a1d874ed1f53ff100e480464bb41862250b6c231ca51fc51451085c4bbc0275"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_benchmark.py",
+      "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_scoring.py",
+      "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-baseline-protocol-v1.json",
+      "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-evaluation-protocol-v1.json",
+      "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-cpu-requirements.txt",
+      "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-gpu-requirements.txt",
+      "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-runtime-lock-v1.json",
+      "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/temporal-evaluation-protocol-v1.json",
+      "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_baseline.py",
+      "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_benchmark.py",
+      "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_scoring.py",
+      "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/exact_teacher.py",
+      "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_gpu.py",
+      "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_readiness.py",
+      "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner.py",
+      "sha256": "60932ca4057fae460caf874b22f5cc74bcd03a3a543c9bde8e5aa944a25263b6"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_worker.py",
+      "sha256": "7a1d874ed1f53ff100e480464bb41862250b6c231ca51fc51451085c4bbc0275"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_benchmark.py",
+      "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B1/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_scoring.py",
+      "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-baseline-protocol-v1.json",
+      "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-evaluation-protocol-v1.json",
+      "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-cpu-requirements.txt",
+      "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-gpu-requirements.txt",
+      "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-runtime-lock-v1.json",
+      "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/temporal-evaluation-protocol-v1.json",
+      "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_baseline.py",
+      "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_benchmark.py",
+      "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_scoring.py",
+      "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/exact_teacher.py",
+      "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_gpu.py",
+      "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_readiness.py",
+      "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner.py",
+      "sha256": "60932ca4057fae460caf874b22f5cc74bcd03a3a543c9bde8e5aa944a25263b6"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_worker.py",
+      "sha256": "7a1d874ed1f53ff100e480464bb41862250b6c231ca51fc51451085c4bbc0275"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_benchmark.py",
+      "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_scoring.py",
+      "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-baseline-protocol-v1.json",
+      "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-evaluation-protocol-v1.json",
+      "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-cpu-requirements.txt",
+      "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-gpu-requirements.txt",
+      "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-runtime-lock-v1.json",
+      "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/temporal-evaluation-protocol-v1.json",
+      "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_baseline.py",
+      "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_benchmark.py",
+      "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_scoring.py",
+      "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/exact_teacher.py",
+      "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_gpu.py",
+      "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_readiness.py",
+      "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner.py",
+      "sha256": "60932ca4057fae460caf874b22f5cc74bcd03a3a543c9bde8e5aa944a25263b6"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_worker.py",
+      "sha256": "7a1d874ed1f53ff100e480464bb41862250b6c231ca51fc51451085c4bbc0275"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_benchmark.py",
+      "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/B2/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_scoring.py",
+      "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-baseline-protocol-v1.json",
+      "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-evaluation-protocol-v1.json",
+      "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-cpu-requirements.txt",
+      "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-gpu-requirements.txt",
+      "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-runtime-lock-v1.json",
+      "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "docs/temporal-evaluation-protocol-v1.json",
+      "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_baseline.py",
+      "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_benchmark.py",
+      "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_scoring.py",
+      "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/exact_teacher.py",
+      "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_gpu.py",
+      "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_readiness.py",
+      "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner.py",
+      "sha256": "60932ca4057fae460caf874b22f5cc74bcd03a3a543c9bde8e5aa944a25263b6"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_worker.py",
+      "sha256": "7a1d874ed1f53ff100e480464bb41862250b6c231ca51fc51451085c4bbc0275"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_benchmark.py",
+      "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/assignment.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_scoring.py",
+      "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-baseline-protocol-v1.json",
+      "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-evaluation-protocol-v1.json",
+      "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-cpu-requirements.txt",
+      "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-gpu-requirements.txt",
+      "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-runtime-lock-v1.json",
+      "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/collection.json",
+      "pointer": "/source_hashes",
+      "path": "docs/temporal-evaluation-protocol-v1.json",
+      "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_baseline.py",
+      "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_benchmark.py",
+      "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_scoring.py",
+      "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/exact_teacher.py",
+      "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_gpu.py",
+      "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_readiness.py",
+      "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner.py",
+      "sha256": "60932ca4057fae460caf874b22f5cc74bcd03a3a543c9bde8e5aa944a25263b6"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_worker.py",
+      "sha256": "7a1d874ed1f53ff100e480464bb41862250b6c231ca51fc51451085c4bbc0275"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_benchmark.py",
+      "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+    },
+    {
+      "member": "owner/minimum-owner/remote/collections/S/collection.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_scoring.py",
+      "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-container-cpu.yml",
+      "sha256": "52745e5f7a5ddc42796b094e450a5641090da68aebf6998c23503bb97961f249"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-matched.yml",
+      "sha256": "d36272e1c7935a4d081f119df9d7d390302a5a28a23e6cb0f3d2a6eccb61b898"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-cpu.yml",
+      "sha256": "e960267e3b69ad5b3c6562e7b3dd36d04451e621fd77519321a091b17295906a"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-diagnostic.yml",
+      "sha256": "6bb4a9e917ffe9e966404c12b05bd1cb7f42d13be19061858933203181eb24da"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-live.yml",
+      "sha256": "e2062c003c010bd8ac4a67ff7e39a066b44af2007b8e5f67186c82316b9ccf05"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-quote.yml",
+      "sha256": "f93cc9946f39cf3d814a24fc62c968cdc822b169167d3dd50c8f84813a8958c0"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-retry-cpu.yml",
+      "sha256": "acde46496d679685f4b54e3247c46e061e7c45c7c0bb81ef79a8a140f254a683"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-retry-live.yml",
+      "sha256": "4f9f9fc148c610084b8a388701a55776ab878d689f0f6d9212b152c0b024900e"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-minimum-retry-quote.yml",
+      "sha256": "6eeff6411ab8d6e967f9add1f7ba902ce5a519f5018332723e32065e6fcdcd8d"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-precheck-cpu.yml",
+      "sha256": "f13609448771bfada0e1750e52676608a2da1d700c89d28251f07e518f314a0f"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-provider-cpu.yml",
+      "sha256": "1314824b147395afaac6a4f8708f3c19004f441f8dc8617f6096526a82f4eaff"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-provider-owner.yml",
+      "sha256": "0bb06419810437a0bdce8efa15aab651c2d02748c9e469801cd0777393e245fc"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": ".github/workflows/small-model-provider-watch.yml",
+      "sha256": "8af1ae7416563c61d4c9e973ec2ddba7f97296b7be93369a34094a655fc6d197"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-baseline-protocol-v1.json",
+      "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-evaluation-protocol-v1.json",
+      "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/augnes-development-replay-rubric-20261031.json",
+      "sha256": "ccdb5185d775b2d34f0d7a4df205cf769b616d776f2212bd9dd7a42864839776"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/augnes-development-replays-20261031.json",
+      "sha256": "f87ed31e79c39d0314d62aa2cfe338c4e56864d1729b89f064e45d6e171e2c43"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/augnes-screening-packets-20261031.json",
+      "sha256": "e3a65c083be058c02c70a0ac041a006b0466631ef255033698bd7cf27d22b42e"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/augnes-screening-rubric-20261031.json",
+      "sha256": "cefcb7936085065abdba9d97ca6de0e504b081f33e3a9ad7efc4acc36b93fbd5"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/cloud-controller-requirements.txt",
+      "sha256": "6e8e0115d53ffb67b8a9001e0b4e3f06747fb470aad4bdcb23e8a864d4018bdc"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/evidence/e2b-run-41206950960/input-schedule.json",
+      "sha256": "1ebe1f9c97ff6009e5c09e80f54590460c364b36afe42029c11ed063273f35ff"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/evidence/window-paid-run-41225173224/recovered-screening-raw.json",
+      "sha256": "5779e37082e579c8aa1f2d2be8f5552d1a44142f8226e2f1370b62760354f655"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/research-reduced9-amendment-20261026.json",
+      "sha256": "ba9b235c84db383f2413bc7adeb03888de9fd0fc571e8e67cc8ae4f9057563c7"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-cpu-requirements.txt",
+      "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-gpu-requirements.txt",
+      "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-matched-candidate-20261031.md",
+      "sha256": "6d60dd7fb184821921abbe250513e8764a1b1c12c165d35fa2aed442ae007782"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-runtime-lock-v1.json",
+      "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "docs/temporal-evaluation-protocol-v1.json",
+      "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/official_cloud_transport.py",
+      "sha256": "add4388cf0db14eefa15343c864b01f76eafeb6389b906e89f56824697c658d6"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/small_model_transport_control.py",
+      "sha256": "1ea88930166bfe91f073649ea07149c6e7f2331b3ed63f02c5ad015084ce98a4"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_private_delivery.py",
+      "sha256": "9d716ae24821bfeb69c9c0a51bc8f2b5cf074ef0e7325701cadd34e84c23f5de"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_augnes_screen.py",
+      "sha256": "127d973c8f48aa6081afb85c3a56fdfa1753e1df55be7e4dafad2dafc1dfa986"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_container.py",
+      "sha256": "ef05ed3f780c6a668c1ad2e31b2ba704521f94dcff3d03f9afff70d0567e2e4b"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_delivery.py",
+      "sha256": "eb44d97d469d7e17cadd1a54cdd353ca638a13a5ad6689ae678da5a231553837"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_matched.py",
+      "sha256": "9e8bcf55eae4d63a790aa0379a32382f15a528e98cd9588b4162527c53ae0974"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_matched_data.py",
+      "sha256": "4d0f08c94845fd9f4e2b91b98e55ae26f1492a1fb0b37f3808c81ae776ab4d6b"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum.py",
+      "sha256": "cbe5a6a1e08fe39db75103755eb8a3030b46f88d190b734f4f01286286683a43"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum_diagnostic.py",
+      "sha256": "944470aab610f01f34af02518b6784a835198d43b7c21bc7f80081f64c02a018"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum_diagnostic_scope.py",
+      "sha256": "0fa54c0748ad010d7a2a03e64e5a5d45ba97f756f55c414995b3cb219349a1e0"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum_retry.py",
+      "sha256": "ca2a4d349efa03ae180e7b16608e41bc786503ac961fb48c6a3d7f89b4e76ce7"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_minimum_trace.py",
+      "sha256": "2af1e607c12817b8d4227016c5e649aea939d1318a616ee2a86dad91ff57e94d"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_precheck.py",
+      "sha256": "21ad1e073cc9f83eca8e41034cff22371df7629188b07921b5ecdcc8d0ec4e47"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_pretrained.py",
+      "sha256": "333930ec49459fff592fd7fab3229f8c5a9a5aff3374cc0c2e2ab666c7caa749"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_provider.py",
+      "sha256": "242530d07de276c3b36eff5484fe0a15d6f457bd7705db63e14e54e03d71f94c"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_public_delivery.py",
+      "sha256": "4772027d663279ae95ef8476f2915e3c9e90b5545596aad61d4aa7a33ff8a933"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_small_model_training_inputs.py",
+      "sha256": "2392366c2b65a78059e864f03c08a6243643ec46c720735fde9fa0b2a3562da7"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tests/test_ssh_bootstrap.py",
+      "sha256": "bf20d657d9b3243c842178aa8549db15926e571972570048d6e60926fc9100bb"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_baseline.py",
+      "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_benchmark.py",
+      "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_scoring.py",
+      "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_bootstrap.py",
+      "sha256": "b032f0d92bb042cb3388699fe230084c077fb78a59b4df86184f12feb6610487"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_inventory.py",
+      "sha256": "f4865ae92c7f41375a15ecf917e932562cca608ca7a1607d18d1b370bd0932ff"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_offer.py",
+      "sha256": "9387b91be560cf80a85a5bae8166acb7c35f7a61135042971d21cafdb76c3df5"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_probe.py",
+      "sha256": "bb89c097e7fe0c6bc56771e87695056d60c11f510502173105a102a25d48e22f"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/cloud_transport.py",
+      "sha256": "013d93fc8c1548bc7eaf4cf9a4f5a49608b7e16d537b192accf053151fbf5902"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/exact_teacher.py",
+      "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/free_container_cleanup.py",
+      "sha256": "3dc64f6fa013e992e8c02fa702330a14003cb2e7ab0d536e3dc0da80ce3e9466"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/private_delivery.py",
+      "sha256": "f010c41715e2548b86a4b3dfc009e22e57fcbf5a52429e4f7f1165632f1a4a40"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/research_entry.py",
+      "sha256": "9f3c753cb26f9ab4d22ef5a27d4c900bc109ea10cbc4447df97d58b337762d85"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/research_entry_contract.py",
+      "sha256": "1a4997a22bcb2bb9acd5dde8bfe916e987ae20131c9073610f2bb2e863908e47"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/research_entry_state.py",
+      "sha256": "b3858570800b87f36a2ebd99a4ebbf65295edf5756b1a7b6cf1d6c4c13316389"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/runpod_control.py",
+      "sha256": "09219477947e39b2c7c58b6e7e44f385bd5d1140cbdb7a47cddef3ab7f6cf400"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_augnes_screen.py",
+      "sha256": "05696c60d0dd7ee42e89b4d429feb5479b724a97efaca436ed8456b02fc44209"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_container.py",
+      "sha256": "d87cc12a3dc39dd9c235956f1b7a5181b060e57c7e104a86aacc991977e20410"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_container_install.py",
+      "sha256": "e44a80ef7ca4c6611ea0536a76889efed5011fdea2bf27331acb21cc0aac5ecc"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_container_probe.py",
+      "sha256": "924cf57ec8868ea1acdaaaf7868f829071e7c34a16416c3db069b03e6642081b"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_container_worker.py",
+      "sha256": "b18582ac2af9785b63be236bc9f240ce021501275567106f877a4aa32efc1d91"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_delivery.py",
+      "sha256": "a5ca27f8e31e664515b957f48e3d39647c0ab453b6d8a761ffd41beaf624cd73"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_gpu.py",
+      "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_lifecycle.py",
+      "sha256": "32f0cc0215c9c4098540b95a5fd1e3194af9764ba1f01d1317df0553875b4506"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_lifecycle_probe.py",
+      "sha256": "c8af61b707903398d29a883ce1c9525af93494cb71612b6d299bbac240b704ed"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_matched.py",
+      "sha256": "90c90061b32ba521fd40b94277bd6283285588a6254e827fac50fdd3799d1db3"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_matched_data.py",
+      "sha256": "cf1a516562dc5659663b07d592a62d57349bd2061a967dfe7a12da60f72257a4"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_matched_scope.py",
+      "sha256": "833ac3e64fbf3036e5b397a4c2741ef9695db73261ab0634ad77299b17c01bfe"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum.py",
+      "sha256": "610e3cee55e560894784821dfe66e73a3c5753a59c43a3dde3a85aca1999e1bc"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_diagnostic.py",
+      "sha256": "bc9e8117ad0a4e76ec17bae4b8722b9955016a4909f31e64562e24e0a22624f7"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_probe.py",
+      "sha256": "8041139e22f2bfd3f556ee885ec43ce9833ba0fadc391d6805febab342803cc2"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_remote.py",
+      "sha256": "cdb9ffa6047e95b2f66dc221c5f798d7fea812909395bbdeb9669647b5220838"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_retry.py",
+      "sha256": "48c9512766d99e1bd5a75d6712fa2d0c643b7f65d5b5de22d2bc1786a1e6a3c4"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_trace.c",
+      "sha256": "d8e165e3d117ab2d1becae21fb9de4f456ad020621ccb901979a6712b6780c67"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_minimum_worker.py",
+      "sha256": "aa16575660cfc5d4935da66fb6a3c4da4ac6071033708cad318bc81f98f432de"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_precheck.py",
+      "sha256": "dafcfa6cc32d78204a102b7e73eb1be3eeb499a906a90a7390503134fa81a63d"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_pretrained.py",
+      "sha256": "bfb6d9f1d58915ec0f2f2c01fdf89a78961295a6d3cbd800c9aec75ff72864d7"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_pretrained_scope.py",
+      "sha256": "8160e0fb2eb0aa6d96e22071f08ffaaba126c97165fbf50277810ab72066ba79"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_provider.py",
+      "sha256": "b5c9e0a0e7c9ac98a8dc8a6d24b20f5c45de9690483ae37b65196e30218a37c4"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_provider_probe.py",
+      "sha256": "467a96a5cd7131da46155f9c6a675718049c1547d3a5d950efff73ea1e9da8cd"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_public_delivery.py",
+      "sha256": "33ffaefe1b03a77413bd24584cb75ea92ab1052994a9e1b68c7e6ff9e7ce9e98"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_public_scope.py",
+      "sha256": "ff1b5e55cb48796d7c40098aa75364270bdfcb887892ad529d67b7fe68a8fe5b"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_readiness.py",
+      "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_remote_watch.py",
+      "sha256": "eec9864d54e0859399e5e9f9c9334f2c21809e470a015d57b65d7119f9657e82"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_resources.py",
+      "sha256": "1d763165c9af25461a50ae55665a18052d71c74698f1abdfd70eb81f77e367ca"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner.py",
+      "sha256": "60932ca4057fae460caf874b22f5cc74bcd03a3a543c9bde8e5aa944a25263b6"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner_probe.py",
+      "sha256": "dfbff0eabb1c72d914ee1528b059338261427ba0713425c264f2c5c4986e095a"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_training_inputs.py",
+      "sha256": "74d8d2a152c57e57ae941543a0230d9750e6508fc15b4c53d8a8d4210555f411"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_worker.py",
+      "sha256": "7a1d874ed1f53ff100e480464bb41862250b6c231ca51fc51451085c4bbc0275"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/ssh_bootstrap.py",
+      "sha256": "b657ddd6f145f66f4e15f2d30a23d8870ae56aa7f60d396ae1f41de485916839"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_benchmark.py",
+      "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+    },
+    {
+      "member": "owner/minimum-owner.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_scoring.py",
+      "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-baseline-protocol-v1.json",
+      "sha256": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "docs/abductive-evaluation-protocol-v1.json",
+      "sha256": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-cpu-requirements.txt",
+      "sha256": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-gpu-requirements.txt",
+      "sha256": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "docs/small-model-runtime-lock-v1.json",
+      "sha256": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "docs/temporal-evaluation-protocol-v1.json",
+      "sha256": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_baseline.py",
+      "sha256": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_benchmark.py",
+      "sha256": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/abductive_scoring.py",
+      "sha256": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/exact_teacher.py",
+      "sha256": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_gpu.py",
+      "sha256": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_readiness.py",
+      "sha256": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_runner.py",
+      "sha256": "60932ca4057fae460caf874b22f5cc74bcd03a3a543c9bde8e5aa944a25263b6"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/small_model_worker.py",
+      "sha256": "7a1d874ed1f53ff100e480464bb41862250b6c231ca51fc51451085c4bbc0275"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_benchmark.py",
+      "sha256": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a"
+    },
+    {
+      "member": "owner/owner-runtime.json",
+      "pointer": "/source_hashes",
+      "path": "tools/temporal_scoring.py",
+      "sha256": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"status": "PASS_AUTHORED_COORDINATOR_CONTROL", "real_model": false, "assigned": 348, "calls": ["E2B-B1-eval", "E2B-B2-train", "E2B-B2-eval", "E2B-S-train", "E2B-S-eval"], "training_metadata": {"B1": false, "B2": true, "S": true}, "limitations": "Authored fake channels; validates real collector sequencing/retention only, not transport or learning."}
