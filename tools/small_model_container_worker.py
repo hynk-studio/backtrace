@@ -29,10 +29,15 @@ def prctl(option, value):
         raise OSError(ctypes.get_errno(), 'prctl failed')
 
 
-def restrict_syscalls():
+def restrict_syscalls(*, trace_denials=False):
     """x86_64 classic BPF; reject alternate ABIs, require real pthread clone."""
     if platform.machine() != 'x86_64' or platform.system() != 'Linux':
         raise RuntimeError('qualified Linux x86_64 required')
+    if type(trace_denials) is not bool:
+        raise ValueError('explicit diagnostic flag required')
+    # TRAP still prevents the syscall. A separately installed diagnostic-only
+    # native handler records it and restores the same errno. Default unchanged.
+    deny_action = 0x00030000 if trace_denials else 0x00050000
     class Filter(ctypes.Structure):
         _fields_ = [('code',ctypes.c_ushort),('jt',ctypes.c_ubyte),
                     ('jf',ctypes.c_ubyte),('k',ctypes.c_uint32)]
@@ -44,12 +49,14 @@ def restrict_syscalls():
     denied = (41,42,43,44,46,49,50,53,57,58,59,101,155,161,165,166,
               272,288,299,304,307,308,310,311,321,322,323,425,426,427,438)
     for nr in denied:
-        rows += [(0x15,0,1,nr),(0x06,0,0,0x00050000|errno.EPERM)]
+        rows += [(0x15,0,1,nr),(0x06,0,0,deny_action|errno.EPERM)]
     # glibc uses clone3 when present, then safely falls back to clone on ENOSYS.
+    # Keep clone3's ENOSYS return literal even in trace mode: pthread creation
+    # temporarily blocks SIGSYS, so trapping this compatibility fallback kills it.
     rows += [(0x15,0,1,435),(0x06,0,0,0x00050000|errno.ENOSYS),
              (0x15,0,7,56),(0x20,0,0,16),(0x54,0,0,0x10900),
              (0x15,0,3,0x10900),(0x20,0,0,16),(0x54,0,0,0x7e0200ff),
-             (0x15,1,0,0),(0x06,0,0,0x00050000|errno.EPERM),
+             (0x15,1,0,0),(0x06,0,0,deny_action|errno.EPERM),
              (0x06,0,0,0x7fff0000)]
     array = (Filter*len(rows))(*(Filter(*r) for r in rows))
     program = Program(len(rows), array)

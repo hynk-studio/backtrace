@@ -37,7 +37,7 @@ CONTRACT={'scope':'HARDWARE_ONLY_OCI_V1','total_seconds':3000,'work_seconds':258
 
 def sources():
     extra=[p for folder,pattern in [('tools','small_model_minimum*.py'),('tests','test_small_model_minimum*.py'),('.github/workflows','small-model-minimum*.yml')] for p in (ROOT/folder).glob(pattern)]
-    extra.extend(ROOT/p for p in ('tools/cloud_bootstrap.py','tools/research_entry.py','docs/research-reduced9-amendment-20261026.json'))
+    extra.extend(ROOT/p for p in ('tools/cloud_bootstrap.py','tools/research_entry.py','docs/research-reduced9-amendment-20261026.json','tools/small_model_minimum_trace.c'))
     return dict(container.sources(),**{str(p.relative_to(ROOT)):life.digest(p.read_bytes()) for p in extra})
 
 

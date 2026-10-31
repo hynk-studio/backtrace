@@ -23,6 +23,9 @@ def prepare(root,wheels,transport):
     life.write(root/'keys/initializer.json',initializer)
     raw,receipt=container.runtime_payload(root/'runtime',Path(wheels))
     shutil.copyfile(ROOT/'tools/small_model_minimum_worker.py',root/'runtime/minimum.py')
+    subprocess.run(['gcc','-std=c11','-O2','-fPIC','-shared','-Wall','-Wextra','-Werror',
+        '-Wl,-z,relro,-z,now','-o',str(root/'runtime/denial-trace.so'),
+        str(ROOT/'tools/small_model_minimum_trace.c')],check=True,timeout=30)
     raw=container.manifest(root/'runtime');(root/'runtime-manifest.json').write_bytes(raw)
     life.write(root/'preparation.json',{'runtime':receipt,'manifest':json.loads(raw),
         'transport':ssh.validate_material(root/'keys',profile='actions-20261019'),
@@ -45,7 +48,7 @@ def remote(prefix,code,seconds=30):
 
 
 def command(prefix,mode,seconds,actual):
-    if mode not in ('boundary','memory','cpu-hold','kernels','active','diagnostic-a','diagnostic-b','diagnostic-c') or not 0<seconds<=180:
+    if mode not in ('boundary','memory','cpu-hold','kernels','active','diagnostic-a','diagnostic-b','diagnostic-c','diagnostic-d') or not 0<seconds<=180:
         raise ValueError('bounded hardware-only diagnostic required')
     if mode.startswith('diagnostic-') and seconds > 30:
         raise ValueError('diagnostic case ceiling is 30 seconds')
@@ -112,13 +115,13 @@ def diagnostic_decision(rows, actual):
                 tuple(passed), 'NONMONOTONIC_INCONCLUSIVE_STOP_SAME_ROUTE')
 
 
-def diagnose(prefix, output, *, actual):
+def diagnose(prefix, output, *, actual, trace=False):
     """Three bounded fresh processes on an already-installed host; no allocation API."""
     output = Path(output); output.mkdir(mode=0o700, parents=True, exist_ok=False)
     receipt = {'actual_gpu': actual, 'cases': {}, 'decision': 'INCOMPLETE',
                'denied_syscall_trace': 'NOT_COLLECTED', 'automatic_retry': False}
     life.write(output/'started.json', receipt)
-    for case in 'ABC':
+    for case in ('ABCD' if trace else 'ABC'):
         row = {}; receipt['cases'][case] = row
         channel = None
         try:
@@ -162,7 +165,21 @@ def diagnose(prefix, output, *, actual):
             break
         finally:
             life.write(output/(case+'-teardown.json'), receipt)
-    receipt['decision'] = diagnostic_decision(receipt['cases'], actual)
+    receipt['decision'] = diagnostic_decision({k:v for k,v in receipt['cases'].items() if k in 'ABC'}, actual)
+    if trace:
+        trace_log = output/'D-stderr.log'
+        records = [json.loads(line.removeprefix('BACKTRACE_SECCOMP_DENIAL '))
+                   for line in trace_log.read_text().splitlines()
+                   if line.startswith('BACKTRACE_SECCOMP_DENIAL ')] if trace_log.exists() else []
+        receipt['denied_syscall_trace'] = {'case': 'D', 'records': records,
+            'complete': not receipt['cases'].get('D', {}).get('error')
+                and receipt['cases'].get('D', {}).get('exit_code') == 0,
+            'instrumentation_changes_signal_delivery': True,
+            'not_a_filter_correction': True}
+        total = receipt['cases'].get('D', {}).get('result', {}).get('denial_trace', {}).get('count')
+        receipt['denied_syscall_trace'].update(total_denials=total,
+            records_truncated=total is None or total > len(records),
+            clone3_enosys_fallback_traced=False)
     life.write(output/'receipt.json', receipt)
     return receipt
 
@@ -214,6 +231,7 @@ def exercise(prefix,output,*,actual,comparison_only=False):
     memory=remote(prefix,"""import json,pathlib,shutil
 p=pathlib.Path('/opt/backtrace');src=pathlib.Path('/root/backtrace/runtime/minimum.py')
 shutil.copyfile(src,p/'minimum.py');(p/'minimum.py').chmod(0o444)
+shutil.copyfile(src.parent/'denial-trace.so',p/'denial-trace.so');(p/'denial-trace.so').chmod(0o444)
 canary=pathlib.Path('/root/backtrace/private-canary');canary.write_text('qualification-only');canary.chmod(0o600)
 r={'disk_free_bytes':shutil.disk_usage(p).free,'meminfo':pathlib.Path('/proc/meminfo').read_text(),
  'cgroup':pathlib.Path('/proc/self/cgroup').read_text(),'visible':{},'hidden_ancestor_admission':'NOT_ESTABLISHED'}
@@ -238,7 +256,7 @@ print(json.dumps(r))
     config={'gpu':device,'resident_bytes':size}
     remote(prefix,"import pathlib,json;p=pathlib.Path('/opt/backtrace/"+('minimum-gpu.json' if actual else 'minimum-cpu.json')+"');p.write_text("+repr(json.dumps(config))+");p.chmod(0o444);print('{}')")
     if comparison_only:
-        result['cuda_comparison'] = diagnose(prefix, output/'cuda-comparison', actual=actual)
+        result['cuda_comparison'] = diagnose(prefix, output/'cuda-comparison', actual=actual, trace=True)
         result['status'] = 'DIAGNOSTIC_RECORDED'
         life.write(output/'receipt.json', result)
         return result
@@ -262,7 +280,7 @@ print(json.dumps(r))
         finally:code=ch.close()
         checks['missing_gpu_rejected']=code!=0 and 'CPU fallback forbidden' in (output/'missing-gpu.log').read_text()
         if not checks['missing_gpu_rejected']:raise AssertionError('missing GPU not rejected at exact kernel gate')
-        result['cuda_comparison_cpu'] = diagnose(prefix, output/'cuda-comparison', actual=False)
+        result['cuda_comparison_cpu'] = diagnose(prefix, output/'cuda-comparison', actual=False, trace=True)
         checks['cuda_comparison_cpu'] = (result['cuda_comparison_cpu']['decision'] == 'CPU_CONTROLS_ONLY'
             and all(row['result']['status'] == 'FAIL' and 'CPU fallback forbidden' in row['result'].get('error', '')
                     for row in result['cuda_comparison_cpu']['cases'].values()))

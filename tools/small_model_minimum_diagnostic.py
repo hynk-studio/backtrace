@@ -9,21 +9,21 @@ import traceback
 from tools import small_model_minimum as minimum
 from tools import small_model_minimum_remote as remote
 
-REVIEW='bt-001-cuda-diagnostic-20261031'
-START='bt-001-cuda-diagnostic-start-20261031'
-STATE_BRANCH='bt-001-cuda-diagnostic-state-20261031'
-PAID_NAMESPACE='cuda-diagnostic-paid-20261031'
-AUTHORIZATION_ID='cuda-diagnostic-20261031-one'
-INSTRUCTION='지금부터는 네가 알아서 작업을 계속 이어가도록 허가할게. 목표까지 지속 진행해'
+REVIEW='bt-001-cuda-trace-20261031'
+START='bt-001-cuda-trace-start-20261031'
+STATE_BRANCH='bt-001-cuda-trace-state-20261031'
+PAID_NAMESPACE='cuda-trace-paid-20261031'
+AUTHORIZATION_ID='cuda-trace-20261031-one'
+INSTRUCTION='이번에는 목표까지 실제로 이어가도록 하고 혼자 해결할 수 없는 문제가 있을 때만 멈추고 보고해'
 WORKFLOW='.github/workflows/small-model-minimum-diagnostic.yml'
-CONTRACT=dict(minimum.CONTRACT,scope='CUDA_ABC_COMPARISON_ONLY_V1')
+CONTRACT=dict(minimum.CONTRACT,scope='CUDA_ABC_AND_DENIED_CALL_TRACE_V1')
 OriginalState=minimum.State
 
 
 class State(OriginalState):
     def __init__(self,token,source,actual,**kw):
         super().__init__(token,source,actual,**kw)
-        self.namespace=PAID_NAMESPACE if actual else 'cuda-diagnostic-free-'+source
+        self.namespace=PAID_NAMESPACE if actual else 'cuda-trace-free-'+source
 
 
 def validate_permit(value,source,now):
