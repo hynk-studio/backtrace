@@ -63,7 +63,9 @@ The denominator is three author-selected retrospective episodes, with two prompt
 each. The reviewer knows the historical outcomes. Five outputs are wrapped in
 Markdown fences and therefore remain `INVALID_OUTPUT` under the frozen strict
 JSON rule. Reading their content below is an explicitly descriptive semantic
-review; it does not repair or reclassify those outputs.
+review; it does not repair or reclassify those outputs. All six also omit the
+requested `avoid` field, so the sole strict-JSON replay is not a fully compliant
+replay-contract response either.
 
 | Episode | B0 | B1 | Rubric disposition |
 | --- | --- | --- | --- |

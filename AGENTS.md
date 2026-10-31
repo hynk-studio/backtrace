@@ -1,5 +1,17 @@
 # Backtrace working agreement
 
+## Active E4B capacity scope (2026-10-31 UTC)
+
+Work on `bt-001-e4b-comparison-20261031`, stacked on Draft #45. Read
+`docs/small-model-e4b-comparison-20261031.md`. Reuse the existing pinned worker
+and lifecycle for E4B's deferred 18 assignments plus identical replay messages.
+Preserve actual E2B source/start/results. The new source-bound state branch is
+`bt-001-e4b-comparison-state-20261031`, namespace `e4b-comparison-paid-20261031`,
+start `bt-001-e4b-comparison-start-20261031`. Qualified source is required before
+a fresh single-use permit; do not reuse an E2B permit. No production change,
+training, top-up or merge is included. Ongoing delegation requires actual
+measurement and interpretation, then the next supported affordable step.
+
 ## Actual E2B result and conditional E4B continuation (2026-10-31 UTC)
 
 Read `docs/small-model-e2b-result-20261031.md`. Run 41206950960 at immutable

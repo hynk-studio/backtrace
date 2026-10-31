@@ -1,16 +1,16 @@
-name: E2B original baseline and Augnes development replays
+name: E4B original baseline and Augnes development replays
 on:
   push:
-    branches: [bt-001-e2b-baseline-20261031, bt-001-e2b-listener-start-20261031]
+    branches: [bt-001-e4b-comparison-20261031, bt-001-e4b-comparison-start-20261031]
 permissions:
   contents: write
   actions: read
 concurrency:
-  group: small-e2b-baseline-cpu-${{ github.ref }}
+  group: small-e4b-baseline-cpu-${{ github.ref }}
   cancel-in-progress: false
 jobs:
   container:
-    if: github.ref_name == 'bt-001-e2b-baseline-20261031'
+    if: github.ref_name == 'bt-001-e4b-comparison-20261031'
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     permissions:
@@ -59,7 +59,7 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: small-e2b-baseline-container-${{ github.sha }}-${{ github.run_attempt }}
+          name: small-e4b-baseline-container-${{ github.sha }}-${{ github.run_attempt }}
           path: evidence/
           retention-days: 14
   owner:
@@ -76,7 +76,7 @@ jobs:
         run: |
           python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
       - name: Prepare pinned CUDA wheels and transport before any allocation
-        if: github.ref_name == 'bt-001-e2b-listener-start-20261031'
+        if: github.ref_name == 'bt-001-e4b-comparison-start-20261031'
         run: |
           python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
           python -m pip download --no-cache-dir --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cu126 -r docs/small-model-gpu-requirements.txt -d .local/cuda-wheels
@@ -88,24 +88,24 @@ jobs:
           (root/'receipt.json').write_text(json.dumps(result,sort_keys=True))
           PYBUILD
       - name: Prepare checkpoint, original assignments and tokenizer runtime before allocation
-        if: github.ref_name == 'bt-001-e2b-listener-start-20261031'
+        if: github.ref_name == 'bt-001-e4b-comparison-start-20261031'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p evidence .local
           gh api /repos/hynk-studio/backtrace/actions/artifacts/12640353622/zip > .local/readiness.zip
-          python -m tools.small_model_pretrained prepare .local/e2b .local/readiness.zip > evidence/preparation.json
+          python -m tools.small_model_pretrained prepare .local/e4b .local/readiness.zip > evidence/preparation.json
           python -m venv .local/model-runtime
           .local/model-runtime/bin/python -m pip install --no-index --no-deps --only-binary=:all: --require-hashes --find-links .local/cuda-wheels -r docs/small-model-gpu-requirements.txt
           .local/model-runtime/bin/python -m tools.small_model_gpu check-runtime > evidence/owner-runtime.json
-          .local/model-runtime/bin/python -m tools.small_model_pretrained plan-gpu-inputs .local/e2b > evidence/assignment-before-allocation.json
-      - name: Run bounded scope (free replica or authorized E2B collection)
+          .local/model-runtime/bin/python -m tools.small_model_pretrained plan-gpu-inputs .local/e4b > evidence/assignment-before-allocation.json
+      - name: Run bounded scope (free replica or authorized E4B collection)
         env:
           GITHUB_TOKEN: ${{ github.token }}
           RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
         run: |
           mode=free
-          if [ "$GITHUB_REF_NAME" = bt-001-e2b-listener-start-20261031 ]; then mode=paid; fi
+          if [ "$GITHUB_REF_NAME" = bt-001-e4b-comparison-start-20261031 ]; then mode=paid; fi
           python -m tools.small_model_pretrained_scope owner "$mode"
       - name: Preserve current account and quotes (read only)
         if: always()
@@ -118,7 +118,7 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: small-e2b-baseline-cpu-owner-${{ github.sha }}-${{ github.run_attempt }}
+          name: small-e4b-baseline-cpu-owner-${{ github.sha }}-${{ github.run_attempt }}
           path: |
             evidence/**/*.json
             evidence/**/*.jsonl
@@ -136,18 +136,18 @@ jobs:
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.12.14'
-      - name: Run bounded scope (free replica or authorized E2B collection)
+      - name: Run bounded scope (free replica or authorized E4B collection)
         env:
           GITHUB_TOKEN: ${{ github.token }}
           RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
         run: |
           mode=free
-          if [ "$GITHUB_REF_NAME" = bt-001-e2b-listener-start-20261031 ]; then mode=paid; fi
+          if [ "$GITHUB_REF_NAME" = bt-001-e4b-comparison-start-20261031 ]; then mode=paid; fi
           python -m tools.small_model_pretrained_scope watch "$mode"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: small-e2b-baseline-cpu-watch-${{ github.sha }}-${{ github.run_attempt }}
+          name: small-e4b-baseline-cpu-watch-${{ github.sha }}-${{ github.run_attempt }}
           path: |
             evidence/**/*.json
             evidence/**/*.log
@@ -155,7 +155,7 @@ jobs:
           retention-days: 14
 
   prepare:
-    if: github.ref_name == 'bt-001-e2b-baseline-20261031'
+    if: github.ref_name == 'bt-001-e4b-comparison-20261031'
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
@@ -165,23 +165,23 @@ jobs:
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.12.14'
-      - name: Reuse exact historical tokenization and verify full E2B bytes
+      - name: Reuse exact historical tokenization and verify full E4B bytes
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           mkdir -p .local evidence
           gh api /repos/hynk-studio/backtrace/actions/artifacts/12640353622/zip > .local/readiness.zip
-          python -m tools.small_model_pretrained prepare .local/e2b .local/readiness.zip > evidence/preparation.json 2> evidence/preparation.log
+          python -m tools.small_model_pretrained prepare .local/e4b .local/readiness.zip > evidence/preparation.json 2> evidence/preparation.log
       - name: Reproduce original and replay inputs with the pinned tokenizer
         run: |
           python -m venv .local/runtime
           .local/runtime/bin/python -m pip download --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cpu -r docs/small-model-cpu-requirements.txt -d .local/wheels > evidence/dependency-download.log 2>&1
           .local/runtime/bin/python -m pip install --no-index --find-links .local/wheels --require-hashes -r docs/small-model-cpu-requirements.txt > evidence/dependency-install.log 2>&1
-          .local/runtime/bin/python -m tools.small_model_pretrained inspect-inputs .local/e2b > evidence/input-verification.json
+          .local/runtime/bin/python -m tools.small_model_pretrained inspect-inputs .local/e4b > evidence/input-verification.json
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: e2b-checkpoint-preparation-${{ github.sha }}
+          name: e4b-checkpoint-preparation-${{ github.sha }}
           path: evidence/
           retention-days: 14

@@ -160,10 +160,10 @@ def supervise(job_name, seconds, script='worker'):
     # actual hardware checks. The original CPU entry still rejects paid modes.
     if script=='pretrained':
         import re
-        if (model!='E2B' or value['mode']!='pretrained_cuda'
+        if (value['mode']!='pretrained_cuda'
                 or not re.fullmatch('[0-9a-f]{64}',value.pop('hardware_receipt_sha256',''))
                 or not isinstance(value.get('gpu'),dict)):
-            raise ValueError('qualified E2B job required')
+            raise ValueError('qualified pinned Gemma job required')
     elif value['mode'] not in ('random_fixture','scripted_control'):
         raise ValueError('container v1 is free CPU qualification only')
     for name,target in [('model',ROOT/'assets/models'/model),
