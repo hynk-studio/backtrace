@@ -1,18 +1,22 @@
 # Small abductive model: evidence before deployment
 
 Decision date: 2026-10-26; revised 2026-10-31 UTC. Status: **actual E2B baseline
-and three Augnes development replays completed; synthetic responses all invalid;
-replay content mixed. Conditional E4B comparison is next. Training and practical
-workflow comparisons remain NOT_RUN**. Refs [BT-001](https://github.com/hynk-studio/backtrace/issues/1).
+and three Augnes development replays completed; all18 synthetic responses invalid;
+replay content mixed. Later E4B and twenty-case/update attempts did not reach model
+execution. A measured SSH window correction is being qualified. Actual training
+and practical matched workflow comparisons remain NOT_RUN**.
 
-The [actual result](small-model-e2b-result-20261031.md) records 24 responses from
-run 41206950960 after the passive bind/listen correction. All 18 frozen synthetic
-responses failed task validation under both B0 and B1. The three retrospective
-Augnes cases show some appropriate stop/local-fix directions, but unsupported
-hypotheses and output-format failures. Both controllers proved deletion. The
-conditional E4B comparator now addresses an observed basic-capability question;
-no specialist benefit or production usefulness is established. Historical failed
-attempts remain in the [execution record](small-model-e2b-execution-20261031.md).
+The [E2B result](small-model-e2b-result-20261031.md) retains24 real responses and
+independent deletion. Subsequent [E4B](small-model-e4b-result-20261031.md) and
+[screen-probe](small-model-screen-probe-result-20261031.md) failures occurred during
+common runtime delivery; a separate [create rejection](small-model-adapter-create-result-20261031.md)
+never acknowledged a Pod. These failures do not measure model capability.
+
+The [transport continuation](small-model-transfer-window-20261031.md) is based on
+a free controlled1MiB/8MiB SSH window comparison, with an early bounded transfer
+gate and preserved progress records. It keeps all model inputs, targets and
+assigned denominators unchanged and stays within the current cumulativeUSD1
+ceiling. Passing infrastructure checks is not specialist benefit or Augnes value.
 
 ## Active objective and delegated continuation (2026-10-31 KST)
 

@@ -15,6 +15,20 @@ from tools import small_model_minimum as minimum
 
 
 class PretrainedTests(unittest.TestCase):
+    def test_slow_short_transfer_retains_receipt_and_stops_before_large_payload(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td);output=root/'evidence';output.mkdir();(root/'keys').mkdir()
+            for name in ('owner-key','known-hosts'):(root/'keys'/name).touch()
+            with mock.patch.object(entry.delivery,'push',return_value={'bytes':256*1024**2,'verified':True}) as send,\
+                    mock.patch.object(entry.time,'monotonic',side_effect=[0,13]):
+                with self.assertRaisesRegex(RuntimeError,'too slow'):
+                    entry.transfer_probe(root,{'host':'127.0.0.1','port':2222},['fixture'],output)
+            self.assertEqual(send.call_count,1)
+            report=json.loads((output/'transfer-probe.json').read_bytes())
+            self.assertEqual(report['status'],'SLOW_STOP_BEFORE_RUNTIME')
+            self.assertEqual(report['seconds'],13)
+            self.assertEqual((root/'transfer-probe/transport-only.bin').stat().st_size,report['bytes'])
+
     def test_real_collector_uses_allowed_local_path_and_preserves_raw_checkpoints(self):
         from tests.test_small_model_runner import FakeChannel,Tokenizer,request
         class ModelFixture(FakeChannel):
@@ -117,19 +131,19 @@ s.close();print(json.dumps(r))
             self.assertNotIn('historical_action',b0['messages'][1]['content'])
             self.assertNotIn('expected_decision',b0['messages'][1]['content'])
 
-    def test_paid_permit_keeps_denominators_no_training_and_cumulative_cap(self):
+    def test_paid_permit_keeps_denominators_fixed_training_and_cumulative_cap(self):
         now=time.time();source='a'*40
         p={'source_sha':source,'contract_sha256':minimum.life.digest(scope.CONTRACT),
             'namespace':scope.NAMESPACE,'instruction':scope.INSTRUCTION,'mode':'OWNER_APPROVED_E2B_ADAPTER_FEASIBILITY',
-            'additional_cap_usd':'1.00','allocation_inclusive_seconds':1640,'single_use':True,
+            'additional_cap_usd':'1.00','allocation_inclusive_seconds':1720,'single_use':True,
             'automatic_retry':False,'top_up_allowed':False,'weight_bytes':10246621918,
             'pretrained_requests':21,'training_steps':4,'qualification_run_id':'123',
-            'approved_at':now-1,'expires_at':now+3600,'continuation_observed_spend_usd':'0.10',
-            'maximum_projection_usd':'0.504'}
+            'approved_at':now-1,'expires_at':now+3600,'continuation_observed_spend_usd':'0.7086768398',
+            'maximum_projection_usd':'0.290'}
         self.assertIs(scope.validate_permit(p,source,now),p)
         for key,value in [('source_sha','b'*40),('pretrained_requests',45),('training_steps',1),
                 ('automatic_retry',True),('single_use',1),('namespace','cuda-trace-paid-20261031'),
-                ('continuation_observed_spend_usd','0.50')]:
+                ('continuation_observed_spend_usd','0.711')]:
             with self.subTest(key=key),self.assertRaises(ValueError):
                 scope.validate_permit(dict(p,**{key:value}),source,now)
 

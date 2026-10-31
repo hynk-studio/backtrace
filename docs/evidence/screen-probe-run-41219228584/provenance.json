@@ -1,0 +1,85 @@
+{
+  "source": "dc5ab2b96f5b51da67ff9c74c0acd2f063fc7322",
+  "tree": "892f5c0276d431d8fad1704228ee22b008679d22",
+  "qualification_run": 41218223100,
+  "paid_run": 41219228584,
+  "artifacts": [
+    {
+      "id": 13049419770,
+      "role": "owner",
+      "sha256": "cd96c656ca0fc0ee052a1be21d92de1ef67ac70535cfca2fc5fcd9e4c0e94158",
+      "bytes": 26064,
+      "members": {
+        "account-after.json": {
+          "sha256": "f16bb8bb027207fdf9a87a7da1d5eb7b9d3c201f8613130d6b3a02e5420dfb87",
+          "bytes": 23779
+        },
+        "assignment-before-allocation.json": {
+          "sha256": "8caa03677c2e5d635183c06197e2ff07bc6b47b50db172b75b10d3f1b4f1642a",
+          "bytes": 14805
+        },
+        "minimum-owner/receipt.json": {
+          "sha256": "f9bd12254062dc2c5e03f41bce2938089f69f9fd0654583b6bba2ad59354d94c",
+          "bytes": 30921
+        },
+        "minimum-owner/remote/connected-receipt.json": {
+          "sha256": "ca6e80f2d3bea7c9ed0d2c99324bbd5c94a19172858d311ec01e8aac162db612",
+          "bytes": 1952
+        },
+        "minimum-owner/worker.log": {
+          "sha256": "acfa622a1e8a6efe27a83d99a131dd3cf819bd034244874ac1511ec9a2e56a01",
+          "bytes": 19
+        },
+        "minimum-owner.json": {
+          "sha256": "f9bd12254062dc2c5e03f41bce2938089f69f9fd0654583b6bba2ad59354d94c",
+          "bytes": 30921
+        },
+        "owner-runtime.json": {
+          "sha256": "b3bddba1ad9ac501ca17e12abe99ae8b4a313460a50e05e62e375fdc85a4cf94",
+          "bytes": 10467
+        },
+        "preparation.json": {
+          "sha256": "150e451b0190a4d3b111f9d7dc9e88e667e96803a56ac6344a73010fc815ff4b",
+          "bytes": 505
+        }
+      }
+    },
+    {
+      "id": 13050350457,
+      "role": "watch",
+      "sha256": "949ee69571b88300a72c93aed706f05b216b08e7213edae874e7bc3997995169",
+      "bytes": 464,
+      "members": {
+        "minimum-watch.json": {
+          "sha256": "2422fd5cd5f6a4fadf996492d815b6a70f5db8b100331a3d276cc8aed389f1e2",
+          "bytes": 495
+        }
+      }
+    }
+  ],
+  "state_blobs": {
+    "owner-cleanup": {
+      "git_blob_sha": "fb868f67fdc83525d92e02ca545e8ecf2e33343c",
+      "sha256": "e8162fcf6b1c36e7cca38fd7bfb5fae06b29459f90e9a3c38ac6a988167db89a",
+      "url": "https://github.com/hynk-studio/backtrace/blob/bt-001-e2b-screen-probe-state-20261031/minimum/e2b-screen-probe-paid-20261031/owner-cleanup.json"
+    },
+    "watch-cleanup": {
+      "git_blob_sha": "cf33d002c244f4ad1f4538d1e88314025e57d3b1",
+      "sha256": "d21753f692593f889782486319fd1c35f4281365e6399bb9f901f0c99895bf70",
+      "url": "https://github.com/hynk-studio/backtrace/blob/bt-001-e2b-screen-probe-state-20261031/minimum/e2b-screen-probe-paid-20261031/watch-cleanup.json"
+    },
+    "done": {
+      "git_blob_sha": "8b6c48a3980d54981b590747199d91c897535491",
+      "sha256": "d8c162d54d925f26c6fac615abdfc8195ebe417e40a13c289d12f1fc14b4d238",
+      "url": "https://github.com/hynk-studio/backtrace/blob/bt-001-e2b-screen-probe-state-20261031/minimum/e2b-screen-probe-paid-20261031/done.json"
+    }
+  },
+  "source_hash_entries_verified": 180,
+  "unique_source_paths_verified": 82,
+  "credit_after": "2.1973672941",
+  "observed_run_balance_decrease": "0.2132034732",
+  "observed_continuation_balance_decrease": "0.7086768398",
+  "original_denominator": 21,
+  "all_not_run": true,
+  "training_steps": 0
+}

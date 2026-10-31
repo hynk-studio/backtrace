@@ -1,0 +1,23 @@
+{
+  "source": "211620aa372efe2502cda13091a38ce786690ee6",
+  "tree": "b02e90e503ceef596c30caa756ba36e412400b49",
+  "run": 41222020645,
+  "artifact_id": 13050770769,
+  "artifact_sha256": "ab76969ad3fa8d1dbdd9534f82130972d8aebd2484e3d7e1ffa33f1a5382a545",
+  "members": {
+    "transport-window-control.json": {
+      "sha256": "2aeee87c7e6c81512a5e302d2f7449e30c198e99e02064730fc50259614d5a80",
+      "bytes": 2291
+    },
+    "transport-window-control.log": {
+      "sha256": "3bcb2f26a04519b1f951bcdd8e0db0d6423487a7bfdace7f4fad3902a9d4f68b",
+      "bytes": 1525
+    }
+  },
+  "source_helper_sha256": "ea042f39b9d2ee8924f40518079337597db29fa9027571f25fdf10f50d17e1b9",
+  "payload_and_manifest_hashes_recomputed": true,
+  "mean_1MiB_seconds": 20.32499117150001,
+  "mean_8MiB_seconds": 4.3428279419999996,
+  "ratio": 4.680128119959493,
+  "limitation": "Loopback application-stream delay, not an attested provider path or packet-level network simulation."
+}

@@ -320,7 +320,7 @@ print(json.dumps(r))
     life.write(output/'receipt.json',result);return result
 
 
-def connected(root,endpoint,output,*,actual,comparison_only=False,after_hardware=None,compare_before_hardware=False):
+def connected(root,endpoint,output,*,actual,comparison_only=False,after_hardware=None,compare_before_hardware=False,before_runtime=None):
     root=Path(root);output=Path(output);output.mkdir(mode=0o700,parents=True,exist_ok=True)
     result={'status':'INCOMPLETE','actual_gpu':actual}
     try:
@@ -328,9 +328,13 @@ def connected(root,endpoint,output,*,actual,comparison_only=False,after_hardware
         result['binary_transfer']=ssh.deliver(root/'keys',host,port,60,profile='actions-20261019')
         prefix=prefix_for(root,host,port)
         ssh.wait_for_command(prefix,['true'],30)
+        if before_runtime is not None:
+            result['transfer_probe']=before_runtime(root,endpoint,prefix,output)
+            life.write(output/'transfer-probe-checkpoint.json',result)
         result['runtime_transfer']=delivery.push(root/'runtime',root/'runtime-manifest.json',
             prefix+[delivery.ssh_command(host,port,root/'keys/owner-key',root/'keys/known-hosts',
-                '/root/backtrace/runtime',life.digest((root/'runtime-manifest.json').read_bytes()))[-1]],600)
+                '/root/backtrace/runtime',life.digest((root/'runtime-manifest.json').read_bytes()))[-1]],600,
+            diagnostics=output/'runtime-transfer-progress.json')
         with (output/'install.log').open('xb') as log:
             p=subprocess.run(prefix+[shlex.join(['/usr/bin/python3.12','-I','/root/backtrace/runtime/installer.py','install','/root/backtrace/runtime'])],
                 stdout=subprocess.PIPE,stderr=log,timeout=1100,env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8'})

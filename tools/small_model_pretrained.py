@@ -75,6 +75,31 @@ def qualified_job(hardware,header):
         'allowed_unexpected_keys':[k for k in header if k.startswith(ready.NON_TEXT_PREFIXES)]}
 
 
+def transfer_probe(root,endpoint,prefix,output):
+    """One256MiB public synthetic byte stream before either multi-GB payload."""
+    root=Path(root);output=Path(output)
+    payload=root/'transfer-probe';payload.mkdir(mode=0o700)
+    with (payload/'transport-only.bin').open('xb') as stream:
+        for i in range(4):
+            stream.write(hashlib.shake_256(b'backtrace-transfer-probe-v1:'+bytes([i])).digest(64*1024**2))
+    manifest=root/'transfer-probe-manifest.json'
+    manifest.write_bytes(container.manifest(payload,'bootstrap'))
+    started=time.monotonic()
+    receipt=delivery.push(payload,manifest,
+        prefix+[delivery.ssh_command(endpoint['host'],endpoint['port'],root/'keys/owner-key',
+            root/'keys/known-hosts','/root/backtrace/transfer-probe',life.digest(manifest.read_bytes()))[-1]],20,
+        diagnostics=output/'transfer-probe-progress.json')
+    if receipt.get('bytes')!=256*1024**2 or receipt.get('verified') is not True:
+        raise RuntimeError('complete short transfer readback absent')
+    elapsed=time.monotonic()-started
+    result={'status':'PASS' if elapsed<=12 else 'SLOW_STOP_BEFORE_RUNTIME',
+        'bytes':256*1024**2,'seconds':elapsed,'maximum_seconds':12,'receipt':receipt,
+        'model_requests':0,'retries':0,'full_payload_completion':'NOT_ESTABLISHED'}
+    life.write(output/'transfer-probe.json',result)
+    if result['status']!='PASS':raise RuntimeError('short transfer too slow for bounded full-model attempt')
+    return result
+
+
 def after_hardware(root,endpoint,prefix,output,hardware):
     header=json.loads((ROOT/'.local/e2b/sources/E2B/tensor-header.json').read_bytes())
     job=qualified_job(hardware,header)
@@ -90,7 +115,8 @@ def after_hardware(root,endpoint,prefix,output,hardware):
     # Installed model bytes are immutable and contain no prompts or labels.
     transfer=delivery.push(root/'assets',manifest,
         prefix+[delivery.ssh_command(endpoint['host'],endpoint['port'],root/'keys/owner-key',
-            root/'keys/known-hosts','/root/backtrace/assets',life.digest(manifest.read_bytes()))[-1]],600)
+            root/'keys/known-hosts','/root/backtrace/assets',life.digest(manifest.read_bytes()))[-1]],600,
+        diagnostics=output/'asset-transfer-progress.json')
     installed=remote.remote(prefix,"""import json,pathlib,shutil
 src=pathlib.Path('/root/backtrace/assets');dst=pathlib.Path('/opt/backtrace/assets')
 shutil.move(str(src),dst)

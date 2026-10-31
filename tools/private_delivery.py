@@ -25,6 +25,36 @@ import zlib
 MAX_BYTES = 40 * 1024**3
 MAX_MANIFEST_BYTES = 1024**2
 MANIFEST_NAME = 'delivery-manifest.json'
+PROGRESS_PREFIX = 'BACKTRACE_DELIVERY_PROGRESS '
+PROGRESS_PHASES = {'VERIFY_SOURCE', 'STREAM', 'READBACK', 'COMMITTED'}
+
+
+def reporter(role):
+    started=time.monotonic()
+    def report(phase,count,total):
+        row={'role':role,'phase':phase,'bytes':count,'total_bytes':total,
+             'elapsed_seconds':time.monotonic()-started}
+        print(PROGRESS_PREFIX+json.dumps(row,separators=(',',':')),file=sys.stderr,flush=True)
+    return report
+
+
+def progress_records(stream):
+    """Only bounded typed counters; never expose arbitrary SSH stderr or payloads."""
+    stream.seek(0,os.SEEK_END);size=stream.tell();stream.seek(max(0,size-1024**2))
+    rows=[]
+    for raw in stream.read(1024**2).splitlines():
+        if len(raw)>512 or not raw.startswith(PROGRESS_PREFIX.encode()):continue
+        try:row=json.loads(raw[len(PROGRESS_PREFIX):])
+        except (ValueError,UnicodeError):continue
+        if (not isinstance(row,dict) or set(row)!={'role','phase','bytes','total_bytes','elapsed_seconds'}
+                or type(row['role']) is not str or row['role'] not in ('sender','receiver')
+                or type(row['phase']) is not str or row['phase'] not in PROGRESS_PHASES
+                or any(type(row[k]) is not int or not 0<=row[k]<=MAX_BYTES for k in ('bytes','total_bytes'))
+                or row['bytes']>row['total_bytes']
+                or type(row['elapsed_seconds']) not in (int,float)
+                or not 0<=row['elapsed_seconds']<=2400):continue
+        rows.append(row)
+    return {'stderr_tail_truncated':size>1024**2,'events':rows[-1024:]}
 
 
 def digest(path):
@@ -101,9 +131,20 @@ def verify(root, manifest_data, exact=False):
             'verified': True}
 
 
-def emit(root, manifest_data, output):
-    verify(root, manifest_data)
+def emit(root, manifest_data, output, progress=None):
     manifest = parse_manifest(manifest_data)
+    total=sum(r['bytes'] for r in manifest['files']);count=0;last=0
+    if progress:progress('VERIFY_SOURCE',0,total)
+    verify(root, manifest_data)
+    if progress:progress('STREAM',0,total)
+    class Reader:
+        def __init__(self,stream):self.stream=stream
+        def read(self,size):
+            nonlocal count,last
+            block=self.stream.read(size);count+=len(block)
+            if progress and (count-last>=16*1024**2 or count==total):
+                progress('STREAM',count,total);last=count
+            return block
     # Three frozen wheel basenames exceed USTAR's 100-byte name field and
     # cannot be split into its directory prefix. GNU long-name records retain
     # the exact filename; the receiver still enforces the pinned regular entry.
@@ -116,10 +157,10 @@ def emit(root, manifest_data, output):
         for row in manifest['files']:
             path = regular_file(root, row['path'])
             with path.open('rb') as stream:
-                add(row['path'], row['bytes'], stream)
+                add(row['path'], row['bytes'], Reader(stream))
 
 
-def receive(destination, expected_sha256, source):
+def receive(destination, expected_sha256, source, progress=None):
     """Atomic destination; truncated/mutated/extra/link payloads never commit."""
     if not re.fullmatch(r'[0-9a-f]{64}', expected_sha256):
         raise ValueError('expected manifest SHA256 required outside the stream')
@@ -144,6 +185,8 @@ def receive(destination, expected_sha256, source):
                 raise ValueError('manifest digest mismatch')
             manifest = parse_manifest(data)
             needed = sum(r['bytes'] for r in manifest['files'])
+            count=0;last=0
+            if progress:progress('STREAM',0,needed)
             if shutil.disk_usage(parent).free < needed + 64 * 1024**2:
                 raise ValueError('insufficient receiver disk')
             (staging / MANIFEST_NAME).write_bytes(data)
@@ -162,6 +205,9 @@ def receive(destination, expected_sha256, source):
                     for block in iter(lambda: stream.read(1024**2), b''):
                         output.write(block)
                         hasher.update(block)
+                        count+=len(block)
+                        if progress and (count-last>=16*1024**2 or count==needed):
+                            progress('STREAM',count,needed);last=count
                     output.flush()
                     os.fsync(output.fileno())
                 if hasher.hexdigest() != row['sha256']:
@@ -169,6 +215,7 @@ def receive(destination, expected_sha256, source):
             if archive.next() is not None:
                 raise ValueError('extra archive entry')
         # Reopen and rehash installed bytes; tar header/stream hashes alone are insufficient.
+        if progress:progress('READBACK',count,needed)
         receipt = verify(staging, data, exact=True)
         if destination.exists() or destination.is_symlink():
             raise ValueError('destination appeared during transfer')
@@ -178,6 +225,7 @@ def receive(destination, expected_sha256, source):
             os.fsync(parent_fd)
         finally:
             os.close(parent_fd)
+        if progress:progress('COMMITTED',count,needed)
         return receipt
     finally:
         if staging.exists():
@@ -203,7 +251,7 @@ def ssh_command(host, port, key, known_hosts, remote_destination, manifest_sha25
         if not Path(path).is_file() or Path(path).is_symlink():
             raise ValueError('pre-existing key and authenticated known_hosts required')
     source = Path(__file__).read_text()
-    argv = remote_python(source) + ['receive', remote_destination, manifest_sha256]
+    argv = remote_python(source) + ['receive', remote_destination, manifest_sha256, '--progress']
     remote = shlex.join(argv)
     if len(remote.encode()) >= 9000:
         raise ValueError('receiver command exceeds SSH command limit')
@@ -217,16 +265,38 @@ def ssh_command(host, port, key, known_hosts, remote_destination, manifest_sha25
             'root@' + host, remote]
 
 
-def push(root, manifest_path, command, timeout):
+def push(root, manifest_path, command, timeout, *, diagnostics=None):
+    report={'schema':'private_delivery_progress_v1','status':'STARTED','phase':'SOURCE_VERIFICATION',
+            'timeout_seconds':timeout}
+    started=time.monotonic();failure=None
+    try:return _push(root,manifest_path,command,timeout,report,started)
+    except BaseException as error:
+        failure=error
+        report.update(status='FAIL',error_type=type(error).__name__)
+        raise
+    finally:
+        report['elapsed_seconds']=time.monotonic()-started
+        if diagnostics is not None:
+            try:
+                with Path(diagnostics).open('x') as stream:
+                    os.fchmod(stream.fileno(),0o600)
+                    json.dump(report,stream,sort_keys=True);stream.write('\n')
+            except Exception as storage_error:
+                if failure is None:raise
+                failure.add_note('delivery diagnostic persistence failed: '+type(storage_error).__name__)
+
+
+def _push(root, manifest_path, command, timeout, report, started):
     if not 0 < timeout <= 1200:
         raise ValueError('transfer must fit remaining setup time, at most 1200s')
     data = Path(manifest_path).read_bytes()
-    started = time.monotonic()
     expected = verify(root, data)
+    report.update(expected=expected,source_verification_seconds=time.monotonic()-started,
+                  phase='RECEIVER_COMPLETION')
     clean_env = {'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'}
     with tempfile.TemporaryFile() as errors, tempfile.TemporaryFile() as output:
         sender = subprocess.Popen([sys.executable, '-I', str(Path(__file__).resolve()),
-                                   'emit', str(root), str(manifest_path)],
+                                   'emit', str(root), str(manifest_path), '--progress'],
                                   stdout=subprocess.PIPE, stderr=errors, env=clean_env)
         receiver = None
         try:
@@ -234,6 +304,7 @@ def push(root, manifest_path, command, timeout):
                                         stderr=errors, env=clean_env)
             sender.stdout.close()
             receiver.wait(timeout=max(0.001, timeout - (time.monotonic() - started)))
+            report['phase']='SENDER_COMPLETION'
             sender.wait(timeout=max(0.001, timeout - (time.monotonic() - started)))
             if receiver.returncode or sender.returncode:
                 raise RuntimeError('private transfer failed; no payload/error bytes disclosed')
@@ -241,12 +312,15 @@ def push(root, manifest_path, command, timeout):
             raw = output.read(MAX_MANIFEST_BYTES + 1)
             if len(raw) > MAX_MANIFEST_BYTES or json.loads(raw) != expected:
                 raise ValueError('receiver readback does not match sender manifest')
+            report.update(status='PASS',phase='EXACT_READBACK')
             return expected
         finally:
             for process in (receiver, sender):
                 if process is not None and process.poll() is None:
                     process.kill()
                     process.wait(timeout=5)
+            report.update(sender_exit_code=sender.poll(),receiver_exit_code=receiver.poll() if receiver else None,
+                          progress=progress_records(errors))
 
 
 def main():
@@ -256,9 +330,11 @@ def main():
         sub = commands.add_parser(name)
         sub.add_argument('root', type=Path)
         sub.add_argument('manifest', type=Path)
+        sub.add_argument('--progress',action='store_true')
     sub = commands.add_parser('receive')
     sub.add_argument('destination', type=Path)
     sub.add_argument('manifest_sha256')
+    sub.add_argument('--progress',action='store_true')
     sub = commands.add_parser('push')
     sub.add_argument('root', type=Path)
     sub.add_argument('manifest', type=Path)
@@ -268,9 +344,11 @@ def main():
     sub.add_argument('--remaining-setup-seconds', type=float, required=True)
     args = parser.parse_args()
     if args.mode == 'receive':
-        result = receive(args.destination, args.manifest_sha256, sys.stdin.buffer)
+        result = receive(args.destination, args.manifest_sha256, sys.stdin.buffer,
+                         reporter('receiver') if args.progress else None)
     elif args.mode == 'emit':
-        emit(args.root, args.manifest.read_bytes(), sys.stdout.buffer)
+        emit(args.root, args.manifest.read_bytes(), sys.stdout.buffer,
+             reporter('sender') if args.progress else None)
         return
     elif args.mode == 'verify':
         result = verify(args.root, args.manifest.read_bytes())

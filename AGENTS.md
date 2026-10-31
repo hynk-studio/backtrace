@@ -1,5 +1,25 @@
 # Backtrace working agreement
 
+## Measured window correction and bounded model continuation (2026-10-31 UTC)
+
+Read docs/small-model-transfer-window-20261031.md. Free run41222020645 measured
+a4.6801x elapsed-time improvement for8MiB versus1MiB under identical imposed
+stream delay. Both variants retained strict authentication and exact readback.
+This is a controlled mechanism result, not a proven cause of the paid failures.
+
+The current candidate uses8MiB, bounded typed transfer-progress evidence, and a
+single256MiB exact-readback probe that must finish within12 seconds before either
+multi-GB payload. Keep all20 untrained inputs, four train-only updates and one
+original post-update generation unchanged. Fresh source-bound qualification must
+pass before a new unused permit/start/state. New namespace:e2b-window-paid-20261031;
+start/state:bt-001-e2b-window-start-20261031 / bt-001-e2b-window-state-20261031.
+Total/work/cleanup/export are1720/1300/300/120 seconds; maximum projectionUSD0.290
+and credit floorUSD1.9060441339 preserve the cumulativeUSD1 ceiling after the
+observedUSD0.7086768398 spend. No top-up, overlap, automatic retry, merge or
+Augnes write. Keep the RTX A6000/US-TX-1 exclusion and existing memory admission.
+Other regions are reconsidered only with the measured window change and early
+throughput gate. Complete actual measurement/interpretation under delegation.
+
 ## Free receive-window hypothesis control (2026-10-31 UTC)
 
 L40S screen-probe run41219228584 failed at the same600-second common-runtime

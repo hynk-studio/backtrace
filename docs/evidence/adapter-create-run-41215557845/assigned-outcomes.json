@@ -1,0 +1,386 @@
+{
+  "status": "NOT_RUN_BEFORE_WORKER",
+  "assigned": 44,
+  "coverage": {
+    "NOT_RUN": 44
+  },
+  "training_steps": 0,
+  "records": [
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1457",
+      "input_ids_sha256": "8b6ccb262cd9ad2a021c46e75f96e10c2a9643f78b0aad3de403bf6944f18cab",
+      "input_tokens": 564,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1436",
+      "input_ids_sha256": "50bb780370d469ece8188d51ae638f8461f8cf4dda72acaf551def576fee253a",
+      "input_tokens": 560,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1405",
+      "input_ids_sha256": "04bcbb653366a6b8ca9d24f92a31013a2a8cfa921264249f22a2c50c9da04e2d",
+      "input_tokens": 559,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1347",
+      "input_ids_sha256": "c4d236ba2440598fa3a02fb7bc04975d6f9bfd6b1e830d6a02101801228c68ba",
+      "input_tokens": 553,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1448",
+      "input_ids_sha256": "e4700f81cfe81c4294feb90094bb909ab662d27023aaba86f841cbc85e07e12f",
+      "input_tokens": 569,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1438",
+      "input_ids_sha256": "39a38f7ca8cd55a9a8667044576b8c625cb63140890a028d447f96991d404e20",
+      "input_tokens": 537,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1420",
+      "input_ids_sha256": "b17333400d1f343fc5e9731926d5590af6467afd7ba722ea4f7f59bac55460df",
+      "input_tokens": 555,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1408",
+      "input_ids_sha256": "04d2dbfcde58891c162f9d2b379d62b3940ef63e2a9ec380b3e5becefdc2aa6b",
+      "input_tokens": 558,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1397",
+      "input_ids_sha256": "054023a8d308f4897d9c4c5411229cefbc45d3f77d41ae4a9703322f9284c3a0",
+      "input_tokens": 555,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1393",
+      "input_ids_sha256": "9c66e2617d22c3a94d08484cab0ef399206701ea8a3f90e53af76c48e655858d",
+      "input_tokens": 539,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1369",
+      "input_ids_sha256": "3176b4e0ba633a6d8a786c86e348f32f676e3bfd5264886dd6f86e8f77a9a002",
+      "input_tokens": 596,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1350",
+      "input_ids_sha256": "6a0c0fff981c1225089592a7ba62d77f41df067f9693c3612f5fbc76d68d5dc7",
+      "input_tokens": 540,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1339",
+      "input_ids_sha256": "d3f5bc7aef6bbc54ae4907121d7ee416ead585e041c6cf0818c8a334a2d72aa7",
+      "input_tokens": 598,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1337",
+      "input_ids_sha256": "c3fb8ec60dd0c997d04a1f6b720ee19e387f7c60e5f064431c13789db373bbba",
+      "input_tokens": 567,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1329",
+      "input_ids_sha256": "92221e4072202890a1035f5aa137cc7721f4d8afa7828945d30855a368079736",
+      "input_tokens": 562,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1326",
+      "input_ids_sha256": "f712131b10f6e0c86a179b41fcc4024417d176681ed64218f0f33c57cba97e51",
+      "input_tokens": 557,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1305",
+      "input_ids_sha256": "16d1173c485d21298e37597d825d098cc91b0d29977b2079b12c929b62227d9e",
+      "input_tokens": 548,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1274",
+      "input_ids_sha256": "505c4e506c9c7aa708bb8dc8d61e2e28593361d696c6871ac306e782ce4481c6",
+      "input_tokens": 564,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1278",
+      "input_ids_sha256": "7b85c563e1d65aab174032a9ed5386823ef3922c57e94bf93dd8815ebd896dc5",
+      "input_tokens": 562,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1316",
+      "input_ids_sha256": "7a54aa7bf924ea8d0f80a79aa54dd5f741b3ed9900f3d3325f0c0736c1bfacfc",
+      "input_tokens": 541,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B0",
+      "id": "097751cfe4dadf3a1940ca8083093ce8adeae80ca328118f66b73c2bf3570204",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "713ddb650b79e8c851c48e4f4f38a37d0b54e0fa76bfa0bf67fc41e376eede1f",
+      "input_tokens": 1058,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "097751cfe4dadf3a1940ca8083093ce8adeae80ca328118f66b73c2bf3570204",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "ed185ff6d8a570c71f0781e01148e2ec3f0432b6534f5ffeb7d0ae25a3a98f59",
+      "input_tokens": 1157,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B0",
+      "id": "2a572077a046333e486438cccd9830efabb04c2351c542473508743e77dc2ec0",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "0662b47b91367b6ca054c4d6362f674c495ba1661ce1e90fc07a835059105365",
+      "input_tokens": 987,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "2a572077a046333e486438cccd9830efabb04c2351c542473508743e77dc2ec0",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "49c4818b78dd5db9f3891b64a0f4a8e5f6caf906e5e6e588165ad4dcee1280ab",
+      "input_tokens": 1086,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B0",
+      "id": "484cd8d9ef4d0bf3582c7b13c3a37af08237b61a57a85ae2a73e4cbd0e5d10ef",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "e24f31f829efc5ba9914adf19b65fc3b1af5ebe3c91afc43ad65f01385122961",
+      "input_tokens": 1069,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "484cd8d9ef4d0bf3582c7b13c3a37af08237b61a57a85ae2a73e4cbd0e5d10ef",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "e7166619938682e6a37035f6e86d6303849612ceeef6254c2bace2de79db94e1",
+      "input_tokens": 1168,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B0",
+      "id": "90805ba6b9d88ff57433ef4203d1f1b4052418017763f70e330fe7952eeef3ec",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "1035870d6aa7cc42549eed3871743fc3977dbd8a98a0d62f11c4dc7bbee5a621",
+      "input_tokens": 958,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "90805ba6b9d88ff57433ef4203d1f1b4052418017763f70e330fe7952eeef3ec",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "d1fcb7d80d7d49b667d755d479e03a25016b068e685c17772cdef2b362c9ee72",
+      "input_tokens": 1057,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B0",
+      "id": "93dc5d7ebab3f31295e807a235e4b827d83bf8c8b6a532a39ad7968f373aa512",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "a2b88de8ee574f9b5e01515dd601ef38e81ad2a650597b90592fb7ed3c686e63",
+      "input_tokens": 1166,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "93dc5d7ebab3f31295e807a235e4b827d83bf8c8b6a532a39ad7968f373aa512",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "ab4bf94485d67d122e145cea19abbdf38acd545126af4c760c915f3ba08585b3",
+      "input_tokens": 1265,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B0",
+      "id": "aa2f34dac7d045a550a14174978032ad41899e7ee227580c58f1140d920de329",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "2ca431a58915a7924781b68cb250be0d615c55c6ae1cbf4a3ce2007ac18ee3e1",
+      "input_tokens": 711,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "aa2f34dac7d045a550a14174978032ad41899e7ee227580c58f1140d920de329",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "eb624797d1778558d1a557f65636a55a8e24c0c6d8ef8d6a33594fa34520905f",
+      "input_tokens": 810,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B0",
+      "id": "aa91ba1519f31476999ef653d7c09306657b43191681c3593a901f7c8531bbee",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "dca0ed7a9470cf990d28e7c0f094f5a006e918144b377a1a9acea242906b80b7",
+      "input_tokens": 1222,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "aa91ba1519f31476999ef653d7c09306657b43191681c3593a901f7c8531bbee",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "fac5a61e4bff2f30f18eb32e0af7f9e70510b327998329cc83968c5f6a51099c",
+      "input_tokens": 1321,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B0",
+      "id": "b7d527fa6a7dd66f911d51f20216f3651e360787cfdb938eb8b16bbbccd0a625",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "3fe072e96eac2a544efb8d2abaa6b7963558d377df483fb6d4d95386615f3c8e",
+      "input_tokens": 934,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "b7d527fa6a7dd66f911d51f20216f3651e360787cfdb938eb8b16bbbccd0a625",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "7ed7a1a75069fc1ddc603697eb2b98337761894579fa09d19b88370b32b6b388",
+      "input_tokens": 1033,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B0",
+      "id": "bd382dbee06bde6448fa4afa6d2f2de1670cd5a39c185b25cd6898d11ace4d76",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "bbc6286889257dce414249d0f65d1f9d110712181ca066509596787c60f64221",
+      "input_tokens": 1100,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "bd382dbee06bde6448fa4afa6d2f2de1670cd5a39c185b25cd6898d11ace4d76",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "69c718ca9cb25c8dbd58171b93a3fb911f1e20a0552ee625ac0fc66c17454298",
+      "input_tokens": 1199,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B0",
+      "id": "augnes-1282-get-cancellation",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "76006c4acb1642ed0d24de15fed3af1edad552f9d2a60eef61078b9a9ffd5d70",
+      "input_tokens": 539,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-1282-get-cancellation",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "f623168dd72bd58688fdbb42c41979441f08cf3a5952414b007ceedf125e68f2",
+      "input_tokens": 577,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B0",
+      "id": "augnes-1481-nonrecurrence",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "74736b884b64bc30ab0720b5ebde1ccd2596bbfe10a0b27a3a4b321c764eff0b",
+      "input_tokens": 583,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-1481-nonrecurrence",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "c85f4b2df64992a0011e1b7a19f7dcae9e13083354099fdaaba5d98c56311caa",
+      "input_tokens": 621,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B0",
+      "id": "augnes-1549-readiness-imports",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "f28ee49a94a4b8a2f899573512d119f650f702cf17483ef3302c52d30d3a5206",
+      "input_tokens": 527,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-1549-readiness-imports",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "5b695dc066c7c1ee8582abd90db64fad70124bcbe5c033a3e3231a8526d7033a",
+      "input_tokens": 565,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    }
+  ]
+}

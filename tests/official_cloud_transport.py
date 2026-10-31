@@ -161,6 +161,8 @@ def qualify(binary, keygen, profile=None, *, window_control=False):
         with socket.socket() as sock:
             sock.bind(('127.0.0.1', 0)); port = sock.getsockname()[1]
         source = ssh.START.replace("'/root/backtrace'", repr(str(target)))
+        # The comparison's A arm remains1MiB even after the paid default changes.
+        if window_control:source=source.replace("'-W','8388608'","'-W','1048576'")
         source = source.replace("('0.0.0.0',22)", repr(('127.0.0.1', port)))
         source = source.replace("'-p','22'", "'-p'," + repr('127.0.0.1:' + str(port)))
         with (root / 'daemon.log').open('w') as log:

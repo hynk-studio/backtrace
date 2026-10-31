@@ -15,14 +15,15 @@ from tools import small_model_minimum_probe as probe, small_model_pretrained as 
 from tools import small_model_container as container
 
 REVIEW='bt-001-e2b-adapter-20261031'
-START='bt-001-e2b-screen-probe-start-20261031'
-STATE_BRANCH='bt-001-e2b-screen-probe-state-20261031'
-NAMESPACE='e2b-screen-probe-paid-20261031'
+START='bt-001-e2b-window-start-20261031'
+STATE_BRANCH='bt-001-e2b-window-state-20261031'
+NAMESPACE='e2b-window-paid-20261031'
 WORKFLOW='.github/workflows/small-model-pretrained.yml'
 INSTRUCTION='이번에는 목표까지 실제로 이어가도록 하고 혼자 해결할 수 없는 문제가 있을 때만 멈추고 보고해'
-CONTRACT=dict(minimum.CONTRACT,scope='E2B_SCREEN20_PLUS_ADAPTER4_SINGLE_GENERATION_V1',
-    weight_bytes=10246621918,pretrained_requests=21,training_steps=4,total_seconds=1640,work_seconds=1220,
-    excluded_regions=['EU-SE-1'],
+CONTRACT=dict(minimum.CONTRACT,scope='E2B_SCREEN20_ADAPTER4_WINDOW8M_V1',
+    weight_bytes=10246621918,pretrained_requests=21,training_steps=4,total_seconds=1720,work_seconds=1300,
+    ssh_receive_window_bytes=8388608,transfer_probe_bytes=256*1024**2,transfer_probe_maximum_seconds=12,
+    excluded_regions=[],
     excluded_routes=[{'gpu':'NVIDIA RTX A6000','region':'US-TX-1'}],
     cuda_socket_policy='UNIX_SEQPACKET_PASSIVE_BIND_LISTEN_NO_CONNECTIONS_V1',
     full_model_memory_admission='BOUNDED_ATTEMPT_PROVIDER_AND_VISIBLE_MEMORY_ONLY')
@@ -32,14 +33,14 @@ original_choose=minimum.choose
 
 
 def choose(snapshot,now):
-    # EU-SE-1 timed out during the common runtime transfer in run 41210831659.
-    # Exclude that route; the fresh cheapest other affordable >=40 GB route wins;
-    # this is a prospective route change, not proof of the timeout's cause.
+    # Free ABBA control supports a larger receive window under imposed latency.
+    # Reconsider regions only with that change and the short throughput gate;
+    # do not claim a proven historical cause. Retain the unrelated create exclusion.
     routed=dict(snapshot,offers=[r for r in snapshot['offers'] if r['region'] not in CONTRACT['excluded_regions']
         and {'gpu':r['gpu'],'region':r['region']} not in CONTRACT['excluded_routes']])
     offer=original_choose(routed,now)
     projected=Decimal(offer['costs']['maximum_projection'])
-    if (projected>Decimal('0.504')
+    if (projected>Decimal('0.290')
             or Decimal(snapshot['account']['credit_balance_usd'])-projected<Decimal('1.9060441339')):
         raise ValueError('fresh offer exceeds remaining cumulative continuation budget')
     return offer
@@ -56,6 +57,7 @@ def sources():
         'tests/test_small_model_pretrained.py','tools/small_model_training_inputs.py',
         'tests/test_small_model_training_inputs.py','tools/small_model_augnes_screen.py',
         'tests/test_small_model_augnes_screen.py',WORKFLOW,
+        'tests/official_cloud_transport.py','tests/test_private_delivery.py','tests/test_ssh_bootstrap.py',
         'docs/augnes-screening-packets-20261031.json','docs/augnes-screening-rubric-20261031.json',
         'docs/augnes-development-replays-20261031.json','docs/augnes-development-replay-rubric-20261031.json',
         'docs/evidence/e2b-run-41206950960/input-schedule.json')
@@ -65,7 +67,7 @@ def sources():
 def validate_permit(value,source,now):
     expected={'source_sha':source,'contract_sha256':minimum.life.digest(CONTRACT),
         'namespace':NAMESPACE,'instruction':INSTRUCTION,'mode':'OWNER_APPROVED_E2B_ADAPTER_FEASIBILITY',
-        'additional_cap_usd':'1.00','allocation_inclusive_seconds':1640,'single_use':True,
+        'additional_cap_usd':'1.00','allocation_inclusive_seconds':1720,'single_use':True,
         'automatic_retry':False,'top_up_allowed':False,'weight_bytes':10246621918,
         'pretrained_requests':21,'training_steps':4}
     if not isinstance(value,dict) or any(type(value.get(k)) is not type(v) or value[k]!=v for k,v in expected.items()):
@@ -163,10 +165,11 @@ print(json.dumps(json.loads(p.stdout)))
 if __name__=='__main__':
     args=sys.argv[1:]
     if args[0]=='qualify':
-        result=probe.qualify(*map(Path,args[1:]),extra=free_entry)
+        result=probe.qualify(*map(Path,args[1:]),extra=free_entry,before_runtime=pretrained.transfer_probe)
     elif len(args)==3:
         result=remote.connected(Path(args[0]),json.loads(Path(args[1]).read_bytes()),Path(args[2]),
-            actual=True,after_hardware=pretrained.after_hardware,compare_before_hardware=True)
+            actual=True,after_hardware=pretrained.after_hardware,compare_before_hardware=True,
+            before_runtime=pretrained.transfer_probe)
     else:
         role,mode=args
         if role not in ('owner','watch') or mode not in ('free','paid'):raise ValueError('explicit role and mode required')

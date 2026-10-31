@@ -13,7 +13,7 @@ from tools import runpod_control as control, small_model_lifecycle as life
 from tools.free_container_cleanup import remove
 
 
-def qualify(wheels,transport,output,*,extra=None):
+def qualify(wheels,transport,output,*,extra=None,before_runtime=None):
     output=Path(output).resolve();output.mkdir(parents=True,exist_ok=True)
     result={'status':'INCOMPLETE','source_sha':os.environ.get('GITHUB_SHA'),'source_hashes':minimum.sources(),'actual_gpu':False,'provider_create_requests':0}
     name='backtrace-free-full-setup-'+str(os.getpid())+'-minimum';container_id=None
@@ -38,7 +38,8 @@ def qualify(wheels,transport,output,*,extra=None):
                     if not p.returncode:break
                     if time.monotonic()>=end:raise TimeoutError('bootstrap listener absent')
                     time.sleep(.2)
-            result['connected']=remote.connected(root,{'host':'127.0.0.1','port':port},output/'remote',actual=False)
+            result['connected']=remote.connected(root,{'host':'127.0.0.1','port':port},output/'remote',actual=False,
+                before_runtime=before_runtime)
             if result['connected']['status']!='PASS_FREE_HARDWARE_PATH_CONTROLS':raise RuntimeError('free hardware entry failed')
             if extra is not None:
                 # connected() already wrote and used this authenticated host file.
