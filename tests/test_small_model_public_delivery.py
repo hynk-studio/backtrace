@@ -102,7 +102,7 @@ class PublicDeliveryTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError,'fixture'):
             with scope.configured():
                 self.assertNotEqual(delivery.push,before[-1]);self.assertEqual(minimum.REMOTE_MODULE,'tools.small_model_public_scope')
-                self.assertEqual(minimum.State('fixture','a'*40,True).namespace,'e2b-direct-paid-20261031')
+                self.assertEqual(minimum.State('fixture','a'*40,True).namespace,'e2b-public-route-paid-20261031')
                 self.assertEqual(minimum.CONTRACT['public_asset_delivery'],'PINNED_HTTPS_PREPARATION_ONLY_V1')
                 raise RuntimeError('fixture')
         self.assertEqual((minimum.State,minimum.CONTRACT,minimum.REMOTE_MODULE,delivery.push),before)
@@ -115,13 +115,24 @@ class PublicDeliveryTests(unittest.TestCase):
             'weight_bytes':10246621918,'pretrained_requests':3,'training_steps':4,'qualification_run_id':'123',
             'approved_at':now-1,'expires_at':now+3600,'continuation_observed_spend_usd':'0.95','maximum_projection_usd':'0.47'}
         self.assertIs(scope.validate_permit(value,source,now),value)
-        for key,val in [('namespace','e2b-completion-paid-20261031'),('mode','OWNER_APPROVED_E2B_ADAPTER_FEASIBILITY'),
+        for key,val in [('namespace','e2b-completion-paid-20261031'),('namespace','e2b-direct-paid-20261031'),('mode','OWNER_APPROVED_E2B_ADAPTER_FEASIBILITY'),
                 ('maximum_projection_usd','0.48'),('continuation_observed_spend_usd','1'),('pretrained_requests',4)]:
             with self.subTest(key=key),self.assertRaises(ValueError):scope.validate_permit(dict(value,**{key:val}),source,now)
 
     def test_receiver_compressed_command_remains_within_dropbear_bound(self):
         command=delivery.remote_python(Path(public.__file__).read_text())
         self.assertLess(len(__import__('shlex').join(command+['receive','/root/backtrace/stage','/root/backtrace/runtime','a'*64,'600']).encode()),9000)
+
+    def test_changed_public_transport_can_select_a40_without_relaxing_cost_or_create_exclusion(self):
+        a40={'gpu':'NVIDIA A40','region':'EU-SE-1'}
+        excluded={'gpu':'NVIDIA RTX A6000','region':'US-TX-1'}
+        snapshot={'offers':[a40,excluded],'account':{'credit_balance_usd':'1.9441643765'}}
+        with patch.object(scope,'original_choose',return_value={'costs':{'maximum_projection':'0.34'}}) as choose:
+            self.assertEqual(scope.choose(snapshot,1)['costs']['additional_cap'],'0.47')
+            self.assertEqual(choose.call_args.args[0]['offers'],[a40])
+        for balance,projection in [('1.9441643765','0.48'),('1.79','0.34')]:
+            with self.subTest(balance=balance,projection=projection),patch.object(scope,'original_choose',return_value={'costs':{'maximum_projection':projection}}),self.assertRaises(ValueError):
+                scope.choose(dict(snapshot,account={'credit_balance_usd':balance}),1)
 
 
 if __name__=='__main__':unittest.main()

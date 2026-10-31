@@ -1,0 +1,35 @@
+{
+  "assigned": 3,
+  "training_steps": 0,
+  "provider_create_requests": 0,
+  "reason": "NO_AFFORDABLE_PERMITTED_ROUTE",
+  "records": [
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1278",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "7b85c563e1d65aab174032a9ed5386823ef3922c57e94bf93dd8815ebd896dc5",
+      "input_tokens": 562,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B1",
+      "id": "augnes-screen-1316",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "7a54aa7bf924ea8d0f80a79aa54dd5f741b3ed9900f3d3325f0c0736c1bfacfc",
+      "input_tokens": 541,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    },
+    {
+      "arm": "B0",
+      "id": "097751cfe4dadf3a1940ca8083093ce8adeae80ca328118f66b73c2bf3570204",
+      "initial_status": "NOT_RUN",
+      "input_ids_sha256": "713ddb650b79e8c851c48e4f4f38a37d0b54e0fa76bfa0bf67fc41e376eede1f",
+      "input_tokens": 1058,
+      "model": "E2B",
+      "status": "NOT_RUN"
+    }
+  ]
+}

@@ -1,5 +1,23 @@
 # Backtrace working agreement
 
+## Public-transport route amendment after zero-allocation rejection (2026-10-31 UTC)
+
+Read docs/small-model-public-route-result-20261031.md. Run41233521859 issued zero
+provider create requests: only the excluded A40/EU-SE-1 fit the current price
+bound. Keep that start/permit immutable and preserve all NOT_RUN outcomes.
+The watcher has no claim and is bounded;19:26:51 inventory is empty and credit
+USD1.9441643765 with zero hourly spend/autopay off. No additional charge observed.
+
+Remove only the A40/EU-SE-1 route exclusion prospectively: the now-qualified
+public preparation changes the bulk transport that failed historically. Keep
+A6000/US-TX-1 excluded. Do not claim universal regional reliability or root cause.
+Keep the sameUSD0.47/1.45 caps,USD1.4560441339 credit floor,2020/1600/300/120 second
+bounds, three assignments/four updates, worker isolation and independent cleanup.
+New start/state:bt-001-e2b-public-route-start-20261031 /
+bt-001-e2b-public-route-state-20261031; namespace:e2b-public-route-paid-20261031.
+Requalify exact source free before a fresh single-use delegated permit. No
+top-up, automatic retry, overlap, merge or Augnes write. Continue to actual results.
+
 ## Fixed E2B completion through pinned public preparation (2026-10-31 UTC)
 
 Read docs/small-model-public-delivery-20261031.md. The consumed all-SSH completion
