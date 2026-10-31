@@ -1,0 +1,9 @@
+BACKTRACE_CUDA_BEFORE {"case": "A", "phase": "BEFORE_CUDA", "identity": {"Uid": "0\t0\t0\t0", "Gid": "0\t0\t0\t0", "Groups": "0", "CapEff": "00000000a80425fb", "CapPrm": "00000000a80425fb", "CapBnd": "00000000a80425fb", "NoNewPrivs": "0", "Seccomp": "2", "Seccomp_filters": "1", "limits": {"RLIMIT_CORE": [0, 0], "RLIMIT_FSIZE": [1048576, 1048576], "RLIMIT_NOFILE": [65536, 65536], "RLIMIT_AS": [-1, -1], "RLIMIT_NPROC": [-1, -1]}, "python": "3.12.14", "executable": "/opt/backtrace/venv/bin/python", "cuda_visible_devices": "GPU-00000000-0000-0000-0000-000000000000", "environment_sha256": "7a3f225f9ab1d445348cfa70d313439120a074fce7d5f20acf1fb635448b9bc9"}}
+Traceback (most recent call last):
+  File "/opt/backtrace/minimum.py", line 45, in diagnostic_cuda
+    result['gpu'] = worker.cuda_check(config)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/backtrace/worker.py", line 136, in cuda_check
+    raise RuntimeError('CUDA 12.6 device unavailable; CPU fallback forbidden')
+RuntimeError: CUDA 12.6 device unavailable; CPU fallback forbidden
+BACKTRACE_CUDA_PRIMARY {"case": "A", "phase": "RESULT", "status": "FAIL", "error_type": "RuntimeError", "error": "CUDA 12.6 device unavailable; CPU fallback forbidden"}

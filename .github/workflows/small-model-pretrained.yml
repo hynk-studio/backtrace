@@ -1,17 +1,17 @@
 name: E2B four-update adapter feasibility
 on:
   push:
-    branches: [bt-001-e2b-adapter-20261031, bt-001-e2b-completion-start-20261031, bt-001-transfer-window-control-20261031]
+    branches: [bt-001-e2b-direct-20261031, bt-001-e2b-public-route-start-20261031, bt-001-transfer-window-control-20261031]
 permissions:
   contents: write
   actions: read
 concurrency:
-  group: small-e2b-baseline-cpu-${{ github.ref }}
+  group: small-e2b-direct-cpu-${{ github.ref }}
   # Superseded review commits are free replicas. Never cancel a paid start.
-  cancel-in-progress: ${{ github.ref_name == 'bt-001-e2b-adapter-20261031' }}
+  cancel-in-progress: ${{ github.ref_name == 'bt-001-e2b-direct-20261031' }}
 jobs:
   container:
-    if: github.ref_name != 'bt-001-e2b-completion-start-20261031'
+    if: github.ref_name != 'bt-001-e2b-public-route-start-20261031'
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     permissions:
@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: '3.12.14'
       - name: Full exact-source native tests and preflight
-        if: github.ref_name == 'bt-001-e2b-adapter-20261031'
+        if: github.ref_name == 'bt-001-e2b-direct-20261031'
         run: |
           set -euo pipefail
           mkdir -p evidence .local
@@ -36,7 +36,7 @@ jobs:
         run: |
           mkdir -p evidence .local
           python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
-          if [ "$GITHUB_REF_NAME" = bt-001-e2b-adapter-20261031 ]; then
+          if [ "$GITHUB_REF_NAME" = bt-001-e2b-direct-20261031 ]; then
             python -m pip download --no-cache-dir --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cu126 -r docs/small-model-gpu-requirements.txt -d .local/cuda-wheels
           fi
           python - <<'PYBUILD'
@@ -50,9 +50,9 @@ jobs:
         run: |
           sudo "$(command -v python)" tests/small_model_transport_control.py .local/transport-build/dropbear-DROPBEAR_2026.94/dropbear .local/transport-build/dropbear-DROPBEAR_2026.94/dropbearkey actions-20261019 --window-control > evidence/transport-window-control.json 2> evidence/transport-window-control.log
       - name: Exercise the exact hardware entry in a free ordinary container
-        if: github.ref_name == 'bt-001-e2b-adapter-20261031'
+        if: github.ref_name == 'bt-001-e2b-direct-20261031'
         run: |
-          sudo --preserve-env=GITHUB_SHA,GITHUB_RUN_ID "$(command -v python)" -m tools.small_model_pretrained_scope qualify .local/cuda-wheels .local/transport-build .local/minimum-qualification > evidence/container.json 2> evidence/container-stderr.log
+          sudo --preserve-env=GITHUB_SHA,GITHUB_RUN_ID "$(command -v python)" -m tools.small_model_public_scope qualify .local/cuda-wheels .local/transport-build .local/minimum-qualification > evidence/container.json 2> evidence/container-stderr.log
       - name: Preserve bounded qualification evidence
         if: always()
         run: |
@@ -68,7 +68,7 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: small-e2b-baseline-container-${{ github.sha }}-${{ github.run_attempt }}
+          name: small-e2b-direct-container-${{ github.sha }}-${{ github.run_attempt }}
           path: evidence/
           retention-days: 14
   owner:
@@ -86,7 +86,7 @@ jobs:
         run: |
           python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
       - name: Prepare pinned CUDA wheels and transport before any allocation
-        if: github.ref_name == 'bt-001-e2b-completion-start-20261031'
+        if: github.ref_name == 'bt-001-e2b-public-route-start-20261031'
         run: |
           python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
           python -m pip download --no-cache-dir --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cu126 -r docs/small-model-gpu-requirements.txt -d .local/cuda-wheels
@@ -98,7 +98,7 @@ jobs:
           (root/'receipt.json').write_text(json.dumps(result,sort_keys=True))
           PYBUILD
       - name: Prepare checkpoint, original assignments and tokenizer runtime before allocation
-        if: github.ref_name == 'bt-001-e2b-completion-start-20261031'
+        if: github.ref_name == 'bt-001-e2b-public-route-start-20261031'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -115,8 +115,8 @@ jobs:
           RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
         run: |
           mode=free
-          if [ "$GITHUB_REF_NAME" = bt-001-e2b-completion-start-20261031 ]; then mode=paid; fi
-          python -m tools.small_model_pretrained_scope owner "$mode"
+          if [ "$GITHUB_REF_NAME" = bt-001-e2b-public-route-start-20261031 ]; then mode=paid; fi
+          python -m tools.small_model_public_scope owner "$mode"
       - name: Preserve current account and quotes (read only)
         if: always()
         env:
@@ -128,7 +128,7 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: small-e2b-baseline-cpu-owner-${{ github.sha }}-${{ github.run_attempt }}
+          name: small-e2b-direct-cpu-owner-${{ github.sha }}-${{ github.run_attempt }}
           path: |
             evidence/**/*.json
             evidence/**/*.jsonl
@@ -153,12 +153,12 @@ jobs:
           RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
         run: |
           mode=free
-          if [ "$GITHUB_REF_NAME" = bt-001-e2b-completion-start-20261031 ]; then mode=paid; fi
-          python -m tools.small_model_pretrained_scope watch "$mode"
+          if [ "$GITHUB_REF_NAME" = bt-001-e2b-public-route-start-20261031 ]; then mode=paid; fi
+          python -m tools.small_model_public_scope watch "$mode"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: small-e2b-baseline-cpu-watch-${{ github.sha }}-${{ github.run_attempt }}
+          name: small-e2b-direct-cpu-watch-${{ github.sha }}-${{ github.run_attempt }}
           path: |
             evidence/**/*.json
             evidence/**/*.log
@@ -166,7 +166,7 @@ jobs:
           retention-days: 14
 
   prepare:
-    if: github.ref_name == 'bt-001-e2b-adapter-20261031'
+    if: github.ref_name == 'bt-001-e2b-direct-20261031'
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:

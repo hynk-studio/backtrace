@@ -1,5 +1,79 @@
 # Backtrace working agreement
 
+## Actual E2B completion; E4B comparison active (2026-10-31 20:19 UTC)
+
+Read docs/small-model-public-completion-result-20261031.md. Run41236271328 completed
+all3 assigned generations and4 actual CUDA updates/save-reload at immutable2e0a.
+Both controllers deleted08cin7wz323sz2;20:13:53 inventory is empty. Initial credit
+USD1.8702846922/costUSD0.0738796843 remain subject to delayed billing.72 raw members,
+264 source entries, all three wire/ledger/input identities, eight state blobs and
+90256-byte adapter SHA b24c56cf0698f1cc9e5ccf7bef0cce6115c1f76a2b6b876e150fd74f95850252
+are verified and retained. Four updates took1.158s;14.706GB peak allocated exceeds
+12GB. Same-instance reload passed; one post-update output is task-invalid.
+
+Twenty untrained outputs across two explicit runs contain19 strict JSON/14 frozen
+structural passes; no semantic accuracy or Augnes benefit is established. Preserve
+original failed/interrupted/malformed outcomes. E4B41238159872 at99ee is now in
+pre-allocation preparation under its separate qualified scope and fresh permit.
+Continue it through actual outputs, both deletions and source-grounded review.
+Then use actual capacity/training measurements to scope matched B2/S screening;
+first qualify and bound any new actual source. Current Augnes routes are unavailable,
+but this does not turn an intermediate implementation result into the research goal.
+No top-up, overlapping allocation, automatic retry, merge or Augnes write.
+
+## Qualified public route is executing (2026-10-31 20:00 UTC)
+
+Read docs/small-model-public-route-result-20261031.md. Earlier41233521859 is fully
+finished with zero provider creates and watcher NO_CLAIM. New free41234720167 at
+source2e0a16e9ea8eea8e1d680d84805be85783088b9b passed729 native tests,17 controls,
+full public runtime/model readback and cleanup;55 raw members/292 source entries
+are retained. Fresh permit165e8506f98d805470e72296b10a757f247b5bba and immutable
+start launched41236271328. Preparation finished; actual outcome/deletion is not
+known at this checkpoint. Continue the existing pair, not another start. Do not
+claim actual training, completed20 screening or Augnes benefit from free controls.
+
+## Public-transport route amendment after zero-allocation rejection (2026-10-31 UTC)
+
+Read docs/small-model-public-route-result-20261031.md. Run41233521859 issued zero
+provider create requests: only the excluded A40/EU-SE-1 fit the current price
+bound. Keep that start/permit immutable and preserve all NOT_RUN outcomes.
+The watcher has no claim and is bounded;19:26:51 inventory is empty and credit
+USD1.9441643765 with zero hourly spend/autopay off. No additional charge observed.
+
+Remove only the A40/EU-SE-1 route exclusion prospectively: the now-qualified
+public preparation changes the bulk transport that failed historically. Keep
+A6000/US-TX-1 excluded. Do not claim universal regional reliability or root cause.
+Keep the sameUSD0.47/1.45 caps,USD1.4560441339 credit floor,2020/1600/300/120 second
+bounds, three assignments/four updates, worker isolation and independent cleanup.
+New start/state:bt-001-e2b-public-route-start-20261031 /
+bt-001-e2b-public-route-state-20261031; namespace:e2b-public-route-paid-20261031.
+Requalify exact source free before a fresh single-use delegated permit. No
+top-up, automatic retry, overlap, merge or Augnes write. Continue to actual results.
+
+## Fixed E2B completion through pinned public preparation (2026-10-31 UTC)
+
+Read docs/small-model-public-delivery-20261031.md. The consumed all-SSH completion
+failed before runtime/model. Both cleanup proofs and zero-Pod inventory are
+retained. Continue with unchanged two screening inputs, four train-only updates
+and one original post-update generation through a new versioned transport.
+
+Only already public, hash-pinned wheel/tokenizer/model bytes may use trusted
+preparation HTTPS. Owner-created files remain authenticated SSH,64MiB/90 seconds;
+runtime/model each600 seconds. Preserve offline installation, worker network and
+credential denial, all hardware/identity controls, raw evidence and independent
+cleanup. Full public runtime and full E2B checkpoint receipt/readback/deletion
+must pass free ordinary-container qualification first. Never run this transport
+inside the isolated model worker or give it provider credentials.
+
+New review/start/state:bt-001-e2b-direct-20261031 / bt-001-e2b-direct-start-20261031 /
+bt-001-e2b-direct-state-20261031; namespace:e2b-direct-paid-20261031. Under continued
+delegation within the acceptedUSD10 wallet, prospectively cap one allocation at
+USD0.47, continuationUSD1.45 and projected credit floorUSD1.4560441339. Retain
+2020/1600/300/120 second bounds, fresh source-bound qualification/permit and live
+account/price/inventory admission. Exclude A40/EU-SE-1 and A6000/US-TX-1 pairs.
+No automatic retry, top-up, overlap, merge or Augnes write. Preserve all historical
+records. E4B remains a separate local candidate; feasibility is not model benefit.
+
 ## Consumed E2B completion transport failure (2026-10-31 UTC)
 
 Read docs/small-model-completion-result-20261031.md. Run41229949374 consumed

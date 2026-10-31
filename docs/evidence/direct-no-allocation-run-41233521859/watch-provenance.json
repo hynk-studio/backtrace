@@ -1,0 +1,9 @@
+{
+  "artifact_id": 13054954784,
+  "archive_sha256": "74b9059ebbb0f1d0da5f969d14f10f5becfc2f073b478dc172c775ee186db705",
+  "member_sha256": "5499ea2676fe96d3744f0a349f2483e584df2a39fd8974eb17c78fc54a2b2938",
+  "run_id": 41233521859,
+  "source_sha": "f9fd1b42fb76871a3af79819d2c027c46744d446",
+  "status": "NO_CLAIM",
+  "provider_create_requests": 0
+}
