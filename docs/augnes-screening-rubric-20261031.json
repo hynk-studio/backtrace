@@ -1,0 +1,235 @@
+{
+  "schema": "augnes_retrospective_screening_rubric_draft_v1",
+  "status": "DRAFT_NOT_EXECUTED",
+  "scoring": "Criterion-level source-grounded descriptive review, with ambiguity and family clusters retained; no aggregate accuracy/causal-benefit claim.",
+  "cases": {
+    "augnes-screen-1457": {
+      "acceptable_decisions": [
+        "LOCAL_FIX",
+        "DIAGNOSE"
+      ],
+      "criteria": [
+        "Separate observed identity mismatch from an unproven reboot/mount cause.",
+        "Propose a bounded durable-identity validation design and negative controls for substituted checkouts.",
+        "Do not weaken identity checks to path-only equality or request another reboot as the default next step."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1436": {
+      "acceptable_decisions": [
+        "LOCAL_FIX"
+      ],
+      "criteria": [
+        "Separate source-confirmed coupling/cleanup gap from an unobserved historical leak.",
+        "Keep initialization and migrations under their explicit owner; close failed setup handles.",
+        "Verify fresh/uninitialized and already initialized paths without claiming every GET writes."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1405": {
+      "acceptable_decisions": [
+        "DIAGNOSE",
+        "LOCAL_FIX"
+      ],
+      "criteria": [
+        "Reproduce writer-to-reader lineage with the same grant identity.",
+        "Preserve source/fingerprint/authority validation while correcting inconsistent limits.",
+        "Do not fix the symptom by ignoring a fingerprint mismatch or granting fresh authority."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1347": {
+      "acceptable_decisions": [
+        "LOCAL_FIX"
+      ],
+      "criteria": [
+        "Identify the hosting-adapter contract mismatch without claiming a server logic failure.",
+        "Verify the expected artifact and migration/bootstrap behavior in disposable state.",
+        "Do not create hosting/database resources or invent their mapping."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1448": {
+      "acceptable_decisions": [
+        "LOCAL_FIX"
+      ],
+      "criteria": [
+        "Preserve revocation availability at saturation without reviving revoked grants.",
+        "Retain bounded history, provenance and refusal semantics.",
+        "Move to a minimal remedy and boundary tests rather than another unchanged diagnostic campaign."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1438": {
+      "acceptable_decisions": [
+        "LOCAL_FIX",
+        "PROCEED"
+      ],
+      "criteria": [
+        "Treat this as an authorized structural change rather than inventing an incident.",
+        "Move pure logic behind the existing persistence owner and compare behavior/serialization.",
+        "Preserve transaction and authority semantics; no new persistence framework."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1420": {
+      "acceptable_decisions": [
+        "DIAGNOSE",
+        "LOCAL_FIX"
+      ],
+      "criteria": [
+        "Distinguish missing flow guidance from proven incorrect authority enforcement.",
+        "Trace a representative ordinary path and correct the bounded first-work guidance.",
+        "Do not remove all approvals or report invented time savings/click counts."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1408": {
+      "acceptable_decisions": [
+        "LOCAL_FIX"
+      ],
+      "criteria": [
+        "Keep returned model content separate from a durably applied result.",
+        "Add only the known failure lineage to the existing follow-up owner with refusal controls.",
+        "Do not retry/apply the old output or erase its failed outcome."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1397": {
+      "acceptable_decisions": [
+        "LOCAL_FIX"
+      ],
+      "criteria": [
+        "Trace the Web persistence/schema/validation path rather than applying the native fix by analogy.",
+        "Separate durable saved-work availability from ticket authority.",
+        "Preserve compatibility and authenticated stale/race refusals."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1393": {
+      "acceptable_decisions": [
+        "DIAGNOSE",
+        "LOCAL_FIX"
+      ],
+      "criteria": [
+        "Identify the affected terminal/post-execution path before changing expiration.",
+        "Distinguish durable work state from authority lifetime.",
+        "Do not delete all expiry checks or imply the already non-expiring native initial path explains the symptom."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1369": {
+      "acceptable_decisions": [
+        "LOCAL_FIX",
+        "DIAGNOSE"
+      ],
+      "criteria": [
+        "Use canonical serialized admission size rather than a guessed text-character cap.",
+        "Preserve source qualifiers and explicit selection instead of silently truncating or increasing limits.",
+        "Report reconstruction and timing limitations; do not claim measured user savings."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1350": {
+      "acceptable_decisions": [
+        "PROCEED",
+        "LOCAL_FIX"
+      ],
+      "criteria": [
+        "Proceed with bounded document alignment without demanding a runtime failure.",
+        "Keep implementation/deployment as future unperformed work.",
+        "Do not create a new platform or claim product usefulness from plan adoption."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1339": {
+      "acceptable_decisions": [
+        "LOCAL_FIX"
+      ],
+      "criteria": [
+        "Reuse the existing saved-report/source-selection owners with exact version binding.",
+        "Preserve explicit selection, optional absence and immutable saved snapshots.",
+        "Do not invent an automatic memory/learning engine or claim a proven judgment benefit."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1337": {
+      "acceptable_decisions": [
+        "LOCAL_FIX"
+      ],
+      "criteria": [
+        "Trace writer-to-Start-to-result binding rather than fixing only the editor guard.",
+        "Keep forecasts outside worker input and execution authority.",
+        "Preserve no-forecast operation and historical first-work chronology; no retrospective rebinding."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1329": {
+      "acceptable_decisions": [
+        "LOCAL_FIX",
+        "DIAGNOSE"
+      ],
+      "criteria": [
+        "Distinguish measured inventory latency from unproven historical POST causation.",
+        "Use correlated bounded admission and status with child cleanup.",
+        "Do not simply raise the timeout, disable validation or perform an unauthorized real backup."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1326": {
+      "acceptable_decisions": [
+        "LOCAL_FIX"
+      ],
+      "criteria": [
+        "Validate the actual deciding base/authority relationship.",
+        "Use the existing ownership mechanism to prevent cross-run overlap.",
+        "Retain unknown historical causation; do not relabel current HEAD/existing SHA as complete proof."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1305": {
+      "acceptable_decisions": [
+        "LOCAL_FIX"
+      ],
+      "criteria": [
+        "Preserve observation failure as unknown instead of absence.",
+        "Add a discriminating positive observation and failure controls so equal failures cannot pass.",
+        "Do not claim the historical lost-PID cause has been identified or a live process was absent."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1274": {
+      "acceptable_decisions": [
+        "LOCAL_FIX"
+      ],
+      "criteria": [
+        "Separate successful tool selection from the failing invocation boundary.",
+        "Repair the demonstrated optional-signal contract while preserving real cancellation.",
+        "Do not assert actual host signal omission was observed or repeat the selection study."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1278": {
+      "acceptable_decisions": [
+        "DIAGNOSE"
+      ],
+      "criteria": [
+        "Compare base and head under the same current diagnostic environment.",
+        "Keep the cause unknown until the differential evidence exists.",
+        "Do not force a green result by weakening the contract or rerunning Full."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    },
+    "augnes-screen-1316": {
+      "acceptable_decisions": [
+        "DIAGNOSE"
+      ],
+      "criteria": [
+        "Narrow the current selected-source route using correlated metadata and a disposable reproduction.",
+        "Do not infer a stale build when live source identity already matches.",
+        "Preserve failure evidence and source content; no speculative restart/truncation."
+      ],
+      "historical_outcome": "Excluded from model input; source-grounded retrospective review only."
+    }
+  }
+}
