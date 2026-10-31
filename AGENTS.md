@@ -1,5 +1,23 @@
 # Backtrace working agreement
 
+## Free receive-window hypothesis control (2026-10-31 UTC)
+
+L40S screen-probe run41219228584 failed at the same600-second common-runtime
+transfer as E4B, before install/CUDA/model/training. Both controllers confirmed
+deletion; zero Pods/spend, autopay off and creditUSD2.1973672941 were observed.
+Continuation spending is USD0.7086768398. All21 assignments remain NOT_RUN.
+Preserved evidence is on analysis commitd524af6df0e46894267f4032d9c34e1e0f5d97b3,
+docs/small-model-screen-probe-result-20261031.md. Paid source/start remain fixed.
+
+The existing SSH daemon already uses a1MiB receive window. Test1MiB versus8MiB
+with the same64MiB bytes and imposed200ms round-trip delay, in ABBA order using
+the pinned binaries, strict authentication and exact receiver readback. This is
+a free loopback control on bt-001-transfer-window-control-20261031 using the
+existing workflow. Its owner/watch/model jobs are skipped and no provider secret
+is provided. It is not full model qualification, a proven production cause, or
+authorization for another paid start. Keep raw timings and failures. A measured
+effect must precede any production window change or new bounded proposal.
+
 ## Prospective focused screening/probe route (2026-10-31 UTC)
 
 Paid run 41215557845 at d0ab1cbc2548c69425d9c97ab697c0cecd89392d has

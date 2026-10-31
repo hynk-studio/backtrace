@@ -1,7 +1,7 @@
 name: E2B four-update adapter feasibility
 on:
   push:
-    branches: [bt-001-e2b-adapter-20261031, bt-001-e2b-screen-probe-start-20261031]
+    branches: [bt-001-e2b-adapter-20261031, bt-001-e2b-screen-probe-start-20261031, bt-001-transfer-window-control-20261031]
 permissions:
   contents: write
   actions: read
@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: ${{ github.ref_name == 'bt-001-e2b-adapter-20261031' }}
 jobs:
   container:
-    if: github.ref_name == 'bt-001-e2b-adapter-20261031'
+    if: github.ref_name != 'bt-001-e2b-screen-probe-start-20261031'
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     permissions:
@@ -24,6 +24,7 @@ jobs:
         with:
           python-version: '3.12.14'
       - name: Full exact-source native tests and preflight
+        if: github.ref_name == 'bt-001-e2b-adapter-20261031'
         run: |
           set -euo pipefail
           mkdir -p evidence .local
@@ -33,8 +34,11 @@ jobs:
           git diff --check
       - name: Prepare pinned CUDA wheels and transport before any allocation
         run: |
+          mkdir -p evidence .local
           python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
-          python -m pip download --no-cache-dir --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cu126 -r docs/small-model-gpu-requirements.txt -d .local/cuda-wheels
+          if [ "$GITHUB_REF_NAME" = bt-001-e2b-adapter-20261031 ]; then
+            python -m pip download --no-cache-dir --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cu126 -r docs/small-model-gpu-requirements.txt -d .local/cuda-wheels
+          fi
           python - <<'PYBUILD'
           from pathlib import Path
           import json
@@ -42,7 +46,11 @@ jobs:
           root=Path('.local/transport-build');result=build(root)
           (root/'receipt.json').write_text(json.dumps(result,sort_keys=True))
           PYBUILD
+      - name: Compare SSH receive windows under identical free imposed latency
+        run: |
+          sudo "$(command -v python)" tests/official_cloud_transport.py .local/transport-build/dropbear-DROPBEAR_2026.94/dropbear .local/transport-build/dropbear-DROPBEAR_2026.94/dropbearkey actions-20261019 --window-control > evidence/transport-window-control.json 2> evidence/transport-window-control.log
       - name: Exercise the exact hardware entry in a free ordinary container
+        if: github.ref_name == 'bt-001-e2b-adapter-20261031'
         run: |
           sudo --preserve-env=GITHUB_SHA,GITHUB_RUN_ID "$(command -v python)" -m tools.small_model_pretrained_scope qualify .local/cuda-wheels .local/transport-build .local/minimum-qualification > evidence/container.json 2> evidence/container-stderr.log
       - name: Preserve bounded qualification evidence
@@ -64,6 +72,7 @@ jobs:
           path: evidence/
           retention-days: 14
   owner:
+    if: github.ref_name != 'bt-001-transfer-window-control-20261031'
     runs-on: ubuntu-24.04
     timeout-minutes: 85
     steps:
@@ -128,6 +137,7 @@ jobs:
             !evidence/**/collector-input.json
           retention-days: 14
   watch:
+    if: github.ref_name != 'bt-001-transfer-window-control-20261031'
     runs-on: ubuntu-24.04
     timeout-minutes: 85
     steps:
