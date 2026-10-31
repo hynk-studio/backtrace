@@ -1,0 +1,41 @@
+{
+  "source_sha": "dc5ab2b96f5b51da67ff9c74c0acd2f063fc7322",
+  "contract_sha256": "7f61b2fee65a2eb3b58bc38bcc780fb9ef312469b9d4bb6ec75fbb60da771fad",
+  "namespace": "e2b-screen-probe-paid-20261031",
+  "instruction": "이번에는 목표까지 실제로 이어가도록 하고 혼자 해결할 수 없는 문제가 있을 때만 멈추고 보고해",
+  "mode": "OWNER_APPROVED_E2B_ADAPTER_FEASIBILITY",
+  "additional_cap_usd": "1.00",
+  "allocation_inclusive_seconds": 1640,
+  "single_use": true,
+  "automatic_retry": false,
+  "top_up_allowed": false,
+  "weight_bytes": 10246621918,
+  "pretrained_requests": 21,
+  "training_steps": 4,
+  "qualification_run_id": "41218223100",
+  "continuation_observed_spend_usd": "0.4954733666",
+  "maximum_projection_usd": "0.504",
+  "approved_at": 1793463611.924,
+  "expires_at": 1793467211.924,
+  "qualification_artifacts": {
+    "container": {
+      "id": 13049266618,
+      "sha256": "13896d4b5e0c3d9e627230a281b064fedd09ba42d791ab8a915cac5b0d6f1ff6"
+    },
+    "inputs": {
+      "id": 13048669933,
+      "sha256": "755d5951f8a74a6ab12e1a83588c3e1c99306683eea69c4f5f53b4a337b70aa7"
+    }
+  },
+  "qualification_native_tests": 698,
+  "qualification_container_controls": 17,
+  "prior_attempt": {
+    "run": 41215557845,
+    "source": "d0ab1cbc2548c69425d9c97ab697c0cecd89392d",
+    "error": "ProviderError HTTP400; underlying reason unknown",
+    "owner_cleanup": "NO_RESOURCE_OBSERVED",
+    "watch_cleanup": "NO_RESOURCE_OBSERVED",
+    "evidence_commit": "07d3f6c0ac3eea90b18f7f10786618f6954d36c7"
+  },
+  "execution_time_fresh_account_price_required": true
+}
