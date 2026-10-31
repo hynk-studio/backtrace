@@ -179,7 +179,7 @@ def diagnose(prefix, output, *, actual, trace=False):
         total = receipt['cases'].get('D', {}).get('result', {}).get('denial_trace', {}).get('count')
         receipt['denied_syscall_trace'].update(total_denials=total,
             records_truncated=total is None or total > len(records),
-            clone3_enosys_fallback_traced=False)
+            untraced_signal_sensitive_syscalls=[56,57,58,59,322,435])
     life.write(output/'receipt.json', receipt)
     return receipt
 
@@ -282,7 +282,7 @@ print(json.dumps(r))
         if not checks['missing_gpu_rejected']:raise AssertionError('missing GPU not rejected at exact kernel gate')
         result['cuda_comparison_cpu'] = diagnose(prefix, output/'cuda-comparison', actual=False, trace=True)
         checks['cuda_comparison_cpu'] = (result['cuda_comparison_cpu']['decision'] == 'CPU_CONTROLS_ONLY'
-            and all(row['result']['status'] == 'FAIL' and 'CPU fallback forbidden' in row['result'].get('error', '')
+            and all(row.get('result',{}).get('status') == 'FAIL' and 'CPU fallback forbidden' in row.get('result',{}).get('error', '')
                     for row in result['cuda_comparison_cpu']['cases'].values()))
         if not checks['cuda_comparison_cpu']:raise AssertionError('CPU comparison logging/boundaries failed')
     result['interruptions']={}
@@ -320,7 +320,7 @@ print(json.dumps(r))
     life.write(output/'receipt.json',result);return result
 
 
-def connected(root,endpoint,output,*,actual,comparison_only=False):
+def connected(root,endpoint,output,*,actual,comparison_only=False,after_hardware=None):
     root=Path(root);output=Path(output);output.mkdir(mode=0o700,parents=True,exist_ok=True)
     result={'status':'INCOMPLETE','actual_gpu':actual}
     try:
@@ -338,6 +338,11 @@ def connected(root,endpoint,output,*,actual,comparison_only=False):
         result['installation']=json.loads(p.stdout);life.write(output/'installation-checkpoint.json',result)
         result['diagnostics']=exercise(prefix,output/'diagnostics',actual=actual,comparison_only=comparison_only)
         result['status']=result['diagnostics']['status']
+        if after_hardware is not None:
+            if not actual or comparison_only or result['status']!='PASS_ACTUAL_HARDWARE_ONLY':
+                raise ValueError('actual complete hardware qualification required before inference')
+            result['inference']=after_hardware(root,endpoint,prefix,output,result['diagnostics'])
+            result['status']=result['inference']['status']
     except Exception as e:
         import traceback
         result.update(status='FAIL',error_type=type(e).__name__,error=str(e)[:1500],

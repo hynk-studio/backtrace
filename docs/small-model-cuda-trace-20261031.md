@@ -13,6 +13,12 @@ capabilities. The original production filter's default remains unchanged.
 Clone3's ENOSYS fallback is deliberately not trapped: libc temporarily blocks
 signals around pthread creation. An initial local diagnostic reproduced the
 resulting SIGSYS termination, and the corrected recorder preserves threads.
+The first native/container run 41198784154 passed all 682 native tests but
+exposed the same signal-sensitive behavior during PyTorch import via a process
+creation path. The correction keeps clone/fork/vfork/exec/execveat/clone3 on their
+literal original ERRNO returns (syscalls 56/57/58/59/322/435); these are explicitly
+untraced. Socket and remaining denials are recorded. An empty trace cannot
+exclude the untraced calls as causes. The failed raw run remains preserved.
 
 Each record contains the syscall number, errno and six integer argument values;
 it does not dereference argument pointers. Logs stop after 64 records while

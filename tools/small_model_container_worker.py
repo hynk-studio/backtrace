@@ -49,14 +49,17 @@ def restrict_syscalls(*, trace_denials=False):
     denied = (41,42,43,44,46,49,50,53,57,58,59,101,155,161,165,166,
               272,288,299,304,307,308,310,311,321,322,323,425,426,427,438)
     for nr in denied:
-        rows += [(0x15,0,1,nr),(0x06,0,0,deny_action|errno.EPERM)]
+        # libc can block SIGSYS across spawn/fork/exec. Preserve literal ERRNO
+        # for those calls; trapping them may kill an otherwise handled failure.
+        action = 0x00050000 if nr in (57,58,59,322) else deny_action
+        rows += [(0x15,0,1,nr),(0x06,0,0,action|errno.EPERM)]
     # glibc uses clone3 when present, then safely falls back to clone on ENOSYS.
     # Keep clone3's ENOSYS return literal even in trace mode: pthread creation
     # temporarily blocks SIGSYS, so trapping this compatibility fallback kills it.
     rows += [(0x15,0,1,435),(0x06,0,0,0x00050000|errno.ENOSYS),
              (0x15,0,7,56),(0x20,0,0,16),(0x54,0,0,0x10900),
              (0x15,0,3,0x10900),(0x20,0,0,16),(0x54,0,0,0x7e0200ff),
-             (0x15,1,0,0),(0x06,0,0,deny_action|errno.EPERM),
+             (0x15,1,0,0),(0x06,0,0,0x00050000|errno.EPERM),
              (0x06,0,0,0x7fff0000)]
     array = (Filter*len(rows))(*(Filter(*r) for r in rows))
     program = Program(len(rows), array)
@@ -109,6 +112,12 @@ def child(parent, script):
         'HF_HUB_OFFLINE':'1','TRANSFORMERS_OFFLINE':'1','TOKENIZERS_PARALLELISM':'false',
         'OMP_NUM_THREADS':'1','OPENBLAS_NUM_THREADS':'1','PYTHONDONTWRITEBYTECODE':'1',
         'CUDA_CACHE_DISABLE':'1'})
+    if script=='pretrained':
+        import re
+        uuid=json.loads(Path('/job.json').read_bytes())['gpu']['uuid']
+        if not re.fullmatch(r'GPU-[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}',uuid):
+            raise ValueError('full qualified GPU UUID required')
+        os.environ['CUDA_VISIBLE_DEVICES']=uuid
     restrict_syscalls()
     if script=='boundary':boundary()
     else:runpy.run_path(str(ROOT/'worker.py'),run_name='__main__')
@@ -126,7 +135,7 @@ def state_write(path, value):
 
 def supervise(job_name, seconds, script='worker'):
     if (os.geteuid()!=0 or platform.python_version()!='3.12.14'
-            or not 0<float(seconds)<=3000 or script not in ('worker','boundary')
+            or not 0<float(seconds)<=3000 or script not in ('worker','boundary','pretrained')
             or not job_name.replace('-','').isalnum()):
         raise ValueError('fixed root interpreter, safe job and bounded deadline required')
     parent=os.getppid();prctl(1,signal.SIGKILL)
@@ -136,9 +145,15 @@ def supervise(job_name, seconds, script='worker'):
     job=ROOT/'assets/jobs'/(job_name+'.json')
     value=json.loads(job.read_bytes());model=value.pop('container_model')
     if model not in ('E2B','E4B'):raise ValueError('unknown model')
-    # Until real GPU isolation, memory admission and distributed cleanup qualify,
-    # this version cannot become a paid/pretrained entry through a CLI flag.
-    if value['mode'] not in ('random_fixture','scripted_control'):
+    # A separate trusted entry consumes a job installed only after the complete
+    # actual hardware checks. The original CPU entry still rejects paid modes.
+    if script=='pretrained':
+        import re
+        if (model!='E2B' or value['mode']!='pretrained_cuda'
+                or not re.fullmatch('[0-9a-f]{64}',value.pop('hardware_receipt_sha256',''))
+                or not isinstance(value.get('gpu'),dict)):
+            raise ValueError('qualified E2B job required')
+    elif value['mode'] not in ('random_fixture','scripted_control'):
         raise ValueError('container v1 is free CPU qualification only')
     for name,target in [('model',ROOT/'assets/models'/model),
                         ('tokenizer',ROOT/'assets/tokenizers'/model)]:
