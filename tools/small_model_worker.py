@@ -8,6 +8,7 @@ import json
 import os
 from pathlib import Path
 import resource
+import re
 import sys
 import time
 
@@ -29,11 +30,20 @@ def cuda_check(job):
     if torch.cuda.device_count() != 1:
         raise RuntimeError('exactly one visible CUDA device required')
     prop=torch.cuda.get_device_properties(0)
+    # PyTorch's CUuuid string is bare 8-4-4-4-12; nvidia-smi prefixes GPU-.
+    # Normalize only that spelling, retaining exact full-device identity.
     uuid=str(prop.uuid)
-    if (uuid.lower()!=job['gpu']['uuid'].lower() or prop.major<8
-            or prop.total_memory<job['gpu']['minimum_total_bytes']
-            or not torch.cuda.is_bf16_supported(including_emulation=False)):
-        raise RuntimeError('GPU identity, memory or native BF16 requirement failed')
+    if not re.fullmatch(r'(?:GPU-)?[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}',uuid):
+        raise RuntimeError('malformed CUDA device UUID: '+uuid)
+    uuid='GPU-'+uuid.removeprefix('GPU-').lower()
+    if uuid.lower()!=job['gpu']['uuid'].lower():
+        raise RuntimeError('GPU UUID mismatch: observed='+uuid+' expected='+job['gpu']['uuid'])
+    if prop.major<8:
+        raise RuntimeError('GPU compute capability below native BF16 requirement')
+    if prop.total_memory<job['gpu']['minimum_total_bytes']:
+        raise RuntimeError('GPU memory below required minimum')
+    if not torch.cuda.is_bf16_supported(including_emulation=False):
+        raise RuntimeError('native BF16 unsupported')
     exposed=sorted(p.name for p in Path('/dev').glob('nvidia[0-9]*'))
     if exposed != [job['gpu']['device_basename']]:
         raise RuntimeError('unexpected GPU device node exposure')

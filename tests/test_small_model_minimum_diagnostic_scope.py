@@ -87,19 +87,28 @@ class DiagnosticScopeTests(unittest.TestCase):
         self.assertEqual(result['status'],'FAIL');api.create.assert_not_called()
 
     def test_recorded_gpu_failure_is_not_relabelled_as_hardware_success(self):
-        for decision in ('COMMON_PROVIDER_RUNTIME_PATH_STOP','INCONCLUSIVE_STOP_SAME_ROUTE',
+        for decision in ('ALL_PRIMARY_PROBES_FAILED_CAUSE_UNRESOLVED_STOP','INCONCLUSIVE_STOP_SAME_ROUTE',
                 'ADDED_FILTER_IMPLICATED_SYSCALL_UNRESOLVED','CUDA_PATH_WORKS_FAILURE_NOT_REPRODUCED'):
             with self.subTest(decision=decision),tempfile.TemporaryDirectory() as td:
                 root=Path(td);ep=root/'endpoint.json';ep.write_text('{}')
                 result={'status':'DIAGNOSTIC_RECORDED','diagnostics':{'cuda_comparison':{'decision':decision}}}
-                with mock.patch.object(diagnostic.remote,'connected',return_value=result) as connected:
+                def connected_result(*args,**kwargs):
+                    # Real connected() creates this exclusively before returning.
+                    minimum.life.write(root/'connected-receipt.json',result)
+                    return result
+                with mock.patch.object(diagnostic.remote,'connected',side_effect=connected_result) as connected:
                     recorded=diagnostic.measure(root,ep,root)
                 self.assertEqual(connected.call_args.kwargs,{'actual':True,'comparison_only':True})
                 self.assertEqual(recorded['status'],'DIAGNOSTIC_RECORDED')
                 self.assertEqual(recorded['measurement_decision'],decision)
                 self.assertIs(recorded['hardware_qualified'],False)
                 self.assertIs(recorded['model_baseline_run'],False)
-                self.assertEqual(json.loads((root/'connected-receipt.json').read_text()),recorded)
+                self.assertEqual((root/'connected-receipt.json').read_bytes(),minimum.life.encoded(result))
+                summary=json.loads((root/'diagnostic-summary.json').read_text())
+                self.assertEqual(summary['connected_receipt_sha256'],minimum.life.digest(result))
+                self.assertEqual(summary['measurement_decision'],decision)
+                self.assertFalse(summary['hardware_qualified'])
+                with self.assertRaises(FileExistsError):minimum.life.write(root/'diagnostic-summary.json',summary)
 
 
 if __name__=='__main__':unittest.main()

@@ -7,6 +7,7 @@ import tempfile
 import types
 import unittest
 from unittest.mock import patch
+from unittest import mock
 
 from tools import exact_teacher as exact
 from tools import small_model_gpu as gpu
@@ -53,6 +54,39 @@ class InventoryTests(unittest.TestCase):
         with patch.dict('sys.modules',{'torch':fake}),self.assertRaises(RuntimeError):worker.cuda_check({})
         fake.version.cuda='12.6'
         with patch.dict('sys.modules',{'torch':fake}),self.assertRaisesRegex(RuntimeError,'exactly one'):worker.cuda_check({})
+
+    def cuda_identity_fixture(self,**changes):
+        prop=types.SimpleNamespace(uuid=UUID.removeprefix('GPU-'),major=8,total_memory=48*gpu.GIB)
+        for k,v in changes.items():setattr(prop,k,v)
+        cuda=mock.Mock()
+        cuda.is_available.return_value=True;cuda.device_count.return_value=1
+        cuda.get_device_properties.return_value=prop;cuda.is_bf16_supported.return_value=True
+        cuda.set_device.side_effect=RuntimeError('AUTHORED_KERNEL_BOUNDARY')
+        fake=types.SimpleNamespace(version=types.SimpleNamespace(cuda='12.6'),cuda=cuda)
+        job={'gpu':{'uuid':UUID,'minimum_total_bytes':24*gpu.GIB,'device_basename':'nvidia3'}}
+        return fake,job
+
+    def test_bare_pytorch_uuid_reaches_kernel_boundary_without_weakening_identity(self):
+        for spelling in (UUID.removeprefix('GPU-'),UUID.removeprefix('GPU-').upper(),UUID):
+            fake,job=self.cuda_identity_fixture(uuid=spelling)
+            with patch.dict('sys.modules',{'torch':fake}),patch.object(worker.Path,'glob',return_value=[Path('/dev/nvidia3')]),\
+                    self.assertRaisesRegex(RuntimeError,'AUTHORED_KERNEL_BOUNDARY'):
+                worker.cuda_check(job)
+            fake.cuda.is_bf16_supported.assert_called_once_with(including_emulation=False)
+            fake.cuda.set_device.assert_called_once_with(0)
+        for spelling in ('12345678','MIG-'+UUID[4:],UUID[:-1]+'d',UUID+'junk'):
+            fake,job=self.cuda_identity_fixture(uuid=spelling)
+            with patch.dict('sys.modules',{'torch':fake}),self.assertRaisesRegex(RuntimeError,'UUID'):
+                worker.cuda_check(job)
+            fake.cuda.set_device.assert_not_called()
+
+    def test_correct_uuid_still_requires_capacity_memory_and_native_bf16(self):
+        for changes,reason in [({'major':7},'capability'),({'total_memory':12*gpu.GIB},'memory'),({},'native BF16')]:
+            fake,job=self.cuda_identity_fixture(**changes)
+            if not changes:fake.cuda.is_bf16_supported.return_value=False
+            with patch.dict('sys.modules',{'torch':fake}),self.assertRaisesRegex(RuntimeError,reason):
+                worker.cuda_check(job)
+            fake.cuda.set_device.assert_not_called()
 
 
 class FilesTests(unittest.TestCase):

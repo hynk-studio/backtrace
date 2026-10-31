@@ -86,10 +86,14 @@ def measure(root,endpoint,output):
         Path(output),actual=True,comparison_only=True)
     if result['status']=='DIAGNOSTIC_RECORDED':
         comparison=result['diagnostics']['cuda_comparison']
-        result['measurement_decision']=comparison['decision']
-        result['hardware_qualified']=False
-        result['model_baseline_run']=False
-        minimum.life.write(Path(output)/'connected-receipt.json',result)
+        # connected() has already written its immutable receipt. Keep that
+        # original evidence and bind scope metadata in a separate record.
+        summary={'status':result['status'],'measurement_decision':comparison['decision'],
+            'hardware_qualified':False,'model_baseline_run':False,
+            'connected_receipt_sha256':minimum.life.digest(
+                (Path(output)/'connected-receipt.json').read_bytes())}
+        minimum.life.write(Path(output)/'diagnostic-summary.json',summary)
+        result=dict(result,**summary)
     return result
 
 
