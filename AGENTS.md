@@ -1,5 +1,17 @@
 # Backtrace working agreement
 
+## Prospective untrained twenty-case screening (2026-10-31 UTC)
+
+Before this adapter scope's still-uncreated paid start, add the frozen twenty
+Augnes issue packets as an untrained B1 collection in a separate first worker.
+The later four-update probe retains its original 24 messages. Total44 requests,
+four updates, 2,200 seconds and USD0.370 maximum projection; no enlarged paid
+allowance. Qualify the changed exact source and both input sets. Capture and
+interpret every assigned outcome without claiming usefulness from collection
+success. The 20 episodes share 17 author-defined families and are retrospective;
+main-model/flow comparisons and specialist learning remain separate requirements.
+
+
 ## Post-E4B transfer failure (2026-10-31 UTC)
 
 E4B run 41210831659 failed at common runtime transfer to EU-SE-1, before any

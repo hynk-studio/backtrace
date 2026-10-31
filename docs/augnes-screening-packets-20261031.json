@@ -1,0 +1,1044 @@
+{
+  "schema": "augnes_retrospective_screening_v1",
+  "status": "FROZEN_BEFORE_MODEL_EXECUTION",
+  "limitations": [
+    "Twenty distinct issue episodes, with shared source/problem families; not twenty proven statistically independent observations.",
+    "Author-selected retrospective descriptions after reading later issue histories; not blinded, held-out or prospective.",
+    "Only selected problem-cutoff facts enter model inputs. Source issue bodies are mutable; their observed hashes are provenance, not archival proof of a historical timestamp.",
+    "No new checks are executed by a model response. Historical actions and costs do not constitute matched main-model controls."
+  ],
+  "output_contract": {
+    "decision": "DIAGNOSE | LOCAL_FIX | PROCEED | NO_CHANGE | STOP_AND_RETAIN | ESCALATE",
+    "cause_status": "ESTABLISHED | HYPOTHESIS | UNKNOWN | NOT_APPLICABLE",
+    "evidence": [
+      "fact IDs"
+    ],
+    "next_action": "one bounded action or justified stop",
+    "avoid": [
+      "unsupported conclusions/actions"
+    ],
+    "candidates": "Zero to three objects with hypothesis, support_fact_ids, conflicting_fact_ids, missing_assumptions, disconfirming_check; zero is appropriate when diagnosis is unjustified."
+  },
+  "cases": [
+    {
+      "id": "augnes-screen-1457",
+      "family": "checkout-identity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1457",
+      "source_issue_body_sha256": "69e2a446af8f7ce3b9d62aa6344cef2390763a5a0928f1ffbeab79879bf7c2be",
+      "baseline_sha": "2633ecce6615cdc7b0b3736b4c62f4233659da96",
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Restore durable checkout enrollment without guessing a reboot cause.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "The saved and current checkout observations agree on path and inode but differ on device identity."
+        },
+        {
+          "id": "F2",
+          "observation": "Read-only diagnosis found the device-only difference; it did not establish the historical cause of the mount observation change."
+        },
+        {
+          "id": "F3",
+          "observation": "A raw device/inode tuple participates in enrollment validation and can reject an otherwise recognizable checkout."
+        },
+        {
+          "id": "F4",
+          "observation": "A bounded durable-identity correction is commissioned; production reinstall, re-enrollment and a physical reboot experiment are not authorized."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1436",
+      "family": "storage-boundaries",
+      "source": "https://github.com/hynk-studio/augnes/issues/1436",
+      "source_issue_body_sha256": "d323f80e78f73cb9a16f489e43b05658d41794feb45d7149342adf3253843f7c",
+      "baseline_sha": "52f8b278bad5ddd8c261af127dca712cdd8da925",
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Separate database connection from initialization while preserving ordinary reads.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "openDatabase creates directories/files and runs migrations/schema setup before callers perform ordinary operations."
+        },
+        {
+          "id": "F2",
+          "observation": "If setup throws after the handle is opened but before it returns, the local path does not visibly close that handle."
+        },
+        {
+          "id": "F3",
+          "observation": "A historical leaked handle has not been demonstrated. An already migrated ordinary GET need not produce changes."
+        },
+        {
+          "id": "F4",
+          "observation": "Current-source diagnosis, a bounded separation and disposable verification are authorized; no production migration is requested."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1405",
+      "family": "authority-lineage",
+      "source": "https://github.com/hynk-studio/augnes/issues/1405",
+      "source_issue_body_sha256": "4c41227d0b8a62b93eabd56ce28dd1e366da0a871194f026da5396a6106251fb",
+      "baseline_sha": "84105ccc5df47ba56477fa5ed04ec2e030708b54",
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Preserve the same Sol grant lineage through a host-rejected successor.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "The writer records a Sol grant with 4096 output tokens and 60 seconds."
+        },
+        {
+          "id": "F2",
+          "observation": "A legacy successor reader still reconstructs 1024 tokens and 15 seconds."
+        },
+        {
+          "id": "F3",
+          "observation": "Those limits participate in the fingerprint, and the inspected terminal preparation is null."
+        },
+        {
+          "id": "F4",
+          "observation": "This is a source inconsistency, not yet a demonstrated runtime causal chain. A fixed disposable composition is authorized."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1347",
+      "family": "hosting-artifact",
+      "source": "https://github.com/hynk-studio/augnes/issues/1347",
+      "source_issue_body_sha256": "4812d1bed7705aa9fa2b751cb99d6f146570256299e5fe2d324a2786d5e0ac0d",
+      "baseline_sha": "a2fb77b5d16684814462e0c5dd44ad1a9d2b1f46",
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Make the Web artifact compatible with the chosen hosting interface.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "The current build succeeds and emits a custom worker.mjs artifact."
+        },
+        {
+          "id": "F2",
+          "observation": "The hosting interface expects dist/server/index.js, Drizzle migrations and a standard hosting configuration."
+        },
+        {
+          "id": "F3",
+          "observation": "No hosting resource has been created and no database resource mapping has been approved."
+        },
+        {
+          "id": "F4",
+          "observation": "An artifact/migration/bootstrap compatibility correction is commissioned; deployment and arbitrary database mapping writes are outside this cutoff."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1448",
+      "family": "revocation-capacity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1448",
+      "source_issue_body_sha256": "09229739044d5e81f838502e4a27035419f858755998cee22ee90136362120bb",
+      "baseline_sha": "8df0ee1b98ca60790a8a3c931e7e3195ca36c197",
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Keep issuer revocation possible when direction history is full.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "The history cap is 512 and counts both grant and revocation entries."
+        },
+        {
+          "id": "F2",
+          "observation": "At 511, a renewal needing two entries is refused; a one-entry revocation reaches 512."
+        },
+        {
+          "id": "F3",
+          "observation": "At 512, the current path can refuse a later issuer revocation. Prior bounded reproduction established this edge."
+        },
+        {
+          "id": "F4",
+          "observation": "The current commission is a remedy with regression evidence; additional repetitions of the consumed four-case diagnosis are not the next task."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1438",
+      "family": "storage-boundaries",
+      "source": "https://github.com/hynk-studio/augnes/issues/1438",
+      "source_issue_body_sha256": "91088256b20e22d5fcdcd425f1794d2f20607b9986f2e4b2f093ac0057dbca7e",
+      "baseline_sha": "52f8b278bad5ddd8c261af127dca712cdd8da925",
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Extract pure semantic rules from persistence with behavior parity.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "Semantic validation and fingerprint calculations are coupled to persistence/SQL modules."
+        },
+        {
+          "id": "F2",
+          "observation": "The relevant source is unchanged from the inspected baseline; no new runtime regression has been reproduced."
+        },
+        {
+          "id": "F3",
+          "observation": "A bounded architectural extraction is explicitly commissioned with compatibility parity."
+        },
+        {
+          "id": "F4",
+          "observation": "Transactions, durable-state authority and existing source fingerprints must retain their meaning."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1420",
+      "family": "ordinary-work-ux",
+      "source": "https://github.com/hynk-studio/augnes/issues/1420",
+      "source_issue_body_sha256": "8e6be39d9457d77dd481d3331c68f3988c5643944af048a668ea858a5028e596",
+      "baseline_sha": "42f3a4569b30c344a0a474483b79a78faf8de078",
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Reduce needless approval/thread friction in ordinary Companion work.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "The user reports repeated approval requests and new threads as burdensome."
+        },
+        {
+          "id": "F2",
+          "observation": "The recorded 104 minutes includes waiting and cannot be treated as product execution latency or human labor."
+        },
+        {
+          "id": "F3",
+          "observation": "No exact click count or per-prompt authorization trace has been retained."
+        },
+        {
+          "id": "F4",
+          "observation": "The installed skill lacks an ordinary first-work branch even though the usage contract covers it; a bounded source/flow correction is allowed."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1408",
+      "family": "result-continuity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1408",
+      "source_issue_body_sha256": "7b0fd341471327571b5492aa6cf99b6cb370ca59cf843f8cf495ea24212131ea",
+      "baseline_sha": "614d7407df97af9135976cef655653580964da67",
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Allow linked follow-up work after a known persistence failure.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "The model returned, but storing the result failed; the outcome is no_retry / returned_unapplied."
+        },
+        {
+          "id": "F2",
+          "observation": "The existing terminal authoring path intentionally supports a host-rejected case, not this known persistence-failure case."
+        },
+        {
+          "id": "F3",
+          "observation": "A bounded continuity extension is commissioned."
+        },
+        {
+          "id": "F4",
+          "observation": "Historical failure/effects must remain visible. Replaying the model, applying its old output or restoring execution authority is not authorized."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1397",
+      "family": "work-lifetime",
+      "source": "https://github.com/hynk-studio/augnes/issues/1397",
+      "source_issue_body_sha256": "4d857e5d87d3c71920adc6673c8ff43fbbb0ff261685c1897162b1f64745d6c8",
+      "baseline_sha": null,
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Keep Web work usable beyond the cumulative revision ceiling.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "Web work has a 32-revision ceiling enforced in several layers, including a database CHECK and schema-2 validation."
+        },
+        {
+          "id": "F2",
+          "observation": "A native-work change does not modify the Web path."
+        },
+        {
+          "id": "F3",
+          "observation": "A 24-hour ticket is execution/access authority, not the lifetime of the saved work itself."
+        },
+        {
+          "id": "F4",
+          "observation": "A bounded Web correction and compatibility verification are authorized; blanket expiration removal is not."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1393",
+      "family": "work-lifetime",
+      "source": "https://github.com/hynk-studio/augnes/issues/1393",
+      "source_issue_body_sha256": "6bad166a52c0be57f855c4f22eafbd1ea9f5b80605dc5441fd6b41f54271a772",
+      "baseline_sha": null,
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Resume durable local work without renewing execution authority.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "Native initial work already has expiresAt null."
+        },
+        {
+          "id": "F2",
+          "observation": "A stateless terminal path uses an eight-hour TTL, and post-execution paths can inherit it."
+        },
+        {
+          "id": "F3",
+          "observation": "The affected availability path is not yet isolated solely by the broad user report."
+        },
+        {
+          "id": "F4",
+          "observation": "The goal concerns durable work continuity, with existing execution grants and expiry checks preserved."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1369",
+      "family": "context-capacity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1369",
+      "source_issue_body_sha256": "4ef13d0791d4fefa2a693d3f2fd924e8adde8b893602db3865c9731dc2f761ae",
+      "baseline_sha": null,
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Make source-context admission predictable without silently clipping evidence.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "Four real draft additions were refused by the context budget."
+        },
+        {
+          "id": "F2",
+          "observation": "The shortest inspected addition had 211 text characters but 1777 canonical serialized bytes, making the proposed total 12177 against a 12000-byte limit."
+        },
+        {
+          "id": "F3",
+          "observation": "The final retained serialized size was 11947; historical payloads were reconstructed, not captured wire bytes."
+        },
+        {
+          "id": "F4",
+          "observation": "The error is 422 selected_source_context_budget_exceeded. The recorded 27 minutes 32 seconds is agent wall time, not measured user labor."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1350",
+      "family": "planning-scope",
+      "source": "https://github.com/hynk-studio/augnes/issues/1350",
+      "source_issue_body_sha256": "abf1805770614ccf97dcfae3d6e815a21ae34b1e834cf7ea52ef550a2d650653",
+      "baseline_sha": null,
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Adopt the agreed Web product direction in planning documents.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "The current task is a documentation-only plan adoption for continuable work, selective publication and contribution."
+        },
+        {
+          "id": "F2",
+          "observation": "Existing development boundaries and deferred implementation decisions must remain visible."
+        },
+        {
+          "id": "F3",
+          "observation": "No hosting resource, deployment, provider experiment or production installation is authorized by this planning task."
+        },
+        {
+          "id": "F4",
+          "observation": "An implementation success or usability study has not been reported."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1339",
+      "family": "expectation-continuity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1339",
+      "source_issue_body_sha256": "4d09cafe13166276bf2d9b54c900ff6a759484d04346a3e3abe46f6a0cd92433",
+      "baseline_sha": "460e1475b12c6392956df7dfdd7240114c9b6376",
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Explicitly reuse an already reviewed outcome report in next-work context.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "The normal successor composer offers a host-result summary, while saved operator reports/corrections are displayed elsewhere and are not selectable there."
+        },
+        {
+          "id": "F2",
+          "observation": "Manual notes already allow a user to retype corrections; the missing capability is explicit reuse of saved attributed material."
+        },
+        {
+          "id": "F3",
+          "observation": "Existing selected-source infrastructure owns exact identities, explicit selection and 8-entry/2000-character/12000-byte budgets."
+        },
+        {
+          "id": "F4",
+          "observation": "This is an authorized product connection. Historical material must be unselected by default, stale selected revisions refused, and later reports must not rewrite a saved successor snapshot."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1337",
+      "family": "expectation-continuity",
+      "source": "https://github.com/hynk-studio/augnes/issues/1337",
+      "source_issue_body_sha256": "6016d29ffb72d885f79891ec06c832e36b3b047b11911533466220e0e285b875",
+      "baseline_sha": "755b96c4d5bc2afc47c240c9d8595d28230e66b5",
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Allow an optional prospective expectation for fresh ordinary successor work.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "The current expectation reader/writer refuses authored_successor_task."
+        },
+        {
+          "id": "F2",
+          "observation": "The attempt binder also rejects projects with prior managed-run/expectation history, so changing the editor guard alone is insufficient."
+        },
+        {
+          "id": "F3",
+          "observation": "A bounded extension for a fresh unexecuted exact successor packet is commissioned; the earlier accepted initial-work scope remains valid."
+        },
+        {
+          "id": "F4",
+          "observation": "The expectation must remain optional, operator-only and bound before the exact packet first starts; revisions require explicit new expectation authorship."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1329",
+      "family": "backup-admission",
+      "source": "https://github.com/hynk-studio/augnes/issues/1329",
+      "source_issue_body_sha256": "fbef2110ffeaf2b4ffb9218cc39165538f6e14c9c6ce0f7e83e1f7c102df1e7e",
+      "baseline_sha": null,
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Provide bounded correlated backup admission and truthful verification results.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "A measured backup inventory took 8.026 seconds while the product request deadline was five seconds."
+        },
+        {
+          "id": "F2",
+          "observation": "The historical failing POST is not correlated to that inventory measurement, so its exact cause remains unknown."
+        },
+        {
+          "id": "F3",
+          "observation": "A bounded admission/background-work/read-only-status path is commissioned under existing lifecycle ownership."
+        },
+        {
+          "id": "F4",
+          "observation": "No real production backup is authorized in this diagnosis; exact terminal verification outcomes and existing validators must be retained."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1326",
+      "family": "verification-lineage",
+      "source": "https://github.com/hynk-studio/augnes/issues/1326",
+      "source_issue_body_sha256": "9992fd8ac36d4059dda8d7c585dcc21a7ec487d2f6473dda560ea52ff13210a4",
+      "baseline_sha": null,
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Bind the deciding integration base and serialize canonical checkout ownership.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "The baseline SHA exists and HEAD is current, but these observations alone do not prove the authorized integration base relationship."
+        },
+        {
+          "id": "F2",
+          "observation": "A sequential operation inside one run is not a cross-run mutex for a shared canonical checkout."
+        },
+        {
+          "id": "F3",
+          "observation": "The inspected source supplies these lineage/ownership gaps; a specific historical merge race has not been established."
+        },
+        {
+          "id": "F4",
+          "observation": "A bounded source-bound verification correction is authorized with existing lifecycle cleanup preserved."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1305",
+      "family": "process-observation",
+      "source": "https://github.com/hynk-studio/augnes/issues/1305",
+      "source_issue_body_sha256": "445fe44800fa850843ec9e778276cedff6ba9a8a0a008fee602fd66c84aabed5",
+      "baseline_sha": null,
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Distinguish failed process observation from proven absence.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "Controlled helper cases for nonzero ps exit, timeout, malformed output and Windows failure all collapse to an empty list."
+        },
+        {
+          "id": "F2",
+          "observation": "The existing test can pass when two failed observations compare equal."
+        },
+        {
+          "id": "F3",
+          "observation": "These reproductions establish an observation-contract gap, not the historical cause of the earlier lost PID."
+        },
+        {
+          "id": "F4",
+          "observation": "A bounded distinction between ABSENT and UNKNOWN/observation failure is commissioned."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1274",
+      "family": "invocation-compatibility",
+      "source": "https://github.com/hynk-studio/augnes/issues/1274",
+      "source_issue_body_sha256": "2a3eee9a466753d24082c2d4b3ffb3fb2a3e85d4b86234ef35b0938616ef8633",
+      "baseline_sha": "9b0d3f2b57fa387e6887b8e3e4f8ecc139bb12e0",
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Correct direct-host invocation-signal compatibility.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "The actual direct-host selection chose the WebMCP source tool, but source reading aborted before a GET."
+        },
+        {
+          "id": "F2",
+          "observation": "A controlled call omitting options.signal reproduces the failure; a valid signal yields one GET 200 and two excerpts with no database writes."
+        },
+        {
+          "id": "F3",
+          "observation": "The actual host invocation metadata did not record whether the signal was omitted."
+        },
+        {
+          "id": "F4",
+          "observation": "A bounded compatibility correction is authorized; this is not an authorization to rerun the consumed tool-selection study."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1278",
+      "family": "auth-contract-drift",
+      "source": "https://github.com/hynk-studio/augnes/issues/1278",
+      "source_issue_body_sha256": "7028fdf9f8b5dba39e47a839bcfc88c68326e8b523d0945f54f82cbf0420a62d",
+      "baseline_sha": "7597ed20e41f8ca9641eb3b0e08d0612b6a0d89a",
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Determine whether the auth-contract failure is a candidate regression.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "The retained baseline and candidate report the same relevant auth-contract source bytes."
+        },
+        {
+          "id": "F2",
+          "observation": "The expected throw/null semantics have not changed, yet the actual failing receipt is labeled policy drift."
+        },
+        {
+          "id": "F3",
+          "observation": "A historical pass is not a current baseline control. No matched current base-versus-head diagnostic has run at this cutoff."
+        },
+        {
+          "id": "F4",
+          "observation": "A bounded differential contract probe is authorized; another Full deciding run or weakening the auth contract is not."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    },
+    {
+      "id": "augnes-screen-1316",
+      "family": "selected-source-reading",
+      "source": "https://github.com/hynk-studio/augnes/issues/1316",
+      "source_issue_body_sha256": "c64943365383ffbdbb44531718c10010dcff5155b1e2500d2d7d37de3892b283",
+      "baseline_sha": "8c302ce4e916dc317b2ba02289ce9566c204fff0",
+      "cutoff": "The issue problem/commission facts stated below, before its proposed implementation or later closure; chronological archival verification is not claimed.",
+      "goal": "Diagnose current selected-source reading without a speculative repair.",
+      "facts": [
+        {
+          "id": "F1",
+          "observation": "The installed live source identity matches the inspected source."
+        },
+        {
+          "id": "F2",
+          "observation": "Resume and historical lookup work, while reading current selected sources returns generic companion_unavailable."
+        },
+        {
+          "id": "F3",
+          "observation": "Parser, timeout, source data and server causes have not been distinguished."
+        },
+        {
+          "id": "F4",
+          "observation": "Bounded metadata observations and disposable causal reproduction are authorized; blind restart or source truncation is not."
+        }
+      ],
+      "prior_claims": [],
+      "constraints": [
+        "Use only these cutoff facts; retain unobserved causes.",
+        "Recommend an action for review; do not execute it.",
+        "Preserve the specific permission boundaries in the facts."
+      ],
+      "allowed_checks": [
+        {
+          "id": "SOURCE",
+          "description": "Inspect the relevant pinned source and responsible boundary.",
+          "measured_cost": null
+        },
+        {
+          "id": "RETAINED",
+          "description": "Review already retained observations and their provenance.",
+          "measured_cost": null
+        },
+        {
+          "id": "DISPOSABLE",
+          "description": "Propose one bounded disposable reproduction/control when supported by the stated scope.",
+          "measured_cost": null
+        }
+      ],
+      "question": "Choose the next justified decision and smallest useful action. Avoid unnecessary diagnosis when a bounded task can proceed."
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-# E2B tiny adapter implementation probe
+# E2B twenty-case untrained screening and tiny adapter probe
 
 This is the plan's actual update/save/reload step, not a specialist-benefit test.
 The measured E2B baseline failed its synthetic response contract; the E4B capacity
@@ -73,3 +73,29 @@ source retains admission metadata and waits at most 20 seconds only for a
 matching queued first-attempt run to become in_progress; wrong identities,
 terminal states and repeated attempts still fail. This is a prospective bounded
 robustness correction, not an attribution of the prior rejection.
+
+## Prospective twenty-case addition before any paid start
+
+Collect the twenty frozen Augnes issue packets with untrained E2B/B1 first, in a
+fresh worker without a training specification. After worker absence and GPU idle
+are observed, start a distinct worker for the original four-update/24-generation
+probe. The weights are shared read-only; worker processes, outputs, job files and
+training flags are separate. No outputs have been observed when freezing this
+amendment. Total assigned requests are 44, training steps remain four. No paid
+permit or start exists for the superseded 24-request proposals.
+
+The new screening uses greedy non-thinking decoding, 4,096 input tokens, 768
+output tokens, 60 seconds per request, and 900 seconds for its collector including
+startup. The unchanged outer 2,200-second allocation limit takes precedence over
+both inner collectors. Incomplete coverage stays incomplete; no retries, repairs
+or outcome-based replacement. Capture all twenty assignments before allocation.
+The existing 24 comparison messages, original decoding and synthetic scorer stay
+unchanged in the later trained probe.
+
+Twenty issue episodes form 17 author-assigned families; they are retrospective,
+unblinded development material, not 20 proven independent or held-out cases.
+Packet source hashes are provenance for mutable issue bodies, not archival proof
+of a historical cutoff. The separate rubric never enters the worker. Model
+responses propose decisions, not executed checks or fixes. Existing-flow and
+additional-main-model controls, matched cost comparison, specialist training and
+confirmation remain unexecuted; this is the small-model side of that comparison.

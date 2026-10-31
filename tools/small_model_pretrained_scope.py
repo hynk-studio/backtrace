@@ -20,8 +20,8 @@ STATE_BRANCH='bt-001-e2b-adapter-state-20261031'
 NAMESPACE='e2b-adapter-paid-20261031'
 WORKFLOW='.github/workflows/small-model-pretrained.yml'
 INSTRUCTION='이번에는 목표까지 실제로 이어가도록 하고 혼자 해결할 수 없는 문제가 있을 때만 멈추고 보고해'
-CONTRACT=dict(minimum.CONTRACT,scope='E2B_TINY_ADAPTER_4_UPDATES_PLUS_24_GENERATIONS_V1',
-    weight_bytes=10246621918,pretrained_requests=24,training_steps=4,total_seconds=2200,work_seconds=1780,
+CONTRACT=dict(minimum.CONTRACT,scope='E2B_SCREEN20_PLUS_ADAPTER4_GENERATIONS24_V1',
+    weight_bytes=10246621918,pretrained_requests=44,training_steps=4,total_seconds=2200,work_seconds=1780,
     allowed_regions=['CA-MTL-1','US-TX-1'],
     cuda_socket_policy='UNIX_SEQPACKET_PASSIVE_BIND_LISTEN_NO_CONNECTIONS_V1',
     full_model_memory_admission='BOUNDED_ATTEMPT_PROVIDER_AND_VISIBLE_MEMORY_ONLY')
@@ -52,7 +52,9 @@ class State(OriginalState):
 def sources():
     extra=('tools/small_model_pretrained.py','tools/small_model_pretrained_scope.py',
         'tests/test_small_model_pretrained.py','tools/small_model_training_inputs.py',
-        'tests/test_small_model_training_inputs.py',WORKFLOW,
+        'tests/test_small_model_training_inputs.py','tools/small_model_augnes_screen.py',
+        'tests/test_small_model_augnes_screen.py',WORKFLOW,
+        'docs/augnes-screening-packets-20261031.json','docs/augnes-screening-rubric-20261031.json',
         'docs/augnes-development-replays-20261031.json','docs/augnes-development-replay-rubric-20261031.json',
         'docs/evidence/e2b-run-41206950960/input-schedule.json')
     return dict(original_sources(),**{p:minimum.life.digest((minimum.ROOT/p).read_bytes()) for p in extra})
@@ -63,7 +65,7 @@ def validate_permit(value,source,now):
         'namespace':NAMESPACE,'instruction':INSTRUCTION,'mode':'OWNER_APPROVED_E2B_ADAPTER_FEASIBILITY',
         'additional_cap_usd':'1.00','allocation_inclusive_seconds':2200,'single_use':True,
         'automatic_retry':False,'top_up_allowed':False,'weight_bytes':10246621918,
-        'pretrained_requests':24,'training_steps':4}
+        'pretrained_requests':44,'training_steps':4}
     if not isinstance(value,dict) or any(type(value.get(k)) is not type(v) or value[k]!=v for k,v in expected.items()):
         raise ValueError('fresh source-bound E2B permit required')
     if (not re.fullmatch('[1-9][0-9]+',str(value.get('qualification_run_id','')))

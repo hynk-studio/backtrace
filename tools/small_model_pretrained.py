@@ -21,6 +21,7 @@ from tools import small_model_lifecycle as life
 from tools import small_model_minimum_remote as remote, small_model_container as container
 from tools import private_delivery as delivery, small_model_gpu as gpu
 from tools import small_model_training_inputs as training
+from tools import small_model_augnes_screen as screening
 
 ROOT = Path(__file__).resolve().parents[1]
 REPLAY = ROOT/'docs/augnes-development-replays-20261031.json'
@@ -59,7 +60,7 @@ def prepare_runtime(root):
     (Path(root)/'assets-manifest.json').write_bytes(container.manifest(assets,'model'))
     life.write(Path(root)/'pretrained-preparation.json',{'weights':verified,
         'replay_packet_sha256':life.digest(REPLAY.read_bytes()),'assigned_original':18,'assigned_replay':6,
-        'training_steps':0,'evaluator_delivered':False})
+        'training_steps':0,'untrained_screening_assigned':20,'evaluator_delivered':False})
     return initializer
 
 
@@ -79,6 +80,9 @@ def after_hardware(root,endpoint,prefix,output,hardware):
     job=qualified_job(hardware,header)
     jobs=root/'assets/jobs';jobs.mkdir(mode=0o700)
     life.write(jobs/'E2B-pretrained.json',job)
+    screen_job={k:v for k,v in job.items() if k!='adapter_feasibility'}
+    screen_job.update(max_input_tokens=4096,max_new_tokens=768)
+    life.write(jobs/'E2B-screening.json',screen_job)
     # The complete multimodal-key allowlist can exceed SSH command-size bounds.
     # Send the trusted job through the existing authenticated manifest stream.
     manifest=root/'assets-qualified-manifest.json'
@@ -100,6 +104,20 @@ print(json.dumps({'bytes':sum(p.stat().st_size for p in dst.rglob('*') if p.is_f
         'qualified_manifest_sha256':life.digest(manifest.read_bytes())})
     spec=output/'collector-input.json';life.write(spec,{'prefix':prefix,'gpu_uuid':job['gpu']['uuid']})
     python=ROOT/'.local/model-runtime/bin/python'
+    # Preserve an untrained practical baseline before the separate training probe.
+    try:
+        with (output/'screening-collector.log').open('xb') as log:
+            p=subprocess.run([str(python),'-m','tools.small_model_pretrained','collect-screening',str(spec),str(output)],
+                stdout=log,stderr=log,timeout=930,env={'PATH':os.environ['PATH'],'LANG':'C.UTF-8','HOME':str(root),
+                    'HF_HUB_OFFLINE':'1','TRANSFORMERS_OFFLINE':'1','TOKENIZERS_PARALLELISM':'false'})
+    finally:screening.preserve(output)
+    stopped=check_stopped(prefix,'E2B-screening',job['gpu']['uuid'])
+    life.write(output/'screening-teardown.json',stopped)
+    if stopped['worker']['same_process_alive'] or p.returncode:
+        raise RuntimeError('untrained screening collector or cleanup failed')
+    screen=json.loads((output/'augnes-screening/collection.json').read_bytes())
+    if screen['status']!='COMPLETED' or screen['training']:
+        raise RuntimeError('untrained twenty-case screening incomplete; preserve all assignments')
     try:
         with (output/'collector.log').open('xb') as log:
             p=subprocess.run([str(python),'-m','tools.small_model_pretrained','collect',str(spec),str(output)],
@@ -108,15 +126,9 @@ print(json.dumps({'bytes':sum(p.stat().st_size for p in dst.rglob('*') if p.is_f
     finally:
         preserve_collection(output)
     # An observed idle GPU and absent worker are required before evaluation.
-    stopped=remote.remote(prefix,"""import json,pathlib
-r=json.loads(pathlib.Path('/root/backtrace/E2B-pretrained-state.json').read_bytes())
-try:r['same_process_alive']=pathlib.Path('/proc',str(r['pid']),'stat').read_text().split()[21]==r['start_ticks']
-except (FileNotFoundError,ProcessLookupError):r['same_process_alive']=False
-print(json.dumps(r))
-""")
-    idle=remote.inventory(prefix,job['gpu']['uuid'])
-    life.write(output/'inference-teardown.json',{'worker':stopped,'gpu':idle})
-    if stopped['same_process_alive'] or p.returncode:raise RuntimeError('inference collector or cleanup failed')
+    stopped=check_stopped(prefix,'E2B-pretrained',job['gpu']['uuid'])
+    life.write(output/'inference-teardown.json',stopped)
+    if stopped['worker']['same_process_alive'] or p.returncode:raise RuntimeError('inference collector or cleanup failed')
     collection=json.loads((output/'collection/collection.json').read_bytes())
     # Evaluation needs only standard-library modules after the model is gone.
     plan,schedule,_=runner.load_scope(ROOT/'.local/e2b/scope',ROOT/'.local/e2b/packets',ROOT/'.local/e2b/tokenization.json')
@@ -132,9 +144,22 @@ print(json.dumps(r))
     life.write(output/'replay-returns.json',{'limitations':json.loads(REPLAY.read_bytes())['limitations'],
         'records':collection['records'][18:],'rubric_sha256':life.digest((ROOT/'docs/augnes-development-replay-rubric-20261031.json').read_bytes())})
     return {'status':'PASS_E2B_ADAPTER_FEASIBILITY' if collection['status']=='COMPLETED' else 'INCOMPLETE_E2B_COLLECTION',
-        'assigned':24,'coverage':collection['coverage'],'collection_status':collection['status'],
+        'assigned':44,'adapter_assigned':24,'untrained_screening_assigned':20,
+        'untrained_screening_coverage':screen['coverage'],
+        'coverage':collection['coverage'],'collection_status':collection['status'],
         'training_steps':adaptation['training_steps'],'capability_claim':'IMPLEMENTATION_ONLY',
         'memory_limit':'Provider allocation and visible memory observed; hidden ancestor limit not attested'}
+
+
+def check_stopped(prefix,job_name,gpu_uuid):
+    if job_name not in ('E2B-pretrained','E2B-screening'):raise ValueError('known job required')
+    stopped=remote.remote(prefix,"""import json,pathlib
+r=json.loads(pathlib.Path("""+repr('/root/backtrace/'+job_name+'-state.json')+""").read_bytes())
+try:r['same_process_alive']=pathlib.Path('/proc',str(r['pid']),'stat').read_text().split()[21]==r['start_ticks']
+except (FileNotFoundError,ProcessLookupError):r['same_process_alive']=False
+print(json.dumps(r))
+""")
+    return {'worker':stopped,'gpu':remote.inventory(prefix,gpu_uuid)}
 
 
 def collect(spec_path,output):
@@ -157,6 +182,7 @@ def collect(spec_path,output):
 
 
 def preserve_collection(output):
+    screening.preserve(output)
     source=ROOT/'.local/e2b-collection';target=Path(output)/'collection';count=0
     if source.exists():
         target.mkdir(parents=True,exist_ok=True)
@@ -190,6 +216,7 @@ def inspect_inputs(prepared,*,cuda_runtime=False):
     runner.evaluate(plan,original,missing)
     return {'status':'PASS_INPUTS_NOT_INFERENCE','identical_e2b_comparison_messages':True,
         'training_inputs':training.verify_tokens(tokenizer),
+        'untrained_screening_assignments':[{k:v for k,v in r.items() if k!='messages'} for r in screening.schedule(tokenizer)],
         'original_assigned':len(original),'replay_assigned':len(replays),
         'assigned_before_allocation':[{**{k:v for k,v in r.items() if k!='messages'},'initial_status':'NOT_RUN'} for r in original+replays],
         'replays':[{k:v for k,v in r.items() if k!='messages'} for r in replays],
@@ -243,6 +270,7 @@ def prepare(output, readiness_archive):
 if __name__=='__main__':
     if sys.argv[1]=='prepare':result=prepare(sys.argv[2],sys.argv[3])
     elif sys.argv[1]=='collect':result=collect(sys.argv[2],sys.argv[3])
+    elif sys.argv[1]=='collect-screening':result=screening.collect(sys.argv[2],sys.argv[3])
     elif sys.argv[1]=='inspect-inputs':result=inspect_inputs(sys.argv[2])
     elif sys.argv[1]=='plan-gpu-inputs':result=inspect_inputs(sys.argv[2],cuda_runtime=True)
     elif sys.argv[1]=='preserve':result=preserve_collection(sys.argv[2])
