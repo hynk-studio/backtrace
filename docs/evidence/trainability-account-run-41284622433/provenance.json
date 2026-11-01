@@ -1,0 +1,10 @@
+{
+  "account_snapshot_sha256": "6cc43e729b82798bc507ae8f7546693665c7a493564e2eb7ec1e7eab5c11dc35",
+  "job_log_bytes": 41182,
+  "job_log_sha256": "4b9e91a1b604643c00abbf11ef588dd5ca7b52208778a38431db2ff5bcdcef81",
+  "note": "Snapshot bytes are retained separately from the log; the authorization hashes canonical snapshot JSON.",
+  "observed_status": "PASS",
+  "provider_mutations": 0,
+  "read_only_run_id": "41284622433",
+  "source_sha": "fb7f4f4c0232858a1c967fdf9bcf939542e81c27"
+}

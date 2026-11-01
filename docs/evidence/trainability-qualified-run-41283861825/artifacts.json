@@ -1,0 +1,80 @@
+{
+  "artifacts": [
+    {
+      "id": 13074333296,
+      "name": "small-e2b-trainability-cpu-watch-ebe6fa37b44ad465c16fa36cd2823f55cf93a050-1",
+      "size_in_bytes": 498,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/13074333296",
+      "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/13074333296/zip",
+      "expired": false,
+      "created_at": "2026-11-01T07:13:20Z",
+      "expires_at": "2026-11-15T07:13:20Z",
+      "updated_at": "2026-11-01T07:13:20Z",
+      "digest": "sha256:1d9be3828bac53c9936aea1839fda131c8a92ab3d433bb8ebc4f1247bd85b40b",
+      "workflow_run": {
+        "id": 41283861825,
+        "repository_id": 1393671873,
+        "head_repository_id": 1393671873,
+        "head_branch": "bt-001-trainability-20261101",
+        "head_sha": "ebe6fa37b44ad465c16fa36cd2823f55cf93a050"
+      }
+    },
+    {
+      "id": 13074248884,
+      "name": "e2b-trainability-inputs-ebe6fa37b44ad465c16fa36cd2823f55cf93a050",
+      "size_in_bytes": 7429,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/13074248884",
+      "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/13074248884/zip",
+      "expired": false,
+      "created_at": "2026-11-01T07:14:58Z",
+      "expires_at": "2026-11-15T07:14:57Z",
+      "updated_at": "2026-11-01T07:14:58Z",
+      "digest": "sha256:edc8f810cb936d28517a8a487c847825d8d273e4b247b9d1db47cd6b77b912b2",
+      "workflow_run": {
+        "id": 41283861825,
+        "repository_id": 1393671873,
+        "head_repository_id": 1393671873,
+        "head_branch": "bt-001-trainability-20261101",
+        "head_sha": "ebe6fa37b44ad465c16fa36cd2823f55cf93a050"
+      }
+    },
+    {
+      "id": 13073839052,
+      "name": "small-e2b-trainability-container-ebe6fa37b44ad465c16fa36cd2823f55cf93a050-1",
+      "size_in_bytes": 139813,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/13073839052",
+      "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/13073839052/zip",
+      "expired": false,
+      "created_at": "2026-11-01T07:23:43Z",
+      "expires_at": "2026-11-15T07:23:42Z",
+      "updated_at": "2026-11-01T07:23:43Z",
+      "digest": "sha256:31f9f7eebc2c63f880569ac314e8bb3833fe718d40d42937180a4661b1756bef",
+      "workflow_run": {
+        "id": 41283861825,
+        "repository_id": 1393671873,
+        "head_repository_id": 1393671873,
+        "head_branch": "bt-001-trainability-20261101",
+        "head_sha": "ebe6fa37b44ad465c16fa36cd2823f55cf93a050"
+      }
+    },
+    {
+      "id": 13073728424,
+      "name": "small-e2b-trainability-cpu-owner-ebe6fa37b44ad465c16fa36cd2823f55cf93a050-1",
+      "size_in_bytes": 13076,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/13073728424",
+      "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/13073728424/zip",
+      "expired": false,
+      "created_at": "2026-11-01T07:13:33Z",
+      "expires_at": "2026-11-15T07:13:33Z",
+      "updated_at": "2026-11-01T07:13:33Z",
+      "digest": "sha256:be8485d7bc5e9ae4f42b8f730e3400af412e07513b1aed0f88f4f492d9fa3b7e",
+      "workflow_run": {
+        "id": 41283861825,
+        "repository_id": 1393671873,
+        "head_repository_id": 1393671873,
+        "head_branch": "bt-001-trainability-20261101",
+        "head_sha": "ebe6fa37b44ad465c16fa36cd2823f55cf93a050"
+      }
+    }
+  ]
+}

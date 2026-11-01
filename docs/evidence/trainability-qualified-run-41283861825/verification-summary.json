@@ -1,0 +1,59 @@
+{
+  "actual_gpu": false,
+  "arms": {
+    "Q1": {
+      "adapter_sha256": "37cd792830c0e05d400079a68710708afa6719145392efe8f7c4d17e3a2f31ff",
+      "final_nll": 4.820960521697998,
+      "fresh_reload": {
+        "adapter_bytes": 1160,
+        "adapter_sha256": "37cd792830c0e05d400079a68710708afa6719145392efe8f7c4d17e3a2f31ff",
+        "arm": "Q1",
+        "capability_claim": "NOT_ESTABLISHED",
+        "observed_probe_logits_sha256": "c7795888db3a5583a2d7573cf6c48055fd088f43afdffe3fce560d657393354d",
+        "probe_input_ids_sha256": "85aabd9fb9461f0c60466f0a32ef6bc4fce01587b556f419f719c4f78956164e",
+        "projection_count": 1,
+        "status": "PASS_FRESH_PROCESS_TRAINABILITY_RELOAD",
+        "target_modules": [
+          "model.layers.3.self_attn.q_proj"
+        ],
+        "training_input_sha256": "99f53e2d6fc9b08999a66d1ff171711b9c71807b6c253ae0954628a87d12c58e",
+        "training_steps": 640,
+        "updates_in_worker": 0
+      },
+      "initial_nll": 4.863375186920166,
+      "steps": 640
+    },
+    "Q4": {
+      "adapter_sha256": "1d5d2fef4dc7409541b897f3d03155308a7776a6adb304b618453844c286c9ec",
+      "final_nll": 4.466371536254883,
+      "fresh_reload": {
+        "adapter_bytes": 4616,
+        "adapter_sha256": "1d5d2fef4dc7409541b897f3d03155308a7776a6adb304b618453844c286c9ec",
+        "arm": "Q4",
+        "capability_claim": "NOT_ESTABLISHED",
+        "observed_probe_logits_sha256": "eb611ba75ffc764f35c2d5a7938c86c57be8eb40a03326794b99b9c046851800",
+        "probe_input_ids_sha256": "85aabd9fb9461f0c60466f0a32ef6bc4fce01587b556f419f719c4f78956164e",
+        "projection_count": 4,
+        "status": "PASS_FRESH_PROCESS_TRAINABILITY_RELOAD",
+        "target_modules": [
+          "model.layers.0.self_attn.q_proj",
+          "model.layers.1.self_attn.q_proj",
+          "model.layers.2.self_attn.q_proj",
+          "model.layers.3.self_attn.q_proj"
+        ],
+        "training_input_sha256": "d19d2f60a658c10c5b020cec22b31b04800629449948183a92ff2542f8367e0c",
+        "training_steps": 640,
+        "updates_in_worker": 0
+      },
+      "initial_nll": 4.863375186920166,
+      "steps": 640
+    }
+  },
+  "boundary": "Numerical controls on random tiny CPU models only; not evidence of E2B learning.",
+  "native_tests": 761,
+  "pretrained": false,
+  "qualification_run_id": 41283861825,
+  "source_bindings": 101,
+  "source_sha": "ebe6fa37b44ad465c16fa36cd2823f55cf93a050",
+  "status": "PASS_FREE_MINIMUM_ENTRY"
+}

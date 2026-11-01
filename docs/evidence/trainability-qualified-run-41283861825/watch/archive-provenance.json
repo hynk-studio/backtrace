@@ -1,0 +1,14 @@
+{
+  "archive": {
+    "bytes": 484,
+    "sha256": "3384f96a1222e8787de58e9dd49257a7ed9d3ad24fcb7a98f334b8b5738d5fbd"
+  },
+  "job_log_sha256": "ac4626a263d2774111a7b70d987bef94eba239afbd7264d6b5d66bd387ea0b98",
+  "members": [
+    {
+      "bytes": 671,
+      "path": "minimum-watch.json",
+      "sha256": "1a4a480d3a8f127e31d5a9d0468a4c52b6ecbd8738d43ad3617ed6bfbcc6b835"
+    }
+  ]
+}

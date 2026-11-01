@@ -1,21 +1,33 @@
 # Backtrace working agreement
 
-## Active: sixteen-example trainability diagnostic (2026-11-01)
+## Trainability diagnostic complete: format fit, reasoning still fails (2026-11-01)
 
-The owner instructed continuing to the next step after #51. Follow
-docs/small-model-trainability-20261101.md on bt-001-trainability-20261101,
-stacked on #51. Implement and qualify the exact source, then continue through
-one affordable actual allocation, all 48 BASE/Q1/Q4 generations, 640 updates
-per trained arm, independent deletion and post-deletion scoring. No routine
-reapproval is needed within this delegated scope. Do not stop at preparation.
+Read docs/small-model-trainability-result-20261101.md and Draft #52, stacked on
+#51. Exact source ebe6fa37b44ad465c16fa36cd2823f55cf93a050 passed qualification
+41283861825 (761 tests and both numerical controls). Actual run 41284716992
+completed 640 full-target updates each for Q1/Q4 and all 48 BASE/Q1/Q4 responses.
+Both saved adapters reproduce trained probe logits in fresh evaluation workers.
 
-One allocation: USD 0.75 / 4,200 allocation-inclusive seconds; cumulative
-continuation USD 2.30 and projected credit floor USD 0.6060441339. Refresh actual
-balance, stock and price before a fresh source-bound permit. No top-up, overlap,
-automatic retry, consumed-permit reuse, main merge or Augnes write. Preserve all
-historical source/start/state/results. The prospective standalone worker adds
-full-target diagnostic training/restore; old execution routines remain available.
-These sixteen training examples test fit, not generalization or Augnes benefit.
+Format exact accuracy is BASE 0/8, Q1 8/8, Q4 8/8. Reasoning task/schema accuracy
+is 0/8 in all arms. This demonstrates training-set format learning, not reasoning
+fit or generalization. Q1/Q4 token-mean NLL falls from 1.105007 to 0.741384/0.725599;
+15/16 generated token sequences are identical between the trained arms. The first
+answer-token argmax agrees with generation in all 32 trained cases. Do not claim
+that answer masking caused the historical failure or that more query projections
+resolved the reasoning problem. Keep every original invalid response in scoring.
+
+Both controllers independently proved deletion of A40 vlrpdwnk9gwyrl. Complete
+inventory at 07:55:55 UTC is empty, spend zero and autopay off. Observed allocation
+debit is USD 0.2122488028; continuation debit USD 1.7135017444; balance
+USD 1.1925423895, subject to billing lag. The source/start/permit/state are consumed
+and immutable. No automatic paid retry, top-up, merge or Augnes write.
+
+The next research gate is reasoning-only train fit, starting with one fixed
+training example and requiring a complete correct free-generated answer before
+broadening. Do not let supplied-answer formatting gains qualify reasoning or
+held-out evaluation. A further paid design is a separate prospective scope inside
+the remaining continuation envelope; none was started here. Live Augnes access
+remains the separately recorded blocker to actual service comparison.
 
 ## Training-path audit complete (2026-11-01)
 
