@@ -1,5 +1,22 @@
 # Backtrace working agreement
 
+## Active: sixteen-example trainability diagnostic (2026-11-01)
+
+The owner instructed continuing to the next step after #51. Follow
+docs/small-model-trainability-20261101.md on bt-001-trainability-20261101,
+stacked on #51. Implement and qualify the exact source, then continue through
+one affordable actual allocation, all 48 BASE/Q1/Q4 generations, 640 updates
+per trained arm, independent deletion and post-deletion scoring. No routine
+reapproval is needed within this delegated scope. Do not stop at preparation.
+
+One allocation: USD 0.75 / 4,200 allocation-inclusive seconds; cumulative
+continuation USD 2.30 and projected credit floor USD 0.6060441339. Refresh actual
+balance, stock and price before a fresh source-bound permit. No top-up, overlap,
+automatic retry, consumed-permit reuse, main merge or Augnes write. Preserve all
+historical source/start/state/results. The prospective standalone worker adds
+full-target diagnostic training/restore; old execution routines remain available.
+These sixteen training examples test fit, not generalization or Augnes benefit.
+
 ## Training-path audit complete (2026-11-01)
 
 The owner instructed starting with the training-path audit. Read

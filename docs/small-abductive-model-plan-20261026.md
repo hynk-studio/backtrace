@@ -1,4 +1,15 @@
-## Current checkpoint: training-path audit complete (2026-11-01)
+## Current work: sixteen-example trainability diagnostic (2026-11-01)
+
+The owner instructed proceeding after the audit. Execute the
+[bounded trainability diagnostic](small-model-trainability-20261101.md): 16
+training examples, BASE/Q1/Q4, full-target fixed-example losses before/after,
+640 updates per trained arm, fresh-process restore and 48 original generations.
+Reuse the existing lifecycle, at most USD 0.75 and one allocation within the
+existing USD 2.30 continuation ceiling. Qualify exact source before a fresh
+permit, then continue to actual outputs, independent cleanup and scoring.
+Memorization on these examples is not held-out or Augnes utility evidence.
+
+## Completed checkpoint: training-path audit (2026-11-01)
 
 Read [the training-path audit](small-model-training-path-audit-20261101.md).
 All 640 train targets and original token sequences reproduced; 54 focused tests
