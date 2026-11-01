@@ -393,6 +393,9 @@ def owner(state,api,rid,me,prepared=None):
         result['failure']={'type':type(e).__name__}
         if isinstance(e,control.ProviderError) and e.http_status is not None:
             result['failure']['http_status']=e.http_status
+            # Problem fields are bounded/redacted by the provider client. Keep
+            # them in the result artifact; shared cleanup state stays numeric.
+            if e.problem is not None:result['provider_problem']=e.problem
     finally:
         if clear_alarm:clear_alarm()
         prior.stop(process)
