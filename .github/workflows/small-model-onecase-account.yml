@@ -23,6 +23,10 @@ jobs:
           RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
         run: |
           python -m tools.small_model_provider evidence/account-quotes.json
+      - name: Read only the rejected attempt audit window
+        env:
+          RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
+        run: python -m tools.onecase_provider_audit_readonly
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
