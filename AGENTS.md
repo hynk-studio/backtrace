@@ -1,5 +1,22 @@
 # Backtrace working agreement
 
+
+## Active one-case reasoning verification (2026-11-01)
+
+The owner requested “다음 검증 진행해”. Read docs/small-model-onecase-20261101.md.
+Proceed from completed Draft #52 through exact-source free qualification, a new
+single-use scope, actual one-case Q4 training and fresh-process generation,
+independent deletion, scoring and a draft result PR. Do not stop at preparation.
+One deterministic train-only temporal-revision example, 640 full-target updates,
+BASE/Q4 two original assignments. A complete correct exact free-generated answer
+is required; falling loss or formatting success is insufficient. No held-out data.
+
+Reuse the qualified lifecycle. Bound one allocation at USD0.55 and 3,000 seconds
+(2,580 work + 300 cleanup + 120 export), within continuation USD2.30 and projected
+credit floor USD0.6060441339. Refresh inventory/price/balance before admission.
+All prior sources/permits are consumed and immutable. No automatic paid retry,
+top-up, merge or Augnes write. Stop only for an independently unresolvable blocker.
+
 ## Trainability diagnostic complete: format fit, reasoning still fails (2026-11-01)
 
 Read docs/small-model-trainability-result-20261101.md and Draft #52, stacked on

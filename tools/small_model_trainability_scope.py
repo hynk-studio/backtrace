@@ -21,6 +21,9 @@ STATE_BRANCH='bt-001-trainability-state-20261101'
 NAMESPACE='trainability-paid-20261101'
 WORKFLOW='.github/workflows/small-model-trainability.yml'
 INSTRUCTION='다음 단계 진행해'
+PERMIT_MODE='OWNER_APPROVED_E2B_TRAINABILITY'
+FREE_NAMESPACE_PREFIX='trainability-free-'
+REMOTE_MODULE='tools.small_model_trainability_scope'
 CONTRACT=dict(minimum.CONTRACT,scope='E2B_TRAINABILITY_16X640X2_V1',
     weight_bytes=10246621918,pretrained_requests=48,training_steps=1280,total_seconds=4200,work_seconds=3780,
     maximum_additional_usd='0.75',cumulative_continuation_cap_usd='2.30',
@@ -47,16 +50,16 @@ def choose(snapshot,now):
         and {'gpu':r['gpu'],'region':r['region']} not in CONTRACT['excluded_routes']])
     offer=original_choose(routed,now)
     projected=Decimal(offer['costs']['maximum_projection'])
-    if (projected>Decimal('0.75')
+    if (projected>Decimal(CONTRACT['maximum_additional_usd'])
             or Decimal(snapshot['account']['credit_balance_usd'])-projected<Decimal('0.6060441339')):
         raise ValueError('fresh offer exceeds remaining cumulative continuation budget')
-    return dict(offer,costs=dict(offer['costs'],additional_cap='0.75'))
+    return dict(offer,costs=dict(offer['costs'],additional_cap=CONTRACT['maximum_additional_usd']))
 
 
 class State(OriginalState):
     def __init__(self,token,source,actual,**kw):
         super().__init__(token,source,actual,**kw)
-        self.namespace=NAMESPACE if actual else 'trainability-free-'+source
+        self.namespace=NAMESPACE if actual else FREE_NAMESPACE_PREFIX+source
 
 
 def sources():
@@ -78,10 +81,10 @@ def sources():
 
 def validate_permit(value,source,now):
     expected={'source_sha':source,'contract_sha256':minimum.life.digest(CONTRACT),
-        'namespace':NAMESPACE,'instruction':INSTRUCTION,'mode':'OWNER_APPROVED_E2B_TRAINABILITY',
-        'additional_cap_usd':'0.75','allocation_inclusive_seconds':4200,'single_use':True,
+        'namespace':NAMESPACE,'instruction':INSTRUCTION,'mode':PERMIT_MODE,
+        'additional_cap_usd':CONTRACT['maximum_additional_usd'],'allocation_inclusive_seconds':CONTRACT['total_seconds'],'single_use':True,
         'automatic_retry':False,'top_up_allowed':False,'weight_bytes':10246621918,
-        'pretrained_requests':48,'training_steps':1280}
+        'pretrained_requests':CONTRACT['pretrained_requests'],'training_steps':CONTRACT['training_steps']}
     if not isinstance(value,dict) or any(type(value.get(k)) is not type(v) or value[k]!=v for k,v in expected.items()):
         raise ValueError('fresh source-bound E2B permit required')
     if (not re.fullmatch('[1-9][0-9]+',str(value.get('qualification_run_id','')))
@@ -92,7 +95,7 @@ def validate_permit(value,source,now):
     # The former assistant-selected USD1 continuation envelope remains historical.
     spent=minimum.provider.money(value['continuation_observed_spend_usd'])
     projected=minimum.provider.money(value['maximum_projection_usd'])
-    if spent<0 or projected<0 or projected>Decimal('0.75') or spent+projected>Decimal('2.30'):
+    if spent<0 or projected<0 or projected>Decimal(CONTRACT['maximum_additional_usd']) or spent+projected>Decimal('2.30'):
         raise ValueError('cumulative continuation cap exceeded')
     return value
 
@@ -126,7 +129,7 @@ def configured():
         'CONTRACT':CONTRACT,'sources':sources,'validate_permit':validate_permit,
         'choose':choose,
         'require_run':require_run,'require_qualification':require_qualification,
-        'prepare_runtime':pretrained.prepare_runtime,'REMOTE_MODULE':'tools.small_model_trainability_scope',
+        'prepare_runtime':pretrained.prepare_runtime,'REMOTE_MODULE':REMOTE_MODULE,
         'SUCCESS_STATUS':'PASS_TRAINABILITY_COLLECTION'}
     previous={k:getattr(minimum,k) for k in bindings}
     if previous['State'] is not OriginalState:raise RuntimeError('scope contexts cannot nest')
@@ -140,7 +143,7 @@ def configured():
 def free_entry(prefix,output):
     from tools import small_model_public_scope as prior
     result=prior.original_free_entry(prefix,output)
-    from tools.small_model_trainability_data import CPU_CONTROL
+    CPU_CONTROL=pretrained.data.CPU_CONTROL
     control=remote.remote(prefix,"""import subprocess,json
 p=subprocess.run(['/opt/backtrace/venv/bin/python','-I','-c',"""+repr(CPU_CONTROL)+"""],
  capture_output=True,timeout=180,env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8',
@@ -155,8 +158,7 @@ print(json.dumps(json.loads(p.stdout)))
     return result
 
 
-if __name__=='__main__':
-    args=sys.argv[1:]
+def dispatch(args):
     if args[0]=='qualify':
         with configured():
             result=probe.qualify(*map(Path,args[1:]),extra=free_entry)
@@ -176,5 +178,10 @@ if __name__=='__main__':
                 'frames':[{'file':Path(f.filename).name,'function':f.name,'line':f.lineno}
                     for f in traceback.extract_tb(error.__traceback__)][-8:]}
         minimum.life.write(out/('minimum-'+role+'.json'),result)
+    return result
+
+
+if __name__=='__main__':
+    result=dispatch(sys.argv[1:])
     print(json.dumps({'status':result['status']}),flush=True)
     raise SystemExit(0 if result['status'] in ('PASS_TRAINABILITY_COLLECTION','PASS_FREE_MINIMUM_ENTRY','PASS_FREE_REMOTE_CLEANUP','DELETED') else 1)

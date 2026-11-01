@@ -22,6 +22,8 @@ ARMS=data.ARMS
 JOBS=('E2B-BASE-eval','E2B-Q1-train','E2B-Q1-eval','E2B-Q4-train','E2B-Q4-eval')
 COLLECT_SECONDS=600
 TRAIN_SECONDS=600
+ENTRY_MODULE='tools.small_model_trainability'
+COLLECTOR_SECONDS=3000
 RESTORE_KEYS=('arm','training_steps','training_input_sha256','adapter_bytes','adapter_sha256',
     'adapter_safetensors_base64','target_modules','projection_count','probe_messages','probe_input_ids_sha256','trained_probe_logits_sha256')
 
@@ -53,9 +55,9 @@ def inspect_inputs(prepared,*,cuda_runtime=False):
         'training':{k:v for k,v in materialized.items() if k!='specifications'},
         'specification_sha256':{k:worker_spec_sha(v) for k,v in materialized['specifications'].items()},
         'specification_bytes':{k:len(life.encoded(v)) for k,v in materialized['specifications'].items()},
-        'schedule_sha256':life.digest(rows),'assigned':48,'per_arm':16,'train_only':True,
+        'schedule_sha256':life.digest(rows),'assigned':len(ARMS)*data.ROW_COUNT,'per_arm':data.ROW_COUNT,'train_only':True,
         'assigned_before_allocation':[dict({k:v for k,v in r.items() if k!='messages'},initial_status='NOT_RUN') for r in rows],
-        'pretrained_requests':0,'training_steps':0,'planned_updates_per_trained_arm':640}
+        'pretrained_requests':0,'training_steps':0,'planned_updates_per_trained_arm':data.STEPS}
 
 
 def prepare_runtime(root):
@@ -71,8 +73,8 @@ def prepare_runtime(root):
             if kind=='models':shutil.move(str(origin/name),target/name)
             else:shutil.copyfile(origin/name,target/name)
     (root/'assets-manifest.json').write_bytes(container.manifest(assets,'model'))
-    life.write(Path(root)/'trainability-preparation.json',{'assigned':48,'arms':list(ARMS),
-        'planned_updates_per_trained_arm':640,'evaluator_delivered':False,'base_model':'E2B','weights':verified})
+    life.write(Path(root)/'trainability-preparation.json',{'assigned':len(ARMS)*data.ROW_COUNT,'arms':list(ARMS),
+        'planned_updates_per_trained_arm':data.STEPS,'evaluator_delivered':False,'base_model':'E2B','weights':verified})
     return result
 
 
@@ -113,15 +115,15 @@ def validate_hello(hello,uuid):
 
 
 def restore_spec(result,arm,expected_sha):
-    if (result.get('status')!='PASS_TRAINABILITY_UPDATES' or result.get('arm')!=arm
+    if (arm not in ARMS or arm=='BASE' or result.get('status')!='PASS_TRAINABILITY_UPDATES' or result.get('arm')!=arm
             or result.get('projection_count')!={'Q1':1,'Q4':4}[arm]
-            or result.get('training_steps')!=640 or result.get('updates_in_worker')!=640
+            or result.get('training_steps')!=data.STEPS or result.get('updates_in_worker')!=data.STEPS
             or result.get('training_input_sha256')!=expected_sha):
         raise ValueError('complete exact-assigned training required')
     raw=base64.b64decode(result['adapter_safetensors_base64'],validate=True)
     if not 0<len(raw)<=524288 or len(raw)!=result['adapter_bytes'] or life.digest(raw)!=result['adapter_sha256']:
         raise ValueError('bounded adapter bytes must match training receipt')
-    return dict({k:result[k] for k in RESTORE_KEYS},schema='trainability_restore_v1')
+    return dict({k:result[k] for k in RESTORE_KEYS},schema=data.RESTORE_SCHEMA)
 
 
 def deliver_restore(spec,arm,restore,output):
@@ -214,7 +216,7 @@ def collect(spec_path,output):
                 training_processes[arm]=(stopped['worker']['pid'],stopped['worker']['start_ticks'])
                 if code:raise RuntimeError('candidate training worker exited unsuccessfully')
                 trained[arm]=hello['candidate_adapter'];deliver_restore(spec,arm,restore,output)
-                if arm=='Q4' and (trained['Q1']['before_fixed_loss']!=trained['Q4']['before_fixed_loss']
+                if arm=='Q4' and 'Q1' in trained and (trained['Q1']['before_fixed_loss']!=trained['Q4']['before_fixed_loss']
                         or trained['Q1']['untrained_probe_logits_sha256']!=trained['Q4']['untrained_probe_logits_sha256']):
                     raise ValueError('diagnostic arms did not start at identical fixed-example losses/logits')
             job='E2B-'+arm+'-eval'
@@ -230,7 +232,7 @@ def collect(spec_path,output):
             if arm!='BASE' and (stopped['worker']['pid'],stopped['worker']['start_ticks'])==training_processes[arm]:
                 raise ValueError('fresh evaluation process identity was reused')
             preserve(output)
-            if result['status']!='COMPLETED' or result['assigned']!=16:raise RuntimeError('candidate arm incomplete; no retries')
+            if result['status']!='COMPLETED' or result['assigned']!=data.ROW_COUNT:raise RuntimeError('candidate arm incomplete; no retries')
             candidate=result['worker_handshakes']['E2B'].get('candidate_adapter')
             if arm=='BASE':
                 if result['training'] or candidate:raise ValueError('untrained baseline contaminated')
@@ -238,8 +240,8 @@ def collect(spec_path,output):
                     or candidate['updates_in_worker']!=0 or candidate['arm']!=arm
                     or candidate['adapter_sha256']!=trained[arm]['adapter_sha256']):
                 raise ValueError('independent reloaded worker evidence missing')
-        return {'status':'PASS_TRAINABILITY_COLLECTION','assigned':48,
-            'training_steps':1280,'coverage':aggregate(output,rows)['coverage'],
+        return {'status':'PASS_TRAINABILITY_COLLECTION','assigned':len(ARMS)*data.ROW_COUNT,
+            'training_steps':data.STEPS*(len(ARMS)-1),'coverage':aggregate(output,rows)['coverage'],
             'capability_claim':'REQUIRES_POST_DELETION_EVALUATION'}
     finally:preserve(output)
 
@@ -249,7 +251,8 @@ def after_hardware(root,endpoint,prefix,output,hardware):
     header=json.loads((ROOT/'.local/e2b/sources/E2B/tensor-header.json').read_bytes())
     job=base_job(hardware,header);jobs=root/'assets/jobs';jobs.mkdir(mode=0o700)
     life.write(jobs/'E2B-BASE-eval.json',job);training={}
-    for arm in ('Q1','Q4'):
+    for arm in ARMS:
+        if arm=='BASE':continue
         training[arm]=json.loads((ROOT/'.local/e2b/trainability'/(arm+'-training.json')).read_bytes())
         life.write(jobs/('E2B-'+arm+'-train.json'),dict(job,trainability_training=training[arm]))
     manifest=root/'assets-qualified-manifest.json';manifest.write_bytes(container.manifest(root/'assets','model'))
@@ -269,8 +272,8 @@ print(json.dumps({'bytes':sum(p.stat().st_size for p in dst.rglob('*') if p.is_f
         'base_job':job,'root':str(root),'endpoint':endpoint,'training_spec_sha256':{a:worker_spec_sha(s) for a,s in training.items()}})
     try:
         with (output/'collector.log').open('xb') as log:
-            process=subprocess.run([str(ROOT/'.local/model-runtime/bin/python'),'-m','tools.small_model_trainability','collect',str(spec),str(output)],
-                stdout=log,stderr=log,timeout=3000,env={'PATH':os.environ['PATH'],'LANG':'C.UTF-8','HOME':str(root),
+            process=subprocess.run([str(ROOT/'.local/model-runtime/bin/python'),'-m',ENTRY_MODULE,'collect',str(spec),str(output)],
+                stdout=log,stderr=log,timeout=COLLECTOR_SECONDS,env={'PATH':os.environ['PATH'],'LANG':'C.UTF-8','HOME':str(root),
                     'HF_HUB_OFFLINE':'1','TRANSFORMERS_OFFLINE':'1','TOKENIZERS_PARALLELISM':'false'})
     finally:preserve(output)
     if process.returncode:raise RuntimeError('trainability collector failed; retain every original assignment')
@@ -287,9 +290,9 @@ def evaluate(output):
     reasoning={(r['episode'],r['task']):r for r in examples if r['kind']=='reasoning'}
     expected={(arm,row['id']) for arm in ARMS for row in examples}
     records={(r['arm'],r['id']):r for r in raw['records']}
-    if (raw['assigned']!=48 or len(raw['records'])!=48 or set(records)!=expected
+    if (raw['assigned']!=len(expected) or len(raw['records'])!=len(expected) or set(records)!=expected
             or any(r['model']!='E2B' for r in raw['records'])):
-        raise ValueError('complete original 48-row denominator required')
+        raise ValueError('complete original assigned denominator required')
     tolerance=float(Fraction(data.prior.base.protocol()['numeric_prediction_tolerance']))
     rows=[]
     for arm in ARMS:
@@ -319,12 +322,13 @@ def evaluate(output):
     arms={}
     for arm in ARMS:
         selected=[r for r in rows if r['arm']==arm]
-        arms[arm]={'assigned':16,**{k:sum(r[k] for r in selected)
+        arms[arm]={'assigned':data.ROW_COUNT,**{k:sum(r[k] for r in selected)
             for k in ('strict_json','schema_valid','exact_target_json_match','task_correct')},
             'format_correct':sum(r['task_correct'] for r in selected if r['kind']=='format'),
             'reasoning_correct':sum(r['task_correct'] for r in selected if r['kind']=='reasoning'),
-            'strict_fit':all(r['task_correct'] for r in selected)}
-    return {'schema':'trainability_scoring_v1','assigned':48,'arms':arms,'rows':rows,
+            'strict_fit':all(r['task_correct'] and (not getattr(data,'REQUIRE_EXACT',False)
+                or r['exact_target_json_match']) for r in selected)}
+    return {'schema':'trainability_scoring_v1','assigned':len(ARMS)*data.ROW_COUNT,'arms':arms,'rows':rows,
             'numeric_tolerance':tolerance,'generalization_claim':'NOT_ESTABLISHED',
             'boundary':'Training-set fit only; provider deletion must be verified before invoking this evaluator.'}
 
