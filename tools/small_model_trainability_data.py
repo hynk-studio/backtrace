@@ -7,6 +7,8 @@ from tools.small_model_sft_inputs import full_completion_example
 ARMS = ('BASE', 'Q1', 'Q4')
 SEED = 17
 STEPS = 640
+ROW_COUNT = 16
+RESTORE_SCHEMA = 'trainability_restore_v1'
 
 
 def examples():

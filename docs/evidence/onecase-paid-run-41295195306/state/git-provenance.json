@@ -1,0 +1,55 @@
+{
+  "ref": "c35827774010ca51b3d03dbf45554977f50d8b85",
+  "files": [
+    {
+      "filename": "armed.json",
+      "path": "minimum/reasoning-onecase-paid-20261101/armed.json",
+      "sha": "95fae46636b8a31c2d2a35848af42d8196e182d5"
+    },
+    {
+      "filename": "authorization.json",
+      "path": "minimum/reasoning-onecase-paid-20261101/authorization.json",
+      "sha": "edd513faa44779410aa11065a153f2d40425fbb2"
+    },
+    {
+      "filename": "claim.json",
+      "path": "minimum/reasoning-onecase-paid-20261101/claim.json",
+      "sha": "b87eebe988da47cd7b3a4872cbb86d6adabf313b"
+    },
+    {
+      "filename": "done.json",
+      "path": "minimum/reasoning-onecase-paid-20261101/done.json",
+      "sha": "29492be06d7aa381f662ec6f4e67cf82feb157e7"
+    },
+    {
+      "filename": "heartbeat.json",
+      "path": "minimum/reasoning-onecase-paid-20261101/heartbeat.json",
+      "sha": "b9085269019348bbcbbf34ab17b09c2d8f478ef9"
+    },
+    {
+      "filename": "owner-cleanup.json",
+      "path": "minimum/reasoning-onecase-paid-20261101/owner-cleanup.json",
+      "sha": "0f2a8797a6a4158f35dbaf8610b1fcc98ed91a6e"
+    },
+    {
+      "filename": "owner.json",
+      "path": "minimum/reasoning-onecase-paid-20261101/owner.json",
+      "sha": "a7cfb3e44585c556d1052a1f43d2d555dc2138d7"
+    },
+    {
+      "filename": "watch-cleanup.json",
+      "path": "minimum/reasoning-onecase-paid-20261101/watch-cleanup.json",
+      "sha": "8560eb8921c1bcfb289786fc73305710f02eb2ad"
+    },
+    {
+      "filename": "watch-heartbeat.json",
+      "path": "minimum/reasoning-onecase-paid-20261101/watch-heartbeat.json",
+      "sha": "4765c817d2063158f2424c352bdda3b1ffd36dd0"
+    },
+    {
+      "filename": "watch.json",
+      "path": "minimum/reasoning-onecase-paid-20261101/watch.json",
+      "sha": "0422faaf554fb260e1fa2fa509edbde7888c589d"
+    }
+  ]
+}

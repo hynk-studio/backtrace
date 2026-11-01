@@ -1,0 +1,624 @@
+﻿2026-11-01T09:55:31.4120439Z Current runner version: '2.338.2'
+2026-11-01T09:55:31.4151150Z ##[group]Runner Image Provisioner
+2026-11-01T09:55:31.4152654Z Hosted Compute Agent
+2026-11-01T09:55:31.4153682Z Version: 20261021.618
+2026-11-01T09:55:31.4154609Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-11-01T09:55:31.4155753Z Build Date: 2026-10-21T00:45:21Z
+2026-11-01T09:55:31.4156840Z Worker ID: {4b303ab7-c47a-4fc2-8171-9b49aaacd183}
+2026-11-01T09:55:31.4157945Z Region: eastus
+2026-11-01T09:55:31.4158881Z Cloud: Azure
+2026-11-01T09:55:31.4159686Z ##[endgroup]
+2026-11-01T09:55:31.4161708Z ##[group]Operating System
+2026-11-01T09:55:31.4162993Z Ubuntu
+2026-11-01T09:55:31.4163882Z 24.04.5
+2026-11-01T09:55:31.4164727Z LTS
+2026-11-01T09:55:31.4165558Z ##[endgroup]
+2026-11-01T09:55:31.4166846Z ##[group]Runner Image
+2026-11-01T09:55:31.4167809Z Image: ubuntu-24.04
+2026-11-01T09:55:31.4168649Z Version: 20261025.353.1
+2026-11-01T09:55:31.4170628Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-01T09:55:31.4173652Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+2026-11-01T09:55:31.4175809Z ##[endgroup]
+2026-11-01T09:55:31.4178157Z ##[group]GITHUB_TOKEN Permissions
+2026-11-01T09:55:31.4181139Z Actions: read
+2026-11-01T09:55:31.4182502Z Contents: write
+2026-11-01T09:55:31.4183871Z Metadata: read
+2026-11-01T09:55:31.4185128Z ##[endgroup]
+2026-11-01T09:55:31.4188260Z Secret source: Actions
+2026-11-01T09:55:31.4189958Z Cache mode: write
+2026-11-01T09:55:31.4191347Z Prepare workflow directory
+2026-11-01T09:55:31.4678773Z Prepare all required actions
+2026-11-01T09:55:31.4750607Z Getting action download info
+2026-11-01T09:55:31.6706066Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-01T09:55:31.7615494Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-01T09:55:31.8380161Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-01T09:55:32.0558055Z Complete job name: owner
+2026-11-01T09:55:32.1467311Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-11-01T09:55:32.1468393Z with:
+2026-11-01T09:55:32.1468846Z   persist-credentials: false
+2026-11-01T09:55:32.1469407Z   repository: hynk-studio/backtrace
+2026-11-01T09:55:32.1473702Z   token: ***
+2026-11-01T09:55:32.1474165Z   ssh-strict: true
+2026-11-01T09:55:32.1474625Z   ssh-user: git
+2026-11-01T09:55:32.1475056Z   clean: true
+2026-11-01T09:55:32.1475507Z   sparse-checkout-cone-mode: true
+2026-11-01T09:55:32.1476049Z   fetch-depth: 1
+2026-11-01T09:55:32.1476499Z   fetch-tags: false
+2026-11-01T09:55:32.1476964Z   show-progress: true
+2026-11-01T09:55:32.1477436Z   lfs: false
+2026-11-01T09:55:32.1477864Z   submodules: false
+2026-11-01T09:55:32.1478337Z   set-safe-directory: true
+2026-11-01T09:55:32.1478930Z   allow-unsafe-pr-checkout: false
+2026-11-01T09:55:32.1479763Z ##[endgroup]
+2026-11-01T09:55:32.4785077Z Syncing repository: hynk-studio/backtrace
+2026-11-01T09:55:32.4788461Z ##[group]Getting Git version info
+2026-11-01T09:55:32.4790095Z Working directory is '/home/runner/work/backtrace/backtrace'
+2026-11-01T09:55:32.4792717Z [command]/usr/bin/git version
+2026-11-01T09:55:32.4895335Z git version 2.56.0
+2026-11-01T09:55:32.4914047Z ##[endgroup]
+2026-11-01T09:55:32.4929067Z Temporarily overriding HOME='/home/runner/work/_temp/0469b224-b4e7-4187-b997-54d95047ff73' before making global git config changes
+2026-11-01T09:55:32.4939522Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-01T09:55:32.4942773Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/backtrace/backtrace
+2026-11-01T09:55:32.4991962Z Deleting the contents of '/home/runner/work/backtrace/backtrace'
+2026-11-01T09:55:32.4998455Z ##[group]Initializing the repository
+2026-11-01T09:55:32.5004116Z [command]/usr/bin/git init /home/runner/work/backtrace/backtrace
+2026-11-01T09:55:32.5164726Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-01T09:55:32.5167611Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-01T09:55:32.5170098Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-01T09:55:32.5171422Z hint: call:
+2026-11-01T09:55:32.5172949Z hint:
+2026-11-01T09:55:32.5174636Z hint: 	git config --global init.defaultBranch <name>
+2026-11-01T09:55:32.5178723Z hint:
+2026-11-01T09:55:32.5180462Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-01T09:55:32.5182587Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-01T09:55:32.5184075Z hint:
+2026-11-01T09:55:32.5184899Z hint: 	git branch -m <name>
+2026-11-01T09:55:32.5185805Z hint:
+2026-11-01T09:55:32.5186932Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-01T09:55:32.5188734Z Initialized empty Git repository in /home/runner/work/backtrace/backtrace/.git/
+2026-11-01T09:55:32.5190879Z [command]/usr/bin/git remote add origin https://github.com/hynk-studio/backtrace
+2026-11-01T09:55:32.5254783Z ##[endgroup]
+2026-11-01T09:55:32.5256155Z ##[group]Disabling automatic garbage collection
+2026-11-01T09:55:32.5257392Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-01T09:55:32.5293725Z ##[endgroup]
+2026-11-01T09:55:32.5295207Z ##[group]Setting up auth
+2026-11-01T09:55:32.5301115Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-01T09:55:32.5341185Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-01T09:55:32.5792411Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-01T09:55:32.5845335Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-01T09:55:32.6094163Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-01T09:55:32.6140003Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-01T09:55:32.6380405Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-01T09:55:32.6430312Z ##[endgroup]
+2026-11-01T09:55:32.6431937Z ##[group]Fetching the repository
+2026-11-01T09:55:32.6444692Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2:refs/remotes/origin/bt-001-reasoning-onecase-start-20261101
+2026-11-01T09:55:33.2581789Z From https://github.com/hynk-studio/backtrace
+2026-11-01T09:55:33.2585534Z  * [new ref]         ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2 -> origin/bt-001-reasoning-onecase-start-20261101
+2026-11-01T09:55:33.2592892Z ##[endgroup]
+2026-11-01T09:55:33.2595413Z ##[group]Determining the checkout info
+2026-11-01T09:55:33.2598322Z ##[endgroup]
+2026-11-01T09:55:33.2600060Z [command]/usr/bin/git sparse-checkout disable
+2026-11-01T09:55:33.2664120Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-01T09:55:33.2710074Z ##[group]Checking out the ref
+2026-11-01T09:55:33.2714172Z [command]/usr/bin/git checkout --progress --force -B bt-001-reasoning-onecase-start-20261101 refs/remotes/origin/bt-001-reasoning-onecase-start-20261101
+2026-11-01T09:55:33.4122394Z Switched to a new branch 'bt-001-reasoning-onecase-start-20261101'
+2026-11-01T09:55:33.4129373Z branch 'bt-001-reasoning-onecase-start-20261101' set up to track 'origin/bt-001-reasoning-onecase-start-20261101'.
+2026-11-01T09:55:33.4144791Z ##[endgroup]
+2026-11-01T09:55:33.4200567Z [command]/usr/bin/git log -1 --format=%H
+2026-11-01T09:55:33.4236122Z ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2
+2026-11-01T09:55:33.4247619Z ##[group]Removing auth
+2026-11-01T09:55:33.4252443Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-01T09:55:33.4298095Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-01T09:55:33.4548428Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-01T09:55:33.4583963Z http.https://github.com/.extraheader
+2026-11-01T09:55:33.4595396Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-01T09:55:33.4641929Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-01T09:55:33.4883299Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-01T09:55:33.4923145Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-01T09:55:33.5161732Z ##[endgroup]
+2026-11-01T09:55:33.5638993Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-11-01T09:55:33.5640776Z with:
+2026-11-01T09:55:33.5641688Z   python-version: 3.12.14
+2026-11-01T09:55:33.5642956Z   check-latest: false
+2026-11-01T09:55:33.5653774Z   token: ***
+2026-11-01T09:55:33.5654763Z   update-environment: true
+2026-11-01T09:55:33.5655922Z   allow-prereleases: false
+2026-11-01T09:55:33.5657010Z   freethreaded: false
+2026-11-01T09:55:33.5658018Z ##[endgroup]
+2026-11-01T09:55:33.7114225Z ##[group]Installed versions
+2026-11-01T09:55:33.7139945Z Version 3.12.14 was not found in the local cache
+2026-11-01T09:55:33.7363177Z (node:2384) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-01T09:55:33.7367364Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-01T09:55:34.3807478Z Version 3.12.14 is available for downloading
+2026-11-01T09:55:34.3809407Z Download from "https://github.com/actions/python-versions/releases/download/3.12.14-31661455385/python-3.12.14-linux-24.04-x64.tar.gz"
+2026-11-01T09:55:34.8757764Z Extract downloaded archive
+2026-11-01T09:55:34.8913368Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/0bbc2367-34cd-4864-a164-ebdda2ef8ec9 -f /home/runner/work/_temp/a5c04fb1-068e-487b-9d46-b27d88241ff3
+2026-11-01T09:55:36.8181296Z Execute installation script
+2026-11-01T09:55:36.8304554Z Check if Python hostedtoolcache folder exist...
+2026-11-01T09:55:36.8305454Z Create Python 3.12.14 folder
+2026-11-01T09:55:36.8320003Z Copy Python binaries to hostedtoolcache folder
+2026-11-01T09:55:37.2930011Z Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+2026-11-01T09:55:37.2973831Z Upgrading pip...
+2026-11-01T09:55:39.1725840Z Collecting pip
+2026-11-01T09:55:39.2075305Z Downloading pip-26.2.2-py3-none-any.whl.metadata (4.6 kB)
+2026-11-01T09:55:39.2177942Z Downloading pip-26.2.2-py3-none-any.whl (1.8 MB)
+2026-11-01T09:55:39.2631154Z ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 59.7 MB/s eta 0:00:00
+2026-11-01T09:55:39.2631869Z 
+2026-11-01T09:55:39.2829716Z Installing collected packages: pip
+2026-11-01T09:55:39.2830998Z Attempting uninstall: pip
+2026-11-01T09:55:39.2852907Z Found existing installation: pip 25.0.1
+2026-11-01T09:55:39.3201566Z Uninstalling pip-25.0.1:
+2026-11-01T09:55:39.3258553Z Successfully uninstalled pip-25.0.1
+2026-11-01T09:55:40.2625051Z Successfully installed pip-26.2.2
+2026-11-01T09:55:40.3158655Z Create complete file
+2026-11-01T09:55:40.3203488Z Successfully set up CPython (3.12.14)
+2026-11-01T09:55:40.3205125Z ##[endgroup]
+2026-11-01T09:55:40.3412919Z ##[group]Run python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
+2026-11-01T09:55:40.3413850Z [36;1mpython -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt[0m
+2026-11-01T09:55:40.3440137Z shell: /usr/bin/bash -e {0}
+2026-11-01T09:55:40.3440406Z env:
+2026-11-01T09:55:40.3440682Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:55:40.3441140Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T09:55:40.3441577Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:55:40.3442391Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:55:40.3442900Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:55:40.3443326Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T09:55:40.3443669Z ##[endgroup]
+2026-11-01T09:55:40.7879851Z Collecting certifi==2026.10.18 (from -r docs/cloud-controller-requirements.txt (line 2))
+2026-11-01T09:55:40.8360039Z   Downloading certifi-2026.10.18-py3-none-any.whl (134 kB)
+2026-11-01T09:55:41.0052713Z Collecting charset-normalizer==3.5.2 (from -r docs/cloud-controller-requirements.txt (line 3))
+2026-11-01T09:55:41.0093491Z   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+2026-11-01T09:55:41.0266717Z Collecting idna==3.20 (from -r docs/cloud-controller-requirements.txt (line 4))
+2026-11-01T09:55:41.0302376Z   Downloading idna-3.20-py3-none-any.whl (69 kB)
+2026-11-01T09:55:41.0442310Z Collecting kagglehub==1.0.2 (from -r docs/cloud-controller-requirements.txt (line 5))
+2026-11-01T09:55:41.0489590Z   Downloading kagglehub-1.0.2-py3-none-any.whl (70 kB)
+2026-11-01T09:55:41.0647939Z Collecting kagglesdk==0.1.37 (from -r docs/cloud-controller-requirements.txt (line 6))
+2026-11-01T09:55:41.0688512Z   Downloading kagglesdk-0.1.37-py3-none-any.whl (262 kB)
+2026-11-01T09:55:41.0855075Z Collecting packaging==26.3 (from -r docs/cloud-controller-requirements.txt (line 7))
+2026-11-01T09:55:41.0888927Z   Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-11-01T09:55:41.2223642Z Collecting protobuf==7.36.2 (from -r docs/cloud-controller-requirements.txt (line 8))
+2026-11-01T09:55:41.2264718Z   Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl (343 kB)
+2026-11-01T09:55:41.2424324Z Collecting pyrage==1.4.0 (from -r docs/cloud-controller-requirements.txt (line 9))
+2026-11-01T09:55:41.2463277Z   Downloading pyrage-1.4.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (924 kB)
+2026-11-01T09:55:41.2543228Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 924.7/924.7 kB 122.5 MB/s  0:00:00
+2026-11-01T09:55:41.2858300Z Collecting PyYAML==6.0.3 (from -r docs/cloud-controller-requirements.txt (line 10))
+2026-11-01T09:55:41.2895389Z   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+2026-11-01T09:55:41.2949040Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 164.3 MB/s  0:00:00
+2026-11-01T09:55:41.3122729Z Collecting requests==2.34.2 (from -r docs/cloud-controller-requirements.txt (line 11))
+2026-11-01T09:55:41.3156218Z   Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+2026-11-01T09:55:41.3377424Z Collecting tqdm==4.70.1 (from -r docs/cloud-controller-requirements.txt (line 12))
+2026-11-01T09:55:41.3410210Z   Downloading tqdm-4.70.1-py3-none-any.whl (80 kB)
+2026-11-01T09:55:41.3616432Z Collecting urllib3==2.8.0 (from -r docs/cloud-controller-requirements.txt (line 13))
+2026-11-01T09:55:41.3649890Z   Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+2026-11-01T09:55:41.4165654Z Installing collected packages: urllib3, tqdm, PyYAML, pyrage, protobuf, packaging, idna, charset-normalizer, certifi, requests, kagglesdk, kagglehub
+2026-11-01T09:55:42.3672486Z 
+2026-11-01T09:55:42.3692396Z Successfully installed PyYAML-6.0.3 certifi-2026.10.18 charset-normalizer-3.5.2 idna-3.20 kagglehub-1.0.2 kagglesdk-0.1.37 packaging-26.3 protobuf-7.36.2 pyrage-1.4.0 requests-2.34.2 tqdm-4.70.1 urllib3-2.8.0
+2026-11-01T09:55:42.4339574Z ##[group]Run python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
+2026-11-01T09:55:42.4340435Z [36;1mpython -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt[0m
+2026-11-01T09:55:42.4341542Z [36;1mpython -m pip download --no-cache-dir --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cu126 -r docs/small-model-gpu-requirements.txt -d .local/cuda-wheels[0m
+2026-11-01T09:55:42.4342610Z [36;1mpython - <<'PYBUILD'[0m
+2026-11-01T09:55:42.4342873Z [36;1mfrom pathlib import Path[0m
+2026-11-01T09:55:42.4343130Z [36;1mimport json[0m
+2026-11-01T09:55:42.4343380Z [36;1mfrom tools.cloud_transport import build[0m
+2026-11-01T09:55:42.4343765Z [36;1mroot=Path('.local/transport-build');result=build(root)[0m
+2026-11-01T09:55:42.4344236Z [36;1m(root/'receipt.json').write_text(json.dumps(result,sort_keys=True))[0m
+2026-11-01T09:55:42.4344648Z [36;1mPYBUILD[0m
+2026-11-01T09:55:42.4365841Z shell: /usr/bin/bash -e {0}
+2026-11-01T09:55:42.4366090Z env:
+2026-11-01T09:55:42.4366361Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:55:42.4366825Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T09:55:42.4367284Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:55:42.4367679Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:55:42.4368068Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:55:42.4368455Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T09:55:42.4368781Z ##[endgroup]
+2026-11-01T09:55:42.7655533Z Requirement already satisfied: certifi==2026.10.18 in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (from -r docs/cloud-controller-requirements.txt (line 2)) (2026.10.18)
+2026-11-01T09:55:42.7661161Z Requirement already satisfied: charset-normalizer==3.5.2 in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (from -r docs/cloud-controller-requirements.txt (line 3)) (3.5.2)
+2026-11-01T09:55:42.7666829Z Requirement already satisfied: idna==3.20 in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (from -r docs/cloud-controller-requirements.txt (line 4)) (3.20)
+2026-11-01T09:55:42.7672523Z Requirement already satisfied: kagglehub==1.0.2 in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (from -r docs/cloud-controller-requirements.txt (line 5)) (1.0.2)
+2026-11-01T09:55:42.7677972Z Requirement already satisfied: kagglesdk==0.1.37 in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (from -r docs/cloud-controller-requirements.txt (line 6)) (0.1.37)
+2026-11-01T09:55:42.7683601Z Requirement already satisfied: packaging==26.3 in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (from -r docs/cloud-controller-requirements.txt (line 7)) (26.3)
+2026-11-01T09:55:42.7688926Z Requirement already satisfied: protobuf==7.36.2 in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (from -r docs/cloud-controller-requirements.txt (line 8)) (7.36.2)
+2026-11-01T09:55:42.7694620Z Requirement already satisfied: pyrage==1.4.0 in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (from -r docs/cloud-controller-requirements.txt (line 9)) (1.4.0)
+2026-11-01T09:55:42.7699838Z Requirement already satisfied: PyYAML==6.0.3 in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (from -r docs/cloud-controller-requirements.txt (line 10)) (6.0.3)
+2026-11-01T09:55:42.7705325Z Requirement already satisfied: requests==2.34.2 in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (from -r docs/cloud-controller-requirements.txt (line 11)) (2.34.2)
+2026-11-01T09:55:42.7710455Z Requirement already satisfied: tqdm==4.70.1 in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (from -r docs/cloud-controller-requirements.txt (line 12)) (4.70.1)
+2026-11-01T09:55:42.7716574Z Requirement already satisfied: urllib3==2.8.0 in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (from -r docs/cloud-controller-requirements.txt (line 13)) (2.8.0)
+2026-11-01T09:55:43.4912492Z Looking in indexes: https://pypi.org/simple, https://download.pytorch.org/whl/cu126
+2026-11-01T09:55:43.6150654Z Collecting accelerate==1.15.0 (from -r docs/small-model-gpu-requirements.txt (line 2))
+2026-11-01T09:55:43.6601307Z   Downloading accelerate-1.15.0-py3-none-any.whl (394 kB)
+2026-11-01T09:55:43.7198825Z Collecting annotated-doc==0.0.5 (from -r docs/small-model-gpu-requirements.txt (line 3))
+2026-11-01T09:55:43.7229094Z   Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+2026-11-01T09:55:43.7464409Z Collecting anyio==4.15.1 (from -r docs/small-model-gpu-requirements.txt (line 4))
+2026-11-01T09:55:43.7495327Z   Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+2026-11-01T09:55:43.7729805Z Collecting click==8.5.0 (from -r docs/small-model-gpu-requirements.txt (line 5))
+2026-11-01T09:55:43.7760311Z   Downloading click-8.5.0-py3-none-any.whl (125 kB)
+2026-11-01T09:55:43.8767600Z Collecting cuda-bindings==12.9.10 (from -r docs/small-model-gpu-requirements.txt (line 6))
+2026-11-01T09:55:43.8799997Z   Downloading cuda_bindings-12.9.10-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (7.6 MB)
+2026-11-01T09:55:43.9070188Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.6/7.6 MB 302.9 MB/s  0:00:00
+2026-11-01T09:55:43.9562474Z Collecting cuda-pathfinder==1.8.4 (from -r docs/small-model-gpu-requirements.txt (line 7))
+2026-11-01T09:55:43.9592055Z   Downloading cuda_pathfinder-1.8.4-py3-none-any.whl (62 kB)
+2026-11-01T09:55:43.9970593Z Collecting cuda-toolkit==12.6.3 (from -r docs/small-model-gpu-requirements.txt (line 8))
+2026-11-01T09:55:44.2658708Z   Downloading cuda_toolkit-12.6.3-py2.py3-none-any.whl (2.3 kB)
+2026-11-01T09:55:44.3079087Z Collecting filelock==4.2.4 (from -r docs/small-model-gpu-requirements.txt (line 9))
+2026-11-01T09:55:44.3110648Z   Downloading filelock-4.2.4-py3-none-any.whl (162 kB)
+2026-11-01T09:55:44.3364260Z Collecting fsspec==2026.9.0 (from -r docs/small-model-gpu-requirements.txt (line 10))
+2026-11-01T09:55:44.3395589Z   Downloading fsspec-2026.9.0-py3-none-any.whl (221 kB)
+2026-11-01T09:55:44.3977031Z Collecting h11==0.16.0 (from -r docs/small-model-gpu-requirements.txt (line 11))
+2026-11-01T09:55:44.4008427Z   Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+2026-11-01T09:55:44.4544442Z Collecting hf-xet==1.7.0 (from -r docs/small-model-gpu-requirements.txt (line 12))
+2026-11-01T09:55:44.4583921Z   Downloading hf_xet-1.7.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.2 MB)
+2026-11-01T09:55:44.4685230Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.2/4.2 MB 488.7 MB/s  0:00:00
+2026-11-01T09:55:44.4939138Z Collecting httpcore2==2.16.0 (from -r docs/small-model-gpu-requirements.txt (line 13))
+2026-11-01T09:55:44.4971855Z   Downloading httpcore2-2.16.0-py3-none-any.whl (85 kB)
+2026-11-01T09:55:44.5339427Z Collecting httpx2==2.16.0 (from -r docs/small-model-gpu-requirements.txt (line 14))
+2026-11-01T09:55:44.5369160Z   Downloading httpx2-2.16.0-py3-none-any.whl (97 kB)
+2026-11-01T09:55:44.5853978Z Collecting huggingface_hub==2.3.0 (from -r docs/small-model-gpu-requirements.txt (line 15))
+2026-11-01T09:55:44.5909857Z   Downloading huggingface_hub-2.3.0-py3-none-any.whl (855 kB)
+2026-11-01T09:55:44.5938036Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 855.2/855.2 kB 754.8 MB/s  0:00:00
+2026-11-01T09:55:44.6213493Z Collecting idna==3.20 (from -r docs/small-model-gpu-requirements.txt (line 16))
+2026-11-01T09:55:44.6245977Z   Downloading idna-3.20-py3-none-any.whl (69 kB)
+2026-11-01T09:55:44.6377248Z Collecting Jinja2==3.1.6 (from -r docs/small-model-gpu-requirements.txt (line 17))
+2026-11-01T09:55:44.6408068Z   Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+2026-11-01T09:55:44.6633072Z Collecting markdown-it-py==4.2.0 (from -r docs/small-model-gpu-requirements.txt (line 18))
+2026-11-01T09:55:44.6663828Z   Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+2026-11-01T09:55:44.7306905Z Collecting MarkupSafe==3.0.4 (from -r docs/small-model-gpu-requirements.txt (line 19))
+2026-11-01T09:55:44.7338112Z   Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+2026-11-01T09:55:44.7669674Z Collecting mdurl==0.1.2 (from -r docs/small-model-gpu-requirements.txt (line 20))
+2026-11-01T09:55:44.7699557Z   Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+2026-11-01T09:55:44.7853788Z Collecting mpmath==1.3.0 (from -r docs/small-model-gpu-requirements.txt (line 21))
+2026-11-01T09:55:44.7896036Z   Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+2026-11-01T09:55:44.7928135Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 596.6 MB/s  0:00:00
+2026-11-01T09:55:44.8238677Z Collecting networkx==3.6.1 (from -r docs/small-model-gpu-requirements.txt (line 22))
+2026-11-01T09:55:44.8271067Z   Downloading networkx-3.6.1-py3-none-any.whl (2.1 MB)
+2026-11-01T09:55:44.8327161Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 568.6 MB/s  0:00:00
+2026-11-01T09:55:45.3033477Z Collecting numpy==2.5.4 (from -r docs/small-model-gpu-requirements.txt (line 23))
+2026-11-01T09:55:45.3071638Z   Downloading numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.7 MB)
+2026-11-01T09:55:45.3363733Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.7/16.7 MB 614.3 MB/s  0:00:00
+2026-11-01T09:55:45.3711047Z Collecting nvidia-cublas-cu12==12.6.4.1 (from -r docs/small-model-gpu-requirements.txt (line 24))
+2026-11-01T09:55:45.3754135Z   Downloading nvidia_cublas_cu12-12.6.4.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (393.1 MB)
+2026-11-01T09:55:46.3130237Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 393.1/393.1 MB 435.2 MB/s  0:00:00
+2026-11-01T09:55:46.6010056Z Collecting nvidia-cuda-cupti-cu12==12.6.80 (from -r docs/small-model-gpu-requirements.txt (line 25))
+2026-11-01T09:55:46.6063076Z   Downloading nvidia_cuda_cupti_cu12-12.6.80-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (8.9 MB)
+2026-11-01T09:55:46.6263202Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.9/8.9 MB 520.8 MB/s  0:00:00
+2026-11-01T09:55:46.6480684Z Collecting nvidia-cuda-nvrtc-cu12==12.6.85 (from -r docs/small-model-gpu-requirements.txt (line 26))
+2026-11-01T09:55:46.7608306Z   Downloading nvidia_cuda_nvrtc_cu12-12.6.85-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (23.6 MB)
+2026-11-01T09:55:46.8165628Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 23.6/23.6 MB 448.5 MB/s  0:00:00
+2026-11-01T09:55:46.8480566Z Collecting nvidia-cuda-runtime-cu12==12.6.77 (from -r docs/small-model-gpu-requirements.txt (line 27))
+2026-11-01T09:55:46.8536034Z   Downloading nvidia_cuda_runtime_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (897 kB)
+2026-11-01T09:55:46.8566570Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 897.7/897.7 kB 773.1 MB/s  0:00:00
+2026-11-01T09:55:46.8837021Z Collecting nvidia-cudnn-cu12==9.10.2.21 (from -r docs/small-model-gpu-requirements.txt (line 28))
+2026-11-01T09:55:46.8922458Z   Downloading nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl (706.8 MB)
+2026-11-01T09:55:48.4134295Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 706.8/706.8 MB 489.5 MB/s  0:00:01
+2026-11-01T09:55:48.9158779Z Collecting nvidia-cufft-cu12==11.3.0.4 (from -r docs/small-model-gpu-requirements.txt (line 29))
+2026-11-01T09:55:48.9203136Z   Downloading nvidia_cufft_cu12-11.3.0.4-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (200.2 MB)
+2026-11-01T09:55:49.3101349Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 200.2/200.2 MB 516.3 MB/s  0:00:00
+2026-11-01T09:55:49.4588161Z Collecting nvidia-cufile-cu12==1.11.1.6 (from -r docs/small-model-gpu-requirements.txt (line 30))
+2026-11-01T09:55:49.4747957Z   Downloading nvidia_cufile_cu12-1.11.1.6-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.1 MB)
+2026-11-01T09:55:49.4781027Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 802.2 MB/s  0:00:00
+2026-11-01T09:55:49.4930026Z Collecting nvidia-curand-cu12==10.3.7.77 (from -r docs/small-model-gpu-requirements.txt (line 31))
+2026-11-01T09:55:49.6473090Z   Downloading nvidia_curand_cu12-10.3.7.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (56.3 MB)
+2026-11-01T09:55:49.7803401Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 56.3/56.3 MB 437.8 MB/s  0:00:00
+2026-11-01T09:55:49.8359087Z Collecting nvidia-cusolver-cu12==11.7.1.2 (from -r docs/small-model-gpu-requirements.txt (line 32))
+2026-11-01T09:55:49.8419793Z   Downloading nvidia_cusolver_cu12-11.7.1.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (158.2 MB)
+2026-11-01T09:55:50.2029749Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 158.2/158.2 MB 442.4 MB/s  0:00:00
+2026-11-01T09:55:50.3281896Z Collecting nvidia-cusparse-cu12==12.5.4.2 (from -r docs/small-model-gpu-requirements.txt (line 33))
+2026-11-01T09:55:50.3331258Z   Downloading nvidia_cusparse_cu12-12.5.4.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (216.6 MB)
+2026-11-01T09:55:50.8012796Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 216.6/216.6 MB 465.6 MB/s  0:00:00
+2026-11-01T09:55:50.9621722Z Collecting nvidia-cusparselt-cu12==0.7.1 (from -r docs/small-model-gpu-requirements.txt (line 34))
+2026-11-01T09:55:50.9666973Z   Downloading nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl (287.2 MB)
+2026-11-01T09:55:51.5876531Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 287.2/287.2 MB 492.0 MB/s  0:00:00
+2026-11-01T09:55:51.8045229Z Collecting nvidia-nccl-cu12==2.29.3 (from -r docs/small-model-gpu-requirements.txt (line 35))
+2026-11-01T09:55:51.8085698Z   Downloading nvidia_nccl_cu12-2.29.3-py3-none-manylinux_2_18_x86_64.whl (289.8 MB)
+2026-11-01T09:55:52.4563562Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 289.8/289.8 MB 437.4 MB/s  0:00:00
+2026-11-01T09:55:52.6741505Z Collecting nvidia-nvjitlink-cu12==12.6.85 (from -r docs/small-model-gpu-requirements.txt (line 36))
+2026-11-01T09:55:52.6812823Z   Downloading nvidia_nvjitlink_cu12-12.6.85-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (19.7 MB)
+2026-11-01T09:55:52.7701425Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 19.7/19.7 MB 225.5 MB/s  0:00:00
+2026-11-01T09:55:52.7961867Z Collecting nvidia-nvshmem-cu12==3.4.5 (from -r docs/small-model-gpu-requirements.txt (line 37))
+2026-11-01T09:55:52.8007309Z   Downloading nvidia_nvshmem_cu12-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (139.1 MB)
+2026-11-01T09:55:53.0621272Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 139.1/139.1 MB 539.2 MB/s  0:00:00
+2026-11-01T09:55:53.1739231Z Collecting nvidia-nvtx-cu12==12.6.77 (from -r docs/small-model-gpu-requirements.txt (line 38))
+2026-11-01T09:55:53.1782834Z   Downloading nvidia_nvtx_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (89 kB)
+2026-11-01T09:55:53.1922736Z Collecting packaging==26.3 (from -r docs/small-model-gpu-requirements.txt (line 39))
+2026-11-01T09:55:53.1954522Z   Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-11-01T09:55:53.2386206Z Collecting pip==25.0.1 (from -r docs/small-model-gpu-requirements.txt (line 40))
+2026-11-01T09:55:53.2420225Z   Downloading pip-25.0.1-py3-none-any.whl (1.8 MB)
+2026-11-01T09:55:53.2461698Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 833.2 MB/s  0:00:00
+2026-11-01T09:55:53.3219603Z Collecting psutil==7.2.2 (from -r docs/small-model-gpu-requirements.txt (line 41))
+2026-11-01T09:55:53.3252260Z   Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl (155 kB)
+2026-11-01T09:55:53.3575701Z Collecting Pygments==2.21.0 (from -r docs/small-model-gpu-requirements.txt (line 42))
+2026-11-01T09:55:53.3609115Z   Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+2026-11-01T09:55:53.3644405Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 807.7 MB/s  0:00:00
+2026-11-01T09:55:53.4087429Z Collecting PyYAML==6.0.3 (from -r docs/small-model-gpu-requirements.txt (line 43))
+2026-11-01T09:55:53.4124604Z   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+2026-11-01T09:55:53.4151919Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 737.6 MB/s  0:00:00
+2026-11-01T09:55:53.8056101Z Collecting regex==2026.9.29 (from -r docs/small-model-gpu-requirements.txt (line 44))
+2026-11-01T09:55:53.8090249Z   Downloading regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+2026-11-01T09:55:53.8118678Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.8/807.8 kB 745.0 MB/s  0:00:00
+2026-11-01T09:55:53.8485345Z Collecting rich==15.0.0 (from -r docs/small-model-gpu-requirements.txt (line 45))
+2026-11-01T09:55:53.8516275Z   Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+2026-11-01T09:55:53.9690810Z Collecting safetensors==0.8.0 (from -r docs/small-model-gpu-requirements.txt (line 46))
+2026-11-01T09:55:53.9722804Z   Downloading safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (516 kB)
+2026-11-01T09:55:54.0377346Z Collecting setuptools==78.1.0 (from -r docs/small-model-gpu-requirements.txt (line 47))
+2026-11-01T09:55:54.0428445Z   Downloading setuptools-78.1.0-py3-none-any.whl (1.3 MB)
+2026-11-01T09:55:54.0475190Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 400.9 MB/s  0:00:00
+2026-11-01T09:55:54.0760833Z Collecting shellingham==1.5.4 (from -r docs/small-model-gpu-requirements.txt (line 48))
+2026-11-01T09:55:54.0791426Z   Downloading shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+2026-11-01T09:55:54.0987323Z Collecting sympy==1.14.0 (from -r docs/small-model-gpu-requirements.txt (line 49))
+2026-11-01T09:55:54.1020028Z   Downloading sympy-1.14.0-py3-none-any.whl (6.3 MB)
+2026-11-01T09:55:54.1138936Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 632.2 MB/s  0:00:00
+2026-11-01T09:55:54.2691604Z Collecting tokenizers==0.23.3 (from -r docs/small-model-gpu-requirements.txt (line 50))
+2026-11-01T09:55:54.2729595Z   Downloading tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.4 MB)
+2026-11-01T09:55:54.2799964Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 669.8 MB/s  0:00:00
+2026-11-01T09:55:54.3556780Z Collecting torch==2.13.0+cu126 (from -r docs/small-model-gpu-requirements.txt (line 51))
+2026-11-01T09:55:54.4989528Z   Downloading torch-2.13.0%2Bcu126-cp312-cp312-manylinux_2_28_x86_64.whl (843.7 MB)
+2026-11-01T09:55:56.1473984Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 843.7/843.7 MB 519.7 MB/s  0:00:01
+2026-11-01T09:55:56.8390042Z Collecting tqdm==4.70.1 (from -r docs/small-model-gpu-requirements.txt (line 52))
+2026-11-01T09:55:56.8420829Z   Downloading tqdm-4.70.1-py3-none-any.whl (80 kB)
+2026-11-01T09:55:56.8828966Z Collecting transformers==5.20.2 (from -r docs/small-model-gpu-requirements.txt (line 53))
+2026-11-01T09:55:56.8901274Z   Downloading transformers-5.20.2-py3-none-any.whl (12.8 MB)
+2026-11-01T09:55:56.9273321Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.8/12.8 MB 361.0 MB/s  0:00:00
+2026-11-01T09:55:57.0190079Z Collecting triton==3.7.1 (from -r docs/small-model-gpu-requirements.txt (line 54))
+2026-11-01T09:55:57.0272796Z   Downloading triton-3.7.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (197.1 MB)
+2026-11-01T09:55:57.4025820Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 197.1/197.1 MB 528.1 MB/s  0:00:00
+2026-11-01T09:55:57.5678498Z Collecting truststore==0.10.5 (from -r docs/small-model-gpu-requirements.txt (line 55))
+2026-11-01T09:55:57.5708765Z   Downloading truststore-0.10.5-py3-none-any.whl (19 kB)
+2026-11-01T09:55:57.5980246Z Collecting typer==0.27.3 (from -r docs/small-model-gpu-requirements.txt (line 56))
+2026-11-01T09:55:57.6010739Z   Downloading typer-0.27.3-py3-none-any.whl (123 kB)
+2026-11-01T09:55:57.6227738Z Collecting typing_extensions==4.16.0 (from -r docs/small-model-gpu-requirements.txt (line 57))
+2026-11-01T09:55:57.6257964Z   Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+2026-11-01T09:55:57.7077057Z Saved ./.local/cuda-wheels/accelerate-1.15.0-py3-none-any.whl
+2026-11-01T09:55:57.7080568Z Saved ./.local/cuda-wheels/annotated_doc-0.0.5-py3-none-any.whl
+2026-11-01T09:55:57.7086314Z Saved ./.local/cuda-wheels/anyio-4.15.1-py3-none-any.whl
+2026-11-01T09:55:57.7090870Z Saved ./.local/cuda-wheels/click-8.5.0-py3-none-any.whl
+2026-11-01T09:55:57.7118000Z Saved ./.local/cuda-wheels/cuda_bindings-12.9.10-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl
+2026-11-01T09:55:57.7122360Z Saved ./.local/cuda-wheels/cuda_pathfinder-1.8.4-py3-none-any.whl
+2026-11-01T09:55:57.7126626Z Saved ./.local/cuda-wheels/cuda_toolkit-12.6.3-py2.py3-none-any.whl
+2026-11-01T09:55:57.7131096Z Saved ./.local/cuda-wheels/filelock-4.2.4-py3-none-any.whl
+2026-11-01T09:55:57.7136269Z Saved ./.local/cuda-wheels/fsspec-2026.9.0-py3-none-any.whl
+2026-11-01T09:55:57.7140398Z Saved ./.local/cuda-wheels/h11-0.16.0-py3-none-any.whl
+2026-11-01T09:55:57.7157917Z Saved ./.local/cuda-wheels/hf_xet-1.7.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+2026-11-01T09:55:57.7162312Z Saved ./.local/cuda-wheels/httpcore2-2.16.0-py3-none-any.whl
+2026-11-01T09:55:57.7166809Z Saved ./.local/cuda-wheels/httpx2-2.16.0-py3-none-any.whl
+2026-11-01T09:55:57.7173983Z Saved ./.local/cuda-wheels/huggingface_hub-2.3.0-py3-none-any.whl
+2026-11-01T09:55:57.7178120Z Saved ./.local/cuda-wheels/idna-3.20-py3-none-any.whl
+2026-11-01T09:55:57.7183074Z Saved ./.local/cuda-wheels/jinja2-3.1.6-py3-none-any.whl
+2026-11-01T09:55:57.7187358Z Saved ./.local/cuda-wheels/markdown_it_py-4.2.0-py3-none-any.whl
+2026-11-01T09:55:57.7191240Z Saved ./.local/cuda-wheels/mdurl-0.1.2-py3-none-any.whl
+2026-11-01T09:55:57.7196104Z Saved ./.local/cuda-wheels/markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+2026-11-01T09:55:57.7201316Z Saved ./.local/cuda-wheels/mpmath-1.3.0-py3-none-any.whl
+2026-11-01T09:55:57.7211695Z Saved ./.local/cuda-wheels/networkx-3.6.1-py3-none-any.whl
+2026-11-01T09:55:57.7265735Z Saved ./.local/cuda-wheels/numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
+2026-11-01T09:55:57.8464164Z Saved ./.local/cuda-wheels/nvidia_cublas_cu12-12.6.4.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+2026-11-01T09:55:57.8497658Z Saved ./.local/cuda-wheels/nvidia_cuda_cupti_cu12-12.6.80-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+2026-11-01T09:55:57.8573196Z Saved ./.local/cuda-wheels/nvidia_cuda_nvrtc_cu12-12.6.85-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl
+2026-11-01T09:55:57.8581122Z Saved ./.local/cuda-wheels/nvidia_cuda_runtime_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+2026-11-01T09:55:58.1463494Z Saved ./.local/cuda-wheels/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl
+2026-11-01T09:55:58.6487217Z Saved ./.local/cuda-wheels/nvidia_cufft_cu12-11.3.0.4-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+2026-11-01T09:55:58.6698776Z Saved ./.local/cuda-wheels/nvidia_cufile_cu12-1.11.1.6-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+2026-11-01T09:55:58.7666226Z Saved ./.local/cuda-wheels/nvidia_curand_cu12-10.3.7.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+2026-11-01T09:55:59.1847025Z Saved ./.local/cuda-wheels/nvidia_cusolver_cu12-11.7.1.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+2026-11-01T09:55:59.6728950Z Saved ./.local/cuda-wheels/nvidia_cusparse_cu12-12.5.4.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+2026-11-01T09:56:00.3348495Z Saved ./.local/cuda-wheels/nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl
+2026-11-01T09:56:00.9683120Z Saved ./.local/cuda-wheels/nvidia_nccl_cu12-2.29.3-py3-none-manylinux_2_18_x86_64.whl
+2026-11-01T09:56:01.0232479Z Saved ./.local/cuda-wheels/nvidia_nvjitlink_cu12-12.6.85-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl
+2026-11-01T09:56:01.3251181Z Saved ./.local/cuda-wheels/nvidia_nvshmem_cu12-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+2026-11-01T09:56:01.3255910Z Saved ./.local/cuda-wheels/nvidia_nvtx_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+2026-11-01T09:56:01.3260351Z Saved ./.local/cuda-wheels/packaging-26.3-py3-none-any.whl
+2026-11-01T09:56:01.3270172Z Saved ./.local/cuda-wheels/pip-25.0.1-py3-none-any.whl
+2026-11-01T09:56:01.3275586Z Saved ./.local/cuda-wheels/psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl
+2026-11-01T09:56:01.3283460Z Saved ./.local/cuda-wheels/pygments-2.21.0-py3-none-any.whl
+2026-11-01T09:56:01.3290141Z Saved ./.local/cuda-wheels/pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+2026-11-01T09:56:01.3297385Z Saved ./.local/cuda-wheels/regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+2026-11-01T09:56:01.3302190Z Saved ./.local/cuda-wheels/rich-15.0.0-py3-none-any.whl
+2026-11-01T09:56:01.3417507Z Saved ./.local/cuda-wheels/safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+2026-11-01T09:56:01.3425245Z Saved ./.local/cuda-wheels/setuptools-78.1.0-py3-none-any.whl
+2026-11-01T09:56:01.3429213Z Saved ./.local/cuda-wheels/shellingham-1.5.4-py2.py3-none-any.whl
+2026-11-01T09:56:01.3452964Z Saved ./.local/cuda-wheels/sympy-1.14.0-py3-none-any.whl
+2026-11-01T09:56:01.3620763Z Saved ./.local/cuda-wheels/tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+2026-11-01T09:56:03.2518528Z Saved ./.local/cuda-wheels/torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl
+2026-11-01T09:56:03.2523598Z Saved ./.local/cuda-wheels/tqdm-4.70.1-py3-none-any.whl
+2026-11-01T09:56:03.2841026Z Saved ./.local/cuda-wheels/transformers-5.20.2-py3-none-any.whl
+2026-11-01T09:56:03.7507226Z Saved ./.local/cuda-wheels/triton-3.7.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
+2026-11-01T09:56:03.7511816Z Saved ./.local/cuda-wheels/truststore-0.10.5-py3-none-any.whl
+2026-11-01T09:56:03.7516981Z Saved ./.local/cuda-wheels/typer-0.27.3-py3-none-any.whl
+2026-11-01T09:56:03.7521935Z Saved ./.local/cuda-wheels/typing_extensions-4.16.0-py3-none-any.whl
+2026-11-01T09:56:03.7529117Z Successfully downloaded accelerate annotated-doc anyio click cuda-bindings cuda-pathfinder cuda-toolkit filelock fsspec h11 hf-xet httpcore2 httpx2 huggingface_hub idna Jinja2 markdown-it-py mdurl MarkupSafe mpmath networkx numpy nvidia-cublas-cu12 nvidia-cuda-cupti-cu12 nvidia-cuda-nvrtc-cu12 nvidia-cuda-runtime-cu12 nvidia-cudnn-cu12 nvidia-cufft-cu12 nvidia-cufile-cu12 nvidia-curand-cu12 nvidia-cusolver-cu12 nvidia-cusparse-cu12 nvidia-cusparselt-cu12 nvidia-nccl-cu12 nvidia-nvjitlink-cu12 nvidia-nvshmem-cu12 nvidia-nvtx-cu12 packaging pip psutil Pygments PyYAML regex rich safetensors setuptools shellingham sympy tokenizers torch tqdm transformers triton truststore typer typing_extensions
+2026-11-01T09:56:22.9265480Z ##[group]Run mkdir -p evidence .local
+2026-11-01T09:56:22.9265859Z [36;1mmkdir -p evidence .local[0m
+2026-11-01T09:56:22.9266346Z [36;1mgh api /repos/hynk-studio/backtrace/actions/artifacts/12640353622/zip > .local/readiness.zip[0m
+2026-11-01T09:56:22.9267137Z [36;1mpython -m tools.small_model_pretrained prepare .local/e2b .local/readiness.zip > evidence/preparation.json[0m
+2026-11-01T09:56:22.9267701Z [36;1mpython -m venv .local/model-runtime[0m
+2026-11-01T09:56:22.9268502Z [36;1m.local/model-runtime/bin/python -m pip install --no-index --no-deps --only-binary=:all: --require-hashes --find-links .local/cuda-wheels -r docs/small-model-gpu-requirements.txt[0m
+2026-11-01T09:56:22.9269503Z [36;1m.local/model-runtime/bin/python -m tools.small_model_gpu check-runtime > evidence/owner-runtime.json[0m
+2026-11-01T09:56:22.9270356Z [36;1m.local/model-runtime/bin/python -m tools.small_model_onecase plan-gpu-inputs .local/e2b > evidence/assignment-before-allocation.json[0m
+2026-11-01T09:56:22.9291903Z shell: /usr/bin/bash -e {0}
+2026-11-01T09:56:22.9292515Z env:
+2026-11-01T09:56:22.9292789Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:56:22.9293252Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T09:56:22.9293711Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:56:22.9294118Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:56:22.9294525Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:56:22.9294922Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T09:56:22.9297701Z   GH_TOKEN: ***
+2026-11-01T09:56:22.9297917Z ##[endgroup]
+2026-11-01T09:57:29.2714834Z Looking in links: .local/cuda-wheels
+2026-11-01T09:57:29.2840125Z Processing ./.local/cuda-wheels/accelerate-1.15.0-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 2))
+2026-11-01T09:57:29.3002940Z Processing ./.local/cuda-wheels/annotated_doc-0.0.5-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 3))
+2026-11-01T09:57:29.3074965Z Processing ./.local/cuda-wheels/anyio-4.15.1-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 4))
+2026-11-01T09:57:29.3111469Z Processing ./.local/cuda-wheels/click-8.5.0-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 5))
+2026-11-01T09:57:29.3139953Z Processing ./.local/cuda-wheels/cuda_bindings-12.9.10-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 6))
+2026-11-01T09:57:29.3355036Z Processing ./.local/cuda-wheels/cuda_pathfinder-1.8.4-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 7))
+2026-11-01T09:57:29.3380115Z Processing ./.local/cuda-wheels/cuda_toolkit-12.6.3-py2.py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 8))
+2026-11-01T09:57:29.3509961Z Processing ./.local/cuda-wheels/filelock-4.2.4-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 9))
+2026-11-01T09:57:29.3539682Z Processing ./.local/cuda-wheels/fsspec-2026.9.0-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 10))
+2026-11-01T09:57:29.3857199Z Processing ./.local/cuda-wheels/h11-0.16.0-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 11))
+2026-11-01T09:57:29.3887323Z Processing ./.local/cuda-wheels/hf_xet-1.7.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 12))
+2026-11-01T09:57:29.4014612Z Processing ./.local/cuda-wheels/httpcore2-2.16.0-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 13))
+2026-11-01T09:57:29.4062528Z Processing ./.local/cuda-wheels/httpx2-2.16.0-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 14))
+2026-11-01T09:57:29.4119041Z Processing ./.local/cuda-wheels/huggingface_hub-2.3.0-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 15))
+2026-11-01T09:57:29.4371902Z Processing ./.local/cuda-wheels/idna-3.20-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 16))
+2026-11-01T09:57:29.4409544Z Processing ./.local/cuda-wheels/jinja2-3.1.6-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 17))
+2026-11-01T09:57:29.4444488Z Processing ./.local/cuda-wheels/markdown_it_py-4.2.0-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 18))
+2026-11-01T09:57:29.4509665Z Processing ./.local/cuda-wheels/markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 19))
+2026-11-01T09:57:29.4533878Z Processing ./.local/cuda-wheels/mdurl-0.1.2-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 20))
+2026-11-01T09:57:29.4555425Z Processing ./.local/cuda-wheels/mpmath-1.3.0-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 21))
+2026-11-01T09:57:29.4606359Z Processing ./.local/cuda-wheels/networkx-3.6.1-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 22))
+2026-11-01T09:57:29.4784325Z Processing ./.local/cuda-wheels/numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 23))
+2026-11-01T09:57:29.5314616Z Processing ./.local/cuda-wheels/nvidia_cublas_cu12-12.6.4.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 24))
+2026-11-01T09:57:30.0943980Z Processing ./.local/cuda-wheels/nvidia_cuda_cupti_cu12-12.6.80-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 25))
+2026-11-01T09:57:30.1115931Z Processing ./.local/cuda-wheels/nvidia_cuda_nvrtc_cu12-12.6.85-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 26))
+2026-11-01T09:57:30.1487607Z Processing ./.local/cuda-wheels/nvidia_cuda_runtime_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 27))
+2026-11-01T09:57:30.1531380Z Processing ./.local/cuda-wheels/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 28))
+2026-11-01T09:57:31.1398133Z Processing ./.local/cuda-wheels/nvidia_cufft_cu12-11.3.0.4-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 29))
+2026-11-01T09:57:31.4210602Z Processing ./.local/cuda-wheels/nvidia_cufile_cu12-1.11.1.6-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 30))
+2026-11-01T09:57:31.4259595Z Processing ./.local/cuda-wheels/nvidia_curand_cu12-10.3.7.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 31))
+2026-11-01T09:57:31.5087088Z Processing ./.local/cuda-wheels/nvidia_cusolver_cu12-11.7.1.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 32))
+2026-11-01T09:57:31.7799031Z Processing ./.local/cuda-wheels/nvidia_cusparse_cu12-12.5.4.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 33))
+2026-11-01T09:57:32.0844660Z Processing ./.local/cuda-wheels/nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 34))
+2026-11-01T09:57:32.4865909Z Processing ./.local/cuda-wheels/nvidia_nccl_cu12-2.29.3-py3-none-manylinux_2_18_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 35))
+2026-11-01T09:57:32.8918743Z Processing ./.local/cuda-wheels/nvidia_nvjitlink_cu12-12.6.85-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 36))
+2026-11-01T09:57:32.9234730Z Processing ./.local/cuda-wheels/nvidia_nvshmem_cu12-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 37))
+2026-11-01T09:57:33.1208224Z Processing ./.local/cuda-wheels/nvidia_nvtx_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 38))
+2026-11-01T09:57:33.1230473Z Processing ./.local/cuda-wheels/packaging-26.3-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 39))
+2026-11-01T09:57:33.1251951Z Requirement already satisfied: pip==25.0.1 in ./.local/model-runtime/lib/python3.12/site-packages (from -r docs/small-model-gpu-requirements.txt (line 40)) (25.0.1)
+2026-11-01T09:57:33.1261253Z Processing ./.local/cuda-wheels/psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 41))
+2026-11-01T09:57:33.1331222Z Processing ./.local/cuda-wheels/pygments-2.21.0-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 42))
+2026-11-01T09:57:33.1398922Z Processing ./.local/cuda-wheels/pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 43))
+2026-11-01T09:57:33.1437042Z Processing ./.local/cuda-wheels/regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 44))
+2026-11-01T09:57:33.1484323Z Processing ./.local/cuda-wheels/rich-15.0.0-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 45))
+2026-11-01T09:57:33.1524331Z Processing ./.local/cuda-wheels/safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 46))
+2026-11-01T09:57:33.1615091Z Processing ./.local/cuda-wheels/setuptools-78.1.0-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 47))
+2026-11-01T09:57:33.1765420Z Processing ./.local/cuda-wheels/shellingham-1.5.4-py2.py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 48))
+2026-11-01T09:57:33.1787106Z Processing ./.local/cuda-wheels/sympy-1.14.0-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 49))
+2026-11-01T09:57:33.2005889Z Processing ./.local/cuda-wheels/tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 50))
+2026-11-01T09:57:33.2115962Z Processing ./.local/cuda-wheels/torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 51))
+2026-11-01T09:57:34.4505017Z Processing ./.local/cuda-wheels/tqdm-4.70.1-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 52))
+2026-11-01T09:57:34.4565145Z Processing ./.local/cuda-wheels/transformers-5.20.2-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 53))
+2026-11-01T09:57:34.5614826Z Processing ./.local/cuda-wheels/triton-3.7.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (from -r docs/small-model-gpu-requirements.txt (line 54))
+2026-11-01T09:57:34.8429453Z Processing ./.local/cuda-wheels/truststore-0.10.5-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 55))
+2026-11-01T09:57:34.8449826Z Processing ./.local/cuda-wheels/typer-0.27.3-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 56))
+2026-11-01T09:57:34.8483337Z Processing ./.local/cuda-wheels/typing_extensions-4.16.0-py3-none-any.whl (from -r docs/small-model-gpu-requirements.txt (line 57))
+2026-11-01T09:57:34.9029275Z Installing collected packages: nvidia-cusparselt-cu12, mpmath, cuda-toolkit, cuda-bindings, typing_extensions, typer, truststore, triton, transformers, tqdm, torch, tokenizers, sympy, shellingham, setuptools, safetensors, rich, regex, PyYAML, Pygments, psutil, packaging, nvidia-nvtx-cu12, nvidia-nvshmem-cu12, nvidia-nvjitlink-cu12, nvidia-nccl-cu12, nvidia-cusparse-cu12, nvidia-cusolver-cu12, nvidia-curand-cu12, nvidia-cufile-cu12, nvidia-cufft-cu12, nvidia-cudnn-cu12, nvidia-cuda-runtime-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-cupti-cu12, nvidia-cublas-cu12, numpy, networkx, mdurl, MarkupSafe, markdown-it-py, Jinja2, idna, huggingface_hub, httpx2, httpcore2, hf-xet, h11, fsspec, filelock, cuda-pathfinder, click, anyio, annotated-doc, accelerate
+2026-11-01T09:58:38.8457088Z Successfully installed Jinja2-3.1.6 MarkupSafe-3.0.4 PyYAML-6.0.3 Pygments-2.21.0 accelerate-1.15.0 annotated-doc-0.0.5 anyio-4.15.1 click-8.5.0 cuda-bindings-12.9.10 cuda-pathfinder-1.8.4 cuda-toolkit-12.6.3 filelock-4.2.4 fsspec-2026.9.0 h11-0.16.0 hf-xet-1.7.0 httpcore2-2.16.0 httpx2-2.16.0 huggingface_hub-2.3.0 idna-3.20 markdown-it-py-4.2.0 mdurl-0.1.2 mpmath-1.3.0 networkx-3.6.1 numpy-2.5.4 nvidia-cublas-cu12-12.6.4.1 nvidia-cuda-cupti-cu12-12.6.80 nvidia-cuda-nvrtc-cu12-12.6.85 nvidia-cuda-runtime-cu12-12.6.77 nvidia-cudnn-cu12-9.10.2.21 nvidia-cufft-cu12-11.3.0.4 nvidia-cufile-cu12-1.11.1.6 nvidia-curand-cu12-10.3.7.77 nvidia-cusolver-cu12-11.7.1.2 nvidia-cusparse-cu12-12.5.4.2 nvidia-cusparselt-cu12-0.7.1 nvidia-nccl-cu12-2.29.3 nvidia-nvjitlink-cu12-12.6.85 nvidia-nvshmem-cu12-3.4.5 nvidia-nvtx-cu12-12.6.77 packaging-26.3 psutil-7.2.2 regex-2026.9.29 rich-15.0.0 safetensors-0.8.0 setuptools-78.1.0 shellingham-1.5.4 sympy-1.14.0 tokenizers-0.23.3 torch-2.13.0+cu126 tqdm-4.70.1 transformers-5.20.2 triton-3.7.1 truststore-0.10.5 typer-0.27.3 typing_extensions-4.16.0
+2026-11-01T09:59:02.7295313Z ##[group]Run mode=free
+2026-11-01T09:59:02.7295611Z [36;1mmode=free[0m
+2026-11-01T09:59:02.7296043Z [36;1mif [ "$GITHUB_REF_NAME" = bt-001-reasoning-onecase-start-20261101 ]; then mode=paid; fi[0m
+2026-11-01T09:59:02.7296595Z [36;1mpython -m tools.small_model_onecase_scope owner "$mode"[0m
+2026-11-01T09:59:02.7616932Z shell: /usr/bin/bash -e {0}
+2026-11-01T09:59:02.7617247Z env:
+2026-11-01T09:59:02.7617583Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:59:02.7618156Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T09:59:02.7618723Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:59:02.7619230Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:59:02.7619736Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:59:02.7620245Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T09:59:02.7624602Z   GITHUB_TOKEN: ***
+2026-11-01T09:59:02.7625128Z   RUNPOD_API_KEY: ***
+
+2026-11-01T09:59:02.7625435Z ##[endgroup]
+2026-11-01T10:47:49.0580437Z {"status": "FAIL"}
+2026-11-01T10:47:49.0877407Z ##[error]Process completed with exit code 1.
+2026-11-01T10:47:49.0931340Z ##[group]Run python -m tools.small_model_provider evidence/account-after.json
+2026-11-01T10:47:49.0931920Z [36;1mpython -m tools.small_model_provider evidence/account-after.json[0m
+2026-11-01T10:47:49.0954049Z shell: /usr/bin/bash -e {0}
+2026-11-01T10:47:49.0954300Z env:
+2026-11-01T10:47:49.0954573Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:49.0955033Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T10:47:49.0955473Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:49.0955855Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:49.0956235Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:49.0956618Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T10:47:49.0957176Z   RUNPOD_API_KEY: ***
+
+2026-11-01T10:47:49.0957614Z ##[endgroup]
+2026-11-01T10:47:55.7141079Z {"allocation_requests": 0, "observation": {"account": {"auto_pay": false, "credit_balance_usd": "1.1925423895", "observed_at": "2026-11-01T10:47:49Z", "spend_per_hour_usd": "0"}, "account_idle": true, "allocation_requests": 0, "candidate_gpus": [{"id": "NVIDIA RTX A5000", "memoryInGb": 24, "secureCloud": true, "securePrice": 0.27}, {"id": "NVIDIA GeForce RTX 3090", "memoryInGb": 24, "secureCloud": true, "securePrice": 0.5}, {"id": "NVIDIA A40", "memoryInGb": 48, "secureCloud": true, "securePrice": 0.59}, {"id": "NVIDIA L4", "memoryInGb": 24, "secureCloud": true, "securePrice": 0.59}, {"id": "NVIDIA RTX A6000", "memoryInGb": 48, "secureCloud": true, "securePrice": 0.59}, {"id": "NVIDIA L40", "memoryInGb": 48, "secureCloud": true, "securePrice": 0.82}, {"id": "NVIDIA GeForce RTX 4090", "memoryInGb": 24, "secureCloud": true, "securePrice": 0.89}, {"id": "NVIDIA L40S", "memoryInGb": 48, "secureCloud": true, "securePrice": 1.09}], "excluded_or_unqueried_pairs": 1, "hardware_capabilities": "NOT_OBSERVED", "inventory": {"complete_paginated_list": true, "observed_at": "2026-11-01T10:47:55Z", "pod_count": 0, "resource_mutations": 0}, "launch_enabled": false, "maximum_pairs": 32, "offers": [{"broad_stock": {"available": true, "status": "Low"}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L4", "observed_at": "2026-11-01T10:47:50Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "EU-RO-1", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "0.89", "compute_within_proposal": true, "exact_quote": {"availableGpuCounts": null, "minMemory": 125, "minVcpu": 32, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 0.89}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T10:47:50Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667", "proposed_3000s_compute_usd": "0.7416666666666666666666666667", "region": "EU-CZ-1", "reported_gpu_gb": 24, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "0.89", "compute_within_proposal": true, "exact_quote": {"availableGpuCounts": null, "minMemory": 46, "minVcpu": 8, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 0.89}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T10:47:50Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667", "proposed_3000s_compute_usd": "0.7416666666666666666666666667", "region": "EU-RO-1", "reported_gpu_gb": 24, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA GeForce RTX 3090", "observed_at": "2026-11-01T10:47:50Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "EU-CZ-1", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA RTX A6000", "observed_at": "2026-11-01T10:47:50Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "EU-RO-1", "reported_gpu_gb": 48, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L40S", "observed_at": "2026-11-01T10:47:50Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "EU-NL-1", "reported_gpu_gb": 48, "stock_eligible": false}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "0.89", "compute_within_proposal": true, "exact_quote": {"availableGpuCounts": null, "minMemory": 62, "minVcpu": 16, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 0.89}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T10:47:51Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667", "proposed_3000s_compute_usd": "0.7416666666666666666666666667", "region": "EUR-IS-1", "reported_gpu_gb": 24, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "0.89", "compute_within_proposal": true, "exact_quote": {"availableGpuCounts": null, "minMemory": 100, "minVcpu": 9, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 0.89}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T10:47:51Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667", "proposed_3000s_compute_usd": "0.7416666666666666666666666667", "region": "EUR-IS-2", "reported_gpu_gb": 24, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "0.89", "compute_within_proposal": true, "exact_quote": {"availableGpuCounts": null, "minMemory": 41, "minVcpu": 21, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 0.89}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T10:47:51Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667", "proposed_3000s_compute_usd": "0.7416666666666666666666666667", "region": "US-IL-1", "reported_gpu_gb": 24, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "0.89", "compute_within_proposal": true, "exact_quote": {"availableGpuCounts": null, "minMemory": 62, "minVcpu": 16, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 0.89}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T10:47:51Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667", "proposed_3000s_compute_usd": "0.7416666666666666666666666667", "region": "US-NC-1", "reported_gpu_gb": 24, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "1.09", "compute_within_proposal": false, "exact_quote": {"availableGpuCounts": null, "minMemory": 125, "minVcpu": 18, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 1.09}, "gpu": "NVIDIA L40S", "observed_at": "2026-11-01T10:47:51Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333", "proposed_3000s_compute_usd": "0.9083333333333333333333333333", "region": "EUR-IS-2", "reported_gpu_gb": 48, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "1.09", "compute_within_proposal": false, "exact_quote": {"availableGpuCounts": null, "minMemory": 94, "minVcpu": 16, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 1.09}, "gpu": "NVIDIA L40S", "observed_at": "2026-11-01T10:47:51Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333", "proposed_3000s_compute_usd": "0.9083333333333333333333333333", "region": "OC-AU-1", "reported_gpu_gb": 48, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "1.09", "compute_within_proposal": false, "exact_quote": {"availableGpuCounts": null, "minMemory": 62, "minVcpu": 16, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 1.09}, "gpu": "NVIDIA L40S", "observed_at": "2026-11-01T10:47:52Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333", "proposed_3000s_compute_usd": "0.9083333333333333333333333333", "region": "US-TX-3", "reported_gpu_gb": 48, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "1.09", "compute_within_proposal": false, "exact_quote": {"availableGpuCounts": null, "minMemory": 188, "minVcpu": 16, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 1.09}, "gpu": "NVIDIA L40S", "observed_at": "2026-11-01T10:47:52Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333", "proposed_3000s_compute_usd": "0.9083333333333333333333333333", "region": "US-TX-4", "reported_gpu_gb": 48, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA RTX A5000", "observed_at": "2026-11-01T10:47:52Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-CA-2", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA RTX A5000", "observed_at": "2026-11-01T10:47:52Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-IL-1", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA GeForce RTX 3090", "observed_at": "2026-11-01T10:47:52Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "EUR-IS-2", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA A40", "observed_at": "2026-11-01T10:47:53Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-MO-1", "reported_gpu_gb": 48, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L4", "observed_at": "2026-11-01T10:47:53Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "EUR-IS-1", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L4", "observed_at": "2026-11-01T10:47:53Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "EUR-IS-2", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L4", "observed_at": "2026-11-01T10:47:53Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-GA-2", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L4", "observed_at": "2026-11-01T10:47:53Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-MO-2", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA RTX A6000", "observed_at": "2026-11-01T10:47:53Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-KS-2", "reported_gpu_gb": 48, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA RTX A6000", "observed_at": "2026-11-01T10:47:54Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-TX-1", "reported_gpu_gb": 48, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L40", "observed_at": "2026-11-01T10:47:54Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "EUR-IS-2", "reported_gpu_gb": 48, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L40", "observed_at": "2026-11-01T10:47:54Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-KS-2", "reported_gpu_gb": 48, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T10:47:54Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "CA-MTL-3", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T10:47:54Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "EUR-NO-1", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T10:47:54Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-CA-2", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T10:47:55Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-TX-3", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L40S", "observed_at": "2026-11-01T10:47:55Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-IL-1", "reported_gpu_gb": 48, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L40S", "observed_at": "2026-11-01T10:47:55Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-MO-1", "reported_gpu_gb": 48, "stock_eligible": false}], "proposal_funded": false, "quote_constraints": {"container_disk_gb": 100, "gpu_count": 1, "minimum_cuda": "12.8", "minimum_gpu_gb": 24, "minimum_ram_gb": 32, "minimum_vcpu": 8, "public_ip": true, "secure_cloud": true, "volume_gb": 0}, "schema": "small-model-provider-read-v1", "settings_changed": false, "stage": "COMPLETE", "status": "PASS_READ_ONLY", "storage_basis": "Published USD0.10/GB/month; USD0.015/hour for 100GB rounds up a 28-day month. Projection, not a provider quote; taxes/other charges not established."}, "resource_mutations": 0, "run_id": "41295195306", "source_sha": "ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2", "status": "PASS"}
+2026-11-01T10:47:55.7333665Z ##[group]Run python -m tools.small_model_onecase preserve evidence/minimum-owner/remote
+2026-11-01T10:47:55.7334477Z [36;1mpython -m tools.small_model_onecase preserve evidence/minimum-owner/remote[0m
+2026-11-01T10:47:55.7355555Z shell: /usr/bin/bash -e {0}
+2026-11-01T10:47:55.7355809Z env:
+2026-11-01T10:47:55.7356084Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.7356533Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T10:47:55.7357001Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.7357396Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.7357783Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.7358173Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T10:47:55.7358501Z ##[endgroup]
+2026-11-01T10:47:55.8365467Z {"preserved_files": 0}
+2026-11-01T10:47:55.8540658Z ##[group]Run python - <<'PYARCHIVE'
+2026-11-01T10:47:55.8541254Z [36;1mpython - <<'PYARCHIVE'[0m
+2026-11-01T10:47:55.8541726Z [36;1mfrom pathlib import Path[0m
+2026-11-01T10:47:55.8542493Z [36;1mimport base64,hashlib,io,json,zipfile[0m
+2026-11-01T10:47:55.8542837Z [36;1mstream=io.BytesIO()[0m
+2026-11-01T10:47:55.8543207Z [36;1mwith zipfile.ZipFile(stream,'w',zipfile.ZIP_DEFLATED) as archive:[0m
+2026-11-01T10:47:55.8543661Z [36;1m    for p in sorted(Path('evidence').rglob('*')):[0m
+2026-11-01T10:47:55.8544365Z [36;1m        if (p.is_file() and not p.is_symlink() and p.suffix in ('.json','.jsonl','.log')[0m
+2026-11-01T10:47:55.8545531Z [36;1m                and p.name not in ('endpoint.json','collector-input.json') and p.stat().st_size<=16*1024**2):[0m
+2026-11-01T10:47:55.8546601Z [36;1m            archive.write(p,p.relative_to('evidence').as_posix())[0m
+2026-11-01T10:47:55.8547277Z [36;1mraw=stream.getvalue()[0m
+2026-11-01T10:47:55.8547983Z [36;1mif len(raw)>8*1024**2:raise ValueError('evidence archive exceeds bound')[0m
+2026-11-01T10:47:55.8548745Z [36;1mencoded=base64.b64encode(raw).decode()[0m
+2026-11-01T10:47:55.8549722Z [36;1mprint('TRAINABILITY_ARCHIVE_META '+json.dumps({'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}))[0m
+2026-11-01T10:47:55.8551109Z [36;1mfor i in range(0,len(encoded),48000):print('TRAINABILITY_ARCHIVE_CHUNK '+str(i//48000)+' '+encoded[i:i+48000])[0m
+2026-11-01T10:47:55.8552309Z [36;1mPYARCHIVE[0m
+2026-11-01T10:47:55.8580713Z shell: /usr/bin/bash -e {0}
+2026-11-01T10:47:55.8581167Z env:
+2026-11-01T10:47:55.8581644Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.8582758Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T10:47:55.8583558Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.8584260Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.8584963Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.8585695Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T10:47:55.8586296Z ##[endgroup]
+2026-11-01T10:47:55.9009066Z TRAINABILITY_ARCHIVE_META {"bytes": 23357, "sha256": "6387ba6200aaf8f9086503e128915f4bfd42cb12027752238d18a4a87bbc79cf"}
+2026-11-01T10:47:55.9168433Z TRAINABILITY_ARCHIVE_CHUNK 0 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
+2026-11-01T10:47:55.9397042Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-11-01T10:47:55.9397478Z with:
+2026-11-01T10:47:55.9397852Z   name: small-e2b-onecase-cpu-owner-ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2-1
+2026-11-01T10:47:55.9398549Z   path: evidence/**/*.json
+evidence/**/*.jsonl
+evidence/**/*.log
+!evidence/**/endpoint.json
+!evidence/**/collector-input.json
+
+2026-11-01T10:47:55.9399083Z   retention-days: 14
+2026-11-01T10:47:55.9399308Z   if-no-files-found: warn
+2026-11-01T10:47:55.9399547Z   compression-level: 6
+2026-11-01T10:47:55.9399772Z   overwrite: false
+2026-11-01T10:47:55.9399990Z   include-hidden-files: false
+2026-11-01T10:47:55.9400219Z env:
+2026-11-01T10:47:55.9400474Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.9400919Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T10:47:55.9401348Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.9401768Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.9402397Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.9402789Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T10:47:55.9403114Z ##[endgroup]
+2026-11-01T10:47:56.1221221Z (node:7127) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-01T10:47:56.1222792Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-01T10:47:56.1384778Z With the provided path, there will be 7 files uploaded
+2026-11-01T10:47:56.1385594Z Artifact name is valid!
+2026-11-01T10:47:56.1386001Z Root directory input is valid!
+2026-11-01T10:47:56.3631100Z Beginning upload of artifact content to blob storage
+2026-11-01T10:47:56.4001944Z (node:7127) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-01T10:47:56.4491863Z Uploaded bytes 22937
+2026-11-01T10:47:56.4673592Z Finished uploading artifact content to blob storage!
+2026-11-01T10:47:56.4674975Z SHA256 digest of uploaded artifact zip is 932311ba9bd4d3d765732b29f4689581ea14961672a634d055f590550c495891
+2026-11-01T10:47:56.4676915Z Finalizing artifact upload
+2026-11-01T10:47:56.8651646Z Artifact small-e2b-onecase-cpu-owner-ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2-1.zip successfully finalized. Artifact ID 13080462341
+2026-11-01T10:47:56.8653875Z Artifact small-e2b-onecase-cpu-owner-ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2-1 has been successfully uploaded! Final size is 22937 bytes. Artifact ID is 13080462341
+2026-11-01T10:47:56.8657931Z Artifact download URL: https://github.com/hynk-studio/backtrace/actions/runs/41295195306/artifacts/13080462341
+2026-11-01T10:47:56.8879129Z Post job cleanup.
+2026-11-01T10:47:56.9783310Z [command]/usr/bin/git version
+2026-11-01T10:47:56.9838162Z git version 2.56.0
+2026-11-01T10:47:56.9879415Z Temporarily overriding HOME='/home/runner/work/_temp/cfdc4799-3ed2-4c66-8e22-79c97251f6c0' before making global git config changes
+2026-11-01T10:47:56.9880816Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-01T10:47:56.9884811Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/backtrace/backtrace
+2026-11-01T10:47:56.9927841Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-01T10:47:56.9983224Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-01T10:47:57.0277290Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-01T10:47:57.0319471Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-01T10:47:57.0598648Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-01T10:47:57.0680117Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-01T10:47:57.1122399Z Cleaning up orphan processes
+2026-11-01T10:47:57.1728256Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -1,5 +1,36 @@
 # Backtrace working agreement
 
+
+## One-case reasoning attempt blocked; cleanup complete (2026-11-01)
+
+Read docs/small-model-onecase-result-20261101.md and Draft #53. Exact source
+ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2 passed all 767 native tests, pinned input
+checks, the random CPU training/reload control and independent free cleanup.
+Actual run 41295195306 made one Pod POST and received HTTP400 before any Pod ID,
+hardware check, training update or generation. Both original BASE/Q4 assignments
+are NOT_RUN. No reasoning failure or success is established by this attempt.
+
+Both independent controllers completed their full unknown-create observation
+with NO_RESOURCE_OBSERVED and two final absence reads each. The complete final
+inventory is empty; hourly spend is zero, autopay off. Balance is
+USD1.1925423895; observed run debit USD0.0000000000,
+subject to settlement lag. Continuation debit remains
+USD1.7135017444 of the USD2.30 cap.
+
+The executed client discarded the rejection body; two read-only audit checks
+returned no matching entries. The specific cause remains unknown. Draft #54
+adds bounded redacted problem evidence while preserving the frozen client,
+one-create behavior and full cleanup. Offline run 41298060217 passed all 775
+tests plus CPU preflight; 64 focused tests passed. This cannot recover the old
+response or qualify reasoning. Keep the initial failed fix CI evidence too.
+
+The source/start/permit/claim are consumed and immutable. No automatic paid
+retry, top-up, main merge or Augnes write. A later actual diagnostic requires a
+new prospective scope and exact-source qualification, fresh budget/inventory
+and explicit permitted admission. The next research gate remains a complete
+correct free-generated answer for the fixed training example. The separate
+Augnes connection blocker still prevents actual service-value comparison.
+
 ## Trainability diagnostic complete: format fit, reasoning still fails (2026-11-01)
 
 Read docs/small-model-trainability-result-20261101.md and Draft #52, stacked on

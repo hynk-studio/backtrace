@@ -409,17 +409,20 @@ def trainability_delta(model, count):
 
 
 def trainability_train(model, tokenizer, spec):
-    """Full-target repeated SFT with losses measured on the same sixteen rows."""
+    """Full-target repeated SFT under one of two immutable diagnostic profiles."""
     import base64
     import tempfile
     import torch
     from safetensors.torch import save_file, load_file
+    onecase = spec.get('schema') == 'reasoning_onecase_adapter_v1'
+    rows_count, steps = (1, 640) if onecase else (16, 640)
     keys = {'schema','arm','rows','rank','steps','seed','learning_rate','maximum_tokens','projection_count'}
-    if (set(spec) != keys or spec['schema'] != 'trainability_adapter_v1' or spec['arm'] not in ('Q1','Q4')
+    if (set(spec) != keys or spec['schema'] not in ('trainability_adapter_v1','reasoning_onecase_adapter_v1')
+            or spec['arm'] not in (('Q4',) if onecase else ('Q1','Q4'))
             or spec['projection_count'] != {'Q1':1,'Q4':4}[spec['arm']] or spec['rank'] != 4
-            or spec['steps'] != 640 or spec['seed'] != 17 or spec['learning_rate'] != 0.01
-            or spec['maximum_tokens'] != 3072 or len(spec['rows']) != 16):
-        raise ValueError('fixed sixteen-row, 640-update diagnostic required')
+            or spec['steps'] != steps or spec['seed'] != 17 or spec['learning_rate'] != 0.01
+            or spec['maximum_tokens'] != 3072 or len(spec['rows']) != rows_count):
+        raise ValueError('fixed sixteen-row/640 or reasoning-only one-row/640 diagnostic required')
     encoded = []; seen = set()
     for row in spec['rows']:
         if (set(row) != {'id','messages','answer','sequence_sha256','prompt_tokens','answer_tokens'}
@@ -431,7 +434,7 @@ def trainability_train(model, tokenizer, spec):
                 or batch['prompt_tokens'] != row['prompt_tokens'] or batch['completion_tokens'] != row['answer_tokens']):
             raise ValueError('full-target token identity changed')
         encoded.append(batch)
-    if sum(len(r['input_ids']) for r in encoded) * 40 > 1_000_000:
+    if sum(len(r['input_ids']) for r in encoded) * (steps // rows_count) > 1_000_000:
         raise ValueError('training token ceiling exceeded')
     names, deltas, device = trainability_delta(model, spec['projection_count'])
     original = {k:v.detach().clone() for k,v in deltas.state_dict().items()}
@@ -460,8 +463,8 @@ def trainability_train(model, tokenizer, spec):
     print(json.dumps({'phase':'TRAINABILITY_FIXED_LOSS','arm':spec['arm'],'stage':'before',
                       'measurement':before}),file=sys.stderr,flush=True)
     if device.type == 'cuda': torch.cuda.reset_peak_memory_stats()
-    for step in range(640):
-        index = step % 16; batch = encoded[index]
+    for step in range(steps):
+        index = step % rows_count; batch = encoded[index]
         for parameter in deltas.parameters(): parameter.grad = None
         loss = model(**tensors(batch), use_cache=False).loss
         if not torch.isfinite(loss): raise ValueError('nonfinite diagnostic loss')
@@ -473,7 +476,7 @@ def trainability_train(model, tokenizer, spec):
             for parameter in deltas.parameters(): parameter.add_(parameter.grad, alpha=-0.01)
         losses.append(float(loss.detach())); norms.append(float(norm))
         print(json.dumps({'phase':'TRAINABILITY_UPDATE_FINISHED','arm':spec['arm'],'step':step+1,
-            'epoch':step//16+1,'id':spec['rows'][index]['id'],'loss':losses[-1],
+            'epoch':step//rows_count+1,'id':spec['rows'][index]['id'],'loss':losses[-1],
             'gradient_norm':norms[-1],'elapsed_seconds':time.monotonic()-started}),file=sys.stderr,flush=True)
     for parameter in deltas.parameters(): parameter.grad = None
     after = fixed_loss(); trained_logits = candidate_logits(model, probe, device)
@@ -499,7 +502,7 @@ def trainability_train(model, tokenizer, spec):
     if not torch.equal(trained_logits, candidate_logits(model, probe, device)):
         raise ValueError('diagnostic adapter reload changed logits')
     if device.type == 'cuda': torch.cuda.synchronize()
-    return {'status':'PASS_TRAINABILITY_UPDATES','arm':spec['arm'],'training_steps':640,'updates_in_worker':640,
+    return {'status':'PASS_TRAINABILITY_UPDATES','arm':spec['arm'],'training_steps':steps,'updates_in_worker':steps,
         'rank':4,'projection_count':spec['projection_count'],'target_modules':names,'seed':17,
         'optimizer':'SGD','learning_rate':0.01,'trainable_parameters':sum(p.numel() for p in deltas.parameters()),
         'training_input_sha256':hashlib.sha256(canonical(spec)).hexdigest(),
@@ -520,11 +523,14 @@ def trainability_restore(model, tokenizer, spec):
     import tempfile
     import torch
     from safetensors.torch import load_file
+    onecase = spec.get('schema') == 'reasoning_onecase_restore_v1'
+    steps = 640
     keys = {'schema','arm','training_steps','training_input_sha256','adapter_bytes','adapter_sha256',
             'adapter_safetensors_base64','target_modules','projection_count','probe_messages',
             'probe_input_ids_sha256','trained_probe_logits_sha256'}
-    if (set(spec) != keys or spec['schema'] != 'trainability_restore_v1' or spec['arm'] not in ('Q1','Q4')
-            or spec['projection_count'] != {'Q1':1,'Q4':4}[spec['arm']] or spec['training_steps'] != 640
+    if (set(spec) != keys or spec['schema'] not in ('trainability_restore_v1','reasoning_onecase_restore_v1')
+            or spec['arm'] not in (('Q4',) if onecase else ('Q1','Q4'))
+            or spec['projection_count'] != {'Q1':1,'Q4':4}[spec['arm']] or spec['training_steps'] != steps
             or type(spec['adapter_bytes']) is not int or not 0 < spec['adapter_bytes'] <= 524288
             or len(spec['adapter_safetensors_base64']) > 700000
             or any(not re.fullmatch('[0-9a-f]{64}',spec[k]) for k in
@@ -551,7 +557,7 @@ def trainability_restore(model, tokenizer, spec):
     if observed != spec['trained_probe_logits_sha256']: raise ValueError('fresh diagnostic logits mismatch')
     deltas.requires_grad_(False)
     return {'status':'PASS_FRESH_PROCESS_TRAINABILITY_RELOAD','arm':spec['arm'],
-        'training_steps':640,'updates_in_worker':0,'adapter_bytes':len(raw),'adapter_sha256':spec['adapter_sha256'],
+        'training_steps':steps,'updates_in_worker':0,'adapter_bytes':len(raw),'adapter_sha256':spec['adapter_sha256'],
         'training_input_sha256':spec['training_input_sha256'],'target_modules':names,
         'projection_count':spec['projection_count'],'probe_input_ids_sha256':spec['probe_input_ids_sha256'],
         'observed_probe_logits_sha256':observed,'capability_claim':'NOT_ESTABLISHED'}
