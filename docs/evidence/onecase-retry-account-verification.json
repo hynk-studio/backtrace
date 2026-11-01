@@ -1,0 +1,139 @@
+{
+  "allocation_requests": 0,
+  "limit": "Historical observations of queried routes; stock is not reserved and can change.",
+  "observations": [
+    {
+      "account_observed_at": "2026-11-01T10:57:26Z",
+      "admission": {
+        "reason": "no fresh affordable >=40GB product meets the reported-24GiB hardware floor",
+        "status": "NO_ADMISSIBLE_OFFER"
+      },
+      "credit_balance_usd": "1.1925423895",
+      "inventory_observed_at": "2026-11-01T10:57:33Z",
+      "large_available_offers": [
+        {
+          "gpu": "NVIDIA L40S",
+          "maximum_projection_usd": "0.9208333333333333333333333333",
+          "region": "OC-AU-1"
+        },
+        {
+          "gpu": "NVIDIA L40S",
+          "maximum_projection_usd": "0.9208333333333333333333333333",
+          "region": "US-MO-1"
+        },
+        {
+          "gpu": "NVIDIA L40S",
+          "maximum_projection_usd": "0.9208333333333333333333333333",
+          "region": "US-TX-4"
+        }
+      ],
+      "remaining_continuation_budget_usd": "0.5864982556",
+      "run_id": 41299702623,
+      "source_sha": "22984730b1f5f8ed124f2156a7c6ae35b4944b12"
+    },
+    {
+      "account_observed_at": "2026-11-01T11:04:05Z",
+      "admission": {
+        "reason": "no fresh affordable >=40GB product meets the reported-24GiB hardware floor",
+        "status": "NO_ADMISSIBLE_OFFER"
+      },
+      "credit_balance_usd": "1.1925423895",
+      "inventory_observed_at": "2026-11-01T11:04:13Z",
+      "large_available_offers": [
+        {
+          "gpu": "NVIDIA L40",
+          "maximum_projection_usd": "0.6958333333333333333333333333",
+          "region": "EUR-IS-2"
+        },
+        {
+          "gpu": "NVIDIA L40S",
+          "maximum_projection_usd": "0.9208333333333333333333333333",
+          "region": "EUR-IS-2"
+        },
+        {
+          "gpu": "NVIDIA L40S",
+          "maximum_projection_usd": "0.9208333333333333333333333333",
+          "region": "OC-AU-1"
+        },
+        {
+          "gpu": "NVIDIA L40S",
+          "maximum_projection_usd": "0.9208333333333333333333333333",
+          "region": "US-MO-1"
+        },
+        {
+          "gpu": "NVIDIA L40S",
+          "maximum_projection_usd": "0.9208333333333333333333333333",
+          "region": "US-TX-4"
+        }
+      ],
+      "remaining_continuation_budget_usd": "0.5864982556",
+      "run_id": 41300198271,
+      "source_sha": "0fbc2e7ba051b781d40b590e68387ee21dc01496"
+    },
+    {
+      "account_observed_at": "2026-11-01T11:10:22Z",
+      "admission": {
+        "reason": "no fresh affordable >=40GB product meets the reported-24GiB hardware floor",
+        "status": "NO_ADMISSIBLE_OFFER"
+      },
+      "credit_balance_usd": "1.1925423895",
+      "inventory_observed_at": "2026-11-01T11:10:30Z",
+      "large_available_offers": [
+        {
+          "gpu": "NVIDIA L40S",
+          "maximum_projection_usd": "0.9208333333333333333333333333",
+          "region": "EUR-IS-2"
+        },
+        {
+          "gpu": "NVIDIA L40S",
+          "maximum_projection_usd": "0.9208333333333333333333333333",
+          "region": "OC-AU-1"
+        },
+        {
+          "gpu": "NVIDIA L40S",
+          "maximum_projection_usd": "0.9208333333333333333333333333",
+          "region": "US-TX-4"
+        }
+      ],
+      "remaining_continuation_budget_usd": "0.5864982556",
+      "run_id": 41300677393,
+      "source_sha": "02211abebb424bc74f455c315f1cc48f29f6ec59"
+    },
+    {
+      "account_observed_at": "2026-11-01T11:12:15Z",
+      "admission": {
+        "reason": "no fresh affordable >=40GB product meets the reported-24GiB hardware floor",
+        "status": "NO_ADMISSIBLE_OFFER"
+      },
+      "credit_balance_usd": "1.1925423895",
+      "inventory_observed_at": "2026-11-01T11:12:24Z",
+      "large_available_offers": [
+        {
+          "gpu": "NVIDIA L40S",
+          "maximum_projection_usd": "0.9208333333333333333333333333",
+          "region": "EUR-IS-2"
+        },
+        {
+          "gpu": "NVIDIA L40S",
+          "maximum_projection_usd": "0.9208333333333333333333333333",
+          "region": "OC-AU-1"
+        },
+        {
+          "gpu": "NVIDIA L40S",
+          "maximum_projection_usd": "0.9208333333333333333333333333",
+          "region": "US-IL-1"
+        },
+        {
+          "gpu": "NVIDIA L40S",
+          "maximum_projection_usd": "0.9208333333333333333333333333",
+          "region": "US-TX-4"
+        }
+      ],
+      "remaining_continuation_budget_usd": "0.5864982556",
+      "run_id": 41300823362,
+      "source_sha": "7d68a09f73eb0e477a6b43533722083fa5570c06"
+    }
+  ],
+  "resource_mutations": 0,
+  "status": "PASS_RETRY_READ_ONLY_EVIDENCE"
+}

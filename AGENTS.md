@@ -1,21 +1,64 @@
 # Backtrace working agreement
 
 
-## Active one-case reasoning verification (2026-11-01)
+## Retry qualified; no in-budget GPU available (2026-11-01)
 
-The owner requested “다음 검증 진행해”. Read docs/small-model-onecase-20261101.md.
-Proceed from completed Draft #52 through exact-source free qualification, a new
-single-use scope, actual one-case Q4 training and fresh-process generation,
-independent deletion, scoring and a draft result PR. Do not stop at preparation.
-One deterministic train-only temporal-revision example, 640 full-target updates,
-BASE/Q4 two original assignments. A complete correct exact free-generated answer
-is required; falling loss or formatting success is insufficient. No held-out data.
+The owner explicitly requested “다시 하자”. Read
+`docs/small-model-onecase-retry-result-20261101.md` and Draft #55. Exact source
+08148b7245b772830319d3bdc90be3ad2c74ca51 passed all four qualification jobs in
+41299786120: 775 native tests, pinned inputs/checkpoint, random CPU training and
+fresh reload, ordinary-container controls, and independent free cleanup. All
+56 original members and 110 source Git blobs are verified. Keep this source fixed.
 
-Reuse the qualified lifecycle. Bound one allocation at USD0.55 and 3,000 seconds
-(2,580 work + 300 cleanup + 120 export), within continuation USD2.30 and projected
-credit floor USD0.6060441339. Refresh inventory/price/balance before admission.
-All prior sources/permits are consumed and immutable. No automatic paid retry,
-top-up, merge or Augnes write. Stop only for an independently unresolvable blocker.
+Four fresh read-only observations through 11:12:24 UTC found no admissible offer.
+Available L40S projects USD0.9208333333 over 3,000 seconds, above the USD0.55 retry
+cap and USD0.5864982556 remaining continuation envelope. Nominal 24GB products
+remain excluded by the existing reported-24GiB floor. Complete inventory is empty,
+hourly spend zero, autopay off and observed credit unchanged at USD1.1925423895.
+
+No retry start ref, paid permit, claim or Pod create exists. The owner's one-attempt
+instruction remains unused. Resume by refreshing inventory, balance and exact
+quotes; when unchanged admission passes, issue a fresh source-bound permit and
+start at 08148b7245b772830319d3bdc90be3ad2c74ca51, then finish collection, independent
+cleanup and scoring. Do not ask for another confirmation solely because stock
+was previously unavailable. No background launch or automation was established.
+
+Keep the same one fixed case, E2B/Q4, 640 updates, two BASE/Q4 assignments and
+strict complete-answer scoring. Preserve both prior NOT_RUN outcomes and all
+failure evidence. Additional USD0.55, continuation USD2.30, projected credit floor
+USD0.6060441339 and original 3000/2580/300/120 second bounds remain fixed. A source
+change requires exact-source qualification. No automatic paid retry after a
+consumed attempt, top-up, main merge or Augnes write.
+
+## One-case reasoning attempt blocked; cleanup complete (2026-11-01)
+
+Read docs/small-model-onecase-result-20261101.md and Draft #53. Exact source
+ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2 passed all 767 native tests, pinned input
+checks, the random CPU training/reload control and independent free cleanup.
+Actual run 41295195306 made one Pod POST and received HTTP400 before any Pod ID,
+hardware check, training update or generation. Both original BASE/Q4 assignments
+are NOT_RUN. No reasoning failure or success is established by this attempt.
+
+Both independent controllers completed their full unknown-create observation
+with NO_RESOURCE_OBSERVED and two final absence reads each. The complete final
+inventory is empty; hourly spend is zero, autopay off. Balance is
+USD1.1925423895; observed run debit USD0.0000000000,
+subject to settlement lag. Continuation debit remains
+USD1.7135017444 of the USD2.30 cap.
+
+The executed client discarded the rejection body; two read-only audit checks
+returned no matching entries. The specific cause remains unknown. Draft #54
+adds bounded redacted problem evidence while preserving the frozen client,
+one-create behavior and full cleanup. Offline run 41298060217 passed all 775
+tests plus CPU preflight; 64 focused tests passed. This cannot recover the old
+response or qualify reasoning. Keep the initial failed fix CI evidence too.
+
+The source/start/permit/claim are consumed and immutable. No automatic paid
+retry, top-up, main merge or Augnes write. A later actual diagnostic requires a
+new prospective scope and exact-source qualification, fresh budget/inventory
+and explicit permitted admission. The next research gate remains a complete
+correct free-generated answer for the fixed training example. The separate
+Augnes connection blocker still prevents actual service-value comparison.
 
 ## Trainability diagnostic complete: format fit, reasoning still fails (2026-11-01)
 

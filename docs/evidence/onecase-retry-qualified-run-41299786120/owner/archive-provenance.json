@@ -1,0 +1,24 @@
+{
+  "archive": {
+    "bytes": 14360,
+    "sha256": "67acbf9b8406b06161c23ac07d5ffa2ec35a0fadfa6e2bad20c8813230b27ae3"
+  },
+  "job_log_sha256": "14ff2d5b2d6da76570494413a562974cb664be7ecb7acf2fe157b6f1f4ae0ef2",
+  "members": [
+    {
+      "bytes": 23798,
+      "path": "account-after.json",
+      "sha256": "a73b9f791f2f87f5bdbf99ecb7930a6b05935a0a7cd0fabd74a7c281f1ccf700"
+    },
+    {
+      "bytes": 13768,
+      "path": "minimum-owner/receipt.json",
+      "sha256": "860bf4ad02560bed006b4188dd69256c4e473c9c3d798a9ae29d5c340113de39"
+    },
+    {
+      "bytes": 13768,
+      "path": "minimum-owner.json",
+      "sha256": "860bf4ad02560bed006b4188dd69256c4e473c9c3d798a9ae29d5c340113de39"
+    }
+  ]
+}

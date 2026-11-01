@@ -1,0 +1,22 @@
+[
+  {
+    "ref": "refs/heads/bt-001-reasoning-onecase-retry-20261101",
+    "node_id": "REF_kwDOUxG-wdoAMnJlZnMvaGVhZHMvYnQtMDAxLXJlYXNvbmluZy1vbmVjYXNlLXJldHJ5LTIwMjYxMTAx",
+    "url": "https://api.github.com/repos/hynk-studio/backtrace/git/refs/heads/bt-001-reasoning-onecase-retry-20261101",
+    "object": {
+      "sha": "08148b7245b772830319d3bdc90be3ad2c74ca51",
+      "type": "commit",
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/git/commits/08148b7245b772830319d3bdc90be3ad2c74ca51"
+    }
+  },
+  {
+    "ref": "refs/heads/bt-001-reasoning-onecase-retry-state-20261101",
+    "node_id": "REF_kwDOUxG-wdoAOHJlZnMvaGVhZHMvYnQtMDAxLXJlYXNvbmluZy1vbmVjYXNlLXJldHJ5LXN0YXRlLTIwMjYxMTAx",
+    "url": "https://api.github.com/repos/hynk-studio/backtrace/git/refs/heads/bt-001-reasoning-onecase-retry-state-20261101",
+    "object": {
+      "sha": "a55cd72617d0031ee573cb2b160da4f283a7b702",
+      "type": "commit",
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/git/commits/a55cd72617d0031ee573cb2b160da4f283a7b702"
+    }
+  }
+]

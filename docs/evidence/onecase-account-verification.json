@@ -1,0 +1,36 @@
+{
+  "allocation_requests": 0,
+  "limit": "Empty audit queries do not identify the HTTP400 rejection cause.",
+  "resource_mutations": 0,
+  "runs": [
+    {
+      "account_observed_at": "2026-11-01T09:54:36Z",
+      "empty_audit_queries": 0,
+      "inventory_observed_at": "2026-11-01T09:54:44Z",
+      "run_id": 41295120167,
+      "source_sha": "b37778bf539b405e243b326bb4bf1c13ba9fb5a3"
+    },
+    {
+      "account_observed_at": "2026-11-01T10:06:20Z",
+      "empty_audit_queries": 0,
+      "inventory_observed_at": "2026-11-01T10:06:27Z",
+      "run_id": 41295961285,
+      "source_sha": "5774c8b3d796ab3cc19de948e1214f203810d81a"
+    },
+    {
+      "account_observed_at": "2026-11-01T10:09:53Z",
+      "empty_audit_queries": 2,
+      "inventory_observed_at": "2026-11-01T10:10:03Z",
+      "run_id": 41296236561,
+      "source_sha": "477acf22cd83d84b4dc8234b52d7f948125c7418"
+    },
+    {
+      "account_observed_at": "2026-11-01T10:25:39Z",
+      "empty_audit_queries": 2,
+      "inventory_observed_at": "2026-11-01T10:25:47Z",
+      "run_id": 41297412881,
+      "source_sha": "89220b261caf7c153ebf3e143fbd0871afe1d147"
+    }
+  ],
+  "status": "PASS_READ_ONLY_STDOUT_VERIFICATION"
+}

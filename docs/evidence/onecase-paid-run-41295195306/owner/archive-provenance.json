@@ -1,0 +1,44 @@
+{
+  "archive": {
+    "bytes": 23357,
+    "sha256": "6387ba6200aaf8f9086503e128915f4bfd42cb12027752238d18a4a87bbc79cf"
+  },
+  "job_log_sha256": "21ae402706d833088815cac47b8614e7118933af32073615af182e7660158053",
+  "members": [
+    {
+      "bytes": 23541,
+      "path": "account-after.json",
+      "sha256": "8a681a100c30a7f4458345dd125230ef9f0be34087b2014c1430793e8bfb8c1f"
+    },
+    {
+      "bytes": 3121,
+      "path": "assignment-before-allocation.json",
+      "sha256": "95cebbfeaa0ded1621f650fa5b98f5179b358bd68550ddc83c0d90cc0b55d14d"
+    },
+    {
+      "bytes": 32379,
+      "path": "minimum-owner/receipt.json",
+      "sha256": "ee2e8169eab49e62b580dd02f233d8af4fed4fe2641119fd492d6e0bca933b6e"
+    },
+    {
+      "bytes": 392,
+      "path": "minimum-owner/remote/all-assignment-outcomes.json",
+      "sha256": "18ae8fbe35bcdb3a5dff1a86d1e54cd4a080b3417bc52019459cac8e0d499b25"
+    },
+    {
+      "bytes": 32379,
+      "path": "minimum-owner.json",
+      "sha256": "ee2e8169eab49e62b580dd02f233d8af4fed4fe2641119fd492d6e0bca933b6e"
+    },
+    {
+      "bytes": 10467,
+      "path": "owner-runtime.json",
+      "sha256": "97098b6141a7087fcff6e9a005bf08b554a96975d42f9025ac7c222ea2bcc347"
+    },
+    {
+      "bytes": 510,
+      "path": "preparation.json",
+      "sha256": "cea2d123db753c3f80e73c6603836fe728f942f5a89ab9355c803673be49abc4"
+    }
+  ]
+}

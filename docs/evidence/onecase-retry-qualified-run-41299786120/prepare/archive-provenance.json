@@ -1,0 +1,34 @@
+{
+  "archive": {
+    "bytes": 5365,
+    "sha256": "d9433ecf78d1c2e1c86e60d365e8df08ba3a45fce79053386dc7b317ec0e5017"
+  },
+  "job_log_sha256": "67a8dd866ee51712d6c4cfb6dfd2eae60582281c32462ed4d4a1f84532926c99",
+  "members": [
+    {
+      "bytes": 10905,
+      "path": "dependency-download.log",
+      "sha256": "0f5328ac00f65b8fbeb206a41c431d3d6ebcffde8f3b127a49911b9b6c6d96ed"
+    },
+    {
+      "bytes": 5824,
+      "path": "dependency-install.log",
+      "sha256": "d37a06770f6e9acffa3fdf721caf7426070cb68b1db2baab8374eda4043a9a70"
+    },
+    {
+      "bytes": 3121,
+      "path": "input-verification.json",
+      "sha256": "95cebbfeaa0ded1621f650fa5b98f5179b358bd68550ddc83c0d90cc0b55d14d"
+    },
+    {
+      "bytes": 510,
+      "path": "preparation.json",
+      "sha256": "11b69e346abf339a43ccc5b823272c041c3481b1e1dfcc4136f7d3595f702cce"
+    },
+    {
+      "bytes": 0,
+      "path": "preparation.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

@@ -1,0 +1,248 @@
+﻿2026-11-01T09:55:32.4647827Z Current runner version: '2.338.2'
+2026-11-01T09:55:32.4673761Z ##[group]Runner Image Provisioner
+2026-11-01T09:55:32.4674999Z Hosted Compute Agent
+2026-11-01T09:55:32.4675645Z Version: 20261021.618
+2026-11-01T09:55:32.4676382Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-11-01T09:55:32.4677170Z Build Date: 2026-10-21T00:45:21Z
+2026-11-01T09:55:32.4677963Z Worker ID: {e29a4a6c-af93-48be-92ac-1f6bb48dd03f}
+2026-11-01T09:55:32.4678711Z Region: westus2
+2026-11-01T09:55:32.4679276Z Cloud: Azure
+2026-11-01T09:55:32.4679859Z ##[endgroup]
+2026-11-01T09:55:32.4681408Z ##[group]Operating System
+2026-11-01T09:55:32.4682061Z Ubuntu
+2026-11-01T09:55:32.4682739Z 24.04.5
+2026-11-01T09:55:32.4683256Z LTS
+2026-11-01T09:55:32.4683835Z ##[endgroup]
+2026-11-01T09:55:32.4684433Z ##[group]Runner Image
+2026-11-01T09:55:32.4685302Z Image: ubuntu-24.04
+2026-11-01T09:55:32.4685983Z Version: 20261025.353.1
+2026-11-01T09:55:32.4687280Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-01T09:55:32.4689055Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+2026-11-01T09:55:32.4690486Z ##[endgroup]
+2026-11-01T09:55:32.4691735Z ##[group]GITHUB_TOKEN Permissions
+2026-11-01T09:55:32.4694114Z Actions: read
+2026-11-01T09:55:32.4695047Z Contents: write
+2026-11-01T09:55:32.4695640Z Metadata: read
+2026-11-01T09:55:32.4696274Z ##[endgroup]
+2026-11-01T09:55:32.4698616Z Secret source: Actions
+2026-11-01T09:55:32.4699802Z Cache mode: write
+2026-11-01T09:55:32.4700540Z Prepare workflow directory
+2026-11-01T09:55:32.5049653Z Prepare all required actions
+2026-11-01T09:55:32.5102115Z Getting action download info
+2026-11-01T09:55:32.8741865Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-01T09:55:32.9911692Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-01T09:55:33.0702171Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-01T09:55:33.2868064Z Complete job name: watch
+2026-11-01T09:55:33.3766593Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-11-01T09:55:33.3767678Z with:
+2026-11-01T09:55:33.3768146Z   persist-credentials: false
+2026-11-01T09:55:33.3768694Z   repository: hynk-studio/backtrace
+2026-11-01T09:55:33.3772456Z   token: ***
+2026-11-01T09:55:33.3772895Z   ssh-strict: true
+2026-11-01T09:55:33.3773340Z   ssh-user: git
+2026-11-01T09:55:33.3773759Z   clean: true
+2026-11-01T09:55:33.3774204Z   sparse-checkout-cone-mode: true
+2026-11-01T09:55:33.3774956Z   fetch-depth: 1
+2026-11-01T09:55:33.3775389Z   fetch-tags: false
+2026-11-01T09:55:33.3775833Z   show-progress: true
+2026-11-01T09:55:33.3776286Z   lfs: false
+2026-11-01T09:55:33.3776696Z   submodules: false
+2026-11-01T09:55:33.3777143Z   set-safe-directory: true
+2026-11-01T09:55:33.3777685Z   allow-unsafe-pr-checkout: false
+2026-11-01T09:55:33.3778467Z ##[endgroup]
+2026-11-01T09:55:33.6931160Z Syncing repository: hynk-studio/backtrace
+2026-11-01T09:55:33.6933794Z ##[group]Getting Git version info
+2026-11-01T09:55:33.6935186Z Working directory is '/home/runner/work/backtrace/backtrace'
+2026-11-01T09:55:33.6936267Z [command]/usr/bin/git version
+2026-11-01T09:55:33.7057018Z git version 2.56.0
+2026-11-01T09:55:33.7082620Z ##[endgroup]
+2026-11-01T09:55:33.7103876Z Temporarily overriding HOME='/home/runner/work/_temp/88324e46-c34b-4c92-939c-44207ac4366b' before making global git config changes
+2026-11-01T09:55:33.7106479Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-01T09:55:33.7109831Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/backtrace/backtrace
+2026-11-01T09:55:33.7194168Z Deleting the contents of '/home/runner/work/backtrace/backtrace'
+2026-11-01T09:55:33.7200202Z ##[group]Initializing the repository
+2026-11-01T09:55:33.7207113Z [command]/usr/bin/git init /home/runner/work/backtrace/backtrace
+2026-11-01T09:55:33.7349505Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-01T09:55:33.7351593Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-01T09:55:33.7353513Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-01T09:55:33.7355244Z hint: call:
+2026-11-01T09:55:33.7356146Z hint:
+2026-11-01T09:55:33.7357229Z hint: 	git config --global init.defaultBranch <name>
+2026-11-01T09:55:33.7358493Z hint:
+2026-11-01T09:55:33.7359654Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-01T09:55:33.7361885Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-01T09:55:33.7363554Z hint:
+2026-11-01T09:55:33.7365116Z hint: 	git branch -m <name>
+2026-11-01T09:55:33.7366260Z hint:
+2026-11-01T09:55:33.7367465Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-01T09:55:33.7369533Z Initialized empty Git repository in /home/runner/work/backtrace/backtrace/.git/
+2026-11-01T09:55:33.7377067Z [command]/usr/bin/git remote add origin https://github.com/hynk-studio/backtrace
+2026-11-01T09:55:33.7466302Z ##[endgroup]
+2026-11-01T09:55:33.7467666Z ##[group]Disabling automatic garbage collection
+2026-11-01T09:55:33.7470061Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-01T09:55:33.7512574Z ##[endgroup]
+2026-11-01T09:55:33.7513785Z ##[group]Setting up auth
+2026-11-01T09:55:33.7522612Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-01T09:55:33.7567716Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-01T09:55:33.8054527Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-01T09:55:33.8100560Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-01T09:55:33.8349910Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-01T09:55:33.8398808Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-01T09:55:33.8651058Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-01T09:55:33.8702525Z ##[endgroup]
+2026-11-01T09:55:33.8703862Z ##[group]Fetching the repository
+2026-11-01T09:55:33.8718903Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2:refs/remotes/origin/bt-001-reasoning-onecase-start-20261101
+2026-11-01T09:55:34.6857014Z From https://github.com/hynk-studio/backtrace
+2026-11-01T09:55:34.6859969Z  * [new ref]         ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2 -> origin/bt-001-reasoning-onecase-start-20261101
+2026-11-01T09:55:34.6866321Z ##[endgroup]
+2026-11-01T09:55:34.6869808Z ##[group]Determining the checkout info
+2026-11-01T09:55:34.6871631Z ##[endgroup]
+2026-11-01T09:55:34.6874540Z [command]/usr/bin/git sparse-checkout disable
+2026-11-01T09:55:34.6945481Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-01T09:55:34.6993810Z ##[group]Checking out the ref
+2026-11-01T09:55:34.7000873Z [command]/usr/bin/git checkout --progress --force -B bt-001-reasoning-onecase-start-20261101 refs/remotes/origin/bt-001-reasoning-onecase-start-20261101
+2026-11-01T09:55:34.8443466Z Switched to a new branch 'bt-001-reasoning-onecase-start-20261101'
+2026-11-01T09:55:34.8449257Z branch 'bt-001-reasoning-onecase-start-20261101' set up to track 'origin/bt-001-reasoning-onecase-start-20261101'.
+2026-11-01T09:55:34.8466471Z ##[endgroup]
+2026-11-01T09:55:34.8522467Z [command]/usr/bin/git log -1 --format=%H
+2026-11-01T09:55:34.8558069Z ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2
+2026-11-01T09:55:34.8568984Z ##[group]Removing auth
+2026-11-01T09:55:34.8571888Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-01T09:55:34.8615324Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-01T09:55:34.8867169Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-01T09:55:34.8908217Z http.https://github.com/.extraheader
+2026-11-01T09:55:34.8918605Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-01T09:55:34.8966045Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-01T09:55:34.9216704Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-01T09:55:34.9260884Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-01T09:55:34.9505669Z ##[endgroup]
+2026-11-01T09:55:34.9974368Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-11-01T09:55:34.9977566Z with:
+2026-11-01T09:55:34.9979096Z   python-version: 3.12.14
+2026-11-01T09:55:34.9981013Z   check-latest: false
+2026-11-01T09:55:34.9990492Z   token: ***
+2026-11-01T09:55:34.9991519Z   update-environment: true
+2026-11-01T09:55:34.9992653Z   allow-prereleases: false
+2026-11-01T09:55:34.9993731Z   freethreaded: false
+2026-11-01T09:55:34.9995040Z ##[endgroup]
+2026-11-01T09:55:35.1503363Z ##[group]Installed versions
+2026-11-01T09:55:35.1529512Z Version 3.12.14 was not found in the local cache
+2026-11-01T09:55:35.1750327Z (node:2630) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-01T09:55:35.1753544Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-01T09:55:36.3184430Z Version 3.12.14 is available for downloading
+2026-11-01T09:55:36.3186449Z Download from "https://github.com/actions/python-versions/releases/download/3.12.14-31661455385/python-3.12.14-linux-24.04-x64.tar.gz"
+2026-11-01T09:55:36.9488067Z Extract downloaded archive
+2026-11-01T09:55:36.9634011Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/d5256e79-16ce-4766-a1f8-38d7932bab65 -f /home/runner/work/_temp/e3caf129-2c14-4807-92e6-01bbf65e9fea
+2026-11-01T09:55:38.8990977Z Execute installation script
+2026-11-01T09:55:38.9105649Z Check if Python hostedtoolcache folder exist...
+2026-11-01T09:55:38.9106288Z Create Python 3.12.14 folder
+2026-11-01T09:55:38.9121076Z Copy Python binaries to hostedtoolcache folder
+2026-11-01T09:55:39.3815746Z Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+2026-11-01T09:55:39.3858795Z Upgrading pip...
+2026-11-01T09:55:41.2008257Z Collecting pip
+2026-11-01T09:55:41.2452461Z Downloading pip-26.2.2-py3-none-any.whl.metadata (4.6 kB)
+2026-11-01T09:55:41.2571146Z Downloading pip-26.2.2-py3-none-any.whl (1.8 MB)
+2026-11-01T09:55:41.3541778Z ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 22.2 MB/s eta 0:00:00
+2026-11-01T09:55:41.3542489Z 
+2026-11-01T09:55:41.3761618Z Installing collected packages: pip
+2026-11-01T09:55:41.3762663Z Attempting uninstall: pip
+2026-11-01T09:55:41.3785104Z Found existing installation: pip 25.0.1
+2026-11-01T09:55:41.4138454Z Uninstalling pip-25.0.1:
+2026-11-01T09:55:41.4195012Z Successfully uninstalled pip-25.0.1
+2026-11-01T09:55:42.3454850Z Successfully installed pip-26.2.2
+2026-11-01T09:55:42.4028677Z Create complete file
+2026-11-01T09:55:42.4072773Z Successfully set up CPython (3.12.14)
+2026-11-01T09:55:42.4074938Z ##[endgroup]
+2026-11-01T09:55:42.4286001Z ##[group]Run mode=free
+2026-11-01T09:55:42.4286355Z [36;1mmode=free[0m
+2026-11-01T09:55:42.4286789Z [36;1mif [ "$GITHUB_REF_NAME" = bt-001-reasoning-onecase-start-20261101 ]; then mode=paid; fi[0m
+2026-11-01T09:55:42.4287351Z [36;1mpython -m tools.small_model_onecase_scope watch "$mode"[0m
+2026-11-01T09:55:42.4314383Z shell: /usr/bin/bash -e {0}
+2026-11-01T09:55:42.4315015Z env:
+2026-11-01T09:55:42.4315319Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:55:42.4315811Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T09:55:42.4316247Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:55:42.4316637Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:55:42.4317024Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T09:55:42.4317404Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T09:55:42.4320052Z   GITHUB_TOKEN: ***
+2026-11-01T09:55:42.4320497Z   RUNPOD_API_KEY: ***
+
+2026-11-01T09:55:42.4320722Z ##[endgroup]
+2026-11-01T10:47:55.0949795Z {"status": "NO_RESOURCE_OBSERVED"}
+2026-11-01T10:47:55.1158834Z ##[error]Process completed with exit code 1.
+2026-11-01T10:47:55.1212372Z ##[group]Run python - <<'PYARCHIVE'
+2026-11-01T10:47:55.1212743Z [36;1mpython - <<'PYARCHIVE'[0m
+2026-11-01T10:47:55.1213020Z [36;1mfrom pathlib import Path[0m
+2026-11-01T10:47:55.1213334Z [36;1mimport base64,hashlib,io,json,zipfile[0m
+2026-11-01T10:47:55.1213652Z [36;1mstream=io.BytesIO()[0m
+2026-11-01T10:47:55.1214025Z [36;1mwith zipfile.ZipFile(stream,'w',zipfile.ZIP_DEFLATED) as archive:[0m
+2026-11-01T10:47:55.1214481Z [36;1m    for p in sorted(Path('evidence').rglob('*')):[0m
+2026-11-01T10:47:55.1215284Z [36;1m        if (p.is_file() and not p.is_symlink() and p.suffix in ('.json','.jsonl','.log')[0m
+2026-11-01T10:47:55.1215937Z [36;1m                and p.name not in ('endpoint.json','collector-input.json') and p.stat().st_size<=16*1024**2):[0m
+2026-11-01T10:47:55.1216544Z [36;1m            archive.write(p,p.relative_to('evidence').as_posix())[0m
+2026-11-01T10:47:55.1216921Z [36;1mraw=stream.getvalue()[0m
+2026-11-01T10:47:55.1217354Z [36;1mif len(raw)>8*1024**2:raise ValueError('evidence archive exceeds bound')[0m
+2026-11-01T10:47:55.1217789Z [36;1mencoded=base64.b64encode(raw).decode()[0m
+2026-11-01T10:47:55.1218355Z [36;1mprint('TRAINABILITY_ARCHIVE_META '+json.dumps({'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}))[0m
+2026-11-01T10:47:55.1219132Z [36;1mfor i in range(0,len(encoded),48000):print('TRAINABILITY_ARCHIVE_CHUNK '+str(i//48000)+' '+encoded[i:i+48000])[0m
+2026-11-01T10:47:55.1219658Z [36;1mPYARCHIVE[0m
+2026-11-01T10:47:55.1240784Z shell: /usr/bin/bash -e {0}
+2026-11-01T10:47:55.1241036Z env:
+2026-11-01T10:47:55.1241307Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.1241755Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T10:47:55.1242209Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.1242595Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.1242978Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.1243362Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T10:47:55.1243689Z ##[endgroup]
+2026-11-01T10:47:55.1612347Z TRAINABILITY_ARCHIVE_META {"bytes": 722, "sha256": "d8818157ae9b1ef3876b86a1de46a434a7db8a00e48df1ee0615b88951bb9a94"}
+2026-11-01T10:47:55.1624153Z TRAINABILITY_ARCHIVE_CHUNK 0 UEsDBBQAAAAIAPtVYV0QMu3CTAIAAGUIAAASAAAAbWluaW11bS13YXRjaC5qc29ulVVNaxsxEL33Z+i8iBlJI8341iYu9FAbnKY9lLLIkpYYnDi11y0l5L930tKPQC46LIJFb2bezBu9B5O3p3ZX2nhsuZ7Mwg0ml/mc92YxH89tMGWfd7fj6SY7imZhYvGhkKQGVVyZqiPYTo7Jp+w5TjmjSy7k2qaSfWgIIuQwRqaCDK0YjXi4vd+3udUxz2aBSTx5gOQts4siaTA3u9N8OP4wi88P5u8dlzxFG8h70CJ31Szuzvv9YE5znptWdr26WK/evtu8X16ax+EZMIRkgYKEFDqRystSSj4KdSKjYwuBhB12IhOytkIoUm9OBrEhEJLzvUgRK9GjhNiJFAEbmCB2pmRgtJBIJ96ZkjGh1YOYOsep+nIWwXEMqROpn42oeoDeakPwFpMPwL0dUqlbTsHF2MszumCDoFcBdyITkgWg2D1OBrIJMHIvTqJVoin0JhR+Wmpk5zpnKZCeljqA79xMUXYWnXgJnW0VR2xj0gi+Uz7ig1gU5oC9yOBFJ+KIoFM+oiq3pLOU3gZFhxajiwSdMpCEqMXq0+V7W8ugO02Be9vD4qxOBLD3FRFhb71HfRReZPn6zdVy9eE56D+D4xcJ/gF9Gcz9oY7/LtwfD992tR3Hog49P/n013M7zWrVMBj9dTrcKXz9abXcjJfr1dL8inl8Zq9P1kmWda/Jxd85zxrArNbjZnm1vt5cLMe1FrD5qGQH8z3P5WbcHg6KN8ltq2B1qaJXqy9bapUFBUoq1KYYp0ZEMUNO07aCy56mBtnnUmP2tZrHVz8BUEsBAhQDFAAAAAgA+1VhXRAy7cJMAgAAZQgAABIAAAAAAAAAAAAAAICBAAAAAG1pbmltdW0td2F0Y2guanNvblBLBQYAAAAAAQABAEAAAAB8AgAAAAA=
+2026-11-01T10:47:55.1810252Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-11-01T10:47:55.1810691Z with:
+2026-11-01T10:47:55.1811051Z   name: small-e2b-onecase-cpu-watch-ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2-1
+2026-11-01T10:47:55.1811578Z   path: evidence/**/*.json
+evidence/**/*.log
+!evidence/**/endpoint.json
+
+2026-11-01T10:47:55.1811946Z   retention-days: 14
+2026-11-01T10:47:55.1812165Z   if-no-files-found: warn
+2026-11-01T10:47:55.1812408Z   compression-level: 6
+2026-11-01T10:47:55.1812631Z   overwrite: false
+2026-11-01T10:47:55.1812841Z   include-hidden-files: false
+2026-11-01T10:47:55.1813069Z env:
+2026-11-01T10:47:55.1813320Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.1813746Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T10:47:55.1814171Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.1814887Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.1815326Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:47:55.1815718Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T10:47:55.1816042Z ##[endgroup]
+2026-11-01T10:47:55.3526382Z (node:3247) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-01T10:47:55.3528149Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-01T10:47:55.3608623Z With the provided path, there will be 1 file uploaded
+2026-11-01T10:47:55.3615052Z Artifact name is valid!
+2026-11-01T10:47:55.3616403Z Root directory input is valid!
+2026-11-01T10:47:55.7590974Z Beginning upload of artifact content to blob storage
+2026-11-01T10:47:55.7798133Z (node:3247) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-01T10:47:56.0663313Z Uploaded bytes 728
+2026-11-01T10:47:56.1457418Z Finished uploading artifact content to blob storage!
+2026-11-01T10:47:56.1458765Z SHA256 digest of uploaded artifact zip is ea8f167b7c5bc5b90eaac5c025cd8dcd629b1bbd7a9bd1ad6190aec09d2a6f0d
+2026-11-01T10:47:56.1459948Z Finalizing artifact upload
+2026-11-01T10:47:56.6003959Z Artifact small-e2b-onecase-cpu-watch-ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2-1.zip successfully finalized. Artifact ID 13080900589
+2026-11-01T10:47:56.6007906Z Artifact small-e2b-onecase-cpu-watch-ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2-1 has been successfully uploaded! Final size is 728 bytes. Artifact ID is 13080900589
+2026-11-01T10:47:56.6015896Z Artifact download URL: https://github.com/hynk-studio/backtrace/actions/runs/41295195306/artifacts/13080900589
+2026-11-01T10:47:56.6233229Z Post job cleanup.
+2026-11-01T10:47:56.7122080Z [command]/usr/bin/git version
+2026-11-01T10:47:56.7172268Z git version 2.56.0
+2026-11-01T10:47:56.7221340Z Temporarily overriding HOME='/home/runner/work/_temp/a73635ef-035b-4900-aece-dfc59f828f5b' before making global git config changes
+2026-11-01T10:47:56.7222678Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-01T10:47:56.7228017Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/backtrace/backtrace
+2026-11-01T10:47:56.7277636Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-01T10:47:56.7343431Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-01T10:47:56.7626363Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-01T10:47:56.7688399Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-01T10:47:56.7972962Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-01T10:47:56.8020994Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-01T10:47:56.8483050Z Cleaning up orphan processes
+2026-11-01T10:47:56.8971084Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -1,0 +1,261 @@
+﻿2026-11-01T10:58:27.0067439Z Current runner version: '2.338.2'
+2026-11-01T10:58:27.0083530Z ##[group]Runner Image Provisioner
+2026-11-01T10:58:27.0084125Z Hosted Compute Agent
+2026-11-01T10:58:27.0084529Z Version: 20261021.618
+2026-11-01T10:58:27.0084899Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-11-01T10:58:27.0085349Z Build Date: 2026-10-21T00:45:21Z
+2026-11-01T10:58:27.0085755Z Worker ID: {13614ba3-ad15-421a-b554-8b371f1b6161}
+2026-11-01T10:58:27.0086148Z Region: westus2
+2026-11-01T10:58:27.0086548Z Cloud: Azure
+2026-11-01T10:58:27.0086902Z ##[endgroup]
+2026-11-01T10:58:27.0087664Z ##[group]Operating System
+2026-11-01T10:58:27.0088023Z Ubuntu
+2026-11-01T10:58:27.0088319Z 24.04.5
+2026-11-01T10:58:27.0088702Z LTS
+2026-11-01T10:58:27.0089009Z ##[endgroup]
+2026-11-01T10:58:27.0089353Z ##[group]Runner Image
+2026-11-01T10:58:27.0089712Z Image: ubuntu-24.04
+2026-11-01T10:58:27.0090049Z Version: 20261025.353.1
+2026-11-01T10:58:27.0090847Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-01T10:58:27.0091886Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+2026-11-01T10:58:27.0092471Z ##[endgroup]
+2026-11-01T10:58:27.0093216Z ##[group]GITHUB_TOKEN Permissions
+2026-11-01T10:58:27.0094393Z Actions: read
+2026-11-01T10:58:27.0094732Z Contents: write
+2026-11-01T10:58:27.0095409Z Metadata: read
+2026-11-01T10:58:27.0095746Z ##[endgroup]
+2026-11-01T10:58:27.0097059Z Secret source: Actions
+2026-11-01T10:58:27.0097584Z Cache mode: write
+2026-11-01T10:58:27.0098028Z Prepare workflow directory
+2026-11-01T10:58:27.0293404Z Prepare all required actions
+2026-11-01T10:58:27.0323491Z Getting action download info
+2026-11-01T10:58:27.3538634Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-01T10:58:27.4522238Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-01T10:58:27.5430744Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-01T10:58:27.7301060Z Complete job name: prepare
+2026-11-01T10:58:27.7815067Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-11-01T10:58:27.7815563Z with:
+2026-11-01T10:58:27.7815805Z   persist-credentials: false
+2026-11-01T10:58:27.7816092Z   repository: hynk-studio/backtrace
+2026-11-01T10:58:27.7818035Z   token: ***
+2026-11-01T10:58:27.7818259Z   ssh-strict: true
+2026-11-01T10:58:27.7818491Z   ssh-user: git
+2026-11-01T10:58:27.7818709Z   clean: true
+2026-11-01T10:58:27.7818949Z   sparse-checkout-cone-mode: true
+2026-11-01T10:58:27.7819223Z   fetch-depth: 1
+2026-11-01T10:58:27.7819451Z   fetch-tags: false
+2026-11-01T10:58:27.7819684Z   show-progress: true
+2026-11-01T10:58:27.7819918Z   lfs: false
+2026-11-01T10:58:27.7820136Z   submodules: false
+2026-11-01T10:58:27.7820377Z   set-safe-directory: true
+2026-11-01T10:58:27.7820662Z   allow-unsafe-pr-checkout: false
+2026-11-01T10:58:27.7821101Z ##[endgroup]
+2026-11-01T10:58:28.0005687Z Syncing repository: hynk-studio/backtrace
+2026-11-01T10:58:28.0007256Z ##[group]Getting Git version info
+2026-11-01T10:58:28.0007875Z Working directory is '/home/runner/work/backtrace/backtrace'
+2026-11-01T10:58:28.0008864Z [command]/usr/bin/git version
+2026-11-01T10:58:28.0076406Z git version 2.56.0
+2026-11-01T10:58:28.0091164Z ##[endgroup]
+2026-11-01T10:58:28.0102470Z Temporarily overriding HOME='/home/runner/work/_temp/c4e08a51-8ecd-4f32-883f-17e44e63baf9' before making global git config changes
+2026-11-01T10:58:28.0103789Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-01T10:58:28.0106359Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/backtrace/backtrace
+2026-11-01T10:58:28.0157424Z Deleting the contents of '/home/runner/work/backtrace/backtrace'
+2026-11-01T10:58:28.0165647Z ##[group]Initializing the repository
+2026-11-01T10:58:28.0166838Z [command]/usr/bin/git init /home/runner/work/backtrace/backtrace
+2026-11-01T10:58:28.0273664Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-01T10:58:28.0274737Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-01T10:58:28.0275717Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-01T10:58:28.0276450Z hint: call:
+2026-11-01T10:58:28.0276831Z hint:
+2026-11-01T10:58:28.0277314Z hint: 	git config --global init.defaultBranch <name>
+2026-11-01T10:58:28.0277885Z hint:
+2026-11-01T10:58:28.0278428Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-01T10:58:28.0279309Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-01T10:58:28.0280107Z hint:
+2026-11-01T10:58:28.0280513Z hint: 	git branch -m <name>
+2026-11-01T10:58:28.0280968Z hint:
+2026-11-01T10:58:28.0281575Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-01T10:58:28.0293111Z Initialized empty Git repository in /home/runner/work/backtrace/backtrace/.git/
+2026-11-01T10:58:28.0302912Z [command]/usr/bin/git remote add origin https://github.com/hynk-studio/backtrace
+2026-11-01T10:58:28.0346570Z ##[endgroup]
+2026-11-01T10:58:28.0347318Z ##[group]Disabling automatic garbage collection
+2026-11-01T10:58:28.0350220Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-01T10:58:28.0379710Z ##[endgroup]
+2026-11-01T10:58:28.0380665Z ##[group]Setting up auth
+2026-11-01T10:58:28.0386035Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-01T10:58:28.0432651Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-01T10:58:28.0755574Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-01T10:58:28.0794850Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-01T10:58:28.1012322Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-01T10:58:28.1049281Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-01T10:58:28.1240786Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-01T10:58:28.1281543Z ##[endgroup]
+2026-11-01T10:58:28.1282249Z ##[group]Fetching the repository
+2026-11-01T10:58:28.1290592Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +08148b7245b772830319d3bdc90be3ad2c74ca51:refs/remotes/origin/bt-001-reasoning-onecase-retry-20261101
+2026-11-01T10:58:29.0692231Z From https://github.com/hynk-studio/backtrace
+2026-11-01T10:58:29.0694658Z  * [new ref]         08148b7245b772830319d3bdc90be3ad2c74ca51 -> origin/bt-001-reasoning-onecase-retry-20261101
+2026-11-01T10:58:29.0698358Z ##[endgroup]
+2026-11-01T10:58:29.0699701Z ##[group]Determining the checkout info
+2026-11-01T10:58:29.0701129Z ##[endgroup]
+2026-11-01T10:58:29.0702973Z [command]/usr/bin/git sparse-checkout disable
+2026-11-01T10:58:29.0759366Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-01T10:58:29.0796472Z ##[group]Checking out the ref
+2026-11-01T10:58:29.0799728Z [command]/usr/bin/git checkout --progress --force -B bt-001-reasoning-onecase-retry-20261101 refs/remotes/origin/bt-001-reasoning-onecase-retry-20261101
+2026-11-01T10:58:29.1901119Z Switched to a new branch 'bt-001-reasoning-onecase-retry-20261101'
+2026-11-01T10:58:29.1904681Z branch 'bt-001-reasoning-onecase-retry-20261101' set up to track 'origin/bt-001-reasoning-onecase-retry-20261101'.
+2026-11-01T10:58:29.1918974Z ##[endgroup]
+2026-11-01T10:58:29.1965947Z [command]/usr/bin/git log -1 --format=%H
+2026-11-01T10:58:29.1994484Z 08148b7245b772830319d3bdc90be3ad2c74ca51
+2026-11-01T10:58:29.2003058Z ##[group]Removing auth
+2026-11-01T10:58:29.2005975Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-01T10:58:29.2038892Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-01T10:58:29.2221576Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-01T10:58:29.2253733Z http.https://github.com/.extraheader
+2026-11-01T10:58:29.2258792Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-01T10:58:29.2293137Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-01T10:58:29.2473710Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-01T10:58:29.2506366Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-01T10:58:29.2683816Z ##[endgroup]
+2026-11-01T10:58:29.2937662Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-11-01T10:58:29.2938629Z with:
+2026-11-01T10:58:29.2939149Z   python-version: 3.12.14
+2026-11-01T10:58:29.2939751Z   check-latest: false
+2026-11-01T10:58:29.2945103Z   token: ***
+2026-11-01T10:58:29.3002041Z   update-environment: true
+2026-11-01T10:58:29.3002845Z   allow-prereleases: false
+2026-11-01T10:58:29.3003473Z   freethreaded: false
+2026-11-01T10:58:29.3004021Z ##[endgroup]
+2026-11-01T10:58:29.3885079Z ##[group]Installed versions
+2026-11-01T10:58:29.3909768Z Version 3.12.14 was not found in the local cache
+2026-11-01T10:58:29.4028271Z (node:2460) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-01T10:58:29.4030021Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-01T10:58:30.3500177Z Version 3.12.14 is available for downloading
+2026-11-01T10:58:30.3501372Z Download from "https://github.com/actions/python-versions/releases/download/3.12.14-31661455385/python-3.12.14-linux-24.04-x64.tar.gz"
+2026-11-01T10:58:30.9951095Z Extract downloaded archive
+2026-11-01T10:58:31.0048565Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/71af0e25-c82a-4b2e-8046-143206a83366 -f /home/runner/work/_temp/eb6df5fa-355d-40e7-b40a-c21af870811d
+2026-11-01T10:58:32.4029451Z Execute installation script
+2026-11-01T10:58:32.4208735Z Check if Python hostedtoolcache folder exist...
+2026-11-01T10:58:32.4210459Z Create Python 3.12.14 folder
+2026-11-01T10:58:32.4227378Z Copy Python binaries to hostedtoolcache folder
+2026-11-01T10:58:32.7638339Z Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+2026-11-01T10:58:32.7672842Z Upgrading pip...
+2026-11-01T10:58:34.0020630Z Collecting pip
+2026-11-01T10:58:34.0579506Z Downloading pip-26.2.2-py3-none-any.whl.metadata (4.6 kB)
+2026-11-01T10:58:34.0676968Z Downloading pip-26.2.2-py3-none-any.whl (1.8 MB)
+2026-11-01T10:58:34.1316104Z ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 34.4 MB/s eta 0:00:00
+2026-11-01T10:58:34.1316436Z 
+2026-11-01T10:58:34.1441162Z Installing collected packages: pip
+2026-11-01T10:58:34.1441452Z Attempting uninstall: pip
+2026-11-01T10:58:34.1454616Z Found existing installation: pip 25.0.1
+2026-11-01T10:58:34.1662404Z Uninstalling pip-25.0.1:
+2026-11-01T10:58:34.1700375Z Successfully uninstalled pip-25.0.1
+2026-11-01T10:58:34.7565931Z Successfully installed pip-26.2.2
+2026-11-01T10:58:34.7992232Z Create complete file
+2026-11-01T10:58:34.8020976Z Successfully set up CPython (3.12.14)
+2026-11-01T10:58:34.8022324Z ##[endgroup]
+2026-11-01T10:58:34.8176575Z ##[group]Run set -euo pipefail
+2026-11-01T10:58:34.8176781Z [36;1mset -euo pipefail[0m
+2026-11-01T10:58:34.8176919Z [36;1mmkdir -p .local evidence[0m
+2026-11-01T10:58:34.8177197Z [36;1mgh api /repos/hynk-studio/backtrace/actions/artifacts/12640353622/zip > .local/readiness.zip[0m
+2026-11-01T10:58:34.8177633Z [36;1mpython -m tools.small_model_pretrained prepare .local/e2b .local/readiness.zip > evidence/preparation.json 2> evidence/preparation.log[0m
+2026-11-01T10:58:34.8197673Z shell: /usr/bin/bash -e {0}
+2026-11-01T10:58:34.8197818Z env:
+2026-11-01T10:58:34.8197968Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:58:34.8198207Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T10:58:34.8198431Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:58:34.8198633Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:58:34.8198866Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:58:34.8199075Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T10:58:34.8200477Z   GH_TOKEN: ***
+2026-11-01T10:58:34.8200588Z ##[endgroup]
+2026-11-01T10:59:34.8283707Z ##[group]Run python -m venv .local/runtime
+2026-11-01T10:59:34.8283947Z [36;1mpython -m venv .local/runtime[0m
+2026-11-01T10:59:34.8284501Z [36;1m.local/runtime/bin/python -m pip download --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cpu -r docs/small-model-cpu-requirements.txt -d .local/wheels > evidence/dependency-download.log 2>&1[0m
+2026-11-01T10:59:34.8285274Z [36;1m.local/runtime/bin/python -m pip install --no-index --find-links .local/wheels --require-hashes -r docs/small-model-cpu-requirements.txt > evidence/dependency-install.log 2>&1[0m
+2026-11-01T10:59:34.8285810Z [36;1m.local/runtime/bin/python -m tools.small_model_onecase inspect-inputs .local/e2b > evidence/input-verification.json[0m
+2026-11-01T10:59:34.8286133Z [36;1mcat evidence/input-verification.json[0m
+2026-11-01T10:59:34.8304118Z shell: /usr/bin/bash -e {0}
+2026-11-01T10:59:34.8304249Z env:
+2026-11-01T10:59:34.8304442Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:59:34.8304676Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T10:59:34.8304902Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:59:34.8305105Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:59:34.8305303Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T10:59:34.8305509Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T10:59:34.8305687Z ##[endgroup]
+2026-11-01T11:00:20.9078376Z {"assigned": 2, "assigned_before_allocation": [{"arm": "BASE", "id": "c97ef7d722c04a0dab309c49b13cabe2e67feabad96e05c344f78698f7da9e62", "initial_status": "NOT_RUN", "input_ids_sha256": "64aef8787753e35634d768fd8f9cc3cbed144e37858951447cac7db263fa297a", "input_tokens": 1357, "model": "E2B"}, {"arm": "Q4", "id": "c97ef7d722c04a0dab309c49b13cabe2e67feabad96e05c344f78698f7da9e62", "initial_status": "NOT_RUN", "input_ids_sha256": "64aef8787753e35634d768fd8f9cc3cbed144e37858951447cac7db263fa297a", "input_tokens": 1357, "model": "E2B"}], "per_arm": 1, "planned_updates_per_trained_arm": 640, "pretrained_requests": 0, "schedule_sha256": "79b1dae3be047defeea15f4678e7d9af2a58c709ab28963af998707dbafdf73d", "source_hashes": {"docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5", "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f", "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0", "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89", "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937", "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7", "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118", "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794", "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7", "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314", "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903", "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c", "tools/small_model_runner.py": "60932ca4057fae460caf874b22f5cc74bcd03a3a543c9bde8e5aa944a25263b6", "tools/small_model_worker.py": "6086affa580477865c6adfa5f71804f60bcfc54c4e08f88c03abeb1735ced6f7", "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a", "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"}, "specification_bytes": {"Q4": 6208}, "specification_sha256": {"Q4": "78d1168b75f315e33b8bd68dbe6eab436ec1e98c6dc3b7bacd9a2be2ec99aef3"}, "status": "PASS_TRAINABILITY_INPUTS_NOT_INFERENCE", "train_only": true, "training": {"effective_training_tokens_per_arm": 906880, "epochs": 640, "examples": [{"episode": "552c7c454cfce05739aef2d35d88c1921435c83edbbcea83c1eda919b74dfe81", "family": "1e44d7f2434e9f5a4025cb6168fecd9dfd74fa184a0337c4ca937b0bb4afbc40", "id": "c97ef7d722c04a0dab309c49b13cabe2e67feabad96e05c344f78698f7da9e62", "kind": "reasoning", "split": "train", "task": "temporal_revision", "variant": 17}], "qualification": "ONE_CASE_TRAIN_ONLY_NOT_GENERALIZATION", "rows_per_arm": 1, "supervised_tokens_per_arm": 38400}, "training_steps": 0}
+2026-11-01T11:00:20.9108106Z ##[group]Run python - <<'PYARCHIVE'
+2026-11-01T11:00:20.9108306Z [36;1mpython - <<'PYARCHIVE'[0m
+2026-11-01T11:00:20.9108445Z [36;1mfrom pathlib import Path[0m
+2026-11-01T11:00:20.9108614Z [36;1mimport base64,hashlib,io,json,zipfile[0m
+2026-11-01T11:00:20.9108779Z [36;1mstream=io.BytesIO()[0m
+2026-11-01T11:00:20.9108965Z [36;1mwith zipfile.ZipFile(stream,'w',zipfile.ZIP_DEFLATED) as archive:[0m
+2026-11-01T11:00:20.9109193Z [36;1m    for p in sorted(Path('evidence').rglob('*')):[0m
+2026-11-01T11:00:20.9109437Z [36;1m        if (p.is_file() and not p.is_symlink() and p.suffix in ('.json','.jsonl','.log')[0m
+2026-11-01T11:00:20.9109763Z [36;1m                and p.name not in ('endpoint.json','collector-input.json') and p.stat().st_size<=16*1024**2):[0m
+2026-11-01T11:00:20.9110050Z [36;1m            archive.write(p,p.relative_to('evidence').as_posix())[0m
+2026-11-01T11:00:20.9110243Z [36;1mraw=stream.getvalue()[0m
+2026-11-01T11:00:20.9110452Z [36;1mif len(raw)>8*1024**2:raise ValueError('evidence archive exceeds bound')[0m
+2026-11-01T11:00:20.9110670Z [36;1mencoded=base64.b64encode(raw).decode()[0m
+2026-11-01T11:00:20.9110945Z [36;1mprint('TRAINABILITY_ARCHIVE_META '+json.dumps({'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}))[0m
+2026-11-01T11:00:20.9111328Z [36;1mfor i in range(0,len(encoded),48000):print('TRAINABILITY_ARCHIVE_CHUNK '+str(i//48000)+' '+encoded[i:i+48000])[0m
+2026-11-01T11:00:20.9111587Z [36;1mPYARCHIVE[0m
+2026-11-01T11:00:20.9127708Z shell: /usr/bin/bash -e {0}
+2026-11-01T11:00:20.9127837Z env:
+2026-11-01T11:00:20.9127986Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:00:20.9128211Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T11:00:20.9128434Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:00:20.9128636Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:00:20.9128837Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:00:20.9129038Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T11:00:20.9129210Z ##[endgroup]
+2026-11-01T11:00:20.9365124Z TRAINABILITY_ARCHIVE_META {"bytes": 5365, "sha256": "d9433ecf78d1c2e1c86e60d365e8df08ba3a45fce79053386dc7b317ec0e5017"}
+2026-11-01T11:00:20.9383805Z TRAINABILITY_ARCHIVE_CHUNK 0 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
+2026-11-01T11:00:20.9452585Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-11-01T11:00:20.9452798Z with:
+2026-11-01T11:00:20.9452963Z   name: e2b-onecase-inputs-08148b7245b772830319d3bdc90be3ad2c74ca51
+2026-11-01T11:00:20.9453155Z   path: evidence/
+2026-11-01T11:00:20.9453265Z   retention-days: 14
+2026-11-01T11:00:20.9453451Z   if-no-files-found: warn
+2026-11-01T11:00:20.9453634Z   compression-level: 6
+2026-11-01T11:00:20.9453752Z   overwrite: false
+2026-11-01T11:00:20.9453869Z   include-hidden-files: false
+2026-11-01T11:00:20.9453996Z env:
+2026-11-01T11:00:20.9454135Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:00:20.9454360Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T11:00:20.9454580Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:00:20.9454900Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:00:20.9455115Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:00:20.9455312Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T11:00:20.9455481Z ##[endgroup]
+2026-11-01T11:00:21.0498058Z (node:2656) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-01T11:00:21.0498564Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-01T11:00:21.0536048Z With the provided path, there will be 5 files uploaded
+2026-11-01T11:00:21.0539534Z Artifact name is valid!
+2026-11-01T11:00:21.0539748Z Root directory input is valid!
+2026-11-01T11:00:21.4250978Z Beginning upload of artifact content to blob storage
+2026-11-01T11:00:21.4402108Z (node:2656) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-01T11:00:21.7078336Z Uploaded bytes 5408
+2026-11-01T11:00:21.7780749Z Finished uploading artifact content to blob storage!
+2026-11-01T11:00:21.7781341Z SHA256 digest of uploaded artifact zip is 778e13cdbce24c2b7683fea62b42821fa1f1e0c3074a8ca2d3df5356ad212ebc
+2026-11-01T11:00:21.7792349Z Finalizing artifact upload
+2026-11-01T11:00:22.2323527Z Artifact e2b-onecase-inputs-08148b7245b772830319d3bdc90be3ad2c74ca51.zip successfully finalized. Artifact ID 13080084663
+2026-11-01T11:00:22.2324366Z Artifact e2b-onecase-inputs-08148b7245b772830319d3bdc90be3ad2c74ca51 has been successfully uploaded! Final size is 5408 bytes. Artifact ID is 13080084663
+2026-11-01T11:00:22.2327819Z Artifact download URL: https://github.com/hynk-studio/backtrace/actions/runs/41299786120/artifacts/13080084663
+2026-11-01T11:00:22.2504724Z Post job cleanup.
+2026-11-01T11:00:22.3263239Z (node:2686) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-01T11:00:22.3263734Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-01T11:00:22.3439427Z Post job cleanup.
+2026-11-01T11:00:22.4032306Z [command]/usr/bin/git version
+2026-11-01T11:00:22.4087745Z git version 2.56.0
+2026-11-01T11:00:22.4110408Z Temporarily overriding HOME='/home/runner/work/_temp/76fc7e9b-d1e8-4779-8bde-8abf8496d9a7' before making global git config changes
+2026-11-01T11:00:22.4111116Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-01T11:00:22.4114147Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/backtrace/backtrace
+2026-11-01T11:00:22.4146650Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-01T11:00:22.4176162Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-01T11:00:22.4387735Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-01T11:00:22.4427385Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-01T11:00:22.4712556Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-01T11:00:22.4717623Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-01T11:00:22.5085316Z Cleaning up orphan processes
+2026-11-01T11:00:22.5315064Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

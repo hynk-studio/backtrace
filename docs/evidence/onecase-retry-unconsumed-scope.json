@@ -1,0 +1,131 @@
+{
+  "observed_at": "2026-11-01T11:14:05.797Z",
+  "source_sha": "08148b7245b772830319d3bdc90be3ad2c74ca51",
+  "qualification_run_id": 41299786120,
+  "refs": [
+    {
+      "ref": "refs/heads/bt-001-reasoning-onecase-retry-20261101",
+      "node_id": "REF_kwDOUxG-wdoAMnJlZnMvaGVhZHMvYnQtMDAxLXJlYXNvbmluZy1vbmVjYXNlLXJldHJ5LTIwMjYxMTAx",
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/git/refs/heads/bt-001-reasoning-onecase-retry-20261101",
+      "object": {
+        "sha": "08148b7245b772830319d3bdc90be3ad2c74ca51",
+        "type": "commit",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/git/commits/08148b7245b772830319d3bdc90be3ad2c74ca51"
+      }
+    },
+    {
+      "ref": "refs/heads/bt-001-reasoning-onecase-retry-state-20261101",
+      "node_id": "REF_kwDOUxG-wdoAOHJlZnMvaGVhZHMvYnQtMDAxLXJlYXNvbmluZy1vbmVjYXNlLXJldHJ5LXN0YXRlLTIwMjYxMTAx",
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/git/refs/heads/bt-001-reasoning-onecase-retry-state-20261101",
+      "object": {
+        "sha": "a55cd72617d0031ee573cb2b160da4f283a7b702",
+        "type": "commit",
+        "url": "https://api.github.com/repos/hynk-studio/backtrace/git/commits/a55cd72617d0031ee573cb2b160da4f283a7b702"
+      }
+    }
+  ],
+  "state_commit": "a55cd72617d0031ee573cb2b160da4f283a7b702",
+  "state_tree_sha": "6de755ec4973fae7520ec0d508a2179506adc685",
+  "complete_tree": true,
+  "paid_namespace": "reasoning-onecase-retry-paid-20261101",
+  "paid_state_entries": [],
+  "start_ref_present": false,
+  "free_state_entries": [
+    {
+      "path": "minimum/reasoning-onecase-retry-free-08148b7245b772830319d3bdc90be3ad2c74ca51/armed.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5de26088f8525a465126d4788e628ba3248680f3",
+      "size": 243,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/5de26088f8525a465126d4788e628ba3248680f3"
+    },
+    {
+      "path": "minimum/reasoning-onecase-retry-free-08148b7245b772830319d3bdc90be3ad2c74ca51/claim.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "517f713752c21994b1bbfa756c6080a13f5e9baf",
+      "size": 749,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/517f713752c21994b1bbfa756c6080a13f5e9baf"
+    },
+    {
+      "path": "minimum/reasoning-onecase-retry-free-08148b7245b772830319d3bdc90be3ad2c74ca51/done.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cccbf694a48e26e7ebc8ab6ae7125062b1ad3a43",
+      "size": 192,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/cccbf694a48e26e7ebc8ab6ae7125062b1ad3a43"
+    },
+    {
+      "path": "minimum/reasoning-onecase-retry-free-08148b7245b772830319d3bdc90be3ad2c74ca51/heartbeat.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b03b817abe8122b3b1c3b42fccdd87fdcdd99d7",
+      "size": 164,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/9b03b817abe8122b3b1c3b42fccdd87fdcdd99d7"
+    },
+    {
+      "path": "minimum/reasoning-onecase-retry-free-08148b7245b772830319d3bdc90be3ad2c74ca51/owner-cleanup.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7cac2db26803d5a21e0ee65bae6b21986a560abe",
+      "size": 479,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/7cac2db26803d5a21e0ee65bae6b21986a560abe"
+    },
+    {
+      "path": "minimum/reasoning-onecase-retry-free-08148b7245b772830319d3bdc90be3ad2c74ca51/owner.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9849bf045d845f16b3fd5a146768bc1089acaed0",
+      "size": 201,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/9849bf045d845f16b3fd5a146768bc1089acaed0"
+    },
+    {
+      "path": "minimum/reasoning-onecase-retry-free-08148b7245b772830319d3bdc90be3ad2c74ca51/pod.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ffb120e7d1187dae374ebd7de658da5198222dde",
+      "size": 189,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/ffb120e7d1187dae374ebd7de658da5198222dde"
+    },
+    {
+      "path": "minimum/reasoning-onecase-retry-free-08148b7245b772830319d3bdc90be3ad2c74ca51/replica-deleted.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9c3e84aff2c1471205ba608b845cf239c45fc45e",
+      "size": 131,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/9c3e84aff2c1471205ba608b845cf239c45fc45e"
+    },
+    {
+      "path": "minimum/reasoning-onecase-retry-free-08148b7245b772830319d3bdc90be3ad2c74ca51/replica-resource.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6cb1b1da12845478e11012a2b59340970c586587",
+      "size": 177,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/6cb1b1da12845478e11012a2b59340970c586587"
+    },
+    {
+      "path": "minimum/reasoning-onecase-retry-free-08148b7245b772830319d3bdc90be3ad2c74ca51/watch-cleanup.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb808a7a1ff5b4bb5f0c6f7a57a7ad2834a4096f",
+      "size": 728,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/bb808a7a1ff5b4bb5f0c6f7a57a7ad2834a4096f"
+    },
+    {
+      "path": "minimum/reasoning-onecase-retry-free-08148b7245b772830319d3bdc90be3ad2c74ca51/watch-heartbeat.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1620f0319c6bb6258739be319ce9904e5aa38a4",
+      "size": 162,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/a1620f0319c6bb6258739be319ce9904e5aa38a4"
+    },
+    {
+      "path": "minimum/reasoning-onecase-retry-free-08148b7245b772830319d3bdc90be3ad2c74ca51/watch.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04e4927238230c20339ed5f384cec68d05fee01c",
+      "size": 200,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/git/blobs/04e4927238230c20339ed5f384cec68d05fee01c"
+    }
+  ]
+}
