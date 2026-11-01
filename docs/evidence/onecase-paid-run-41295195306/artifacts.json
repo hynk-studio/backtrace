@@ -1,0 +1,42 @@
+{
+  "artifacts": [
+    {
+      "id": 13080900589,
+      "name": "small-e2b-onecase-cpu-watch-ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2-1",
+      "size_in_bytes": 728,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/13080900589",
+      "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/13080900589/zip",
+      "expired": false,
+      "created_at": "2026-11-01T10:47:56Z",
+      "expires_at": "2026-11-15T10:47:55Z",
+      "updated_at": "2026-11-01T10:47:56Z",
+      "digest": "sha256:ea8f167b7c5bc5b90eaac5c025cd8dcd629b1bbd7a9bd1ad6190aec09d2a6f0d",
+      "workflow_run": {
+        "id": 41295195306,
+        "repository_id": 1393671873,
+        "head_repository_id": 1393671873,
+        "head_branch": "bt-001-reasoning-onecase-start-20261101",
+        "head_sha": "ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2"
+      }
+    },
+    {
+      "id": 13080462341,
+      "name": "small-e2b-onecase-cpu-owner-ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2-1",
+      "size_in_bytes": 22937,
+      "url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/13080462341",
+      "archive_download_url": "https://api.github.com/repos/hynk-studio/backtrace/actions/artifacts/13080462341/zip",
+      "expired": false,
+      "created_at": "2026-11-01T10:47:56Z",
+      "expires_at": "2026-11-15T10:47:56Z",
+      "updated_at": "2026-11-01T10:47:56Z",
+      "digest": "sha256:932311ba9bd4d3d765732b29f4689581ea14961672a634d055f590550c495891",
+      "workflow_run": {
+        "id": 41295195306,
+        "repository_id": 1393671873,
+        "head_repository_id": 1393671873,
+        "head_branch": "bt-001-reasoning-onecase-start-20261101",
+        "head_sha": "ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2"
+      }
+    }
+  ]
+}

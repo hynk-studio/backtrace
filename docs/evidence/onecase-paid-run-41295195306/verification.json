@@ -1,0 +1,385 @@
+{
+  "actual_generations": 0,
+  "actual_run_id": 41295195306,
+  "actual_training_updates": 0,
+  "cleanup": {
+    "owner-cleanup": {
+      "absence_reads": 2,
+      "claim_sha256": "6c34c597e0d92cfd250bf28537a386faa12724adefca34e10995216685c180ec",
+      "completed_at": 1793530067.8107145,
+      "history": [
+        {
+          "at": 1793527266.2882648,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793527356.5747228,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793527446.9472797,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793527537.273824,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793527627.682623,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793527718.0237572,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793527808.4220932,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793527898.7688632,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793527989.1409323,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528079.5556211,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528169.950989,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528260.3774,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528350.8044362,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528441.119032,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528531.4488087,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528621.808413,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528712.1603656,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528802.4328864,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528892.7775218,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528983.0996103,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529073.5324328,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529163.9346375,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529254.5033307,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529344.8170161,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529435.3374746,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529525.6696775,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529616.0418031,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529706.3654258,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529796.8213208,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529887.165305,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529977.4245224,
+          "id": null,
+          "state": "ABSENT"
+        },
+        {
+          "at": 1793530067.8107133,
+          "id": null,
+          "state": "ABSENT"
+        }
+      ],
+      "pod_id": null,
+      "source_sha": "ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2",
+      "started_at": 1793527265.9147127,
+      "status": "NO_RESOURCE_OBSERVED"
+    },
+    "watch-cleanup": {
+      "absence_reads": 2,
+      "actual": true,
+      "claim_sha256": "6c34c597e0d92cfd250bf28537a386faa12724adefca34e10995216685c180ec",
+      "completed_at": 1793530073.8826997,
+      "history": [
+        {
+          "at": 1793527356.453302,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793527447.0549474,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793527537.5773695,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793527628.0459821,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793527718.8895655,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793527809.4451523,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793527899.9631946,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793527990.485063,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528081.0756996,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528171.5285854,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528262.1028647,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528352.6175306,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528443.1734083,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528533.8742664,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528624.4913275,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528715.005663,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528805.70168,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528896.533743,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793528987.0518227,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529077.574031,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529168.1293945,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529258.6729136,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529349.1988416,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529439.7025504,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529530.501691,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529621.1626508,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529711.7051535,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529802.15486,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529892.7290154,
+          "id": null,
+          "state": "UNCONFIRMED"
+        },
+        {
+          "at": 1793529983.3312838,
+          "id": null,
+          "state": "ABSENT"
+        },
+        {
+          "at": 1793530073.8826985,
+          "id": null,
+          "state": "ABSENT"
+        }
+      ],
+      "pod_id": null,
+      "provider_create_requests": 0,
+      "reason": "OWNER_DONE",
+      "source_sha": "ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2",
+      "started_at": 1793527355.8005526,
+      "status": "NO_RESOURCE_OBSERVED",
+      "watch_boot": "72bd91d27d130bfcb5ed89190c7c5ef66fe5556a0a7fbd02a35fe0a3acd6a3dd"
+    }
+  },
+  "cost": {
+    "account_observed_at": "2026-11-01T10:47:49Z",
+    "auto_pay": false,
+    "billing": "Observed balance; settlement can lag.",
+    "cumulative_continuation_debit_usd": "1.7135017444",
+    "hourly_spend_usd": "0",
+    "initial_balance_usd": "1.1925423895",
+    "inventory_observed_at": "2026-11-01T10:47:55Z",
+    "observed_run_debit_usd": "0E-10",
+    "remaining_balance_usd": "1.1925423895"
+  },
+  "coverage": {
+    "NOT_RUN": 2
+  },
+  "distinct_source_paths": 107,
+  "limitation": "No pretrained GPU result or train-fit conclusion; both original assignments were NOT_RUN.",
+  "observed_pods": 0,
+  "original_archives": [
+    {
+      "archive_sha256": "6387ba6200aaf8f9086503e128915f4bfd42cb12027752238d18a4a87bbc79cf",
+      "members": 7,
+      "role": "owner"
+    },
+    {
+      "archive_sha256": "d8818157ae9b1ef3876b86a1de46a434a7db8a00e48df1ee0615b88951bb9a94",
+      "members": 1,
+      "role": "watch"
+    }
+  ],
+  "original_assignments": 2,
+  "original_members_verified": 8,
+  "outcome": "PROVIDER_CREATE_HTTP_400_MODEL_VERIFICATION_NOT_RUN",
+  "provider_create_requests": 1,
+  "source_binding_occurrences": 246,
+  "source_sha": "ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2",
+  "state_blobs_verified": 10,
+  "status": "PASS_REJECTED_CREATE_EVIDENCE_VERIFICATION"
+}
