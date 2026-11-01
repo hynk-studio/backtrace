@@ -1,0 +1,26 @@
+{
+  "actual_model_result": "NOT_RUN",
+  "actual_provider_requests": 0,
+  "focused_log_sha256": "7212503366dffde5560d46e7a66a7671fe81bbe4f4988acde1820b08937252c6",
+  "focused_tests": 64,
+  "limitation": "Offline tests do not recover the discarded HTTP400 body or establish reasoning fit.",
+  "runs": [
+    {
+      "archive_members": 1,
+      "conclusion": "failure",
+      "run_id": 41297302373,
+      "source_sha": "cf95cd117ffe364618be7750e8eeb8faef24f22e",
+      "tests": 757
+    },
+    {
+      "archive_members": 2,
+      "conclusion": "success",
+      "run_id": 41298060217,
+      "source_sha": "ea463b6e332d95639b59118ab21e95e4ebb234b9",
+      "tests": 775
+    }
+  ],
+  "source_files_verified": 7,
+  "source_sha": "ea463b6e332d95639b59118ab21e95e4ebb234b9",
+  "status": "PASS_OFFLINE_PROVIDER_EVIDENCE_FIX"
+}

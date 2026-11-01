@@ -1,0 +1,13 @@
+{
+  "source_sha": "ea463b6e332d95639b59118ab21e95e4ebb234b9",
+  "tree_sha": "485cf39fa6f9e6906ce994a1fc33bb966f563549",
+  "files": {
+    ".github/workflows/provider-error-evidence.yml": "afaf951ebb0d1cba76d3bd16b82d0828388972a8",
+    "docs/provider-error-evidence-20261101.md": "cb043298ee2d48155a2f44c030d8fafdc23d7613",
+    "tests/test_small_model_minimum.py": "71a1b23ab30280c41c3766218bfd08941c1b41d1",
+    "tests/test_small_model_minimum_provider.py": "a71e87236d4f4bf315b25d84530e3b7245d10a4b",
+    "tools/small_model_minimum.py": "b3ab848da27dc0a9ceda2ea570437d2be3b8f897",
+    "tools/small_model_minimum_provider.py": "d2c6a00466f252dd4ae7ae5303d093ba09bf772c",
+    "tools/runpod_control.py": "cf2dfe38b54b20a611d78c18c3a3e73d1b23644b"
+  }
+}

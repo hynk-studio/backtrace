@@ -44,3 +44,18 @@ small_model_minimum_provider.py, which delegates all wire behavior to the frozen
 client and restores its original opener after each synchronous call. The new
 module and tests are automatically included in the minimum controller source
 manifest. No historical protocol hash or evidence was rewritten.
+
+Final offline [run 41298060217](https://github.com/hynk-studio/backtrace/actions/runs/41298060217)
+at immutable source `ea463b6e332d95639b59118ab21e95e4ebb234b9` passed all 775 tests
+in 202.345 seconds and the Python 3.12.14 CPU preflight. Another 64 focused tests
+passed locally. The first failed run, both original job logs, all three recovered
+archive members and seven exact source snapshots remain under `docs/evidence/`.
+The verifier checks their hashes and keeps the frozen provider client unchanged.
+No provider request or model execution was performed by either offline workflow.
+
+Reproduce from this branch:
+
+    PYTHONPATH=. python docs/evidence/provider-error-run-41298060217/verify.py
+
+The success above verifies error recording and regression behavior. The rejected
+one-case attempt still has zero training updates and zero generated responses.

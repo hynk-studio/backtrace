@@ -1,0 +1,14 @@
+{
+  "archive": {
+    "bytes": 23976,
+    "sha256": "27a2376c8b5c0dba8a33e53dba9cb598e37dd347712e222a63deaa94fffd80b4"
+  },
+  "job_log_sha256": "6b1bd4c62531a771648fa576cf42a710cddb15de5c9815d9aee72591efb202dc",
+  "members": [
+    {
+      "bytes": 152181,
+      "path": "tests.log",
+      "sha256": "d794bf26365b31c3a22f0ca1e626e4580fa683087404c9c7b6a3749bfdab871b"
+    }
+  ]
+}
