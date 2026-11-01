@@ -1,0 +1,1 @@
+{"assigned": 48, "capability_claim": "REQUIRES_POST_DELETION_EVALUATION", "coverage": {"INVALID_OUTPUT": 6, "OK": 42}, "status": "PASS_TRAINABILITY_COLLECTION", "training_steps": 1280}

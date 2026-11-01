@@ -1,0 +1,52 @@
+{
+  "all_blob_sha1_verified": true,
+  "files": [
+    {
+      "git_blob_sha": "c8409a84b3d75bd393f9f7107c818339d2cc0ee4",
+      "name": "armed.json"
+    },
+    {
+      "git_blob_sha": "33d53a61712d6aa2dabbc3245475cd3e7ee8af7d",
+      "name": "authorization.json"
+    },
+    {
+      "git_blob_sha": "5c92bd8f00d6e9b92d31dc16dfbec108367b8f88",
+      "name": "claim.json"
+    },
+    {
+      "git_blob_sha": "443b51b66cd7baa4c46dc404bf949634a98af08d",
+      "name": "done.json"
+    },
+    {
+      "git_blob_sha": "be62cec50adc9a7ea5b1b31f5767276704dec0bb",
+      "name": "heartbeat.json"
+    },
+    {
+      "git_blob_sha": "682c0f60704b0b66a835cae22fab50376975d65f",
+      "name": "owner-cleanup.json"
+    },
+    {
+      "git_blob_sha": "ed35879f797084920226b6f4ea2d44eff547d97e",
+      "name": "owner.json"
+    },
+    {
+      "git_blob_sha": "64035c3b08da06a1205fc440fe68f75c67a93213",
+      "name": "pod.json"
+    },
+    {
+      "git_blob_sha": "1ea81e46254fa5c03aac462625dfb9f36fd0d953",
+      "name": "watch-cleanup.json"
+    },
+    {
+      "git_blob_sha": "7db4e8f8deb400f12a76cfb38d27015ecc15a523",
+      "name": "watch-heartbeat.json"
+    },
+    {
+      "git_blob_sha": "70d53945f519a239650076ba8f44b402420d9539",
+      "name": "watch.json"
+    }
+  ],
+  "independent_deletion_verified": true,
+  "source_sha": "ebe6fa37b44ad465c16fa36cd2823f55cf93a050",
+  "state_commit": "6421baa63894c34c8559ecb7f2dd43a3ac47d958"
+}

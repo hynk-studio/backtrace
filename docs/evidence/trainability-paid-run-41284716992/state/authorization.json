@@ -1,0 +1,37 @@
+{
+  "account_observed_at": "2026-11-01T07:24:08Z",
+  "account_read_run_id": "41284622433",
+  "account_snapshot_sha256": "7d40ffa4b2e3cfe1c65a8334aec3151c98890e3e16d7f7f3a48c0801daabeb6b",
+  "additional_cap_usd": "0.75",
+  "allocation_inclusive_seconds": 4200,
+  "approved_at": 1793517902.331507,
+  "authorization_basis": "Owner instructed proceeding autonomously to the next step; scoped single allocation, no top-up or automatic retry.",
+  "automatic_retry": false,
+  "continuation_observed_spend_usd": "1.5012529416",
+  "contract_sha256": "dcbcec7cb481142954ec4ffe36deea08cbafbb83619d081ffb79381fa9d2018a",
+  "expires_at": 1793528702.331507,
+  "instruction": "다음 단계 진행해",
+  "maximum_projection_usd": "0.75",
+  "mode": "OWNER_APPROVED_E2B_TRAINABILITY",
+  "namespace": "trainability-paid-20261101",
+  "observed_offer": {
+    "costs": {
+      "additional_cap": "0.75",
+      "compute_per_hour": "0.59",
+      "credit_reserve": ".50",
+      "hourly_all_in_projection": "0.605",
+      "initial_balance": "1.4047911923",
+      "maximum_projection": "0.7058333333333333333333333333",
+      "storage_per_hour": ".015"
+    },
+    "gpu": "NVIDIA A40",
+    "region": "EU-SE-1"
+  },
+  "pretrained_requests": 48,
+  "qualification_run_id": "41283861825",
+  "single_use": true,
+  "source_sha": "ebe6fa37b44ad465c16fa36cd2823f55cf93a050",
+  "top_up_allowed": false,
+  "training_steps": 1280,
+  "weight_bytes": 10246621918
+}

@@ -1,0 +1,261 @@
+﻿2026-11-01T07:12:38.7904661Z Current runner version: '2.338.2'
+2026-11-01T07:12:38.7925456Z ##[group]Runner Image Provisioner
+2026-11-01T07:12:38.7926206Z Hosted Compute Agent
+2026-11-01T07:12:38.7926811Z Version: 20261021.618
+2026-11-01T07:12:38.7927349Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-11-01T07:12:38.7927945Z Build Date: 2026-10-21T00:45:21Z
+2026-11-01T07:12:38.7928583Z Worker ID: {202a7d6e-1c7b-4405-8921-6e4cd650ee0d}
+2026-11-01T07:12:38.7929205Z Region: westus3
+2026-11-01T07:12:38.7929704Z Cloud: Azure
+2026-11-01T07:12:38.7930184Z ##[endgroup]
+2026-11-01T07:12:38.7931810Z ##[group]Operating System
+2026-11-01T07:12:38.7932414Z Ubuntu
+2026-11-01T07:12:38.7932903Z 24.04.5
+2026-11-01T07:12:38.7933334Z LTS
+2026-11-01T07:12:38.7933874Z ##[endgroup]
+2026-11-01T07:12:38.7934355Z ##[group]Runner Image
+2026-11-01T07:12:38.7934897Z Image: ubuntu-24.04
+2026-11-01T07:12:38.7935410Z Version: 20261025.353.1
+2026-11-01T07:12:38.7936777Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-01T07:12:38.7938046Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+2026-11-01T07:12:38.7938899Z ##[endgroup]
+2026-11-01T07:12:38.7939952Z ##[group]GITHUB_TOKEN Permissions
+2026-11-01T07:12:38.7941949Z Actions: read
+2026-11-01T07:12:38.7942473Z Contents: write
+2026-11-01T07:12:38.7942950Z Metadata: read
+2026-11-01T07:12:38.7943519Z ##[endgroup]
+2026-11-01T07:12:38.7945237Z Secret source: Actions
+2026-11-01T07:12:38.7946099Z Cache mode: write
+2026-11-01T07:12:38.7946681Z Prepare workflow directory
+2026-11-01T07:12:38.8251882Z Prepare all required actions
+2026-11-01T07:12:38.8289972Z Getting action download info
+2026-11-01T07:12:39.1549084Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-01T07:12:39.2469294Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-01T07:12:39.3564883Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-01T07:12:39.6228672Z Complete job name: prepare
+2026-11-01T07:12:39.6937519Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-11-01T07:12:39.6938695Z with:
+2026-11-01T07:12:39.6939112Z   persist-credentials: false
+2026-11-01T07:12:39.6939585Z   repository: hynk-studio/backtrace
+2026-11-01T07:12:39.6943300Z   token: ***
+2026-11-01T07:12:39.6943710Z   ssh-strict: true
+2026-11-01T07:12:39.6944111Z   ssh-user: git
+2026-11-01T07:12:39.6944493Z   clean: true
+2026-11-01T07:12:39.6944893Z   sparse-checkout-cone-mode: true
+2026-11-01T07:12:39.6945359Z   fetch-depth: 1
+2026-11-01T07:12:39.6945738Z   fetch-tags: false
+2026-11-01T07:12:39.6946130Z   show-progress: true
+2026-11-01T07:12:39.6946521Z   lfs: false
+2026-11-01T07:12:39.6946894Z   submodules: false
+2026-11-01T07:12:39.6947291Z   set-safe-directory: true
+2026-11-01T07:12:39.6947756Z   allow-unsafe-pr-checkout: false
+2026-11-01T07:12:39.6948473Z ##[endgroup]
+2026-11-01T07:12:39.9246163Z Syncing repository: hynk-studio/backtrace
+2026-11-01T07:12:39.9248382Z ##[group]Getting Git version info
+2026-11-01T07:12:39.9249321Z Working directory is '/home/runner/work/backtrace/backtrace'
+2026-11-01T07:12:39.9250674Z [command]/usr/bin/git version
+2026-11-01T07:12:39.9299118Z git version 2.56.0
+2026-11-01T07:12:39.9312311Z ##[endgroup]
+2026-11-01T07:12:39.9318524Z Temporarily overriding HOME='/home/runner/work/_temp/fc1279a3-026e-4627-bead-9139444a68b3' before making global git config changes
+2026-11-01T07:12:39.9320669Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-01T07:12:39.9323282Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/backtrace/backtrace
+2026-11-01T07:12:39.9363390Z Deleting the contents of '/home/runner/work/backtrace/backtrace'
+2026-11-01T07:12:39.9369823Z ##[group]Initializing the repository
+2026-11-01T07:12:39.9371368Z [command]/usr/bin/git init /home/runner/work/backtrace/backtrace
+2026-11-01T07:12:39.9566287Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-01T07:12:39.9567730Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-01T07:12:39.9568548Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-01T07:12:39.9569183Z hint: call:
+2026-11-01T07:12:39.9569553Z hint:
+2026-11-01T07:12:39.9570052Z hint: 	git config --global init.defaultBranch <name>
+2026-11-01T07:12:39.9570597Z hint:
+2026-11-01T07:12:39.9571350Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-01T07:12:39.9572166Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-01T07:12:39.9572814Z hint:
+2026-11-01T07:12:39.9573327Z hint: 	git branch -m <name>
+2026-11-01T07:12:39.9573913Z hint:
+2026-11-01T07:12:39.9574462Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-01T07:12:39.9579963Z Initialized empty Git repository in /home/runner/work/backtrace/backtrace/.git/
+2026-11-01T07:12:39.9588630Z [command]/usr/bin/git remote add origin https://github.com/hynk-studio/backtrace
+2026-11-01T07:12:39.9631514Z ##[endgroup]
+2026-11-01T07:12:39.9632625Z ##[group]Disabling automatic garbage collection
+2026-11-01T07:12:39.9634704Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-01T07:12:39.9665574Z ##[endgroup]
+2026-11-01T07:12:39.9666650Z ##[group]Setting up auth
+2026-11-01T07:12:39.9671453Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-01T07:12:39.9713314Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-01T07:12:40.0027660Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-01T07:12:40.0066251Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-01T07:12:40.0272461Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-01T07:12:40.0309901Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-01T07:12:40.0509989Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-01T07:12:40.0552570Z ##[endgroup]
+2026-11-01T07:12:40.0553731Z ##[group]Fetching the repository
+2026-11-01T07:12:40.0563224Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +ebe6fa37b44ad465c16fa36cd2823f55cf93a050:refs/remotes/origin/bt-001-trainability-20261101
+2026-11-01T07:12:41.0748245Z From https://github.com/hynk-studio/backtrace
+2026-11-01T07:12:41.0750306Z  * [new ref]         ebe6fa37b44ad465c16fa36cd2823f55cf93a050 -> origin/bt-001-trainability-20261101
+2026-11-01T07:12:41.0753237Z ##[endgroup]
+2026-11-01T07:12:41.0754250Z ##[group]Determining the checkout info
+2026-11-01T07:12:41.0755316Z ##[endgroup]
+2026-11-01T07:12:41.0758223Z [command]/usr/bin/git sparse-checkout disable
+2026-11-01T07:12:41.0807568Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-01T07:12:41.0842010Z ##[group]Checking out the ref
+2026-11-01T07:12:41.0844815Z [command]/usr/bin/git checkout --progress --force -B bt-001-trainability-20261101 refs/remotes/origin/bt-001-trainability-20261101
+2026-11-01T07:12:41.1767314Z Switched to a new branch 'bt-001-trainability-20261101'
+2026-11-01T07:12:41.1770153Z branch 'bt-001-trainability-20261101' set up to track 'origin/bt-001-trainability-20261101'.
+2026-11-01T07:12:41.1782216Z ##[endgroup]
+2026-11-01T07:12:41.1826868Z [command]/usr/bin/git log -1 --format=%H
+2026-11-01T07:12:41.1856764Z ebe6fa37b44ad465c16fa36cd2823f55cf93a050
+2026-11-01T07:12:41.1866066Z ##[group]Removing auth
+2026-11-01T07:12:41.1869046Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-01T07:12:41.1906315Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-01T07:12:41.2110066Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-01T07:12:41.2139508Z http.https://github.com/.extraheader
+2026-11-01T07:12:41.2146368Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-01T07:12:41.2182696Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-01T07:12:41.2387097Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-01T07:12:41.2421580Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-01T07:12:41.2619199Z ##[endgroup]
+2026-11-01T07:12:41.2997214Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-11-01T07:12:41.2999244Z with:
+2026-11-01T07:12:41.3000288Z   python-version: 3.12.14
+2026-11-01T07:12:41.3001743Z   check-latest: false
+2026-11-01T07:12:41.3011256Z   token: ***
+2026-11-01T07:12:41.3012094Z   update-environment: true
+2026-11-01T07:12:41.3013017Z   allow-prereleases: false
+2026-11-01T07:12:41.3013917Z   freethreaded: false
+2026-11-01T07:12:41.3014712Z ##[endgroup]
+2026-11-01T07:12:41.4103936Z ##[group]Installed versions
+2026-11-01T07:12:41.4119773Z Version 3.12.14 was not found in the local cache
+2026-11-01T07:12:41.4250412Z (node:2173) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-01T07:12:41.4253155Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-01T07:12:42.4546318Z Version 3.12.14 is available for downloading
+2026-11-01T07:12:42.4547245Z Download from "https://github.com/actions/python-versions/releases/download/3.12.14-31661455385/python-3.12.14-linux-24.04-x64.tar.gz"
+2026-11-01T07:12:43.0608057Z Extract downloaded archive
+2026-11-01T07:12:43.0716857Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/92067fdb-5cb1-4163-9b81-6d9544f8fd66 -f /home/runner/work/_temp/31dcf952-d0c6-4b8d-994b-369bb300310b
+2026-11-01T07:12:44.7180271Z Execute installation script
+2026-11-01T07:12:44.7271746Z Check if Python hostedtoolcache folder exist...
+2026-11-01T07:12:44.7273432Z Create Python 3.12.14 folder
+2026-11-01T07:12:44.7285859Z Copy Python binaries to hostedtoolcache folder
+2026-11-01T07:12:45.0906546Z Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+2026-11-01T07:12:45.0942275Z Upgrading pip...
+2026-11-01T07:12:47.9710357Z Collecting pip
+2026-11-01T07:12:48.0053539Z Downloading pip-26.2.2-py3-none-any.whl.metadata (4.6 kB)
+2026-11-01T07:12:48.0118161Z Downloading pip-26.2.2-py3-none-any.whl (1.8 MB)
+2026-11-01T07:12:48.0607843Z ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 47.1 MB/s eta 0:00:00
+2026-11-01T07:12:48.0608201Z 
+2026-11-01T07:12:48.0758433Z Installing collected packages: pip
+2026-11-01T07:12:48.0761762Z Attempting uninstall: pip
+2026-11-01T07:12:48.0779528Z Found existing installation: pip 25.0.1
+2026-11-01T07:12:48.1026258Z Uninstalling pip-25.0.1:
+2026-11-01T07:12:48.1068877Z Successfully uninstalled pip-25.0.1
+2026-11-01T07:12:48.8353010Z Successfully installed pip-26.2.2
+2026-11-01T07:12:48.8797976Z Create complete file
+2026-11-01T07:12:48.8831722Z Successfully set up CPython (3.12.14)
+2026-11-01T07:12:48.8832789Z ##[endgroup]
+2026-11-01T07:12:48.8996191Z ##[group]Run set -euo pipefail
+2026-11-01T07:12:48.8996657Z [36;1mset -euo pipefail[0m
+2026-11-01T07:12:48.8996880Z [36;1mmkdir -p .local evidence[0m
+2026-11-01T07:12:48.8997277Z [36;1mgh api /repos/hynk-studio/backtrace/actions/artifacts/12640353622/zip > .local/readiness.zip[0m
+2026-11-01T07:12:48.8997935Z [36;1mpython -m tools.small_model_pretrained prepare .local/e2b .local/readiness.zip > evidence/preparation.json 2> evidence/preparation.log[0m
+2026-11-01T07:12:48.9021110Z shell: /usr/bin/bash -e {0}
+2026-11-01T07:12:48.9021325Z env:
+2026-11-01T07:12:48.9021551Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T07:12:48.9021918Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T07:12:48.9022268Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T07:12:48.9022566Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T07:12:48.9022904Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T07:12:48.9023207Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T07:12:48.9025312Z   GH_TOKEN: ***
+2026-11-01T07:12:48.9025495Z ##[endgroup]
+2026-11-01T07:13:54.3736004Z ##[group]Run python -m venv .local/runtime
+2026-11-01T07:13:54.3736312Z [36;1mpython -m venv .local/runtime[0m
+2026-11-01T07:13:54.3737095Z [36;1m.local/runtime/bin/python -m pip download --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cpu -r docs/small-model-cpu-requirements.txt -d .local/wheels > evidence/dependency-download.log 2>&1[0m
+2026-11-01T07:13:54.3738224Z [36;1m.local/runtime/bin/python -m pip install --no-index --find-links .local/wheels --require-hashes -r docs/small-model-cpu-requirements.txt > evidence/dependency-install.log 2>&1[0m
+2026-11-01T07:13:54.3739057Z [36;1m.local/runtime/bin/python -m tools.small_model_trainability inspect-inputs .local/e2b > evidence/input-verification.json[0m
+2026-11-01T07:13:54.3739524Z [36;1mcat evidence/input-verification.json[0m
+2026-11-01T07:13:54.3757738Z shell: /usr/bin/bash -e {0}
+2026-11-01T07:13:54.3757941Z env:
+2026-11-01T07:13:54.3758224Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T07:13:54.3758577Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T07:13:54.3758919Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T07:13:54.3759220Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T07:13:54.3759509Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T07:13:54.3759814Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T07:13:54.3760078Z ##[endgroup]
+2026-11-01T07:14:57.7465897Z {"assigned": 48, "assigned_before_allocation": [{"arm": "BASE", "id": "c97ef7d722c04a0dab309c49b13cabe2e67feabad96e05c344f78698f7da9e62", "initial_status": "NOT_RUN", "input_ids_sha256": "64aef8787753e35634d768fd8f9cc3cbed144e37858951447cac7db263fa297a", "input_tokens": 1357, "model": "E2B"}, {"arm": "BASE", "id": "05eacac73dbe86329ce07b908d6649cfcd95e6906fd7fce9ea222f3cd4f39d83", "initial_status": "NOT_RUN", "input_ids_sha256": "e2b6539c1f855e9a07cc5442f4e19e824ca11379a763732d7b50f6fd403335ea", "input_tokens": 1016, "model": "E2B"}, {"arm": "BASE", "id": "5f100e5e7c351bae2bc87ad5e4f2170510c72370a42c09aeb3c49f0162459af3", "initial_status": "NOT_RUN", "input_ids_sha256": "729f83fdbe034005e258f4189a1695450926686ff016cb8f49fd1435f7fc5a5a", "input_tokens": 141, "model": "E2B"}, {"arm": "BASE", "id": "41d61e2b59eeec961af88213e46a6f048a3da358bb9b1e041acaa4557a7de9f4", "initial_status": "NOT_RUN", "input_ids_sha256": "5dcb32784a5a651c059db49422ba4b59f0c75894bacdcf6bfc955e7121ee8919", "input_tokens": 810, "model": "E2B"}, {"arm": "BASE", "id": "79a097c6652994fd6d32391054f97a62bcf01dbe37a63f81600359071e72259c", "initial_status": "NOT_RUN", "input_ids_sha256": "8b9168ad1bff18c0c9e337adb123497f1b11b7366fcbaf2595801d4d037d15dd", "input_tokens": 124, "model": "E2B"}, {"arm": "BASE", "id": "bfd0cfd4ff32ce6f5971aaa3a805dcd86a1f91e654b815703fb2b61275b4ac2f", "initial_status": "NOT_RUN", "input_ids_sha256": "0abb680d3bc54db601585f80a53eedf2564138a97c72685000262b4ff715fd4f", "input_tokens": 838, "model": "E2B"}, {"arm": "BASE", "id": "c914556a487920fdfeba29301c7797bdd38c0d4a32d78e3b13cce811629d5029", "initial_status": "NOT_RUN", "input_ids_sha256": "2ec8001aea853b39ae162059caf5702c882f7db72361b81ee77bd9c10e311e3b", "input_tokens": 120, "model": "E2B"}, {"arm": "BASE", "id": "5070f6bda5d3ee3bd7e671aeefab11bf6ebef8f3767868eadd1dcfa72d2e13ec", "initial_status": "NOT_RUN", "input_ids_sha256": "593b6eddbbdcc7485d6465df13507a80d138f5ba485debc770a085d1587c5535", "input_tokens": 115, "model": "E2B"}, {"arm": "BASE", "id": "28ed4d4dcbf484e61aa254bd7e48202ed7ce40ff7fa3f1a5c81574052d70f6d9", "initial_status": "NOT_RUN", "input_ids_sha256": "8e79efaeafab6cfe794f3aca69246a52c51b493179d9095d17d3d72207dba368", "input_tokens": 1018, "model": "E2B"}, {"arm": "BASE", "id": "e3185340774b4ec43627175fcae01f4392efdf23d10b6ec69e23c18c3477c73c", "initial_status": "NOT_RUN", "input_ids_sha256": "bb941d84bce1f3574d290369dea3dc36214b1e221672ac70bef38f727e94e138", "input_tokens": 1129, "model": "E2B"}, {"arm": "BASE", "id": "47af37588a365393a49b72ca72ea1b7893a61957b813b417fadd7576b505205d", "initial_status": "NOT_RUN", "input_ids_sha256": "b526f3877cf6cb3a0739e70ff4b26a80ef75b6557f7b1cd74728aea1df157227", "input_tokens": 137, "model": "E2B"}, {"arm": "BASE", "id": "fdf383ee6346f9a20215352a6f62fec6cc1eb144f6b69b01d92a62771ac93f2d", "initial_status": "NOT_RUN", "input_ids_sha256": "7ebad43af6df254cd0088cea29769f5bc496bbd413453685b5ddbd48cbf6bdbb", "input_tokens": 159, "model": "E2B"}, {"arm": "BASE", "id": "b0611eff121504213ed5feb0d28cadf56b139cb1b1ebda5877e2c326b4b6189e", "initial_status": "NOT_RUN", "input_ids_sha256": "f335a09adcfbffaadc0b1b8bb2adffe293c1748f19463b11becf8842d8cdfbe6", "input_tokens": 132, "model": "E2B"}, {"arm": "BASE", "id": "23fddc9618141ae0b8d55970657de8ee6e4ff6873bf8c334ee29eebc9f1b4c4d", "initial_status": "NOT_RUN", "input_ids_sha256": "d1c123d24b246ec1e2c654bf41091346256690a281ba65592573758a58ea8f07", "input_tokens": 1120, "model": "E2B"}, {"arm": "BASE", "id": "f77afa9624a43304caf80d9335d6e449ce27c4305730622ed32e1d83118bb033", "initial_status": "NOT_RUN", "input_ids_sha256": "8c7ba38150c7254f17f06c9591a7af1959f42b361121cef0f3179cc5fc884902", "input_tokens": 332, "model": "E2B"}, {"arm": "BASE", "id": "2d0b2be323e3636ffcef5917dc0585ffea751ac3876963003afad9d82a5021bf", "initial_status": "NOT_RUN", "input_ids_sha256": "e121ec504da0eef1d3b0584cdd5471fafa74992bd1d232bb1c5d5ba24b9aee14", "input_tokens": 1358, "model": "E2B"}, {"arm": "Q1", "id": "c97ef7d722c04a0dab309c49b13cabe2e67feabad96e05c344f78698f7da9e62", "initial_status": "NOT_RUN", "input_ids_sha256": "64aef8787753e35634d768fd8f9cc3cbed144e37858951447cac7db263fa297a", "input_tokens": 1357, "model": "E2B"}, {"arm": "Q1", "id": "05eacac73dbe86329ce07b908d6649cfcd95e6906fd7fce9ea222f3cd4f39d83", "initial_status": "NOT_RUN", "input_ids_sha256": "e2b6539c1f855e9a07cc5442f4e19e824ca11379a763732d7b50f6fd403335ea", "input_tokens": 1016, "model": "E2B"}, {"arm": "Q1", "id": "5f100e5e7c351bae2bc87ad5e4f2170510c72370a42c09aeb3c49f0162459af3", "initial_status": "NOT_RUN", "input_ids_sha256": "729f83fdbe034005e258f4189a1695450926686ff016cb8f49fd1435f7fc5a5a", "input_tokens": 141, "model": "E2B"}, {"arm": "Q1", "id": "41d61e2b59eeec961af88213e46a6f048a3da358bb9b1e041acaa4557a7de9f4", "initial_status": "NOT_RUN", "input_ids_sha256": "5dcb32784a5a651c059db49422ba4b59f0c75894bacdcf6bfc955e7121ee8919", "input_tokens": 810, "model": "E2B"}, {"arm": "Q1", "id": "79a097c6652994fd6d32391054f97a62bcf01dbe37a63f81600359071e72259c", "initial_status": "NOT_RUN", "input_ids_sha256": "8b9168ad1bff18c0c9e337adb123497f1b11b7366fcbaf2595801d4d037d15dd", "input_tokens": 124, "model": "E2B"}, {"arm": "Q1", "id": "bfd0cfd4ff32ce6f5971aaa3a805dcd86a1f91e654b815703fb2b61275b4ac2f", "initial_status": "NOT_RUN", "input_ids_sha256": "0abb680d3bc54db601585f80a53eedf2564138a97c72685000262b4ff715fd4f", "input_tokens": 838, "model": "E2B"}, {"arm": "Q1", "id": "c914556a487920fdfeba29301c7797bdd38c0d4a32d78e3b13cce811629d5029", "initial_status": "NOT_RUN", "input_ids_sha256": "2ec8001aea853b39ae162059caf5702c882f7db72361b81ee77bd9c10e311e3b", "input_tokens": 120, "model": "E2B"}, {"arm": "Q1", "id": "5070f6bda5d3ee3bd7e671aeefab11bf6ebef8f3767868eadd1dcfa72d2e13ec", "initial_status": "NOT_RUN", "input_ids_sha256": "593b6eddbbdcc7485d6465df13507a80d138f5ba485debc770a085d1587c5535", "input_tokens": 115, "model": "E2B"}, {"arm": "Q1", "id": "28ed4d4dcbf484e61aa254bd7e48202ed7ce40ff7fa3f1a5c81574052d70f6d9", "initial_status": "NOT_RUN", "input_ids_sha256": "8e79efaeafab6cfe794f3aca69246a52c51b493179d9095d17d3d72207dba368", "input_tokens": 1018, "model": "E2B"}, {"arm": "Q1", "id": "e3185340774b4ec43627175fcae01f4392efdf23d10b6ec69e23c18c3477c73c", "initial_status": "NOT_RUN", "input_ids_sha256": "bb941d84bce1f3574d290369dea3dc36214b1e221672ac70bef38f727e94e138", "input_tokens": 1129, "model": "E2B"}, {"arm": "Q1", "id": "47af37588a365393a49b72ca72ea1b7893a61957b813b417fadd7576b505205d", "initial_status": "NOT_RUN", "input_ids_sha256": "b526f3877cf6cb3a0739e70ff4b26a80ef75b6557f7b1cd74728aea1df157227", "input_tokens": 137, "model": "E2B"}, {"arm": "Q1", "id": "fdf383ee6346f9a20215352a6f62fec6cc1eb144f6b69b01d92a62771ac93f2d", "initial_status": "NOT_RUN", "input_ids_sha256": "7ebad43af6df254cd0088cea29769f5bc496bbd413453685b5ddbd48cbf6bdbb", "input_tokens": 159, "model": "E2B"}, {"arm": "Q1", "id": "b0611eff121504213ed5feb0d28cadf56b139cb1b1ebda5877e2c326b4b6189e", "initial_status": "NOT_RUN", "input_ids_sha256": "f335a09adcfbffaadc0b1b8bb2adffe293c1748f19463b11becf8842d8cdfbe6", "input_tokens": 132, "model": "E2B"}, {"arm": "Q1", "id": "23fddc9618141ae0b8d55970657de8ee6e4ff6873bf8c334ee29eebc9f1b4c4d", "initial_status": "NOT_RUN", "input_ids_sha256": "d1c123d24b246ec1e2c654bf41091346256690a281ba65592573758a58ea8f07", "input_tokens": 1120, "model": "E2B"}, {"arm": "Q1", "id": "f77afa9624a43304caf80d9335d6e449ce27c4305730622ed32e1d83118bb033", "initial_status": "NOT_RUN", "input_ids_sha256": "8c7ba38150c7254f17f06c9591a7af1959f42b361121cef0f3179cc5fc884902", "input_tokens": 332, "model": "E2B"}, {"arm": "Q1", "id": "2d0b2be323e3636ffcef5917dc0585ffea751ac3876963003afad9d82a5021bf", "initial_status": "NOT_RUN", "input_ids_sha256": "e121ec504da0eef1d3b0584cdd5471fafa74992bd1d232bb1c5d5ba24b9aee14", "input_tokens": 1358, "model": "E2B"}, {"arm": "Q4", "id": "c97ef7d722c04a0dab309c49b13cabe2e67feabad96e05c344f78698f7da9e62", "initial_status": "NOT_RUN", "input_ids_sha256": "64aef8787753e35634d768fd8f9cc3cbed144e37858951447cac7db263fa297a", "input_tokens": 1357, "model": "E2B"}, {"arm": "Q4", "id": "05eacac73dbe86329ce07b908d6649cfcd95e6906fd7fce9ea222f3cd4f39d83", "initial_status": "NOT_RUN", "input_ids_sha256": "e2b6539c1f855e9a07cc5442f4e19e824ca11379a763732d7b50f6fd403335ea", "input_tokens": 1016, "model": "E2B"}, {"arm": "Q4", "id": "5f100e5e7c351bae2bc87ad5e4f2170510c72370a42c09aeb3c49f0162459af3", "initial_status": "NOT_RUN", "input_ids_sha256": "729f83fdbe034005e258f4189a1695450926686ff016cb8f49fd1435f7fc5a5a", "input_tokens": 141, "model": "E2B"}, {"arm": "Q4", "id": "41d61e2b59eeec961af88213e46a6f048a3da358bb9b1e041acaa4557a7de9f4", "initial_status": "NOT_RUN", "input_ids_sha256": "5dcb32784a5a651c059db49422ba4b59f0c75894bacdcf6bfc955e7121ee8919", "input_tokens": 810, "model": "E2B"}, {"arm": "Q4", "id": "79a097c6652994fd6d32391054f97a62bcf01dbe37a63f81600359071e72259c", "initial_status": "NOT_RUN", "input_ids_sha256": "8b9168ad1bff18c0c9e337adb123497f1b11b7366fcbaf2595801d4d037d15dd", "input_tokens": 124, "model": "E2B"}, {"arm": "Q4", "id": "bfd0cfd4ff32ce6f5971aaa3a805dcd86a1f91e654b815703fb2b61275b4ac2f", "initial_status": "NOT_RUN", "input_ids_sha256": "0abb680d3bc54db601585f80a53eedf2564138a97c72685000262b4ff715fd4f", "input_tokens": 838, "model": "E2B"}, {"arm": "Q4", "id": "c914556a487920fdfeba29301c7797bdd38c0d4a32d78e3b13cce811629d5029", "initial_status": "NOT_RUN", "input_ids_sha256": "2ec8001aea853b39ae162059caf5702c882f7db72361b81ee77bd9c10e311e3b", "input_tokens": 120, "model": "E2B"}, {"arm": "Q4", "id": "5070f6bda5d3ee3bd7e671aeefab11bf6ebef8f3767868eadd1dcfa72d2e13ec", "initial_status": "NOT_RUN", "input_ids_sha256": "593b6eddbbdcc7485d6465df13507a80d138f5ba485debc770a085d1587c5535", "input_tokens": 115, "model": "E2B"}, {"arm": "Q4", "id": "28ed4d4dcbf484e61aa254bd7e48202ed7ce40ff7fa3f1a5c81574052d70f6d9", "initial_status": "NOT_RUN", "input_ids_sha256": "8e79efaeafab6cfe794f3aca69246a52c51b493179d9095d17d3d72207dba368", "input_tokens": 1018, "model": "E2B"}, {"arm": "Q4", "id": "e3185340774b4ec43627175fcae01f4392efdf23d10b6ec69e23c18c3477c73c", "initial_status": "NOT_RUN", "input_ids_sha256": "bb941d84bce1f3574d290369dea3dc36214b1e221672ac70bef38f727e94e138", "input_tokens": 1129, "model": "E2B"}, {"arm": "Q4", "id": "47af37588a365393a49b72ca72ea1b7893a61957b813b417fadd7576b505205d", "initial_status": "NOT_RUN", "input_ids_sha256": "b526f3877cf6cb3a0739e70ff4b26a80ef75b6557f7b1cd74728aea1df157227", "input_tokens": 137, "model": "E2B"}, {"arm": "Q4", "id": "fdf383ee6346f9a20215352a6f62fec6cc1eb144f6b69b01d92a62771ac93f2d", "initial_status": "NOT_RUN", "input_ids_sha256": "7ebad43af6df254cd0088cea29769f5bc496bbd413453685b5ddbd48cbf6bdbb", "input_tokens": 159, "model": "E2B"}, {"arm": "Q4", "id": "b0611eff121504213ed5feb0d28cadf56b139cb1b1ebda5877e2c326b4b6189e", "initial_status": "NOT_RUN", "input_ids_sha256": "f335a09adcfbffaadc0b1b8bb2adffe293c1748f19463b11becf8842d8cdfbe6", "input_tokens": 132, "model": "E2B"}, {"arm": "Q4", "id": "23fddc9618141ae0b8d55970657de8ee6e4ff6873bf8c334ee29eebc9f1b4c4d", "initial_status": "NOT_RUN", "input_ids_sha256": "d1c123d24b246ec1e2c654bf41091346256690a281ba65592573758a58ea8f07", "input_tokens": 1120, "model": "E2B"}, {"arm": "Q4", "id": "f77afa9624a43304caf80d9335d6e449ce27c4305730622ed32e1d83118bb033", "initial_status": "NOT_RUN", "input_ids_sha256": "8c7ba38150c7254f17f06c9591a7af1959f42b361121cef0f3179cc5fc884902", "input_tokens": 332, "model": "E2B"}, {"arm": "Q4", "id": "2d0b2be323e3636ffcef5917dc0585ffea751ac3876963003afad9d82a5021bf", "initial_status": "NOT_RUN", "input_ids_sha256": "e121ec504da0eef1d3b0584cdd5471fafa74992bd1d232bb1c5d5ba24b9aee14", "input_tokens": 1358, "model": "E2B"}], "per_arm": 16, "planned_updates_per_trained_arm": 640, "pretrained_requests": 0, "schedule_sha256": "ecaaa40656f8101a8da9d5e3809a72cfbebe391723b303f29d1d67a58e36ad1b", "source_hashes": {"docs/abductive-baseline-protocol-v1.json": "6a99735987843e12ddd6c65e2f3c9fe06ddd5f9a42703add283c5a386da89fb5", "docs/abductive-evaluation-protocol-v1.json": "1d368aae3396d25544d817654a36f9dc33aa5563b667c087e26a698859f0577f", "docs/small-model-cpu-requirements.txt": "963dddff3e179dda2c01460dbaebe31291e0ad5614702d4604ad5643ee1fdad0", "docs/small-model-gpu-requirements.txt": "4f4cf1e1702df295b94cf9d32ded0bdbcbb5a42f4563c283a3a0bfce027edf89", "docs/small-model-runtime-lock-v1.json": "3dfee36e56a01ea9835cafd9eea169fde831e7106cb28b5e88dd10657736e937", "docs/temporal-evaluation-protocol-v1.json": "58a09374d3b53221a044516d14e434b31ddb39d2b67925cfb9ec890303ef43f7", "tools/abductive_baseline.py": "8e8b329140eab6fa3a7c4c49939989f7a250c97c6b25eaa2bb838c9bfe564118", "tools/abductive_benchmark.py": "d577f6d7a9145aa83d6f0d950a5536a5793019e1ffaad7028a98eb368b6cc794", "tools/abductive_scoring.py": "e42de45f70b965f29fed643400dcc9fb0424a5bd5cb1ac00ae06fc07fe4713c7", "tools/exact_teacher.py": "3a684f81eb21febff45d884febeac88208ce6a312147d1ed50d52391404f7314", "tools/small_model_gpu.py": "5badc724e2b0310743e97acb5fbf47ff87e97e6ff88ab4c77ddb7b3e39569903", "tools/small_model_readiness.py": "47df3b17595f6bf3aeeb3edc526b1135c36e43206e74fa7a9260458e7aab6f6c", "tools/small_model_runner.py": "60932ca4057fae460caf874b22f5cc74bcd03a3a543c9bde8e5aa944a25263b6", "tools/small_model_worker.py": "f5c056f151f839301f35bb6ed78a5fe576aea74bdeffb023a73ca53e93be51f8", "tools/temporal_benchmark.py": "a4c1835a63bd584428cef41508368b3a4106059983af8533af286f01f7662e0a", "tools/temporal_scoring.py": "d5add469c13a8c5a815cd152167f3a31d975076e7d7955b4113e9aaf904363ae"}, "specification_bytes": {"Q1": 50689, "Q4": 50689}, "specification_sha256": {"Q1": "212263ea9a2a3f31b0aeaafe70028a58fedcef80e1659c3115a9ac7519d1f2bd", "Q4": "cb1af5cd590d4e7b89871dc3a2e267e67c0cae16601287c9fe4b6e1707c6dfe1"}, "status": "PASS_TRAINABILITY_INPUTS_NOT_INFERENCE", "train_only": true, "training": {"effective_training_tokens_per_arm": 457360, "epochs": 40, "examples": [{"episode": "552c7c454cfce05739aef2d35d88c1921435c83edbbcea83c1eda919b74dfe81", "family": "1e44d7f2434e9f5a4025cb6168fecd9dfd74fa184a0337c4ca937b0bb4afbc40", "id": "c97ef7d722c04a0dab309c49b13cabe2e67feabad96e05c344f78698f7da9e62", "kind": "reasoning", "split": "train", "task": "temporal_revision", "variant": 17}, {"episode": "b18afee320ee1064e725d7aa594d449d33fc7fb8a025d75c8f69fa3be6016a20", "family": "1e44d7f2434e9f5a4025cb6168fecd9dfd74fa184a0337c4ca937b0bb4afbc40", "id": "05eacac73dbe86329ce07b908d6649cfcd95e6906fd7fce9ea222f3cd4f39d83", "kind": "reasoning", "split": "train", "task": "inference", "variant": 13}, {"episode": "bc8b0629358a4ccbf117f0a3c9e8ec983c5a0a69c4f77ca9647f30aed71edeed", "family": "1e44d7f2434e9f5a4025cb6168fecd9dfd74fa184a0337c4ca937b0bb4afbc40", "id": "5f100e5e7c351bae2bc87ad5e4f2170510c72370a42c09aeb3c49f0162459af3", "kind": "format", "split": "train", "task": "revision", "variant": 24}, {"episode": "1ebd307c6ed7be416f50cf15b981ae0b78fd2c6fa1aafe80327800b710d15a70", "family": "08662b17eb5bf297ab063157cc560496fd21e5ca53cb58ddbf8d2673843bb4f2", "id": "41d61e2b59eeec961af88213e46a6f048a3da358bb9b1e041acaa4557a7de9f4", "kind": "reasoning", "split": "train", "task": "abduction", "variant": 31}, {"episode": "552c7c454cfce05739aef2d35d88c1921435c83edbbcea83c1eda919b74dfe81", "family": "1e44d7f2434e9f5a4025cb6168fecd9dfd74fa184a0337c4ca937b0bb4afbc40", "id": "79a097c6652994fd6d32391054f97a62bcf01dbe37a63f81600359071e72259c", "kind": "format", "split": "train", "task": "temporal_revision", "variant": 17}, {"episode": "25fa882999a151bddd4a55b0a5f545e2e35238e3c5eda8898355b4208cc355bc", "family": "27af14d0c681b336fdf2a7c19a248c4223dc5fca24b2b8cc802c54d261085146", "id": "bfd0cfd4ff32ce6f5971aaa3a805dcd86a1f91e654b815703fb2b61275b4ac2f", "kind": "reasoning", "split": "train", "task": "abduction", "variant": 25}, {"episode": "ed01f9afd90076ceeabc641af5770c9f79a3e9fd03768b81bbb240237f8ed177", "family": "2e0a8c1120ab40b2251c055ef735577e9f92449d1b555809029435f55b059b49", "id": "c914556a487920fdfeba29301c7797bdd38c0d4a32d78e3b13cce811629d5029", "kind": "format", "split": "train", "task": "temporal_revision", "variant": 28}, {"episode": "b18afee320ee1064e725d7aa594d449d33fc7fb8a025d75c8f69fa3be6016a20", "family": "1e44d7f2434e9f5a4025cb6168fecd9dfd74fa184a0337c4ca937b0bb4afbc40", "id": "5070f6bda5d3ee3bd7e671aeefab11bf6ebef8f3767868eadd1dcfa72d2e13ec", "kind": "format", "split": "train", "task": "inference", "variant": 13}, {"episode": "57d105ac939eb5292c2c593de6dc48708dc9f117fb2f1fce0a708b15dafa3fe6", "family": "27af14d0c681b336fdf2a7c19a248c4223dc5fca24b2b8cc802c54d261085146", "id": "28ed4d4dcbf484e61aa254bd7e48202ed7ce40ff7fa3f1a5c81574052d70f6d9", "kind": "reasoning", "split": "train", "task": "inference", "variant": 30}, {"episode": "bc8b0629358a4ccbf117f0a3c9e8ec983c5a0a69c4f77ca9647f30aed71edeed", "family": "1e44d7f2434e9f5a4025cb6168fecd9dfd74fa184a0337c4ca937b0bb4afbc40", "id": "e3185340774b4ec43627175fcae01f4392efdf23d10b6ec69e23c18c3477c73c", "kind": "reasoning", "split": "train", "task": "revision", "variant": 24}, {"episode": "4a94853478f7ccd348ae3bcf44764fbeeb23cf71130485865bf88d4cd0e5af78", "family": "137a7f47c253956cf37a083eb26ef3593a41a9d632fec4b87e557fb362706cc8", "id": "47af37588a365393a49b72ca72ea1b7893a61957b813b417fadd7576b505205d", "kind": "format", "split": "train", "task": "revision", "variant": 10}, {"episode": "1ebd307c6ed7be416f50cf15b981ae0b78fd2c6fa1aafe80327800b710d15a70", "family": "08662b17eb5bf297ab063157cc560496fd21e5ca53cb58ddbf8d2673843bb4f2", "id": "fdf383ee6346f9a20215352a6f62fec6cc1eb144f6b69b01d92a62771ac93f2d", "kind": "format", "split": "train", "task": "abduction", "variant": 31}, {"episode": "57d105ac939eb5292c2c593de6dc48708dc9f117fb2f1fce0a708b15dafa3fe6", "family": "27af14d0c681b336fdf2a7c19a248c4223dc5fca24b2b8cc802c54d261085146", "id": "b0611eff121504213ed5feb0d28cadf56b139cb1b1ebda5877e2c326b4b6189e", "kind": "format", "split": "train", "task": "inference", "variant": 30}, {"episode": "4a94853478f7ccd348ae3bcf44764fbeeb23cf71130485865bf88d4cd0e5af78", "family": "137a7f47c253956cf37a083eb26ef3593a41a9d632fec4b87e557fb362706cc8", "id": "23fddc9618141ae0b8d55970657de8ee6e4ff6873bf8c334ee29eebc9f1b4c4d", "kind": "reasoning", "split": "train", "task": "revision", "variant": 10}, {"episode": "25fa882999a151bddd4a55b0a5f545e2e35238e3c5eda8898355b4208cc355bc", "family": "27af14d0c681b336fdf2a7c19a248c4223dc5fca24b2b8cc802c54d261085146", "id": "f77afa9624a43304caf80d9335d6e449ce27c4305730622ed32e1d83118bb033", "kind": "format", "split": "train", "task": "abduction", "variant": 25}, {"episode": "ed01f9afd90076ceeabc641af5770c9f79a3e9fd03768b81bbb240237f8ed177", "family": "2e0a8c1120ab40b2251c055ef735577e9f92449d1b555809029435f55b059b49", "id": "2d0b2be323e3636ffcef5917dc0585ffea751ac3876963003afad9d82a5021bf", "kind": "reasoning", "split": "train", "task": "temporal_revision", "variant": 28}], "qualification": "TRAIN_ONLY_NOT_GENERALIZATION", "rows_per_arm": 16, "supervised_tokens_per_arm": 61120}, "training_steps": 0}
+2026-11-01T07:14:57.7539534Z ##[group]Run python - <<'PYARCHIVE'
+2026-11-01T07:14:57.7539814Z [36;1mpython - <<'PYARCHIVE'[0m
+2026-11-01T07:14:57.7540021Z [36;1mfrom pathlib import Path[0m
+2026-11-01T07:14:57.7540268Z [36;1mimport base64,hashlib,io,json,zipfile[0m
+2026-11-01T07:14:57.7540511Z [36;1mstream=io.BytesIO()[0m
+2026-11-01T07:14:57.7541003Z [36;1mwith zipfile.ZipFile(stream,'w',zipfile.ZIP_DEFLATED) as archive:[0m
+2026-11-01T07:14:57.7541365Z [36;1m    for p in sorted(Path('evidence').rglob('*')):[0m
+2026-11-01T07:14:57.7541726Z [36;1m        if (p.is_file() and not p.is_symlink() and p.suffix in ('.json','.jsonl','.log')[0m
+2026-11-01T07:14:57.7542199Z [36;1m                and p.name not in ('endpoint.json','collector-input.json') and p.stat().st_size<=16*1024**2):[0m
+2026-11-01T07:14:57.7542644Z [36;1m            archive.write(p,p.relative_to('evidence').as_posix())[0m
+2026-11-01T07:14:57.7542937Z [36;1mraw=stream.getvalue()[0m
+2026-11-01T07:14:57.7543249Z [36;1mif len(raw)>8*1024**2:raise ValueError('evidence archive exceeds bound')[0m
+2026-11-01T07:14:57.7543581Z [36;1mencoded=base64.b64encode(raw).decode()[0m
+2026-11-01T07:14:57.7543988Z [36;1mprint('TRAINABILITY_ARCHIVE_META '+json.dumps({'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}))[0m
+2026-11-01T07:14:57.7544551Z [36;1mfor i in range(0,len(encoded),48000):print('TRAINABILITY_ARCHIVE_CHUNK '+str(i//48000)+' '+encoded[i:i+48000])[0m
+2026-11-01T07:14:57.7544934Z [36;1mPYARCHIVE[0m
+2026-11-01T07:14:57.7562389Z shell: /usr/bin/bash -e {0}
+2026-11-01T07:14:57.7562591Z env:
+2026-11-01T07:14:57.7562802Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T07:14:57.7563140Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T07:14:57.7563488Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T07:14:57.7563780Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T07:14:57.7564075Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T07:14:57.7564369Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T07:14:57.7564619Z ##[endgroup]
+2026-11-01T07:14:57.7881736Z TRAINABILITY_ARCHIVE_META {"bytes": 7548, "sha256": "1d7313aff822ef5e8df6b06759ec25229f59e5c3fc2764a95967a55770ed1840"}
+2026-11-01T07:14:57.7923134Z TRAINABILITY_ARCHIVE_CHUNK 0 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
+2026-11-01T07:14:57.8026622Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-11-01T07:14:57.8026935Z with:
+2026-11-01T07:14:57.8027196Z   name: e2b-trainability-inputs-ebe6fa37b44ad465c16fa36cd2823f55cf93a050
+2026-11-01T07:14:57.8027504Z   path: evidence/
+2026-11-01T07:14:57.8027685Z   retention-days: 14
+2026-11-01T07:14:57.8027867Z   if-no-files-found: warn
+2026-11-01T07:14:57.8028057Z   compression-level: 6
+2026-11-01T07:14:57.8028238Z   overwrite: false
+2026-11-01T07:14:57.8028420Z   include-hidden-files: false
+2026-11-01T07:14:57.8028629Z env:
+2026-11-01T07:14:57.8028835Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T07:14:57.8029173Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T07:14:57.8029493Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T07:14:57.8029792Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T07:14:57.8030098Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T07:14:57.8030398Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T07:14:57.8030652Z ##[endgroup]
+2026-11-01T07:14:57.9389305Z (node:2378) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-01T07:14:57.9389865Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-01T07:14:57.9438479Z With the provided path, there will be 5 files uploaded
+2026-11-01T07:14:57.9443212Z Artifact name is valid!
+2026-11-01T07:14:57.9443571Z Root directory input is valid!
+2026-11-01T07:14:58.3506588Z Beginning upload of artifact content to blob storage
+2026-11-01T07:14:58.3703016Z (node:2378) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-01T07:14:58.5695852Z Uploaded bytes 7429
+2026-11-01T07:14:58.6263294Z Finished uploading artifact content to blob storage!
+2026-11-01T07:14:58.6264206Z SHA256 digest of uploaded artifact zip is edc8f810cb936d28517a8a487c847825d8d273e4b247b9d1db47cd6b77b912b2
+2026-11-01T07:14:58.6271676Z Finalizing artifact upload
+2026-11-01T07:14:59.1235438Z Artifact e2b-trainability-inputs-ebe6fa37b44ad465c16fa36cd2823f55cf93a050.zip successfully finalized. Artifact ID 13074248884
+2026-11-01T07:14:59.1236848Z Artifact e2b-trainability-inputs-ebe6fa37b44ad465c16fa36cd2823f55cf93a050 has been successfully uploaded! Final size is 7429 bytes. Artifact ID is 13074248884
+2026-11-01T07:14:59.1241747Z Artifact download URL: https://github.com/hynk-studio/backtrace/actions/runs/41283861825/artifacts/13074248884
+2026-11-01T07:14:59.1428339Z Post job cleanup.
+2026-11-01T07:14:59.2442943Z (node:2391) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-01T07:14:59.2443848Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-01T07:14:59.2631728Z Post job cleanup.
+2026-11-01T07:14:59.3347516Z [command]/usr/bin/git version
+2026-11-01T07:14:59.3386976Z git version 2.56.0
+2026-11-01T07:14:59.3420423Z Temporarily overriding HOME='/home/runner/work/_temp/9238cac0-60ae-4a82-94cb-b24bce8f6fc2' before making global git config changes
+2026-11-01T07:14:59.3421706Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-01T07:14:59.3425360Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/backtrace/backtrace
+2026-11-01T07:14:59.3459664Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-01T07:14:59.3491600Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-01T07:14:59.3714364Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-01T07:14:59.3747673Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-01T07:14:59.3974598Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-01T07:14:59.4013518Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-01T07:14:59.4360977Z Cleaning up orphan processes
+2026-11-01T07:14:59.4662707Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

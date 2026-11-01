@@ -1,0 +1,26 @@
+{
+  "all_original_members_verified": true,
+  "note": "GitHub artifact digest is metadata only; log-embedded archive and each extracted original member were independently hashed.",
+  "roles": [
+    {
+      "archive_sha256": "22022265a4b4f77950d60ba60aead9df14ca693b979460d4b27964fccef6fcca",
+      "members": 3,
+      "role": "owner"
+    },
+    {
+      "archive_sha256": "3384f96a1222e8787de58e9dd49257a7ed9d3ad24fcb7a98f334b8b5738d5fbd",
+      "members": 1,
+      "role": "watch"
+    },
+    {
+      "archive_sha256": "1d7313aff822ef5e8df6b06759ec25229f59e5c3fc2764a95967a55770ed1840",
+      "members": 5,
+      "role": "prepare"
+    },
+    {
+      "archive_sha256": "2e7a4e99b61ef110e05edae64e9e671e2bf79aa19ba04645de367e1b9e4ecd51",
+      "members": 47,
+      "role": "container"
+    }
+  ]
+}

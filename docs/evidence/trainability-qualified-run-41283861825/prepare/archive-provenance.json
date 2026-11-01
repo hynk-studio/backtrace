@@ -1,0 +1,34 @@
+{
+  "archive": {
+    "bytes": 7548,
+    "sha256": "1d7313aff822ef5e8df6b06759ec25229f59e5c3fc2764a95967a55770ed1840"
+  },
+  "job_log_sha256": "b3d19c9042a1874e98263e579125ab33980c557bd9008adb694058e83e4e5da7",
+  "members": [
+    {
+      "bytes": 10914,
+      "path": "dependency-download.log",
+      "sha256": "6e94c813626d72962cec7c797a8bdbf4991fca0eac516f2c8274448dc25860ef"
+    },
+    {
+      "bytes": 5824,
+      "path": "dependency-install.log",
+      "sha256": "d37a06770f6e9acffa3fdf721caf7426070cb68b1db2baab8374eda4043a9a70"
+    },
+    {
+      "bytes": 19042,
+      "path": "input-verification.json",
+      "sha256": "72119bd33550dc362e766f55acca77f7c9779be69a590d9b62b6c872857e612e"
+    },
+    {
+      "bytes": 505,
+      "path": "preparation.json",
+      "sha256": "85e08b41360fba2c5d359b1816a56bd4f7fe10dc14005f96aeee2478ddf079b2"
+    },
+    {
+      "bytes": 0,
+      "path": "preparation.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

@@ -1,4 +1,27 @@
-## Current checkpoint: training-path audit complete (2026-11-01)
+## Current result: trainability diagnostic completed (2026-11-01)
+
+Read [the actual trainability result](small-model-trainability-result-20261101.md)
+and [Draft #52](https://github.com/hynk-studio/backtrace/pull/52). Actual run
+41284716992 completed all 48 responses and 640 updates per trained arm. Full-target
+SFT learned the eight supplied-answer formatting examples: BASE 0/8, Q1 8/8,
+Q4 8/8. All eight reasoning examples remain schema-invalid in all arms. This is
+partial training-set learning, not reasoning fit, generalization or Augnes value.
+
+The exact 761-test-qualified source, 132 raw actual members, 48 response chains,
+11 state blobs and 378 source bindings over 101 paths were verified. Both saved
+adapters reproduce trained logits in distinct fresh evaluation processes. Both
+controllers verified GPU deletion; final inventory is empty and hourly spend zero.
+Observed debit USD 0.2122488028 leaves USD 1.1925423895; cumulative continuation
+debit is USD 1.7135017444, subject to billing lag. No second allocation was started.
+
+Next gate: isolate reasoning-only train fit, beginning with one fixed training
+example and a complete correct free-generated answer, before widening examples
+or testing generalization. The four-query variant does not improve task success
+over the one-query variant here. Preserve the original failed outputs and all
+consumed permits. The live Augnes connection remains a separate service-comparison
+blocker; it did not prevent this completed offline experiment.
+
+## Completed checkpoint: training-path audit (2026-11-01)
 
 Read [the training-path audit](small-model-training-path-audit-20261101.md).
 All 640 train targets and original token sequences reproduced; 54 focused tests

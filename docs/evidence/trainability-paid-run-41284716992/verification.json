@@ -1,0 +1,471 @@
+{
+  "actual_run_id": 41284716992,
+  "arms": {
+    "BASE": {
+      "coverage": {
+        "INVALID_OUTPUT": 2,
+        "OK": 14
+      },
+      "evaluation_worker": {
+        "elapsed_seconds": 105.01904148701578,
+        "exit_code": 0,
+        "pid": 366,
+        "reason": "TRANSPORT_EOF",
+        "same_process_alive": false,
+        "start_ticks": "108168675",
+        "supervisor_pid": 365
+      },
+      "fresh_reload": null,
+      "generation_seconds": 92.83278825925663,
+      "output_tokens": 1986,
+      "wall_seconds": 106.69014462299992
+    },
+    "Q1": {
+      "coverage": {
+        "INVALID_OUTPUT": 2,
+        "OK": 14
+      },
+      "evaluation_worker": {
+        "elapsed_seconds": 94.40198623784818,
+        "exit_code": 0,
+        "pid": 409,
+        "reason": "TRANSPORT_EOF",
+        "same_process_alive": false,
+        "start_ticks": "108199651",
+        "supervisor_pid": 408
+      },
+      "fresh_reload": {
+        "adapter_bytes": 90256,
+        "adapter_sha256": "b2d35da5a4ea6935a88165c39fb6e9b867236a4526f3bea4813fbbfcfba9a29f",
+        "arm": "Q1",
+        "capability_claim": "NOT_ESTABLISHED",
+        "observed_probe_logits_sha256": "45bd1d618af9b2b734b06bca4ab0091be5a24e7c2d9026c367b50f172880c0a3",
+        "probe_input_ids_sha256": "64aef8787753e35634d768fd8f9cc3cbed144e37858951447cac7db263fa297a",
+        "projection_count": 1,
+        "status": "PASS_FRESH_PROCESS_TRAINABILITY_RELOAD",
+        "target_modules": [
+          "model.layers.34.self_attn.q_proj"
+        ],
+        "training_input_sha256": "212263ea9a2a3f31b0aeaafe70028a58fedcef80e1659c3115a9ac7519d1f2bd",
+        "training_steps": 640,
+        "updates_in_worker": 0
+      },
+      "generation_seconds": 80.21559717459604,
+      "output_tokens": 1584,
+      "wall_seconds": 95.94956206000006
+    },
+    "Q4": {
+      "coverage": {
+        "INVALID_OUTPUT": 2,
+        "OK": 14
+      },
+      "evaluation_worker": {
+        "elapsed_seconds": 81.68378777895123,
+        "exit_code": 0,
+        "pid": 452,
+        "reason": "TRANSPORT_EOF",
+        "same_process_alive": false,
+        "start_ticks": "108232649",
+        "supervisor_pid": 451
+      },
+      "fresh_reload": {
+        "adapter_bytes": 262704,
+        "adapter_sha256": "001668682d4248647cbada088e58e3c015f3bdbd5d5879922fb2de5406af0c0a",
+        "arm": "Q4",
+        "capability_claim": "NOT_ESTABLISHED",
+        "observed_probe_logits_sha256": "334b0310439063b5958ce55b3c6d02edbcef8860548ffbba255dc33cfde86458",
+        "probe_input_ids_sha256": "64aef8787753e35634d768fd8f9cc3cbed144e37858951447cac7db263fa297a",
+        "projection_count": 4,
+        "status": "PASS_FRESH_PROCESS_TRAINABILITY_RELOAD",
+        "target_modules": [
+          "model.layers.31.self_attn.q_proj",
+          "model.layers.32.self_attn.q_proj",
+          "model.layers.33.self_attn.q_proj",
+          "model.layers.34.self_attn.q_proj"
+        ],
+        "training_input_sha256": "cb1af5cd590d4e7b89871dc3a2e267e67c0cae16601287c9fe4b6e1707c6dfe1",
+        "training_steps": 640,
+        "updates_in_worker": 0
+      },
+      "generation_seconds": 68.56030711508356,
+      "output_tokens": 1369,
+      "wall_seconds": 83.17457287899992
+    }
+  },
+  "cost": {
+    "account_observed_at": "2026-11-01T07:55:47Z",
+    "auto_pay": false,
+    "billing": "Observed balance differences; settlement can lag.",
+    "cumulative_continuation_debit_usd": "1.7135017444",
+    "hourly_spend_usd": "0",
+    "initial_balance_usd": "1.4047911923",
+    "inventory_observed_at": "2026-11-01T07:55:55Z",
+    "observed_run_debit_usd": "0.2122488028",
+    "pod_count": 0,
+    "remaining_balance_usd": "1.1925423895"
+  },
+  "distinct_source_paths": 101,
+  "failures": [
+    {
+      "arm": "BASE",
+      "error": "unexpected schema fields",
+      "id": "c97ef7d722c04a0dab309c49b13cabe2e67feabad96e05c344f78698f7da9e62",
+      "kind": "reasoning",
+      "task": "temporal_revision"
+    },
+    {
+      "arm": "BASE",
+      "error": "Expecting ',' delimiter: line 1 column 40 (char 39)",
+      "id": "05eacac73dbe86329ce07b908d6649cfcd95e6906fd7fce9ea222f3cd4f39d83",
+      "kind": "reasoning",
+      "task": "inference"
+    },
+    {
+      "arm": "BASE",
+      "error": "unexpected schema fields",
+      "id": "5f100e5e7c351bae2bc87ad5e4f2170510c72370a42c09aeb3c49f0162459af3",
+      "kind": "format",
+      "task": "revision"
+    },
+    {
+      "arm": "BASE",
+      "error": "numeric probability required",
+      "id": "41d61e2b59eeec961af88213e46a6f048a3da358bb9b1e041acaa4557a7de9f4",
+      "kind": "reasoning",
+      "task": "abduction"
+    },
+    {
+      "arm": "BASE",
+      "error": "unexpected schema fields",
+      "id": "79a097c6652994fd6d32391054f97a62bcf01dbe37a63f81600359071e72259c",
+      "kind": "format",
+      "task": "temporal_revision"
+    },
+    {
+      "arm": "BASE",
+      "error": "numeric probability required",
+      "id": "bfd0cfd4ff32ce6f5971aaa3a805dcd86a1f91e654b815703fb2b61275b4ac2f",
+      "kind": "reasoning",
+      "task": "abduction"
+    },
+    {
+      "arm": "BASE",
+      "error": "unexpected schema fields",
+      "id": "c914556a487920fdfeba29301c7797bdd38c0d4a32d78e3b13cce811629d5029",
+      "kind": "format",
+      "task": "temporal_revision"
+    },
+    {
+      "arm": "BASE",
+      "error": "unexpected schema fields",
+      "id": "5070f6bda5d3ee3bd7e671aeefab11bf6ebef8f3767868eadd1dcfa72d2e13ec",
+      "kind": "format",
+      "task": "inference"
+    },
+    {
+      "arm": "BASE",
+      "error": "unknown outcome action",
+      "id": "28ed4d4dcbf484e61aa254bd7e48202ed7ce40ff7fa3f1a5c81574052d70f6d9",
+      "kind": "reasoning",
+      "task": "inference"
+    },
+    {
+      "arm": "BASE",
+      "error": "unexpected schema fields",
+      "id": "e3185340774b4ec43627175fcae01f4392efdf23d10b6ec69e23c18c3477c73c",
+      "kind": "reasoning",
+      "task": "revision"
+    },
+    {
+      "arm": "BASE",
+      "error": "Expecting ',' delimiter: line 1 column 214 (char 213)",
+      "id": "47af37588a365393a49b72ca72ea1b7893a61957b813b417fadd7576b505205d",
+      "kind": "format",
+      "task": "revision"
+    },
+    {
+      "arm": "BASE",
+      "error": "unexpected schema fields",
+      "id": "fdf383ee6346f9a20215352a6f62fec6cc1eb144f6b69b01d92a62771ac93f2d",
+      "kind": "format",
+      "task": "abduction"
+    },
+    {
+      "arm": "BASE",
+      "error": "unexpected schema fields",
+      "id": "b0611eff121504213ed5feb0d28cadf56b139cb1b1ebda5877e2c326b4b6189e",
+      "kind": "format",
+      "task": "inference"
+    },
+    {
+      "arm": "BASE",
+      "error": "unexpected schema fields",
+      "id": "23fddc9618141ae0b8d55970657de8ee6e4ff6873bf8c334ee29eebc9f1b4c4d",
+      "kind": "reasoning",
+      "task": "revision"
+    },
+    {
+      "arm": "BASE",
+      "error": "unexpected schema fields",
+      "id": "f77afa9624a43304caf80d9335d6e449ce27c4305730622ed32e1d83118bb033",
+      "kind": "format",
+      "task": "abduction"
+    },
+    {
+      "arm": "BASE",
+      "error": "unexpected schema fields",
+      "id": "2d0b2be323e3636ffcef5917dc0585ffea751ac3876963003afad9d82a5021bf",
+      "kind": "reasoning",
+      "task": "temporal_revision"
+    },
+    {
+      "arm": "Q1",
+      "error": "unexpected schema fields",
+      "id": "c97ef7d722c04a0dab309c49b13cabe2e67feabad96e05c344f78698f7da9e62",
+      "kind": "reasoning",
+      "task": "temporal_revision"
+    },
+    {
+      "arm": "Q1",
+      "error": "unexpected schema fields",
+      "id": "05eacac73dbe86329ce07b908d6649cfcd95e6906fd7fce9ea222f3cd4f39d83",
+      "kind": "reasoning",
+      "task": "inference"
+    },
+    {
+      "arm": "Q1",
+      "error": "Expecting value: line 1 column 11 (char 10)",
+      "id": "41d61e2b59eeec961af88213e46a6f048a3da358bb9b1e041acaa4557a7de9f4",
+      "kind": "reasoning",
+      "task": "abduction"
+    },
+    {
+      "arm": "Q1",
+      "error": "Expecting value: line 1 column 11 (char 10)",
+      "id": "bfd0cfd4ff32ce6f5971aaa3a805dcd86a1f91e654b815703fb2b61275b4ac2f",
+      "kind": "reasoning",
+      "task": "abduction"
+    },
+    {
+      "arm": "Q1",
+      "error": "unexpected schema fields",
+      "id": "28ed4d4dcbf484e61aa254bd7e48202ed7ce40ff7fa3f1a5c81574052d70f6d9",
+      "kind": "reasoning",
+      "task": "inference"
+    },
+    {
+      "arm": "Q1",
+      "error": "unexpected schema fields",
+      "id": "e3185340774b4ec43627175fcae01f4392efdf23d10b6ec69e23c18c3477c73c",
+      "kind": "reasoning",
+      "task": "revision"
+    },
+    {
+      "arm": "Q1",
+      "error": "unexpected schema fields",
+      "id": "23fddc9618141ae0b8d55970657de8ee6e4ff6873bf8c334ee29eebc9f1b4c4d",
+      "kind": "reasoning",
+      "task": "revision"
+    },
+    {
+      "arm": "Q1",
+      "error": "unexpected schema fields",
+      "id": "2d0b2be323e3636ffcef5917dc0585ffea751ac3876963003afad9d82a5021bf",
+      "kind": "reasoning",
+      "task": "temporal_revision"
+    },
+    {
+      "arm": "Q4",
+      "error": "unexpected schema fields",
+      "id": "c97ef7d722c04a0dab309c49b13cabe2e67feabad96e05c344f78698f7da9e62",
+      "kind": "reasoning",
+      "task": "temporal_revision"
+    },
+    {
+      "arm": "Q4",
+      "error": "unexpected schema fields",
+      "id": "05eacac73dbe86329ce07b908d6649cfcd95e6906fd7fce9ea222f3cd4f39d83",
+      "kind": "reasoning",
+      "task": "inference"
+    },
+    {
+      "arm": "Q4",
+      "error": "Expecting value: line 1 column 11 (char 10)",
+      "id": "41d61e2b59eeec961af88213e46a6f048a3da358bb9b1e041acaa4557a7de9f4",
+      "kind": "reasoning",
+      "task": "abduction"
+    },
+    {
+      "arm": "Q4",
+      "error": "Expecting ',' delimiter: line 1 column 70 (char 69)",
+      "id": "bfd0cfd4ff32ce6f5971aaa3a805dcd86a1f91e654b815703fb2b61275b4ac2f",
+      "kind": "reasoning",
+      "task": "abduction"
+    },
+    {
+      "arm": "Q4",
+      "error": "unexpected schema fields",
+      "id": "28ed4d4dcbf484e61aa254bd7e48202ed7ce40ff7fa3f1a5c81574052d70f6d9",
+      "kind": "reasoning",
+      "task": "inference"
+    },
+    {
+      "arm": "Q4",
+      "error": "unexpected schema fields",
+      "id": "e3185340774b4ec43627175fcae01f4392efdf23d10b6ec69e23c18c3477c73c",
+      "kind": "reasoning",
+      "task": "revision"
+    },
+    {
+      "arm": "Q4",
+      "error": "unexpected schema fields",
+      "id": "23fddc9618141ae0b8d55970657de8ee6e4ff6873bf8c334ee29eebc9f1b4c4d",
+      "kind": "reasoning",
+      "task": "revision"
+    },
+    {
+      "arm": "Q4",
+      "error": "unexpected schema fields",
+      "id": "2d0b2be323e3636ffcef5917dc0585ffea751ac3876963003afad9d82a5021bf",
+      "kind": "reasoning",
+      "task": "temporal_revision"
+    }
+  ],
+  "identical_Q1_Q4_output_token_sequences": 15,
+  "limits": [
+    "One seed and sixteen selected training examples; no held-out inference.",
+    "Format inputs intentionally contain the answer values.",
+    "Both trained arms fail all eight reasoning schemas; learned posterior correctness is not established.",
+    "Q4 changes adapter placement and parameter count together.",
+    "The historical masked run is not a controlled causal comparator."
+  ],
+  "original_archives": [
+    {
+      "archive_sha256": "e2901f9cfe743601f23d2dc8a0a0027c413cc68f7510d00874513a17e6ebc389",
+      "members": 131,
+      "role": "owner"
+    },
+    {
+      "archive_sha256": "08354e1c40af21b837a669b1f44317ffeb6b58537b517a0a52ef31d5dc995e5b",
+      "members": 1,
+      "role": "watch"
+    }
+  ],
+  "original_members_verified": 132,
+  "scoring": {
+    "BASE": {
+      "assigned": 16,
+      "exact_target_json_match": 0,
+      "format_correct": 0,
+      "reasoning_correct": 0,
+      "schema_valid": 0,
+      "strict_fit": false,
+      "strict_json": 14,
+      "task_correct": 0
+    },
+    "Q1": {
+      "assigned": 16,
+      "exact_target_json_match": 8,
+      "format_correct": 8,
+      "reasoning_correct": 0,
+      "schema_valid": 8,
+      "strict_fit": false,
+      "strict_json": 14,
+      "task_correct": 8
+    },
+    "Q4": {
+      "assigned": 16,
+      "exact_target_json_match": 8,
+      "format_correct": 8,
+      "reasoning_correct": 0,
+      "schema_valid": 8,
+      "strict_fit": false,
+      "strict_json": 14,
+      "task_correct": 8
+    }
+  },
+  "source_binding_occurrences": 378,
+  "source_sha": "ebe6fa37b44ad465c16fa36cd2823f55cf93a050",
+  "state_blobs_verified": 11,
+  "status": "PASS_INDEPENDENT_EVIDENCE_VERIFICATION",
+  "training": {
+    "Q1": {
+      "adapter_bytes": 90256,
+      "adapter_on_off_max_logit_difference": 3.9921875,
+      "adapter_sha256": "b2d35da5a4ea6935a88165c39fb6e9b867236a4526f3bea4813fbbfcfba9a29f",
+      "first_token_argmax_matches_generation": 16,
+      "fixed_loss": {
+        "after": {
+          "all_token_mean_nll": 0.7413844676708199,
+          "first_token_mean_nll": 0.0005036224782628551,
+          "format": 0.04050393579096511,
+          "reasoning": 1.4422649995506747
+        },
+        "before": {
+          "all_token_mean_nll": 1.10500708900158,
+          "first_token_mean_nll": 0.0005407077549079986,
+          "format": 0.13951119482127158,
+          "reasoning": 2.0705029831818886
+        }
+      },
+      "peak_allocated_bytes": 14713444352,
+      "peak_reserved_bytes": 16659775488,
+      "seconds": 176.24301749281585,
+      "target_modules": [
+        "model.layers.34.self_attn.q_proj"
+      ],
+      "trainable_parameters": 22528,
+      "training_steps": 640,
+      "training_worker": {
+        "elapsed_seconds": 191.4414497630205,
+        "exit_code": 0,
+        "pid": 385,
+        "reason": "TRANSPORT_EOF",
+        "same_process_alive": false,
+        "start_ticks": "108179669",
+        "supervisor_pid": 384
+      }
+    },
+    "Q4": {
+      "adapter_bytes": 262704,
+      "adapter_on_off_max_logit_difference": 4.0546875,
+      "adapter_sha256": "001668682d4248647cbada088e58e3c015f3bdbd5d5879922fb2de5406af0c0a",
+      "first_token_argmax_matches_generation": 16,
+      "fixed_loss": {
+        "after": {
+          "all_token_mean_nll": 0.7255990775795751,
+          "first_token_mean_nll": 0.0006021085678611371,
+          "format": 0.03722673823388966,
+          "reasoning": 1.4139714169252606
+        },
+        "before": {
+          "all_token_mean_nll": 1.10500708900158,
+          "first_token_mean_nll": 0.0005407077549079986,
+          "format": 0.13951119482127158,
+          "reasoning": 2.0705029831818886
+        }
+      },
+      "peak_allocated_bytes": 15271324160,
+      "peak_reserved_bytes": 16682844160,
+      "seconds": 206.67092059599236,
+      "target_modules": [
+        "model.layers.31.self_attn.q_proj",
+        "model.layers.32.self_attn.q_proj",
+        "model.layers.33.self_attn.q_proj",
+        "model.layers.34.self_attn.q_proj"
+      ],
+      "trainable_parameters": 65536,
+      "training_steps": 640,
+      "training_worker": {
+        "elapsed_seconds": 222.29973694612272,
+        "exit_code": 0,
+        "pid": 428,
+        "reason": "TRANSPORT_EOF",
+        "same_process_alive": false,
+        "start_ticks": "108209570",
+        "supervisor_pid": 427
+      }
+    }
+  },
+  "verified_wire_ledger_collection_assignments": 48
+}

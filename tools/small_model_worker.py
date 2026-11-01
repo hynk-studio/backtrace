@@ -129,6 +129,64 @@ def adapter_feasibility(model, tokenizer, specification):
     return result
 
 
+# Prospective complete-answer encoding, qualified in the step-1 audit.
+def causal_example(prompt, completion, *, pad_token_id, maximum_tokens, padded_tokens=None):
+    """Unshifted labels for a causal LM: it shifts once inside its loss function."""
+    if not prompt or not completion:
+        raise ValueError('nonempty prompt and completion required')
+    if any(type(token) is not int or token < 0 for token in [*prompt, *completion]):
+        raise ValueError('nonnegative integer token IDs required')
+    length = len(prompt) + len(completion)
+    padded_tokens = length if padded_tokens is None else padded_tokens
+    if type(padded_tokens) is not int or not length <= padded_tokens <= maximum_tokens:
+        raise ValueError('sequence overflow; truncation is forbidden')
+    if type(pad_token_id) is not int or pad_token_id < 0:
+        raise ValueError('explicit padding token required')
+    padding = padded_tokens - length
+    return {'input_ids': [*prompt, *completion, *([pad_token_id] * padding)],
+            'attention_mask': [1] * length + [0] * padding,
+            'labels': [-100] * len(prompt) + list(completion) + [-100] * padding}
+
+
+def full_completion_example(tokenizer, messages, answer, *, eos_token_ids,
+                            maximum_tokens=3072, padded_tokens=None):
+    """Use the complete chat template to establish the assistant token boundary.
+
+    Stop at its first generation terminal. Only whitespace may follow it. This
+    prevents an arbitrary hard-coded EOS or a separately encoded boundary from
+    silently changing the training target. No answer-token subsampling occurs.
+    """
+    if not isinstance(answer, str) or not answer or answer != answer.strip():
+        raise ValueError('nonempty canonical answer without boundary whitespace required')
+    if not messages or messages[-1].get('role') != 'user':
+        raise ValueError('a user-ended prompt is required')
+    if not eos_token_ids or any(type(x) is not int or x < 0 for x in eos_token_ids):
+        raise ValueError('explicit generation terminal IDs required')
+    options = dict(tokenize=True, return_dict=True, enable_thinking=False,
+                   truncation=False, padding=False)
+    prompt = tokenizer.apply_chat_template(messages, add_generation_prompt=True,
+                                           **options)['input_ids']
+    full = tokenizer.apply_chat_template(
+        [*messages, {'role': 'assistant', 'content': answer}],
+        add_generation_prompt=False, **options)['input_ids']
+    if full[:len(prompt)] != prompt:
+        raise ValueError('assistant template does not preserve the generation prefix')
+    suffix = full[len(prompt):]
+    terminal = next((i for i, token in enumerate(suffix) if token in eos_token_ids), None)
+    if terminal is None:
+        raise ValueError('assistant completion has no generation terminal')
+    decode = dict(skip_special_tokens=False, clean_up_tokenization_spaces=False)
+    if tokenizer.decode(suffix[:terminal], **decode) != answer:
+        raise ValueError('assistant template changes the answer or adds a control prefix')
+    if tokenizer.decode(suffix[terminal + 1:], **decode).strip():
+        raise ValueError('non-whitespace content follows the assistant terminal')
+    completion = suffix[:terminal + 1]
+    result = causal_example(prompt, completion, pad_token_id=tokenizer.pad_token_id,
+                            maximum_tokens=maximum_tokens, padded_tokens=padded_tokens)
+    return dict(result, prompt_tokens=len(prompt), completion_tokens=len(completion),
+                terminal_token_id=completion[-1])
+
+
 def candidate_delta(model):
     """Separate bounded candidate path; the historical four-update path is unchanged."""
     import math
@@ -315,6 +373,190 @@ def candidate_restore(model,tokenizer,spec):
         'observed_probe_logits_sha256':observed,'capability_claim':'NOT_ESTABLISHED'}
 
 
+def trainability_delta(model, count):
+    import math
+    import torch
+    if type(count) is not int or count not in (1, 4):
+        raise ValueError('one or four final query projections required')
+    if any(hasattr(model, key) for key in ('_backtrace_adapter', '_backtrace_candidate_adapter',
+                                          '_backtrace_trainability_adapter')):
+        raise ValueError('an untouched base model is required')
+    model.eval(); model.requires_grad_(False)
+    candidates = [(n, m) for n, m in model.named_modules()
+                  if n.endswith('.q_proj') and isinstance(m, torch.nn.Linear)]
+    if len(candidates) < count: raise ValueError('insufficient query projections')
+    selected = candidates[-count:]
+    if sum(16 * (m.in_features + m.out_features) for _, m in selected) > 450_000:
+        raise ValueError('bounded adapter export allowance exceeded')
+    device = next(model.parameters()).device
+    class Delta(torch.nn.Module):
+        def __init__(self, projection, index):
+            super().__init__(); self.enabled = True
+            # Shared projections have identical initialization in Q1 and Q4.
+            torch.manual_seed(17 + index)
+            self.a = torch.nn.Parameter(torch.empty(4, projection.in_features, device=device, dtype=torch.float32))
+            self.b = torch.nn.Parameter(torch.zeros(projection.out_features, 4, device=device, dtype=torch.float32))
+            torch.nn.init.kaiming_uniform_(self.a, a=math.sqrt(5))
+        def hook(self, module, args, output):
+            if not self.enabled: return output
+            update = torch.nn.functional.linear(torch.nn.functional.linear(args[0].float(), self.a), self.b)
+            return output + update.to(output.dtype)
+    deltas = torch.nn.ModuleList()
+    for index, (_, projection) in enumerate(selected, len(candidates) - count):
+        delta = Delta(projection, index); projection.register_forward_hook(delta.hook); deltas.append(delta)
+    model.add_module('_backtrace_trainability_adapter', deltas)
+    return [name for name, _ in selected], deltas, device
+
+
+def trainability_train(model, tokenizer, spec):
+    """Full-target repeated SFT with losses measured on the same sixteen rows."""
+    import base64
+    import tempfile
+    import torch
+    from safetensors.torch import save_file, load_file
+    keys = {'schema','arm','rows','rank','steps','seed','learning_rate','maximum_tokens','projection_count'}
+    if (set(spec) != keys or spec['schema'] != 'trainability_adapter_v1' or spec['arm'] not in ('Q1','Q4')
+            or spec['projection_count'] != {'Q1':1,'Q4':4}[spec['arm']] or spec['rank'] != 4
+            or spec['steps'] != 640 or spec['seed'] != 17 or spec['learning_rate'] != 0.01
+            or spec['maximum_tokens'] != 3072 or len(spec['rows']) != 16):
+        raise ValueError('fixed sixteen-row, 640-update diagnostic required')
+    encoded = []; seen = set()
+    for row in spec['rows']:
+        if (set(row) != {'id','messages','answer','sequence_sha256','prompt_tokens','answer_tokens'}
+                or not re.fullmatch('[0-9a-f]{64}', row['id']) or row['id'] in seen):
+            raise ValueError('distinct qualified diagnostic rows required')
+        seen.add(row['id']); json.loads(row['answer'])
+        batch = full_completion_example(tokenizer, row['messages'], row['answer'], eos_token_ids=[1,106,50])
+        if (hashlib.sha256(canonical(batch['input_ids'])).hexdigest() != row['sequence_sha256']
+                or batch['prompt_tokens'] != row['prompt_tokens'] or batch['completion_tokens'] != row['answer_tokens']):
+            raise ValueError('full-target token identity changed')
+        encoded.append(batch)
+    if sum(len(r['input_ids']) for r in encoded) * 40 > 1_000_000:
+        raise ValueError('training token ceiling exceeded')
+    names, deltas, device = trainability_delta(model, spec['projection_count'])
+    original = {k:v.detach().clone() for k,v in deltas.state_dict().items()}
+    probe = encoded[0]['input_ids'][:encoded[0]['prompt_tokens']]
+    def tensors(row):
+        return {k:torch.tensor([row[k]], device=device, dtype=torch.long)
+                for k in ('input_ids','attention_mask','labels')}
+    def fixed_loss():
+        values = []
+        with torch.no_grad():
+            for raw, batch in zip(spec['rows'], encoded):
+                output = model(**tensors(batch), use_cache=False)
+                first = output.logits[0, batch['prompt_tokens'] - 1].float()
+                target = torch.tensor([batch['input_ids'][batch['prompt_tokens']]], device=device)
+                item = {'id':raw['id'],'supervised_tokens':batch['completion_tokens'],
+                    'mean_nll':float(output.loss), 'first_token_nll':float(torch.nn.functional.cross_entropy(first[None],target)),
+                    'first_token_argmax':int(first.argmax())}
+                if not all(__import__('math').isfinite(item[k]) for k in ('mean_nll','first_token_nll')):
+                    raise ValueError('nonfinite fixed-example loss')
+                values.append(item)
+        count = sum(v['supervised_tokens'] for v in values)
+        return {'rows':values,'supervised_tokens':count,
+            'token_mean_nll':sum(v['mean_nll']*v['supervised_tokens'] for v in values)/count}
+    before_logits = candidate_logits(model, probe, device)
+    before = fixed_loss(); losses = []; norms = []; started = time.monotonic()
+    print(json.dumps({'phase':'TRAINABILITY_FIXED_LOSS','arm':spec['arm'],'stage':'before',
+                      'measurement':before}),file=sys.stderr,flush=True)
+    if device.type == 'cuda': torch.cuda.reset_peak_memory_stats()
+    for step in range(640):
+        index = step % 16; batch = encoded[index]
+        for parameter in deltas.parameters(): parameter.grad = None
+        loss = model(**tensors(batch), use_cache=False).loss
+        if not torch.isfinite(loss): raise ValueError('nonfinite diagnostic loss')
+        loss.backward()
+        if any(p.grad is None or not torch.isfinite(p.grad).all() for p in deltas.parameters()):
+            raise ValueError('missing or nonfinite diagnostic gradient')
+        norm = torch.nn.utils.clip_grad_norm_(deltas.parameters(), 1.0, error_if_nonfinite=True)
+        with torch.no_grad():
+            for parameter in deltas.parameters(): parameter.add_(parameter.grad, alpha=-0.01)
+        losses.append(float(loss.detach())); norms.append(float(norm))
+        print(json.dumps({'phase':'TRAINABILITY_UPDATE_FINISHED','arm':spec['arm'],'step':step+1,
+            'epoch':step//16+1,'id':spec['rows'][index]['id'],'loss':losses[-1],
+            'gradient_norm':norms[-1],'elapsed_seconds':time.monotonic()-started}),file=sys.stderr,flush=True)
+    for parameter in deltas.parameters(): parameter.grad = None
+    after = fixed_loss(); trained_logits = candidate_logits(model, probe, device)
+    print(json.dumps({'phase':'TRAINABILITY_FIXED_LOSS','arm':spec['arm'],'stage':'after',
+                      'measurement':after}),file=sys.stderr,flush=True)
+    for delta in deltas: delta.enabled = False
+    disabled = candidate_logits(model, probe, device)
+    for delta in deltas: delta.enabled = True
+    if not torch.equal(before_logits, disabled): raise ValueError('frozen base changed')
+    difference = float((trained_logits-disabled).abs().max())
+    if not difference > 0: raise ValueError('no observable adapter effect')
+    changed = [k for k,v in deltas.state_dict().items() if not torch.equal(v, original[k])]
+    if set(changed) != set(original): raise ValueError('not every adapter tensor changed')
+    with tempfile.TemporaryDirectory(prefix='trainability-') as directory:
+        path = Path(directory)/'adapter.safetensors'
+        save_file({k:v.detach().cpu().contiguous() for k,v in deltas.state_dict().items()}, str(path))
+        raw = path.read_bytes()
+        if len(raw) > 524288: raise ValueError('adapter export too large')
+        restored = load_file(str(path), device='cpu')
+        with torch.no_grad():
+            for parameter in deltas.parameters(): parameter.zero_()
+            for k,v in deltas.state_dict().items(): v.copy_(restored[k].to(device))
+    if not torch.equal(trained_logits, candidate_logits(model, probe, device)):
+        raise ValueError('diagnostic adapter reload changed logits')
+    if device.type == 'cuda': torch.cuda.synchronize()
+    return {'status':'PASS_TRAINABILITY_UPDATES','arm':spec['arm'],'training_steps':640,'updates_in_worker':640,
+        'rank':4,'projection_count':spec['projection_count'],'target_modules':names,'seed':17,
+        'optimizer':'SGD','learning_rate':0.01,'trainable_parameters':sum(p.numel() for p in deltas.parameters()),
+        'training_input_sha256':hashlib.sha256(canonical(spec)).hexdigest(),
+        'before_fixed_loss':before,'after_fixed_loss':after,'losses':losses,'gradient_norms':norms,
+        'changed_tensors':changed,'adapter_on_off_max_logit_difference':difference,
+        'disabled_base_max_logit_difference':0.0,'save_reload_max_logit_difference':0.0,
+        'seconds':time.monotonic()-started,'adapter_bytes':len(raw),'adapter_sha256':hashlib.sha256(raw).hexdigest(),
+        'adapter_safetensors_base64':base64.b64encode(raw).decode(),'probe_messages':spec['rows'][0]['messages'],
+        'probe_input_ids_sha256':hashlib.sha256(canonical(probe)).hexdigest(),
+        'untrained_probe_logits_sha256':hashlib.sha256(before_logits.numpy().tobytes()).hexdigest(),
+        'trained_probe_logits_sha256':hashlib.sha256(trained_logits.numpy().tobytes()).hexdigest(),
+        'capability_claim':'NOT_ESTABLISHED',**({'peak_allocated_bytes':torch.cuda.max_memory_allocated(),
+        'peak_reserved_bytes':torch.cuda.max_memory_reserved()} if device.type=='cuda' else {})}
+
+
+def trainability_restore(model, tokenizer, spec):
+    import base64
+    import tempfile
+    import torch
+    from safetensors.torch import load_file
+    keys = {'schema','arm','training_steps','training_input_sha256','adapter_bytes','adapter_sha256',
+            'adapter_safetensors_base64','target_modules','projection_count','probe_messages',
+            'probe_input_ids_sha256','trained_probe_logits_sha256'}
+    if (set(spec) != keys or spec['schema'] != 'trainability_restore_v1' or spec['arm'] not in ('Q1','Q4')
+            or spec['projection_count'] != {'Q1':1,'Q4':4}[spec['arm']] or spec['training_steps'] != 640
+            or type(spec['adapter_bytes']) is not int or not 0 < spec['adapter_bytes'] <= 524288
+            or len(spec['adapter_safetensors_base64']) > 700000
+            or any(not re.fullmatch('[0-9a-f]{64}',spec[k]) for k in
+                   ('training_input_sha256','adapter_sha256','probe_input_ids_sha256','trained_probe_logits_sha256'))):
+        raise ValueError('bounded diagnostic restore contract required')
+    raw = base64.b64decode(spec['adapter_safetensors_base64'], validate=True)
+    if len(raw) != spec['adapter_bytes'] or hashlib.sha256(raw).hexdigest() != spec['adapter_sha256']:
+        raise ValueError('diagnostic adapter identity mismatch')
+    probe = candidate_prompt(tokenizer, spec['probe_messages'])
+    if hashlib.sha256(canonical(probe)).hexdigest() != spec['probe_input_ids_sha256']:
+        raise ValueError('diagnostic probe mismatch')
+    names, deltas, device = trainability_delta(model, spec['projection_count'])
+    if names != spec['target_modules']: raise ValueError('diagnostic target modules mismatch')
+    with tempfile.TemporaryDirectory(prefix='trainability-restore-') as directory:
+        path = Path(directory)/'adapter.safetensors'; path.write_bytes(raw)
+        values = load_file(str(path), device='cpu')
+    if set(values) != set(deltas.state_dict()): raise ValueError('diagnostic tensor keys mismatch')
+    with torch.no_grad():
+        for k,v in deltas.state_dict().items():
+            if values[k].dtype != torch.float32 or values[k].shape != v.shape or not torch.isfinite(values[k]).all():
+                raise ValueError('diagnostic tensor dtype, shape or values mismatch')
+            v.copy_(values[k].to(device))
+    observed = hashlib.sha256(candidate_logits(model, probe, device).numpy().tobytes()).hexdigest()
+    if observed != spec['trained_probe_logits_sha256']: raise ValueError('fresh diagnostic logits mismatch')
+    deltas.requires_grad_(False)
+    return {'status':'PASS_FRESH_PROCESS_TRAINABILITY_RELOAD','arm':spec['arm'],
+        'training_steps':640,'updates_in_worker':0,'adapter_bytes':len(raw),'adapter_sha256':spec['adapter_sha256'],
+        'training_input_sha256':spec['training_input_sha256'],'target_modules':names,
+        'projection_count':spec['projection_count'],'probe_input_ids_sha256':spec['probe_input_ids_sha256'],
+        'observed_probe_logits_sha256':observed,'capability_claim':'NOT_ESTABLISHED'}
+
+
 def cuda_check(job):
     """Actual single-device kernels; never treats import success as GPU success."""
     import torch
@@ -395,13 +637,15 @@ def main():
         'load_peak_allocated_bytes':torch.cuda.max_memory_allocated(),
         'load_peak_reserved_bytes':torch.cuda.max_memory_reserved()} if cuda_mode else {})
     adaptation=None;candidate=None
-    if sum(k in job for k in ('adapter_feasibility','candidate_training','candidate_restore'))>1:
+    if sum(k in job for k in ('adapter_feasibility','candidate_training','candidate_restore',
+                              'trainability_training','trainability_restore'))>1:
         raise ValueError('one explicit adapter operation per worker required')
     if 'adapter_feasibility' in job:
         if job['mode'] not in ('pretrained_cuda','random_fixture'):
             raise ValueError('adapter requires a model and explicit bounded job')
         adaptation=adapter_feasibility(model,tokenizer,job['adapter_feasibility'])
-    for operation,function in (('candidate_training',candidate_train),('candidate_restore',candidate_restore)):
+    for operation,function in (('candidate_training',candidate_train),('candidate_restore',candidate_restore),
+                               ('trainability_training',trainability_train),('trainability_restore',trainability_restore)):
         if operation in job:
             if job['mode'] not in ('pretrained_cuda','random_fixture'):
                 raise ValueError('candidate operation requires a qualified model job')

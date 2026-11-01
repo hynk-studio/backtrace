@@ -1,0 +1,11 @@
+{
+  "boundary": "Read-only account refresh; separate from the qualified experiment source.",
+  "corrected_run": 41284622433,
+  "corrected_source_sha": "fb7f4f4c0232858a1c967fdf9bcf939542e81c27",
+  "correction": "Use a YAML block scalar for the pip command.",
+  "failed_initial_run": 41284528849,
+  "failure": "Workflow rejected before any jobs; inline pip command contained an unquoted YAML colon-space.",
+  "initial_source_sha": "e39c2759db99762896bb70d213428a48eb61ee7c",
+  "paid_attempts": 0,
+  "provider_mutations": 0
+}
