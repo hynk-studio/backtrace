@@ -1,0 +1,19 @@
+{
+  "archive": {
+    "bytes": 22945,
+    "sha256": "e54fcbaf2a2dba40e112ed72546086692739422cbc5307e52eb03fe933d50fb0"
+  },
+  "job_log_sha256": "717abf77cc7c980daeaa41cc3ee5689829431a542f719789cf23556ce9352bf9",
+  "members": [
+    {
+      "bytes": 167,
+      "path": "preflight.json",
+      "sha256": "28dc1a67c2aa9e5631120b5317f613742583ad217a51d3594a1dfd5fbecdcc3f"
+    },
+    {
+      "bytes": 131570,
+      "path": "tests.log",
+      "sha256": "4925bf09dd6201759b36f175b91bfc18b04926de77d36196ce529204c21a3916"
+    }
+  ]
+}

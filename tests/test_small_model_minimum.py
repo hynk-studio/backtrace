@@ -183,6 +183,7 @@ class MinimumTests(unittest.TestCase):
                 self.assertEqual(records['done']['failure'],
                     {'type':'ProviderError','http_status':400})
                 self.assertNotIn('private-body-fixture',json.dumps(records['done']))
+                self.assertNotIn('provider_problem',records['done'])
                 self.assertEqual(records['done']['claim_sha256'],life.digest(records['claim']))
             return {'status':'DELETED','absence_reads':2}
         with tempfile.TemporaryDirectory() as td:
@@ -213,6 +214,14 @@ class MinimumTests(unittest.TestCase):
         result,spawn,times=self.run_paid_owner_fixture([],create_error=
             m.control.ProviderError('private-body-fixture',http_status=400))
         self.assertEqual(result['status'],'FAIL')
+        self.assertEqual(result['failure'],{'type':'ProviderError','http_status':400})
+        spawn.assert_not_called();self.assertEqual(times,[])
+
+    def test_redacted_problem_is_retained_in_result_without_changing_cleanup_state(self):
+        problem={'schema':'redacted_provider_problem_v1','detail':'No instances available.'}
+        error=m.control.ProviderError('private-body-fixture',http_status=400);error.problem=problem
+        result,spawn,times=self.run_paid_owner_fixture([],create_error=error)
+        self.assertEqual(result['provider_problem'],problem)
         self.assertEqual(result['failure'],{'type':'ProviderError','http_status':400})
         spawn.assert_not_called();self.assertEqual(times,[])
 
