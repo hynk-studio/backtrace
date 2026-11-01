@@ -1,0 +1,32 @@
+{
+  "artifact": {
+    "github_reported_sha256": "236a35ef7c67f54c39c9ff3f95c20525b95c2d6ef81ee246c158756c1f0c8ef7",
+    "id": 13069464536,
+    "size_in_bytes": 5311
+  },
+  "base_result_sha": "5de0a29b5e9e9583878a035b678f9760b3278c22",
+  "files": {
+    "job-124751633754.log": {
+      "bytes": 28977,
+      "sha256": "8b4d02f323f9d3d31308fa61903681a96def8b4b23b9659ad89bafd573a3338e"
+    },
+    "job-status.json": {
+      "bytes": 2251,
+      "sha256": "159f125f1c8b4c081165219086ecfd19fbadc6a3d113754c9345b92931fa3290"
+    },
+    "training-path-audit.json": {
+      "bytes": 3562,
+      "sha256": "1624ab8f49eddac183ed52bd31b82c6da165e90492855386e70b39f8ffbbc7e0"
+    }
+  },
+  "job_id": 124751633754,
+  "report_extraction": "Full JSON block from the fetched GitHub job log, removing only timestamp prefixes. Artifact ZIP bytes were not downloaded or independently hashed.",
+  "run_id": 41273756723,
+  "source_hashes": {
+    ".github/workflows/small-model-training-audit.yml": "846f350579b7dc140e3b8dc0d93bdf56c336b1b67d34b9773639968300e389aa",
+    "tests/test_small_model_sft_inputs.py": "14cc3706eae5f71bc4db893f062218bf6eba152389386b71c440b34a1f613855",
+    "tools/small_model_sft_inputs.py": "9d309fcf6ec44181943fd048b72b5b21675640df4a1f341a85a1d4de886fd33f",
+    "tools/small_model_training_audit.py": "094be1e683eb11e10e762b10ed26481fad6860a6693e202cf25fdec734c70eaf"
+  },
+  "source_sha": "71264147bf6fbdd8a89a1bbe0b58030a3442e8f1"
+}
