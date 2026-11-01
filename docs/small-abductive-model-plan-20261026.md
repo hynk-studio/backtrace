@@ -1,6 +1,18 @@
-Current checkpoint,2026-10-31 20:19 UTC: actual E2B four-update/save-reload and
+## Current checkpoint: training-path audit complete (2026-11-01)
 
-## Current result: matched candidate complete, practical comparison blocked
+Read [the training-path audit](small-model-training-path-audit-20261101.md).
+All 640 train targets and original token sequences reproduced; 54 focused tests
+and the numerical causal-loss check passed. No assistant-boundary, terminal or
+label-shift defect was found. The measured answer-token omissions are removed
+in a separate prospective full-completion encoder; they are not a proven cause
+of the original failure. No pretrained training or paid allocation occurred.
+
+The next decision is an 8–16-example trainability diagnostic with fixed-example
+loss and free generation before/after. Existing cost/time/cleanup boundaries and
+original negative results remain. The Augnes connection blocks current-service
+comparison, not this offline diagnosis. Earlier checkpoints below are historical.
+
+## Historical result: matched candidate complete, practical comparison blocked
 
 Read [the actual matched result](small-model-matched-result-20261031.md).
 Run41242457133 completed348 responses and640 actual updates, with byte-verified

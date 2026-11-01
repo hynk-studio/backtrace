@@ -1,0 +1,94 @@
+{
+  "capability_claim": "NOT_ESTABLISHED",
+  "causal_loss": {
+    "loss_function_source": "def ForCausalLMLoss(\n    logits,\n    labels,\n    vocab_size: int,\n    num_items_in_batch: torch.Tensor | None = None,\n    ignore_index: int = -100,\n    shift_labels: torch.Tensor | None = None,\n    **kwargs,\n) -> torch.Tensor:\n    # Upcast to float if we need to compute the loss to avoid potential precision issues\n    logits = logits.float()\n\n    if shift_labels is None:\n        # Shift so that tokens < n predict n\n        labels = nn.functional.pad(labels, (0, 1), value=ignore_index)\n        shift_labels = labels[..., 1:].contiguous()\n\n    # Flatten the tokens\n    logits = logits.view(-1, vocab_size)\n    shift_labels = shift_labels.view(-1)\n    shift_labels = shift_labels.to(logits.device)\n    loss = fixed_cross_entropy(logits, shift_labels, num_items_in_batch, ignore_index, **kwargs)\n    return loss\n",
+    "loss_function_source_sha256": "c7f950f4eb7eba01f9339bc4937c9e1cc2885cf1c1bc116d764990c694a90ff9",
+    "manual_shifted_loss": 4.877192497253418,
+    "model_loss": 4.877192497253418,
+    "per_target_loss": [
+      4.70453405380249,
+      4.885201930999756,
+      5.041841506958008
+    ],
+    "prediction_positions": [
+      2,
+      3,
+      4
+    ],
+    "pretrained": false,
+    "status": "PASS_RANDOM_CPU_CAUSAL_LOSS",
+    "supervised_tokens": 3,
+    "target_ids": [
+      5,
+      6,
+      106
+    ],
+    "unpadded_loss": 4.877192497253418,
+    "updates": 0
+  },
+  "historical_executed_source": "49191f580d35984a52e53f0df3c80d52350aead7",
+  "paid_allocation": false,
+  "pretrained_weights": false,
+  "runtime": {
+    "tokenizers": "0.23.3",
+    "torch": "2.13.0+cpu",
+    "transformers": "5.20.2"
+  },
+  "schema": "training_path_audit_v1",
+  "source_sha": "71264147bf6fbdd8a89a1bbe0b58030a3442e8f1",
+  "status": "PASS_TRAINING_PATH_AUDIT",
+  "targets": {
+    "boundary": "Exact-teacher consistency, not an independent proof of all teacher labels.",
+    "checked_targets": 640,
+    "counts": {
+      "B2:INCONSISTENT_EVIDENCE": 16,
+      "B2:MODEL_MISMATCH": 34,
+      "B2:OK": 206,
+      "B2:common_format": 64,
+      "B2:reasoning": 256,
+      "S:INCONSISTENT_EVIDENCE": 16,
+      "S:MODEL_MISMATCH": 34,
+      "S:OK": 206,
+      "S:common_format": 64,
+      "S:reasoning": 256
+    }
+  },
+  "tokens": {
+    "all_full_chat_and_historical_sequence_ids_equal": true,
+    "all_generation_prefixes_equal": true,
+    "historical_input_evidence_sha256": "a178dd38eeb3826132e015c6b568dbed79e9b87bbd0a51797845f902ebc0e611",
+    "historical_specifications_reproduced": {
+      "B2": "2b8df0c96cd1c5b616a7968002c0f6e3a2dc4f8edcfc220a3b9d1c296a1ecd01",
+      "S": "a56ae1ac5c1c3df6cf26687fd2985ccf525bbfb6266e9840e8580c0b8d319adc"
+    },
+    "terminal_token_counts": {
+      "106": 640
+    },
+    "totals": {
+      "B2": {
+        "answer_tokens": 23257,
+        "new_supervised_tokens": 23257,
+        "old_omitted_tokens": 1503,
+        "old_supervised_tokens": 21754,
+        "omitted_first_answer_tokens": 19,
+        "padded_tokens": 343722,
+        "prompt_tokens": 320465,
+        "rows": 320,
+        "rows_with_omissions": 78
+      },
+      "S": {
+        "answer_tokens": 24093,
+        "new_supervised_tokens": 24093,
+        "old_omitted_tokens": 2339,
+        "old_supervised_tokens": 21754,
+        "omitted_first_answer_tokens": 20,
+        "padded_tokens": 343722,
+        "prompt_tokens": 286673,
+        "rows": 320,
+        "rows_with_omissions": 110
+      }
+    }
+  },
+  "train_only": true,
+  "training_updates": 0
+}

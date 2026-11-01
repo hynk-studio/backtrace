@@ -1,5 +1,22 @@
 # Backtrace working agreement
 
+## Training-path audit complete (2026-11-01)
+
+The owner instructed starting with the training-path audit. Read
+docs/small-model-training-path-audit-20261101.md and Draft #51, stacked on #50.
+CPU run 41273756723 at 71264147bf6fbdd8a89a1bbe0b58030a3442e8f1 passed 54 focused tests,
+all 640 training-target/token checks and the independent causal-loss calculation.
+No chat-boundary, terminal or label-shift defect was observed. Historical masks
+omit 1503 B2 and 2339 S answer tokens; this is not a proven cause of failed outputs.
+The new full-completion input encoder is verified but is not yet wired to a paid
+training job. Original worker/data bytes, outcomes and consumed permits stay fixed.
+
+Next: an 8–16-example trainability diagnostic with fixed-example loss and free
+generation before/after, prospectively bounded through the existing lifecycle.
+Do not mistake this CPU/input result for learning or generalization. The live
+Augnes connection blocks service comparison, not offline diagnosis. This audit
+created no paid permit, allocation, update, merge, top-up or Augnes write.
+
 ## Actual matched candidate complete; no supported learning gain (2026-10-31 UTC)
 
 Read docs/small-model-matched-result-20261031.md. Actual41242457133 at immutable
