@@ -1,17 +1,17 @@
-name: E2B one-example reasoning fit diagnostic
+name: E2B authorized one-case retry with provider error evidence
 on:
   push:
-    branches: [bt-001-reasoning-onecase-20261101, bt-001-reasoning-onecase-start-20261101]
+    branches: [bt-001-reasoning-onecase-retry-20261101, bt-001-reasoning-onecase-retry-start-20261101]
 permissions:
   contents: write
   actions: read
 concurrency:
   group: small-e2b-onecase-cpu-${{ github.ref }}
   # Superseded review commits are free replicas. Never cancel a paid start.
-  cancel-in-progress: ${{ github.ref_name == 'bt-001-reasoning-onecase-20261101' }}
+  cancel-in-progress: ${{ github.ref_name == 'bt-001-reasoning-onecase-retry-20261101' }}
 jobs:
   container:
-    if: github.ref_name != 'bt-001-reasoning-onecase-start-20261101'
+    if: github.ref_name != 'bt-001-reasoning-onecase-retry-start-20261101'
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     permissions:
@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: '3.12.14'
       - name: Full exact-source native tests and preflight
-        if: github.ref_name == 'bt-001-reasoning-onecase-20261101'
+        if: github.ref_name == 'bt-001-reasoning-onecase-retry-20261101'
         run: |
           set -euo pipefail
           mkdir -p evidence .local
@@ -36,7 +36,7 @@ jobs:
         run: |
           mkdir -p evidence .local
           python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
-          if [ "$GITHUB_REF_NAME" = bt-001-reasoning-onecase-20261101 ]; then
+          if [ "$GITHUB_REF_NAME" = bt-001-reasoning-onecase-retry-20261101 ]; then
             python -m pip download --no-cache-dir --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cu126 -r docs/small-model-gpu-requirements.txt -d .local/cuda-wheels
           fi
           python - <<'PYBUILD'
@@ -50,7 +50,7 @@ jobs:
         run: |
           sudo "$(command -v python)" tests/small_model_transport_control.py .local/transport-build/dropbear-DROPBEAR_2026.94/dropbear .local/transport-build/dropbear-DROPBEAR_2026.94/dropbearkey actions-20261019 --window-control > evidence/transport-window-control.json 2> evidence/transport-window-control.log
       - name: Exercise the exact hardware entry in a free ordinary container
-        if: github.ref_name == 'bt-001-reasoning-onecase-20261101'
+        if: github.ref_name == 'bt-001-reasoning-onecase-retry-20261101'
         run: |
           sudo --preserve-env=GITHUB_SHA,GITHUB_RUN_ID "$(command -v python)" -m tools.small_model_onecase_scope qualify .local/cuda-wheels .local/transport-build .local/minimum-qualification > evidence/container.json 2> evidence/container-stderr.log
       - name: Preserve bounded qualification evidence
@@ -103,7 +103,7 @@ jobs:
         run: |
           python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
       - name: Prepare pinned CUDA wheels and transport before any allocation
-        if: github.ref_name == 'bt-001-reasoning-onecase-start-20261101'
+        if: github.ref_name == 'bt-001-reasoning-onecase-retry-start-20261101'
         run: |
           python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
           python -m pip download --no-cache-dir --only-binary=:all: --require-hashes --extra-index-url https://download.pytorch.org/whl/cu126 -r docs/small-model-gpu-requirements.txt -d .local/cuda-wheels
@@ -115,7 +115,7 @@ jobs:
           (root/'receipt.json').write_text(json.dumps(result,sort_keys=True))
           PYBUILD
       - name: Prepare checkpoint, one adapter and both train-only assignments before allocation
-        if: github.ref_name == 'bt-001-reasoning-onecase-start-20261101'
+        if: github.ref_name == 'bt-001-reasoning-onecase-retry-start-20261101'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -132,7 +132,7 @@ jobs:
           RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
         run: |
           mode=free
-          if [ "$GITHUB_REF_NAME" = bt-001-reasoning-onecase-start-20261101 ]; then mode=paid; fi
+          if [ "$GITHUB_REF_NAME" = bt-001-reasoning-onecase-retry-start-20261101 ]; then mode=paid; fi
           python -m tools.small_model_onecase_scope owner "$mode"
       - name: Preserve current account and quotes (read only)
         if: always()
@@ -187,7 +187,7 @@ jobs:
           RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
         run: |
           mode=free
-          if [ "$GITHUB_REF_NAME" = bt-001-reasoning-onecase-start-20261101 ]; then mode=paid; fi
+          if [ "$GITHUB_REF_NAME" = bt-001-reasoning-onecase-retry-start-20261101 ]; then mode=paid; fi
           python -m tools.small_model_onecase_scope watch "$mode"
       - name: Emit bounded evidence archive for durable review
         if: always()
@@ -218,7 +218,7 @@ jobs:
           retention-days: 14
 
   prepare:
-    if: github.ref_name == 'bt-001-reasoning-onecase-20261101'
+    if: github.ref_name == 'bt-001-reasoning-onecase-retry-20261101'
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:

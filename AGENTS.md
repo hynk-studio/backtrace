@@ -1,21 +1,52 @@
 # Backtrace working agreement
 
 
-## Active one-case reasoning verification (2026-11-01)
+## Explicitly authorized one-case retry (2026-11-01)
 
-The owner requested “다음 검증 진행해”. Read docs/small-model-onecase-20261101.md.
-Proceed from completed Draft #52 through exact-source free qualification, a new
-single-use scope, actual one-case Q4 training and fresh-process generation,
-independent deletion, scoring and a draft result PR. Do not stop at preparation.
-One deterministic train-only temporal-revision example, 640 full-target updates,
-BASE/Q4 two original assignments. A complete correct exact free-generated answer
-is required; falling loss or formatting success is insufficient. No held-out data.
+The owner requested “다시 하자” after the completed HTTP400 attempt and recorder
+fix. Read docs/small-model-onecase-retry-20261101.md. This instruction authorizes
+one new source-bound attempt with a fresh namespace, start and permit. It does
+not reopen the consumed first attempt or authorize automatic further retries.
 
-Reuse the qualified lifecycle. Bound one allocation at USD0.55 and 3,000 seconds
-(2,580 work + 300 cleanup + 120 export), within continuation USD2.30 and projected
-credit floor USD0.6060441339. Refresh inventory/price/balance before admission.
-All prior sources/permits are consumed and immutable. No automatic paid retry,
-top-up, merge or Augnes write. Stop only for an independently unresolvable blocker.
+Use the corrected bounded provider-error recorder from Draft #54. Keep the same
+fixed example, E2B/Q4 configuration, 640 updates and two BASE/Q4 generations.
+Fully qualify this exact source without a paid allocation, refresh balance,
+complete inventory and exact stock/quote, then carry the one permitted attempt
+through collection, independent cleanup, post-cleanup scoring and a draft PR.
+Preserve all original outcomes and failures. Maximum additional USD0.55, existing
+continuation USD2.30, projected credit floor USD0.6060441339, and original
+3000/2580/300/120 second total/work/cleanup/export bounds. No top-up, main merge,
+Augnes write or second automatic create. Stop only at a demonstrated blocker.
+
+## One-case reasoning attempt blocked; cleanup complete (2026-11-01)
+
+Read docs/small-model-onecase-result-20261101.md and Draft #53. Exact source
+ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2 passed all 767 native tests, pinned input
+checks, the random CPU training/reload control and independent free cleanup.
+Actual run 41295195306 made one Pod POST and received HTTP400 before any Pod ID,
+hardware check, training update or generation. Both original BASE/Q4 assignments
+are NOT_RUN. No reasoning failure or success is established by this attempt.
+
+Both independent controllers completed their full unknown-create observation
+with NO_RESOURCE_OBSERVED and two final absence reads each. The complete final
+inventory is empty; hourly spend is zero, autopay off. Balance is
+USD1.1925423895; observed run debit USD0.0000000000,
+subject to settlement lag. Continuation debit remains
+USD1.7135017444 of the USD2.30 cap.
+
+The executed client discarded the rejection body; two read-only audit checks
+returned no matching entries. The specific cause remains unknown. Draft #54
+adds bounded redacted problem evidence while preserving the frozen client,
+one-create behavior and full cleanup. Offline run 41298060217 passed all 775
+tests plus CPU preflight; 64 focused tests passed. This cannot recover the old
+response or qualify reasoning. Keep the initial failed fix CI evidence too.
+
+The source/start/permit/claim are consumed and immutable. No automatic paid
+retry, top-up, main merge or Augnes write. A later actual diagnostic requires a
+new prospective scope and exact-source qualification, fresh budget/inventory
+and explicit permitted admission. The next research gate remains a complete
+correct free-generated answer for the fixed training example. The separate
+Augnes connection blocker still prevents actual service-value comparison.
 
 ## Trainability diagnostic complete: format fit, reasoning still fails (2026-11-01)
 

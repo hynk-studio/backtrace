@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/opt/backtrace/launcher.py", line 216, in <module>
+    if sys.argv[1]=='child':child(int(sys.argv[2]),sys.argv[3])
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/backtrace/launcher.py", line 134, in child
+    else:runpy.run_path(str(ROOT/'worker.py'),run_name='__main__')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/opt/backtrace/worker.py", line 726, in <module>
+    main()
+  File "/opt/backtrace/worker.py", line 619, in main
+    gpu=cuda_check(job) if cuda_mode else None
+        ^^^^^^^^^^^^^^^
+  File "/opt/backtrace/worker.py", line 570, in cuda_check
+    raise RuntimeError('CUDA 12.6 device unavailable; CPU fallback forbidden')
+RuntimeError: CUDA 12.6 device unavailable; CPU fallback forbidden

@@ -1,0 +1,46 @@
+{
+  "allocation_requests": 0,
+  "method": "GET",
+  "queries": [
+    {
+      "pages": [
+        {
+          "has_next_page": false,
+          "http_status": 200,
+          "pod_entries": [],
+          "response_bytes": 70,
+          "response_sha256": "8ddd816147de77b2d71f0feb81e6e48a5f9f397014047ef3952a70cdd54152d5",
+          "returned_entries": 0
+        }
+      ],
+      "parameters": {
+        "endTime": "2026-11-01T10:02:00Z",
+        "limit": 100,
+        "search": "backtrace-small-minimum-f39b93e3220c4b66b095dc97e588209d",
+        "startTime": "2026-11-01T10:00:00Z"
+      }
+    },
+    {
+      "pages": [
+        {
+          "has_next_page": false,
+          "http_status": 200,
+          "pod_entries": [],
+          "response_bytes": 70,
+          "response_sha256": "8ddd816147de77b2d71f0feb81e6e48a5f9f397014047ef3952a70cdd54152d5",
+          "returned_entries": 0
+        }
+      ],
+      "parameters": {
+        "endTime": "2026-11-01T10:02:00Z",
+        "limit": 100,
+        "search": "pod",
+        "startTime": "2026-11-01T10:00:00Z"
+      }
+    }
+  ],
+  "resource_mutations": 0,
+  "run_id": "41296236561",
+  "source_sha": "477acf22cd83d84b4dc8234b52d7f948125c7418",
+  "status": "READ_ONLY_AUDIT_LOOKUP_COMPLETE"
+}

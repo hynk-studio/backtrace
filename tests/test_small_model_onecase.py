@@ -58,7 +58,7 @@ class OneCaseTests(unittest.TestCase):
             self.assertEqual((minimum.REVIEW, minimum.CONTRACT['training_steps'],
                 minimum.CONTRACT['pretrained_requests']), (scope.REVIEW, 640, 2))
             self.assertEqual(minimum.REMOTE_MODULE, 'tools.small_model_onecase_scope')
-            self.assertEqual(minimum.State('token', 'a'*40, False).namespace, 'reasoning-onecase-free-'+'a'*40)
+            self.assertEqual(minimum.State('token', 'a'*40, False).namespace, 'reasoning-onecase-retry-free-'+'a'*40)
             self.assertTrue(set(('tools/small_model_onecase_data.py', scope.WORKFLOW)) <= set(minimum.sources()))
         self.assertEqual(old, (entry.data, entry.ARMS, previous.CONTRACT, minimum.State, minimum.CONTRACT))
 
@@ -72,7 +72,7 @@ class OneCaseTests(unittest.TestCase):
             'approved_at': now-1, 'expires_at': now+3600,
             'continuation_observed_spend_usd': '1.7135017444', 'maximum_projection_usd': '0.5041666667'}
         self.assertIs(scope.validate_permit(permit, source, now), permit)
-        for change in ({'namespace': 'trainability-paid-20261101'}, {'maximum_projection_usd': '0.551'},
+        for change in ({'namespace': 'reasoning-onecase-paid-20261101'}, {'namespace': 'trainability-paid-20261101'}, {'maximum_projection_usd': '0.551'},
                        {'continuation_observed_spend_usd': '1.9'}, {'pretrained_requests': 48}):
             with self.assertRaises(ValueError): scope.validate_permit(dict(permit, **change), source, now)
 

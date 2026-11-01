@@ -1,0 +1,15 @@
+{
+  "boundary": "Free input and implementation qualification; actual pretrained GPU result is separate.",
+  "cpu_after_nll": 4.466533184051514,
+  "cpu_before_nll": 4.863375186920166,
+  "distinct_bound_paths": 107,
+  "native_tests": 767,
+  "original_members_verified": 56,
+  "qualification_run_id": 41294192731,
+  "source_binding_occurrences": 353,
+  "source_sha": "ca6d2ce07c19eef01f465a0c59fe85f4cbd487a2",
+  "status": "PASS_INDEPENDENT_QUALIFICATION_VERIFICATION",
+  "training_specification_sha256": {
+    "Q4": "78d1168b75f315e33b8bd68dbe6eab436ec1e98c6dc3b7bacd9a2be2ec99aef3"
+  }
+}
