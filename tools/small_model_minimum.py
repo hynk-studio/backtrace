@@ -14,6 +14,7 @@ import time
 import uuid
 
 from tools import small_model_container as container, small_model_provider as provider
+from tools import small_model_minimum_provider as provider_evidence
 from tools import small_model_lifecycle as life, runpod_control as control
 from tools import research_entry as prior, research_entry_contract as prior_contract
 from tools.cloud_bootstrap import observe
@@ -395,7 +396,7 @@ def owner(state,api,rid,me,prepared=None):
             result['failure']['http_status']=e.http_status
             # Problem fields are bounded/redacted by the provider client. Keep
             # them in the result artifact; shared cleanup state stays numeric.
-            if e.problem is not None:result['provider_problem']=e.problem
+            if getattr(e,'problem',None) is not None:result['provider_problem']=e.problem
     finally:
         if clear_alarm:clear_alarm()
         prior.stop(process)
@@ -421,7 +422,7 @@ def main(role,actual):
         prepared=(ROOT/'.local/minimum-prepared').resolve()
         prepare_runtime(prepared)
     me=identity(state,role,rid)
-    api=control.RunpodAPI(os.environ['RUNPOD_API_KEY'].strip()) if actual else ReplicaAPI(state)
+    api=provider_evidence.RunpodAPI(os.environ['RUNPOD_API_KEY'].strip()) if actual else ReplicaAPI(state)
     return watch(state,api,rid,me) if role=='watch' else owner(state,api,rid,me,prepared)
 
 

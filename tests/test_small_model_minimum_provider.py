@@ -3,7 +3,7 @@ import io
 import json
 import unittest
 import urllib.error
-from tools import runpod_control as control
+from tools import runpod_control as control, small_model_minimum_provider as evidence
 
 
 class ProviderProblemTests(unittest.TestCase):
@@ -13,10 +13,11 @@ class ProviderProblemTests(unittest.TestCase):
             calls.append((request.method, request.full_url))
             raise urllib.error.HTTPError('https://api.runpod.io/v2/pods', 400,
                 'untrusted status text', {}, stream or io.BytesIO(body))
-        api=control.RunpodAPI(key, opener=open_request)
+        api=evidence.RunpodAPI(key, opener=open_request)
         with self.assertRaises(control.ProviderError) as observed:
             api.create(request or {'name':'diagnostic-pod'})
         self.assertEqual(calls,[('POST','https://api.runpod.io/v2/pods')])
+        self.assertIs(api._open,open_request)
         self.assertEqual(str(observed.exception),'provider HTTP 400')
         self.assertEqual(observed.exception.http_status,400)
         return observed.exception.problem

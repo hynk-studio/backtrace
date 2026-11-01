@@ -36,3 +36,11 @@ identify the cause of the observed run. Audit API reference:
 https://docs.runpod.io/api-reference-v2/audit-logs/list-audit-logs
 
 Current actual reasoning train fit remains NOT RUN; this is an error-evidence fix.
+
+The first offline run 41297302373 exposed 25 historical-identity errors because
+runpod_control.py is frozen by the older research protocol. That failed run is
+retained. The final implementation restores its exact original bytes and adds
+small_model_minimum_provider.py, which delegates all wire behavior to the frozen
+client and restores its original opener after each synchronous call. The new
+module and tests are automatically included in the minimum controller source
+manifest. No historical protocol hash or evidence was rewritten.

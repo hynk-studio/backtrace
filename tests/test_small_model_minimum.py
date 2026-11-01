@@ -219,8 +219,8 @@ class MinimumTests(unittest.TestCase):
 
     def test_redacted_problem_is_retained_in_result_without_changing_cleanup_state(self):
         problem={'schema':'redacted_provider_problem_v1','detail':'No instances available.'}
-        result,spawn,times=self.run_paid_owner_fixture([],create_error=
-            m.control.ProviderError('private-body-fixture',http_status=400,problem=problem))
+        error=m.control.ProviderError('private-body-fixture',http_status=400);error.problem=problem
+        result,spawn,times=self.run_paid_owner_fixture([],create_error=error)
         self.assertEqual(result['provider_problem'],problem)
         self.assertEqual(result['failure'],{'type':'ProviderError','http_status':400})
         spawn.assert_not_called();self.assertEqual(times,[])
