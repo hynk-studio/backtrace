@@ -1,0 +1,270 @@
+﻿2026-11-01T11:12:03.4086139Z Current runner version: '2.338.2'
+2026-11-01T11:12:03.4115603Z ##[group]Runner Image Provisioner
+2026-11-01T11:12:03.4116640Z Hosted Compute Agent
+2026-11-01T11:12:03.4117291Z Version: 20261021.618
+2026-11-01T11:12:03.4117978Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-11-01T11:12:03.4118813Z Build Date: 2026-10-21T00:45:21Z
+2026-11-01T11:12:03.4119531Z Worker ID: {a9be7fcd-0857-42b3-914a-f9b0e55e83c2}
+2026-11-01T11:12:03.4120683Z Region: westus
+2026-11-01T11:12:03.4121387Z Cloud: Azure
+2026-11-01T11:12:03.4121979Z ##[endgroup]
+2026-11-01T11:12:03.4123596Z ##[group]Operating System
+2026-11-01T11:12:03.4124314Z Ubuntu
+2026-11-01T11:12:03.4124940Z 24.04.5
+2026-11-01T11:12:03.4125504Z LTS
+2026-11-01T11:12:03.4126072Z ##[endgroup]
+2026-11-01T11:12:03.4126693Z ##[group]Runner Image
+2026-11-01T11:12:03.4127322Z Image: ubuntu-24.04
+2026-11-01T11:12:03.4128336Z Version: 20261025.353.1
+2026-11-01T11:12:03.4129698Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-01T11:12:03.4131969Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+2026-11-01T11:12:03.4133113Z ##[endgroup]
+2026-11-01T11:12:03.4134282Z ##[group]GITHUB_TOKEN Permissions
+2026-11-01T11:12:03.4136518Z Contents: read
+2026-11-01T11:12:03.4137209Z Metadata: read
+2026-11-01T11:12:03.4137815Z ##[endgroup]
+2026-11-01T11:12:03.4140703Z Secret source: Actions
+2026-11-01T11:12:03.4141897Z Cache mode: write
+2026-11-01T11:12:03.4142623Z Prepare workflow directory
+2026-11-01T11:12:03.4495771Z Prepare all required actions
+2026-11-01T11:12:03.4547268Z Getting action download info
+2026-11-01T11:12:03.8048632Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-01T11:12:03.9143180Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-01T11:12:03.9964035Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-01T11:12:04.2180980Z Complete job name: quote
+2026-11-01T11:12:04.3097725Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-11-01T11:12:04.3098840Z with:
+2026-11-01T11:12:04.3099361Z   persist-credentials: false
+2026-11-01T11:12:04.3099919Z   repository: hynk-studio/backtrace
+2026-11-01T11:12:04.3104142Z   token: ***
+2026-11-01T11:12:04.3104589Z   ssh-strict: true
+2026-11-01T11:12:04.3105033Z   ssh-user: git
+2026-11-01T11:12:04.3105455Z   clean: true
+2026-11-01T11:12:04.3105907Z   sparse-checkout-cone-mode: true
+2026-11-01T11:12:04.3106443Z   fetch-depth: 1
+2026-11-01T11:12:04.3106876Z   fetch-tags: false
+2026-11-01T11:12:04.3107320Z   show-progress: true
+2026-11-01T11:12:04.3107776Z   lfs: false
+2026-11-01T11:12:04.3108189Z   submodules: false
+2026-11-01T11:12:04.3108642Z   set-safe-directory: true
+2026-11-01T11:12:04.3109161Z   allow-unsafe-pr-checkout: false
+2026-11-01T11:12:04.3110005Z ##[endgroup]
+2026-11-01T11:12:04.6454971Z Syncing repository: hynk-studio/backtrace
+2026-11-01T11:12:04.6457519Z ##[group]Getting Git version info
+2026-11-01T11:12:04.6458309Z Working directory is '/home/runner/work/backtrace/backtrace'
+2026-11-01T11:12:04.6459351Z [command]/usr/bin/git version
+2026-11-01T11:12:04.6568855Z git version 2.56.0
+2026-11-01T11:12:04.6602058Z ##[endgroup]
+2026-11-01T11:12:04.6611047Z Temporarily overriding HOME='/home/runner/work/_temp/74b1e067-5ea6-4732-80fe-b7c2faad945d' before making global git config changes
+2026-11-01T11:12:04.6613303Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-01T11:12:04.6618111Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/backtrace/backtrace
+2026-11-01T11:12:04.6689542Z Deleting the contents of '/home/runner/work/backtrace/backtrace'
+2026-11-01T11:12:04.6697300Z ##[group]Initializing the repository
+2026-11-01T11:12:04.6703402Z [command]/usr/bin/git init /home/runner/work/backtrace/backtrace
+2026-11-01T11:12:04.6830050Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-01T11:12:04.6832430Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-01T11:12:04.6834497Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-01T11:12:04.6835940Z hint: call:
+2026-11-01T11:12:04.6836608Z hint:
+2026-11-01T11:12:04.6837433Z hint: 	git config --global init.defaultBranch <name>
+2026-11-01T11:12:04.6838489Z hint:
+2026-11-01T11:12:04.6839534Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-01T11:12:04.6841374Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-01T11:12:04.6842642Z hint:
+2026-11-01T11:12:04.6843354Z hint: 	git branch -m <name>
+2026-11-01T11:12:04.6844200Z hint:
+2026-11-01T11:12:04.6845207Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-01T11:12:04.6847015Z Initialized empty Git repository in /home/runner/work/backtrace/backtrace/.git/
+2026-11-01T11:12:04.6861459Z [command]/usr/bin/git remote add origin https://github.com/hynk-studio/backtrace
+2026-11-01T11:12:04.6950463Z ##[endgroup]
+2026-11-01T11:12:04.6951796Z ##[group]Disabling automatic garbage collection
+2026-11-01T11:12:04.6955431Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-01T11:12:04.6992248Z ##[endgroup]
+2026-11-01T11:12:04.6993530Z ##[group]Setting up auth
+2026-11-01T11:12:04.7000648Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-01T11:12:04.7048483Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-01T11:12:04.7532205Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-01T11:12:04.7579350Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-01T11:12:04.7828929Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-01T11:12:04.7877058Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-01T11:12:04.8144453Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-01T11:12:04.8196308Z ##[endgroup]
+2026-11-01T11:12:04.8197855Z ##[group]Fetching the repository
+2026-11-01T11:12:04.8211907Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +7d68a09f73eb0e477a6b43533722083fa5570c06:refs/remotes/origin/bt-001-reasoning-onecase-account-20261101
+2026-11-01T11:12:05.6202264Z From https://github.com/hynk-studio/backtrace
+2026-11-01T11:12:05.6204078Z  * [new ref]         7d68a09f73eb0e477a6b43533722083fa5570c06 -> origin/bt-001-reasoning-onecase-account-20261101
+2026-11-01T11:12:05.6218275Z ##[endgroup]
+2026-11-01T11:12:05.6220029Z ##[group]Determining the checkout info
+2026-11-01T11:12:05.6222298Z ##[endgroup]
+2026-11-01T11:12:05.6231083Z [command]/usr/bin/git sparse-checkout disable
+2026-11-01T11:12:05.6302958Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-01T11:12:05.6350715Z ##[group]Checking out the ref
+2026-11-01T11:12:05.6355129Z [command]/usr/bin/git checkout --progress --force -B bt-001-reasoning-onecase-account-20261101 refs/remotes/origin/bt-001-reasoning-onecase-account-20261101
+2026-11-01T11:12:05.7788982Z Switched to a new branch 'bt-001-reasoning-onecase-account-20261101'
+2026-11-01T11:12:05.7794742Z branch 'bt-001-reasoning-onecase-account-20261101' set up to track 'origin/bt-001-reasoning-onecase-account-20261101'.
+2026-11-01T11:12:05.7810950Z ##[endgroup]
+2026-11-01T11:12:05.7867530Z [command]/usr/bin/git log -1 --format=%H
+2026-11-01T11:12:05.7903470Z 7d68a09f73eb0e477a6b43533722083fa5570c06
+2026-11-01T11:12:05.7914639Z ##[group]Removing auth
+2026-11-01T11:12:05.7917805Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-01T11:12:05.7960051Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-01T11:12:05.8207412Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-01T11:12:05.8243756Z http.https://github.com/.extraheader
+2026-11-01T11:12:05.8251047Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-01T11:12:05.8293289Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-01T11:12:05.8537562Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-01T11:12:05.8580694Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-01T11:12:05.8825010Z ##[endgroup]
+2026-11-01T11:12:05.9293338Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-11-01T11:12:05.9294983Z with:
+2026-11-01T11:12:05.9295886Z   python-version: 3.12.14
+2026-11-01T11:12:05.9296944Z   check-latest: false
+2026-11-01T11:12:05.9306831Z   token: ***
+2026-11-01T11:12:05.9307819Z   update-environment: true
+2026-11-01T11:12:05.9308928Z   allow-prereleases: false
+2026-11-01T11:12:05.9309977Z   freethreaded: false
+2026-11-01T11:12:05.9311136Z ##[endgroup]
+2026-11-01T11:12:06.0787410Z ##[group]Installed versions
+2026-11-01T11:12:06.0809822Z Version 3.12.14 was not found in the local cache
+2026-11-01T11:12:06.1010639Z (node:2424) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-01T11:12:06.1013898Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-01T11:12:06.9419485Z Version 3.12.14 is available for downloading
+2026-11-01T11:12:06.9422716Z Download from "https://github.com/actions/python-versions/releases/download/3.12.14-31661455385/python-3.12.14-linux-24.04-x64.tar.gz"
+2026-11-01T11:12:07.5539559Z Extract downloaded archive
+2026-11-01T11:12:07.5731024Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/874adc7c-0e2a-4c3e-927d-0158eaef142e -f /home/runner/work/_temp/4ca1daa3-fa02-4549-8329-15e6c235f71c
+2026-11-01T11:12:09.5147865Z Execute installation script
+2026-11-01T11:12:09.5304024Z Check if Python hostedtoolcache folder exist...
+2026-11-01T11:12:09.5305141Z Create Python 3.12.14 folder
+2026-11-01T11:12:09.5320380Z Copy Python binaries to hostedtoolcache folder
+2026-11-01T11:12:10.0037201Z Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+2026-11-01T11:12:10.0081599Z Upgrading pip...
+2026-11-01T11:12:11.7403542Z Collecting pip
+2026-11-01T11:12:11.7731804Z Downloading pip-26.2.2-py3-none-any.whl.metadata (4.6 kB)
+2026-11-01T11:12:11.7807841Z Downloading pip-26.2.2-py3-none-any.whl (1.8 MB)
+2026-11-01T11:12:11.8197559Z ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 105.3 MB/s eta 0:00:00
+2026-11-01T11:12:11.8198590Z 
+2026-11-01T11:12:11.8402026Z Installing collected packages: pip
+2026-11-01T11:12:11.8402990Z Attempting uninstall: pip
+2026-11-01T11:12:11.8424910Z Found existing installation: pip 25.0.1
+2026-11-01T11:12:11.8783991Z Uninstalling pip-25.0.1:
+2026-11-01T11:12:11.8843193Z Successfully uninstalled pip-25.0.1
+2026-11-01T11:12:12.8145478Z Successfully installed pip-26.2.2
+2026-11-01T11:12:12.8753020Z Create complete file
+2026-11-01T11:12:12.8797295Z Successfully set up CPython (3.12.14)
+2026-11-01T11:12:12.8799136Z ##[endgroup]
+2026-11-01T11:12:12.9075109Z ##[group]Run python -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt
+2026-11-01T11:12:12.9076105Z [36;1mpython -m pip install --require-hashes --only-binary=:all: -r docs/cloud-controller-requirements.txt[0m
+2026-11-01T11:12:12.9103687Z shell: /usr/bin/bash -e {0}
+2026-11-01T11:12:12.9103999Z env:
+2026-11-01T11:12:12.9104309Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:12:12.9104831Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T11:12:12.9105383Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:12:12.9105855Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:12:12.9106306Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:12:12.9106758Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T11:12:12.9107135Z ##[endgroup]
+2026-11-01T11:12:13.3454044Z Collecting certifi==2026.10.18 (from -r docs/cloud-controller-requirements.txt (line 2))
+2026-11-01T11:12:13.3923824Z   Downloading certifi-2026.10.18-py3-none-any.whl (134 kB)
+2026-11-01T11:12:13.5854607Z Collecting charset-normalizer==3.5.2 (from -r docs/cloud-controller-requirements.txt (line 3))
+2026-11-01T11:12:13.5888595Z   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+2026-11-01T11:12:13.6121612Z Collecting idna==3.20 (from -r docs/cloud-controller-requirements.txt (line 4))
+2026-11-01T11:12:13.6155404Z   Downloading idna-3.20-py3-none-any.whl (69 kB)
+2026-11-01T11:12:13.6365124Z Collecting kagglehub==1.0.2 (from -r docs/cloud-controller-requirements.txt (line 5))
+2026-11-01T11:12:13.6407187Z   Downloading kagglehub-1.0.2-py3-none-any.whl (70 kB)
+2026-11-01T11:12:13.6567417Z Collecting kagglesdk==0.1.37 (from -r docs/cloud-controller-requirements.txt (line 6))
+2026-11-01T11:12:13.6604026Z   Downloading kagglesdk-0.1.37-py3-none-any.whl (262 kB)
+2026-11-01T11:12:13.6771647Z Collecting packaging==26.3 (from -r docs/cloud-controller-requirements.txt (line 7))
+2026-11-01T11:12:13.6802295Z   Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-11-01T11:12:13.8159529Z Collecting protobuf==7.36.2 (from -r docs/cloud-controller-requirements.txt (line 8))
+2026-11-01T11:12:13.8195019Z   Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl (343 kB)
+2026-11-01T11:12:13.8358405Z Collecting pyrage==1.4.0 (from -r docs/cloud-controller-requirements.txt (line 9))
+2026-11-01T11:12:13.8401576Z   Downloading pyrage-1.4.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (924 kB)
+2026-11-01T11:12:13.8483381Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 924.7/924.7 kB 126.0 MB/s  0:00:00
+2026-11-01T11:12:13.8811381Z Collecting PyYAML==6.0.3 (from -r docs/cloud-controller-requirements.txt (line 10))
+2026-11-01T11:12:13.8845342Z   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+2026-11-01T11:12:13.8924142Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 116.4 MB/s  0:00:00
+2026-11-01T11:12:13.9116093Z Collecting requests==2.34.2 (from -r docs/cloud-controller-requirements.txt (line 11))
+2026-11-01T11:12:13.9148119Z   Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+2026-11-01T11:12:13.9366808Z Collecting tqdm==4.70.1 (from -r docs/cloud-controller-requirements.txt (line 12))
+2026-11-01T11:12:13.9397662Z   Downloading tqdm-4.70.1-py3-none-any.whl (80 kB)
+2026-11-01T11:12:13.9608290Z Collecting urllib3==2.8.0 (from -r docs/cloud-controller-requirements.txt (line 13))
+2026-11-01T11:12:13.9635878Z   Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+2026-11-01T11:12:14.0158014Z Installing collected packages: urllib3, tqdm, PyYAML, pyrage, protobuf, packaging, idna, charset-normalizer, certifi, requests, kagglesdk, kagglehub
+2026-11-01T11:12:14.9930469Z 
+2026-11-01T11:12:14.9950545Z Successfully installed PyYAML-6.0.3 certifi-2026.10.18 charset-normalizer-3.5.2 idna-3.20 kagglehub-1.0.2 kagglesdk-0.1.37 packaging-26.3 protobuf-7.36.2 pyrage-1.4.0 requests-2.34.2 tqdm-4.70.1 urllib3-2.8.0
+2026-11-01T11:12:15.0633481Z ##[group]Run python -m tools.small_model_provider evidence/account-quotes.json
+2026-11-01T11:12:15.0634097Z [36;1mpython -m tools.small_model_provider evidence/account-quotes.json[0m
+2026-11-01T11:12:15.0655935Z shell: /usr/bin/bash -e {0}
+2026-11-01T11:12:15.0656341Z env:
+2026-11-01T11:12:15.0656639Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:12:15.0657145Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T11:12:15.0657643Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:12:15.0658075Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:12:15.0658515Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:12:15.0658961Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T11:12:15.0659626Z   RUNPOD_API_KEY: ***
+
+2026-11-01T11:12:15.0659900Z ##[endgroup]
+2026-11-01T11:12:24.4759205Z {"allocation_requests": 0, "observation": {"account": {"auto_pay": false, "credit_balance_usd": "1.1925423895", "observed_at": "2026-11-01T11:12:15Z", "spend_per_hour_usd": "0"}, "account_idle": true, "allocation_requests": 0, "candidate_gpus": [{"id": "NVIDIA RTX A5000", "memoryInGb": 24, "secureCloud": true, "securePrice": 0.27}, {"id": "NVIDIA GeForce RTX 3090", "memoryInGb": 24, "secureCloud": true, "securePrice": 0.5}, {"id": "NVIDIA A40", "memoryInGb": 48, "secureCloud": true, "securePrice": 0.59}, {"id": "NVIDIA L4", "memoryInGb": 24, "secureCloud": true, "securePrice": 0.59}, {"id": "NVIDIA RTX A6000", "memoryInGb": 48, "secureCloud": true, "securePrice": 0.59}, {"id": "NVIDIA L40", "memoryInGb": 48, "secureCloud": true, "securePrice": 0.82}, {"id": "NVIDIA GeForce RTX 4090", "memoryInGb": 24, "secureCloud": true, "securePrice": 0.89}, {"id": "NVIDIA L40S", "memoryInGb": 48, "secureCloud": true, "securePrice": 1.09}], "excluded_or_unqueried_pairs": 1, "hardware_capabilities": "NOT_OBSERVED", "inventory": {"complete_paginated_list": true, "observed_at": "2026-11-01T11:12:24Z", "pod_count": 0, "resource_mutations": 0}, "launch_enabled": false, "maximum_pairs": 32, "offers": [{"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "0.5", "compute_within_proposal": true, "exact_quote": {"availableGpuCounts": null, "minMemory": 125, "minVcpu": 32, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 0.5}, "gpu": "NVIDIA GeForce RTX 3090", "observed_at": "2026-11-01T11:12:16Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.4291666666666666666666666667", "proposed_3000s_compute_usd": "0.4166666666666666666666666667", "region": "EU-CZ-1", "reported_gpu_gb": 24, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "0.89", "compute_within_proposal": true, "exact_quote": {"availableGpuCounts": null, "minMemory": 125, "minVcpu": 32, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 0.89}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T11:12:16Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667", "proposed_3000s_compute_usd": "0.7416666666666666666666666667", "region": "EU-CZ-1", "reported_gpu_gb": 24, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "0.89", "compute_within_proposal": true, "exact_quote": {"availableGpuCounts": null, "minMemory": 46, "minVcpu": 8, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 0.89}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T11:12:16Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667", "proposed_3000s_compute_usd": "0.7416666666666666666666666667", "region": "EU-RO-1", "reported_gpu_gb": 24, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L4", "observed_at": "2026-11-01T11:12:17Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "EU-RO-1", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA RTX A6000", "observed_at": "2026-11-01T11:12:17Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "EU-RO-1", "reported_gpu_gb": 48, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L40S", "observed_at": "2026-11-01T11:12:17Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "EU-NL-1", "reported_gpu_gb": 48, "stock_eligible": false}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "0.89", "compute_within_proposal": true, "exact_quote": {"availableGpuCounts": null, "minMemory": 62, "minVcpu": 16, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 0.89}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T11:12:17Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667", "proposed_3000s_compute_usd": "0.7416666666666666666666666667", "region": "EUR-IS-1", "reported_gpu_gb": 24, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "0.89", "compute_within_proposal": true, "exact_quote": {"availableGpuCounts": null, "minMemory": 100, "minVcpu": 9, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 0.89}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T11:12:18Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667", "proposed_3000s_compute_usd": "0.7416666666666666666666666667", "region": "EUR-IS-2", "reported_gpu_gb": 24, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "0.89", "compute_within_proposal": true, "exact_quote": {"availableGpuCounts": null, "minMemory": 41, "minVcpu": 21, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 0.89}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T11:12:18Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667", "proposed_3000s_compute_usd": "0.7416666666666666666666666667", "region": "US-IL-1", "reported_gpu_gb": 24, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "0.89", "compute_within_proposal": true, "exact_quote": {"availableGpuCounts": null, "minMemory": 62, "minVcpu": 16, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 0.89}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T11:12:18Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.7541666666666666666666666667", "proposed_3000s_compute_usd": "0.7416666666666666666666666667", "region": "US-NC-1", "reported_gpu_gb": 24, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "1.09", "compute_within_proposal": false, "exact_quote": {"availableGpuCounts": null, "minMemory": 125, "minVcpu": 16, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 1.09}, "gpu": "NVIDIA L40S", "observed_at": "2026-11-01T11:12:18Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333", "proposed_3000s_compute_usd": "0.9083333333333333333333333333", "region": "EUR-IS-2", "reported_gpu_gb": 48, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "1.09", "compute_within_proposal": false, "exact_quote": {"availableGpuCounts": null, "minMemory": 94, "minVcpu": 16, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 1.09}, "gpu": "NVIDIA L40S", "observed_at": "2026-11-01T11:12:19Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333", "proposed_3000s_compute_usd": "0.9083333333333333333333333333", "region": "OC-AU-1", "reported_gpu_gb": 48, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "1.09", "compute_within_proposal": false, "exact_quote": {"availableGpuCounts": null, "minMemory": 125, "minVcpu": 21, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 1.09}, "gpu": "NVIDIA L40S", "observed_at": "2026-11-01T11:12:19Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333", "proposed_3000s_compute_usd": "0.9083333333333333333333333333", "region": "US-IL-1", "reported_gpu_gb": 48, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": true, "status": "Low"}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L40S", "observed_at": "2026-11-01T11:12:19Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-TX-3", "reported_gpu_gb": 48, "stock_eligible": false}, {"broad_stock": {"available": true, "status": "Low"}, "compute_usd_per_hour": "1.09", "compute_within_proposal": false, "exact_quote": {"availableGpuCounts": null, "minMemory": 188, "minVcpu": 16, "stockStatus": "Low", "supportPublicIp": null, "uninterruptablePrice": 1.09}, "gpu": "NVIDIA L40S", "observed_at": "2026-11-01T11:12:19Z", "pricing_status": "OBSERVED", "proposed_3000s_compute_and_storage_usd": "0.9208333333333333333333333333", "proposed_3000s_compute_usd": "0.9083333333333333333333333333", "region": "US-TX-4", "reported_gpu_gb": 48, "stock_eligible": true, "storage_projection_usd_per_hour": "0.015"}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA RTX A5000", "observed_at": "2026-11-01T11:12:20Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-CA-2", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA RTX A5000", "observed_at": "2026-11-01T11:12:20Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-IL-1", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA GeForce RTX 3090", "observed_at": "2026-11-01T11:12:20Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "EUR-IS-2", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA A40", "observed_at": "2026-11-01T11:12:20Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-MO-1", "reported_gpu_gb": 48, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L4", "observed_at": "2026-11-01T11:12:21Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "EUR-IS-1", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L4", "observed_at": "2026-11-01T11:12:21Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "EUR-IS-2", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L4", "observed_at": "2026-11-01T11:12:21Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-GA-2", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L4", "observed_at": "2026-11-01T11:12:21Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-MO-2", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA RTX A6000", "observed_at": "2026-11-01T11:12:22Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-KS-2", "reported_gpu_gb": 48, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA RTX A6000", "observed_at": "2026-11-01T11:12:22Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-TX-1", "reported_gpu_gb": 48, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L40", "observed_at": "2026-11-01T11:12:22Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "EUR-IS-2", "reported_gpu_gb": 48, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L40", "observed_at": "2026-11-01T11:12:22Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-KS-2", "reported_gpu_gb": 48, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T11:12:23Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "CA-MTL-3", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T11:12:23Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "EUR-NO-1", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T11:12:23Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-CA-2", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA GeForce RTX 4090", "observed_at": "2026-11-01T11:12:23Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-TX-3", "reported_gpu_gb": 24, "stock_eligible": false}, {"broad_stock": {"available": false, "status": null}, "exact_quote": {"availableGpuCounts": null, "minMemory": null, "minVcpu": null, "stockStatus": null, "supportPublicIp": null, "uninterruptablePrice": null}, "gpu": "NVIDIA L40S", "observed_at": "2026-11-01T11:12:24Z", "pricing_status": "UNAVAILABLE_NULL_COMPUTE_PRICE", "region": "US-MO-1", "reported_gpu_gb": 48, "stock_eligible": false}], "proposal_funded": false, "quote_constraints": {"container_disk_gb": 100, "gpu_count": 1, "minimum_cuda": "12.8", "minimum_gpu_gb": 24, "minimum_ram_gb": 32, "minimum_vcpu": 8, "public_ip": true, "secure_cloud": true, "volume_gb": 0}, "schema": "small-model-provider-read-v1", "settings_changed": false, "stage": "COMPLETE", "status": "PASS_READ_ONLY", "storage_basis": "Published USD0.10/GB/month; USD0.015/hour for 100GB rounds up a 28-day month. Projection, not a provider quote; taxes/other charges not established."}, "resource_mutations": 0, "run_id": "41300823362", "source_sha": "7d68a09f73eb0e477a6b43533722083fa5570c06", "status": "PASS"}
+2026-11-01T11:12:24.4964690Z ##[group]Run python -m tools.onecase_provider_audit_readonly
+2026-11-01T11:12:24.4965208Z [36;1mpython -m tools.onecase_provider_audit_readonly[0m
+2026-11-01T11:12:24.4986815Z shell: /usr/bin/bash -e {0}
+2026-11-01T11:12:24.4987113Z env:
+2026-11-01T11:12:24.4987449Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:12:24.4987986Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T11:12:24.4988507Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:12:24.4988970Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:12:24.4989447Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:12:24.4989919Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T11:12:24.4990804Z   RUNPOD_API_KEY: ***
+
+2026-11-01T11:12:24.4991067Z ##[endgroup]
+2026-11-01T11:12:25.1366231Z {"allocation_requests": 0, "method": "GET", "queries": [{"pages": [{"has_next_page": false, "http_status": 200, "pod_entries": [], "response_bytes": 70, "response_sha256": "8ddd816147de77b2d71f0feb81e6e48a5f9f397014047ef3952a70cdd54152d5", "returned_entries": 0}], "parameters": {"endTime": "2026-11-01T10:02:00Z", "limit": 100, "search": "backtrace-small-minimum-f39b93e3220c4b66b095dc97e588209d", "startTime": "2026-11-01T10:00:00Z"}}, {"pages": [{"has_next_page": false, "http_status": 200, "pod_entries": [], "response_bytes": 70, "response_sha256": "8ddd816147de77b2d71f0feb81e6e48a5f9f397014047ef3952a70cdd54152d5", "returned_entries": 0}], "parameters": {"endTime": "2026-11-01T10:02:00Z", "limit": 100, "search": "pod", "startTime": "2026-11-01T10:00:00Z"}}], "resource_mutations": 0, "run_id": "41300823362", "source_sha": "7d68a09f73eb0e477a6b43533722083fa5570c06", "status": "READ_ONLY_AUDIT_LOOKUP_COMPLETE"}
+2026-11-01T11:12:25.1570776Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-11-01T11:12:25.1571249Z with:
+2026-11-01T11:12:25.1571579Z   name: onecase-fresh-account-7d68a09f73eb0e477a6b43533722083fa5570c06
+2026-11-01T11:12:25.1572001Z   path: evidence/*.json
+2026-11-01T11:12:25.1572240Z   retention-days: 14
+2026-11-01T11:12:25.1572482Z   if-no-files-found: warn
+2026-11-01T11:12:25.1572743Z   compression-level: 6
+2026-11-01T11:12:25.1573177Z   overwrite: false
+2026-11-01T11:12:25.1573400Z   include-hidden-files: false
+2026-11-01T11:12:25.1573640Z env:
+2026-11-01T11:12:25.1573898Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:12:25.1574336Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig
+2026-11-01T11:12:25.1574774Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:12:25.1575180Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:12:25.1575618Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-11-01T11:12:25.1576017Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-11-01T11:12:25.1576343Z ##[endgroup]
+2026-11-01T11:12:25.3351552Z (node:2515) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-01T11:12:25.3352833Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-01T11:12:25.3421367Z With the provided path, there will be 2 files uploaded
+2026-11-01T11:12:25.3422678Z Artifact name is valid!
+2026-11-01T11:12:25.3423415Z Root directory input is valid!
+2026-11-01T11:12:25.7193802Z Beginning upload of artifact content to blob storage
+2026-11-01T11:12:25.7419821Z (node:2515) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-01T11:12:25.9992882Z Uploaded bytes 2370
+2026-11-01T11:12:26.0720155Z Finished uploading artifact content to blob storage!
+2026-11-01T11:12:26.0721872Z SHA256 digest of uploaded artifact zip is 77a5fd0385398cdc65ccc40016f952be10b9e13b3f2ee2d2175c1d6de29ca28c
+2026-11-01T11:12:26.0723108Z Finalizing artifact upload
+2026-11-01T11:12:26.5105897Z Artifact onecase-fresh-account-7d68a09f73eb0e477a6b43533722083fa5570c06.zip successfully finalized. Artifact ID 13081221297
+2026-11-01T11:12:26.5107895Z Artifact onecase-fresh-account-7d68a09f73eb0e477a6b43533722083fa5570c06 has been successfully uploaded! Final size is 2370 bytes. Artifact ID is 13081221297
+2026-11-01T11:12:26.5113748Z Artifact download URL: https://github.com/hynk-studio/backtrace/actions/runs/41300823362/artifacts/13081221297
+2026-11-01T11:12:26.5336680Z Post job cleanup.
+2026-11-01T11:12:26.6634666Z (node:2527) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-01T11:12:26.6635986Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-01T11:12:26.6797258Z Post job cleanup.
+2026-11-01T11:12:26.7971647Z [command]/usr/bin/git version
+2026-11-01T11:12:26.8020550Z git version 2.56.0
+2026-11-01T11:12:26.8085580Z Temporarily overriding HOME='/home/runner/work/_temp/0429f7bc-9adc-4ba7-8275-fc6c85598642' before making global git config changes
+2026-11-01T11:12:26.8087125Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-01T11:12:26.8096002Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/backtrace/backtrace
+2026-11-01T11:12:26.8158139Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-01T11:12:26.8229484Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-01T11:12:26.8677983Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-01T11:12:26.8733555Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-01T11:12:26.9139478Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-01T11:12:26.9194384Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-01T11:12:26.9626590Z Cleaning up orphan processes
+2026-11-01T11:12:27.0132369Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

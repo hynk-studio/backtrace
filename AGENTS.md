@@ -1,22 +1,34 @@
 # Backtrace working agreement
 
 
-## Explicitly authorized one-case retry (2026-11-01)
+## Retry qualified; no in-budget GPU available (2026-11-01)
 
-The owner requested “다시 하자” after the completed HTTP400 attempt and recorder
-fix. Read docs/small-model-onecase-retry-20261101.md. This instruction authorizes
-one new source-bound attempt with a fresh namespace, start and permit. It does
-not reopen the consumed first attempt or authorize automatic further retries.
+The owner explicitly requested “다시 하자”. Read
+`docs/small-model-onecase-retry-result-20261101.md` and Draft #55. Exact source
+08148b7245b772830319d3bdc90be3ad2c74ca51 passed all four qualification jobs in
+41299786120: 775 native tests, pinned inputs/checkpoint, random CPU training and
+fresh reload, ordinary-container controls, and independent free cleanup. All
+56 original members and 110 source Git blobs are verified. Keep this source fixed.
 
-Use the corrected bounded provider-error recorder from Draft #54. Keep the same
-fixed example, E2B/Q4 configuration, 640 updates and two BASE/Q4 generations.
-Fully qualify this exact source without a paid allocation, refresh balance,
-complete inventory and exact stock/quote, then carry the one permitted attempt
-through collection, independent cleanup, post-cleanup scoring and a draft PR.
-Preserve all original outcomes and failures. Maximum additional USD0.55, existing
-continuation USD2.30, projected credit floor USD0.6060441339, and original
-3000/2580/300/120 second total/work/cleanup/export bounds. No top-up, main merge,
-Augnes write or second automatic create. Stop only at a demonstrated blocker.
+Four fresh read-only observations through 11:12:24 UTC found no admissible offer.
+Available L40S projects USD0.9208333333 over 3,000 seconds, above the USD0.55 retry
+cap and USD0.5864982556 remaining continuation envelope. Nominal 24GB products
+remain excluded by the existing reported-24GiB floor. Complete inventory is empty,
+hourly spend zero, autopay off and observed credit unchanged at USD1.1925423895.
+
+No retry start ref, paid permit, claim or Pod create exists. The owner's one-attempt
+instruction remains unused. Resume by refreshing inventory, balance and exact
+quotes; when unchanged admission passes, issue a fresh source-bound permit and
+start at 08148b7245b772830319d3bdc90be3ad2c74ca51, then finish collection, independent
+cleanup and scoring. Do not ask for another confirmation solely because stock
+was previously unavailable. No background launch or automation was established.
+
+Keep the same one fixed case, E2B/Q4, 640 updates, two BASE/Q4 assignments and
+strict complete-answer scoring. Preserve both prior NOT_RUN outcomes and all
+failure evidence. Additional USD0.55, continuation USD2.30, projected credit floor
+USD0.6060441339 and original 3000/2580/300/120 second bounds remain fixed. A source
+change requires exact-source qualification. No automatic paid retry after a
+consumed attempt, top-up, main merge or Augnes write.
 
 ## One-case reasoning attempt blocked; cleanup complete (2026-11-01)
 
